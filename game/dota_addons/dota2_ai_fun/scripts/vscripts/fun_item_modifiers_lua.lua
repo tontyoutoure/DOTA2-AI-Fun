@@ -87,7 +87,8 @@ function modifier_item_fun_escutcheon_lua:ReincarnateTime()
 	if IsClient() then return -1 end
 	local ability = self:GetAbility()
 	if ability:IsCooldownReady() then
-		Timers:CreateTimer(3.06, function () ability:UseResources(false, false, true)end)
+--		Timers:CreateTimer(3.06, function () ability:UseResources(false, false, true)end)
+		ability:UseResources(false, false, true)
 		return 3
 	else
 		return -1
