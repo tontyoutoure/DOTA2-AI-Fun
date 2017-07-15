@@ -139,11 +139,11 @@
 		}
 	}
 
-	"bastion_trransference_str"
+	"bastion_transference_str"
 	{
 		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"bastion_trransference_str"
-		"ScriptFile"	"heroes/bastion/bastion_trransference.lua"
+		"AbilityTextureName"	"bastion_transference_str"
+		"ScriptFile"	"heroes/bastion/bastion_transference.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -171,7 +171,7 @@
 				// For some strange reasons GetLevelSpecialValueFor() is not working well.
 				"cooldown_scepter"	"90 60 30"
 			}
-			// Same for other two bastion_trransference functions
+			// Same for other two bastion_transference functions
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
@@ -183,15 +183,15 @@
 				"percentage"	"50"
 			}
 		}
-		"AbilitySharedCooldown"	"bastion_trransference_share_cooldown"
+		"AbilitySharedCooldown"	"bastion_transference_share_cooldown"
 		"HasScepterUpgrade"	"1"
 	}
 
-	"bastion_trransference_agi"
+	"bastion_transference_agi"
 	{
 		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"bastion_trransference_agi"
-		"ScriptFile"	"heroes/bastion/bastion_trransference.lua"
+		"AbilityTextureName"	"bastion_transference_agi"
+		"ScriptFile"	"heroes/bastion/bastion_transference.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -228,15 +228,15 @@
 				"percentage"	"50"
 			}
 		}
-		"AbilitySharedCooldown"	"bastion_trransference_share_cooldown"
+		"AbilitySharedCooldown"	"bastion_transference_share_cooldown"
 		"HasScepterUpgrade"	"1"
 	}
 
-	"bastion_trransference_int"
+	"bastion_transference_int"
 	{
 		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"bastion_trransference_int"
-		"ScriptFile"	"heroes/bastion/bastion_trransference.lua"
+		"AbilityTextureName"	"bastion_transference_int"
+		"ScriptFile"	"heroes/bastion/bastion_transference.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -272,7 +272,7 @@
 				"percentage"	"50"
 			}
 		}
-		"AbilitySharedCooldown"	"bastion_trransference_share_cooldown"
+		"AbilitySharedCooldown"	"bastion_transference_share_cooldown"
 		"HasScepterUpgrade"	"1"
 	}
 
