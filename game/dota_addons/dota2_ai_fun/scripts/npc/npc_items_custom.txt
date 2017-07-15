@@ -175,8 +175,8 @@
 	"item_fun_ragnarok"
 	{
 		"BaseClass"	"item_lua"
-		"ScriptFile" "fun_items_lua.lua"
 		"AbilityTextureName"	"item_fun_ragnarok"
+		"ScriptFile"	"fun_items_lua.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"ID"	"15502"
 		"ItemQuality"	"artifact"
@@ -212,12 +212,12 @@
 				"var_type"	"FIELD_INTEGER"
 				"cleave_start_radius"	"150"
 			}
-			"04"
+			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"cleave_end_radius"	"400"
 			}
-			"04"
+			"06"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"cleave_distance"	"600"
