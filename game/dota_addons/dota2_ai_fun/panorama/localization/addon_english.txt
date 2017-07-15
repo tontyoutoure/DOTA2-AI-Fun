@@ -1,0 +1,15 @@
+"addon"
+{	
+	//////////////////////////////////////////////////////////////////////////
+	//
+	//					Maji the Persuasive
+	//
+	//////////////////////////////////////////////////////////////////////////
+
+	"persuasive_raise1"  "To swindle"
+	"persuasive_raise2"  "with"
+	"persuasive_raise3"  "'s"
+	"persuasive_raise4"  ", need"
+	"persuasive_raise5"  "HP"
+	"persuasive_raise6"  ", don't need HP"
+}

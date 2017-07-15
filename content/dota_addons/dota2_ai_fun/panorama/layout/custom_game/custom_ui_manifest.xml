@@ -1,0 +1,8 @@
+<root> 
+  <Panel>
+    <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_notifications.xml" /> 
+	<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/modmaker/modmaker.xml" />
+	<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/lua_console.xml" />
+	<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_attachments.xml" />
+  </Panel>
+</root>

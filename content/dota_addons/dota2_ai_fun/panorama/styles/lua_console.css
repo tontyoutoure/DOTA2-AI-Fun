@@ -1,0 +1,104 @@
+.LuaConsoleBase
+{
+	width: 100%;
+	height: 100%;
+}
+
+#LuaConsoleContainer
+{
+	visibility:collapse; 
+	width: 1000px;
+	height: 80px;
+	vertical-align:top;
+	margin-top: 50px;
+	horizontal-align:middle;
+	background-color: #202327;
+	opacity:0.9;
+	flow-children: down;
+}
+
+#ToggleLuaConsole
+{
+	margin-top:60px;
+	vertical-align:top;
+	horizontal-align:right;
+	height:50px;
+	background-color:green;	
+	background-image:url("s2r://panorama/images/backgrounds/background_play_button_large_2x_png.vtex");
+}
+
+#ToggleLuaConsole:active
+{
+	transform: translate3d(1px, 1px, 0px);
+}
+
+
+#InputBar
+{
+	vertical-align:center;
+	width: 100%;
+	flow-children:right;
+}
+
+#CommandEntry
+{
+	width: 80%;
+	height: 60px;
+	font-size: 30px;
+	font-family: Courier;
+}
+
+#SubmitButton
+{
+	margin-left:1.5%;
+	margin-right:1.5%;
+	width: 17%;
+	height:60px;
+	background-color:blue;
+	background-image:url("s2r://panorama/images/backgrounds/background_play_button_large_2x_png.vtex");
+}
+
+.ButtonLabel
+{
+	vertical-align:center;
+	horizontal-align:middle;
+	font-size: 50px;
+}
+
+#SubmitButton:active
+{
+	transform: translate3d(1px, 1px, 0px);
+	sound: "ui_settings_multi";
+}
+
+#ButtonContainer
+{
+	visibility: collapse;
+	flow-children: down;
+	vertical-align: top;
+	horizontal-align: right;
+	margin-top:110px;
+	width: 380px;
+	height: 550px;
+}
+
+.RightButton
+{
+	margin-top:2px;
+	width: 100%;
+	height: 50px;
+	background-color:blue;
+	background-image:url("s2r://panorama/images/backgrounds/background_play_button_large_2x_png.vtex");
+	
+}
+
+.RightButton:active
+{
+	transform: translate3d(1px, 1px, 0px);
+	sound: "ui_settings_multi";
+}
+
+#RestartAddonButton
+{
+	background-color:red;
+}

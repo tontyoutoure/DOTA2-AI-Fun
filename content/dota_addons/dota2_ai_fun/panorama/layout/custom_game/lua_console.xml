@@ -1,0 +1,37 @@
+<root>
+	<scripts>
+		<include src="file://{resources}/scripts/lua_console.js" />
+		
+	</scripts>
+	<styles>
+		<include src="file://{resources}/styles/lua_console.css" />
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+	</styles>
+	<Panel class="LuaConsoleBase" hittest="false">
+		<Button id="ToggleLuaConsole" onactivate="LuaConsole.OnToggleConsole();">
+			<Label text="Lua Console" id="toggleLabel" class="ButtonLabel"/> 
+		</Button>
+		<Panel id="LuaConsoleContainer" hittest="true">
+			<Panel id="InputBar" hittest="true">
+				<TextEntry id="CommandEntry" maxchars="100" placeholder="Lua Command Here..." oninputsubmit="LuaConsole.OnInputSubmitted();"/>
+				<Button id="SubmitButton" onactivate="LuaConsole.OnInputSubmitted();">
+					<Label text="Submit" id="SubmitLabel" class="ButtonLabel"/>
+				</Button>
+			</Panel>
+		</Panel>
+		<Panel id="ButtonContainer" hittest="true">
+			<Button id="RestartAddonButton" class="RightButton" onactivate="LuaConsole.OnRestartAddon();">
+				<Label text="Restart Addon" id="RestartAddonLabel" class="ButtonLabel"/>
+			</Button>
+			<Button id="SelectAllButton" class="RightButton" onactivate="LuaConsole.OnSelectAllActive();">
+				<Label text="Select All" id="RestartAddonLabel" class="ButtonLabel"/>
+			</Button>
+			<Button id="DofileButton" class="RightButton" onactivate="LuaConsole.OnDofileActivate();">
+				<Label text="Run Script File" id="DofileLabel" class="ButtonLabel"/>
+			</Button>
+			<Button id="SendToConsoleButton" class="RightButton" onactivate="LuaConsole.OnSendToConsoleActivate();">
+				<Label text="Console Command" id="SendToConsoleLabel" class="ButtonLabel"/>
+			</Button>
+		</Panel>
+	</Panel>
+</root>

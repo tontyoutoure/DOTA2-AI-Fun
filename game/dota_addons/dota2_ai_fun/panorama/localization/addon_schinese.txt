@@ -1,0 +1,16 @@
+"addon"
+{	
+	//////////////////////////////////////////////////////////////////////////
+	//
+	//					Maji the Persuasive
+	//
+	//////////////////////////////////////////////////////////////////////////
+
+	"persuasive_raise_gold"  "金"
+	"persuasive_raise1"  "要用"
+	"persuasive_raise2"  "交换"
+	"persuasive_raise3"  "的"
+	"persuasive_raise4"  "，需要消耗"
+	"persuasive_raise5"  "点血量"
+	"persuasive_raise6"  "，不需要消耗血量"
+}
