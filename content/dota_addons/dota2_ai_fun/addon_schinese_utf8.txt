@@ -130,7 +130,7 @@
 		"DOTA_Tooltip_ability_bastion_mind_flux"	"心灵变迁"
 		"DOTA_Tooltip_ability_bastion_mind_flux_Description"	"回复目标的魔法，回复量与堡垒智力有关。\n从学习这个技能开始，每释放一定次数该技能，或被施放指向性技能一定次数，他将增长1点智力。增加的智力有上限。"
 		"DOTA_Tooltip_ability_bastion_mind_flux_max_value"	"智力上限:"
-		"DOTA_Tooltip_ability_bastion_mind_flux_mana_per_int"	"每点魔法回复智力:"
+		"DOTA_Tooltip_ability_bastion_mind_flux_mana_per_int"	"每点智力回复魔法:"
 		"DOTA_Tooltip_ability_bastion_mind_flux_spell_need"	"增加智力需要被释放的指向性魔法数:"
 		"DOTA_Tooltip_ability_bastion_mind_flux_count_need"	"增加智力所需释放技能次数"
 		"DOTA_Tooltip_modifier_bastion_mind_flux_lua"	"心灵变迁增加智力"
