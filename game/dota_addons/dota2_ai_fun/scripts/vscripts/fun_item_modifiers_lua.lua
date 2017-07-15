@@ -43,18 +43,37 @@ function modifier_item_fun_escutcheon_lua:DeclareFunctions()
 		MODIFIER_PROPERTY_HEALTH_BONUS, 
 		MODIFIER_PROPERTY_MANA_BONUS, 
 		MODIFIER_EVENT_ON_TAKEDAMAGE, 
-		MODIFIER_PROPERTY_REINCARNATION}
+		MODIFIER_PROPERTY_REINCARNATION,
+		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
+		MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE}
 end
 
 function modifier_item_fun_escutcheon_lua:OnTakeDamage(keys)
 	local caster = self:GetCaster()
 	if self:GetParent() ~= keys.unit then return end
 	local reverseChance = self:GetAbility():GetSpecialValueFor("damage_reverse")
-	PrintTable(keys)
 	if math.random() < reverseChance/100 then
 		caster:SetHealth(caster:GetHealth() + 2*keys.damage)
 	end
 end
+
+function modifier_item_fun_escutcheon_lua:OnCreated()
+	self:GetParent().iEcutcheonCount = self:GetParent().iEcutcheonCount or 0
+	self:GetParent().iEcutcheonCount = self:GetParent().iEcutcheonCount+1
+end
+
+function modifier_item_fun_escutcheon_lua:OnDestroy()
+	self:GetParent().iEcutcheonCount = self:GetParent().iEcutcheonCount-1
+end
+
+function modifier_item_fun_escutcheon_lua:GetModifierHealthRegenPercentage()
+	return self:GetAbility():GetSpecialValueFor("health_regen_percentage")/self:GetParent().iEcutcheonCount
+end
+
+function modifier_item_fun_escutcheon_lua:GetModifierTotalPercentageManaRegen()
+	return self:GetAbility():GetSpecialValueFor("mana_regen_percentage")/self:GetParent().iEcutcheonCount
+end
+
 
 function modifier_item_fun_escutcheon_lua:GetModifierManaBonus()
 	return self:GetAbility():GetSpecialValueFor("bonus_mana")
@@ -65,6 +84,7 @@ function modifier_item_fun_escutcheon_lua:GetModifierHealthBonus()
 end
 
 function modifier_item_fun_escutcheon_lua:ReincarnateTime()
+	if IsClient() then return -1 end
 	local ability = self:GetAbility()
 	if ability:IsCooldownReady() then
 		Timers:CreateTimer(3.06, function () ability:UseResources(false, false, true)end)
@@ -74,37 +94,9 @@ function modifier_item_fun_escutcheon_lua:ReincarnateTime()
 	end
 end
 
-function modifier_item_fun_escutcheon_lua:OnCreated()
-	self:StartIntervalThink(0.1)
-end
-
-function modifier_item_fun_escutcheon_lua:OnIntervalThink()
-	caster = self:GetCaster()
-	if caster.AddNewModifier then
-		caster:AddNewModifier(caster, self:GetAbility(), "modifier_item_fun_escutcheon_regen_lua", {Duration = 0.15})
-	end
-end
 
 modifier_item_fun_escutcheon_regen_lua = class({})
 
-function modifier_item_fun_escutcheon_regen_lua:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
-		MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE
-	}
-end
-
-function modifier_item_fun_escutcheon_regen_lua:IsHidden()
-	return true
-end
-
-function modifier_item_fun_escutcheon_regen_lua:GetModifierHealthRegenPercentage()
-	return self:GetAbility():GetSpecialValueFor("health_regen_percentage")
-end
-
-function modifier_item_fun_escutcheon_regen_lua:GetModifierTotalPercentageManaRegen()
-	return self:GetAbility():GetSpecialValueFor("mana_regen_percentage")
-end
 
 modifier_item_fun_ragnarok_lua = class({})
 
