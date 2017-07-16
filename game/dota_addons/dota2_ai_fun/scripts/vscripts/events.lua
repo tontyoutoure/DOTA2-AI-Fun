@@ -113,8 +113,8 @@ function GameMode:_OnNPCSpawned(keys)
 		end
 	end
 	if hUnit:GetName() == "npc_dota_hero_visage" then
-		hUnit:AddNewModifier(hUnit, nil, "modifier_magic_dragon_magic_form", {})
-		require("heroes/magic_dragon/magic_dragon_transform")
+		require("heroes/magic_dragon/magic_dragon_transform")		
+		MagicDragonTransform[MAGIC_DRAGON_GREEN_DRAGON_FORM](hUnit)
 	end
 	hUnit.bSpawned = true;
 end
