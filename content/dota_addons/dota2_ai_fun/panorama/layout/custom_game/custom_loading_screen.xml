@@ -125,6 +125,9 @@
 					<Button id="HeroAvatarBtnVisage" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelVisage&quot;);"> 
 						<Image id="HeroAvatarVisage" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_visage.png" />
 					</Button>
+          <Button id="HeroAvatarBtnArcWarden" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelArcWarden&quot;);">
+            <Image id="HeroAvatarArcWarden" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_arc_warden.png" />
+          </Button>
 				</Panel>
 			</Panel>
 			
@@ -158,7 +161,11 @@
 			<Panel id="HeroDescriptionPopPanelVisage" class = "HeroDescriptionPopPanel">
 				<Label id="HeroNameVisage" class="HeroName" text="#npc_dota_hero_visage_long"/>			
 				<Label id="HeroBioVisage" class="HeroBio" text="#npc_dota_hero_visage_bio"/>
-			</Panel>			
+			</Panel>
+      <Panel id="HeroDescriptionPopPanelArcWarden" class = "HeroDescriptionPopPanel">
+        <Label id="HeroNameArcWarden" class="HeroName" text="#npc_dota_hero_arc_warden_long"/>
+        <Label id="HeroBioArcWarden" class="HeroBio" text="#npc_dota_hero_arc_warden_bio"/>
+      </Panel>
 		</Panel>		
 	</Panel>
   </Panel>
