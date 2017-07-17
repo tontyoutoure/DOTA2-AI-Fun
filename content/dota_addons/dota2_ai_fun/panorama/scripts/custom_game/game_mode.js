@@ -43,7 +43,9 @@ function set_game_options()
 			"radiant_xp_multiplier": $("#radiant_xp_multiplier_dropdown").GetSelected().id,
 			"dire_xp_multiplier": $("#dire_xp_multiplier_dropdown").GetSelected().id,
 			"radiant_player_number": $("#radiant_player_number_dropdown").GetSelected().id,
-			"dire_player_number": $("#dire_player_number_dropdown").GetSelected().id
+			"dire_player_number": $("#dire_player_number_dropdown").GetSelected().id,
+			"respawn_time_percentage": $("#respawn_time_percentage_dropdown").GetSelected().id,
+			"max_level": $("#max_level_dropdown").GetSelected().id
 		}	
 	});
 	$("#game_options_container").style.visibility='collapse';

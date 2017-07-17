@@ -34,12 +34,6 @@ function GameMode:LinkLuaModifiers()
 	LinkLuaModifier("modifier_persuasive_kill_steal_lua", "heroes/persuasive/persuasive_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_void_demon_quake_slow_lua", "heroes/void_demon/void_demon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_void_demon_quake_aura_lua", "heroes/void_demon/void_demon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-	LinkLuaModifier("modifier_magic_dragon_undead_form", "heroes/magic_dragon/magic_dragon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-	LinkLuaModifier("modifier_magic_dragon_ice_form", "heroes/magic_dragon/magic_dragon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-	LinkLuaModifier("modifier_magic_dragon_fire_form", "heroes/magic_dragon/magic_dragon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-	LinkLuaModifier("modifier_magic_dragon_lightning_form", "heroes/magic_dragon/magic_dragon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-	LinkLuaModifier("modifier_magic_dragon_anti_magic_form", "heroes/magic_dragon/magic_dragon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-	LinkLuaModifier("modifier_magic_dragon_magic_form", "heroes/magic_dragon/magic_dragon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)	
 	LinkLuaModifier("modifier_magic_dragon_gold_dragon_hide", "heroes/magic_dragon/magic_dragon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_magic_dragon_black_dragon_breath", "heroes/magic_dragon/magic_dragon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 end
@@ -65,11 +59,49 @@ function GameMode:PreGameOptions()
 	self.fDireGoldMultiplier = self.fDireGoldMultiplier or DIRE_GOLD_MULTIPLIER	
 	self.iGoldPerTick = self.iGoldPerTick or GOLD_PER_TICK
 	self.iGoldTickTime = self.iGoldTickTime or GOLD_TICK_TIME
-	print(self.fDireGoldMultiplier, self.fDireXPMultiplier, self.fRadiantXPMultiplier,self.fRadiantGoldMultiplier )
+	self.iRespawnTimePercentage = self.iRespawnTimePercentage or RESPAWN_TIME_PERCENTAGE
+	self.iMaxLevel = self.iMaxLevel or MAX_LEVEL
 	GameRules:SetGoldPerTick(self.iGoldPerTick)
 	GameRules:SetGoldTickTime(self.iGoldTickTime)
     GameRules:GetGameModeEntity():SetModifyGoldFilter( Dynamic_Wrap( GameMode, "FilterGold" ), self )	
     GameRules:GetGameModeEntity():SetModifyExperienceFilter( Dynamic_Wrap( GameMode, "FilterXP" ), self )
+	if self.iMaxLevel ~= 25 then
+		local tLevelRequire = {
+			0,
+			240,
+			600,
+			1080,
+			1680,
+			2300,
+			2940,
+			3600,
+			4280,
+			5080,
+			5900,
+			6740,
+			7640,
+			8865,
+			10115,
+			11390,
+			12690,
+			14015,
+			15415,
+			16905,
+			18405,
+			20155,
+			22155,
+			24405,
+			26905
+		}
+		local iRequireLevel = tLevelRequire[25]
+		for i = 26, self.iMaxLevel do
+			iRequireLevel = iRequireLevel+i*100
+			table.insert(tLevelRequire, iRequireLevel)
+		end
+		GameRules:GetGameModeEntity():SetUseCustomHeroLevels ( true )
+		GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(self.iMaxLevel) 		
+		GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(tLevelRequire)
+	end
 	self.PreGameOptionsSet = true
 end
 
@@ -80,7 +112,7 @@ function GameMode:InitEvents()
 	ListenToGameEvent('npc_spawned', Dynamic_Wrap(GameMode, '_OnNPCSpawned'), self)
 	
 --	ListenToGameEvent('dota_player_pick_hero', Dynamic_Wrap(GameMode, 'OnPlayerPickHero'), self)
-
+	ListenToGameEvent('entity_killed', Dynamic_Wrap(GameMode, 'OnEntityKilled'), self)
 
 	--JS events
 	CustomGameEventManager:RegisterListener("loading_set_options", function (eventSourceIndex, args) return GameMode:OnGetLoadingSetOptions(eventSourceIndex, args) end)

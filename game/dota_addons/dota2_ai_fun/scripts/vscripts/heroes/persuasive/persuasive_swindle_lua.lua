@@ -37,8 +37,12 @@ function persuasive_swindle_lua:CastFilterResultTarget(hTarget)
 	end
 	local hCaster = self:GetCaster()
 	local fRaise = hCaster:FindAbilityByName("persuasive_raise_lua").Raise
-	local sReturn = fRaise(hCaster, hTarget)
-	if type(sReturn) == "string" then 
+
+	local iCasterValue
+	local iHPCost
+	local iTargetValue	
+	iCasterValue, iTargetValue, iHPCost  = fRaise(hCaster, hTarget)
+	if type(iCasterValue) == "string" or iHPCost >= hCaster:GetHealth() then 
 		return UF_FAIL_CUSTOM
 	else 
 		return UF_SUCCESS
@@ -48,7 +52,13 @@ end
 function persuasive_swindle_lua:GetCustomCastErrorTarget(hTarget)
 	local hCaster = self:GetCaster()
 	local fRaise = hCaster:FindAbilityByName("persuasive_raise_lua").Raise
-	return fRaise(hCaster, hTarget)
+	local ReturnValue
+	ReturnValue = fRaise(hCaster, hTarget)
+	if type(ReturnValue) == 'string' then 
+		return ReturnValue
+	else 
+		return "error_not_enough_hp_to_swindle"
+	end
 end
 
 

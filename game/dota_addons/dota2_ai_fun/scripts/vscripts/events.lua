@@ -103,20 +103,43 @@ end
 function GameMode:OnPlayerSpawn(keys)
 
 end
+-- TODO: Didn't get Reaper's scythe respawn time penalty right when hero level>25
+function GameMode:OnEntityKilled(keys)
+	local hHero = EntIndexToHScript(keys.entindex_killed)
+	if not hHero:IsHero() or hHero:IsIllusion() then return end
+	Timers:CreateTimer(0.03, function ()
+		local fTimeTillRespawn = hHero:GetTimeUntilRespawn()*self.iRespawnTimePercentage/100
+			print("bb time is", hHero.fBuyBackExtraRespawnTime)		
+		if hHero:GetLevel()>25 then fTimeTillRespawn = (hHero:GetLevel()*4+hHero.fBuyBackExtraRespawnTime)*self.iRespawnTimePercentage/100 end
+		print("time till respawn is", fTimeTillRespawn)
+		if hHero:IsReincarnating() then fTimeTillRespawn = 3 end
+		hHero:SetTimeUntilRespawn(fTimeTillRespawn)
+	end)
+end
 
 function GameMode:_OnNPCSpawned(keys)
-	local hUnit = EntIndexToHScript(keys.entindex)
-	if hUnit.bSpawned then return end
+	local hHero = EntIndexToHScript(keys.entindex)
+	if not hHero:IsHero() or hHero:IsIllusion() then return end	
+	hHero:SetTimeUntilRespawn(-1)
+	Timers:CreateTimer(0.03, function ()  
+		
+		local hModifierBGP = hHero:FindModifierByName("modifier_buyback_gold_penalty")
+		if hModifierBGP then 
+			hHero.fBuyBackExtraRespawnTime = hModifierBGP:GetDuration()*0.25
+		else
+			hHero.fBuyBackExtraRespawnTime = 0
+		end
+	end)
 	for i = 1, #GameMode.tStripperList do
-		if hUnit:GetName() == GameMode.tStripperList[i] then
-			HideWearables(hUnit)
+		if hHero:GetName() == GameMode.tStripperList[i] then
+			HideWearables(hHero)
 		end
 	end
-	if hUnit:GetName() == "npc_dota_hero_visage" then
+	if hHero:GetName() == "npc_dota_hero_visage" then
 		require("heroes/magic_dragon/magic_dragon_transform")		
-		MagicDragonTransform[MAGIC_DRAGON_GREEN_DRAGON_FORM](hUnit)
+		MagicDragonTransform[MAGIC_DRAGON_GREEN_DRAGON_FORM](hHero)
 	end
-	hUnit.bSpawned = true;
+	hHero.bSpawned = true;
 end
 --[[
 function GameMode:OnPlayerPickHero(keys)	
@@ -135,6 +158,7 @@ function GameMode:OnGetLoadingSetOptions(eventSourceIndex, args)
 	self.fRadiantXPMultiplier = tonumber(args.game_options.radiant_xp_multiplier);
 	self.fDireXPMultiplier = tonumber(args.game_options.dire_xp_multiplier);
 	self.fDireGoldMultiplier = tonumber(args.game_options.dire_gold_multiplier);
-	print(self.iDesiredRadiant, self.iDesiredDire, self.fRadiantGoldMultiplier, self.fRadiantXPMultiplier, self.fDireXPMultiplier, self.fDireGoldMultiplier)
+	self.iRespawnTimePercentage = tonumber(args.game_options.respawn_time_percentage)
+	self.iMaxLevel = tonumber(args.game_options.max_level)
 	self:PreGameOptions()
 end
