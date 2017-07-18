@@ -1,21 +1,31 @@
+--[[
 modifier_magic_dragon_undead_form = class({})
 modifier_magic_dragon_ice_form = class({})
 modifier_magic_dragon_fire_form = class({})
+]]--
 modifier_magic_dragon_lightning_form = class({})
+
+function modifier_magic_dragon_lightning_form:RemoveOnDeath() return false end
+function modifier_magic_dragon_lightning_form:IsHidden() return true end
+
+function modifier_magic_dragon_lightning_form:GetStatusEffectName()
+	return "particles/status_fx/status_effect_avatar.vpcf"
+end	
+	
+	
+--[[
 modifier_magic_dragon_anti_magic_form = class({})
 modifier_magic_dragon_magic_form = class({})
 
 function modifier_magic_dragon_undead_form:RemoveOnDeath() return false end
 function modifier_magic_dragon_ice_form:RemoveOnDeath() return false end
 function modifier_magic_dragon_fire_form:RemoveOnDeath() return false end
-function modifier_magic_dragon_lightning_form:RemoveOnDeath() return false end
 function modifier_magic_dragon_anti_magic_form:RemoveOnDeath() return false end
 function modifier_magic_dragon_magic_form:RemoveOnDeath() return false end
 
 function modifier_magic_dragon_undead_form:IsHidden() return true end
 function modifier_magic_dragon_ice_form:IsHidden() return true end
 function modifier_magic_dragon_fire_form:IsHidden() return true end
-function modifier_magic_dragon_lightning_form:IsHidden() return true end
 function modifier_magic_dragon_anti_magic_form:IsHidden() return true end
 function modifier_magic_dragon_magic_form:IsHidden() return true end
 
@@ -83,11 +93,6 @@ function modifier_magic_dragon_lightning_form:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MODEL_CHANGE}
 end
 
-function modifier_magic_dragon_lightning_form:GetStatusEffectName()
-	return "particles/status_fx/status_effect_avatar.vpcf"
-end	
-	
-	
 function modifier_magic_dragon_lightning_form:GetModifierModelChange()
 	return "models/items/dragon_knight/dragon_immortal_1/dragon_immortal_1.vmdl"
 end
@@ -138,6 +143,7 @@ function modifier_magic_dragon_magic_form:OnCreated()
 	hParent:SetRangedProjectileName("particles/econ/items/viper/viper_ti7_immortal/viper_poison_attack_ti7.vpcf")
 end
 
+]]--
 modifier_magic_dragon_gold_dragon_hide = class({})
 
 function modifier_magic_dragon_gold_dragon_hide:RemoveOnDeath() return false end

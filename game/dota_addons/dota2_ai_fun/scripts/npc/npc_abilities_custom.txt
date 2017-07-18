@@ -1651,7 +1651,7 @@
 	// //////////////////////////////////////////////////////////////////////////////
 	"magic_dragon_dragon_magic_lua"
 	{
-		"BaseClass"	"ability_lua"
+		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"dragon_knight_elder_dragon_form"
 		"ScriptFile"	"heroes/magic_dragon/magic_dragon_dragon_magic_lua.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
@@ -1660,6 +1660,14 @@
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"0"
 		"AbilityManaCost"	"50 25 0"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/magic_dragon/magic_dragon.lua"
+				"Function"	"MagicDragonDragonMagic"
+			}
+		}
 	}
 
 	"magic_dragon_green_dragon_roar"
@@ -1708,6 +1716,7 @@
 				"IsPurgable"	"1"
 				"EffectName"	"particles/units/heroes/hero_morphling/morphling_morph_agi_ring.vpcf"
 				"EffectAttachType"	"follow_origin"
+				"TextureName"	"lone_druid_true_form"
 			}
 		}
 		// Special
@@ -1947,10 +1956,10 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"OnUpgrade"
 		{
-			"ApplyModifier"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_magic_dragon_gold_dragon_hide"
+				"ScriptFile"	"scripts/vscripts/heroes/magic_dragon/magic_dragon.lua"
+				"Function"	"GoldDragonHideApply"
 			}
 		}
 		"AbilitySpecial"
@@ -2367,10 +2376,10 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"OnUpgrade"
 		{
-			"ApplyModifier"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_magic_dragon_black_dragon_breath"
+				"ScriptFile"	"scripts/vscripts/heroes/magic_dragon/magic_dragon.lua"
+				"Function"	"BlackDragonBreathApply"
 			}
 		}
 		"AbilitySpecial"

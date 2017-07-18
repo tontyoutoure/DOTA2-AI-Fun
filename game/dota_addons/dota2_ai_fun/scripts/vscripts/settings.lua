@@ -18,6 +18,8 @@ RADIANT_XP_MULTIPLIER = 1
 RADIANT_GOLD_MULTIPLIER = 1
 DIRE_XP_MULTIPLIER = 1
 DIRE_GOLD_MULTIPLIER = 1
+RESPAWN_TIME_PERCENTAGE = 100
+MAX_LEVEL = 25                         -- What level should we let heroes get to?
 
 -- The above are enabled ones
 
@@ -59,7 +61,6 @@ END_GAME_ON_KILLS = true                -- Should the game end after a certain n
 KILLS_TO_END_GAME_FOR_TEAM = 50         -- How many kills for a team should signify an end of game?
 
 USE_CUSTOM_HERO_LEVELS = true           -- Should we allow heroes to have custom levels?
-MAX_LEVEL = 50                          -- What level should we let heroes get to?
 USE_CUSTOM_XP_VALUES = true             -- Should we use custom XP values to level up heroes, or the default Dota numbers?
 
 -- Fill this table up with the required XP per level if you want to change it

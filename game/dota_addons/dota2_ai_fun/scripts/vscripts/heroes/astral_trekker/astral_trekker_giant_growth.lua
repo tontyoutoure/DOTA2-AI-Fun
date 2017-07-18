@@ -13,8 +13,8 @@ function astral_trekker_giant_growth_deactivate(keys)
 	local hCaster = keys.caster
 	for i = 1, 30 do
 		Timers(i/24, function () 
-			hCaster:SetModelScale(hCaster:GetModelScale()/1.02) 
-			print(hCaster:GetModelScale()) end)
+			hCaster:SetModelScale(hCaster:GetModelScale()/1.02)
+		end)
 	end
 	
 end

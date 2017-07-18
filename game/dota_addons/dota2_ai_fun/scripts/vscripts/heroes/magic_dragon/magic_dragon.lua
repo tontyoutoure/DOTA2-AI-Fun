@@ -1,3 +1,12 @@
+function MagicDragonDragonMagic(keys)
+	keys.caster.iDragonForm = keys.caster.iDragonForm or MAGIC_DRAGON_GREEN_DRAGON_FORM
+	if keys.caster.iDragonForm < MAGIC_DRAGON_BLACK_DRAGON_FORM then
+		MagicDragonTransform[keys.caster.iDragonForm+1](keys.caster)
+	else
+		MagicDragonTransform[MAGIC_DRAGON_GREEN_DRAGON_FORM](keys.caster)
+	end
+end
+
 function GreenDragonBreathSlowApply(keys)
 	local hTarget = keys.target
 	local hAttacker = keys.attacker
@@ -96,11 +105,14 @@ function GoldDragonBreathLightning(keys)
 	Timers:CreateTimer(fDelay, function () ChainLightningBounce(hAttacker, hTarget, hAbility:GetSpecialValueFor("radius"), fDamage, hAbility:GetSpecialValueFor("bounce"), {hTarget}, hAbility, fDelay) end)
 end
 
-function BlackDragonManaBreak(keys)
-	local hTarget = keys.target
-	local hAttacker = keys.attacker
-	local hAbility = keys.ability
-	if hTarget:IsMagicImmune() or hTarget:IsBuilding() or hTarget:GetTeamNumber() == hAttacker:GetTeamNumber() then return end
+function BlackDragonBreathApply(keys)
+	if keys.ability:GetLevel() == 0 then return end
+	keys.caster:AddNewModifier(keys.caster, nil, "modifier_magic_dragon_black_dragon_breath", {})
+end
+
+function GoldDragonHideApply(keys)
+	if keys.ability:GetLevel() == 0 then return end	
+	keys.caster:AddNewModifier(keys.caster, nil, "modifier_magic_dragon_gold_dragon_hide", {})
 end
 
 function BlueDragonRoarFreeze(keys)	
@@ -113,20 +125,8 @@ function BlueDragonRoarFreeze(keys)
 	keys.caster:EmitSound("Hero_LoneDruid.SavageRoar.Cast")
 	
 	math.randomseed(GameRules:GetGameTime())
-	fRandom = math.random(6)
-	if fRandom == 1 then		
-		MagicDragonTransform.modifier_magic_dragon_undead_form(keys.caster)
-	elseif fRandom == 2 then
-		MagicDragonTransform.modifier_magic_dragon_ice_form(keys.caster)
-	elseif fRandom == 3 then
-		MagicDragonTransform.modifier_magic_dragon_fire_form(keys.caster)
-	elseif fRandom == 4 then
-		MagicDragonTransform.modifier_magic_dragon_lightning_form(keys.caster)
-	elseif fRandom == 5 then
-		MagicDragonTransform.modifier_magic_dragon_anti_magic_form(keys.caster)
-	elseif fRandom == 6 then
-		MagicDragonTransform.modifier_magic_dragon_magic_form(keys.caster)
-	end
+	iRandom = math.random(6)
+	MagicDragonTransform[iRandom](keys.caster)
 end
 
 function GhostDragonRoarLifeDrain(keys)
@@ -151,20 +151,8 @@ function GhostDragonRoarLifeDrain(keys)
 	keys.caster:EmitSound("Hero_LoneDruid.SavageRoar.Cast")
 	
 	math.randomseed(GameRules:GetGameTime())
-	fRandom = math.random(6)
-	if fRandom == 1 then		
-		MagicDragonTransform.modifier_magic_dragon_undead_form(keys.caster)
-	elseif fRandom == 2 then
-		MagicDragonTransform.modifier_magic_dragon_ice_form(keys.caster)
-	elseif fRandom == 3 then
-		MagicDragonTransform.modifier_magic_dragon_fire_form(keys.caster)
-	elseif fRandom == 4 then
-		MagicDragonTransform.modifier_magic_dragon_lightning_form(keys.caster)
-	elseif fRandom == 5 then
-		MagicDragonTransform.modifier_magic_dragon_anti_magic_form(keys.caster)
-	elseif fRandom == 6 then
-		MagicDragonTransform.modifier_magic_dragon_magic_form(keys.caster)
-	end
+	iRandom = math.random(6)
+	MagicDragonTransform[iRandom](keys.caster)
 end
 
 function RedDragonRoarDamage(keys)	
@@ -186,20 +174,8 @@ function RedDragonRoarDamage(keys)
 	keys.caster:EmitSound("Hero_LoneDruid.SavageRoar.Cast")
 	
 	math.randomseed(GameRules:GetGameTime())
-	fRandom = math.random(6)
-	if fRandom == 1 then		
-		MagicDragonTransform.modifier_magic_dragon_undead_form(keys.caster)
-	elseif fRandom == 2 then
-		MagicDragonTransform.modifier_magic_dragon_ice_form(keys.caster)
-	elseif fRandom == 3 then
-		MagicDragonTransform.modifier_magic_dragon_fire_form(keys.caster)
-	elseif fRandom == 4 then
-		MagicDragonTransform.modifier_magic_dragon_lightning_form(keys.caster)
-	elseif fRandom == 5 then
-		MagicDragonTransform.modifier_magic_dragon_anti_magic_form(keys.caster)
-	elseif fRandom == 6 then
-		MagicDragonTransform.modifier_magic_dragon_magic_form(keys.caster)
-	end
+	iRandom = math.random(6)
+	MagicDragonTransform[iRandom](keys.caster)
 end
 
 function GreenDragonRoarAccelerate(keys)
@@ -211,20 +187,8 @@ function GreenDragonRoarAccelerate(keys)
 	keys.caster:EmitSound("Hero_LoneDruid.SavageRoar.Cast")
 	
 	math.randomseed(GameRules:GetGameTime())
-	fRandom = math.random(6)
-	if fRandom == 1 then		
-		MagicDragonTransform.modifier_magic_dragon_undead_form(keys.caster)
-	elseif fRandom == 2 then
-		MagicDragonTransform.modifier_magic_dragon_ice_form(keys.caster)
-	elseif fRandom == 3 then
-		MagicDragonTransform.modifier_magic_dragon_fire_form(keys.caster)
-	elseif fRandom == 4 then
-		MagicDragonTransform.modifier_magic_dragon_lightning_form(keys.caster)
-	elseif fRandom == 5 then
-		MagicDragonTransform.modifier_magic_dragon_anti_magic_form(keys.caster)
-	elseif fRandom == 6 then
-		MagicDragonTransform.modifier_magic_dragon_magic_form(keys.caster)
-	end
+	iRandom = math.random(6)
+	MagicDragonTransform[iRandom](keys.caster)
 end
 
 function BlackDragonRoarManaBurn(keys)	
@@ -258,20 +222,8 @@ function BlackDragonRoarManaBurn(keys)
 	keys.caster:EmitSound("Hero_LoneDruid.SavageRoar.Cast")
 	
 	math.randomseed(GameRules:GetGameTime())
-	fRandom = math.random(6)
-	if fRandom == 1 then		
-		MagicDragonTransform.modifier_magic_dragon_undead_form(keys.caster)
-	elseif fRandom == 2 then
-		MagicDragonTransform.modifier_magic_dragon_ice_form(keys.caster)
-	elseif fRandom == 3 then
-		MagicDragonTransform.modifier_magic_dragon_fire_form(keys.caster)
-	elseif fRandom == 4 then
-		MagicDragonTransform.modifier_magic_dragon_lightning_form(keys.caster)
-	elseif fRandom == 5 then
-		MagicDragonTransform.modifier_magic_dragon_anti_magic_form(keys.caster)
-	elseif fRandom == 6 then
-		MagicDragonTransform.modifier_magic_dragon_magic_form(keys.caster)
-	end
+	iRandom = math.random(6)
+	MagicDragonTransform[iRandom](keys.caster)
 end
 
 function GoldDragonRoarLightningChain(keys)
@@ -296,20 +248,8 @@ function GoldDragonRoarLightningChain(keys)
 	keys.caster:EmitSound("Hero_LoneDruid.SavageRoar.Cast")
 	
 	math.randomseed(GameRules:GetGameTime())
-	fRandom = math.random(6)
-	if fRandom == 1 then		
-		MagicDragonTransform.modifier_magic_dragon_undead_form(keys.caster)
-	elseif fRandom == 2 then
-		MagicDragonTransform.modifier_magic_dragon_ice_form(keys.caster)
-	elseif fRandom == 3 then
-		MagicDragonTransform.modifier_magic_dragon_fire_form(keys.caster)
-	elseif fRandom == 4 then
-		MagicDragonTransform.modifier_magic_dragon_lightning_form(keys.caster)
-	elseif fRandom == 5 then
-		MagicDragonTransform.modifier_magic_dragon_anti_magic_form(keys.caster)
-	elseif fRandom == 6 then
-		MagicDragonTransform.modifier_magic_dragon_magic_form(keys.caster)
-	end
+	iRandom = math.random(6)
+	MagicDragonTransform[iRandom](keys.caster)
 end
 
 
