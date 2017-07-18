@@ -2757,7 +2757,32 @@
 		"AbilityTextureName"	"formless_unus"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityCastRange"	"99999"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/formless/formless_modifier_lua.lua"
+				"Function"	"formless_show_unus_forget_on_unus_levelup"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/formless/formless_modifier_lua.lua"
+				"Function"	"formless_unus"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Rubick.SpellSteal.Cast"
+			}
+		}
 	}
 
 	"formless_duos"
@@ -2766,7 +2791,32 @@
 		"AbilityTextureName"	"formless_duos"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityCastRange"	"99999"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/formless/formless_modifier_lua.lua"
+				"Function"	"formless_show_duos_forget_on_duos_levelup"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/formless/formless_modifier_lua.lua"
+				"Function"	"formless_duos"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Rubick.SpellSteal.Cast"
+			}
+		}
 	}
 
 	"formless_tertius"
@@ -2775,7 +2825,32 @@
 		"AbilityTextureName"	"formless_tertius"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityCastRange"	"99999"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/formless/formless_modifier_lua.lua"
+				"Function"	"formless_show_tertius_forget_on_tertius_levelup"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/formless/formless_modifier_lua.lua"
+				"Function"	"formless_tertius"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Rubick.SpellSteal.Cast"
+			}
+		}
 	}
 
 	"formless_denique"
@@ -2784,55 +2859,116 @@
 		"AbilityTextureName"	"formless_denique"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastRange"	"99999"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/formless/formless_modifier_lua.lua"
+				"Function"	"formless_show_denique_forget_on_denique_levelup"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/formless/formless_modifier_lua.lua"
+				"Function"	"formless_denique"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Rubick.SpellSteal.Cast"
+			}
+		}
 	}
 
 	"formless_unus_forget"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"formless_unus_forget"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"0"
+		"AbilityCooldown"	"60"
 		"AbilityManaCost"	"0"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/formless/formless_modifier_lua.lua"
+				"Function"	"formless_unus_forget"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_formless_unus_forget"	{}
+		}
 	}
 
 	"formless_duos_forget"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"formless_duos_forget"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"0"
+		"AbilityCooldown"	"60"
 		"AbilityManaCost"	"0"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/formless/formless_modifier_lua.lua"
+				"Function"	"formless_duos_forget"
+			}
+		}
 	}
 
 	"formless_tertius_forget"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"formless_tertius_forget"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"0"
+		"AbilityCooldown"	"60"
 		"AbilityManaCost"	"0"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/formless/formless_modifier_lua.lua"
+				"Function"	"formless_tertius_forget"
+			}
+		}
 	}
 
 	"formless_denique_forget"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"formless_denique_denique"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName"	"formless_denique_forget"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"0"
+		"AbilityCooldown"	"60"
 		"AbilityManaCost"	"0"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/formless/formless_modifier_lua.lua"
+				"Function"	"formless_denique_forget"
+			}
+		}
 	}
 }

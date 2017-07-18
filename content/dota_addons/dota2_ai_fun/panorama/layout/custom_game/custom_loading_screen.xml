@@ -17,6 +17,7 @@
 					<Label id="RadiantGoldMultiplierTitle" class="GameOptionsLabel" text="#radiant_gold_multiplier" />
 					<DropDown id="radiant_gold_multiplier_dropdown" class="GameOptionsDropdown">
 						<Label text="1" id="1" />
+            <Label text="0.5" id="0.5"/>
 						<Label text="1.5" id="1.5"/>
 						<Label text="2" id="2"/>
 						<Label text="2.5" id="2.5"  />
@@ -31,6 +32,7 @@
 					<Label id="DireGoldMultiplierTitle" class="GameOptionsLabel" text="#dire_gold_multiplier" />
 					<DropDown id="dire_gold_multiplier_dropdown" class="GameOptionsDropdown">
 						<Label text="1" id="1" />
+            <Label text="0.5" id="0.5"/>
 						<Label text="1.5" id="1.5"/>
 						<Label text="2" id="2"/>
 						<Label text="2.5" id="2.5"  />
@@ -45,6 +47,7 @@
 					<Label id="RadiantXPMultiplierTitle" class="GameOptionsLabel" text="#radiant_xp_multiplier" />
 					<DropDown id="radiant_xp_multiplier_dropdown" class="GameOptionsDropdown">
 						<Label text="1" id="1" />
+            <Label text="0.5" id="0.5"/>
 						<Label text="1.5" id="1.5"/>
 						<Label text="2" id="2"/>
 						<Label text="2.5" id="2.5"  />
@@ -59,6 +62,7 @@
 					<Label id="DireXPMultiplierTitle" class="GameOptionsLabel" text="#dire_xp_multiplier" />
 					<DropDown id="dire_xp_multiplier_dropdown" class="GameOptionsDropdown">
 						<Label text="1" id="1" />
+            <Label text="0.5" id="0.5"/>
 						<Label text="1.5" id="1.5"/>
 						<Label text="2" id="2"/>
 						<Label text="2.5" id="2.5"  />
@@ -78,6 +82,10 @@
 						<Label text="7" id="7"  />
 						<Label text="6" id="6"/>
 						<Label text="5" id="5"/>
+            <Label text="4" id="4"/>
+            <Label text="3" id="3"/>
+            <Label text="2" id="2"/>
+            <Label text="1" id="1"/>
 					</DropDown>				
 				</Panel>
 				<Panel id="DirePlayerNumberMultiplierPanel"  class="GameOptionsSubPanel">
@@ -89,6 +97,10 @@
 						<Label text="7" id="7"  />
 						<Label text="6" id="6"/>
 						<Label text="5" id="5"/>
+            <Label text="4" id="4"/>
+            <Label text="3" id="3"/>
+            <Label text="2" id="2"/>
+            <Label text="1" id="1"/>
 					</DropDown>				
 				</Panel>
 				<Button id="ConfirmOptionsBtn" onactivate="set_game_options();">
