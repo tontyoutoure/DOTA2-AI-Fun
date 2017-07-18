@@ -47,6 +47,9 @@ function GameMode:InitGameOptions()
 	GameRules:SetPreGameTime( PRE_GAME_TIME )
 	GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS, RADIANT_PLAYER_COUNT)
 	GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS, DIRE_PLAYER_COUNT)
+	if IsInToolsMode() then
+		 GameRules:SetUseUniversalShopMode(true)
+	end
 end
 
 
@@ -98,7 +101,9 @@ function GameMode:PreGameOptions()
 			iRequireLevel = iRequireLevel+i*100
 			table.insert(tLevelRequire, iRequireLevel)
 		end
+		PrintTable(tLevelRequire)
 		GameRules:GetGameModeEntity():SetUseCustomHeroLevels ( true )
+		GameRules:SetUseCustomHeroXPValues( true )
 		GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(self.iMaxLevel) 		
 		GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(tLevelRequire)
 	end
@@ -108,7 +113,7 @@ end
 function GameMode:InitEvents()	
 --	ListenToGameEvent('player_connect_full', Dynamic_Wrap(GameMode, '_OnConnectFull'), self)
 	if not IsInToolsMode() then ListenToGameEvent( "game_rules_state_change", Dynamic_Wrap( GameMode, 'OnGameStateChanged' ), self ) end
---	ListenToGameEvent('dota_player_gained_level', Dynamic_Wrap(GameMode, 'OnPlayerLevelUp'), self)	
+	ListenToGameEvent('dota_player_gained_level', Dynamic_Wrap(GameMode, 'OnPlayerLevelUp'), self)	
 	ListenToGameEvent('npc_spawned', Dynamic_Wrap(GameMode, '_OnNPCSpawned'), self)
 	
 --	ListenToGameEvent('dota_player_pick_hero', Dynamic_Wrap(GameMode, 'OnPlayerPickHero'), self)

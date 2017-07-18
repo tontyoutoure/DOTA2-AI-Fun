@@ -109,9 +109,7 @@ function GameMode:OnEntityKilled(keys)
 	if not hHero:IsHero() or hHero:IsIllusion() then return end
 	Timers:CreateTimer(0.03, function ()
 		local fTimeTillRespawn = hHero:GetTimeUntilRespawn()*self.iRespawnTimePercentage/100
-			print("bb time is", hHero.fBuyBackExtraRespawnTime)		
 		if hHero:GetLevel()>25 then fTimeTillRespawn = (hHero:GetLevel()*4+hHero.fBuyBackExtraRespawnTime)*self.iRespawnTimePercentage/100 end
-		print("time till respawn is", fTimeTillRespawn)
 		if hHero:IsReincarnating() then fTimeTillRespawn = 3 end
 		hHero:SetTimeUntilRespawn(fTimeTillRespawn)
 	end)
@@ -145,11 +143,17 @@ end
 function GameMode:OnPlayerPickHero(keys)	
 
 end
-
-function GameMode:OnPlayerLevelUp(keys)
-	 PrintTable(keys)
-end
 ]]--
+function GameMode:OnPlayerLevelUp(keys)
+	local hHero = PlayerResource:GetPlayer(keys.player-1):GetAssignedHero()
+    local level = hHero:GetLevel()
+
+	if level > 25 then
+		hHero:SetCustomDeathXP(330 + 110*(level-8))
+	end
+		print(hHero:GetUnitName(), level, hHero:GetDeathXP(), 330 + 110*(level-8))
+end
+
 function GameMode:OnGetLoadingSetOptions(eventSourceIndex, args)	
 	if tonumber(args.host_privilege) ~= 1 then return end	
 	self.iDesiredRadiant = tonumber(args.game_options.radiant_player_number);
