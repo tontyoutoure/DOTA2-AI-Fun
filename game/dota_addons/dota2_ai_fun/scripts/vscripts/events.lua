@@ -151,7 +151,6 @@ function GameMode:OnPlayerLevelUp(keys)
 	if level > 25 then
 		hHero:SetCustomDeathXP(330 + 110*(level-8))
 	end
-		print(hHero:GetUnitName(), level, hHero:GetDeathXP(), 330 + 110*(level-8))
 end
 
 function GameMode:OnGetLoadingSetOptions(eventSourceIndex, args)	
