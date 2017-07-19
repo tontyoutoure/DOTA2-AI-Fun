@@ -13,7 +13,7 @@
 		</Button>
 		<Panel id="LuaConsoleContainer" hittest="true">
 			<Panel id="InputBar" hittest="true">
-				<TextEntry id="CommandEntry" maxchars="100" placeholder="Lua Command Here..." oninputsubmit="LuaConsole.OnInputSubmitted();"/>
+				<TextEntry id="CommandEntry" maxchars="10000" placeholder="Lua Command Here..." oninputsubmit="LuaConsole.OnInputSubmitted();"/>
 				<Button id="SubmitButton" onactivate="LuaConsole.OnInputSubmitted();">
 					<Label text="Submit" id="SubmitLabel" class="ButtonLabel"/>
 				</Button>
