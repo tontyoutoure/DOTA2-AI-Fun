@@ -34,6 +34,8 @@ function modifier_item_fun_escutcheon_lua:IsHidden()
 	return true
 end
 
+function modifier_item_fun_escutcheon_lua:IsPurgable() return false end
+
 function modifier_item_fun_escutcheon_lua:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
@@ -120,6 +122,9 @@ function modifier_item_fun_ragnarok_lua:OnCreated()
 	self:GetParent().iRagnarokCount = self:GetParent().iRagnarokCount or 0
 	self:GetParent().iRagnarokCount = self:GetParent().iRagnarokCount+1
 end
+
+function modifier_item_fun_ragnarok_lua:IsPurgable() return false end
+
 
 function modifier_item_fun_ragnarok_lua:OnDestroy()
 	self:GetParent().iRagnarokCount = self:GetParent().iRagnarokCount-1

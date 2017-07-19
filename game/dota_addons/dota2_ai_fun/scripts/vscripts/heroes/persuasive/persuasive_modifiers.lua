@@ -40,6 +40,9 @@ function modifier_persuasive_lagmonster_lua:GetStatusEffectName()
 	return "particles/status_fx/status_effect_maledict.vpcf"
 end
 
+function modifier_persuasive_lagmonster_lua:IsPurgable() return false end
+function modifier_persuasive_lagmonster_lua:IsPurgeException() return false end
+
 function modifier_persuasive_lagmonster_lua:OnDestroy()
 	if IsClient() or not self:DestroyOnExpire() then return end
 	local fDuration = self:GetDuration()

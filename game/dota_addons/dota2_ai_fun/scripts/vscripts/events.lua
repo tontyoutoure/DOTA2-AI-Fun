@@ -111,6 +111,7 @@ function GameMode:OnEntityKilled(keys)
 		local fTimeTillRespawn = hHero:GetTimeUntilRespawn()*self.iRespawnTimePercentage/100
 		if hHero:GetLevel()>25 then fTimeTillRespawn = (hHero:GetLevel()*4+hHero.fBuyBackExtraRespawnTime)*self.iRespawnTimePercentage/100 end
 		if hHero:IsReincarnating() then fTimeTillRespawn = 3 end
+		print("TTR:", fTimeTillRespawn, hHero.fBuyBackExtraRespawnTime, hHero:GetLevel()*4, hHero:GetTimeUntilRespawn(), self.iRespawnTimePercentage/100)
 		hHero:SetTimeUntilRespawn(fTimeTillRespawn)
 	end)
 end
