@@ -101,7 +101,6 @@ function GameMode:PreGameOptions()
 			iRequireLevel = iRequireLevel+i*100
 			table.insert(tLevelRequire, iRequireLevel)
 		end
-		PrintTable(tLevelRequire)
 		GameRules:GetGameModeEntity():SetUseCustomHeroLevels ( true )
 		GameRules:SetUseCustomHeroXPValues( true )
 		GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(self.iMaxLevel) 		
@@ -227,6 +226,7 @@ function GameMode:FilterGold(tGoldFilter)
 		tGoldFilter["gold"] = math.floor(iGold*self.fRadiantGoldMultiplier)
 	else
 		tGoldFilter["gold"] = math.floor(iGold*self.fDireGoldMultiplier)
+--		print("Dire Gold", tGoldFilter["gold"], iGold)
 	end
 	
 	return true
@@ -240,6 +240,7 @@ function GameMode:FilterXP(tXPFilter)
 		tXPFilter["experience"] = math.floor(iXP*self.fRadiantXPMultiplier)
 	else
 		tXPFilter["experience"] = math.floor(iXP*self.fDireXPMultiplier)
+--		print("Dire XP", tXPFilter["experience"], iXP)
 	end
 	return true
 end
