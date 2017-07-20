@@ -3,8 +3,6 @@
 
 "DOTAHeroes"
 {
-	"Version"		"1"
-
 	"dota_npc_hero_fun_magic_dragon"
 	{
 		"Ability1"	"magic_dragon_green_dragon_roar"
@@ -410,6 +408,18 @@
 		"Ability7"	""
 		"Ability8"	""
 		"Ability9"	""
+	}
+		
+	"npc_dota_hero_razor"
+	{
+		"override_hero" "npc_dota_hero_razor"
+		"BotImplemented" "0"
+	}
+
+    "npc_dota_hero_tidehunter"
+	{
+		"override_hero" "npc_dota_hero_tidehunter"
+		"BotImplemented" "0"
 	}
 
 	"npc_dota_hero_fun_formless"
