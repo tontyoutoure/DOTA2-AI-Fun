@@ -3,5 +3,6 @@ LinkLuaModifier("modifier_persuasive_lagmonster_stun_lua", "heroes/persuasive/pe
 persuasive_lagmonster_lua = class({})
 
 function persuasive_lagmonster_lua:OnSpellStart()
+	if self:GetCursorTarget():TriggerSpellAbsorb( self ) then return end
 	local hModifier = self:GetCursorTarget():AddNewModifier(self:GetCaster(), self, "modifier_persuasive_lagmonster_lua", {Duration = self:GetSpecialValueFor("duration")})
 end

@@ -4,6 +4,7 @@ LinkLuaModifier("modifier_intimidator_be_my_friend_lua", "heroes/intimidator/int
 intimidator_be_my_friend_lua = class({})
 
 function intimidator_be_my_friend_lua:OnSpellStart()
+	if self:GetCursorTarget():TriggerSpellAbsorb( self ) then return end
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	local duration = self:GetChannelTime()

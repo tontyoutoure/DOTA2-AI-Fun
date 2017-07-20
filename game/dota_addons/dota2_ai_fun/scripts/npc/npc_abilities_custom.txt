@@ -753,27 +753,14 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts"
 			"particle"	"particles/units/heroes/hero_night_stalker/nightstalker_void.vpcf"
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
+			"RunScript"
 			{
-				"EffectName"	"Hero_Nightstalker.Void"
-				"Target"	"TARGET"
-			}
-			"Damage"
-			{
-				"Target"	"TARGET"
-				"Type"	"DAMAGE_TYPE_MAGICAL"
-				"Damage"	"%damage"
-			}
-			"ApplyModifier"
-			{
-				"Target"	"TARGET"
-				"ModifierName"	"modifier_void_demon_time_void"
-				"Duration"	"%duration"
+				"ScriptFile"	"scripts/vscripts/heroes/void_demon/void_demon_time_void.lua"
+				"Function"	"TimeVoidSpellStart"
 			}
 		}
 		"Modifiers"

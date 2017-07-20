@@ -63,11 +63,14 @@ end
 
 
 function persuasive_swindle_lua:OnSpellStart()
+	if self:GetCursorTarget():TriggerSpellAbsorb( self ) then return end
 	local hCaster = self:GetCaster()
+	local hAbilityRaise = hCaster:FindAbilityByName("persuasive_raise_lua")
+	if not hAbilityRaise then return end
 	local hTarget = self:GetCursorTarget()
 	local hCasterItem = hCaster:GetItemInSlot(hCaster.iItemSlot)
 	local hTargetItem = hTarget:GetItemInSlot(hCaster.iItemSlot)
-	local fRaise = hCaster:FindAbilityByName("persuasive_raise_lua").Raise
+	local fRaise = hAbilityRaise.Raise
 	local iCasterValue
 	local iHPCost
 	local iTargetValue	
