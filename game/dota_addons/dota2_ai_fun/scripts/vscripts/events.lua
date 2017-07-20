@@ -117,7 +117,22 @@ function GameMode:OnEntityKilled(keys)
 end
 
 function GameMode:_OnNPCSpawned(keys)
-	local hHero = EntIndexToHScript(keys.entindex)
+	local hHero = EntIndexToHScript(keys.entindex)	
+	if hHero:GetName() == "npc_dota_hero_visage" then	
+		if hHero:IsIllusion() then
+			MagicDragonTransform[hHero:GetOwner():GetAssignedHero().iDragonForm](hHero)
+		elseif not hHero.bSpawned then
+			require("heroes/magic_dragon/magic_dragon_transform")	
+			MagicDragonTransform[MAGIC_DRAGON_GREEN_DRAGON_FORM](hHero)
+		end
+	end
+	
+	for i = 1, #GameMode.tStripperList do
+		if not hHero.bSpawned and hHero:GetName() == GameMode.tStripperList[i] then
+			HideWearables(hHero)
+		end
+	end
+
 	if not hHero:IsHero() or hHero:IsIllusion() then return end	
 	hHero:SetTimeUntilRespawn(-1)
 	Timers:CreateTimer(0.03, function ()  
@@ -129,15 +144,6 @@ function GameMode:_OnNPCSpawned(keys)
 			hHero.fBuyBackExtraRespawnTime = 0
 		end
 	end)
-	for i = 1, #GameMode.tStripperList do
-		if hHero:GetName() == GameMode.tStripperList[i] then
-			HideWearables(hHero)
-		end
-	end
-	if hHero:GetName() == "npc_dota_hero_visage" then
-		require("heroes/magic_dragon/magic_dragon_transform")		
-		MagicDragonTransform[MAGIC_DRAGON_GREEN_DRAGON_FORM](hHero)
-	end
 	hHero.bSpawned = true;
 end
 --[[

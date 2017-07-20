@@ -725,6 +725,32 @@
 		}
 	}
 
+	"persuasive_empty_for_reflect"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN|DOTA_ABILITY_BEHAVIOR_UNIT_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"99999"
+		"OnSpellStart"
+		{
+			
+		}
+
+	}
+
+	// //////////////////////////////////////////////////////////////////////////////
+	//
+	// 						  Void demon
+	//
+	// //////////////////////////////////////////////////////////////////////////////
+
 	// Rewrite of the Nightstalker Void ability
 	// Author: Pizzalol
 	// Date: 10.01.2015.
@@ -753,27 +779,14 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts"
 			"particle"	"particles/units/heroes/hero_night_stalker/nightstalker_void.vpcf"
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
+			"RunScript"
 			{
-				"EffectName"	"Hero_Nightstalker.Void"
-				"Target"	"TARGET"
-			}
-			"Damage"
-			{
-				"Target"	"TARGET"
-				"Type"	"DAMAGE_TYPE_MAGICAL"
-				"Damage"	"%damage"
-			}
-			"ApplyModifier"
-			{
-				"Target"	"TARGET"
-				"ModifierName"	"modifier_void_demon_time_void"
-				"Duration"	"%duration"
+				"ScriptFile"	"scripts/vscripts/heroes/void_demon/void_demon_time_void.lua"
+				"Function"	"TimeVoidSpellStart"
 			}
 		}
 		"Modifiers"
@@ -1258,7 +1271,6 @@
 		{
 			"particle"	"particles/units/heroes/hero_siren/siren_net_projectile.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_naga_siren.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_naga_siren.vsndevts"
 			"particle"	"particles/units/heroes/hero_siren/siren_net.vpcf"
 		}
 		"OnSpellStart"
@@ -1282,15 +1294,10 @@
 		"OnProjectileHitUnit"
 		{
 			"DeleteOnHit"	"1"
-			"FireSound"
+			"RunScript"
 			{
-				"EffectName"	"Hero_NagaSiren.Ensnare.Target"
-				"Target"	"TARGET"
-			}
-			"ApplyModifier"
-			{
-				"Target"	"TARGET"
-				"ModifierName"	"modifier_astral_trekker_entrapment_datadriven"
+				"ScriptFile"	"scripts/vscripts/heroes/astral_trekker/astral_trekker_entrapment.lua"
+				"Function"	"AstralTrekkerEntrapmentOnSpellStart"
 			}
 		}
 		"Modifiers"

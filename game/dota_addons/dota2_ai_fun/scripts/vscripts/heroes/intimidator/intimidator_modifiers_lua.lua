@@ -57,7 +57,7 @@ function modifier_intimidator_glare_lua:OnCreated()
 end
 
 function modifier_intimidator_glare_lua:OnDestroy()
-	if IsClient() then print("clent request ignored") return end -- Buggy API
+	if IsClient() then return end 
 	local parent = self:GetParent()
 	parent:SetModelScale(self.originalModelScale)
 	if not parent:IsHero() then return end
@@ -87,7 +87,7 @@ function modifier_intimidator_grill_lua:GetTexture()
 end
 
 function modifier_intimidator_grill_lua:OnIntervalThink()
-	if IsClient() then print("clent request ignored") return end -- Buggy API
+	if IsClient() then return end
 	local parent = self:GetParent()
 	local caster = self:GetCaster()
 	local ability = self:GetAbility()

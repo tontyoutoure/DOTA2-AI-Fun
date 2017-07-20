@@ -246,6 +246,19 @@ function BloodSwordLifestealApply(keys)
 	end
 end
 
+function HerosBowOnHit(keys)	
+	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
+	damageTable = {
+		victim = keys.target,
+		attacker = keys.caster,
+		damage = keys.ability:GetSpecialValueFor("light_arrow_damage"),
+		damage_type = DAMAGE_TYPE_PURE,
+		ability = keys.ability
+	}
+	ApplyDamage(damageTable)
+	keys.target:EmitSound("Hero_FacelessVoid.TimeLockImpact")
+end
+
 function DarksideDamage(keys)
 	local caster = keys.caster
 	local ability = keys.ability
@@ -293,6 +306,9 @@ function MagicHammerManaBurn(keys)
 	local mana_burn = ability:GetSpecialValueFor("mana_burn")
 	local mana_burn_damage = ability:GetSpecialValueFor("mana_burn_damage")
 	local currentMana = target:GetMana()
+	
+	target:EmitSound("Hero_NyxAssassin.ManaBurn.Target")
+	ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	damageTable = {attacker = caster, victim = target, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability}
 	if currentMana > mana_burn then
 		target:SetMana(currentMana-mana_burn)
@@ -303,32 +319,4 @@ function MagicHammerManaBurn(keys)
 		damageTable.damage = currentMana*mana_burn_damage
 		ApplyDamage(damageTable)
 	end	
-end
-
-function RagnarokCreated(keys)	
-	if not keys.caster:IsRangedAttacker() then
-		keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_item_fun_ragnarok_cleave", {duration = -1})
-	end
-end
-
-function RagnarokDestroy(keys)
-	if not keys.caster:IsRangedAttacker() then
-		keys.caster:RemoveModifierByName("modifier_item_fun_ragnarok_cleave")
-	end
-end
-
-function RagnarokThinkGetCleave(keys)	
-	if not keys.caster:IsRangedAttacker() and not keys.caster:HasModifier("modifier_item_fun_ragnarok_cleave") then
-		for i=0, 5, 1 do
-			local current_item = keys.caster:GetItemInSlot(i)
-			if current_item ~= nil then
-				if current_item:GetName() == "item_fun_ragnarok" then
-					keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_item_fun_ragnarok_cleave", {duration = -1})
-				end
-			end
-		end
-	end
-end
-
-function RagnarokThinkRemoveCleave(keys)
 end

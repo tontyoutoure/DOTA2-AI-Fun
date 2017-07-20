@@ -149,6 +149,46 @@ end
 
 
 
+modifier_magic_hammer_mana_break = class({})
+
+function modifier_magic_hammer_mana_break:IsHidden() return true end
+
+function modifier_magic_hammer_mana_break:DeclareFunctions()
+	return {
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL
+	}
+end
+
+function modifier_magic_hammer_mana_break:GetModifierProcAttack_BonusDamage_Physical(keys)
+	if keys.target:IsBuilding() or keys.attacker:GetTeamNumber() == keys.target:GetTeamNumber() or keys.target:GetMaxMana() == 0 or keys.target:IsMagicImmune() then return 0 end
+	hAbility = self:GetAbility()
+	local iManaBreak = hAbility:GetSpecialValueFor("mana_break")
+	local fCurrentMana = keys.target:GetMana()
+	if fCurrentMana > iManaBreak then
+		return iManaBreak*hAbility:GetSpecialValueFor("mana_break_damage")
+	else
+		return fCurrentMana*hAbility:GetSpecialValueFor("mana_break_damage")
+	end
+end
+
+function modifier_magic_hammer_mana_break:OnAttackLanded(keys)
+	if self:GetParent() ~= keys.attacker or keys.target:IsBuilding() or keys.attacker:GetTeamNumber() == keys.target:GetTeamNumber() or keys.target:GetMaxMana() == 0 or keys.target:IsMagicImmune() then return end
+	hAbility = self:GetAbility()
+	local iManaBreak = hAbility:GetSpecialValueFor("mana_break")
+	local fCurrentMana = keys.target:GetMana()
+	if fCurrentMana > iManaBreak then
+		keys.target:SetMana(fCurrentMana-iManaBreak)
+	else 
+		keys.target:SetMana(0)
+	end
+	local particle = ParticleManager:CreateParticle("particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/am_manaburn_basher_ti_5_gold.vpcf", PATTACH_POINT, keys.target)
+	keys.target:EmitSound("Hero_Antimage.ManaBreak")	
+end
+
+function modifier_magic_hammer_mana_break:AllowIllusionDuplicate() return true end
+
+
 
 
 

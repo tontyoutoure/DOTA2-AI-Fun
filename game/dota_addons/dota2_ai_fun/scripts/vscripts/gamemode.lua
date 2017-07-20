@@ -31,11 +31,13 @@ end
 
 function GameMode:LinkLuaModifiers()
 	LinkLuaModifier("modifier_item_fun_sprint_shoes_lua", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("modifier_magic_hammer_mana_break", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_persuasive_kill_steal_lua", "heroes/persuasive/persuasive_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_void_demon_quake_slow_lua", "heroes/void_demon/void_demon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_void_demon_quake_aura_lua", "heroes/void_demon/void_demon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_magic_dragon_gold_dragon_hide", "heroes/magic_dragon/magic_dragon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_magic_dragon_black_dragon_breath", "heroes/magic_dragon/magic_dragon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("modifier_magic_dragon_lightning_form", "heroes/magic_dragon/magic_dragon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 end
 
 function GameMode:InitGameOptions()
