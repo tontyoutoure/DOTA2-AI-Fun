@@ -1,4 +1,6 @@
 function mana_fiend_equilibrium_lua(keys)
+	if keys.target:TriggerSpellAbsorb(keys.ability) then return end
+
 	local target = keys.target
 	local caster = keys.caster
 	local ability = keys.ability

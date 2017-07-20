@@ -120,6 +120,7 @@ function GameMode:InitEvents()
 
 	--JS events
 	CustomGameEventManager:RegisterListener("loading_set_options", function (eventSourceIndex, args) return GameMode:OnGetLoadingSetOptions(eventSourceIndex, args) end)
+	CustomGameEventManager:RegisterListener("formless_forget", function(eventSourceIndex, args) return GameMode:OnFormlessForget(eventSourceIndex, args) end )
 end
 
 --[==[

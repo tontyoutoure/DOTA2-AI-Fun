@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <styles>
+  </styles>
+  <scripts>
+    <include src="file://{resources}/scripts/custom_game/formless_forget.js" />
+  </scripts>
+  <Panel hittest="false">
+  </Panel>
+</root>
