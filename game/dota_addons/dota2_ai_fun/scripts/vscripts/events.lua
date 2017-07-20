@@ -165,3 +165,14 @@ function GameMode:OnGetLoadingSetOptions(eventSourceIndex, args)
 	self.iMaxLevel = tonumber(args.game_options.max_level)
 	self:PreGameOptions()
 end
+
+function GameMode:OnFormlessForget(eventSourceIndex, args)	
+	local hero = PlayerResource:GetPlayer(eventSourceIndex - 1):GetAssignedHero()
+    local currentAbilityName = hero:GetAbilityByIndex(tonumber(args.skill_index)):GetName()
+    local currentAbilityLevel = hero:GetAbilityByIndex(tonumber(args.skill_index)):GetLevel()
+    if currentAbilityName ~= args.skillname_to_forget then
+      hero:SwapAbilities(currentAbilityName, args.skillname_to_forget, false, true)
+      hero:RemoveAbility(currentAbilityName)
+      hero:FindAbilityByName(args.skillname_to_forget):SetLevel(currentAbilityLevel)
+    end
+end
