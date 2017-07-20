@@ -109,6 +109,7 @@
 						<Label text="7%" id="7"/>
 						<Label text="4%" id="4"/>
 						<Label text="1%" id="1"/>
+						<Label text="0%" id="0"/>
 					</DropDown>				
 				</Panel>
 				<Panel id="MaxLevelPanel"  class="GameOptionsSubPanel">

@@ -411,6 +411,18 @@
 		"Ability8"	""
 		"Ability9"	""
 	}
+	"npc_dota_hero_razor"
+	{
+		"override_hero"		"npc_dota_hero_razor"		
+		"BotImplemented"		"0"
+	}
+		"npc_dota_hero_razor"
+	{
+		"override_hero"		"npc_dota_hero_tidehunter"		
+		"BotImplemented"		"0"
+	}
+
+}
 
 	"npc_dota_hero_fun_formless"
 	{

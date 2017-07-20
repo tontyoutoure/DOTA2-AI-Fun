@@ -24,7 +24,7 @@ function modifier_intimidator_glare_lua:GetTexture()
 end
 
 function modifier_intimidator_glare_lua:OnCreated()	
-	if IsClient() then print("clent request ignored") return end -- Buggy API
+	if IsClient() then return end -- Buggy API
 	local parent = self:GetParent()
 	local caster = self:GetCaster()
 	local ability = self:GetAbility()
@@ -205,7 +205,7 @@ function modifier_intimidator_be_my_friend_lua:CheckState()
 	return {[MODIFIER_STATE_STUNNED] = true, [MODIFIER_STATE_PROVIDES_VISION] = true}
 end
 
-
+function modifier_intimidator_be_my_friend_lua:IsStunDebuff() return true end
 
 function modifier_intimidator_be_my_friend_lua:OnCreated()
 	self:StartIntervalThink(1)
