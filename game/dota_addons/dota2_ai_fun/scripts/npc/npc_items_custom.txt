@@ -796,7 +796,7 @@
 	{
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_fun_heros_bow"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCastPoint"	"0.0"
@@ -811,11 +811,11 @@
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemPermanent"	"1"
 		"ItemAliases"	"heros bow"
+		"ItemRequirements"	{}
 		"precache"
 		{
 			"particle"	"particles/econ/items/enchantress/enchantress_virgas/ench_impetus_virgas.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_faceless_void.vsndevts"
 		}
 		"OnSpellStart"
 		{
@@ -838,16 +838,10 @@
 		"OnProjectileHitUnit"
 		{
 			"DeleteOnHit"	"1"
-			"Damage"
+			"RunScript"
 			{
-				"Target"	"TARGET"
-				"Type"	"DAMAGE_TYPE_PURE"
-				"Damage"	"%light_arrow_damage"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_FacelessVoid.TimeLockImpact"
-				"Target"	"TARGET"
+				"ScriptFile"	"scripts/vscripts/fun_items.lua"
+				"Function"	"HerosBowOnHit"
 			}
 		}
 		"Modifiers"
@@ -931,8 +925,6 @@
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
 			"particle"	"particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf"
 			"particle"	"particles/units/heroes/hero_pugna/pugna_ward_attack.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
-			"particle"	"particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/am_manaburn_basher_ti_5_gold.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -980,38 +972,17 @@
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_int"
 				}
-			}
-			"modifier_item_fun_magic_hammer_mana_break"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"OnAttackLanded"
+				"OnIntervalThink"
 				{
-					"RunScript"
+					"ApplyModifier"
 					{
-						"ScriptFile"	"fun_items.lua"
-						"Function"	"MagicHammerManaBreak"
-					}
-					"FireSound"
-					{
-						"EffectName"	"Hero_Antimage.ManaBreak"
-						"Target"
-						{
-							"Center"	"TARGET"
-							"Flags"	"DOTA_UNIT_TARGET_FLAG_MANA_ONLY"
-						}
-					}
-					"FireEffect"
-					{
-						"EffectName"	"particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/am_manaburn_basher_ti_5_gold.vpcf"
-						"EffectAttachType"	"attach_hitloc"
-						"Target"
-						{
-							"Center"	"TARGET"
-							"Flags"	"DOTA_UNIT_TARGET_FLAG_MANA_ONLY"
-						}
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_magic_hammer_mana_break"
+						"Duration"	"0.15"
 					}
 				}
+				"ThinkInterval"	"0.1"
+				"AllowIllusionDuplicate"	"1"
 			}
 		}
 		"AbilitySpecial"

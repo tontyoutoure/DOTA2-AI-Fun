@@ -25,9 +25,10 @@ function persuasive_change_item_slot_8_lua:IsStealable() return false end
 function persuasive_swindle_lua:OnUpgrade()
 	if self:GetLevel() ~= 1 then return end
 	local hCaster = self:GetCaster()
-	hCaster:SetAbilityPoints(hCaster:GetAbilityPoints()+1)
+	hCaster:SetAbilityPoints(hCaster:GetAbilityPoints()+2)
 --	hCaster:UpgradeAbility(hCaster:FindAbilityByName("persuasive_change_item_slot_0_lua"))	
 	hCaster:UpgradeAbility(hCaster:FindAbilityByName("persuasive_raise_lua"))
+	hCaster:UpgradeAbility(hCaster:FindAbilityByName("persuasive_empty_for_reflect"))
 --	hCaster.iItemSlot = 0
 end
 
@@ -37,7 +38,7 @@ function persuasive_swindle_lua:CastFilterResultTarget(hTarget)
 	end
 	local hCaster = self:GetCaster()
 	local fRaise = hCaster:FindAbilityByName("persuasive_raise_lua").Raise
-
+	
 	local iCasterValue
 	local iHPCost
 	local iTargetValue	
@@ -63,10 +64,9 @@ end
 
 
 function persuasive_swindle_lua:OnSpellStart()
-	if self:GetCursorTarget():TriggerSpellAbsorb( self ) then return end
+	if self:GetCursorTarget():TriggerSpellAbsorb( self:GetCaster():FindAbilityByName("persuasive_empty_for_reflect") ) then return end
 	local hCaster = self:GetCaster()
 	local hAbilityRaise = hCaster:FindAbilityByName("persuasive_raise_lua")
-	if not hAbilityRaise then return end
 	local hTarget = self:GetCursorTarget()
 	local hCasterItem = hCaster:GetItemInSlot(hCaster.iItemSlot)
 	local hTargetItem = hTarget:GetItemInSlot(hCaster.iItemSlot)

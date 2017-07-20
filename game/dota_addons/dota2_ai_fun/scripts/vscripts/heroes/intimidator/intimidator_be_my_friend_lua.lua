@@ -4,7 +4,13 @@ LinkLuaModifier("modifier_intimidator_be_my_friend_lua", "heroes/intimidator/int
 intimidator_be_my_friend_lua = class({})
 
 function intimidator_be_my_friend_lua:OnSpellStart()
-	if self:GetCursorTarget():TriggerSpellAbsorb( self ) then return end
+	self.appliedModifier = nil
+	if self:GetCursorTarget():TriggerSpellAbsorb( self ) then 
+		self:GetCaster():Interrupt()
+		return 
+	end
+
+	
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	local duration = self:GetChannelTime()
@@ -15,10 +21,12 @@ function intimidator_be_my_friend_lua:OnSpellStart()
 end
 
 function intimidator_be_my_friend_lua:OnChannelFinish(interrupted)
-	if not self.appliedModifier:IsNull() and self.appliedModifier.Destroy then
+	if self.appliedModifier and not self.appliedModifier:IsNull() and self.appliedModifier.Destroy then
 		self.appliedModifier:Destroy()
 	end	
-	ParticleManager:DestroyParticle(self.particle, true)
+	if self.particle then
+		ParticleManager:DestroyParticle(self.particle, true)
+	end
 
 end
 

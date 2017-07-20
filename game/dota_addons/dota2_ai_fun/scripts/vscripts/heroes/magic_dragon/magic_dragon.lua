@@ -107,12 +107,12 @@ end
 
 function BlackDragonBreathApply(keys)
 	if keys.ability:GetLevel() == 0 then return end
-	keys.caster:AddNewModifier(keys.caster, nil, "modifier_magic_dragon_black_dragon_breath", {})
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_magic_dragon_black_dragon_breath", {})
 end
 
 function GoldDragonHideApply(keys)
 	if keys.ability:GetLevel() == 0 then return end	
-	keys.caster:AddNewModifier(keys.caster, nil, "modifier_magic_dragon_gold_dragon_hide", {})
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_magic_dragon_gold_dragon_hide", {})
 end
 
 function BlueDragonRoarFreeze(keys)	
