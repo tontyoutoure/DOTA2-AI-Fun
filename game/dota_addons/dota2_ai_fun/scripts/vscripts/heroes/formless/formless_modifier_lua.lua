@@ -9,6 +9,8 @@ function formless_copy_skill(keys)
     caster:AddAbility(targetAbilityName)
     caster:SwapAbilities(ability:GetAbilityName(), targetAbilityName, false, true)
     caster:FindAbilityByName(targetAbilityName):SetLevel(originalLevel)
+  else
+	ability:EndCooldown()
   end
 end
 
