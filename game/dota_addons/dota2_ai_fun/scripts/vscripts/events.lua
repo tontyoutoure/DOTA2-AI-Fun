@@ -107,7 +107,7 @@ end
 function GameMode:OnEntityKilled(keys)
 	local hHero = EntIndexToHScript(keys.entindex_killed)
 	if not hHero:IsHero() or hHero:IsIllusion() then return end
-	Timers:CreateTimer(0.03, function ()
+	Timers:CreateTimer(0.06, function ()
 		local fTimeTillRespawn = hHero:GetTimeUntilRespawn()*self.iRespawnTimePercentage/100
 		if hHero:GetLevel()>25 then fTimeTillRespawn = (hHero:GetLevel()*4+hHero.fBuyBackExtraRespawnTime)*self.iRespawnTimePercentage/100 end
 		if hHero:IsReincarnating() then fTimeTillRespawn = 3 end
@@ -135,7 +135,7 @@ function GameMode:_OnNPCSpawned(keys)
 
 	if not hHero:IsHero() or hHero:IsIllusion() then return end	
 	hHero:SetTimeUntilRespawn(-1)
-	Timers:CreateTimer(0.03, function ()  
+	Timers:CreateTimer(0.06, function ()  
 		
 		local hModifierBGP = hHero:FindModifierByName("modifier_buyback_gold_penalty")
 		if hModifierBGP then 
