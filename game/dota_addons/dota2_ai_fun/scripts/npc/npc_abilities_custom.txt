@@ -1576,10 +1576,6 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
-		}
 		"Modifiers"
 		{
 			"modifier_mana_fiend_osmose"
@@ -1593,10 +1589,6 @@
 					{
 						"ScriptFile"	"heroes/mana_fiend/mana_fiend_osmose_lua.lua"
 						"Function"	"mana_fiend_osmose_lua"
-					}
-					"FireSound"
-					{
-						"EffectName"	"Hero_Antimage.ManaBreak"
 					}
 				}
 				"AllowIllusionDuplicate"	"1"
