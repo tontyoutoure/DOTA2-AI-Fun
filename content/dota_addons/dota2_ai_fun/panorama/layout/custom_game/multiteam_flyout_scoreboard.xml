@@ -54,6 +54,10 @@
 					<Label id="TeamScore" text="$" />
 				</Panel>
 			</Panel>
+			
+			<Panel id="ButtonContainerRow">
+					<Button id="CombatLogButton" onactivate="DOTAHUDToggleCombatLog();" onmouseover="UIShowTextTooltip( #DOTA_HUD_CombatLog )"  onmouseout="UIHideTextTooltip()"/>
+			</Panel>
 		</Panel>
   </Panel>
 </root>
