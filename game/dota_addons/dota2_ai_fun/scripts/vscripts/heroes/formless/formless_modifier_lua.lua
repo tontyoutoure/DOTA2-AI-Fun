@@ -39,15 +39,6 @@ end
 function formless_denique(keys)
   keys.abilityIndexToCopy = 3
   formless_copy_skill(keys)
---  local target = keys.target
---  for i = target:GetAbilityCount(), 0, -1 do  
---	local ability = target:GetAbilityByIndex(i)
---    if ability ~= nil and ability:GetAbilityType() == 1 then
---      keys.abilityIndexToCopy = i
---	  formless_copy_skill(keys)
---      return
---    end
---  end
 end
 
 tBugHero = {}
