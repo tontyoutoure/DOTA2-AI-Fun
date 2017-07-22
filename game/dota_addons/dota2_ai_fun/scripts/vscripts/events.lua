@@ -177,6 +177,9 @@ function GameMode:OnFormlessForget(eventSourceIndex, args)
 	local hero = PlayerResource:GetPlayer(eventSourceIndex - 1):GetAssignedHero()
 	local currentAbility = hero:GetAbilityByIndex(tonumber(args.skill_index))
     if currentAbility:GetName() ~= args.skillname_to_forget then
+	  if currentAbility:IsChanneling() then
+		currentAbility:EndChannel(true)
+	  end
       hero:SwapAbilities(currentAbility:GetName(), args.skillname_to_forget, false, true)
       hero:FindAbilityByName(args.skillname_to_forget):SetLevel(currentAbility:GetLevel())
 	  local allModifiers = hero:FindAllModifiers()

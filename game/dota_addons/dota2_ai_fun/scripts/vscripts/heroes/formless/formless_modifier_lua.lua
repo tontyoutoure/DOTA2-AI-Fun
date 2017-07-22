@@ -71,10 +71,12 @@ tBugHero["npc_dota_hero_ember_spirit"] = {0, 1, 2, -1} -- ulti no charge and can
 tBugHero["npc_dota_hero_keeper_of_the_light"] = {0, 1, 2, -1} -- ulti no use	
 tBugHero["npc_dota_hero_meepo"] = {0, 1, 2, -1} --super buggy ulti
 tBugHero["npc_dota_hero_invoker"] = {0, 1, 2, -1} -- super buggy ulti	
+tBugHero["npc_dota_hero_death_prophet"] = {0, 1, 2, -1} -- forget while casting is buggy
 tBugHero["npc_dota_hero_rubick"] = {0, 1, 2, -1} --buggy ulti
 tBugHero["npc_dota_hero_leshrac"] = {0, 1, -1, 3}	-- no agharim charge
 tBugHero["npc_dota_hero_mirana"] = {-1, 1, 2, 3}	-- no agharim charge
 tBugHero["npc_dota_hero_obsidian_destroyer"] = {0, -1, 2, 3} -- no agharim charge
+tBugHero["npc_dota_hero_bloodseeker"] = {0, 1, 2, -1} -- no agharim charge
 tBugHero["npc_dota_hero_doom_bringer"] = {-1, 1, 2, 3} --no devoured unit ability
 tBugHero["npc_dota_hero_broodmother"] = {0, -1, 2, 3} -- net won't disappear
 tBugHero["npc_dota_hero_faceless_void"] = {0, 1, -1, 3} -- passive cannot proc from far
@@ -85,6 +87,7 @@ tBugHero["npc_dota_hero_shadow_demon"] = {0, 1, 2, -1} --ulti is buggy
 tBugHero["npc_dota_hero_techies"] = {0, 1, -1, 5} --swindle is dangerous
 tBugHero["npc_dota_hero_tinker"] = {0, 1, 2, -1} -- ulti will make it meele hero	
 tBugHero["npc_dota_hero_visage"] = {-1, 1, 2, -1} -- don't transform
+tBugHero["npc_dota_hero_zuus"] = {0, 1, 2, 4} -- don't transform
 
 function formless_get_real_skill_index(keys)
 	local targetName = keys.target:GetName()
