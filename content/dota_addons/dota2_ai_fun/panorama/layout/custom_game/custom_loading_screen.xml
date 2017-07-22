@@ -165,6 +165,12 @@
             <Image id="HeroAvatarWisp" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_wisp.png" />
           </Button>
 				</Panel>
+				
+				<Panel id="HeroAvatarButtonLine4" class="HeroAvatarButtonLine">
+					<Button id="HeroAvatarBtnBeastmaster" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelBeastmaster&quot;);"> 
+						<Image id="HeroAvatarBeastmaster" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_beastmaster.png" />
+					</Button>
+				</Panel>
 			</Panel>
 			
 			
@@ -206,6 +212,10 @@
         <Label id="HeroNameWisp" class="HeroName" text="#npc_dota_hero_wisp_long"/>
         <Label id="HeroBioWisp" class="HeroBio" text="#npc_dota_hero_wisp_bio"/>
       </Panel>
+			<Panel id="HeroDescriptionPopPanelBeastmaster" class = "HeroDescriptionPopPanel">
+				<Label id="HeroNameBeastmaster" class="HeroName" text="#npc_dota_hero_beastmaster_long"/>			
+				<Label id="HeroBioBeastmaster" class="HeroBio" text="#npc_dota_hero_beastmaster_bio"/>
+			</Panel>
 		</Panel>		
 	</Panel>
   </Panel>
