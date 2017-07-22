@@ -63,8 +63,18 @@ function modifier_fluid_engineer_bowel_hydraulics:OnIntervalThink()
 		if tUnits[i] ~= hParent then
 			damageTable.victim = tUnits[i]
 			ApplyDamage(damageTable)
+			local info = {
+					Target = tUnits[i],
+					Source = hParent,
+					Ability = self:GetAbility(),	
+					EffectName = "particles/units/heroes/hero_tidehunter/tidehunter_gush.vpcf",
+					iMoveSpeed = 4000,
+			}
+			ProjectileManager:CreateTrackingProjectile(info)
+			tUnits[i]:EmitSound("Ability.GushImpact")
 		end
 	end
+	hParent:EmitSound("Ability.GushCast")
 	self:DecrementStackCount()
 end
 
@@ -82,6 +92,8 @@ function modifier_fluid_engineer_bowel_hydraulics:OnDestroy()
 	for i = 1, #tUnits do
 		damageTable.victim = tUnits[i]
 		ApplyDamage(damageTable)
+		tUnits[i]:EmitSound("Ability.Torrent")
+		ParticleManager:CreateParticle("particles/econ/items/kunkka/divine_anchor/hero_kunkka_dafx_skills/kunkka_spell_torrent_splash_fxset.vpcf", PATTACH_ABSORIGIN, tUnits[i])
 	end
 end
 

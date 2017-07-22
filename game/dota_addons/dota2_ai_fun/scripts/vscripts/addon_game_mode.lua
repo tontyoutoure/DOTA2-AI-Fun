@@ -77,6 +77,14 @@ function Precache( context )
 	PrecacheResource("particle", "particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_frost.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/razor/razor_ti6/razor_base_attack_ti6.vpcf", context)
 	PrecacheResource("particle", "particles/neutral_fx/black_dragon_attack.vpcf", context)
+	
+	-- for fluid engineer
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_tidehunter/tidehunter_gush.vpcf", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts", context)
+	PrecacheResource("particle", "particles/econ/items/kunkka/divine_anchor/hero_kunkka_dafx_skills/kunkka_spell_torrent_splash_fxset.vpcf", context)
+	
+	
 end
 
 
