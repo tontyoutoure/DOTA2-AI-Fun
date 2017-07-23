@@ -3222,28 +3222,6 @@
 		"AbilityCooldown"	"13"
 		"AbilityManaCost"	"120 140 160 180"
 		"AbilityCastRange"	"1000"
-		"precache"
-		{
-			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
-		}
-		"Modifiers"
-		{
-			"telekenetic_blob_catapult_stun_modifier"
-			{
-				"Passive"	"0"
-				"IsHidden"	"0"
-				"IsDebuff"	"1"
-				"IsPurgable"	"0"
-				"IsPurgeException"	"1"
-				// Purge(bool RemovePositiveBuffs, bool RemoveDebuffs, bool BuffsCreatedThisFrameOnly, bool RemoveStuns, bool RemoveExceptions)
-				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhaed"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
 		"AbilitySpecial"
 		{
 			"01"
@@ -3317,25 +3295,5 @@
 				"fly_height"	"750"
 			}
 		}
-	}
-
-	// //////////////////////////////////////////////////////////////////////////////
-	//
-	// 						  Ramza
-	//
-	// //////////////////////////////////////////////////////////////////////////////
-
-	"ramza_open_stats_lua"
-	{
-		"BaseClass"	"ability_lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_IMMEDIATE|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"HotKeyOverride"	"R"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0"
-		"AbilityCastAnimation"	"ACT_DOTA_CHANNEL_ABILITY_6"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
 	}
 }

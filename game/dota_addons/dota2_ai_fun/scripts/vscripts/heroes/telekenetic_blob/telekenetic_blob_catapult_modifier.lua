@@ -61,7 +61,7 @@ function telekenetic_blob_catapult_modifier:UpdateVerticalMotion(me, dt)
 			for i,v in ipairs(units) do
 				damageTable.victim = v
 				ApplyDamage(damageTable)
-				local hh = v:AddNewModifier(caster, modifier:GetAbility(), "telekenetic_blob_catapult_stun_modifier", {Duration = stunDuration})
+				v:AddNewModifier(modifier:GetCaster(), modifier:GetAbility(), "telekenetic_blob_catapult_stun_modifier", {Duration = stunDuration})
 			end
 	end
 	TelekeneticBlobFlyUpdateVertical(me, dt, self, dealDamageAndStunOnLanding)
