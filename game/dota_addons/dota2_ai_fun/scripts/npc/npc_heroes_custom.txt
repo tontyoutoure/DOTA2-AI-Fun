@@ -510,14 +510,14 @@
 		"AttributeIntelligenceGain"	"3.0"
 	}
 
-/*	"npc_dota_hero_fun_ramza"
+	"npc_dota_hero_fun_ramza"
 	{
-		"Ability1"	""
-		"Ability2"	""
-		"Ability3"	""
-		"Ability4"	""
-		"Ability5"	""
-		"Ability6"	""
+		"Ability1"	"ramza_empty_1"
+		"Ability2"	"ramza_empty_2"
+		"Ability3"	"ramza_empty_3"
+		"Ability4"	"ramza_empty_4"
+		"Ability5"	"ramza_empty_5"
+		"Ability6"	"ramza_open_stats_lua"
 		"Ability7"	""
 		"Ability8"	""
 		"Ability9"	""
@@ -550,5 +550,5 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
 		"MovementSpeed"	"300"
 		"ProjetileSpeed"	"900"
-	}*/
+	}
 }
