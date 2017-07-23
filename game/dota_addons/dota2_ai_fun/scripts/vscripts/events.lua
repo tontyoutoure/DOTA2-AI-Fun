@@ -117,7 +117,8 @@ function GameMode:OnEntityKilled(keys)
 end
 
 function GameMode:_OnNPCSpawned(keys)
-	local hHero = EntIndexToHScript(keys.entindex)	
+	local hHero = EntIndexToHScript(keys.entindex)
+	
 	if hHero:GetName() == "npc_dota_hero_visage" then	
 		if hHero:IsIllusion() then
 			MagicDragonTransform[hHero:GetOwner():GetAssignedHero().iDragonForm](hHero)
@@ -126,7 +127,18 @@ function GameMode:_OnNPCSpawned(keys)
 			MagicDragonTransform[MAGIC_DRAGON_GREEN_DRAGON_FORM](hHero)
 		end
 	end
-	
+	--[[
+	if hHero:GetName() == "npc_dota_hero_brewmaster" then
+		if hHero:IsRealHero() and not hHero.bSpawned then
+			HideWearables(hHero)
+			require("heroes/ramza/ramza_job")
+			hHero:AddNewModifier(hHero, nil, "modifier_attribute_growth_str", {})
+			hHero:AddNewModifier(hHero, nil, "modifier_attribute_growth_agi", {})
+			hHero:AddNewModifier(hHero, nil, "modifier_attribute_growth_int", {})
+			hHero:AddNewModifier(hHero, nil, "modifier_ramza_job_manager", {})
+		end
+	end
+	]]--
 	for i = 1, #GameMode.tStripperList do
 		if not hHero.bSpawned and hHero:GetName() == GameMode.tStripperList[i] then
 			HideWearables(hHero)
@@ -134,6 +146,7 @@ function GameMode:_OnNPCSpawned(keys)
 	end
 
 	if not hHero:IsHero() or hHero:IsIllusion() then return end	
+	if IsInToolsMode() then PlayerResource:SetGold(hHero:GetOwner():GetPlayerID(), 99999, true) end
 	hHero:SetTimeUntilRespawn(-1)
 	Timers:CreateTimer(0.06, function ()  
 		
