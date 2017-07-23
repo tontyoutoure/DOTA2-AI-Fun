@@ -17,28 +17,11 @@ function telekenetic_blob_throw_modifier:RemoveOnDeath()
 end
 
 function telekenetic_blob_throw_modifier:OnCreated(kv)
-    if IsServer() then
-        if self:ApplyHorizontalMotionController() == false or self:ApplyVerticalMotionController() == false then
-            self:Destroy()
-            return
-        end
-
-        self.vStartPosition    = GetGroundPosition( self:GetParent():GetOrigin(), self:GetParent() )
-        self.vTargetPosition   = self:GetAbility():GetCursorPosition()
-        self.flDuration        = self:GetAbility():GetSpecialValueFor("fly_duration")
-        self.flHeight          = self:GetAbility():GetSpecialValueFor("fly_height")
-        self.vDirection        = (self.vTargetPosition - self.vStartPosition):Normalized()
-        self.flDistance        = (self.vTargetPosition - self.vStartPosition):Length2D()
-        self.flHorizontalSpeed = self.flDistance / self.flDuration
-        EmitSoundOnLocationWithCaster(self.vStartPosition, "Ability.TossThrow", self:GetParent())
-    end
+    if IsServer() then TelekeneticBlobFlySetup(self, false) end
 end
 
 function telekenetic_blob_throw_modifier:OnDestroy()
-    if IsServer() then
-        self:GetParent():RemoveHorizontalMotionController(self)
-        self:GetParent():RemoveVerticalMotionController(self)
-    end
+    if IsServer() then TelekeneticBlobFlyTearDown(self) end
 end
 
 function telekenetic_blob_throw_modifier:DeclareFunctions()
@@ -56,7 +39,7 @@ function telekenetic_blob_throw_modifier:CheckState()
 end
 
 function telekenetic_blob_throw_modifier:GetOverrideAnimation()
-    return ACT_DOTA_CAST_ABILITY_ROT
+    return ACT_DOTA_FLAIL
 end
 
 function telekenetic_blob_throw_modifier:UpdateHorizontalMotion(me, dt)
@@ -64,35 +47,17 @@ function telekenetic_blob_throw_modifier:UpdateHorizontalMotion(me, dt)
 end
 
 function telekenetic_blob_throw_modifier:UpdateVerticalMotion(me, dt)
-    if IsServer() then
-        local vOrigin        = me:GetOrigin()
-        local vDistance      = (vOrigin - self.vStartPosition):Length2D()
-        local vZ             = - 4 * self.flHeight / (self.flDistance * self.flDistance) * (vDistance * vDistance) + 4 * self.flHeight / self.flDistance * vDistance
-        vOrigin.z            = vZ
-        local flGroundHeight = GetGroundHeight( vOrigin, self:GetParent() )
-        local bLanded        = false
-
-        if ( vOrigin.z < flGroundHeight and vDistance > self.flDistance / 2 ) then
-            vOrigin.z = flGroundHeight
-            bLanded   = true
-        end
-
-        me:SetOrigin(vOrigin)
-        if bLanded == true then
---            local units = FindUnitsInRadius(self:GetParent():GetTeamNumber(), self:GetParent():GetOrigin(), nil, 275, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
---            for _, unit in pairs(units) do
---                DealDamage(self:GetParent(), unit, 1, self)
---            end
-			local casterLevel = self:GetCaster():GetLevel()
-			local physicalDamage = self:GetAbility():GetSpecialValueFor("physical_damage")
+    local dealDamageOnLanding= function (modifier)
+			local casterLevel = modifier:GetCaster():GetLevel()
+			local physicalDamage = modifier:GetAbility():GetSpecialValueFor("physical_damage")
 			local magicalDamage = casterLevel * 5
-			local target = self:GetAbility().throw_target
+			local target = modifier:GetAbility().throw_target
 			local damageTable = {
 				victim = target,
-				attacker = self:GetCaster(),
+				attacker = modifier:GetCaster(),
 				damage_type = DAMAGE_TYPE_MAGICAL,
 				damage = magicalDamage,
-				ability = self:GetAbility()
+				ability = modifier:GetAbility()
 			}
 			ApplyDamage(damageTable)
 			damageTable.victim = me
@@ -102,13 +67,6 @@ function telekenetic_blob_throw_modifier:UpdateVerticalMotion(me, dt)
 			ApplyDamage(damageTable)
 			damageTable.victim = target
 			ApplyDamage(damageTable)
-            local pid = ParticleManager:CreateParticle("particles/econ/items/earthshaker/earthshaker_totem_ti6/earthshaker_totem_ti6_leap_impact.vpcf", PATTACH_WORLDORIGIN, self:GetParent())
-            ParticleManager:SetParticleControl(pid, 0, me:GetOrigin())
-            ParticleManager:ReleaseParticleIndex(pid)
-            EmitSoundOnLocationWithCaster(self:GetParent():GetOrigin(), "Ability.TossImpact", self:GetParent())
-            self:GetParent():RemoveHorizontalMotionController(self)
-            self:GetParent():RemoveVerticalMotionController(self)
-            self:SetDuration(0.15, true)
-        end
-    end
+	end
+	TelekeneticBlobFlyUpdateVertical(me, dt, self, dealDamageOnLanding)
 end

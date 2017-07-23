@@ -19,5 +19,7 @@ function telekenetic_blob_throw:OnSpellStart()
 
 	self.throw_target = target	
 
+	print(caster:GetName())
+	print(target:GetName())
 	markedTarget:AddNewModifier(caster, self, "telekenetic_blob_throw_modifier", {})
 end

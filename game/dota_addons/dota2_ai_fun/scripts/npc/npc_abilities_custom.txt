@@ -3217,74 +3217,88 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"telekenetic_blob_catapult"
 		"ScriptFile"	"/heroes/telekenetic_blob/telekenetic_blob_catapult.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"AbilityCooldown"	"13"
 		"AbilityManaCost"	"120 140 160 180"
 		"AbilityCastRange"	"1000"
+		"precache"
+		{
+			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+		}
+		"Modifiers"
+		{
+			"telekenetic_blob_catapult_stun_modifier"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"IsDebuff"	"1"
+				"IsPurgable"	"0"
+				"IsPurgeException"	"1"
+				// Purge(bool RemovePositiveBuffs, bool RemoveDebuffs, bool BuffsCreatedThisFrameOnly, bool RemoveStuns, bool RemoveExceptions)
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhaed"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"	"FIELD_INTEGER"
+				"var_type"	"FIELD_FLOAT"
 				"AOE_radius"	"400"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"distance"	"1000"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
 				"damage"	"75 150 225 300"
 			}
-			"04"
+			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
 				"stun_duration"	"0.3 0.6 0.9 1.2"
 			}
-			"05"
+			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"fly_duration"	"1.5"
 			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"fly_height"	"575"
+			}
 			"06"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"fly_height"	"200"
+				"distance"	"1000"
 			}
 		}
 	}
 
 	"telekenetic_blob_sling"
 	{
-		"BaseClass"	"ability_datadriven"
+		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"telekenetic_blob_sling"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityCooldown"	"20"
 		"AbilityManaCost"	"155"
+		"AbilityCastRange"	"2000"
 	}
 
 	"telekenetic_blob_expel"
 	{
-		"BaseClass"	"ability_datadriven"
+		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"lone_druid_savage_roar"
+		"ScriptFile"	"/heroes/telekenetic_blob/telekenetic_blob_expel.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityCooldown"	"120"
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/telekenetic_blob/telekenetic_blob_expel.lua"
-				"Function"	"telekenetic_blob_expel"
-			}
-		}
+		"AbilityManaCost"	"250"
+		"AbilityCastRange"	"0"
 		"AbilitySpecial"
 		{
 			"01"
@@ -3294,13 +3308,13 @@
 			}
 			"02"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"fly_speed"	"2000"
+				"var_type"	"FIELD_FLOAT"
+				"fly_speed"	"1500"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"fly_height"	"2000"
+				"fly_height"	"750"
 			}
 		}
 	}
