@@ -25,8 +25,8 @@ function telekenetic_blob_throw_modifier:OnCreated(kv)
 
         self.vStartPosition    = GetGroundPosition( self:GetParent():GetOrigin(), self:GetParent() )
         self.vTargetPosition   = self:GetAbility():GetCursorPosition()
-        self.flDuration        = self:GetAbility():GetSpecialValueFor("throw_duration")
-        self.flHeight          = self:GetAbility():GetSpecialValueFor("throw_height")
+        self.flDuration        = self:GetAbility():GetSpecialValueFor("fly_duration")
+        self.flHeight          = self:GetAbility():GetSpecialValueFor("fly_height")
         self.vDirection        = (self.vTargetPosition - self.vStartPosition):Normalized()
         self.flDistance        = (self.vTargetPosition - self.vStartPosition):Length2D()
         self.flHorizontalSpeed = self.flDistance / self.flDuration
@@ -60,12 +60,7 @@ function telekenetic_blob_throw_modifier:GetOverrideAnimation()
 end
 
 function telekenetic_blob_throw_modifier:UpdateHorizontalMotion(me, dt)
-    if IsServer() then
-        local vOldPosition = me:GetOrigin()
-        local vNewPos      = vOldPosition + self.vDirection * self.flHorizontalSpeed * dt
-        vNewPos.z          = 0
-        me:SetOrigin(vNewPos)
-    end
+    TelekeneticBlobFlyUpdateHorizontal(me, dt, self)
 end
 
 function telekenetic_blob_throw_modifier:UpdateVerticalMotion(me, dt)

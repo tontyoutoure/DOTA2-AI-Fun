@@ -3197,12 +3197,12 @@
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"throw_duration"	"1"
+				"fly_duration"	"0.5"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"throw_height"	"400"
+				"fly_height"	"400"
 			}
 			"04"
 			{
@@ -3214,11 +3214,49 @@
 
 	"telekenetic_blob_catapult"
 	{
-		"BaseClass"	"ability_datadriven"
+		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"telekenetic_blob_catapult"
+		"ScriptFile"	"/heroes/telekenetic_blob/telekenetic_blob_catapult.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"	"13"
+		"AbilityManaCost"	"120 140 160 180"
+		"AbilityCastRange"	"1000"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"AOE_radius"	"400"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"distance"	"1000"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"75 150 225 300"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun_duration"	"0.3 0.6 0.9 1.2"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"fly_duration"	"1.5"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"fly_height"	"200"
+			}
+		}
 	}
 
 	"telekenetic_blob_sling"
@@ -3228,6 +3266,8 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"155"
 	}
 
 	"telekenetic_blob_expel"
@@ -3236,6 +3276,7 @@
 		"AbilityTextureName"	"lone_druid_savage_roar"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCooldown"	"120"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -3250,6 +3291,16 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"marked_target_max_distance"	"2000 4000 6000"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"fly_speed"	"2000"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"fly_height"	"2000"
 			}
 		}
 	}

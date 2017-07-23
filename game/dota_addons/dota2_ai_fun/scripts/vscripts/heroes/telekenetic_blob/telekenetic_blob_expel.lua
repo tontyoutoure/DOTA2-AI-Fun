@@ -2,11 +2,11 @@
 	local caster = keys.caster
 	local ability = keys.ability
 	local targetPosition = ability:GetCursorPosition()
-	local markedTarget = GetMarkedTarget(caster)
+	local markedTarget = TelekeneticBlobGetMarkedTarget(caster)
 
 	if markedTarget == nil or CalcDistanceBetweenEntityOBB(markedTarget, caster) > ability:GetSpecialValueFor("marked_target_max_distance") then
-		self:EndCooldown()
-		self:RefundManaCost()
+		ability:EndCooldown()
+		ability:RefundManaCost()
 		return
 	end
 	

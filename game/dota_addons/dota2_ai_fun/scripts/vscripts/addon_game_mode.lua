@@ -1,5 +1,6 @@
 -- Create the class for the game mode, unused in this example as the functions for the quest are global
 
+require('heroes/telekenetic_blob/telekenetic_blob_util')
 require('internal/util')
 require('gamemode')
 

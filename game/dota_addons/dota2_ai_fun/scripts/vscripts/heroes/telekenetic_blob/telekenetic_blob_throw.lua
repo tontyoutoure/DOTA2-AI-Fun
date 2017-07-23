@@ -5,7 +5,7 @@ telekenetic_blob_throw = class({})
 function telekenetic_blob_throw:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-	local markedTarget = GetMarkedTarget(caster)
+	local markedTarget = TelekeneticBlobGetMarkedTarget(caster)
 
 	if markedTarget == nil or markedTarget:IsAncient() or markedTarget:IsHero() or markedTarget == target or CalcDistanceBetweenEntityOBB(target, markedTarget) > self:GetSpecialValueFor("distance") then
 		self:EndCooldown()
@@ -20,12 +20,4 @@ function telekenetic_blob_throw:OnSpellStart()
 	self.throw_target = target	
 
 	markedTarget:AddNewModifier(caster, self, "telekenetic_blob_throw_modifier", {})
-end
-
-function GetMarkedTarget(caster)
-	local ability = caster:FindAbilityByName("telekenetic_blob_mark_target")
-	if ability ~= nil then
-		return ability.lastCastTaget
-	end
-	return nil
 end
