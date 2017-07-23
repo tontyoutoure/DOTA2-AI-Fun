@@ -3318,4 +3318,24 @@
 			}
 		}
 	}
+
+	// //////////////////////////////////////////////////////////////////////////////
+	//
+	// 						  Ramza
+	//
+	// //////////////////////////////////////////////////////////////////////////////
+
+	"ramza_open_stats_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_IMMEDIATE|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"HotKeyOverride"	"R"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CHANNEL_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
 }
