@@ -127,7 +127,7 @@ function GameMode:_OnNPCSpawned(keys)
 			MagicDragonTransform[MAGIC_DRAGON_GREEN_DRAGON_FORM](hHero)
 		end
 	end
-	
+	--[[
 	if hHero:GetName() == "npc_dota_hero_brewmaster" then
 		if hHero:IsRealHero() and not hHero.bSpawned then
 			HideWearables(hHero)
@@ -138,7 +138,7 @@ function GameMode:_OnNPCSpawned(keys)
 			hHero:AddNewModifier(hHero, nil, "modifier_ramza_job_manager", {})
 		end
 	end
-	
+	]]--
 	for i = 1, #GameMode.tStripperList do
 		if not hHero.bSpawned and hHero:GetName() == GameMode.tStripperList[i] then
 			HideWearables(hHero)

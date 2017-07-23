@@ -416,44 +416,12 @@
 	{
 		"override_hero"	"npc_dota_hero_razor"
 		"BotImplemented"	"0"
-		"Ability1"	""
-		"Ability2"	""
-		"Ability3"	""
-		"Ability4"	""
-		"Ability5"	""
-		"Ability6"	""
-		"Ability7"	""
-		"Ability8"	""
-		"Ability9"	""
-		"Ability10"	""
-		"Ability11"	""
-		"Ability12"	""
-		"Ability13"	""
-		"Ability14"	""
-		"Ability15"	""
-		"Ability16"	""
 	}
 
 	"npc_dota_hero_tidehunter"
 	{
 		"override_hero"	"npc_dota_hero_tidehunter"
 		"BotImplemented"	"0"
-		"Ability1"	""
-		"Ability2"	""
-		"Ability3"	""
-		"Ability4"	""
-		"Ability5"	""
-		"Ability6"	""
-		"Ability7"	""
-		"Ability8"	""
-		"Ability9"	""
-		"Ability10"	""
-		"Ability11"	""
-		"Ability12"	""
-		"Ability13"	""
-		"Ability14"	""
-		"Ability15"	""
-		"Ability16"	""
 	}
 
 	"npc_dota_hero_fun_formless"
@@ -542,7 +510,7 @@
 		"AttributeIntelligenceGain"	"3.0"
 	}
 
-	"npc_dota_hero_fun_ramza"
+/*	"npc_dota_hero_fun_ramza"
 	{
 		"Ability1"	""
 		"Ability2"	""
@@ -582,5 +550,5 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
 		"MovementSpeed"	"300"
 		"ProjetileSpeed"	"900"
-	}
+	}*/
 }
