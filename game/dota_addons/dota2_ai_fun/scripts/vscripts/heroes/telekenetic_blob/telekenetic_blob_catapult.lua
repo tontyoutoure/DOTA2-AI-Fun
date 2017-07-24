@@ -16,10 +16,6 @@ end
 
 function telekenetic_blob_catapult:GetCustomCastErrorLocation(vLocation)
 	local markedTarget = TelekeneticBlobGetMarkedTarget(self:GetCaster())
-	print(hTarget)
-	print(markedTarget)
-	print((vLocation - markedTarget:GetOrigin()):Length2D())
-	print(self:GetSpecialValueFor("distance"))
 	if markedTarget == nil then
 		return "error_no_market_target"
 	end

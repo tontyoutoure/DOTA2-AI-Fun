@@ -3261,10 +3261,45 @@
 	{
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"telekenetic_blob_sling"
+		"ScriptFile"	"/heroes/telekenetic_blob/telekenetic_blob_sling.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"AbilityCooldown"	"20"
 		"AbilityManaCost"	"155"
 		"AbilityCastRange"	"2000"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"60"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"sling_distance"	"250 500 750 1000"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"sling_speed"	"1000"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"sling_knockback_distance"	"300"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"sling_knockback_speed"	"500"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"sling_knockback_collision_radius"	"100.0"
+			}
+		}
 	}
 
 	"telekenetic_blob_expel"
