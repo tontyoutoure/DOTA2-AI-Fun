@@ -170,6 +170,9 @@
 					<Button id="HeroAvatarBtnBeastmaster" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelBeastmaster&quot;);"> 
 						<Image id="HeroAvatarBeastmaster" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_beastmaster.png" />
 					</Button>
+          <Button id="HeroAvatarBtnEnigma" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelEnigma&quot;);">
+            <Image id="HeroAvatarEnigma" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_enigma.png" />
+          </Button>
 				</Panel>
 			</Panel>
 			
@@ -216,6 +219,10 @@
 				<Label id="HeroNameBeastmaster" class="HeroName" text="#npc_dota_hero_beastmaster_long"/>			
 				<Label id="HeroBioBeastmaster" class="HeroBio" text="#npc_dota_hero_beastmaster_bio"/>
 			</Panel>
+      <Panel id="HeroDescriptionPopPanelEnigma" class = "HeroDescriptionPopPanel">
+        <Label id="HeroNameEnigma" class="HeroName" text="#npc_dota_hero_enigma_long"/>
+        <Label id="HeroBioEnigma" class="HeroBio" text="#npc_dota_hero_enigma_bio"/>
+      </Panel>
 		</Panel>		
 	</Panel>
   </Panel>
