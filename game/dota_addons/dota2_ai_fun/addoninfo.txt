@@ -11,26 +11,26 @@
         "01"
         {
             "Key"       "V"
-            "Command"   "ForgetUnus"
-            "Name"      "Forget Unus"
+            "Command"   "KeyClickV"
+            "Name"      "Key Click V"
         }
         "02"
         {
             "Key"       "B"
-            "Command"   "ForgetDuos"
-            "Name"      "Forget Duos"
+            "Command"   "KeyClickB"
+            "Name"      "Key Click B"
         }
         "03"
         {
             "Key"       "N"
-            "Command"   "ForgetTertius"
-            "Name"      "Forget Tertis"
+            "Command"   "KeyClickN"
+            "Name"      "Key Click N"
         }
         "04"
         {
             "Key"       "M"
-            "Command"   "ForgetDenique"
-            "Name"      "Forget Denique"
+            "Command"   "KeyClickN"
+            "Name"      "Key Click N"
         }
     }
 }

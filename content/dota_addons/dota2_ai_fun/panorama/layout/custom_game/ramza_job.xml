@@ -1,0 +1,167 @@
+<root>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/ramza_job.js" />
+	</scripts>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/ramza_job.css" />
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+	</styles>
+	<Panel class="RamzaJobBase" hittest="false">
+		<Panel id="JobSelectionContainer" hittest="false">
+			<Panel id="JobSelectionColumn1" class="JobSelectionColumn" hittest="false">
+				<Panel id="JobSelectionRowLeft1" class="JobSelectionRowLeft" hittest="false">
+					<Panel id="JobContainer1" class="JobContainer" hittest="false" onmouseover="RamzaJob.ShowDescription(1);" onmouseout="RamzaJob.HideDescription(1);">		
+						<Image id="ImageSquire" src="file://{images}/custom_game/ramza/squire.png" />
+						<Button id="SelectJobButton1" class="SelectJobButton" onactivate="RamzaJob.ChangeJob(1)"/>
+						<Panel id="JobCoverUp1" class="JobCoverUp" /> 
+					</Panel>
+					<Panel id="JobContainerExample1" class="JobContainer" hittest="false" >							
+						<Panel id="JobWhiteSpaceExample1" class="WhiteSpace" />
+						<Panel id="JobCoverUpExample1" class="JobCoverUpCurrentJob" />
+						<Label id="JobExampleLabel1" class="JobContainerButtonLabel" text="#ramza_job_hud_example_current_job" />
+					</Panel>
+				</Panel>
+				<Panel id="JobSelectionRowLeft2" class="JobSelectionRowLeft" hittest="false">
+					<Panel id="JobContainer3" class="JobContainer" hittest="false" onmouseover="RamzaJob.ShowDescription(3);" onmouseout="RamzaJob.HideDescription(3);">
+						<Image id="ImageKnight" src="file://{images}/custom_game/ramza/knight.png" />
+						<Button id="SelectJobButton3" class="SelectJobButton" onactivate="RamzaJob.ChangeJob(3)"/>
+						<Panel id="JobCoverUp3" class="JobCoverUp" /> 
+					</Panel>
+					<Panel id="JobContainer4" class="JobContainer" hittest="false" onmouseover="RamzaJob.ShowDescription(4);" onmouseout="RamzaJob.HideDescription(4);">
+						<Image id="ImageArcher" src="file://{images}/custom_game/ramza/archer.png" />						
+						<Button id="SelectJobButton4" class="SelectJobButton" onactivate="RamzaJob.ChangeJob(4)"/>
+						<Panel id="JobCoverUp4" class="JobCoverUp" /> 
+					</Panel>
+				</Panel>
+				<Panel id="JobSelectionRowLeft3" class="JobSelectionRowLeft" hittest="false">					
+					<Panel id="JobContainer7" class="JobContainer" hittest="false" onmouseover="RamzaJob.ShowDescription(7);" onmouseout="RamzaJob.HideDescription(7);">					
+						<Image id="ImageMonk" src="file://{images}/custom_game/ramza/monk.png" />
+						<Button id="SelectJobButton7" class="SelectJobButton" onactivate="RamzaJob.ChangeJob(7)"/>
+						<Panel id="JobCoverUp7" class="JobCoverUp" /> 
+					</Panel>
+					<Panel id="JobContainer8" class="JobContainer" hittest="false" onmouseover="RamzaJob.ShowDescription(8);" onmouseout="RamzaJob.HideDescription(8);">
+						<Image id="ImageThief" src="file://{images}/custom_game/ramza/thief.png" />
+						<Button id="SelectJobButton8" class="SelectJobButton" onactivate="RamzaJob.ChangeJob(8)"/>
+						<Panel id="JobCoverUp8" class="JobCoverUp" /> 
+					</Panel>
+				</Panel>
+				<Panel id="JobSelectionRowLeft4" class="JobSelectionRowLeft" hittest="false">					
+					<Panel id="JobContainer13" class="JobContainer" hittest="false" onmouseover="RamzaJob.ShowDescription(13);" onmouseout="RamzaJob.HideDescription(13);">					
+						<Image id="ImageGeomancer" src="file://{images}/custom_game/ramza/geomancer.png" />						
+						<Button id="SelectJobButton13" class="SelectJobButton" onactivate="RamzaJob.ChangeJob(13)"/>
+						<Panel id="JobCoverUp13" class="JobCoverUp" /> 
+					</Panel>
+					<Panel id="JobContainer14" class="JobContainer" hittest="false" onmouseover="RamzaJob.ShowDescription(14);" onmouseout="RamzaJob.HideDescription(14);">						
+						<Image id="ImageDragoon" src="file://{images}/custom_game/ramza/dragoon.png" />
+						<Button id="SelectJobButton14" class="SelectJobButton" onactivate="RamzaJob.ChangeJob(14)"/>
+						<Panel id="JobCoverUp14" class="JobCoverUp" /> 
+					</Panel>
+				</Panel>
+				<Panel id="JobSelectionRowLeft5" class="JobSelectionRowLeft" hittest="false">					
+					<Panel id="JobContainer15" class="JobContainer" hittest="false" onmouseover="RamzaJob.ShowDescription(15);" onmouseout="RamzaJob.HideDescription(15);">						
+						<Image id="ImageSamurai" src="file://{images}/custom_game/ramza/samurai.png" />
+						<Button id="SelectJobButton15" class="SelectJobButton" onactivate="RamzaJob.ChangeJob(15)"/>
+						<Panel id="JobCoverUp15" class="JobCoverUp" /> 
+					</Panel>
+					<Panel id="JobContainer16" class="JobContainer" hittest="false" onmouseover="RamzaJob.ShowDescription(16);" onmouseout="RamzaJob.HideDescription(16);">
+						<Image id="ImageNinja" src="file://{images}/custom_game/ramza/ninja.png" />
+						<Button id="SelectJobButton16" class="SelectJobButton" onactivate="RamzaJob.ChangeJob(16)"/>
+						<Panel id="JobCoverUp16" class="JobCoverUp" /> 
+					</Panel>
+				</Panel>
+				<Panel id="JobSelectionRowLeft6" class="JobSelectionRowLeft" hittest="false">
+					<Panel id="JobContainer20" class="JobContainer" hittest="false" onmouseover="RamzaJob.ShowDescription(20);" onmouseout="RamzaJob.HideDescription(20);">
+						<Image id="ImageOnionKnight" src="file://{images}/custom_game/ramza/onion_knight.png" />
+						<Button id="SelectJobButton20" class="SelectJobButton" onactivate="RamzaJob.ChangeJob(20)"/>
+						<Panel id="JobCoverUp20" class="JobCoverUp" /> 
+					</Panel>					
+					<Panel id="CloseButtonContainer" class="JobContainer" hittest="false">
+						<Button id="ButtonCloseSelector" onactivate="RamzaJob.CloseSelector();" class="JobContainerButton">
+							<Label text="#ramza_job_hud_close_selector" id="CloseSelectorLabel" class="JobContainerButtonLabel"/>
+						</Button> 
+					</Panel>
+				</Panel>
+			</Panel>
+			
+			<Panel id="JobSelectionColumn2" class="JobSelectionColumn" hittest="false">			
+				<Panel id="JobSelectionRowRight1" class="JobSelectionRowRight" hittest="false">
+					<Panel id="JobContainer2" class="JobContainer" hittest="false" onmouseover="RamzaJob.ShowDescription(2);" onmouseout="RamzaJob.HideDescription(2);">
+						<Image id="ImageChemist" src="file://{images}/custom_game/ramza/chemist.png" />
+						<Button id="SelectJobButton2" class="SelectJobButton" onactivate="RamzaJob.ChangeJob(2)"/>
+						<Panel id="JobCoverUp2" class="JobCoverUp" /> 
+					</Panel>
+					<Panel id="JobContainerExample2" class="JobContainer" hittest="false" >	
+						<Panel id="JobWhiteSpaceExample2" class="WhiteSpace" />
+						<Panel id="JobCoverUpExample2" class="JobCoverUpCurrentSecondarySkill" />
+						<Label id="JobExampleLabel2" class="JobContainerButtonLabel" text="#ramza_job_hud_example_current_secondary_skill" />
+					</Panel>
+				</Panel>
+				<Panel id="JobSelectionRowRight2" class="JobSelectionRowRight" hittest="false">					
+					<Panel id="JobContainer5" class="JobContainer" hittest="false" onmouseover="RamzaJob.ShowDescription(5);" onmouseout="RamzaJob.HideDescription(5);">
+						<Image id="ImageWhiteMage" src="file://{images}/custom_game/ramza/white_mage.png" />
+						<Button id="SelectJobButton5" class="SelectJobButton" onactivate="RamzaJob.ChangeJob(5)"/>
+						<Panel id="JobCoverUp5" class="JobCoverUp" /> 
+					</Panel>
+					<Panel id="JobContainer6" class="JobContainer" hittest="false" onmouseover="RamzaJob.ShowDescription(6);" onmouseout="RamzaJob.HideDescription(6);">
+						<Image id="ImageBlackMage" src="file://{images}/custom_game/ramza/black_mage.png" />
+						<Button id="SelectJobButton6" class="SelectJobButton" onactivate="RamzaJob.ChangeJob(6)"/>
+						<Panel id="JobCoverUp6" class="JobCoverUp" /> 
+					</Panel>
+				</Panel>
+				<Panel id="JobSelectionRowRight3" class="JobSelectionRowRight" hittest="false">					
+					<Panel id="JobContainer9" class="JobContainer" hittest="false" onmouseover="RamzaJob.ShowDescription(9);" onmouseout="RamzaJob.HideDescription(9);">
+						<Image id="ImageMystic" src="file://{images}/custom_game/ramza/mystic.png" />
+						<Button id="SelectJobButton9" class="SelectJobButton" onactivate="RamzaJob.ChangeJob(9)"/>
+						<Panel id="JobCoverUp9" class="JobCoverUp" /> 
+					</Panel>
+					<Panel id="JobContainer10" class="JobContainer" hittest="false" onmouseover="RamzaJob.ShowDescription(10);" onmouseout="RamzaJob.HideDescription(10);">
+						<Image id="ImageTimeMage" src="file://{images}/custom_game/ramza/time_mage.png" />
+						<Button id="SelectJobButton10" class="SelectJobButton" onactivate="RamzaJob.ChangeJob(10)"/>
+						<Panel id="JobCoverUp10" class="JobCoverUp" /> 
+					</Panel>
+				</Panel>
+				<Panel id="JobSelectionRowRight4" class="JobSelectionRowRight" hittest="false">					
+					<Panel id="JobContainer11" class="JobContainer" hittest="false" onmouseover="RamzaJob.ShowDescription(11);" onmouseout="RamzaJob.HideDescription(11);">
+						<Image id="ImageOrator" src="file://{images}/custom_game/ramza/orator.png" />
+						<Button id="SelectJobButton11" class="SelectJobButton" onactivate="RamzaJob.ChangeJob(11)"/>
+						<Panel id="JobCoverUp11" class="JobCoverUp" /> 
+					</Panel>
+					<Panel id="JobContainer12" class="JobContainer" hittest="false" onmouseover="RamzaJob.ShowDescription(12);" onmouseout="RamzaJob.HideDescription(12);">
+						<Image id="ImageSummoner" src="file://{images}/custom_game/ramza/summoner.png" />
+						<Button id="SelectJobButton12" class="SelectJobButton" onactivate="RamzaJob.ChangeJob(12)"/>
+						<Panel id="JobCoverUp12" class="JobCoverUp" /> 
+					</Panel>
+				</Panel>
+				<Panel id="JobSelectionRowRight5" class="JobSelectionRowRight" hittest="false">					
+					<Panel id="JobContainer17" class="JobContainer" hittest="false" onmouseover="RamzaJob.ShowDescription(17);" onmouseout="RamzaJob.HideDescription(17);">
+						<Image id="ImageArithmetician" src="file://{images}/custom_game/ramza/arithmetician.png" />
+						<Button id="SelectJobButton17" class="SelectJobButton" onactivate="RamzaJob.ChangeJob(17)"/>
+						<Panel id="JobCoverUp17" class="JobCoverUp" /> 
+					</Panel>
+					<Panel id="JobContainer18" class="JobContainer" hittest="false" onmouseover="RamzaJob.ShowDescription(18);" onmouseout="RamzaJob.HideDescription(18);">
+						<Image id="ImageMime" src="file://{images}/custom_game/ramza/mime.png" />
+						<Button id="SelectJobButton18" class="SelectJobButton" onactivate="RamzaJob.ChangeJob(18)"/>
+						<Panel id="JobCoverUp18" class="JobCoverUp" /> 
+					</Panel>
+				</Panel>
+				<Panel id="JobSelectionRowRight6" class="JobSelectionRowRight" hittest="false">					
+					<Panel id="JobContainer19" class="JobContainer" hittest="false" onmouseover="RamzaJob.ShowDescription(19);" onmouseout="RamzaJob.HideDescription(19);">
+						<Image id="ImageDarkKnight" src="file://{images}/custom_game/ramza/dark_knight.png" />
+						<Button id="SelectJobButton19" class="SelectJobButton" onactivate="RamzaJob.ChangeJob(19)"/>
+						<Panel id="JobCoverUp19" class="JobCoverUp" /> 
+					</Panel>					
+					<Panel id="ToggleButtonContainer" class="JobContainer" hittest="false">						
+						<Button id="ButtonToggleSecondarySkill" onactivate="RamzaJob.SelectSecondarySkill();" class="JobContainerButton">
+							<Label text="#ramza_job_hud_toggle_secondary_skill" id="ToggleSecondarySkillLabel" class="JobContainerButtonLabel"/>
+						</Button> 					
+						<Button id="ButtonToggleJob" onactivate="RamzaJob.SelectJob();" class="JobContainerButton">
+							<Label text="#ramza_job_hud_toggle_job" id="ToggleJobLabel" class="JobContainerButtonLabel"/>
+						</Button> 
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="JobDescriptionContainer" hittest="false">
+		</Panel>
+	</Panel>
+</root>

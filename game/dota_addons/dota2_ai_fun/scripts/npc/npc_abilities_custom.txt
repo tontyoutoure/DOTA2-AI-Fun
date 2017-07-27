@@ -3331,4 +3331,1153 @@
 			}
 		}
 	}
+	// //////////////////////////////////////////////////////////////////////////////
+	//
+	// 						  Ramza
+	//
+	// //////////////////////////////////////////////////////////////////////////////
+	"ramza_empty_1"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"1"
+	}
+
+	"ramza_empty_2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"neutral_spell_immunity"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"1"
+	}
+
+	"ramza_empty_3"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"modifier_magicimmune"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"1"
+	}
+
+	"ramza_empty_4"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"modifier_magicimmune"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"1"
+	}
+
+	"ramza_empty_5"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"neutral_spell_immunity"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"1"
+	}
+
+	"ramza_open_stats_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"brewmaster_primal_split"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_IMMEDIATE|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"HotKeyOverride"	"R"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CHANNEL_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+	"ramza_next_page_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"riki_backstab"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_IMMEDIATE|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"HotKeyOverride"	"F"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CHANNEL_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"ramza_go_back_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"omniknight_degen_aura"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_IMMEDIATE|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"HotKeyOverride"	"R"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CHANNEL_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"ramza_bravery"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"legion_commander_duel_alt1"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"7"
+		"Modifiers"
+		{
+			"modifier_ramza_bravery"
+			{
+				"Passive"	"1"
+				"IsBuff"	"1"
+				"AllowIllusionDuplicate"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_strength"
+				}
+				"IsHidden"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_strength"	"3 6 9 12 15 18 21"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage"	"5 10 15 20 25 30 35"
+			}
+		}
+	}
+
+	"ramza_speed"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"rubick_telekinesis"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"7"
+		"Modifiers"
+		{
+			"modifier_ramza_speed"
+			{
+				"Passive"	"1"
+				"IsBuff"	"1"
+				"AllowIllusionDuplicate"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus_move"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_agility"
+				}
+				"IsHidden"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_move"	"2 4 6 8 10 12 14"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_attack"	"2 4 6 8 10 12 14"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_agility"	"3 6 9 12 15 18 21"
+			}
+		}
+	}
+
+	"ramza_faith"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"crystal_maiden_crystal_nova_icecowl"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"7"
+		"Modifiers"
+		{
+			"modifier_ramza_faith"
+			{
+				"Passive"	"1"
+				"AllowIllusionDuplicate"	"1"
+				"IsBuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_intelligence"
+					"MODIFIER_PROPERTY_MANA_BONUS"	"%bonus_mana"
+				}
+				"IsHidden"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_mana"	"50 100 150 200 250 300 350"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_intelligence"	"3 6 9 12 15 18 21"
+			}
+		}
+	}
+
+	"ramza_select_job_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"persuasive_change_item_slot_6"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"HotKeyOverride"	"Q"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"0"
+	}
+
+	"ramza_select_secondary_skill_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"persuasive_change_item_slot_1"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"HotKeyOverride"	"W"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"0"
+	}
+
+	"ramza_archer_aim_2"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"clinkz_searing_arrows"
+		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_archer.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_ALERT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"CastFilterRejectCaster"	"0"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"1000"
+		"AbilityChannelTime"	"4"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_per_half_sec"	"50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"maximum_channel_time"	"4"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"projectile_speed"	"3000"
+			}
+		}
+	}
+
+	"ramza_archer_aim_4"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"clinkz_searing_arrows"
+		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_archer.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_ALERT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"CastFilterRejectCaster"	"0"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"1000"
+		"AbilityChannelTime"	"8"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_per_half_sec"	"50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"maximum_channel_time"	"8"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"projectile_speed"	"3000"
+			}
+		}
+	}
+
+	"ramza_archer_aim_6"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"clinkz_searing_arrows"
+		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_archer.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_ALERT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"CastFilterRejectCaster"	"0"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"2000"
+		"AbilityChannelTime"	"12"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_per_half_sec"	"50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"maximum_channel_time"	"12"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"projectile_speed"	"3000"
+			}
+		}
+	}
+
+	"ramza_archer_aim_7"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"clinkz_searing_arrows"
+		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_archer.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_ALERT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"CastFilterRejectCaster"	"0"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"3000"
+		"AbilityChannelTime"	"14"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_per_half_sec"	"50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"maximum_channel_time"	"14"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"projectile_speed"	"3000"
+			}
+		}
+	}
+
+	"ramza_archer_aim_10"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"clinkz_searing_arrows"
+		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_archer.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_ALERT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"CastFilterRejectCaster"	"0"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"4000"
+		"AbilityChannelTime"	"20"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_per_half_sec"	"50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"maximum_channel_time"	"20"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"projectile_speed"	"3000"
+			}
+		}
+	}
+
+	"ramza_archer_aim_20"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"clinkz_searing_arrows"
+		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_archer.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_ALERT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"CastFilterRejectCaster"	"0"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"99999"
+		"AbilityChannelTime"	"40"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_per_half_sec"	"50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"maximum_channel_time"	"40"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"projectile_speed"	"3000"
+			}
+		}
+	}
+
+	"ramza_archer_concentration"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"bristleback_warpath"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_ramza_archer_concentration"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"IsBuff"	"1"
+			}
+		}
+	}
+
+	"ramza_archer_adrenaline_rush"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"clinkz_wind_walk"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"1"
+		"precache"
+		{
+			"particle"	"particles/generic_gameplay/rune_haste_owner.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_archer_adrenaline_rush"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"AllowIllusionDuplicate"	"1"
+				"OnAttacked"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_ramza_archer_adrenaline_rush_speed"
+					}
+				}
+			}
+			"modifier_ramza_archer_adrenaline_rush_speed"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_percentage"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack"
+				}
+				"IsPurgable"	"1"
+				"IsBuff"	"1"
+				"Duration"	"%duration"
+				"EffectName"	"particles/generic_gameplay/rune_haste_owner.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"4"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack"	"30"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_percentage"	"30"
+			}
+		}
+	}
+
+	"ramza_archer_archers_bane"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"clinkz_death_pact"
+		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_archer.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"evasion"	"50"
+			}
+		}
+	}
+
+	// Rewrite of Skeleton Wraith King Hellfire Blast
+	// Author: Noya
+	// Date: 12.1.2015.
+	// Notes: The damage is done in a separate hidden thinker modifier that is applied after the stun duration
+	"ramza_squire_fundamental_stone"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"mud_golem_hurl_boulder"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.35"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"20"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"650"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_brewmaster/brewmaster_hurl_boulder.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"TrackingProjectile"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/units/heroes/hero_brewmaster/brewmaster_hurl_boulder.vpcf"
+				"Dodgeable"	"1"
+				"ProvidesVision"	"0"
+				"VisionRadius"	"0"
+				"MoveSpeed"	"%speed"
+				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_2"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Brewmaster_Earth.Boulder.Cast"
+				"Target"	"CASTER"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"FireSound"
+			{
+				"EffectName"	"Brewmaster_Earth.Boulder.Target"
+				"Target"	"TARGET"
+			}
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"%damage"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_ramza_squire_fundamental_stone_stun"
+				"Target"	"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_squire_fundamental_stone_stun"
+			{
+				"IsDebuff"	"1"
+				"Duration"	"%stun"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"stun"	"2"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"100"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"speed"	"700"
+			}
+		}
+	}
+
+	"ramza_squire_fundamental_focus"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"gyrocopter_skyhigh_call_down"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"45"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"0"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
+			"particle"	"particles/units/heroes/hero_magnataur/magnataur_empower.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_ramza_squire_fundamental_focus"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Magnataur.Empower.Cast"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_squire_fundamental_focus"
+			{
+				"EffectName"	"particles/units/heroes/hero_magnataur/magnataur_empower.vpcf"
+				"IsBuff"	"1"
+				"EffectAttachType"	"attach_attack1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%damage_percent"
+				}
+				"Duration"	"%duration"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"20"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_percent"	"20"
+			}
+		}
+	}
+
+	"ramza_squire_counter_tackle"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"centaur_return"
+		"ScriptFile"	"heroes/ramza/ramza_squire.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_return"	"25"
+			}
+		}
+	}
+
+	// Rewrite of the Windrunner Windrun ability
+	// Author: kritth
+	// Date: 01.10.2015.
+	"ramza_squire_fundamental_tailwind"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"windrunner_windrun_sylvan"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_NO"
+		"MaxLevel"	"1"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"45"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Data driven
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
+			"particle"	"particles/econ/items/windrunner/windrunner_cape_cascade/windrunner_windrun_cascade.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				// Find the name for actual sound
+				"EffectName"	"Ability.Windrun"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_windrun_caster_datadriven"
+				"Duration"	"%duration"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_windrun_caster_datadriven"
+			{
+				"Duration"	"%duration"
+				"EffectName"	"particles/econ/items/windrunner/windrunner_cape_cascade/windrunner_windrun_cascade.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed_bonus_pct"
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"movespeed_bonus_pct"	"100"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"10"
+			}
+		}
+	}
+
+	"ramza_squire_defend"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"dragon_knight_dragon_tail"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+		"precache"
+		{
+			"particle"	"particles/econ/items/sven/sven_warcry_ti5/sven_warcry_buff_ti_5.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"heroes/ramza/ramza_squire.lua"
+				"Function"	"RamzaSquireDefendToggle"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_squire_defend"
+			{
+				"IsBuff"	"1"
+				"EffectName"	"particles/econ/items/sven/sven_warcry_ti5/sven_warcry_buff_ti_5.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_block"	"50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move"	"-25"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack"	"-25"
+			}
+		}
+	}
+
+	"ramza_squire_fundamental_chant"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"elder_titan_return_spirit"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"CastFilterRejectCaster"	"1"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"50"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"650"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_chen.vsndevts"
+			"particle"	"particles/units/heroes/hero_chen/chen_hand_of_god.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"Heal"
+			{
+				"Target"	"TARGET"
+				"HealAmount"	"%heal"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_squire.lua"
+				"Function"	"RamzaSquireChant"
+			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_Chen.HandOfGodHealHero"
+			}
+			"FireEffect"
+			{
+				"Target"	"TARGET"
+				"EffectAttachType"	"follow_origin"
+				"EffectName"	"particles/units/heroes/hero_chen/chen_hand_of_god.vpcf"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"heal"	"300"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"health_cost"	"150"
+			}
+		}
+	}
+
+	"ramza_squire_move1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"bounty_hunter_track"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_ramza_squire_move1"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus_speed"
+				}
+				"Passive"	"1"
+				"IsHidden"	"1"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_speed"	"10"
+			}
+		}
+	}
+
+	"ramza_squire_fundamental_shout"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"axe_berserkers_call_shoutmask"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"60"
+		"AbilityManaCost"	"0"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
+			"particle"	"particles/econ/items/axe/axe_helm_shoutmask/axe_beserkers_call_buff_shout_mask.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Axe.BerserkersCall.Item.Shoutmask"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_ramza_squire_fundamental_shout"
+			}
+			"FireEffect"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"particles/econ/items/axe/axe_helm_shoutmask/axe_beserkers_call_buff_shout_mask.vpcf"
+				"EffectAttachType"	"follow_eyes"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_squire_fundamental_shout"
+			{
+				"StatusEffectName"	"particles/status_fx/status_effect_beserkers_call.vpcf"
+				"States"	{}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%stats"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%stats"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%stats"
+				}
+				"Duration"	"%duration"
+				"IsPurgable"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"20"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack"	"20"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move"	"20"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"stats"	"20"
+			}
+		}
+	}
+
+	"ramza_squire_fundamental_ultima"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"elder_titan_echo_stomp_spirit_alt"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"90"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"1000"
+		"AOERadius"	"500"
+		"precache"
+		{
+			"particle"	"particles/econ/items/elder_titan/elder_titan_ti7/elder_titan_echo_stomp_ti7.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"Damage"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Center"	"POINT"
+					"Radius"	"%radius"
+				}
+				"Type"	"DAMAGE_TYPE_PURE"
+				"Damage"	"%damage"
+			}
+			"CreateThinker"
+			{
+				"Target"	"POINT"
+				"ModifierName"	"modifier_ramza_squire_fundamental_ultima"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_squire_fundamental_ultima"
+			{
+				"Duration"	"3"
+				"OnCreated"
+				{
+					"FireEffect"
+					{
+						"Target"	"TARGET"
+						"ControlPoints"
+						{
+							"01"	"%radius %radius %radius"
+							"02"	"0 255 0"
+						}
+						"EffectName"	"particles/econ/items/elder_titan/elder_titan_ti7/elder_titan_echo_stomp_ti7.vpcf"
+						"EffectAttachType"	"attach_origin"
+					}
+					"FireSound"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"Hero_ElderTitan.EchoStomp.ti7"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"500"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"500"
+			}
+		}
+	}
+
+	"ramza_job_squire_PA"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"brewmaster_earth_spell_immunity"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
 }

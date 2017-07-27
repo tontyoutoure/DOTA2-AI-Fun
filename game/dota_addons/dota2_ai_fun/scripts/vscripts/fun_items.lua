@@ -99,7 +99,7 @@ function EconomizerResetCooldown(keys)
 				
 				fileHandle = fileHandle or io.open(sFileName, "w")
 				if fileHandle then
-					fileHandle:write("Ability Name: "..indexedAbilityName, '\n')
+					fileHandle:write(tostring(i)..". Ability Name: "..indexedAbilityName, '\n')
 					PrintTable(indexedAbility:GetAbilityKeyValues(), 1, fileHandle)
 				else 
 					print("Ability Name: "..indexedAbilityName)

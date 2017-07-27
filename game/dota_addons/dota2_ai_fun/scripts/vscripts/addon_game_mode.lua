@@ -85,7 +85,34 @@ function Precache( context )
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts", context)
 	PrecacheResource("particle", "particles/econ/items/kunkka/divine_anchor/hero_kunkka_dafx_skills/kunkka_spell_torrent_splash_fxset.vpcf", context)
 	
+	-- for ramza
+	PrecacheResource("particle", "particles/units/heroes/hero_clinkz/clinkz_base_attack.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_keeper_of_the_light/keeper_base_attack.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_lina/lina_base_attack.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_shadowshaman/shadowshaman_base_attack.vpcf",context)
+	PrecacheResource("particle", "particles/units/heroes/hero_silencer/silencer_base_attack.vpcf",context)
+	PrecacheResource("particle", "particles/econ/items/rubick/rubick_staff_wandering/rubick_base_attack_whset.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_keeper_of_the_light/keeper_base_attack.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_base_attack.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/necrolyte/necronub_base_attack/necrolyte_base_attack_ka.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_bane/bane_projectile.vpcf", context)
 	
+	PrecacheResource("particle", "particles/econ/items/clinkz/clinkz_maraxiform/clinkz_maraxiform_searing_arrow.vpcf", context)
+	
+	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_hurl_boulder.vpcf", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_magnataur/magnataur_empower.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/windrunner/windrunner_cape_cascade/windrunner_windrun_cascade.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/sven/sven_warcry_ti5/sven_warcry_buff_ti_5.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_centaur/centaur_return.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_chen/chen_hand_of_god.vpcf", context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_beserkers_call.vpcf", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_axe.vsndevts", context)
+	PrecacheResource("particle", "particles/econ/items/axe/axe_helm_shoutmask/axe_beserkers_call_buff_shout_mask.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/elder_titan/elder_titan_ti7/elder_titan_echo_stomp_ti7.vpcf", context)	
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_elder_titan.vsndevts", context)
 end
 
 

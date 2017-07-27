@@ -7,12 +7,12 @@ end
 
 require('libraries/timers')
 require('libraries/notifications')
+require('libraries/Playertables')
 if IsInToolsMode() then
 	require('libraries/modmaker')
 	require('libraries/lua_console')
 require('libraries/attachments')
 end
-require('libraries/notifications')
 require('internal/util')
 require('settings')
 require('events')

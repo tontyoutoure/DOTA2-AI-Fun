@@ -1,0 +1,15 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+ {
+    custom_net_tables =
+    [
+        "ramza_current_job",
+        "ramza_current_secondary_skill",
+        "ramza_job_level",
+        "ramza_job_requirement",
+
+        "ramza_init_job_requirement",
+        "ramza_job_abilities",
+        "ramza_job_names",
+        "ramza_job_stats"
+    ]
+}
