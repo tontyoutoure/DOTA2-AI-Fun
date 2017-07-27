@@ -3076,6 +3076,261 @@
 		}
 	}
 
+	"telekenetic_blob_mark_target"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"telekenetic_blob_mark_target"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"CastFilterRejectCaster"	"1"
+		"FightRecapLevel"	"1"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.0"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"0.0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"0"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+			"particle"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_cast.vpcf"
+			"particle"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_trail.vpcf"
+			"particle"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_shield.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_telekenetic_blob_mark_target"
+			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_BountyHunter.Target"
+			}
+			"FireEffect"
+			{
+				"EffectName"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_cast.vpcf"
+				"EffectAttachType"	"start_at_customorigin"
+				"ControlPointEntities"
+				{
+					"CASTER"	"attach_attack1"
+					"TARGET"	"attach_hitloc"
+				}
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_telekenetic_blob_mark_target"
+			{
+				"IsDebuff"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_PROVIDES_VISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_trail.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"	"TARGET"
+						"ControlPointEntities"
+						{
+							"TARGET"	"attach_origin"
+							"TARGET"	"attach_hitloc"
+						}
+					}
+					"AttachEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_shield.vpcf"
+						"EffectAttachType"	"follow_overhead"
+						"Target"	"TARGET"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/telekenetic_blob/telekenetic_blob_mark_target.lua"
+						"Function"	"SetLastTargetOnCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/telekenetic_blob/telekenetic_blob_mark_target.lua"
+						"Function"	"ResetLastTargetOnDestory"
+					}
+				}
+			}
+		}
+	}
+
+	"telekenetic_blob_throw"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"telekenetic_blob_throw"
+		"ScriptFile"	"/heroes/telekenetic_blob/telekenetic_blob_throw.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"CastFilterRejectCaster"	"1"
+		"AbilityCooldown"	"1"
+		"AbilityManaCost"	"10"
+		"AbilityCastRange"	"700"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"distance"	"1000"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"fly_duration"	"0.5"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"fly_height"	"400"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"physical_damage"	"40 60 80 100"
+			}
+		}
+	}
+
+	"telekenetic_blob_catapult"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"telekenetic_blob_catapult"
+		"ScriptFile"	"/heroes/telekenetic_blob/telekenetic_blob_catapult.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"	"13"
+		"AbilityManaCost"	"120 140 160 180"
+		"AbilityCastRange"	"1000"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"AOE_radius"	"400"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"75 150 225 300"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun_duration"	"0.3 0.6 0.9 1.2"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"fly_duration"	"1.5"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"fly_height"	"575"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"distance"	"1000"
+			}
+		}
+	}
+
+	"telekenetic_blob_sling"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"telekenetic_blob_sling"
+		"ScriptFile"	"/heroes/telekenetic_blob/telekenetic_blob_sling.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"155"
+		"AbilityCastRange"	"2000"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"60"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"sling_distance"	"250 500 750 1000"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"sling_speed"	"1000"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"sling_knockback_distance"	"300"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"sling_knockback_speed"	"500"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"sling_knockback_collision_radius"	"100.0"
+			}
+		}
+	}
+
+	"telekenetic_blob_expel"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"lone_druid_savage_roar"
+		"ScriptFile"	"/heroes/telekenetic_blob/telekenetic_blob_expel.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCooldown"	"120"
+		"AbilityManaCost"	"250"
+		"AbilityCastRange"	"0"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"marked_target_max_distance"	"2000 4000 6000"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"fly_speed"	"1500"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"fly_height"	"750"
+			}
+		}
+	}
 	// //////////////////////////////////////////////////////////////////////////////
 	//
 	// 						  Ramza
@@ -3135,7 +3390,6 @@
 		"AbilityCooldown"	"0"
 		"AbilityManaCost"	"0"
 	}
-
 	"ramza_next_page_lua"
 	{
 		"BaseClass"	"ability_lua"

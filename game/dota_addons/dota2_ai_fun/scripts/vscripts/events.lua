@@ -148,6 +148,18 @@ function GameMode:RamzaDamageFilter(filterTable)
 	return true
 end
 
+function LearnInnateSkillOnSpawn(hero)
+	local innateSkillNames = {}
+	innateSkillNames[#innateSkillNames+1] = "telekenetic_blob_mark_target"
+
+	for i = 1, #innateSkillNames do
+		if hero:HasAbility(innateSkillNames[i]) then
+			local ability = hero:FindAbilityByName(innateSkillNames[i])
+			ability:SetLevel(1)
+		end
+	end
+end
+
 function GameMode:_OnNPCSpawned(keys)
 	local hHero = EntIndexToHScript(keys.entindex)
 	
@@ -191,6 +203,8 @@ function GameMode:_OnNPCSpawned(keys)
 		end
 	end
 
+	LearnInnateSkillOnSpawn(hHero)
+	
 	for i = 1, #GameMode.tStripperList do
 		if not hHero.bSpawned and hHero:GetName() == GameMode.tStripperList[i] then
 			HideWearables(hHero)

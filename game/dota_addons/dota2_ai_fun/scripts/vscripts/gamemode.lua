@@ -51,6 +51,8 @@ function GameMode:InitGameOptions()
 	GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS, DIRE_PLAYER_COUNT)
 	if IsInToolsMode() then
 		 GameRules:SetUseUniversalShopMode(true)
+		 GameRules:SetStrategyTime(0)
+		 GameRules:SetShowcaseTime(0)
 	end
 end
 
