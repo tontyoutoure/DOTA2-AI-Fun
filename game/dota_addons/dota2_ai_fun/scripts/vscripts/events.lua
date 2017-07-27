@@ -115,6 +115,38 @@ function GameMode:OnEntityKilled(keys)
 		hHero:SetTimeUntilRespawn(fTimeTillRespawn)
 	end)
 end
+-- for Archer's Bane of Ramza
+function GameMode:RamzaProjecileFilter(filterTable)
+	local hTarget = EntIndexToHScript(filterTable.entindex_target_const)
+	local hSource = EntIndexToHScript(filterTable.entindex_source_const)
+	local hAbility = hTarget:FindAbilityByName('ramza_archer_archers_bane')
+	if hTarget:FindModifierByName("modifier_ramza_archer_archers_bane") and math.random(100) < hAbility:GetSpecialValueFor("evasion") then
+		local tInfo ={
+			Target = hTarget,
+			Source = hSource,
+			Ability = hAbility,
+			flExpireTime = GameRules:GetGameTime() + 10, 
+			EffectName = hSource:GetRangedProjectileName(),
+			iMoveSpeed = hSource:GetProjectileSpeed()
+		}		
+		
+		
+		ProjectileManager:CreateTrackingProjectile(tInfo)		
+		return false
+	end
+	return true
+end
+
+-- for Defend of Ramza
+function GameMode:RamzaDamageFilter(filterTable)
+	local hVictim = EntIndexToHScript(filterTable.entindex_victim_const)
+	local hAttacker = EntIndexToHScript(filterTable.entindex_attacker_const)
+	if hVictim:HasModifier('modifier_ramza_squire_defend') and not hAttacker:IsBuilding() and not hAttacker:IsHero() then 
+		filterTable.damage = filterTable.damage*(1-hVictim:FindAbilityByName('ramza_squire_defend'):GetSpecialValueFor("damage_block")/100)
+		PrintTable(filterTable);
+	end
+	return true
+end
 
 function GameMode:_OnNPCSpawned(keys)
 	local hHero = EntIndexToHScript(keys.entindex)
@@ -127,18 +159,38 @@ function GameMode:_OnNPCSpawned(keys)
 			MagicDragonTransform[MAGIC_DRAGON_GREEN_DRAGON_FORM](hHero)
 		end
 	end
-	--[[
+	
 	if hHero:GetName() == "npc_dota_hero_brewmaster" then
 		if hHero:IsRealHero() and not hHero.bSpawned then
 			HideWearables(hHero)
 			require("heroes/ramza/ramza_job")
-			hHero:AddNewModifier(hHero, nil, "modifier_attribute_growth_str", {})
-			hHero:AddNewModifier(hHero, nil, "modifier_attribute_growth_agi", {})
-			hHero:AddNewModifier(hHero, nil, "modifier_attribute_growth_int", {})
-			hHero:AddNewModifier(hHero, nil, "modifier_ramza_job_manager", {})
+			local hModifier = hHero:AddNewModifier(hHero, nil, "modifier_attribute_growth_str", {})
+			hModifier.fGrowth = 2.5
+			hModifier = hHero:AddNewModifier(hHero, nil, "modifier_attribute_growth_agi", {})
+			hModifier.fGrowth = 2.5
+			hModifier = hHero:AddNewModifier(hHero, nil, "modifier_attribute_growth_int", {})
+			hModifier.fGrowth = 2.5
+			hModifier = hHero:AddNewModifier(hHero, nil, "modifier_ramza_job_manager", {})
+			hModifier.iBonusAttackRange = 0;
+			hModifier = hHero:AddNewModifier(hHero, nil, "modifier_ramza_job_level", {})
+			hModifier:SetStackCount(1)
+			hHero:AddNewModifier(hHero, nil, "modifier_ramza_job_point", {})
+			hHero:FindAbilityByName("ramza_open_stats_lua"):SetLevel(1)
+			hHero:FindAbilityByName("ramza_go_back_lua"):SetLevel(1)
+			hHero:FindAbilityByName("ramza_next_page_lua"):SetLevel(1)
+			hHero:FindAbilityByName("ramza_select_job_lua"):SetLevel(1)
+			hHero:FindAbilityByName("ramza_select_secondary_skill_lua"):SetLevel(1)
+			if not GameMode.bRamzaArchersBaneFileterSet then
+				GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(GameMode, 'RamzaProjecileFilter'), self)
+				GameMode.bRamzaArchersBaneFileterSet = true
+			end
+			if not GameMode.bRamzaSquireDenfendFilterSet then
+				GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(GameMode, 'RamzaDamageFilter'), self)
+				GameMode.bRamzaSquireDenfendFilterSet = true
+			end
 		end
 	end
-	]]--
+
 	for i = 1, #GameMode.tStripperList do
 		if not hHero.bSpawned and hHero:GetName() == GameMode.tStripperList[i] then
 			HideWearables(hHero)

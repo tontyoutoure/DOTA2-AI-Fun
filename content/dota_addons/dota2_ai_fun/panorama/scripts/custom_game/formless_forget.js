@@ -40,7 +40,7 @@ function ForgetDenique() {
     }
 }
 
-Game.AddCommand("ForgetUnus", ForgetUnus, "", 0);
-Game.AddCommand("ForgetDuos", ForgetDuos, "", 0);
-Game.AddCommand("ForgetTertius", ForgetTertius, "", 0);
-Game.AddCommand("ForgetDenique", ForgetDenique, "", 0);
+Game.AddCommand("KeyClickV", ForgetUnus, "", 0);
+Game.AddCommand("KeyClickB", ForgetDuos, "", 0);
+Game.AddCommand("KeyClickN", ForgetTertius, "", 0);
+Game.AddCommand("KeyClickM", ForgetDenique, "", 0);

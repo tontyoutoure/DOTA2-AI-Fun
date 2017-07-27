@@ -19,31 +19,33 @@ RAMZA_JOB_MIME = 18
 RAMZA_JOB_DARK_KNIGHT = 19
 RAMZA_JOB_ONION_KNIGHT = 20
 
+SELECT_JOB = 0;
+SELECT_SECONDARY_ABILITY = 1;
 
 
 CRamzaJob = {}
 
 CRamzaJob.tJobNames = {
-	"RAMZA_JOB_SQUIRE",
-	"RAMZA_JOB_CHEMIST",
-	"RAMZA_JOB_KNIGHT",
-	"RAMZA_JOB_ARCHER",
-	"RAMZA_JOB_WHITE_MAGE",
-	"RAMZA_JOB_BLACK_MAGE",
-	"RAMZA_JOB_MONK",
-	"RAMZA_JOB_THIEF",
-	"RAMZA_JOB_MYSTIC",
-	"RAMZA_JOB_TIME_MAGE",
-	"RAMZA_JOB_ORATOR",
-	"RAMZA_JOB_SUMMONER",
-	"RAMZA_JOB_GEOMANCER",
-	"RAMZA_JOB_DRAGOON",
-	"RAMZA_JOB_SAMURAI",
-	"RAMZA_JOB_NINJA",
-	"RAMZA_JOB_ARITHMETICIAN",
-	"RAMZA_JOB_MIME",
-	"RAMZA_JOB_DARK_KNIGHT",
-	"RAMZA_JOB_ONION_KNIGHT"
+	"ramza_job_squire",
+	"ramza_job_chemist",
+	"ramza_job_knight",
+	"ramza_job_archer",
+	"ramza_job_white_mage",
+	"ramza_job_black_mage",
+	"ramza_job_monk",
+	"ramza_job_thief",
+	"ramza_job_mystic",
+	"ramza_job_time_mage",
+	"ramza_job_orator",
+	"ramza_job_summoner",
+	"ramza_job_geomancer",
+	"ramza_job_dragoon",
+	"ramza_job_samurai",
+	"ramza_job_ninja",
+	"ramza_job_arithmetician",
+	"ramza_job_mime",
+	"ramza_job_dark_knight",
+	"ramza_job_onion_knight"
 }
 
 CRamzaJob.tRamzaJobReqirement = {0, 200, 400, 700, 1100, 1600, 2200, 3000, 4000}
@@ -73,15 +75,7 @@ CRamzaJob.tRamzaChangeJobRequirements = {
 
 CRamzaJob.tJobLevelUnlocks = {}
 
-function CRamzaJob:Initialize()
-	for i = 1, 20 do
-		for k, v in pairs(self.tRamzaChangeJobRequirements[i]) do
-			self.tJobLevelUnlocks[k] = self.tJobLevelUnlocks[k] or {}
-			self.tJobLevelUnlocks[k][v] = self.tJobLevelUnlocks[k][v] or {}
-			table.insert(self.tJobLevelUnlocks[k][v], i)
-		end
-	end
-end
+
 
 CRamzaJob.tJobStats = {
 	{	--Squire
@@ -95,8 +89,6 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		attack_projectile = nil,
-		attack_projectile_speed = nil,
 		move_speed = 300,
 	},
 	{	--Chemist
@@ -110,8 +102,6 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 600,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		attack_projectile = nil,
-		attack_projectile_speed = nil,
 		move_speed = 280,
 	},
 	{	--Knight
@@ -125,8 +115,6 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		attack_projectile = nil,
-		attack_projectile_speed = nil,
 		move_speed = 300,
 	},
 	{	--Archer
@@ -182,7 +170,6 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		attack_projectile = nil,
 		move_speed = 300,
 	},
 	{	--Thief
@@ -196,7 +183,6 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		attack_projectile = nil,
 		move_speed = 310,
 	},
 	{	--Mystic
@@ -280,7 +266,6 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		attack_projectile = nil,
 		move_speed = 320,
 	},
 	{	--Samurai
@@ -294,7 +279,6 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		attack_projectile = nil,
 		move_speed = 315,
 	},
 	{	--Ninja
@@ -308,7 +292,6 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		attack_projectile = nil,
 		move_speed = 325,
 	},
 	{	--Arithmatician
@@ -350,7 +333,6 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		attack_projectile = nil,
 		move_speed = 300,
 	},
 	{	--Onion knight
@@ -364,7 +346,6 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		attack_projectile = nil,
 		move_speed = 350,
 	}
 	
@@ -657,69 +638,211 @@ CRamzaJob.tOtherAbilities = {
 	}
 }
 
+CRamzaJob.tJobAbilities = {}
+
+
 function CRamzaJob:GainJobPoint(iJobPoint)
+	local iPlayerID = self.hParent:GetOwner():GetPlayerID()
 	self.tJobPoints[self.iCurrentJob] = self.tJobPoints[self.iCurrentJob] + iJobPoint
-	local bReturnValue = false
+	local bHasLeveled = false
 	while self.tJobLevels[self.iCurrentJob] < 9 and self.tRamzaJobReqirement[self.tJobLevels[self.iCurrentJob]+1] <= self.tJobPoints[self.iCurrentJob] do --Gain job level
 		self.tJobLevels[self.iCurrentJob] = self.tJobLevels[self.iCurrentJob]+1
 		if self.tJobLevelUnlocks[self.iCurrentJob] and self.tJobLevelUnlocks[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]] then -- Update unmet job requirements
-			for k, v in pairs(self.tJobLevelUnlocks[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]]) do
-				for i = 1, #self.tUnmetChangeJobRequirements[v] do
-					if self.tUnmetChangeJobRequirements[v][i] == self.iCurrentJob then
-						table.remove(self.tUnmetChangeJobRequirements[v], i)
-						if #self.tUnmetChangeJobRequirements[v] == 0 then
-							self.tJobLevels[v] = 1
-						end
-					end
+			for _, v in pairs(self.tJobLevelUnlocks[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]]) do
+				self.tChangeJobRequirements[v][self.iCurrentJob] = true				
+				--TODO: Update job requirement nettable				
+				
+				
+				local bIsReachRequirement = true				
+				for __, u in pairs(self.tChangeJobRequirements[v]) do
+					bIsReachRequirement = bIsReachRequirement and u
+				end
+				if bIsReachRequirement then --New job acquired!
+					self.tJobLevels[v] = 1
+					print(self.tJobNames[v].." is acquired!") 
 				end
 			end
 		end
-		bReturnValue = true
-		print(self.tJobNames[self.iCurrentJob].." has leveled up to "..tostring(self.tJobLevels[self.iCurrentJob]))
+		bHasLeveled = true
+		print(self.tJobNames[self.iCurrentJob].." has leveled up to "..tostring(self.tJobLevels[self.iCurrentJob]))		
+		
 	end
-
-end
-
-
-function CRamzaJob:ChangeJob(iJob)
-	if self.tJobLevels[iJob] > 0 then
-		self.iCurrentJob = iJob
-		print("Job changed to "..self.tJobNames[iJob])
-		return true
-	else
-		return false
-	end
-end
-
-
-
-function CRamzaJob:New(tInput)
-	local tNewObject = tInput or {}
-	tNewObject.tJobPoints = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-	tNewObject.tJobLevels = {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-	tNewObject.tUnmetChangeJobRequirements = {}
-	for i = 1, 20 do
-		tNewObject.tUnmetChangeJobRequirements[i] = {}
-		for k, v in pairs(self.tRamzaChangeJobRequirements[i]) do
-			table.insert(tNewObject.tUnmetChangeJobRequirements[i], k)
+	if bHasLeveled then		
+		self:LevelUpSkills()
+		CustomNetTables:SetTableValue("ramza_job_requirement", tostring(iPlayerID), self.tChangeJobRequirements)
+		CustomNetTables:SetTableValue("ramza_job_level", tostring(iPlayerID), self.tJobLevels)
+		if (self.tJobLevels[self.iCurrentJob] < 9) then
+			self.hParent:FindModifierByName("modifier_ramza_job_level"):SetStackCount(self.tJobLevels[self.iCurrentJob])
+		else
+			self.hParent:RemoveModifierByName("modifier_ramza_job_point")
+			self.hParent:RemoveModifierByName("modifier_ramza_job_level")
+			self.hParent:AddNewModifier(self.hParent, nil, "modifier_ramza_job_mastered", {})
 		end
 	end
-	
-	
+	if (self.tJobLevels[self.iCurrentJob] < 9) then
+		self.hParent:FindModifierByName("modifier_ramza_job_point"):SetStackCount(self.tJobPoints[self.iCurrentJob])
+	end
+end
+
+
+--function CRamzaJob:
+
+
+
+
+function CRamzaJob:LevelUpSkills()
+end
+
+function CRamzaJob:New(tNewObject)
+	tNewObject.tJobPoints = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+	tNewObject.tJobLevels = {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+	tNewObject.tChangeJobRequirements = {}
+	for i = 1, 20 do
+		tNewObject.tChangeJobRequirements[i] = {}
+		for k, v in pairs(self.tRamzaChangeJobRequirements[i]) do
+			tNewObject.tChangeJobRequirements[i][k] = false
+		end
+	end	
 	tNewObject.iCurrentJob = RAMZA_JOB_SQUIRE
-	tNewObject.iSecondJob = 0
+	tNewObject.iSecondarySkill = 0
+	
+	
 	
 	setmetatable(tNewObject, {__index = self})
 	return tNewObject
 end
+
+function CRamzaJob:InitNetTable()	
+	local iPlayerID = self.hParent:GetOwner():GetPlayerID()	
+	CustomNetTables:SetTableValue("ramza_init_job_requirement", tostring(iPlayerID), self.tRamzaChangeJobRequirements)
+	CustomNetTables:SetTableValue("ramza_job_names", tostring(iPlayerID), self.tJobNames)
+	CustomNetTables:SetTableValue("ramza_job_abilities", tostring(iPlayerID), self.tJobAbilities)
+	CustomNetTables:SetTableValue("ramza_job_stats", tostring(iPlayerID), self.tJobStats)
+	
+	
+	CustomNetTables:SetTableValue("ramza_job_level", tostring(iPlayerID), self.tJobLevels)
+	CustomNetTables:SetTableValue("ramza_job_requirement", tostring(iPlayerID), self.tChangeJobRequirements)
+	CustomNetTables:SetTableValue("ramza_current_job", tostring(iPlayerID), {self.iCurrentJob})
+	CustomNetTables:SetTableValue("ramza_current_secondary_skill", tostring(iPlayerID), {self.iSecondarySkill})
+end
+
 
 function CRamzaJob:PrintCurrent()
 	print("Current job is"..self.tJobNames[self.iCurrentJob].."(level "..tostring(self.tJobLevels[self.iCurrentJob]).."), job point is "..tostring(self.tJobPoints[self.iCurrentJob]))
 end
 
 -- hJob = CRamzaJob:New()
+
+function CRamzaJob:Initialize()
+	for i = 1, 20 do
+		for k, v in pairs(self.tRamzaChangeJobRequirements[i]) do
+			self.tJobLevelUnlocks[k] = self.tJobLevelUnlocks[k] or {}
+			self.tJobLevelUnlocks[k][v] = self.tJobLevelUnlocks[k][v] or {}
+			table.insert(self.tJobLevelUnlocks[k][v], i)
+		end
+		
+		self.tJobAbilities[i] = {}
+		for j = 1,9 do
+			self.tJobAbilities[i][j] ={}
+			if #self.tPrimaryAbilities[i][j] > 0 then
+				for k = 1, #self.tPrimaryAbilities[i][j] do
+					table.insert(self.tJobAbilities[i][j], self.tPrimaryAbilities[i][j][k])
+				end
+			elseif #self.tOtherAbilities[i][j] > 0 then
+				for k = 1, #self.tOtherAbilities[i][j] do
+					table.insert(self.tJobAbilities[i][j], self.tOtherAbilities[i][j][k])
+				end
+			end
+		end
+	end
+end
+
+function RamzaJobChangeListener(eventSourceIndex, args)
+	local hRamza = PlayerResource:GetPlayer(tonumber(args.PlayerID)):GetAssignedHero()
+	hRamza.hRamzaJob.iChangeJobState = tonumber(args.iState)
+	hRamza.hRamzaJob.iJobToGo = tonumber(args.iJob)
+	if hRamza:HasScepter() or hRamza:GetHealthPercent() == 100 and hRamza:GetManaPercent() == 100 then
+		hRamza.hRamzaJob:ChangeJob()
+	else
+		if tonumber(args.iState) == SELECT_JOB then
+			Notifications:Bottom(tonumber(args.PlayerID), {text = "#error_ramza_change_job", duration = 2, style = {color = "red"}})
+		else
+			Notifications:Bottom(tonumber(args.PlayerID), {text = "#error_ramza_change_secondary_skill", duration = 2, style = {color = "red"}})
+		end
+		
+	end
+end
+
+function CRamzaJob:ChangeJob()
+	local iPlayerID = self.hParent:GetOwner():GetPlayerID()	
+	if self.iChangeJobState == SELECT_JOB then
+		
+		self:ChangeStat()
+		
+		if self.iCurrentJob == self.iSecondarySkill then -- TODO: Forget secondary skills here
+			self.iSecondarySkill = 0
+			CustomNetTables:SetTableValue("ramza_current_secondary_skill", tostring(iPlayerID), {self.iSecondarySkill})
+		end		
+		
+		self.iCurrentJob = self.iJobToGo
+		
+		if (self.tJobLevels[self.iCurrentJob] < 9) then
+			if self.hParent:FindModifierByName("modifier_ramza_job_mastered") then
+				self.hParent:RemoveModifierByName("modifier_ramza_job_mastered")
+				self.hParent:AddNewModifier(self.hParent, nil, "modifier_ramza_job_level", {})
+				self.hParent:AddNewModifier(self.hParent, nil, "modifier_ramza_job_point", {})
+			end
+			self.hParent:FindModifierByName("modifier_ramza_job_level"):SetStackCount(self.tJobLevels[self.iCurrentJob])
+			self.hParent:FindModifierByName("modifier_ramza_job_point"):SetStackCount(self.tJobPoints[self.iCurrentJob])
+		else
+			if not self.hParent:FindModifierByName("modifier_ramza_job_mastered") then
+				self.hParent:RemoveModifierByName("modifier_ramza_job_point")
+				self.hParent:RemoveModifierByName("modifier_ramza_job_level")
+				self.hParent:AddNewModifier(self.hParent, nil, "modifier_ramza_job_mastered", {})
+			end
+		end
+		
+		print("job change to", self.tJobNames[self.iCurrentJob])
+		CustomNetTables:SetTableValue("ramza_current_job", tostring(iPlayerID), {self.iCurrentJob})		
+		CustomGameEventManager:Send_ServerToPlayer( self.hParent:GetOwner(), "ramza_select_job", nil )
+	else
+		self.iSecondarySkill = self.iJobToGo
+		print("secondary skill change to", self.tJobNames[self.iSecondarySkill])
+		CustomNetTables:SetTableValue("ramza_current_secondary_skill", tostring(iPlayerID), {self.iSecondarySkill})
+		CustomGameEventManager:Send_ServerToPlayer( self.hParent:GetOwner(), "ramza_select_secondary_skill", nil )
+	end
+end
+
+
+function CRamzaJob:ChangeStat()
+	self.hParent:SetBaseMoveSpeed(self.tJobStats[self.iJobToGo].move_speed)
+	self.hParent:SetPrimaryAttribute(self.tJobStats[self.iJobToGo].primary_attribute)
+	self.hParent:SetAttackCapability(self.tJobStats[self.iJobToGo].attack_cap)
+	if self.tJobStats[self.iJobToGo].attack_cap == DOTA_UNIT_CAP_RANGED_ATTACK then
+		self.hParent:SetRangedProjectileName(self.tJobStats[self.iJobToGo].attack_projectile)	
+	end
+	self.hParent:FindModifierByName("modifier_ramza_job_manager").iBonusAttackRange = self.tJobStats[self.iJobToGo].attack_range-150;
+
+	self.hParent:SetPhysicalArmorBaseValue(self.tJobStats[self.iJobToGo].armor)
+	local fDiffStr = self.tJobStats[self.iJobToGo].base_str-self.tJobStats[self.iCurrentJob].base_str+(self.hParent:GetLevel()-1)*(self.tJobStats[self.iJobToGo].gain_str-self.tJobStats[self.iCurrentJob].gain_str)
+	local fDiffAgi = self.tJobStats[self.iJobToGo].base_agi-self.tJobStats[self.iCurrentJob].base_agi+(self.hParent:GetLevel()-1)*(self.tJobStats[self.iJobToGo].gain_agi-self.tJobStats[self.iCurrentJob].gain_agi)
+	local fDiffInt = self.tJobStats[self.iJobToGo].base_int-self.tJobStats[self.iCurrentJob].base_int+(self.hParent:GetLevel()-1)*(self.tJobStats[self.iJobToGo].gain_int-self.tJobStats[self.iCurrentJob].gain_int)
+	self.hParent:ModifyStrength(fDiffStr)
+	self.hParent:ModifyAgility(fDiffAgi)
+	self.hParent:ModifyIntellect(fDiffInt)
+	self.hParent:FindModifierByName("modifier_attribute_growth_str").fGrowth = self.tJobStats[self.iJobToGo].gain_str
+	self.hParent:FindModifierByName("modifier_attribute_growth_agi").fGrowth = self.tJobStats[self.iJobToGo].gain_agi
+	self.hParent:FindModifierByName("modifier_attribute_growth_int").fGrowth = self.tJobStats[self.iJobToGo].gain_int
+	self.hParent:CalculateStatBonus()
+end
+
 CRamzaJob:Initialize()
-LinkLuaModifier("modifier_attribute_growth_str", "heroes/ramza/ramza_overall_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_attribute_growth_agi", "heroes/ramza/ramza_overall_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_attribute_growth_int", "heroes/ramza/ramza_overall_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_ramza_job_manager", "heroes/ramza/ramza_overall_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_attribute_growth_str", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_attribute_growth_agi", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_attribute_growth_int", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_job_manager", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_job_level", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_job_mastered", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_job_point", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+
+CustomGameEventManager:RegisterListener("ramza_change_job_client_to_server", RamzaJobChangeListener)

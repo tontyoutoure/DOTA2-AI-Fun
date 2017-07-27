@@ -1,7 +1,6 @@
 <root>
 	<scripts>
-		<include src="file://{resources}/scripts/lua_console.js" />
-		
+		<include src="file://{resources}/scripts/lua_console.js" />		
 	</scripts>
 	<styles>
 		<include src="file://{resources}/styles/lua_console.css" />
