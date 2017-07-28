@@ -581,7 +581,7 @@
 	{
 
 		"Ability1" "ramza_job_squire_JC"
-		"Ability2" "ramza_job_chemist_JC"
+		"Ability2" "ramza_select_secondary_skill_lua"
 		"Ability3" "ramza_squire_counter_tackle"
 		"Ability4" "ramza_squire_defend"
 		"Ability5" "ramza_squire_move1"	

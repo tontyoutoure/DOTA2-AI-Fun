@@ -1,10 +1,10 @@
 modifier_ramza_squire_counter_tackle = class({})
 
 function modifier_ramza_squire_counter_tackle:DeclareFunctions() return {MODIFIER_EVENT_ON_ATTACK_LANDED} end
-
+function modifier_ramza_squire_counter_tackle:RemoveOnDeath() return false end
 function modifier_ramza_squire_counter_tackle:IsHidden() return true end
 function modifier_ramza_squire_counter_tackle:OnAttackLanded(keys)
-	if keys.target ~= self:GetParent() or keys.attaker:IsRangedAttacker() then return end
+	if keys.target ~= self:GetParent() or keys.attacker:IsRangedAttacker() then return end
 	local hAbility = self:GetAbility()
 	local damageTable = {
 		damage = keys.original_damage*hAbility:GetSpecialValueFor("damage_return")/100,

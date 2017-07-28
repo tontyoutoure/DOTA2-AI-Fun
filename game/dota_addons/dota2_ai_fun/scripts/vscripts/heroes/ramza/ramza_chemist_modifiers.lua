@@ -12,6 +12,7 @@ function modifier_ramza_chemist_items_phoenix_down:IsPurgable() return false end
 function modifier_ramza_chemist_items_phoenix_down:RemoveOnDeath() return false end
 
 function modifier_ramza_chemist_items_phoenix_down:ReincarnateTime()
+	if IsClient() then return 3 end
 	local hParent = self:GetParent()
 	Timers:CreateTimer(3+0.04, function ()
 		iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_phoenix/phoenix_supernova_reborn.vpcf", PATTACH_ABSORIGIN, hParent)
@@ -25,6 +26,7 @@ end
 modifier_ramza_chemist_items_phoenix_down_thinker = class({})
 
 function modifier_ramza_chemist_items_phoenix_down_thinker:OnCreated()
+	if IsClient() then return end
 	local hParent = self:GetParent()
 	hParent:EmitSound("Hero_Phoenix.SuperNova.Begin")	
 	hParent:EmitSound("Hero_Phoenix.SuperNova.Cast")
@@ -32,5 +34,6 @@ function modifier_ramza_chemist_items_phoenix_down_thinker:OnCreated()
 end
 
 function modifier_ramza_chemist_items_phoenix_down_thinker:OnDestroy()
+	if IsClient() then return end
 	StopSoundOn("Hero_Phoenix.SuperNova.Cast", self:GetParent())
 end

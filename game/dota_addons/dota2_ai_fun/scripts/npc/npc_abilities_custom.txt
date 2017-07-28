@@ -4014,6 +4014,7 @@
 						"ModifierName"	"modifier_ramza_archer_adrenaline_rush_speed"
 					}
 				}
+				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
 			}
 			"modifier_ramza_archer_adrenaline_rush_speed"
 			{
@@ -4027,6 +4028,7 @@
 				"Duration"	"%duration"
 				"EffectName"	"particles/generic_gameplay/rune_haste_owner.vpcf"
 				"EffectAttachType"	"follow_origin"
+				"TextureName"	"clinkz_wind_walk"
 			}
 		}
 		"AbilitySpecial"
@@ -4453,6 +4455,7 @@
 				}
 				"Passive"	"1"
 				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
 			}
 		}
 		// Special
@@ -4722,7 +4725,7 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"phoenix_icarus_dive"
 		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_chemist.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"MaxLevel"	"1"
@@ -4745,6 +4748,7 @@
 			{
 				"IsHidden"	"1"
 				"Passive"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
 			}
 		}
 	}
@@ -4778,7 +4782,7 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"elder_titan_echo_stomp_spirit"
 		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_chemist.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"MaxLevel"	"1"
@@ -4850,7 +4854,7 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"alchemist_unstable_concoction"
 		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_chemist.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"MaxLevel"	"1"
@@ -4866,7 +4870,7 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"keeper_of_the_light_illuminate"
 		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_chemist.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"MaxLevel"	"1"
@@ -4881,7 +4885,7 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"tinker_rearm"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"0"
@@ -4908,6 +4912,34 @@
 						"Function"	"RamzaChemistAutoPotionTakePotion"
 					}
 				}
+			}
+		}
+	}
+
+	"ramza_onion_knight_stat5"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ramza_onion_knight_stat"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_ramza_onion_knight_stat5"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%stat_bonus"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%stat_bonus"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%stat_bonus"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"stat_bonus"	"5"
 			}
 		}
 	}

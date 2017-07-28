@@ -193,7 +193,7 @@ function GameMode:_OnNPCSpawned(keys)
 			hHero:FindAbilityByName("ramza_next_page_lua"):SetLevel(1)
 			hHero:FindAbilityByName("ramza_next_page_lua"):SetHidden(true)
 			hHero:FindAbilityByName("ramza_job_squire_JC"):SetLevel(1)
-			hHero:FindAbilityByName("ramza_job_chemist_JC"):SetLevel(1)
+			hHero:FindAbilityByName("ramza_select_secondary_skill_lua"):SetLevel(1)
 			hHero:AddAbility("ramza_empty_1"):SetLevel(1)
 			if not GameMode.bRamzaArchersBaneFileterSet then
 				GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(GameMode, 'RamzaProjecileFilter'), self)

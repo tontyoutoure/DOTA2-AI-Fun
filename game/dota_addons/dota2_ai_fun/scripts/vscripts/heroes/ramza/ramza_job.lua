@@ -578,6 +578,7 @@ CRamzaJob.tJobCommands = {
 	}
 }
 
+
 CRamzaJob.tOtherAbilities = {	
 	{	-- Squire
 		{}, {}, {"ramza_squire_counter_tackle"}, {}, {"ramza_squire_defend"}, {}, {"ramza_squire_move1"}, {}, {}
@@ -641,7 +642,26 @@ CRamzaJob.tOtherAbilities = {
 	}
 }
 
+CRamzaJob.tOtherAbilityCastable = {
+	ramza_chemist_treasure_hunter = true,
+	ramza_white_mage_reraise = true,
+	ramza_black_mage_death = true,
+	ramza_time_mage_teleport = true,
+	ramza_orator_enlighten = true,
+	ramza_orator_intimidate = true,
+	ramza_summoner_lich = true,
+	ramza_summoner_odin = true,
+	ramza_geomancer_contortion = true,
+	ramza_geomancer_wind_blast = true	
+}
 
+CRamzaJob.tOtherAbilityHasToggleModifiers = {
+	ramza_squire_defend = true,
+	ramza_chemist_autopotion = true,
+	ramza_time_mage_mana_shield = true,
+	ramza_ninja_vanish = true,
+	ramza_dark_knight_vehemence = true
+}
 
 function CRamzaJob:GainJobPoint(iJobPoint)
 	local iPlayerID = self.hParent:GetOwner():GetPlayerID()
@@ -721,12 +741,12 @@ function CRamzaJob:LevelUpSkills()
 				(i < self.tJobLevels[self.iCurrentJob]-1 or 
 				self.tJobCommands[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]][1]) then
 			local sName = self.tJobCommands[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]][1] or self.tJobCommands[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]-1][1]
-			self.hCaster:AddAbility(sName):SetLevel(1)
-			self.hCaster:SwapAbilities(sName, self.tJobCommands[self.iCurrentJob][i][1], true, true)
-			self.hCaster:RemoveAbility(self.tJobCommands[self.iCurrentJob][i][1])
+			self.hParent:RemoveAbility(self.tJobCommands[self.iCurrentJob][i][1])
+			self.hParent:AddAbility(sName):SetLevel(1)		
 			if self.hParent.iMenuState == RAMZA_MENU_STATE_NORMAL then
-				self.FindAbilityByName(sName):SetHidden(false)
-			else
+				self.hParent:FindAbilityByName(sName):SetHidden(false)
+			else	
+				self.hParent:FindAbilityByName(sName):SetHidden(true)
 				self.tNormalMenuState[1] = sName
 			end
 			break
@@ -834,15 +854,57 @@ function CRamzaJob:ChangeJob()
 	local iPlayerID = self.hParent:GetOwner():GetPlayerID()	
 	if self.iChangeJobState == SELECT_JOB then
 		
-		self:ChangeStat()
+		if self.hParent:GetAbilityByIndex(5):GetName() == 'ramza_go_back_lua' then
+			self.hParent:FindAbilityByName('ramza_go_back_lua'):CastAbility()
+		end
 		
+		self:ChangeStat()		
 		self.iCurrentJob = self.iJobToGo
-		if self.iCurrentJob == self.iSecondarySkill then -- TODO: Forget secondary skills here
+		
+		--remove secondary skill if it's job command of current job or current job can have no secondary skill
+		if self.iCurrentJob == self.iSecondarySkill or self.iCurrentJob == RAMZA_JOB_MIME or self.iCurrentJob == RAMZA_JOB_ONION_KNIGHT then -- TODO: Forget secondary skills here
 			self.iSecondarySkill = 0
 			CustomNetTables:SetTableValue("ramza_current_secondary_skill", tostring(iPlayerID), {self.iSecondarySkill})
+			self.hParent:RemoveAbility(self.hParent:GetAbilityByIndex(1):GetName())
+			self.hParent:AddAbility("ramza_select_secondary_skill_lua"):SetLevel(1)
+			if self.iCurrentJob == RAMZA_JOB_MIME or self.iCurrentJob == RAMZA_JOB_ONION_KNIGHT then
+				self.hParent:FindAbilityByName("ramza_select_secondary_skill_lua"):SetActivated(false)
+			end
+		end
+		
+		-- change job command
+		local sName1
+		if 	(self.iCurrentJob == RAMZA_JOB_ARCHER or 
+				self.iCurrentJob == RAMZA_JOB_ARITHMETICIAN or 
+				self.iCurrentJob == RAMZA_JOB_DRAGOON or 
+				self.iCurrentJob == RAMZA_JOB_NINJA or 
+				self.iCurrentJob == RAMZA_JOB_MIME or 
+				self.iCurrentJob == RAMZA_JOB_ONION_KNIGHT) then
+			sName1 = self.tJobCommands[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]][1] or self.tJobCommands[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]-1][1] 
+		else
+			sName1 = self.tJobNames[self.iCurrentJob]..'_JC'
+		end
+		local sName0 = self.hParent:GetAbilityByIndex(0):GetName()
+		self.hParent:RemoveAbility(sName0)
+		if string.sub(sName0, 7, 18) == "onion_knight" then
+			self.hParent:RemoveModifierByName("modifier_"..sName0)
 		end		
 		
+		self.hParent:AddAbility(sName1):SetLevel(1)		
+		-- change other abilities
+		for i = 1, 3 do
+			local sName = self.hParent:GetAbilityByIndex(i+1):GetName()
+			self.hParent:RemoveAbility(sName)
+			if self.tOtherAbilityHasToggleModifiers[sName] then 
+				self.hParent:RemoveModifierByName('modifier_'..sName)
+			elseif not self.tOtherAbilityCastable[sName] then
+				self.hParent:RemoveModifierByName('modifier_'..sName)				
+			end
+			self.hParent:AddAbility(self.tJobAbilityBuses.tOtherAbilityBuses[self.iCurrentJob][i])
+		end
 		
+		self:LevelUpSkills()
+		-- renew indicator
 		if (self.tJobLevels[self.iCurrentJob] < 9) then
 			if self.hParent:FindModifierByName("modifier_ramza_job_mastered") then
 				self.hParent:RemoveModifierByName("modifier_ramza_job_mastered")
@@ -859,11 +921,32 @@ function CRamzaJob:ChangeJob()
 			end
 		end
 		
+		-- tell panorama
 		print("job change to", self.tJobNames[self.iCurrentJob])
 		CustomNetTables:SetTableValue("ramza_current_job", tostring(iPlayerID), {self.iCurrentJob})		
 		CustomGameEventManager:Send_ServerToPlayer( self.hParent:GetOwner(), "ramza_select_job", nil )
-	else
+	else	
+		if self.hParent:GetAbilityByIndex(5):GetName() == 'ramza_go_back_lua' then
+			self.hParent:FindAbilityByName('ramza_go_back_lua'):CastAbility()
+		end
+		
 		self.iSecondarySkill = self.iJobToGo
+		
+		local sName
+		if 	(self.iSecondarySkill == RAMZA_JOB_ARCHER or 
+				self.iSecondarySkill == RAMZA_JOB_ARITHMETICIAN or 
+				self.iSecondarySkill == RAMZA_JOB_DRAGOON or 
+				self.iSecondarySkill == RAMZA_JOB_NINJA) then
+			sName = self.tJobCommands[self.iSecondarySkill][self.tJobLevels[self.iSecondarySkill]][1] or self.tJobCommands[self.iSecondarySkill][self.tJobLevels[self.iSecondarySkill]-1][1] 
+		else
+			sName = self.tJobNames[self.iSecondarySkill]..'_JC'
+		end
+		
+		
+		self.hParent:RemoveAbility(self.hParent:GetAbilityByIndex(1):GetName())
+		self.hParent:AddAbility(sName):SetLevel(1)
+		
+		
 		print("secondary skill change to", self.tJobNames[self.iSecondarySkill])
 		CustomNetTables:SetTableValue("ramza_current_secondary_skill", tostring(iPlayerID), {self.iSecondarySkill})
 		CustomGameEventManager:Send_ServerToPlayer( self.hParent:GetOwner(), "ramza_select_secondary_skill", nil )

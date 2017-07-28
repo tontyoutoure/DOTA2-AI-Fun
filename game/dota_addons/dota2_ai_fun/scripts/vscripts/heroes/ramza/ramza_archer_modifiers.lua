@@ -8,6 +8,8 @@ function modifier_ramza_archer_concentration_immune:GetEffectName() return "part
 
 function modifier_ramza_archer_concentration_immune:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
 
+function modifier_ramza_archer_concentration_immune:GetTexture() return "bristleback_warpath" end
+
 function modifier_ramza_archer_concentration_immune:CheckState()
 	return {
 		[MODIFIER_STATE_MAGIC_IMMUNE] = true;
