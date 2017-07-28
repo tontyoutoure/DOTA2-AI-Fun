@@ -3349,7 +3349,7 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"neutral_spell_immunity"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"0"
 	}
 
@@ -3357,7 +3357,7 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"modifier_magicimmune"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"0"
 	}
 
@@ -3365,7 +3365,7 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"modifier_magicimmune"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"0"
 	}
 
@@ -3373,7 +3373,7 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"neutral_spell_immunity"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"0"
 	}
 
@@ -4932,6 +4932,8 @@
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%stat_bonus"
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%stat_bonus"
 				}
+				"Passive"	"1"
+				"IsHidden"	"1"
 			}
 		}
 		"AbilitySpecial"
@@ -4940,6 +4942,246 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"stat_bonus"	"5"
+			}
+		}
+	}
+
+	"ramza_onion_knight_stat10"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ramza_onion_knight_stat"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_ramza_onion_knight_stat10"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%stat_bonus"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%stat_bonus"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%stat_bonus"
+				}
+				"Passive"	"1"
+				"IsHidden"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"stat_bonus"	"10"
+			}
+		}
+	}
+
+	"ramza_onion_knight_stat15"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ramza_onion_knight_stat"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_ramza_onion_knight_stat15"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%stat_bonus"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%stat_bonus"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%stat_bonus"
+				}
+				"Passive"	"1"
+				"IsHidden"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"stat_bonus"	"15"
+			}
+		}
+	}
+
+	"ramza_onion_knight_stat20"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ramza_onion_knight_stat"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_ramza_onion_knight_stat20"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%stat_bonus"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%stat_bonus"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%stat_bonus"
+				}
+				"Passive"	"1"
+				"IsHidden"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"stat_bonus"	"20"
+			}
+		}
+	}
+
+	"ramza_onion_knight_stat25"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ramza_onion_knight_stat"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_ramza_onion_knight_stat25"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%stat_bonus"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%stat_bonus"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%stat_bonus"
+				}
+				"Passive"	"1"
+				"IsHidden"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"stat_bonus"	"25"
+			}
+		}
+	}
+
+	"ramza_onion_knight_stat30"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ramza_onion_knight_stat"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_ramza_onion_knight_stat30"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%stat_bonus"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%stat_bonus"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%stat_bonus"
+				}
+				"Passive"	"1"
+				"IsHidden"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"stat_bonus"	"30"
+			}
+		}
+	}
+
+	"ramza_onion_knight_stat35"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ramza_onion_knight_stat"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_ramza_onion_knight_stat35"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%stat_bonus"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%stat_bonus"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%stat_bonus"
+				}
+				"Passive"	"1"
+				"IsHidden"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"stat_bonus"	"35"
+			}
+		}
+	}
+
+	"ramza_onion_knight_stat50"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ramza_onion_knight_stat"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_ramza_onion_knight_stat50"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%stat_bonus"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%stat_bonus"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%stat_bonus"
+				}
+				"Passive"	"1"
+				"IsHidden"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"stat_bonus"	"50"
+			}
+		}
+	}
+
+	"ramza_onion_knight_stat75"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ramza_onion_knight_stat"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_ramza_onion_knight_stat75"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%stat_bonus"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%stat_bonus"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%stat_bonus"
+				}
+				"Passive"	"1"
+				"IsHidden"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"stat_bonus"	"75"
 			}
 		}
 	}

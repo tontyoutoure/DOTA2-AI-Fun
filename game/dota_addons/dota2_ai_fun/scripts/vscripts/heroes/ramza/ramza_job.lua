@@ -741,7 +741,11 @@ function CRamzaJob:LevelUpSkills()
 				(i < self.tJobLevels[self.iCurrentJob]-1 or 
 				self.tJobCommands[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]][1]) then
 			local sName = self.tJobCommands[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]][1] or self.tJobCommands[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]-1][1]
+			
 			self.hParent:RemoveAbility(self.tJobCommands[self.iCurrentJob][i][1])
+			if self.iCurrentJob == 20 or self.iCurrentJob == 18 then 
+				self.hParent:RemoveModifierByName("modifier_"..self.tJobCommands[self.iCurrentJob][i][1])
+			end
 			self.hParent:AddAbility(sName):SetLevel(1)		
 			if self.hParent.iMenuState == RAMZA_MENU_STATE_NORMAL then
 				self.hParent:FindAbilityByName(sName):SetHidden(false)
@@ -832,6 +836,10 @@ function CRamzaJob:Initialize()
 			end
 		end
 	end
+	self.tJobAbilityBuses.tOtherAbilityBuses[18] = {"ramza_empty_2", "ramza_empty_3", "ramza_empty_4"}
+	self.tJobAbilityBuses.tJobCommandBusRequirements[18] = {10, 10, 10}
+	self.tJobAbilityBuses.tOtherAbilityBuses[20] = {"ramza_empty_2", "ramza_empty_3", "ramza_empty_4"}
+	self.tJobAbilityBuses.tJobCommandBusRequirements[20] = {10, 10, 10}
 end
 
 function RamzaJobChangeListener(eventSourceIndex, args)
@@ -888,7 +896,11 @@ function CRamzaJob:ChangeJob()
 		self.hParent:RemoveAbility(sName0)
 		if string.sub(sName0, 7, 18) == "onion_knight" then
 			self.hParent:RemoveModifierByName("modifier_"..sName0)
-		end		
+		end
+		
+		if string.sub(sName0, 7, 10) == "mime" then
+			self.hParent:RemoveModifierByName("modifier_"..sName0)
+		end
 		
 		self.hParent:AddAbility(sName1):SetLevel(1)		
 		-- change other abilities
