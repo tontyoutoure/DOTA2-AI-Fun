@@ -14,6 +14,29 @@ local tBannedAbilities = {
 	item_ring_of_aquila = true,
 	item_ring_of_basilius = true,
 	item_radiance = true,
+--	ramza_open_stats_lua = true,
+	ramza_next_page_lua = true,
+	ramza_go_back_lua = true,
+	ramza_job_squire_PA = true,
+	ramza_squire_defend = true,
+	ramza_job_chemist_PA = true,
+	ramza_chemist_autopotion = true,
+	ramza_job_knight_PA = true,
+	ramza_job_white_mage_PA = true,
+	ramza_job_black_mage_PA = true,
+	ramza_job_monk_PA = true,
+	ramza_job_thief_PA = true,
+	ramza_job_mystic_PA = true,
+	ramza_job_time_mage_PA = true,
+	ramza_job_orator_PA = true,
+	ramza_job_summoner_PA = true,
+	ramza_job_geomancer_PA = true,
+	ramza_job_dragoon_PA = true,
+	ramza_job_samurai_PA = true,
+	ramza_job_ninja_PA = true,
+	ramza_job_arithmetician_PA = true,
+	ramza_job_mime_PA = true,
+	ramza_job_dark_knight_PA = true,
 }
 
 
@@ -21,7 +44,7 @@ modifier_attribute_growth_str = class({})
 
 function modifier_attribute_growth_str:IsBuff() return true end
 
-function modifier_attribute_growth_str:IsHidden() return false end
+function modifier_attribute_growth_str:IsHidden() return true end
 
 function modifier_attribute_growth_str:IsPurgable() return true end
 
@@ -48,7 +71,7 @@ modifier_attribute_growth_agi = class({})
 
 function modifier_attribute_growth_agi:IsBuff() return true end
 
-function modifier_attribute_growth_agi:IsHidden() return false end
+function modifier_attribute_growth_agi:IsHidden() return true end
 
 function modifier_attribute_growth_agi:IsPurgable() return true end
 
@@ -75,7 +98,7 @@ modifier_attribute_growth_int = class({})
 
 function modifier_attribute_growth_int:IsBuff() return true end
 
-function modifier_attribute_growth_int:IsHidden() return false end
+function modifier_attribute_growth_int:IsHidden() return true end
 
 function modifier_attribute_growth_int:IsPurgable() return true end
 

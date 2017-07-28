@@ -579,11 +579,12 @@
 	}
 	"npc_dota_hero_fun_ramza"
 	{
-		"Ability1"	"ramza_squire_fundamental_shout"
-		"Ability2"	"ramza_squire_defend"
-		"Ability3"	"ramza_squire_fundamental_ultima"
-		"Ability4"	"ramza_squire_move1"
-		"Ability5"	"ramza_squire_fundamental_chant"
+
+		"Ability1" "ramza_job_squire_JC"
+		"Ability2" "ramza_job_chemist_JC"
+		"Ability3" "ramza_squire_counter_tackle"
+		"Ability4" "ramza_squire_defend"
+		"Ability5" "ramza_squire_move1"	
 		"Ability6"	"ramza_open_stats_lua"
 		"Ability7"	"ramza_bravery"
 		"Ability8"	"ramza_speed"
@@ -598,13 +599,12 @@
 		"Ability17"	"special_bonus_cast_range_400"
 		"Ability18" "ramza_go_back_lua"
 		"Ability19" "ramza_next_page_lua"
-		"Ability20" "ramza_select_job_lua"
-		"Ability21" "ramza_select_secondary_skill_lua"
+
 
 		"Model"	"models/heroes/dragon_knight/dragon_knight.vmdl"
 		"ModelScale"	"1"
 		"override_hero"	"npc_dota_hero_brewmaster"
-		"PickSound"	"dragon_knight_drag_spawn_03"
+		"SpawnSound" "dragon_knight_drag_spawn_01"
 		"AttributeBaseStrength"	"19"
 		"AttributeStrengthGain"	"0"
 		"AttributeBaseAgility"	"19"

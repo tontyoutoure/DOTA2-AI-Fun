@@ -61,6 +61,13 @@ RamzaJob.SelectJob = function () {
 				this.EnableJob(i);
 		}
 		this.DisableJob(this.iCurrnetJob, SELECT_JOB);
+		$.Msg(this.iCurrnetJob == 18, this.iCurrnetJob)
+		if(this.iCurrnetJob == 18 || this.iCurrnetJob == 20) {
+			$("#ToggleButtonContainer").style.visibility = 'collapse';
+		}
+		else {
+			$("#ToggleButtonContainer").style.visibility = 'visible';
+		}
 	}
 	else
 		$("#JobSelectionContainer").style.visibility = "collapse";
@@ -94,7 +101,8 @@ RamzaJob.SelectSecondarySkill = function () {
 		this.DisableJob(18);
 		this.DisableJob(20);
 		this.DisableJob(this.iCurrnetJob, SELECT_JOB);
-		this.DisableJob(this.iCurrnetSecondarySkill, SELECT_SECONDARY_ABILITY);
+		if (this.iCurrnetSecondarySkill > 0)
+			this.DisableJob(this.iCurrnetSecondarySkill, SELECT_SECONDARY_ABILITY);
 	}
 	else
 		$("#JobSelectionContainer").style.visibility = "collapse";
@@ -257,7 +265,7 @@ RamzaJob.InitializeDescription = function() {
 						$("#JobStatIntValue"+i.toString()).SetHasClass('BluerFont', true);
 				}
 		$("#JobDescriptionFlyout"+i.toString()).BCreateChildren("<Label id='JobAbilityTitle"+i.toString()+"' class='JobAbilityTitle BlueFont'/>")
-		$("#JobAbilityTitle"+i.toString()).text=$.Localize('#ramza_job_primary_ability')+$.Localize('#DOTA_Tooltip_ability_'+this.tJobNames[i.toString()]+'_PA');
+		$("#JobAbilityTitle"+i.toString()).text=$.Localize('#ramza_job_primary_ability')+$.Localize('#DOTA_Tooltip_ability_'+this.tJobNames[i.toString()]+'_JC');
 		if( i == 18 || i == 20)
 			$("#JobDescriptionFlyout"+i.toString()).BCreateChildren("<Label id='JobAbilityWarning"+i.toString()+"' class='JobAbilityWarning' text='#ramza_job_ability_warning'/>");
 		$("#JobDescriptionFlyout"+i.toString()).BCreateChildren("<Panel id='JobAbilityRow"+i.toString()+"' class='JobStatRow' />")

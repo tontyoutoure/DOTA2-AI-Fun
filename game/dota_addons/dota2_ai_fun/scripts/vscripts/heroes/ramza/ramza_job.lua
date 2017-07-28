@@ -22,6 +22,10 @@ RAMZA_JOB_ONION_KNIGHT = 20
 SELECT_JOB = 0;
 SELECT_SECONDARY_ABILITY = 1;
 
+RAMZA_MENU_STATE_NORMAL = 0
+RAMZA_MENU_STATE_UPGRADE = 1
+RAMZA_MENU_STATE_PRIMARY = 2
+RAMZA_MENU_STATE_SECONDARY = 3
 
 CRamzaJob = {}
 
@@ -73,7 +77,6 @@ CRamzaJob.tRamzaChangeJobRequirements = {
 	{[RAMZA_JOB_SQUIRE] = 6, [RAMZA_JOB_CHEMIST] = 6}	
 }
 
-CRamzaJob.tJobLevelUnlocks = {}
 
 
 
@@ -352,7 +355,7 @@ CRamzaJob.tJobStats = {
 }
 
 
-CRamzaJob.tPrimaryAbilities = {
+CRamzaJob.tJobCommands = {
 	{	-- Squire: Fundaments Lvl 1 - Stone, Rush|nLvl 2 - Focus|nLvl 3 - Counter Tackle|nLvl 4 - Tailwind|nLvl 5 - Defend|nLvl 6 - Chant|nLvl 7 - Move +1|nLvl 8 - Shout|nMastered - |c00ff8000Ultima
 		{"ramza_squire_fundamental_stone", "ramza_squire_fundamental_rush"},
 		{"ramza_squire_fundamental_focus"},
@@ -638,7 +641,6 @@ CRamzaJob.tOtherAbilities = {
 	}
 }
 
-CRamzaJob.tJobAbilities = {}
 
 
 function CRamzaJob:GainJobPoint(iJobPoint)
@@ -649,10 +651,7 @@ function CRamzaJob:GainJobPoint(iJobPoint)
 		self.tJobLevels[self.iCurrentJob] = self.tJobLevels[self.iCurrentJob]+1
 		if self.tJobLevelUnlocks[self.iCurrentJob] and self.tJobLevelUnlocks[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]] then -- Update unmet job requirements
 			for _, v in pairs(self.tJobLevelUnlocks[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]]) do
-				self.tChangeJobRequirements[v][self.iCurrentJob] = true				
-				--TODO: Update job requirement nettable				
-				
-				
+				self.tChangeJobRequirements[v][self.iCurrentJob] = true						
 				local bIsReachRequirement = true				
 				for __, u in pairs(self.tChangeJobRequirements[v]) do
 					bIsReachRequirement = bIsReachRequirement and u
@@ -691,6 +690,48 @@ end
 
 
 function CRamzaJob:LevelUpSkills()
+	--Level up passives
+	if self.iCurrentJob ~= RAMZA_JOB_MIME and self.iCurrentJob ~= RAMZA_JOB_ONION_KNIGHT then
+		for i = 1, 3 do
+			if self.tJobLevels[self.iCurrentJob] >= self.tJobAbilityBuses.tOtherAbilityBusRequirements[self.iCurrentJob][i] then
+				self.hParent:FindAbilityByName(self.tJobAbilityBuses.tOtherAbilityBuses[self.iCurrentJob][i]):SetLevel(1)
+			end
+		end
+		
+		if self.hParent.iMenuState == RAMZA_MENU_STATE_PRIMARY then
+			for i = 1, 4 do
+				if i+self.hParent.iPrimaryPointer <= #self.tJobAbilityBuses.tJobCommandBusRequirements[self.iCurrentJob] and self.tJobLevels[self.iCurrentJob] >= self.tJobAbilityBuses.tJobCommandBusRequirements[self.iCurrentJob][i+self.hParent.iPrimaryPointer] then
+					self.hParent:FindAbilityByName(self.tJobAbilityBuses.tJobCommandBuses[self.iCurrentJob][i+self.hParent.iPrimaryPointer]):SetLevel(1)
+				end
+			end
+		end		
+	end
+	
+	--Level up job command for archer, dragoon, ninja, arithmatician, mime, onion knight
+	for i = 1, 9 do
+		if (
+				self.iCurrentJob == RAMZA_JOB_ARCHER or 
+				self.iCurrentJob == RAMZA_JOB_ARITHMETICIAN or 
+				self.iCurrentJob == RAMZA_JOB_DRAGOON or 
+				self.iCurrentJob == RAMZA_JOB_NINJA or 
+				self.iCurrentJob == RAMZA_JOB_MIME or 
+				self.iCurrentJob == RAMZA_JOB_ONION_KNIGHT) and 
+			self.hParent:HasAbility(self.tJobCommands[self.iCurrentJob][i][1]) and 
+			i < self.tJobLevels[self.iCurrentJob] and 
+				(i < self.tJobLevels[self.iCurrentJob]-1 or 
+				self.tJobCommands[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]][1]) then
+			local sName = self.tJobCommands[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]][1] or self.tJobCommands[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]-1][1]
+			self.hCaster:AddAbility(sName):SetLevel(1)
+			self.hCaster:SwapAbilities(sName, self.tJobCommands[self.iCurrentJob][i][1], true, true)
+			self.hCaster:RemoveAbility(self.tJobCommands[self.iCurrentJob][i][1])
+			if self.hParent.iMenuState == RAMZA_MENU_STATE_NORMAL then
+				self.FindAbilityByName(sName):SetHidden(false)
+			else
+				self.tNormalMenuState[1] = sName
+			end
+			break
+		end
+	end	
 end
 
 function CRamzaJob:New(tNewObject)
@@ -731,9 +772,17 @@ function CRamzaJob:PrintCurrent()
 	print("Current job is"..self.tJobNames[self.iCurrentJob].."(level "..tostring(self.tJobLevels[self.iCurrentJob]).."), job point is "..tostring(self.tJobPoints[self.iCurrentJob]))
 end
 
+
 -- hJob = CRamzaJob:New()
 
 function CRamzaJob:Initialize()
+	self.tJobAbilityBuses = {}
+	self.tJobAbilities = {}
+	self.tJobLevelUnlocks = {}
+	self.tJobAbilityBuses.tJobCommandBuses = {}
+	self.tJobAbilityBuses.tJobCommandBusRequirements = {}
+	self.tJobAbilityBuses.tOtherAbilityBuses = {}
+	self.tJobAbilityBuses.tOtherAbilityBusRequirements = {}
 	for i = 1, 20 do
 		for k, v in pairs(self.tRamzaChangeJobRequirements[i]) do
 			self.tJobLevelUnlocks[k] = self.tJobLevelUnlocks[k] or {}
@@ -742,16 +791,24 @@ function CRamzaJob:Initialize()
 		end
 		
 		self.tJobAbilities[i] = {}
+		self.tJobAbilityBuses.tJobCommandBuses[i] = {}
+		self.tJobAbilityBuses.tJobCommandBusRequirements[i] = {}
+		self.tJobAbilityBuses.tOtherAbilityBuses[i] = {}
+		self.tJobAbilityBuses.tOtherAbilityBusRequirements[i] = {}
 		for j = 1,9 do
 			self.tJobAbilities[i][j] ={}
-			if #self.tPrimaryAbilities[i][j] > 0 then
-				for k = 1, #self.tPrimaryAbilities[i][j] do
-					table.insert(self.tJobAbilities[i][j], self.tPrimaryAbilities[i][j][k])
+			if #self.tJobCommands[i][j] > 0 then
+				for k = 1, #self.tJobCommands[i][j] do
+					table.insert(self.tJobAbilities[i][j], self.tJobCommands[i][j][k])
+					table.insert(self.tJobAbilityBuses.tJobCommandBuses[i], self.tJobCommands[i][j][k])
+					table.insert(self.tJobAbilityBuses.tJobCommandBusRequirements[i], j)
 				end
 			elseif #self.tOtherAbilities[i][j] > 0 then
 				for k = 1, #self.tOtherAbilities[i][j] do
 					table.insert(self.tJobAbilities[i][j], self.tOtherAbilities[i][j][k])
 				end
+				table.insert(self.tJobAbilityBuses.tOtherAbilityBuses[i], self.tOtherAbilities[i][j][1])				
+				table.insert(self.tJobAbilityBuses.tOtherAbilityBusRequirements[i], j)
 			end
 		end
 	end
@@ -779,12 +836,12 @@ function CRamzaJob:ChangeJob()
 		
 		self:ChangeStat()
 		
+		self.iCurrentJob = self.iJobToGo
 		if self.iCurrentJob == self.iSecondarySkill then -- TODO: Forget secondary skills here
 			self.iSecondarySkill = 0
 			CustomNetTables:SetTableValue("ramza_current_secondary_skill", tostring(iPlayerID), {self.iSecondarySkill})
 		end		
 		
-		self.iCurrentJob = self.iJobToGo
 		
 		if (self.tJobLevels[self.iCurrentJob] < 9) then
 			if self.hParent:FindModifierByName("modifier_ramza_job_mastered") then
