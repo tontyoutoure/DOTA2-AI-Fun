@@ -384,7 +384,7 @@ CRamzaJob.tJobCommands = {
 		{},
 		{"ramza_knight_aow_rend_mp"},
 		{},
-		{"ramza_knight_rend_armor"},
+		{"ramza_knight_aow_rend_armor"},
 		{},
 		{"ramza_knight_aow_rend_weapon"},
 		{"ramza_knight_aow_rend_helm"}
@@ -770,7 +770,7 @@ function CRamzaJob:New(tNewObject)
 	end	
 	tNewObject.iCurrentJob = RAMZA_JOB_SQUIRE
 	tNewObject.iSecondarySkill = 0
-	
+	table.insert(self.tAllRamza, tNewObject.hParent)
 	
 	
 	setmetatable(tNewObject, {__index = self})
@@ -840,7 +840,17 @@ function CRamzaJob:Initialize()
 	self.tJobAbilityBuses.tJobCommandBusRequirements[18] = {10, 10, 10}
 	self.tJobAbilityBuses.tOtherAbilityBuses[20] = {"ramza_empty_2", "ramza_empty_3", "ramza_empty_4"}
 	self.tJobAbilityBuses.tJobCommandBusRequirements[20] = {10, 10, 10}
+	
+	self.tAllRamza = {}
+	Convars:RegisterCommand( "ramza_full", Dynamic_Wrap(CRamzaJob, 'RamzaFull'), "Give Ramza all job and levels", FCVAR_CHEAT )
 end
+
+function CRamzaJob:RamzaFull()
+	PrintTable(self.tAllRamza)
+	print("hi")
+	
+end
+
 
 function RamzaJobChangeListener(eventSourceIndex, args)
 	local hRamza = PlayerResource:GetPlayer(tonumber(args.PlayerID)):GetAssignedHero()

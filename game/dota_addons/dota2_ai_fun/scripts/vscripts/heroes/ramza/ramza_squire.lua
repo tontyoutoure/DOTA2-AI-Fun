@@ -1,9 +1,7 @@
 LinkLuaModifier("modifier_ramza_squire_counter_tackle", "heroes/ramza/ramza_squire_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ramza_squire_fundamental_rush", "heroes/ramza/ramza_squire_modifiers.lua", LUA_MODIFIER_MOTION_BOTH)
 
-function RamzaSquireStoneHit(keys)
-	PrintTable(keys)
-	
+function RamzaSquireStoneHit(keys)	
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	local damageTable = {
 		damage = keys.ability:GetSpecialValueFor("damage"),

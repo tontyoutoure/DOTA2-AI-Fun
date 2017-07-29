@@ -124,6 +124,12 @@ function Precache( context )
 	PrecacheResource("particle", "particles/econ/events/ti6/mekanism_ti6.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_chen/chen_holy_persuasion.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/slark/slark_head_immortal/slark_immortal_dark_pact_pulses.vpcf", context)
+	
+	PrecacheResource("particle", "particles/econ/items/storm_spirit/storm_spirit_orchid_hat/storm_orchid_silenced.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_bane/bane_enfeeble.vpcf", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_bane.vsndevts", context) -- Hero_NyxAssassin.ManaBurn.Target
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts", context) -- Hero_Slardar.Amplify_Damage
+	PrecacheResource("particle", "particles/units/heroes/hero_slardar/slardar_amp_damage.vpcf", context) 
 end
 
 
