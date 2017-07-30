@@ -35,7 +35,6 @@ local tBannedAbilities = {
 	ramza_job_dark_knight_JC = true,
 }
 
-
 modifier_attribute_growth_str = class({})
 
 function modifier_attribute_growth_str:IsBuff() return true end

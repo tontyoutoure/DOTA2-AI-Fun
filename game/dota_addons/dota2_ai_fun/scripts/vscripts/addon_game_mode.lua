@@ -130,6 +130,21 @@ function Precache( context )
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_bane.vsndevts", context) -- Hero_NyxAssassin.ManaBurn.Target
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts", context) -- Hero_Slardar.Amplify_Damage
 	PrecacheResource("particle", "particles/units/heroes/hero_slardar/slardar_amp_damage.vpcf", context) 
+	
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_lich.vsndevts", context) -- Ability.DarkRitual Ability.FrostNova
+	PrecacheResource("particle", "particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_lich/lich_dark_ritual.vpcf", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts", context) -- Hero_OgreMagi.Fireblast.Target
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts", context)  -- Hero_EarthShaker.EchoSlam
+	PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_fireblast.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/techies/techies_arcana/techies_suicide_arcana.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/zeus/lightning_weapon_fx/zuus_lightning_bolt_immortal_lightning.vpcf", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts", context)  -- Hero_Zuus.LightningBolt
+	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_doom_bringer/doom_scorched_earth.vpcf", context)	
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts", context)  --Hero_DoomBringer.ScorchedEarthAura
+	PrecacheResource("particle", "particles/econ/items/dazzle/dazzle_darkclaw/dazzle_darkclaw_poison_touch.vpcf", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts", context)  -- Hero_Dazzle.Poison_Touch
 end
 
 
