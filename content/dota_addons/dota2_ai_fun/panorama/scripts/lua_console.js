@@ -58,6 +58,12 @@ LuaConsole.OnSelectAllActive = function() {
 	$.Msg($("#CommandEntry").inputnamespace)
 }
 
+LuaConsole.OnRamzaLevelMax = function() {
+	 $("#CommandEntry").text = "CRamzaJob:RamzaLevelMax()";
+	 $("#CommandEntry").SetFocus();
+	 $("#CommandEntry").SetCursorOffset(35);
+}
+
 LuaConsole.OnCleanInputActive = function() {
 	$("#CommandEntry").SetFocus();
 	$("#CommandEntry").SetCursorOffset(0);

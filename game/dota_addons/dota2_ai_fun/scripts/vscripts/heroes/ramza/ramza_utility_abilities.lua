@@ -3,10 +3,16 @@ RAMZA_MENU_STATE_UPGRADE = 1
 RAMZA_MENU_STATE_PRIMARY = 2
 RAMZA_MENU_STATE_SECONDARY = 3
 
+
+
 ramza_open_stats_lua = class({})
 
 function ramza_open_stats_lua:OnSpellStart()
 	local hCaster = self:GetCaster()
+	hCaster.iBraveryLevel = hCaster.iBraveryLevel or 0
+	hCaster.iSpeedLevel = hCaster.iSpeedLevel or 0
+	hCaster.iFaithLevel = hCaster.iFaithLevel or 0
+	
 	hCaster.iMenuState = RAMZA_MENU_STATE_UPGRADE
 	hCaster.tNormalMenuState = hCaster.tNormalMenuState or {}
 	for i = 1, 5 do
@@ -24,6 +30,10 @@ function ramza_open_stats_lua:OnSpellStart()
 		hCaster:FindAbilityByName(hCaster.tNormalMenuState[2]):SetHidden(true)		
 	end
 		
+	hCaster:AddAbility("ramza_bravery"):SetLevel(hCaster.iBraveryLevel)
+	hCaster:AddAbility("ramza_speed"):SetLevel(hCaster.iSpeedLevel)
+	hCaster:AddAbility("ramza_faith"):SetLevel(hCaster.iFaithLevel)
+	
 	hCaster:SwapAbilities(hCaster.tNormalMenuState[3], "ramza_bravery", true, true)
 	hCaster:SwapAbilities(hCaster.tNormalMenuState[4], "ramza_speed", true, true)
 	hCaster:SwapAbilities(hCaster.tNormalMenuState[5], "ramza_faith", true, true)
@@ -34,9 +44,6 @@ function ramza_open_stats_lua:OnSpellStart()
 	hCaster:FindAbilityByName(hCaster.tNormalMenuState[5]):SetHidden(true)
 	hCaster:FindAbilityByName("ramza_open_stats_lua"):SetHidden(true)
 	
-	hCaster:FindAbilityByName("ramza_bravery"):SetHidden(false)
-	hCaster:FindAbilityByName("ramza_speed"):SetHidden(false)
-	hCaster:FindAbilityByName("ramza_faith"):SetHidden(false)
 	hCaster:FindAbilityByName("ramza_go_back_lua"):SetHidden(false)
 end
 
@@ -46,9 +53,9 @@ function ramza_open_stats_lua:OnHeroLevelUp()
 	if iLevel == 17 or iLevel == 19 or iLevel == 21 or iLevel == 22 or iLevel == 23 or iLevel ==24 then
 		hCaster:SetAbilityPoints(hCaster:GetAbilityPoints()+1)
 	end
-	hCaster:SetBaseStrength(hCaster:GetBaseStrength()+hCaster:FindModifierByName("modifier_attribute_growth_str").fGrowth)
-	hCaster:SetBaseAgility(hCaster:GetBaseAgility()+hCaster:FindModifierByName("modifier_attribute_growth_agi").fGrowth)
-	hCaster:SetBaseIntellect(hCaster:GetBaseIntellect()+hCaster:FindModifierByName("modifier_attribute_growth_int").fGrowth)
+	hCaster:SetBaseStrength(hCaster:GetBaseStrength()+hCaster:FindModifierByName("modifier_ramza_job_manager").fStrGrowth)
+	hCaster:SetBaseAgility(hCaster:GetBaseAgility()+hCaster:FindModifierByName("modifier_ramza_job_manager").fAgiGrowth)
+	hCaster:SetBaseIntellect(hCaster:GetBaseIntellect()+hCaster:FindModifierByName("modifier_ramza_job_manager").fIntGrowth)
 end
 
 ramza_go_back_lua = class({})
@@ -68,12 +75,34 @@ function ramza_go_back_lua:OnSpellStart()
 			hCaster:RemoveAbility('ramza_select_secondary_skill_lua')
 		end
 		
+		
+			hCaster:SwapAbilities("ramza_bravery", hCaster.tNormalMenuState[3], true, true)
+			hCaster.iBraveryLevel = hCaster:FindAbilityByName("ramza_bravery"):GetLevel()
+			hCaster:RemoveAbility("ramza_bravery")
+			hCaster:FindAbilityByName(hCaster.tNormalMenuState[3]):SetHidden(false)
+			
+			hCaster:SwapAbilities("ramza_speed", hCaster.tNormalMenuState[4], true, true)
+			hCaster.iSpeedLevel = hCaster:FindAbilityByName("ramza_speed"):GetLevel()
+			hCaster:RemoveAbility("ramza_speed")
+			hCaster:FindAbilityByName(hCaster.tNormalMenuState[4]):SetHidden(false)
+			
+			hCaster:SwapAbilities("ramza_faith", hCaster.tNormalMenuState[5], true, true)
+			hCaster.iFaithLevel = hCaster:FindAbilityByName("ramza_faith"):GetLevel()
+			hCaster:RemoveAbility("ramza_faith")
+			hCaster:FindAbilityByName(hCaster.tNormalMenuState[5]):SetHidden(false)
+		
+		
+		
+		
 		for i = 3, 5 do
 			sName = hCaster:GetAbilityByIndex(i-1):GetName()
 			hCaster:SwapAbilities(sName, hCaster.tNormalMenuState[i], true, true)
 			hCaster:FindAbilityByName(sName):SetHidden(true)
 			hCaster:FindAbilityByName(hCaster.tNormalMenuState[i]):SetHidden(false)
 		end
+		
+		
+		
 		hCaster:SwapAbilities("ramza_go_back_lua", "ramza_open_stats_lua", true, true)
 		hCaster:FindAbilityByName("ramza_open_stats_lua"):SetHidden(false)	
 		hCaster:FindAbilityByName("ramza_go_back_lua"):SetHidden(true)
@@ -82,7 +111,11 @@ function ramza_go_back_lua:OnSpellStart()
 			sName = hCaster:GetAbilityByIndex(i-1):GetName()
 			hCaster:SwapAbilities(sName, hCaster.tNormalMenuState[i], true, true)
 			hCaster:FindAbilityByName(hCaster.tNormalMenuState[i]):SetHidden(false)
-			hCaster:RemoveAbility(sName)
+			if sName == "ramza_squire_fundamental_stone" then
+				hCaster:FindAbilityByName(sName):SetHidden(true)
+			else
+				hCaster:RemoveAbility(sName)
+			end
 		end
 		
 		hCaster:SwapAbilities('ramza_next_page_lua', hCaster.tNormalMenuState[5], true, true)
@@ -126,7 +159,11 @@ local RamzaFetchAbilities = function(hCaster, bFromMain, tJobCommandBus, tJobCom
 		sName1 = hCaster:GetAbilityByIndex(i-1):GetName()
 		if tJobCommandBus[i+iPointer] then
 			sName2 = tJobCommandBus[i+iPointer]
-			hCaster:AddAbility(sName2)
+			if hCaster:HasAbility(sName2) then
+				hCaster:FindAbilityByName(sName2):SetHidden(false)
+			else
+				hCaster:AddAbility(sName2)		
+			end
 			iIndex1 = hCaster:FindAbilityByName(sName1):GetAbilityIndex()
 			iIndex2 = hCaster:FindAbilityByName(sName2):GetAbilityIndex()
 			hCaster:SwapAbilities(sName1, sName2, true, true)
@@ -135,7 +172,7 @@ local RamzaFetchAbilities = function(hCaster, bFromMain, tJobCommandBus, tJobCom
 			hCaster:AddAbility(sName2)
 			hCaster:SwapAbilities(sName1, sName2, true, true)
 		end
-		if bFromMain then
+		if bFromMain or sName1 == "ramza_squire_fundamental_stone" then
 			hCaster:FindAbilityByName(sName1):SetHidden(true)
 		else
 			hCaster:RemoveAbility(sName1)

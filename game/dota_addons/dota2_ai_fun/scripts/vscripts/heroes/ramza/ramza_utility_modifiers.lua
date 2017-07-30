@@ -47,9 +47,10 @@ function modifier_attribute_growth_str:RemoveOnDeath() return false end
 
 function modifier_attribute_growth_str:DeclareFunctions()
 	return {
-		MODIFIER_PROPERTY_TOOLTIP		
+		MODIFIER_PROPERTY_TOOLTIP
 	}
 end
+
 
 function modifier_attribute_growth_str:OnTooltip()
 	return self.fGrowth
@@ -133,10 +134,9 @@ function modifier_ramza_job_manager:DeclareFunctions()
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_EVENT_ON_ABILITY_EXECUTED,
 		MODIFIER_EVENT_ON_TAKEDAMAGE_KILLCREDIT,
-		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS
 	}
 end
-
 
 
 function modifier_ramza_job_manager:OnCreated()
@@ -144,9 +144,11 @@ function modifier_ramza_job_manager:OnCreated()
 	local hParent = self:GetParent()
 	hParent.hRamzaJob = CRamzaJob:New({hParent=hParent})
 	hParent.hRamzaJob:InitNetTable()
+	-- growth of squire
+	self.fIntGrowth = 2.5
+	self.fStrGrowth = 2.5
+	self.fAgiGrowth = 2.5
 end
-
-
 
 function modifier_ramza_job_manager:OnAttackLanded(keys)
 	if keys.attacker ~= self:GetParent() then return end

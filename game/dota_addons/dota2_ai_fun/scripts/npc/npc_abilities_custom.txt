@@ -3382,7 +3382,7 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"brewmaster_primal_split"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"HotKeyOverride"	"R"
@@ -3398,7 +3398,7 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"ramza_go_back"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"HotKeyOverride"	"F"
 		"MaxLevel"	"1"
@@ -3413,7 +3413,7 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"omniknight_degen_aura"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"HotKeyOverride"	"R"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
@@ -3427,7 +3427,7 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"brewmaster_earth_spell_immunity"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"0"
@@ -3439,7 +3439,7 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"buyback"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"0"
@@ -3449,9 +3449,9 @@
 	"ramza_job_white_mage_JC"
 	{
 		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"buyback"
+		"AbilityTextureName"	"keeper_of_the_light_illuminate_end"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"0"
@@ -3463,7 +3463,7 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"bane_fiends_grip"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"0"
@@ -3475,7 +3475,7 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"chaos_knight_phantasm"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"0"
@@ -3485,9 +3485,9 @@
 	"ramza_job_monk_JC"
 	{
 		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"buyback"
+		"AbilityTextureName"	"alpha_wolf_critical_strike"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"0"
@@ -3497,9 +3497,9 @@
 	"ramza_job_thief_JC"
 	{
 		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"buyback"
+		"AbilityTextureName"	"riki_permanent_invisibility"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"0"
@@ -3509,9 +3509,9 @@
 	"ramza_job_mystic_JC"
 	{
 		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"buyback"
+		"AbilityTextureName"	"elder_titan_natural_order_spirit"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"0"
@@ -3521,9 +3521,9 @@
 	"ramza_job_time_mage_JC"
 	{
 		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"buyback"
+		"AbilityTextureName"	"abyssal_underlord_dark_rift"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"0"
@@ -3533,9 +3533,9 @@
 	"ramza_job_dark_knight_JC"
 	{
 		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"buyback"
+		"AbilityTextureName"	"night_stalker_void_alt"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"0"
@@ -3545,9 +3545,9 @@
 	"ramza_job_summoner_JC"
 	{
 		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"buyback"
+		"AbilityTextureName"	"keeper_of_the_light_recall"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"0"
@@ -3557,9 +3557,9 @@
 	"ramza_job_orator_JC"
 	{
 		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"buyback"
+		"AbilityTextureName"	"bane_nightmare_end"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"0"
@@ -3569,9 +3569,9 @@
 	"ramza_job_samurai_JC"
 	{
 		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"buyback"
+		"AbilityTextureName"	"juggernaut_omni_slash_arcana"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"0"
@@ -3581,9 +3581,9 @@
 	"ramza_job_geomancer_JC"
 	{
 		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"buyback"
+		"AbilityTextureName"	"brewmaster_thunder_clap"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"0"
@@ -3595,7 +3595,7 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"legion_commander_duel_alt1"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"	"7"
 		"Modifiers"
@@ -3611,6 +3611,7 @@
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_strength"
 				}
 				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
 			}
 		}
 		"AbilitySpecial"
@@ -3633,7 +3634,7 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"rubick_telekinesis"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"MaxLevel"	"7"
 		"Modifiers"
 		{
@@ -3649,6 +3650,7 @@
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_agility"
 				}
 				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
 			}
 		}
 		"AbilitySpecial"
@@ -3676,7 +3678,7 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"crystal_maiden_crystal_nova_icecowl"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"MaxLevel"	"7"
 		"Modifiers"
 		{
@@ -3691,6 +3693,7 @@
 					"MODIFIER_PROPERTY_MANA_BONUS"	"%bonus_mana"
 				}
 				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
 			}
 		}
 		"AbilitySpecial"
@@ -3713,7 +3716,7 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"persuasive_change_item_slot_6"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"HotKeyOverride"	"Q"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
@@ -3728,7 +3731,7 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"persuasive_change_item_slot_1"
 		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"HotKeyOverride"	"W"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
@@ -4143,6 +4146,7 @@
 				"OverrideAnimation"	"ACT_DOTA_DISABLED"
 				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
 				"EffectAttachType"	"follow_overhead"
+				"TextureName"	"mud_golem_hurl_boulder"
 			}
 		}
 		// Special
@@ -4208,6 +4212,7 @@
 					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%damage_percent"
 				}
 				"Duration"	"%duration"
+				"TextureName"	"gyrocopter_skyhigh_call_down"
 			}
 		}
 		"AbilitySpecial"
@@ -4303,6 +4308,7 @@
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed_bonus_pct"
 				}
+				"TextureName"	"windrunner_windrun_sylvan"
 			}
 		}
 		// Special
@@ -4520,6 +4526,7 @@
 				}
 				"Duration"	"%duration"
 				"IsPurgable"	"1"
+				"TextureName"	"axe_berserkers_call_shoutmask"
 			}
 		}
 		"AbilitySpecial"
@@ -5313,6 +5320,7 @@
 				"IsPurgable"	"1"
 				"IsDebuff"	"1"
 				"Duration"	"%duration"
+				"TextureName"	"ancient_apparition_cold_feet"
 			}
 		}
 		"AbilitySpecial"
@@ -5370,6 +5378,7 @@
 				"IsDebuff"	"1"
 				"IsPurgable"	"1"
 				"Duration"	"%duration"
+				"TextureName"	"silencer_last_word"
 			}
 		}
 		"AbilitySpecial"
@@ -5421,6 +5430,7 @@
 					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%damage_reduce"
 				}
 				"Duration"	"%duration"
+				"TextureName"	"abaddon_death_coil_alliance"
 			}
 		}
 		"AbilitySpecial"
@@ -5511,6 +5521,7 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_deduction"
 				}
 				"Duration"	"%duration"
+				"TextureName"	"slardar_amplify_damage"
 			}
 		}
 		"AbilitySpecial"
@@ -5568,6 +5579,7 @@
 					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Duration"	"%duration"
+				"TextureName"	"juggernaut_blade_dance_arcana"
 			}
 		}
 		"AbilitySpecial"
@@ -5670,6 +5682,14 @@
 				"Passive"	"1"
 			}
 		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"extra_damage"	"50"
+			}
+		}
 	}
 
 	"ramza_black_mage_black_magicks_fire"
@@ -5692,18 +5712,6 @@
 			{
 				"Function"	"RamzaBlackMageFire"
 				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_black_mage.lua"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_ramza_black_mage_black_magicks_fire_ministun"
-			{
-				"Duration"	"%ministun_duration"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"IsDebuff"	"1"
 			}
 		}
 		"AbilitySpecial"
@@ -5819,6 +5827,10 @@
 		"AbilityCooldown"	"10"
 		"AbilityManaCost"	"100"
 		"AbilityCastRange"	"800"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+		}
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -5826,25 +5838,15 @@
 				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_black_mage.lua"
 				"Function"	"RamzaBlackMagePoison"
 			}
-		}
-		"Modifiers"
-		{
-			"modifier_ramza_black_mage_black_magicks_poison"
+			"FireSound"
 			{
-				"IsDebuff"	"1"
-				"TextureName"	"dazzle_poison_touch"
-				"IsPurgable"	"1"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_black_mage.lua"
-						"Function"	"RamzaBlackMagePoisonDamage"
-					}
-				}
-				"ThinkInterval"	"1"
-				"Duration"	"%duration"
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Dazzle.Poison_Touch"
 			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
 		}
 		"AbilitySpecial"
 		{
@@ -5863,6 +5865,11 @@
 				"var_type"	"FIELD_INTEGER"
 				"duration"	"15"
 			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"projetile_speed"	"1200"
+			}
 		}
 	}
 
@@ -5879,6 +5886,9 @@
 		"AbilityCooldown"	"20"
 		"AbilityManaCost"	"145"
 		"AbilityCastRange"	"800"
+		"precache"
+		{
+		}
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -5887,30 +5897,17 @@
 				"Function"	"RamzaBlackMageToad"
 			}
 		}
-		"Modifiers"
-		{
-			"modifier_ramza_black_mage_black_magicks_toad"
-			{
-				"Duration"	"%duration"
-				"IsDebuff"	"1"
-				"IsHidden"	"0"
-				"IsPurgable"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MODEL_CHANGE"	"models/courier/frog/frog.vmdl"
-				}
-				"States"
-				{
-					"MODIFIER_STATE_HEXED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"duration"	"5"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_speed"	"140"
 			}
 		}
 	}
@@ -5967,12 +5964,16 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"zuus_cloud"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCooldown"	"75"
 		"AbilityManaCost"	"275"
 		"AbilityCastRange"	"800"
+		"AOERadius"	"500"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -5993,6 +5994,16 @@
 				"var_type"	"FIELD_INTEGER"
 				"damage_arcane"	"1200"
 			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"500"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"ministun_duration"	"0.01"
+			}
 		}
 	}
 
@@ -6006,10 +6017,18 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0.5"
-		"AbilityCastAnimation"	"ACT_DOTA_CHANNEL_ABILITY_2"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCooldown"	"45"
 		"AbilityManaCost"	"225"
 		"AbilityCastRange"	"800"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Function"	"RamzaBlackMageBlizzaga"
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_black_mage.lua"
+			}
+		}
 		"AbilitySpecial"
 		{
 			"01"
@@ -6030,12 +6049,17 @@
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"move_slow"	"30"
+				"move_slow"	"-30"
 			}
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"slow_duration"	"4"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"max_count"	"20"
 			}
 		}
 	}

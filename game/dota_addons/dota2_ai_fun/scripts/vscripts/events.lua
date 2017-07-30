@@ -176,22 +176,14 @@ function GameMode:_OnNPCSpawned(keys)
 		if hHero:IsRealHero() and not hHero.bSpawned then
 			HideWearables(hHero)
 			require("heroes/ramza/ramza_job")
-			local hModifier = hHero:AddNewModifier(hHero, nil, "modifier_attribute_growth_str", {})
-			hModifier.fGrowth = 2.5
-			hModifier = hHero:AddNewModifier(hHero, nil, "modifier_attribute_growth_agi", {})
-			hModifier.fGrowth = 2.5
-			hModifier = hHero:AddNewModifier(hHero, nil, "modifier_attribute_growth_int", {})
-			hModifier.fGrowth = 2.5
-			hModifier = hHero:AddNewModifier(hHero, nil, "modifier_ramza_job_manager", {})
+			local hModifier = hHero:AddNewModifier(hHero, nil, "modifier_ramza_job_manager", {})
 			hModifier.iBonusAttackRange = 0;
 			hModifier = hHero:AddNewModifier(hHero, nil, "modifier_ramza_job_level", {})
 			hModifier:SetStackCount(1)
 			hHero:AddNewModifier(hHero, nil, "modifier_ramza_job_point", {})
 			hHero:FindAbilityByName("ramza_open_stats_lua"):SetLevel(1)
 			hHero:FindAbilityByName("ramza_go_back_lua"):SetLevel(1)
-			hHero:FindAbilityByName("ramza_go_back_lua"):SetHidden(true)
 			hHero:FindAbilityByName("ramza_next_page_lua"):SetLevel(1)
-			hHero:FindAbilityByName("ramza_next_page_lua"):SetHidden(true)
 			hHero:FindAbilityByName("ramza_job_squire_JC"):SetLevel(1)
 			hHero:FindAbilityByName("ramza_select_secondary_skill_lua"):SetLevel(1)
 			hHero:AddAbility("ramza_empty_1"):SetLevel(1)

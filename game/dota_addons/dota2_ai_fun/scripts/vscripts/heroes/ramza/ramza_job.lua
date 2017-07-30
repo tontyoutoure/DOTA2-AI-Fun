@@ -751,7 +751,7 @@ function CRamzaJob:LevelUpSkills()
 				self.hParent:FindAbilityByName(sName):SetHidden(false)
 			else	
 				self.hParent:FindAbilityByName(sName):SetHidden(true)
-				self.tNormalMenuState[1] = sName
+				self.hParent.tNormalMenuState[1] = sName
 			end
 			break
 		end
@@ -770,8 +770,7 @@ function CRamzaJob:New(tNewObject)
 	end	
 	tNewObject.iCurrentJob = RAMZA_JOB_SQUIRE
 	tNewObject.iSecondarySkill = 0
-	table.insert(self.tAllRamza, tNewObject.hParent)
-	
+	table.insert(self.tAllRamzas, tNewObject.hParent)
 	
 	setmetatable(tNewObject, {__index = self})
 	return tNewObject
@@ -841,14 +840,22 @@ function CRamzaJob:Initialize()
 	self.tJobAbilityBuses.tOtherAbilityBuses[20] = {"ramza_empty_2", "ramza_empty_3", "ramza_empty_4"}
 	self.tJobAbilityBuses.tJobCommandBusRequirements[20] = {10, 10, 10}
 	
-	self.tAllRamza = {}
-	Convars:RegisterCommand( "ramza_full", Dynamic_Wrap(CRamzaJob, 'RamzaFull'), "Give Ramza all job and levels", FCVAR_CHEAT )
+	self.tAllRamzas = {}
+	Convars:RegisterCommand( "ramza_max_level", Dynamic_Wrap(CRamzaJob, 'RamzaLevelMax'), "Give Ramza all job and levels", FCVAR_CHEAT )
 end
 
-function CRamzaJob:RamzaFull()
-	PrintTable(self.tAllRamza)
-	print("hi")
-	
+function CRamzaJob:RamzaLevelMax()
+	for i = 1, #self.tAllRamzas do		
+		for j = 1, 20 do
+			self.tAllRamzas[i].hRamzaJob.tJobPoints[j] = 4000
+			self.tAllRamzas[i].hRamzaJob.tJobLevels[j] = 9
+			self.tAllRamzas[i].hRamzaJob:LevelUpSkills()
+		end
+		CustomNetTables:SetTableValue("ramza_job_level", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), self.tAllRamzas[i].hRamzaJob.tJobLevels)
+		CustomNetTables:SetTableValue("ramza_job_requirement", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), self.tAllRamzas[i].hRamzaJob.tChangeJobRequirements)
+		CustomNetTables:SetTableValue("ramza_current_job", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), {self.tAllRamzas[i].hRamzaJob.iCurrentJob})
+		CustomNetTables:SetTableValue("ramza_current_secondary_skill", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), {self.tAllRamzas[i].hRamzaJob.iSecondarySkill})
+	end
 end
 
 
@@ -876,15 +883,30 @@ function CRamzaJob:ChangeJob()
 			self.hParent:FindAbilityByName('ramza_go_back_lua'):CastAbility()
 		end
 		
+		self.hParent:GetAbilityByIndex(1):SetActivated(true)
 		self:ChangeStat()		
 		self.iCurrentJob = self.iJobToGo
 		
 		--remove secondary skill if it's job command of current job or current job can have no secondary skill
-		if self.iCurrentJob == self.iSecondarySkill or self.iCurrentJob == RAMZA_JOB_MIME or self.iCurrentJob == RAMZA_JOB_ONION_KNIGHT then -- TODO: Forget secondary skills here
+		if self.iCurrentJob == self.iSecondarySkill or self.iCurrentJob == RAMZA_JOB_MIME or self.iCurrentJob == RAMZA_JOB_ONION_KNIGHT then 
+		
 			self.iSecondarySkill = 0
 			CustomNetTables:SetTableValue("ramza_current_secondary_skill", tostring(iPlayerID), {self.iSecondarySkill})
-			self.hParent:RemoveAbility(self.hParent:GetAbilityByIndex(1):GetName())
-			self.hParent:AddAbility("ramza_select_secondary_skill_lua"):SetLevel(1)
+			local sName = self.hParent:GetAbilityByIndex(1):GetName()
+			local bHasAdded = false
+			if string.sub(sName, 1, 16) == "ramza_archer_aim" or string.sub(sName, 1, 17) == "ramza_ninja_throw" then
+				self.hParent:AddAbility("ramza_select_secondary_skill_lua"):SetLevel(1)
+				self.hParent:SwapAbilities(sName, "ramza_select_secondary_skill_lua", true, true)
+				self.hParent:FindAbilityByName(sName):SetHidden(true)
+				bHasAdded = true
+			else
+				self.hParent:RemoveAbility(sName)
+			end 			
+			
+			if not bHasAdded then
+				self.hParent:AddAbility("ramza_select_secondary_skill_lua"):SetLevel(1)
+			end
+			
 			if self.iCurrentJob == RAMZA_JOB_MIME or self.iCurrentJob == RAMZA_JOB_ONION_KNIGHT then
 				self.hParent:FindAbilityByName("ramza_select_secondary_skill_lua"):SetActivated(false)
 			end
@@ -903,7 +925,24 @@ function CRamzaJob:ChangeJob()
 			sName1 = self.tJobNames[self.iCurrentJob]..'_JC'
 		end
 		local sName0 = self.hParent:GetAbilityByIndex(0):GetName()
-		self.hParent:RemoveAbility(sName0)
+		
+		if (string.sub(sName0, 1, 16) == "ramza_archer_aim" or string.sub(sName0, 1, 17) == "ramza_ninja_throw") and  (self.hParent:FindAbilityByName(sName1)) then		
+			self.hParent:FindAbilityByName(sName1):SetHidden(false)			
+			self.hParent:SwapAbilities(sName0, sName1, true, true)
+			self.hParent:FindAbilityByName(sName0):SetHidden(true)
+		elseif (string.sub(sName0, 1, 16) == "ramza_archer_aim" or string.sub(sName0, 1, 17) == "ramza_ninja_throw") and  (not self.hParent:FindAbilityByName(sName1)) then
+			self.hParent:AddAbility(sName1):SetLevel(1)
+			self.hParent:SwapAbilities(sName0, sName1, true, true)
+			self.hParent:FindAbilityByName(sName0):SetHidden(true)
+		elseif (string.sub(sName0, 1, 16) ~= "ramza_archer_aim" or string.sub(sName0, 1, 17) ~= "ramza_ninja_throw") and  (self.hParent:FindAbilityByName(sName1)) then		
+			self.hParent:FindAbilityByName(sName1):SetHidden(false)
+			self.hParent:SwapAbilities(sName0, sName1, true, true)
+			self.hParent:RemoveAbility(sName0)
+		else		
+			self.hParent:RemoveAbility(sName0)
+			self.hParent:AddAbility(sName1):SetLevel(1)
+		end
+		
 		if string.sub(sName0, 7, 18) == "onion_knight" then
 			self.hParent:RemoveModifierByName("modifier_"..sName0)
 		end
@@ -911,12 +950,11 @@ function CRamzaJob:ChangeJob()
 		if string.sub(sName0, 7, 10) == "mime" then
 			self.hParent:RemoveModifierByName("modifier_"..sName0)
 		end
-		
-		self.hParent:AddAbility(sName1):SetLevel(1)		
+
 		-- change other abilities
 		for i = 1, 3 do
 			local sName = self.hParent:GetAbilityByIndex(i+1):GetName()
-			self.hParent:RemoveAbility(sName)
+			self.hParent:RemoveAbility(sName)			
 			if self.tOtherAbilityHasToggleModifiers[sName] then 
 				self.hParent:RemoveModifierByName('modifier_'..sName)
 			elseif not self.tOtherAbilityCastable[sName] then
@@ -954,22 +992,35 @@ function CRamzaJob:ChangeJob()
 		
 		self.iSecondarySkill = self.iJobToGo
 		
-		local sName
+		local sName1
 		if 	(self.iSecondarySkill == RAMZA_JOB_ARCHER or 
 				self.iSecondarySkill == RAMZA_JOB_ARITHMETICIAN or 
 				self.iSecondarySkill == RAMZA_JOB_DRAGOON or 
 				self.iSecondarySkill == RAMZA_JOB_NINJA) then
-			sName = self.tJobCommands[self.iSecondarySkill][self.tJobLevels[self.iSecondarySkill]][1] or self.tJobCommands[self.iSecondarySkill][self.tJobLevels[self.iSecondarySkill]-1][1] 
+			sName1 = self.tJobCommands[self.iSecondarySkill][self.tJobLevels[self.iSecondarySkill]][1] or self.tJobCommands[self.iSecondarySkill][self.tJobLevels[self.iSecondarySkill]-1][1] 
 		else
-			sName = self.tJobNames[self.iSecondarySkill]..'_JC'
+			sName1 = self.tJobNames[self.iSecondarySkill]..'_JC'
 		end
 		
+		local sName0 = self.hParent:GetAbilityByIndex(1):GetName()		
 		
-		self.hParent:RemoveAbility(self.hParent:GetAbilityByIndex(1):GetName())
-		self.hParent:AddAbility(sName):SetLevel(1)
-		
-		
-		print("secondary skill change to", self.tJobNames[self.iSecondarySkill])
+		if (string.sub(sName0, 1, 16) == "ramza_archer_aim" or string.sub(sName0, 1, 17) == "ramza_ninja_throw") and self.hParent:FindAbilityByName(sName1) then		
+			self.hParent:FindAbilityByName(sName1):SetHidden(false)			
+			self.hParent:SwapAbilities(sName0, sName1, true, true)
+			self.hParent:FindAbilityByName(sName0):SetHidden(true)
+		elseif (string.sub(sName0, 1, 16) == "ramza_archer_aim" or string.sub(sName0, 1, 17) == "ramza_ninja_throw") and not self.hParent:FindAbilityByName(sName1) then
+			self.hParent:AddAbility(sName1):SetLevel(1)
+			self.hParent:SwapAbilities(sName0, sName1, true, true)
+			self.hParent:FindAbilityByName(sName0):SetHidden(true)
+		elseif (string.sub(sName0, 1, 16) ~= "ramza_archer_aim" or string.sub(sName0, 1, 17) ~= "ramza_ninja_throw") and self.hParent:FindAbilityByName(sName1) then		
+			self.hParent:FindAbilityByName(sName1):SetHidden(false)
+			self.hParent:SwapAbilities(sName0, sName1, true, true)
+			self.hParent:RemoveAbility(sName0)
+		else		
+			self.hParent:RemoveAbility(sName0)
+			self.hParent:AddAbility(sName1):SetLevel(1)
+		end
+
 		CustomNetTables:SetTableValue("ramza_current_secondary_skill", tostring(iPlayerID), {self.iSecondarySkill})
 		CustomGameEventManager:Send_ServerToPlayer( self.hParent:GetOwner(), "ramza_select_secondary_skill", nil )
 	end
@@ -984,7 +1035,7 @@ function CRamzaJob:ChangeStat()
 		self.hParent:SetRangedProjectileName(self.tJobStats[self.iJobToGo].attack_projectile)	
 	end
 	self.hParent:FindModifierByName("modifier_ramza_job_manager").iBonusAttackRange = self.tJobStats[self.iJobToGo].attack_range-150;
-
+	self.hParent:SetAcquisitionRange(self.tJobStats[self.iJobToGo].attack_range+200)
 	self.hParent:SetPhysicalArmorBaseValue(self.tJobStats[self.iJobToGo].armor)
 	local fDiffStr = self.tJobStats[self.iJobToGo].base_str-self.tJobStats[self.iCurrentJob].base_str+(self.hParent:GetLevel()-1)*(self.tJobStats[self.iJobToGo].gain_str-self.tJobStats[self.iCurrentJob].gain_str)
 	local fDiffAgi = self.tJobStats[self.iJobToGo].base_agi-self.tJobStats[self.iCurrentJob].base_agi+(self.hParent:GetLevel()-1)*(self.tJobStats[self.iJobToGo].gain_agi-self.tJobStats[self.iCurrentJob].gain_agi)
@@ -992,9 +1043,9 @@ function CRamzaJob:ChangeStat()
 	self.hParent:ModifyStrength(fDiffStr)
 	self.hParent:ModifyAgility(fDiffAgi)
 	self.hParent:ModifyIntellect(fDiffInt)
-	self.hParent:FindModifierByName("modifier_attribute_growth_str").fGrowth = self.tJobStats[self.iJobToGo].gain_str
-	self.hParent:FindModifierByName("modifier_attribute_growth_agi").fGrowth = self.tJobStats[self.iJobToGo].gain_agi
-	self.hParent:FindModifierByName("modifier_attribute_growth_int").fGrowth = self.tJobStats[self.iJobToGo].gain_int
+	self.hParent:FindModifierByName("modifier_ramza_job_manager").fStrGrowth = self.tJobStats[self.iJobToGo].gain_str
+	self.hParent:FindModifierByName("modifier_ramza_job_manager").fAgiGrowth = self.tJobStats[self.iJobToGo].gain_agi
+	self.hParent:FindModifierByName("modifier_ramza_job_manager").fIntGrowth = self.tJobStats[self.iJobToGo].gain_int
 	self.hParent:CalculateStatBonus()
 end
 
