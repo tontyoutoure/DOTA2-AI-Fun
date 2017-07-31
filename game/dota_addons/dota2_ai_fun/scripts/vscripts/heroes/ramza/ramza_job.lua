@@ -1035,6 +1035,7 @@ function CRamzaJob:ChangeStat()
 		self.hParent:SetRangedProjectileName(self.tJobStats[self.iJobToGo].attack_projectile)	
 	end
 	self.hParent:FindModifierByName("modifier_ramza_job_manager").iBonusAttackRange = self.tJobStats[self.iJobToGo].attack_range-150;
+	self.hParent:FindModifierByName("modifier_ramza_job_manager"):ForceRefresh()
 	self.hParent:SetAcquisitionRange(self.tJobStats[self.iJobToGo].attack_range+200)
 	self.hParent:SetPhysicalArmorBaseValue(self.tJobStats[self.iJobToGo].armor)
 	local fDiffStr = self.tJobStats[self.iJobToGo].base_str-self.tJobStats[self.iCurrentJob].base_str+(self.hParent:GetLevel()-1)*(self.tJobStats[self.iJobToGo].gain_str-self.tJobStats[self.iCurrentJob].gain_str)

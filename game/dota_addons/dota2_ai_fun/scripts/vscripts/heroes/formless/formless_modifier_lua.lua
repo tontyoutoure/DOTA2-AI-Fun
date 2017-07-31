@@ -87,7 +87,8 @@ tBugHero["npc_dota_hero_shadow_demon"] = {0, 1, 2, -1} --ulti is buggy
 tBugHero["npc_dota_hero_techies"] = {0, 1, -1, 5} --swindle is dangerous
 tBugHero["npc_dota_hero_tinker"] = {0, 1, 2, -1} -- ulti will make it meele hero	
 tBugHero["npc_dota_hero_visage"] = {-1, 1, 2, -1} -- don't transform
-tBugHero["npc_dota_hero_zuus"] = {0, 1, 2, 4} -- don't transform
+tBugHero["npc_dota_hero_zuus"] = {0, 1, 2, 4} -- real ulti
+tBugHero["npc_dota_hero_brewmaster"] = {2, 3, 4, -1}
 
 function formless_get_real_skill_index(keys)
 	local targetName = keys.target:GetName()
