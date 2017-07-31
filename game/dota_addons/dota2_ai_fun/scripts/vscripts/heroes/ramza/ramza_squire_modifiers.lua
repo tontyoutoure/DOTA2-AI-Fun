@@ -6,6 +6,8 @@ function modifier_ramza_squire_counter_tackle:IsHidden() return true end
 function modifier_ramza_squire_counter_tackle:OnAttackLanded(keys)
 	if keys.target ~= self:GetParent() or keys.attacker:IsRangedAttacker() then return end
 	local hAbility = self:GetAbility()
+	local hParent = self:GetParent()
+	if hParent.hRamzaJob.tJobLevels[hParent.hRamzaJob.iCurrentJob] < 3 then return end
 	local damageTable = {
 		damage = keys.original_damage*hAbility:GetSpecialValueFor("damage_return")/100,
 		attacker = keys.target,

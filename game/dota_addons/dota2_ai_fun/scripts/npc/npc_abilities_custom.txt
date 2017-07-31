@@ -6189,7 +6189,7 @@
 	{
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"ramza_mimi_mimic"
-		"ScriptFile"	"heroes/mime/ramza_mime.lua"
+		"ScriptFile"	"heroes/ramza/ramza_mime.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"1"
 		"AbilitySpecial"
@@ -6206,7 +6206,7 @@
 	{
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"ramza_mimi_mimic"
-		"ScriptFile"	"heroes/mime/ramza_mime.lua"
+		"ScriptFile"	"heroes/ramza/ramza_mime.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"1"
 		"AbilitySpecial"
@@ -6223,7 +6223,7 @@
 	{
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"ramza_mimi_mimic"
-		"ScriptFile"	"heroes/mime/ramza_mime.lua"
+		"ScriptFile"	"heroes/ramza/ramza_mime.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"1"
 		"AbilitySpecial"
@@ -6240,7 +6240,7 @@
 	{
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"ramza_mimi_mimic"
-		"ScriptFile"	"heroes/mime/ramza_mime.lua"
+		"ScriptFile"	"heroes/ramza/ramza_mime.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"1"
 		"AbilitySpecial"
@@ -6257,7 +6257,7 @@
 	{
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"ramza_mimi_mimic"
-		"ScriptFile"	"heroes/mime/ramza_mime.lua"
+		"ScriptFile"	"heroes/ramza/ramza_mime.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"1"
 		"AbilitySpecial"
@@ -6274,7 +6274,7 @@
 	{
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"ramza_mimi_mimic"
-		"ScriptFile"	"heroes/mime/ramza_mime.lua"
+		"ScriptFile"	"heroes/ramza/ramza_mime.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"1"
 		"AbilitySpecial"
@@ -6291,7 +6291,7 @@
 	{
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"ramza_mimi_mimic"
-		"ScriptFile"	"heroes/mime/ramza_mime.lua"
+		"ScriptFile"	"heroes/ramza/ramza_mime.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"1"
 		"AbilitySpecial"
@@ -6308,7 +6308,7 @@
 	{
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"ramza_mimi_mimic"
-		"ScriptFile"	"heroes/mime/ramza_mime.lua"
+		"ScriptFile"	"heroes/ramza/ramza_mime.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"1"
 		"AbilitySpecial"
@@ -6325,7 +6325,7 @@
 	{
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"ramza_mimi_mimic"
-		"ScriptFile"	"heroes/mime/ramza_mime.lua"
+		"ScriptFile"	"heroes/ramza/ramza_mime.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"1"
 		"AbilitySpecial"
