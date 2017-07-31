@@ -863,13 +863,19 @@ function RamzaJobChangeListener(eventSourceIndex, args)
 	local hRamza = PlayerResource:GetPlayer(tonumber(args.PlayerID)):GetAssignedHero()
 	hRamza.hRamzaJob.iChangeJobState = tonumber(args.iState)
 	hRamza.hRamzaJob.iJobToGo = tonumber(args.iJob)
-	if hRamza:HasScepter() or hRamza:GetHealthPercent() == 100 and hRamza:GetManaPercent() == 100 then
+	if hRamza:HasScepter() or hRamza:GetHealthPercent() == 100 and hRamza:GetManaPercent() == 100 and not hRamza:HasModifier("modifier_ramza_dragoon_jump") then
 		hRamza.hRamzaJob:ChangeJob()
+	elseif hRamza:HasModifier("modifier_ramza_dragoon_jump") then
+		if tonumber(args.iState) == SELECT_JOB then
+			Notifications:Bottom(tonumber(args.PlayerID), {text = "#error_ramza_cant_change_job_jump", duration = 2, style = {color = "red"}})
+		else
+			Notifications:Bottom(tonumber(args.PlayerID), {text = "#error_ramza_cant_change_secondary_skill_jump", duration = 2, style = {color = "red"}})
+		end
 	else
 		if tonumber(args.iState) == SELECT_JOB then
-			Notifications:Bottom(tonumber(args.PlayerID), {text = "#error_ramza_change_job", duration = 2, style = {color = "red"}})
+			Notifications:Bottom(tonumber(args.PlayerID), {text = "#error_ramza_cant_change_job_full", duration = 2, style = {color = "red"}})
 		else
-			Notifications:Bottom(tonumber(args.PlayerID), {text = "#error_ramza_change_secondary_skill", duration = 2, style = {color = "red"}})
+			Notifications:Bottom(tonumber(args.PlayerID), {text = "#error_ramza_cant_change_secondary_skill_full", duration = 2, style = {color = "red"}})
 		end
 		
 	end

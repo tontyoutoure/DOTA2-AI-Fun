@@ -143,8 +143,6 @@ function modifier_ramza_black_mage_black_magicks_toad:CheckState()
 		[MODIFIER_STATE_DISARMED] = true,
 		[MODIFIER_STATE_HEXED] = true,
 		[MODIFIER_STATE_MUTED] = true,
-		[MODIFIER_STATE_EVADE_DISABLED] = true,
-		[MODIFIER_STATE_BLOCK_DISABLED] = true,
 		[MODIFIER_STATE_SILENCED] = true
 	}
 end

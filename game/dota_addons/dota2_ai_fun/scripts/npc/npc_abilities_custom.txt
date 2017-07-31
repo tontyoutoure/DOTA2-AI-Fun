@@ -6337,4 +6337,114 @@
 			}
 		}
 	}
+
+	"ramza_dragoon_ignore_elevation"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"rubick_telekinesis"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_ramza_dragoon_ignore_elevation"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"time_reduction"	"4"
+			}
+		}
+	}
+
+	"ramza_dragoon_polearm"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"huskar_burning_spear"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_ramza_dragoon_polearm"
+			{
+				"IsBuff"	"0"
+				"IsHidden"	"1"
+				"Passive"	"1"
+			}
+		}
+	}
+
+	"ramza_dragoon_dragonheart"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"phoenix_supernova"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"AbilityCooldown"	"60"
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_dragoon.lua"
+				"Function"	"RamzaDragoonHeartApply"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"reincarnate_time"	"3"
+			}
+		}
+	}
+
+	"ramza_dragoon_jump1"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"brewmaster_storm_wind_walk"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"7"
+		"AOERadius"	"300"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"300"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"jump_time"	"5"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"	"300"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"100"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"3"
+			}
+		}
+	}
 }
