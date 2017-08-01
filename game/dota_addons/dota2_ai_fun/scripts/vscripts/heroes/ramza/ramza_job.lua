@@ -852,8 +852,8 @@ function CRamzaJob:RamzaLevelMax()
 			self.tAllRamzas[i].hRamzaJob.tJobLevels[j] = 9
 			self.tAllRamzas[i].hRamzaJob:LevelUpSkills()
 		end
-		self.tAllRamzas[i].hRamzaJob.tJobPoints[RAMZA_JOB_ARITHMETICIAN] = 0
-		self.tAllRamzas[i].hRamzaJob.tJobLevels[RAMZA_JOB_ARITHMETICIAN] = 1
+		self.tAllRamzas[i].hRamzaJob.tJobPoints[RAMZA_JOB_DARK_KNIGHT] = 0
+		self.tAllRamzas[i].hRamzaJob.tJobLevels[RAMZA_JOB_DARK_KNIGHT] = 1
 		
 		CustomNetTables:SetTableValue("ramza_job_level", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), self.tAllRamzas[i].hRamzaJob.tJobLevels)
 		CustomNetTables:SetTableValue("ramza_job_requirement", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), self.tAllRamzas[i].hRamzaJob.tChangeJobRequirements)
@@ -867,7 +867,7 @@ function RamzaJobChangeListener(eventSourceIndex, args)
 	local hRamza = PlayerResource:GetPlayer(tonumber(args.PlayerID)):GetAssignedHero()
 	hRamza.hRamzaJob.iChangeJobState = tonumber(args.iState)
 	hRamza.hRamzaJob.iJobToGo = tonumber(args.iJob)
-	if hRamza:HasScepter() or hRamza:GetHealthPercent() == 100 and hRamza:GetManaPercent() == 100 and not hRamza:HasModifier("modifier_ramza_dragoon_jump") then
+	if (hRamza:HasScepter() or hRamza:GetHealthPercent() == 100 and hRamza:GetManaPercent() == 100) and not hRamza:HasModifier("modifier_ramza_dragoon_jump") then
 		hRamza.hRamzaJob:ChangeJob()
 	elseif hRamza:HasModifier("modifier_ramza_dragoon_jump") then
 		if tonumber(args.iState) == SELECT_JOB then

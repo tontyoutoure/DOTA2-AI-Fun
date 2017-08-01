@@ -20,9 +20,7 @@ local tBannedAbilities = {
 	ramza_next_page_lua = true,
 	ramza_go_back_lua = true,
 	ramza_job_squire_JC = true,
-	ramza_squire_defend = true,
 	ramza_job_chemist_JC = true,
-	ramza_chemist_autopotion = true,
 	ramza_job_knight_JC = true,
 	ramza_job_white_mage_JC = true,
 	ramza_job_black_mage_JC = true,
@@ -35,6 +33,11 @@ local tBannedAbilities = {
 	ramza_job_geomancer_JC = true,
 	ramza_job_samurai_JC = true,
 	ramza_job_dark_knight_JC = true,
+	ramza_squire_defend = true,
+	ramza_chemist_autopotion = true,
+	ramza_time_mage_mana_shield = true,
+	ramza_ninja_vanish = true,
+	ramza_dark_knight_vehemence = true
 }
 
 modifier_attribute_growth_str = class({})
