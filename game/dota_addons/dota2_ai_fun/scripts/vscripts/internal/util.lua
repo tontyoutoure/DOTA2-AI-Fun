@@ -185,4 +185,14 @@ function ShowWearables( unit )
 	end
 end
 
+--[[Autohor: tontyoutoure
+	Date:08.01.2017
+	Print all modifiers
+]]
+
+function PrintAllModifiers( PlayerID )
+	local tModifiers = PlayerResource:GetPlayer(PlayerID):GetAssignedHero():FindAllModifiers()
+	for i, v in pairs(tModifiers) do print(v:GetName()) end
+
+end
 print("Util loaded")

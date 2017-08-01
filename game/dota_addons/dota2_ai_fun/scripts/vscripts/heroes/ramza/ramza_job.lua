@@ -297,7 +297,7 @@ CRamzaJob.tJobStats = {
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
 		move_speed = 325,
 	},
-	{	--Arithmatician
+	{	--arithmetician
 		primary_attribute = DOTA_ATTRIBUTE_INTELLECT,
 		base_str = 8,
 		base_agi = 7,
@@ -532,16 +532,16 @@ CRamzaJob.tJobCommands = {
 		{"ramza_ninja_throw_bomb"},
 		{"ramza_ninja_throw_ninja_blade"},
 	},
-	{	-- Arithmatician: Arithmeticks|r|nLvl 1 - CT|nLvl 2 - Multiple of 5|nLvl 3 - Accrue EXP|nLvl 4 - Level|nLvl 5 - Soulbind|nLvl 6 - Multiple of 4|nLvl 7 - EXP Boost|nLvl 8 - Multiple of 3|nMastered - |c00ff8000EXP
-		{"ramza_arithmatician_arithmeticks_CT"},
-		{"ramza_arithmatician_arithmeticks_multiple_of_5"},
+	{	-- arithmetician: Arithmeticks|r|nLvl 1 - CT|nLvl 2 - Multiple of 5|nLvl 3 - Accrue EXP|nLvl 4 - Level|nLvl 5 - Soulbind|nLvl 6 - Multiple of 4|nLvl 7 - EXP Boost|nLvl 8 - Multiple of 3|nMastered - |c00ff8000EXP
+		{"ramza_arithmetician_arithmeticks_CT"},
+		{"ramza_arithmetician_arithmeticks_multiple_of_5"},
 		{},
-		{"ramza_arithmatician_arithmeticks_level"},
+		{"ramza_arithmetician_arithmeticks_level"},
 		{},
-		{"ramza_arithmatician_arithmeticks_multiple_of_4"},
+		{"ramza_arithmetician_arithmeticks_multiple_of_4"},
 		{},
-		{"ramza_arithmatician_arithmeticks_multiple_of_3"},
-		{"ramza_arithmatician_arithmeticks_exp"},
+		{"ramza_arithmetician_arithmeticks_multiple_of_3"},
+		{"ramza_arithmetician_arithmeticks_exp"},
 	},
 	{	-- Mime: Mimic|r|nLvl 1 - 100% Mana Cost|nLvl 2 - 90% Mana Cost|nLvl 3 - 80% Mana Cost|nLvl 4 - 70% Mana Cost|nLvl 5 - 60% Mana Cost|nLvl 6 - 50% Mana Cost|nLvl 7 - 40% Mana Cost|nLvl 8 - 20% Mana Cost|nMastered - |c00ff80000% Mana Cost
 		{"ramza_mime_mimic_100_mana_cost"},
@@ -628,8 +628,8 @@ CRamzaJob.tOtherAbilities = {
 	{	-- Ninja
 		{}, {}, {"ramza_ninja_reflexes"}, {}, {"ramza_ninja_vanish"}, {}, {"ramza_ninja_dual_wield"}, {}, {}
 	},
-	{	-- Arithmatician
-		{}, {}, {"ramza_accrue_exp"}, {}, {"ramza_soulbind"}, {}, {"ramza_exp_boost"}, {}, {}
+	{	-- arithmetician
+		{}, {}, {"ramza_arithmetician_accrue_exp"}, {}, {"ramza_arithmetician_soulbind"}, {}, {"ramza_arithmetician_exp_boost"}, {}, {}
 	},
 	{	-- Mime
 		{}, {}, {}, {}, {}, {}, {}, {}, {}
@@ -727,7 +727,7 @@ function CRamzaJob:LevelUpSkills()
 		end		
 	end
 	
-	--Level up job command for archer, dragoon, ninja, arithmatician, mime, onion knight
+	--Level up job command for archer, dragoon, ninja, arithmetician, mime, onion knight
 	for i = 1, 9 do
 		if (
 				self.iCurrentJob == RAMZA_JOB_ARCHER or 
@@ -762,6 +762,7 @@ function CRamzaJob:New(tNewObject)
 	tNewObject.tJobPoints = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 	tNewObject.tJobLevels = {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 	tNewObject.tChangeJobRequirements = {}
+	tNewObject.tPassiveCooldownReadyTime = {}
 	for i = 1, 20 do
 		tNewObject.tChangeJobRequirements[i] = {}
 		for k, v in pairs(self.tRamzaChangeJobRequirements[i]) do
@@ -851,6 +852,9 @@ function CRamzaJob:RamzaLevelMax()
 			self.tAllRamzas[i].hRamzaJob.tJobLevels[j] = 9
 			self.tAllRamzas[i].hRamzaJob:LevelUpSkills()
 		end
+		self.tAllRamzas[i].hRamzaJob.tJobPoints[RAMZA_JOB_ARITHMETICIAN] = 0
+		self.tAllRamzas[i].hRamzaJob.tJobLevels[RAMZA_JOB_ARITHMETICIAN] = 1
+		
 		CustomNetTables:SetTableValue("ramza_job_level", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), self.tAllRamzas[i].hRamzaJob.tJobLevels)
 		CustomNetTables:SetTableValue("ramza_job_requirement", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), self.tAllRamzas[i].hRamzaJob.tChangeJobRequirements)
 		CustomNetTables:SetTableValue("ramza_current_job", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), {self.tAllRamzas[i].hRamzaJob.iCurrentJob})
@@ -960,13 +964,25 @@ function CRamzaJob:ChangeJob()
 		-- change other abilities
 		for i = 1, 3 do
 			local sName = self.hParent:GetAbilityByIndex(i+1):GetName()
+			-- keep cooldown state
+			if sName == "ramza_dragoon_dragonheart" then
+				if self.hParent:FindAbilityByName(sName):IsCooldownReady() then
+					self.tPassiveCooldownReadyTime[sName] = Time()
+				else
+					self.tPassiveCooldownReadyTime[sName] = Time()+self.hParent:FindAbilityByName(sName):GetCooldownTimeRemaining()
+				end
+			end
 			self.hParent:RemoveAbility(sName)			
 			if self.tOtherAbilityHasToggleModifiers[sName] then 
 				self.hParent:RemoveModifierByName('modifier_'..sName)
 			elseif not self.tOtherAbilityCastable[sName] then
 				self.hParent:RemoveModifierByName('modifier_'..sName)				
 			end
-			self.hParent:AddAbility(self.tJobAbilityBuses.tOtherAbilityBuses[self.iCurrentJob][i])
+			local sName1 = self.tJobAbilityBuses.tOtherAbilityBuses[self.iCurrentJob][i]
+			self.hParent:AddAbility(sName1)			
+			if (sName1 == "ramza_dragoon_dragonheart") and self.tPassiveCooldownReadyTime[sName1] and self.tPassiveCooldownReadyTime[sName1] > Time() then
+				self.hParent:FindAbilityByName(sName1):StartCooldown(self.tPassiveCooldownReadyTime[sName1] - Time())
+			end
 		end
 		
 		self:LevelUpSkills()

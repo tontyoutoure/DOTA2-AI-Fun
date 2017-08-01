@@ -7,29 +7,34 @@ end
 function modifier_ramza_dragoon_dragonheart:OnCreated()
 	local hAbility = self:GetAbility()
 	self.iReincarnateTime = hAbility:GetSpecialValueFor("reincarnate_time")
-	self.iCooldown = hAbility:GetCooldown(0)
 end
 
+function modifier_ramza_dragoon_dragonheart:IsHidden() return true end
+function modifier_ramza_dragoon_dragonheart:IsPurgable() return false end
+function modifier_ramza_dragoon_dragonheart:IsDebuff() return false end
+function modifier_ramza_dragoon_dragonheart:RemoveOnDeath() return false end
 
 function modifier_ramza_dragoon_dragonheart:ReincarnateTime()
 	local bIsCooldownReady
 	local hParent = self:GetParent()
-	if hParent:HasAbility("ramza_dragoon_dragonheart") 
-		then bIsCooldownReady = hParent:FindAbilityByName("ramza_dragoon_dragonheart"):IsCooldownReady()
+	if hParent:HasAbility("ramza_dragoon_dragonheart") then 
+		bIsCooldownReady = hParent:FindAbilityByName("ramza_dragoon_dragonheart"):IsCooldownReady()
 		if bIsCooldownReady then
-			hParent:FindAbilityByName("ramza_dragoon_dragonheart"):UseResources()
+			hParent:FindAbilityByName("ramza_dragoon_dragonheart"):UseResources(true, true, true)
 			return self.iReincarnateTime
 		else
 			return -1
 		end
 	else
-		bIsCooldownReady = hParent:AddAbility("ramza_dragoon_dragonheart"):IsCooldownReady()
+		bIsCooldownReady = Time() > hParent.hRamzaJob.tPassiveCooldownReadyTime["ramza_dragoon_dragonheart"]
 		if bIsCooldownReady then
-			hParent:FindAbilityByName("ramza_dragoon_dragonheart"):UseResources()			
-			hParent:RemoveAbility("ramza_dragoon_dragonheart")
+			fCooldownMultiplier = 1
+			if hParent:HasModifier("modifier_item_octarine_core") then fCooldownMultiplier = fCooldownMultiplier*0.75 end
+			if hParent:HasModifier("modifier_rune_arcane") then fCooldownMultiplier = fCooldownMultiplier*0.7 end
+			if hParent:HasModifier("modifier_item_fun_angelic_alliance_halo") or hParent:HasModifier("modifier_item_fun_economizer_mcr") then fCooldownMultiplier = 0 end
+			hParent.hRamzaJob.tPassiveCooldownReadyTime["ramza_dragoon_dragonheart"] = Time()+60*fCooldownMultiplier		
 			return self.iReincarnateTime
 		else
-			hParent:RemoveAbility("ramza_dragoon_dragonheart")
 			return -1
 		end
 	end
@@ -47,6 +52,9 @@ function modifier_ramza_dragoon_jump:CheckState()
 	}
 end
 
+function modifier_ramza_dragoon_jump:IsHidden() return true end
+function modifier_ramza_dragoon_dragonheart:IsPurgable() return false end
+function modifier_ramza_dragoon_dragonheart:IsDebuff() return false end
 
 function modifier_ramza_dragoon_jump:OnCreated()
 	if IsClient() then return end	
@@ -56,11 +64,43 @@ end
 
 function modifier_ramza_dragoon_jump:OnDestroy()
 	if IsClient() then return end
-	hParent = self:GetParent()
+	local hParent = self:GetParent()
+	local hAbility = self:GetAbility()
+	local fRadius = hAbility:GetSpecialValueFor("radius")
+	local fDuration = hAbility:GetSpecialValueFor("duration")
 	hParent:RemoveHorizontalMotionController(self)
 	hParent:RemoveVerticalMotionController(self)
-	hParent:SetOrigin(GetGroundPosition(hParent:GetOrigin()))
+	hParent:SetOrigin(self.vDestination)
 	FindClearSpaceForUnit(hParent, hParent:GetOrigin(), false)
+		
+	local tTargets = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetOrigin(), nil, fRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+	local damageTable = {
+		attacker = hParent,
+		damage = hAbility:GetSpecialValueFor("damage"),
+		damage_type = DAMAGE_TYPE_MAGICAL,
+		ability = hAbility
+	}
+	if hParent:HasModifier("modifier_ramza_dragoon_polearm") then
+		hParent:EmitSound("Hero_Centaur.HoofStomp")
+		local iParticle = ParticleManager:CreateParticle("particles/econ/items/centaur/centaur_ti6_gold/centaur_ti6_warstomp_gold.vpcf", PATTACH_ABSORIGIN, hParent)
+		ParticleManager:SetParticleControl(iParticle, 1, Vector(fRadius, fRadius, fRadius))
+		
+		for k, v in pairs(tTargets) do
+			v:AddNewModifier(hParent, hAbility, "modifier_stunned", {Duration = fDuration})
+			damageTable.victim = v
+			ApplyDamage(damageTable)
+		end
+	else
+		hParent:EmitSound("Hero_Brewmaster.ThunderClap")
+		local iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap.vpcf", PATTACH_ABSORIGIN, hParent)
+		ParticleManager:SetParticleControl(iParticle, 1, Vector(fRadius, fRadius, fRadius))		
+		
+		for k, v in pairs(tTargets) do
+			v:AddNewModifier(hParent, hAbility, "modifier_ramza_dragoon_jump_slow", {Duration = fDuration})
+			damageTable.victim = v
+			ApplyDamage(damageTable)
+		end
+	end
 end
 
 function modifier_ramza_dragoon_jump:UpdateHorizontalMotion(me, dt)
@@ -68,6 +108,27 @@ function modifier_ramza_dragoon_jump:UpdateHorizontalMotion(me, dt)
 end
 
 function modifier_ramza_dragoon_jump:UpdateVerticalMotion(me, dt)
-	me:SetOrigin(me:GetOrigin()+dt*self.vVerticalSpeed+dt*dt*vVerticalAcceleration/2)
-	vVerticalSpeed = vVerticalSpeed+dt*vVerticalAcceleration
+	me:SetOrigin(me:GetOrigin()+dt*self.vVerticalSpeed+dt*dt*self.vVerticalAcceleration/2)
+	self.vVerticalSpeed = self.vVerticalSpeed+dt*self.vVerticalAcceleration
 end
+
+modifier_ramza_dragoon_jump_slow = class({})
+
+function modifier_ramza_dragoon_jump_slow:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
+	}
+end
+
+function modifier_ramza_dragoon_jump_slow:IsHidden() return false end
+function modifier_ramza_dragoon_jump_slow:IsPurgable() return true end
+function modifier_ramza_dragoon_jump_slow:GetTexture() return "brewmaster_storm_wind_walk" end
+function modifier_ramza_dragoon_jump_slow:GetModifierMoveSpeedBonus_Percentage() return self:GetAbility():GetSpecialValueFor("move_slow") end
+function modifier_ramza_dragoon_jump_slow:GetStatusEffectName() return "particles/status_fx/status_effect_brewmaster_thunder_clap.vpcf" end
+
+
+
+
+
+
+
