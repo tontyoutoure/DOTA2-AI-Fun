@@ -22,6 +22,10 @@ RAMZA_JOB_ONION_KNIGHT = 20
 SELECT_JOB = 0;
 SELECT_SECONDARY_ABILITY = 1;
 
+RAMZA_MENU_STATE_NORMAL = 0
+RAMZA_MENU_STATE_UPGRADE = 1
+RAMZA_MENU_STATE_PRIMARY = 2
+RAMZA_MENU_STATE_SECONDARY = 3
 
 CRamzaJob = {}
 
@@ -73,7 +77,6 @@ CRamzaJob.tRamzaChangeJobRequirements = {
 	{[RAMZA_JOB_SQUIRE] = 6, [RAMZA_JOB_CHEMIST] = 6}	
 }
 
-CRamzaJob.tJobLevelUnlocks = {}
 
 
 
@@ -89,6 +92,7 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
+		model = "models/heroes/dragon_knight/dragon_knight.vmdl",
 		move_speed = 300,
 	},
 	{	--Chemist
@@ -102,6 +106,7 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 600,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
+		model = "models/heroes/sniper/sniper.vmdl",
 		move_speed = 280,
 	},
 	{	--Knight
@@ -115,6 +120,7 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
+		model = "models/heroes/dragon_knight/dragon_knight.vmdl",
 		move_speed = 300,
 	},
 	{	--Archer
@@ -129,6 +135,7 @@ CRamzaJob.tJobStats = {
 		attack_range = 625,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
 		attack_projectile = "particles/units/heroes/hero_clinkz/clinkz_base_attack.vpcf",
+		model = "models/heroes/clinkz/clinkz.vmdl",
 		move_speed = 310,
 	},
 	{	-- White Mage
@@ -143,6 +150,7 @@ CRamzaJob.tJobStats = {
 		attack_range = 550,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
 		attack_projectile = "particles/units/heroes/hero_keeper_of_the_light/keeper_base_attack.vpcf",
+		model = "models/heroes/invoker/invoker.vmdl",
 		move_speed = 290,
 	},
 	{	-- Black Mage
@@ -157,6 +165,7 @@ CRamzaJob.tJobStats = {
 		attack_range = 500,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
 		attack_projectile = "particles/units/heroes/hero_lina/lina_base_attack.vpcf",
+		model = "models/heroes/invoker/invoker.vmdl",
 		move_speed = 300,
 	},
 	{	--Monk
@@ -170,6 +179,7 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
+		model = "models/heroes/blood_seeker/blood_seeker.vmdl",
 		move_speed = 300,
 	},
 	{	--Thief
@@ -183,6 +193,7 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
+		model = "models/heroes/rikimaru/rikimaru.vmdl",
 		move_speed = 310,
 	},
 	{	--Mystic
@@ -196,7 +207,8 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 575,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
-		attack_projectile = "particles/units/heroes/hero_shadowshaman/shadowshaman_base_attack.vpcf",
+		attack_projectile = "particles/units/heroes/hero_oracle/oracle_base_attack.vpcf",
+		model = "models/heroes/oracle/oracle.vmdl",
 		move_speed = 285,
 	},
 	{	--Time Mage
@@ -211,6 +223,7 @@ CRamzaJob.tJobStats = {
 		attack_range = 500,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
 		attack_projectile = "particles/units/heroes/hero_silencer/silencer_base_attack.vpcf",
+		model = "models/heroes/silencer/silencer.vmdl",
 		move_speed = 295,
 	},
 	{	--Orator
@@ -224,7 +237,8 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 400,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
-		attack_projectile = "particles/econ/items/rubick/rubick_staff_wandering/rubick_base_attack_whset.vpcf",
+		attack_projectile = "particles/units/heroes/hero_shadowshaman/shadowshaman_base_attack.vpcf",
+		model = "models/heroes/shadowshaman/shadowshaman.vmdl",
 		move_speed = 305,
 	},
 	{	--Summoner
@@ -239,6 +253,7 @@ CRamzaJob.tJobStats = {
 		attack_range = 600,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
 		attack_projectile = "particles/units/heroes/hero_keeper_of_the_light/keeper_base_attack.vpcf",
+		model = "models/heroes/keeper_of_the_light/keeper_of_the_light.vmdl",
 		move_speed = 300,
 	},
 	{	--Geomancer
@@ -253,6 +268,7 @@ CRamzaJob.tJobStats = {
 		attack_range = 500,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
 		attack_projectile = "particles/units/heroes/hero_invoker/invoker_base_attack.vpcf",
+		model = "models/heroes/warlock/warlock.vmdl",
 		move_speed = 310,
 	},
 	{	--Dragoon
@@ -266,6 +282,7 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
+		model = "models/heroes/phantom_lancer/phantom_lancer.vmdl",
 		move_speed = 320,
 	},
 	{	--Samurai
@@ -279,6 +296,8 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
+		model = "models/heroes/juggernaut/juggernaut_arcana.vmdl",
+		model_material_group = 1,
 		move_speed = 315,
 	},
 	{	--Ninja
@@ -292,9 +311,10 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
+		model = "models/heroes/bounty_hunter/bounty_hunter.vmdl",
 		move_speed = 325,
 	},
-	{	--Arithmatician
+	{	--arithmetician
 		primary_attribute = DOTA_ATTRIBUTE_INTELLECT,
 		base_str = 8,
 		base_agi = 7,
@@ -305,7 +325,8 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 700,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
-		attack_projectile = "particles/econ/items/necrolyte/necronub_base_attack/necrolyte_base_attack_ka.vpcf",
+		attack_projectile = "particles/econ/items/rubick/rubick_staff_wandering/rubick_base_attack_whset.vpcf",
+		model = "models/heroes/rubick/rubick.vmdl",
 		move_speed = 295,
 	},
 	{	--Mime
@@ -320,6 +341,7 @@ CRamzaJob.tJobStats = {
 		attack_range = 600,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
 		attack_projectile = "particles/units/heroes/hero_bane/bane_projectile.vpcf",
+		model = "models/heroes/bane/bane.vmdl",
 		move_speed = 300,
 	},
 	{	--Dark Knight
@@ -333,6 +355,7 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
+		model = "models/heroes/abaddon/abaddon.vmdl",
 		move_speed = 300,
 	},
 	{	--Onion knight
@@ -346,13 +369,15 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
+		model = "models/heroes/kunkka/kunkka.vmdl",
 		move_speed = 350,
 	}
 	
 }
 
 
-CRamzaJob.tPrimaryAbilities = {
+
+CRamzaJob.tJobCommands = {
 	{	-- Squire: Fundaments Lvl 1 - Stone, Rush|nLvl 2 - Focus|nLvl 3 - Counter Tackle|nLvl 4 - Tailwind|nLvl 5 - Defend|nLvl 6 - Chant|nLvl 7 - Move +1|nLvl 8 - Shout|nMastered - |c00ff8000Ultima
 		{"ramza_squire_fundamental_stone", "ramza_squire_fundamental_rush"},
 		{"ramza_squire_fundamental_focus"},
@@ -381,7 +406,7 @@ CRamzaJob.tPrimaryAbilities = {
 		{},
 		{"ramza_knight_aow_rend_mp"},
 		{},
-		{"ramza_knight_rend_armor"},
+		{"ramza_knight_aow_rend_armor"},
 		{},
 		{"ramza_knight_aow_rend_weapon"},
 		{"ramza_knight_aow_rend_helm"}
@@ -529,16 +554,16 @@ CRamzaJob.tPrimaryAbilities = {
 		{"ramza_ninja_throw_bomb"},
 		{"ramza_ninja_throw_ninja_blade"},
 	},
-	{	-- Arithmatician: Arithmeticks|r|nLvl 1 - CT|nLvl 2 - Multiple of 5|nLvl 3 - Accrue EXP|nLvl 4 - Level|nLvl 5 - Soulbind|nLvl 6 - Multiple of 4|nLvl 7 - EXP Boost|nLvl 8 - Multiple of 3|nMastered - |c00ff8000EXP
-		{"ramza_arithmatician_arithmeticks_CT"},
-		{"ramza_arithmatician_arithmeticks_multiple_of_5"},
+	{	-- arithmetician: Arithmeticks|r|nLvl 1 - CT|nLvl 2 - Multiple of 5|nLvl 3 - Accrue EXP|nLvl 4 - Level|nLvl 5 - Soulbind|nLvl 6 - Multiple of 4|nLvl 7 - EXP Boost|nLvl 8 - Multiple of 3|nMastered - |c00ff8000EXP
+		{"ramza_arithmetician_arithmeticks_CT"},
+		{"ramza_arithmetician_arithmeticks_multiple_of_5"},
 		{},
-		{"ramza_arithmatician_arithmeticks_level"},
+		{"ramza_arithmetician_arithmeticks_level"},
 		{},
-		{"ramza_arithmatician_arithmeticks_multiple_of_4"},
+		{"ramza_arithmetician_arithmeticks_multiple_of_4"},
 		{},
-		{"ramza_arithmatician_arithmeticks_multiple_of_3"},
-		{"ramza_arithmatician_arithmeticks_exp"},
+		{"ramza_arithmetician_arithmeticks_multiple_of_3"},
+		{"ramza_arithmetician_arithmeticks_exp"},
 	},
 	{	-- Mime: Mimic|r|nLvl 1 - 100% Mana Cost|nLvl 2 - 90% Mana Cost|nLvl 3 - 80% Mana Cost|nLvl 4 - 70% Mana Cost|nLvl 5 - 60% Mana Cost|nLvl 6 - 50% Mana Cost|nLvl 7 - 40% Mana Cost|nLvl 8 - 20% Mana Cost|nMastered - |c00ff80000% Mana Cost
 		{"ramza_mime_mimic_100_mana_cost"},
@@ -574,6 +599,7 @@ CRamzaJob.tPrimaryAbilities = {
 		{"ramza_onion_knight_stat75"},
 	}
 }
+
 
 CRamzaJob.tOtherAbilities = {	
 	{	-- Squire
@@ -624,8 +650,8 @@ CRamzaJob.tOtherAbilities = {
 	{	-- Ninja
 		{}, {}, {"ramza_ninja_reflexes"}, {}, {"ramza_ninja_vanish"}, {}, {"ramza_ninja_dual_wield"}, {}, {}
 	},
-	{	-- Arithmatician
-		{}, {}, {"ramza_accrue_exp"}, {}, {"ramza_soulbind"}, {}, {"ramza_exp_boost"}, {}, {}
+	{	-- arithmetician
+		{}, {}, {"ramza_arithmetician_accrue_exp"}, {}, {"ramza_arithmetician_soulbind"}, {}, {"ramza_arithmetician_exp_boost"}, {}, {}
 	},
 	{	-- Mime
 		{}, {}, {}, {}, {}, {}, {}, {}, {}
@@ -638,8 +664,26 @@ CRamzaJob.tOtherAbilities = {
 	}
 }
 
-CRamzaJob.tJobAbilities = {}
+CRamzaJob.tOtherAbilityCastable = {
+	ramza_chemist_treasure_hunter = true,
+	ramza_white_mage_reraise = true,
+	ramza_black_mage_death = true,
+	ramza_time_mage_teleport = true,
+	ramza_orator_enlighten = true,
+	ramza_orator_intimidate = true,
+	ramza_summoner_lich = true,
+	ramza_summoner_odin = true,
+	ramza_geomancer_contortion = true,
+	ramza_geomancer_wind_blast = true	
+}
 
+CRamzaJob.tOtherAbilityHasToggleModifiers = {
+	ramza_squire_defend = true,
+	ramza_chemist_autopotion = true,
+	ramza_time_mage_mana_shield = true,
+	ramza_ninja_vanish = true,
+	ramza_dark_knight_vehemence = true
+}
 
 function CRamzaJob:GainJobPoint(iJobPoint)
 	local iPlayerID = self.hParent:GetOwner():GetPlayerID()
@@ -649,10 +693,7 @@ function CRamzaJob:GainJobPoint(iJobPoint)
 		self.tJobLevels[self.iCurrentJob] = self.tJobLevels[self.iCurrentJob]+1
 		if self.tJobLevelUnlocks[self.iCurrentJob] and self.tJobLevelUnlocks[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]] then -- Update unmet job requirements
 			for _, v in pairs(self.tJobLevelUnlocks[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]]) do
-				self.tChangeJobRequirements[v][self.iCurrentJob] = true				
-				--TODO: Update job requirement nettable				
-				
-				
+				self.tChangeJobRequirements[v][self.iCurrentJob] = true						
 				local bIsReachRequirement = true				
 				for __, u in pairs(self.tChangeJobRequirements[v]) do
 					bIsReachRequirement = bIsReachRequirement and u
@@ -691,12 +732,59 @@ end
 
 
 function CRamzaJob:LevelUpSkills()
+	--Level up passives
+	if self.iCurrentJob ~= RAMZA_JOB_MIME and self.iCurrentJob ~= RAMZA_JOB_ONION_KNIGHT then
+		for i = 1, 3 do
+			if self.tJobLevels[self.iCurrentJob] >= self.tJobAbilityBuses.tOtherAbilityBusRequirements[self.iCurrentJob][i] then
+				self.hParent:FindAbilityByName(self.tJobAbilityBuses.tOtherAbilityBuses[self.iCurrentJob][i]):SetLevel(1)
+			end
+		end
+		
+		if self.hParent.iMenuState == RAMZA_MENU_STATE_PRIMARY then
+			for i = 1, 4 do
+				if i+self.hParent.iPrimaryPointer <= #self.tJobAbilityBuses.tJobCommandBusRequirements[self.iCurrentJob] and self.tJobLevels[self.iCurrentJob] >= self.tJobAbilityBuses.tJobCommandBusRequirements[self.iCurrentJob][i+self.hParent.iPrimaryPointer] then
+					self.hParent:FindAbilityByName(self.tJobAbilityBuses.tJobCommandBuses[self.iCurrentJob][i+self.hParent.iPrimaryPointer]):SetLevel(1)
+				end
+			end
+		end		
+	end
+	
+	--Level up job command for archer, dragoon, ninja, arithmetician, mime, onion knight
+	for i = 1, 9 do
+		if (
+				self.iCurrentJob == RAMZA_JOB_ARCHER or 
+				self.iCurrentJob == RAMZA_JOB_ARITHMETICIAN or 
+				self.iCurrentJob == RAMZA_JOB_DRAGOON or 
+				self.iCurrentJob == RAMZA_JOB_NINJA or 
+				self.iCurrentJob == RAMZA_JOB_MIME or 
+				self.iCurrentJob == RAMZA_JOB_ONION_KNIGHT) and 
+			self.hParent:HasAbility(self.tJobCommands[self.iCurrentJob][i][1]) and 
+			i < self.tJobLevels[self.iCurrentJob] and 
+				(i < self.tJobLevels[self.iCurrentJob]-1 or 
+				self.tJobCommands[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]][1]) then
+			local sName = self.tJobCommands[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]][1] or self.tJobCommands[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]-1][1]
+			
+			self.hParent:RemoveAbility(self.tJobCommands[self.iCurrentJob][i][1])
+			if self.iCurrentJob == 20 or self.iCurrentJob == 18 then 
+				self.hParent:RemoveModifierByName("modifier_"..self.tJobCommands[self.iCurrentJob][i][1])
+			end
+			self.hParent:AddAbility(sName):SetLevel(1)		
+			if self.hParent.iMenuState == RAMZA_MENU_STATE_NORMAL then
+				self.hParent:FindAbilityByName(sName):SetHidden(false)
+			else	
+				self.hParent:FindAbilityByName(sName):SetHidden(true)
+				self.hParent.tNormalMenuState[1] = sName
+			end
+			break
+		end
+	end	
 end
 
 function CRamzaJob:New(tNewObject)
 	tNewObject.tJobPoints = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 	tNewObject.tJobLevels = {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 	tNewObject.tChangeJobRequirements = {}
+	tNewObject.tPassiveCooldownReadyTime = {}
 	for i = 1, 20 do
 		tNewObject.tChangeJobRequirements[i] = {}
 		for k, v in pairs(self.tRamzaChangeJobRequirements[i]) do
@@ -705,8 +793,7 @@ function CRamzaJob:New(tNewObject)
 	end	
 	tNewObject.iCurrentJob = RAMZA_JOB_SQUIRE
 	tNewObject.iSecondarySkill = 0
-	
-	
+	table.insert(self.tAllRamzas, tNewObject.hParent)
 	
 	setmetatable(tNewObject, {__index = self})
 	return tNewObject
@@ -731,9 +818,17 @@ function CRamzaJob:PrintCurrent()
 	print("Current job is"..self.tJobNames[self.iCurrentJob].."(level "..tostring(self.tJobLevels[self.iCurrentJob]).."), job point is "..tostring(self.tJobPoints[self.iCurrentJob]))
 end
 
+
 -- hJob = CRamzaJob:New()
 
 function CRamzaJob:Initialize()
+	self.tJobAbilityBuses = {}
+	self.tJobAbilities = {}
+	self.tJobLevelUnlocks = {}
+	self.tJobAbilityBuses.tJobCommandBuses = {}
+	self.tJobAbilityBuses.tJobCommandBusRequirements = {}
+	self.tJobAbilityBuses.tOtherAbilityBuses = {}
+	self.tJobAbilityBuses.tOtherAbilityBusRequirements = {}
 	for i = 1, 20 do
 		for k, v in pairs(self.tRamzaChangeJobRequirements[i]) do
 			self.tJobLevelUnlocks[k] = self.tJobLevelUnlocks[k] or {}
@@ -742,32 +837,71 @@ function CRamzaJob:Initialize()
 		end
 		
 		self.tJobAbilities[i] = {}
+		self.tJobAbilityBuses.tJobCommandBuses[i] = {}
+		self.tJobAbilityBuses.tJobCommandBusRequirements[i] = {}
+		self.tJobAbilityBuses.tOtherAbilityBuses[i] = {}
+		self.tJobAbilityBuses.tOtherAbilityBusRequirements[i] = {}
 		for j = 1,9 do
 			self.tJobAbilities[i][j] ={}
-			if #self.tPrimaryAbilities[i][j] > 0 then
-				for k = 1, #self.tPrimaryAbilities[i][j] do
-					table.insert(self.tJobAbilities[i][j], self.tPrimaryAbilities[i][j][k])
+			if #self.tJobCommands[i][j] > 0 then
+				for k = 1, #self.tJobCommands[i][j] do
+					table.insert(self.tJobAbilities[i][j], self.tJobCommands[i][j][k])
+					table.insert(self.tJobAbilityBuses.tJobCommandBuses[i], self.tJobCommands[i][j][k])
+					table.insert(self.tJobAbilityBuses.tJobCommandBusRequirements[i], j)
 				end
 			elseif #self.tOtherAbilities[i][j] > 0 then
 				for k = 1, #self.tOtherAbilities[i][j] do
 					table.insert(self.tJobAbilities[i][j], self.tOtherAbilities[i][j][k])
 				end
+				table.insert(self.tJobAbilityBuses.tOtherAbilityBuses[i], self.tOtherAbilities[i][j][1])				
+				table.insert(self.tJobAbilityBuses.tOtherAbilityBusRequirements[i], j)
 			end
 		end
 	end
+	self.tJobAbilityBuses.tOtherAbilityBuses[18] = {"ramza_empty_2", "ramza_empty_3", "ramza_empty_4"}
+	self.tJobAbilityBuses.tJobCommandBusRequirements[18] = {10, 10, 10}
+	self.tJobAbilityBuses.tOtherAbilityBuses[20] = {"ramza_empty_2", "ramza_empty_3", "ramza_empty_4"}
+	self.tJobAbilityBuses.tJobCommandBusRequirements[20] = {10, 10, 10}
+	
+	self.tAllRamzas = {}
+	Convars:RegisterCommand( "ramza_max_level", Dynamic_Wrap(CRamzaJob, 'RamzaLevelMax'), "Give Ramza all job and levels", FCVAR_CHEAT )
 end
+
+function CRamzaJob:RamzaLevelMax()
+	for i = 1, #self.tAllRamzas do		
+		for j = 1, 20 do
+			self.tAllRamzas[i].hRamzaJob.tJobPoints[j] = 4000
+			self.tAllRamzas[i].hRamzaJob.tJobLevels[j] = 9
+			self.tAllRamzas[i].hRamzaJob:LevelUpSkills()
+		end
+		self.tAllRamzas[i].hRamzaJob.tJobPoints[RAMZA_JOB_DARK_KNIGHT] = 0
+		self.tAllRamzas[i].hRamzaJob.tJobLevels[RAMZA_JOB_DARK_KNIGHT] = 1
+		
+		CustomNetTables:SetTableValue("ramza_job_level", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), self.tAllRamzas[i].hRamzaJob.tJobLevels)
+		CustomNetTables:SetTableValue("ramza_job_requirement", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), self.tAllRamzas[i].hRamzaJob.tChangeJobRequirements)
+		CustomNetTables:SetTableValue("ramza_current_job", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), {self.tAllRamzas[i].hRamzaJob.iCurrentJob})
+		CustomNetTables:SetTableValue("ramza_current_secondary_skill", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), {self.tAllRamzas[i].hRamzaJob.iSecondarySkill})
+	end
+end
+
 
 function RamzaJobChangeListener(eventSourceIndex, args)
 	local hRamza = PlayerResource:GetPlayer(tonumber(args.PlayerID)):GetAssignedHero()
 	hRamza.hRamzaJob.iChangeJobState = tonumber(args.iState)
 	hRamza.hRamzaJob.iJobToGo = tonumber(args.iJob)
-	if hRamza:HasScepter() or hRamza:GetHealthPercent() == 100 and hRamza:GetManaPercent() == 100 then
+	if (hRamza:HasScepter() or hRamza:GetHealthPercent() == 100 and hRamza:GetManaPercent() == 100) and not hRamza:HasModifier("modifier_ramza_dragoon_jump") then
 		hRamza.hRamzaJob:ChangeJob()
+	elseif hRamza:HasModifier("modifier_ramza_dragoon_jump") then
+		if tonumber(args.iState) == SELECT_JOB then
+			Notifications:Bottom(tonumber(args.PlayerID), {text = "#error_ramza_cant_change_job_jump", duration = 2, style = {color = "red"}})
+		else
+			Notifications:Bottom(tonumber(args.PlayerID), {text = "#error_ramza_cant_change_secondary_skill_jump", duration = 2, style = {color = "red"}})
+		end
 	else
 		if tonumber(args.iState) == SELECT_JOB then
-			Notifications:Bottom(tonumber(args.PlayerID), {text = "#error_ramza_change_job", duration = 2, style = {color = "red"}})
+			Notifications:Bottom(tonumber(args.PlayerID), {text = "#error_ramza_cant_change_job_full", duration = 2, style = {color = "red"}})
 		else
-			Notifications:Bottom(tonumber(args.PlayerID), {text = "#error_ramza_change_secondary_skill", duration = 2, style = {color = "red"}})
+			Notifications:Bottom(tonumber(args.PlayerID), {text = "#error_ramza_cant_change_secondary_skill_full", duration = 2, style = {color = "red"}})
 		end
 		
 	end
@@ -777,15 +911,105 @@ function CRamzaJob:ChangeJob()
 	local iPlayerID = self.hParent:GetOwner():GetPlayerID()	
 	if self.iChangeJobState == SELECT_JOB then
 		
+		if self.hParent:GetAbilityByIndex(5):GetName() == 'ramza_go_back_lua' then
+			self.hParent:FindAbilityByName('ramza_go_back_lua'):CastAbility()
+		end
+		
+		self.hParent:GetAbilityByIndex(1):SetActivated(true)
 		self:ChangeStat()
-		
-		if self.iCurrentJob == self.iSecondarySkill then -- TODO: Forget secondary skills here
-			self.iSecondarySkill = 0
-			CustomNetTables:SetTableValue("ramza_current_secondary_skill", tostring(iPlayerID), {self.iSecondarySkill})
-		end		
-		
+		self:ChangeModel()		
 		self.iCurrentJob = self.iJobToGo
 		
+		--remove secondary skill if it's job command of current job or current job can have no secondary skill
+		if self.iCurrentJob == self.iSecondarySkill or self.iCurrentJob == RAMZA_JOB_MIME or self.iCurrentJob == RAMZA_JOB_ONION_KNIGHT then 
+		
+			self.iSecondarySkill = 0
+			CustomNetTables:SetTableValue("ramza_current_secondary_skill", tostring(iPlayerID), {self.iSecondarySkill})
+			local sName = self.hParent:GetAbilityByIndex(1):GetName()
+			local bHasAdded = false
+			if string.sub(sName, 1, 16) == "ramza_archer_aim" or string.sub(sName, 1, 17) == "ramza_ninja_throw" then
+				self.hParent:AddAbility("ramza_select_secondary_skill_lua"):SetLevel(1)
+				self.hParent:SwapAbilities(sName, "ramza_select_secondary_skill_lua", true, true)
+				self.hParent:FindAbilityByName(sName):SetHidden(true)
+				bHasAdded = true
+			else
+				self.hParent:RemoveAbility(sName)
+			end 			
+			
+			if not bHasAdded then
+				self.hParent:AddAbility("ramza_select_secondary_skill_lua"):SetLevel(1)
+			end
+			
+			if self.iCurrentJob == RAMZA_JOB_MIME or self.iCurrentJob == RAMZA_JOB_ONION_KNIGHT then
+				self.hParent:FindAbilityByName("ramza_select_secondary_skill_lua"):SetActivated(false)
+			end
+		end
+		
+		-- change job command
+		local sName1
+		if 	(self.iCurrentJob == RAMZA_JOB_ARCHER or 
+				self.iCurrentJob == RAMZA_JOB_ARITHMETICIAN or 
+				self.iCurrentJob == RAMZA_JOB_DRAGOON or 
+				self.iCurrentJob == RAMZA_JOB_NINJA or 
+				self.iCurrentJob == RAMZA_JOB_MIME or 
+				self.iCurrentJob == RAMZA_JOB_ONION_KNIGHT) then
+			sName1 = self.tJobCommands[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]][1] or self.tJobCommands[self.iCurrentJob][self.tJobLevels[self.iCurrentJob]-1][1] 
+		else
+			sName1 = self.tJobNames[self.iCurrentJob]..'_JC'
+		end
+		local sName0 = self.hParent:GetAbilityByIndex(0):GetName()
+		
+		if (string.sub(sName0, 1, 16) == "ramza_archer_aim" or string.sub(sName0, 1, 17) == "ramza_ninja_throw") and  (self.hParent:FindAbilityByName(sName1)) then		
+			self.hParent:FindAbilityByName(sName1):SetHidden(false)			
+			self.hParent:SwapAbilities(sName0, sName1, true, true)
+			self.hParent:FindAbilityByName(sName0):SetHidden(true)
+		elseif (string.sub(sName0, 1, 16) == "ramza_archer_aim" or string.sub(sName0, 1, 17) == "ramza_ninja_throw") and  (not self.hParent:FindAbilityByName(sName1)) then
+			self.hParent:AddAbility(sName1):SetLevel(1)
+			self.hParent:SwapAbilities(sName0, sName1, true, true)
+			self.hParent:FindAbilityByName(sName0):SetHidden(true)
+		elseif (string.sub(sName0, 1, 16) ~= "ramza_archer_aim" or string.sub(sName0, 1, 17) ~= "ramza_ninja_throw") and  (self.hParent:FindAbilityByName(sName1)) then		
+			self.hParent:FindAbilityByName(sName1):SetHidden(false)
+			self.hParent:SwapAbilities(sName0, sName1, true, true)
+			self.hParent:RemoveAbility(sName0)
+		else		
+			self.hParent:RemoveAbility(sName0)
+			self.hParent:AddAbility(sName1):SetLevel(1)
+		end
+		
+		if string.sub(sName0, 7, 18) == "onion_knight" then
+			self.hParent:RemoveModifierByName("modifier_"..sName0)
+		end
+		
+		if string.sub(sName0, 7, 10) == "mime" then
+			self.hParent:RemoveModifierByName("modifier_"..sName0)
+		end
+
+		-- change other abilities
+		for i = 1, 3 do
+			local sName = self.hParent:GetAbilityByIndex(i+1):GetName()
+			-- keep cooldown state
+			if sName == "ramza_dragoon_dragonheart" then
+				if self.hParent:FindAbilityByName(sName):IsCooldownReady() then
+					self.tPassiveCooldownReadyTime[sName] = Time()
+				else
+					self.tPassiveCooldownReadyTime[sName] = Time()+self.hParent:FindAbilityByName(sName):GetCooldownTimeRemaining()
+				end
+			end
+			self.hParent:RemoveAbility(sName)			
+			if self.tOtherAbilityHasToggleModifiers[sName] then 
+				self.hParent:RemoveModifierByName('modifier_'..sName)
+			elseif not self.tOtherAbilityCastable[sName] then
+				self.hParent:RemoveModifierByName('modifier_'..sName)				
+			end
+			local sName1 = self.tJobAbilityBuses.tOtherAbilityBuses[self.iCurrentJob][i]
+			self.hParent:AddAbility(sName1)			
+			if (sName1 == "ramza_dragoon_dragonheart") and self.tPassiveCooldownReadyTime[sName1] and self.tPassiveCooldownReadyTime[sName1] > Time() then
+				self.hParent:FindAbilityByName(sName1):StartCooldown(self.tPassiveCooldownReadyTime[sName1] - Time())
+			end
+		end
+		
+		self:LevelUpSkills()
+		-- renew indicator
 		if (self.tJobLevels[self.iCurrentJob] < 9) then
 			if self.hParent:FindModifierByName("modifier_ramza_job_mastered") then
 				self.hParent:RemoveModifierByName("modifier_ramza_job_mastered")
@@ -802,12 +1026,46 @@ function CRamzaJob:ChangeJob()
 			end
 		end
 		
+		-- tell panorama
 		print("job change to", self.tJobNames[self.iCurrentJob])
 		CustomNetTables:SetTableValue("ramza_current_job", tostring(iPlayerID), {self.iCurrentJob})		
 		CustomGameEventManager:Send_ServerToPlayer( self.hParent:GetOwner(), "ramza_select_job", nil )
-	else
+	else	
+		if self.hParent:GetAbilityByIndex(5):GetName() == 'ramza_go_back_lua' then
+			self.hParent:FindAbilityByName('ramza_go_back_lua'):CastAbility()
+		end
+		
 		self.iSecondarySkill = self.iJobToGo
-		print("secondary skill change to", self.tJobNames[self.iSecondarySkill])
+		
+		local sName1
+		if 	(self.iSecondarySkill == RAMZA_JOB_ARCHER or 
+				self.iSecondarySkill == RAMZA_JOB_ARITHMETICIAN or 
+				self.iSecondarySkill == RAMZA_JOB_DRAGOON or 
+				self.iSecondarySkill == RAMZA_JOB_NINJA) then
+			sName1 = self.tJobCommands[self.iSecondarySkill][self.tJobLevels[self.iSecondarySkill]][1] or self.tJobCommands[self.iSecondarySkill][self.tJobLevels[self.iSecondarySkill]-1][1] 
+		else
+			sName1 = self.tJobNames[self.iSecondarySkill]..'_JC'
+		end
+		
+		local sName0 = self.hParent:GetAbilityByIndex(1):GetName()		
+		
+		if (string.sub(sName0, 1, 16) == "ramza_archer_aim" or string.sub(sName0, 1, 17) == "ramza_ninja_throw") and self.hParent:FindAbilityByName(sName1) then		
+			self.hParent:FindAbilityByName(sName1):SetHidden(false)			
+			self.hParent:SwapAbilities(sName0, sName1, true, true)
+			self.hParent:FindAbilityByName(sName0):SetHidden(true)
+		elseif (string.sub(sName0, 1, 16) == "ramza_archer_aim" or string.sub(sName0, 1, 17) == "ramza_ninja_throw") and not self.hParent:FindAbilityByName(sName1) then
+			self.hParent:AddAbility(sName1):SetLevel(1)
+			self.hParent:SwapAbilities(sName0, sName1, true, true)
+			self.hParent:FindAbilityByName(sName0):SetHidden(true)
+		elseif (string.sub(sName0, 1, 16) ~= "ramza_archer_aim" or string.sub(sName0, 1, 17) ~= "ramza_ninja_throw") and self.hParent:FindAbilityByName(sName1) then		
+			self.hParent:FindAbilityByName(sName1):SetHidden(false)
+			self.hParent:SwapAbilities(sName0, sName1, true, true)
+			self.hParent:RemoveAbility(sName0)
+		else		
+			self.hParent:RemoveAbility(sName0)
+			self.hParent:AddAbility(sName1):SetLevel(1)
+		end
+
 		CustomNetTables:SetTableValue("ramza_current_secondary_skill", tostring(iPlayerID), {self.iSecondarySkill})
 		CustomGameEventManager:Send_ServerToPlayer( self.hParent:GetOwner(), "ramza_select_secondary_skill", nil )
 	end
@@ -822,7 +1080,8 @@ function CRamzaJob:ChangeStat()
 		self.hParent:SetRangedProjectileName(self.tJobStats[self.iJobToGo].attack_projectile)	
 	end
 	self.hParent:FindModifierByName("modifier_ramza_job_manager").iBonusAttackRange = self.tJobStats[self.iJobToGo].attack_range-150;
-
+	self.hParent:FindModifierByName("modifier_ramza_job_manager"):ForceRefresh()
+	self.hParent:SetAcquisitionRange(self.tJobStats[self.iJobToGo].attack_range+200)
 	self.hParent:SetPhysicalArmorBaseValue(self.tJobStats[self.iJobToGo].armor)
 	local fDiffStr = self.tJobStats[self.iJobToGo].base_str-self.tJobStats[self.iCurrentJob].base_str+(self.hParent:GetLevel()-1)*(self.tJobStats[self.iJobToGo].gain_str-self.tJobStats[self.iCurrentJob].gain_str)
 	local fDiffAgi = self.tJobStats[self.iJobToGo].base_agi-self.tJobStats[self.iCurrentJob].base_agi+(self.hParent:GetLevel()-1)*(self.tJobStats[self.iJobToGo].gain_agi-self.tJobStats[self.iCurrentJob].gain_agi)
@@ -830,10 +1089,21 @@ function CRamzaJob:ChangeStat()
 	self.hParent:ModifyStrength(fDiffStr)
 	self.hParent:ModifyAgility(fDiffAgi)
 	self.hParent:ModifyIntellect(fDiffInt)
-	self.hParent:FindModifierByName("modifier_attribute_growth_str").fGrowth = self.tJobStats[self.iJobToGo].gain_str
-	self.hParent:FindModifierByName("modifier_attribute_growth_agi").fGrowth = self.tJobStats[self.iJobToGo].gain_agi
-	self.hParent:FindModifierByName("modifier_attribute_growth_int").fGrowth = self.tJobStats[self.iJobToGo].gain_int
+	self.hParent:FindModifierByName("modifier_ramza_job_manager").fStrGrowth = self.tJobStats[self.iJobToGo].gain_str
+	self.hParent:FindModifierByName("modifier_ramza_job_manager").fAgiGrowth = self.tJobStats[self.iJobToGo].gain_agi
+	self.hParent:FindModifierByName("modifier_ramza_job_manager").fIntGrowth = self.tJobStats[self.iJobToGo].gain_int
 	self.hParent:CalculateStatBonus()
+end
+
+
+function CRamzaJob:ChangeModel()
+	if self.iJobToGo == RAMZA_JOB_SAMURAI then
+		Timers:CreateTimer(0.04, function () self.hParent:SetMaterialGroup("1") end)
+	else
+		Timers:CreateTimer(0.04, function () self.hParent:SetMaterialGroup("0") end)
+	end
+	self.hParent:SetModel(self.tJobStats[self.iJobToGo].model)
+	self.hParent:SetOriginalModel(self.tJobStats[self.iJobToGo].model)
 end
 
 CRamzaJob:Initialize()
@@ -844,5 +1114,6 @@ LinkLuaModifier("modifier_ramza_job_manager", "heroes/ramza/ramza_utility_modifi
 LinkLuaModifier("modifier_ramza_job_level", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ramza_job_mastered", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ramza_job_point", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_black_mage_black_magicks_firaga", "heroes/ramza/ramza_black_mage_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 
 CustomGameEventManager:RegisterListener("ramza_change_job_client_to_server", RamzaJobChangeListener)

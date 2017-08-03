@@ -31,18 +31,23 @@ function modifier_fluid_engineer_bowel_hydraulics:DeclareFunctions()
 end
 
 function modifier_fluid_engineer_bowel_hydraulics:GetModifierMoveSpeed_Max()
-	return self:GetAbility():GetSpecialValueFor("speed")
+	self.iSpeed = self.iSpeed or self:GetAbility():GetSpecialValueFor("speed")
+	return self.iSpeed
 end
 
 function modifier_fluid_engineer_bowel_hydraulics:GetModifierMoveSpeed_Limit()
-	return self:GetAbility():GetSpecialValueFor("speed")
+	self.iSpeed = self.iSpeed or self:GetAbility():GetSpecialValueFor("speed")
+	return self.iSpeed
 end
 
 function modifier_fluid_engineer_bowel_hydraulics:GetModifierMoveSpeed_Absolute()
-	return self:GetAbility():GetSpecialValueFor("speed")
+	self.iSpeed = self.iSpeed or self:GetAbility():GetSpecialValueFor("speed")
+	return self.iSpeed
 end
 
 function modifier_fluid_engineer_bowel_hydraulics:OnCreated()
+	self.iDOTRadius = self:GetAbility():GetSpecialValueFor("dot_radius")
+	self.iExplosionRadius = self:GetAbility():GetSpecialValueFor("explosion_radius")
 	self:StartIntervalThink(1)
 end
 
@@ -51,8 +56,8 @@ function modifier_fluid_engineer_bowel_hydraulics:OnIntervalThink()
 	local hParent = self:GetParent()
 	local hCaster = self:GetCaster()
 	if hParent:FindModifierByName("modifier_fountain_aura_buff") then self:Destroy() end
-	
-	local tUnits = FindUnitsInRadius(hCaster:GetOwner():GetTeamNumber(), hParent:GetAbsOrigin(), nil, self:GetAbility():GetSpecialValueFor("dot_radius"), DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+
+	local tUnits = FindUnitsInRadius(hCaster:GetOwner():GetTeamNumber(), hParent:GetAbsOrigin(), nil, self.iDOTRadius, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	local damageTable = {
 		attacker = hCaster,
 		damage_type = DAMAGE_TYPE_PURE,
@@ -82,7 +87,7 @@ function modifier_fluid_engineer_bowel_hydraulics:OnDestroy()
 	local hParent = self:GetParent()
 	local hCaster = self:GetCaster()
 	if hParent:FindModifierByName("modifier_fountain_aura_buff") then return end
-	local tUnits = FindUnitsInRadius(hCaster:GetOwner():GetTeamNumber(), hParent:GetAbsOrigin(), nil, self:GetAbility():GetSpecialValueFor("explosion_radius"), DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+	local tUnits = FindUnitsInRadius(hCaster:GetOwner():GetTeamNumber(), hParent:GetAbsOrigin(), nil, self.iExplosionRadius, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	local damageTable = {
 		attacker = hCaster,
 		damage_type = DAMAGE_TYPE_PURE,

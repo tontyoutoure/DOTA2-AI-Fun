@@ -1,7 +1,9 @@
-LinkLuaModifier("modifier_ramza_archer_concentration_immune", "heroes/ramza/ramza_archer_modifiers", LUA_MODIFIER_MOTION_NONE)LinkLuaModifier("modifier_ramza_archer_archers_bane", "heroes/ramza/ramza_archer_modifiers", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_archer_concentration_immune", "heroes/ramza/ramza_archer_modifiers", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_archer_archers_bane", "heroes/ramza/ramza_archer_modifiers", LUA_MODIFIER_MOTION_NONE)
 
 function ramza_archer_aim_OnSpellStart(self)
 	local hCaster = self:GetCaster()
+	self.hTarget = self:GetCursorTarget()
 	if hCaster:FindModifierByName("modifier_ramza_archer_concentration") then
 		hCaster:AddNewModifier(hCaster, hCaster:FindAbilityByName("ramza_archer_concentration"), "modifier_ramza_archer_concentration_immune", {Duration = self:GetSpecialValueFor("maximum_channel_time")})
 	end
@@ -10,7 +12,7 @@ end
 function ramza_archer_aim_OnChannelFinish(self)
 		print(self:GetCursorTarget())
 		ProjectileManager:CreateTrackingProjectile({
-		Target = self:GetCursorTarget(),
+		Target = self.hTarget,
 		Source = self:GetCaster(),
 		Ability = self,
 		EffectName = "particles/econ/items/clinkz/clinkz_maraxiform/clinkz_maraxiform_searing_arrow.vpcf",
@@ -20,6 +22,7 @@ function ramza_archer_aim_OnChannelFinish(self)
 		bVisibleToEnemies = true,
 		ExtraData = {damage = self:GetSpecialValueFor("damage_per_half_sec")*math.floor((GameRules:GetGameTime()-self:GetChannelStartTime())*2), victim = self:GetCursorTarget()}
 	})
+	self:GetCaster():RemoveModifierByName("modifier_ramza_archer_concentration_immune")
 	self:GetCaster():StartGesture(ACT_DOTA_ATTACK)
 end
 

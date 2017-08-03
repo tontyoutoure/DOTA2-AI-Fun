@@ -13,14 +13,17 @@ function modifier_item_fun_sprint_shoes_lua:DeclareFunctions()
 end
 
 function modifier_item_fun_sprint_shoes_lua:GetModifierMoveSpeed_Max()
+	if IsClient() then return 650 end
 	return self:GetAbility():GetSpecialValueFor("speed")
 end
 
 function modifier_item_fun_sprint_shoes_lua:GetModifierMoveSpeed_Limit()
+	if IsClient() then return 650 end
 	return self:GetAbility():GetSpecialValueFor("speed")
 end
 
 function modifier_item_fun_sprint_shoes_lua:GetModifierMoveSpeed_Absolute()
+	if IsClient() then return 650 end
 	return self:GetAbility():GetSpecialValueFor("speed")
 end
 

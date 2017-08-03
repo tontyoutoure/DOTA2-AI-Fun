@@ -46,10 +46,22 @@ LuaConsole.OnSendToConsoleActivate = function() {
 	 $("#CommandEntry").SetCursorOffset(21);
 }
 
+LuaConsole.OnSelectHeroActivate = function() {
+	 $("#CommandEntry").text = "PlayerResource:GetPlayer(0):GetAssignedHero()";
+	 $("#CommandEntry").SetFocus();
+	 $("#CommandEntry").SetCursorOffset(45);
+}
+
 LuaConsole.OnSelectAllActive = function() {	
 	$("#CommandEntry").SetFocus();
 	$("#CommandEntry").SelectAll();
 	$.Msg($("#CommandEntry").inputnamespace)
+}
+
+LuaConsole.OnRamzaLevelMax = function() {
+	 $("#CommandEntry").text = "CRamzaJob:RamzaLevelMax()";
+	 $("#CommandEntry").SetFocus();
+	 $("#CommandEntry").SetCursorOffset(35);
 }
 
 LuaConsole.OnCleanInputActive = function() {

@@ -30,6 +30,12 @@
 			</Button>
 			<Button id="SendToConsoleButton" class="RightButton" onactivate="LuaConsole.OnSendToConsoleActivate();">
 				<Label text="Console Command" id="SendToConsoleLabel" class="ButtonLabel"/>
+			</Button>			
+			<Button id="SelectHeroButton" class="RightButton" onactivate="LuaConsole.OnSelectHeroActivate();">
+				<Label text="Select Hero" id="SelectHeroLabel" class="ButtonLabel"/>
+			</Button>			
+			<Button id="RamzaLevelMaxButton" class="RightButton" onactivate="LuaConsole.OnRamzaLevelMax();">
+				<Label text="Ramza Level Max" id="RamzaLevelMaxLabel" class="ButtonLabel"/>
 			</Button>
 		</Panel>
 	</Panel>

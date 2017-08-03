@@ -2,7 +2,7 @@ RAMZA_ATTACK_HERO_JOB_POINT = 5
 RAMZA_ATTACK_BUILDING_JOB_POINT = 5
 RAMZA_ATTACK_ANCIENT_JOB_POINT = 5
 RAMZA_ATTACK_CREEP_JOB_POINT = 1
-	RAMZA_USE_ABILITY_JOB_POINT = 50
+RAMZA_USE_ABILITY_JOB_POINT = 50
 RAMZA_KILL_BUILDING_JOB_POINT = 50
 RAMZA_KILL_HERO_PER_LEVEL_JOB_POINT = 50
 RAMZA_KILL_ANCIENT_JOB_POINT = 50
@@ -14,14 +14,37 @@ local tBannedAbilities = {
 	item_ring_of_aquila = true,
 	item_ring_of_basilius = true,
 	item_radiance = true,
+	ramza_open_stats_lua = true,
+	ramza_select_job_lua = true,
+	ramza_select_secondary_skill_lua = true,
+	ramza_next_page_lua = true,
+	ramza_go_back_lua = true,
+	ramza_job_squire_JC = true,
+	ramza_job_chemist_JC = true,
+	ramza_job_knight_JC = true,
+	ramza_job_white_mage_JC = true,
+	ramza_job_black_mage_JC = true,
+	ramza_job_monk_JC = true,
+	ramza_job_thief_JC = true,
+	ramza_job_mystic_JC = true,
+	ramza_job_time_mage_JC = true,
+	ramza_job_orator_JC = true,
+	ramza_job_summoner_JC = true,
+	ramza_job_geomancer_JC = true,
+	ramza_job_samurai_JC = true,
+	ramza_job_dark_knight_JC = true,
+	ramza_squire_defend = true,
+	ramza_chemist_autopotion = true,
+	ramza_time_mage_mana_shield = true,
+	ramza_ninja_vanish = true,
+	ramza_dark_knight_vehemence = true
 }
-
 
 modifier_attribute_growth_str = class({})
 
 function modifier_attribute_growth_str:IsBuff() return true end
 
-function modifier_attribute_growth_str:IsHidden() return false end
+function modifier_attribute_growth_str:IsHidden() return true end
 
 function modifier_attribute_growth_str:IsPurgable() return true end
 
@@ -29,9 +52,10 @@ function modifier_attribute_growth_str:RemoveOnDeath() return false end
 
 function modifier_attribute_growth_str:DeclareFunctions()
 	return {
-		MODIFIER_PROPERTY_TOOLTIP		
+		MODIFIER_PROPERTY_TOOLTIP
 	}
 end
+
 
 function modifier_attribute_growth_str:OnTooltip()
 	return self.fGrowth
@@ -48,7 +72,7 @@ modifier_attribute_growth_agi = class({})
 
 function modifier_attribute_growth_agi:IsBuff() return true end
 
-function modifier_attribute_growth_agi:IsHidden() return false end
+function modifier_attribute_growth_agi:IsHidden() return true end
 
 function modifier_attribute_growth_agi:IsPurgable() return true end
 
@@ -75,7 +99,7 @@ modifier_attribute_growth_int = class({})
 
 function modifier_attribute_growth_int:IsBuff() return true end
 
-function modifier_attribute_growth_int:IsHidden() return false end
+function modifier_attribute_growth_int:IsHidden() return true end
 
 function modifier_attribute_growth_int:IsPurgable() return true end
 
@@ -115,10 +139,9 @@ function modifier_ramza_job_manager:DeclareFunctions()
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_EVENT_ON_ABILITY_EXECUTED,
 		MODIFIER_EVENT_ON_TAKEDAMAGE_KILLCREDIT,
-		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS
 	}
 end
-
 
 
 function modifier_ramza_job_manager:OnCreated()
@@ -126,9 +149,11 @@ function modifier_ramza_job_manager:OnCreated()
 	local hParent = self:GetParent()
 	hParent.hRamzaJob = CRamzaJob:New({hParent=hParent})
 	hParent.hRamzaJob:InitNetTable()
+	-- growth of squire
+	self.fIntGrowth = 2.5
+	self.fStrGrowth = 2.5
+	self.fAgiGrowth = 2.5
 end
-
-
 
 function modifier_ramza_job_manager:OnAttackLanded(keys)
 	if keys.attacker ~= self:GetParent() then return end

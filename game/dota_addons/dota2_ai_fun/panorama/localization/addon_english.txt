@@ -21,6 +21,9 @@
 	//
 	// ////////////////////////////////////////////////////////////////////////
 
-	"error_ramza_change_job"  "Can only change jobs when at full HP and MP."
-	"error_ramza_change_secondary_skill"  "Can only reset secondary skill when at full HP and MP."
+	"error_ramza_cant_change_job_full"  "Can only change jobs when at full HP and MP."
+	"error_ramza_cant_change_secondary_skill_full"  "Can only reset secondary skill when at full HP and MP."
+	
+	"error_ramza_cant_change_job_jump"  "Cannot change job while jumping"
+	"error_ramza_cant_change_secondary_skill_jump"  "Cannot change secondary skill while jumping"
 }
