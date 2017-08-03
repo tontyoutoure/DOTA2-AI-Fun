@@ -344,3 +344,20 @@
 	horizontal-align:middle;
 	font-size:30px;
 }
+
+#RamzaPortraitContainer
+{
+	visibility:collapse;
+	height:144px;	
+	width:100px;
+	background-color:#FF000020;
+	vertical-align:bottom;
+	horizontal-align:center;
+	margin-right:700px;
+}
+
+#RamzaPortrait
+{
+	height:100%;
+	width:100%;
+}

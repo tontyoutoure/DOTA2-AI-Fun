@@ -16,6 +16,7 @@ end
 require('internal/util')
 require('settings')
 require('events')
+require('libraries/wearable_manager')
 
 -- Heroes need to be stripped
 GameMode.tStripperList = {"npc_dota_hero_shadow_demon"}

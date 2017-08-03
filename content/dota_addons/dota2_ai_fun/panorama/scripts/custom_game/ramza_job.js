@@ -384,3 +384,4 @@ function RamzaSelectSecondarySkillListener() {
 
 GameEvents.Subscribe( "ramza_select_job", RamzaSelectJobListener);
 GameEvents.Subscribe( "ramza_select_secondary_skill", RamzaSelectSecondarySkillListener);
+$.Msg($("#RamzaPortrait")) 

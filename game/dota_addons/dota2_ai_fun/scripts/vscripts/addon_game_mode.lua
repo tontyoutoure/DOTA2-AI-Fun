@@ -6,9 +6,14 @@ require('gamemode')
 
 -- If something was being created via script such as a new npc, it would need to be precached here
 function Precache( context )
+
+	PrecacheModel("models/heroes/invoker/invoker_head.vmdl", context)
+	PrecacheModel("models/items/invoker/magus_apex/magus_apex.vmdl", context)
+
 	PrecacheUnitByNameSync("npc_dota_hero_obsidian_destroyer", context)
 	PrecacheUnitByNameSync("npc_dota_hero_omniknight", context)
 	PrecacheUnitByNameSync("npc_dota_hero_bloodseeker", context)
+	
 	
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_faceless_void.vsndevts", context)
@@ -96,6 +101,7 @@ function Precache( context )
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_base_attack.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/necrolyte/necronub_base_attack/necrolyte_base_attack_ka.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bane/bane_projectile.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_base_attack.vpcf", context)
 	
 	PrecacheResource("particle", "particles/econ/items/clinkz/clinkz_maraxiform/clinkz_maraxiform_searing_arrow.vpcf", context)
 	

@@ -92,6 +92,7 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
+		model = "models/heroes/dragon_knight/dragon_knight.vmdl",
 		move_speed = 300,
 	},
 	{	--Chemist
@@ -105,6 +106,7 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 600,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
+		model = "models/heroes/sniper/sniper.vmdl",
 		move_speed = 280,
 	},
 	{	--Knight
@@ -118,6 +120,7 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
+		model = "models/heroes/dragon_knight/dragon_knight.vmdl",
 		move_speed = 300,
 	},
 	{	--Archer
@@ -132,6 +135,7 @@ CRamzaJob.tJobStats = {
 		attack_range = 625,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
 		attack_projectile = "particles/units/heroes/hero_clinkz/clinkz_base_attack.vpcf",
+		model = "models/heroes/clinkz/clinkz.vmdl",
 		move_speed = 310,
 	},
 	{	-- White Mage
@@ -146,6 +150,7 @@ CRamzaJob.tJobStats = {
 		attack_range = 550,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
 		attack_projectile = "particles/units/heroes/hero_keeper_of_the_light/keeper_base_attack.vpcf",
+		model = "models/heroes/invoker/invoker.vmdl",
 		move_speed = 290,
 	},
 	{	-- Black Mage
@@ -160,6 +165,7 @@ CRamzaJob.tJobStats = {
 		attack_range = 500,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
 		attack_projectile = "particles/units/heroes/hero_lina/lina_base_attack.vpcf",
+		model = "models/heroes/invoker/invoker.vmdl",
 		move_speed = 300,
 	},
 	{	--Monk
@@ -173,6 +179,7 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
+		model = "models/heroes/blood_seeker/blood_seeker.vmdl",
 		move_speed = 300,
 	},
 	{	--Thief
@@ -186,6 +193,7 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
+		model = "models/heroes/rikimaru/rikimaru.vmdl",
 		move_speed = 310,
 	},
 	{	--Mystic
@@ -199,7 +207,8 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 575,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
-		attack_projectile = "particles/units/heroes/hero_shadowshaman/shadowshaman_base_attack.vpcf",
+		attack_projectile = "particles/units/heroes/hero_oracle/oracle_base_attack.vpcf",
+		model = "models/heroes/oracle/oracle.vmdl",
 		move_speed = 285,
 	},
 	{	--Time Mage
@@ -214,6 +223,7 @@ CRamzaJob.tJobStats = {
 		attack_range = 500,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
 		attack_projectile = "particles/units/heroes/hero_silencer/silencer_base_attack.vpcf",
+		model = "models/heroes/silencer/silencer.vmdl",
 		move_speed = 295,
 	},
 	{	--Orator
@@ -227,7 +237,8 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 400,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
-		attack_projectile = "particles/econ/items/rubick/rubick_staff_wandering/rubick_base_attack_whset.vpcf",
+		attack_projectile = "particles/units/heroes/hero_shadowshaman/shadowshaman_base_attack.vpcf",
+		model = "models/heroes/shadowshaman/shadowshaman.vmdl",
 		move_speed = 305,
 	},
 	{	--Summoner
@@ -242,6 +253,7 @@ CRamzaJob.tJobStats = {
 		attack_range = 600,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
 		attack_projectile = "particles/units/heroes/hero_keeper_of_the_light/keeper_base_attack.vpcf",
+		model = "models/heroes/keeper_of_the_light/keeper_of_the_light.vmdl",
 		move_speed = 300,
 	},
 	{	--Geomancer
@@ -256,6 +268,7 @@ CRamzaJob.tJobStats = {
 		attack_range = 500,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
 		attack_projectile = "particles/units/heroes/hero_invoker/invoker_base_attack.vpcf",
+		model = "models/heroes/warlock/warlock.vmdl",
 		move_speed = 310,
 	},
 	{	--Dragoon
@@ -269,6 +282,7 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
+		model = "models/heroes/phantom_lancer/phantom_lancer.vmdl",
 		move_speed = 320,
 	},
 	{	--Samurai
@@ -282,6 +296,8 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
+		model = "models/heroes/juggernaut/juggernaut_arcana.vmdl",
+		model_material_group = 1,
 		move_speed = 315,
 	},
 	{	--Ninja
@@ -295,6 +311,7 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
+		model = "models/heroes/bounty_hunter/bounty_hunter.vmdl",
 		move_speed = 325,
 	},
 	{	--arithmetician
@@ -308,7 +325,8 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 700,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
-		attack_projectile = "particles/econ/items/necrolyte/necronub_base_attack/necrolyte_base_attack_ka.vpcf",
+		attack_projectile = "particles/econ/items/rubick/rubick_staff_wandering/rubick_base_attack_whset.vpcf",
+		model = "models/heroes/rubick/rubick.vmdl",
 		move_speed = 295,
 	},
 	{	--Mime
@@ -323,6 +341,7 @@ CRamzaJob.tJobStats = {
 		attack_range = 600,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
 		attack_projectile = "particles/units/heroes/hero_bane/bane_projectile.vpcf",
+		model = "models/heroes/bane/bane.vmdl",
 		move_speed = 300,
 	},
 	{	--Dark Knight
@@ -336,6 +355,7 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
+		model = "models/heroes/abaddon/abaddon.vmdl",
 		move_speed = 300,
 	},
 	{	--Onion knight
@@ -349,10 +369,12 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
+		model = "models/heroes/kunkka/kunkka.vmdl",
 		move_speed = 350,
 	}
 	
 }
+
 
 
 CRamzaJob.tJobCommands = {
@@ -894,7 +916,8 @@ function CRamzaJob:ChangeJob()
 		end
 		
 		self.hParent:GetAbilityByIndex(1):SetActivated(true)
-		self:ChangeStat()		
+		self:ChangeStat()
+		self:ChangeModel()		
 		self.iCurrentJob = self.iJobToGo
 		
 		--remove secondary skill if it's job command of current job or current job can have no secondary skill
@@ -1070,6 +1093,17 @@ function CRamzaJob:ChangeStat()
 	self.hParent:FindModifierByName("modifier_ramza_job_manager").fAgiGrowth = self.tJobStats[self.iJobToGo].gain_agi
 	self.hParent:FindModifierByName("modifier_ramza_job_manager").fIntGrowth = self.tJobStats[self.iJobToGo].gain_int
 	self.hParent:CalculateStatBonus()
+end
+
+
+function CRamzaJob:ChangeModel()
+	if self.iJobToGo == RAMZA_JOB_SAMURAI then
+		Timers:CreateTimer(0.04, function () self.hParent:SetMaterialGroup("1") end)
+	else
+		Timers:CreateTimer(0.04, function () self.hParent:SetMaterialGroup("0") end)
+	end
+	self.hParent:SetModel(self.tJobStats[self.iJobToGo].model)
+	self.hParent:SetOriginalModel(self.tJobStats[self.iJobToGo].model)
 end
 
 CRamzaJob:Initialize()

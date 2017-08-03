@@ -102,3 +102,17 @@
 {
 	background-color:red;
 }
+
+#testpanel
+{
+	background-color:#FF000020;
+	vertical-align:center;
+	width:400px;
+	height:400px;
+}
+
+#DialogPortrait
+{
+	width:200px;
+	height:200px;
+}
