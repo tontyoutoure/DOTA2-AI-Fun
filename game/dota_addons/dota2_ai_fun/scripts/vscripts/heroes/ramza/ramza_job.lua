@@ -93,6 +93,10 @@ CRamzaJob.tJobStats = {
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
 		model = "models/heroes/dragon_knight/dragon_knight.vmdl",
+		wearables = {
+			{ID = "66"},
+			{ID = "67"}
+		},
 		move_speed = 300,
 	},
 	{	--Chemist
@@ -107,6 +111,13 @@ CRamzaJob.tJobStats = {
 		attack_range = 600,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
 		model = "models/heroes/sniper/sniper.vmdl",
+		wearables = {
+			{ID = "9093"},
+			{ID = "9097"},
+			{ID = "9197", particle_systems = {{system = "particles/econ/items/sniper/sniper_immortal_cape/sniper_immortal_cape_ambient.vpcf", attach_type = PATTACH_CUSTOMORIGIN_FOLLOW, attach_entity = "self", control_points = {{control_point_index = 0, attachment = 'ArbitraryChain1_plc1'}}}}},
+			{ID = "9095"},
+			{ID = "9096"}
+		},
 		move_speed = 280,
 	},
 	{	--Knight
@@ -121,6 +132,14 @@ CRamzaJob.tJobStats = {
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
 		model = "models/heroes/dragon_knight/dragon_knight.vmdl",
+		wearables = {
+			{ID = "7438"},
+			{ID = "9135"},
+			{ID = "5084"},
+			{ID = "7440"},
+			{ID = "7439"},
+			{ID = "8798"}
+		},
 		move_speed = 300,
 	},
 	{	--Archer
@@ -136,6 +155,13 @@ CRamzaJob.tJobStats = {
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
 		attack_projectile = "particles/units/heroes/hero_clinkz/clinkz_base_attack.vpcf",
 		model = "models/heroes/clinkz/clinkz.vmdl",
+		wearables = {
+			{ID = "9162", particle_systems = {{system = "particles/econ/items/clinkz/clinkz_maraxiform/clinkz_maraxiform_ambient.vpcf", attach_entity = "self", attach_type = PATTACH_CUSTOMORIGIN_FOLLOW, control_points = {{control_point_index = 2, attachment = 'attach_top'}, {control_point_index = 5, attachment = 'attach_door_inside'}, {control_point_index = 6, attachment = 'attach_drip'}}}}},
+			{ID = "7916", style = "1"},
+			{ID = "7917", style = "1"},
+			{ID = "7918", style = "1"},
+			{ID = "7919", style = "1"}
+		},
 		move_speed = 310,
 	},
 	{	-- White Mage
@@ -151,6 +177,14 @@ CRamzaJob.tJobStats = {
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
 		attack_projectile = "particles/units/heroes/hero_keeper_of_the_light/keeper_base_attack.vpcf",
 		model = "models/heroes/invoker/invoker.vmdl",
+		wearables = {
+			{ID = "98"},
+			{ID = "5867"},
+			{ID = "5494"},
+			{ID = "5491"},
+			{ID = "5492"},
+			{ID = "6079"}
+		},
 		move_speed = 290,
 	},
 	{	-- Black Mage
@@ -166,6 +200,14 @@ CRamzaJob.tJobStats = {
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
 		attack_projectile = "particles/units/heroes/hero_lina/lina_base_attack.vpcf",
 		model = "models/heroes/invoker/invoker.vmdl",
+		wearables = {
+			{ID = "98"},
+			{ID = "6441"},
+			{ID = "7979"},
+			{ID = "5156"},
+			{ID = "7988"},
+			{ID = "7989"}
+		},
 		move_speed = 300,
 	},
 	{	--Monk
@@ -327,6 +369,13 @@ CRamzaJob.tJobStats = {
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
 		attack_projectile = "particles/econ/items/rubick/rubick_staff_wandering/rubick_base_attack_whset.vpcf",
 		model = "models/heroes/rubick/rubick.vmdl",
+		wearables = {
+			{ID = "7026"},
+			{ID = "7507"},
+			{ID = "8108"},
+			{ID = "8592"},
+			{ID = "8393"}
+		},
 		move_speed = 295,
 	},
 	{	--Mime
