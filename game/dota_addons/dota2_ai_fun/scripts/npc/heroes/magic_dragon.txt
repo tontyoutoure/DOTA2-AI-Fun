@@ -1,4 +1,5 @@
-	
+"DOTAHeroes"
+{	
 	"dota_npc_hero_fun_magic_dragon"
 	{
 		"Ability1"	"magic_dragon_green_dragon_roar"
@@ -38,3 +39,4 @@
 		"AttackDamageMax"	"38"
 		"AttackAnimationPoint"	"0.5"
 	}
+}

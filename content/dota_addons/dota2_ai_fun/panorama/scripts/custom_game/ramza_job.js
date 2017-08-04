@@ -61,7 +61,6 @@ RamzaJob.SelectJob = function () {
 				this.EnableJob(i);
 		}
 		this.DisableJob(this.iCurrnetJob, SELECT_JOB);
-		$.Msg(this.iCurrnetJob == 18, this.iCurrnetJob)
 		if(this.iCurrnetJob == 18 || this.iCurrnetJob == 20) {
 			$("#ToggleButtonContainer").style.visibility = 'collapse';
 		}
@@ -381,7 +380,36 @@ function RamzaSelectSecondarySkillListener() {
 	};
 }
 
+function RamzaPortraitApply(keys) {
+	if (Entities.GetUnitName(Players.GetLocalPlayerPortraitUnit()) == "npc_dota_hero_brewmaster") {
+		$('#RamzaPortraitContainer').style.visibility = 'visible';
+		if(Entities.IsAlive(Players.GetLocalPlayerPortraitUnit())) {
+			$("#RamzaPortraitDeath").style.visibility = 'collapse';
+			$("#RamzaPortrait").RemoveClass('BottomMargin50px');
+		}
+		else {
+			$("#RamzaPortraitDeath").style.visibility = 'visible';
+			$("#RamzaPortrait").AddClass('BottomMargin50px');
+		}
+	}
+	else
+	{
+		$('#RamzaPortraitContainer').style.visibility = 'collapse';
+	}
+}
+
+function UpdateRamzaDeath(keys) {	
+	if(Entities.IsAlive(Players.GetLocalPlayerPortraitUnit())) {
+		$("#RamzaPortraitDeath").style.visibility = 'collapse';
+		$("#RamzaPortrait").RemoveClass('BottomMargin50px');
+	}
+	else {
+		$("#RamzaPortraitDeath").style.visibility = 'visible';
+		$("#RamzaPortrait").AddClass('BottomMargin50px');
+	}
+}
 
 GameEvents.Subscribe( "ramza_select_job", RamzaSelectJobListener);
 GameEvents.Subscribe( "ramza_select_secondary_skill", RamzaSelectSecondarySkillListener);
-$.Msg($("#RamzaPortrait")) 
+GameEvents.Subscribe( "dota_player_update_selected_unit", RamzaPortraitApply);
+GameEvents.Subscribe( "dota_player_update_killcam_unit", UpdateRamzaDeath);

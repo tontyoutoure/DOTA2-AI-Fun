@@ -115,38 +115,6 @@ function GameMode:OnEntityKilled(keys)
 		hHero:SetTimeUntilRespawn(fTimeTillRespawn)
 	end)
 end
--- for Archer's Bane of Ramza
-function GameMode:RamzaProjecileFilter(filterTable)
-	local hTarget = EntIndexToHScript(filterTable.entindex_target_const)
-	local hSource = EntIndexToHScript(filterTable.entindex_source_const)
-	local hAbility = hTarget:FindAbilityByName('ramza_archer_archers_bane')
-	if hTarget:FindModifierByName("modifier_ramza_archer_archers_bane") and math.random(100) < hAbility:GetSpecialValueFor("evasion") then
-		local tInfo ={
-			Target = hTarget,
-			Source = hSource,
-			Ability = hAbility,
-			flExpireTime = GameRules:GetGameTime() + 10, 
-			EffectName = hSource:GetRangedProjectileName(),
-			iMoveSpeed = hSource:GetProjectileSpeed()
-		}		
-		
-		
-		ProjectileManager:CreateTrackingProjectile(tInfo)		
-		return false
-	end
-	return true
-end
-
--- for Defend of Ramza
-function GameMode:RamzaDamageFilter(filterTable)
-	local hVictim = EntIndexToHScript(filterTable.entindex_victim_const)
-	local hAttacker = EntIndexToHScript(filterTable.entindex_attacker_const)
-	if hVictim:HasModifier('modifier_ramza_squire_defend') and not hAttacker:IsBuilding() and not hAttacker:IsHero() then 
-		filterTable.damage = filterTable.damage*(1-hVictim:FindAbilityByName('ramza_squire_defend'):GetSpecialValueFor("damage_block")/100)
-		PrintTable(filterTable);
-	end
-	return true
-end
 
 function LearnInnateSkillOnSpawn(hero)
 	local innateSkillNames = {}
@@ -160,54 +128,27 @@ function LearnInnateSkillOnSpawn(hero)
 	end
 end
 
+
+require('heroes/magic_dragon/magic_dragon_init')
+require('heroes/ramza/ramza_init')
+require('heroes/bastion/bastion_init')
+
 function GameMode:_OnNPCSpawned(keys)
 	local hHero = EntIndexToHScript(keys.entindex)
 	
-	if hHero:GetName() == "npc_dota_hero_visage" then	
-		if hHero:IsIllusion() then
-			MagicDragonTransform[hHero:GetOwner():GetAssignedHero().iDragonForm](hHero)
-		elseif not hHero.bSpawned then
-			require("heroes/magic_dragon/magic_dragon_transform")	
-			MagicDragonTransform[MAGIC_DRAGON_GREEN_DRAGON_FORM](hHero)
-		end
+	if hHero:GetName() == "npc_dota_hero_visage" then
+		MagicDragonInit(hHero)
 	end
 	
 	if hHero:GetName() == "npc_dota_hero_brewmaster" then
-		if hHero:IsRealHero() and not hHero.bSpawned then
-			WearableManager:RemoveOriginalWearables(hHero)
-			WearableManager:AddNewWearable(hHero, "66")
-			WearableManager:AddNewWearable(hHero, "67")
-			hHero:AddNewModifier(hHero, nil, "modifier_wearable_hider_while_model_changes", {}).sOriginalModel = "models/heroes/dragon_knight/dragon_knight.vmdl"
-			require("heroes/ramza/ramza_job")
-			local hModifier = hHero:AddNewModifier(hHero, nil, "modifier_ramza_job_manager", {})
-			hModifier.iBonusAttackRange = 0;
-			hModifier = hHero:AddNewModifier(hHero, nil, "modifier_ramza_job_level", {})
-			hModifier:SetStackCount(1)
-			hHero:AddNewModifier(hHero, nil, "modifier_ramza_job_point", {})
-			hHero:FindAbilityByName("ramza_open_stats_lua"):SetLevel(1)
-			hHero:FindAbilityByName("ramza_go_back_lua"):SetLevel(1)
-			hHero:FindAbilityByName("ramza_next_page_lua"):SetLevel(1)
-			hHero:FindAbilityByName("ramza_job_squire_JC"):SetLevel(1)
-			hHero:FindAbilityByName("ramza_select_secondary_skill_lua"):SetLevel(1)
-			hHero:AddAbility("ramza_empty_1"):SetLevel(1)
-			if not GameMode.bRamzaArchersBaneFileterSet then
-				GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(GameMode, 'RamzaProjecileFilter'), self)
-				GameMode.bRamzaArchersBaneFileterSet = true
-			end
-			if not GameMode.bRamzaSquireDenfendFilterSet then
-				GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(GameMode, 'RamzaDamageFilter'), self)
-				GameMode.bRamzaSquireDenfendFilterSet = true
-			end
-		end
+		RamzaInit(hHero)
 	end
 
-	LearnInnateSkillOnSpawn(hHero)
-	
-	for i = 1, #GameMode.tStripperList do
-		if not hHero.bSpawned and hHero:GetName() == GameMode.tStripperList[i] then
-			HideWearables(hHero)
-		end
+	if hHero:GetName() == "npc_dota_hero_shadow_demon" then
+		BastionInit(hHero)
 	end
+	
+	LearnInnateSkillOnSpawn(hHero)
 
 	if not hHero:IsHero() or hHero:IsIllusion() then return end	
 	if IsInToolsMode() then PlayerResource:SetGold(hHero:GetOwner():GetPlayerID(), 99999, true) end
@@ -271,4 +212,46 @@ function GameMode:OnFormlessForget(eventSourceIndex, args)
 		hero:RemoveModifierByName(modifiersToRemove[i])
 	  end
     end
+end
+
+function GameMode:OnPlayerUpdateSelectUnit6(keys)
+	print("hohohaha6")
+	for k, v in pairs(keys) do
+		print(k, type(v))
+	end
+end
+
+function GameMode:OnPlayerUpdateSelectUnit1(keys)
+	print("hohohaha1")
+	for k, v in pairs(keys) do
+		print(k, type(v))
+	end
+end
+
+function GameMode:OnPlayerUpdateSelectUnit2(keys)
+	print("hohohaha2")
+	for k, v in pairs(keys) do
+		print(k, type(v))
+	end
+end
+
+function GameMode:OnPlayerUpdateSelectUnit3(keys)
+	print("hohohaha3")
+	for k, v in pairs(keys) do
+		print(k, type(v))
+	end
+end
+
+function GameMode:OnPlayerUpdateSelectUnit4(keys)
+	print("hohohaha4")
+	for k, v in pairs(keys) do
+		print(k, type(v))
+	end
+end
+
+function GameMode:OnPlayerUpdateSelectUnit5(keys)
+	print("hohohaha5")
+	for k, v in pairs(keys) do
+		print(k, type(v))
+	end
 end

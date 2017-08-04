@@ -350,7 +350,6 @@
 	visibility:collapse;
 	height:144px;	
 	width:100px;
-	background-color:#FF000020;
 	vertical-align:bottom;
 	horizontal-align:center;
 	margin-right:700px;
@@ -358,6 +357,20 @@
 
 #RamzaPortrait
 {
+	max-height:100%;
+	width:100%;
+}
+
+#RamzaPortraitDeath
+{
 	height:100%;
 	width:100%;
+	visibility:visible;
+	background-color:#000000DD;
+	margin-bottom:50px;
+}
+
+.BottomMargin50px
+{	
+	margin-bottom:50px;
 }
