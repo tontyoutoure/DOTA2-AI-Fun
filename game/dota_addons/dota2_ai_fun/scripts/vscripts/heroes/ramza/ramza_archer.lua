@@ -23,7 +23,7 @@ function ramza_archer_aim_OnChannelFinish(self)
 		ExtraData = {damage = self:GetSpecialValueFor("damage_per_half_sec")*math.floor((GameRules:GetGameTime()-self:GetChannelStartTime())*2), victim = self:GetCursorTarget()}
 	})
 	self:GetCaster():RemoveModifierByName("modifier_ramza_archer_concentration_immune")
-	self:GetCaster():StartGesture(ACT_DOTA_ATTACK)
+	self:GetCaster():StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 3)
 end
 
 

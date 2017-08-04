@@ -4,7 +4,7 @@ function GameMode:RamzaProjecileFilter(filterTable)
 	local hTarget = EntIndexToHScript(filterTable.entindex_target_const)
 	local hSource = EntIndexToHScript(filterTable.entindex_source_const)
 	local hAbility = hTarget:FindAbilityByName('ramza_archer_archers_bane')
-	if hTarget:FindModifierByName("modifier_ramza_archer_archers_bane") and math.random(100) < hAbility:GetSpecialValueFor("evasion") then
+	if hTarget:FindModifierByName("modifier_ramza_archer_archers_bane") and RandomInt(1, 100) < hAbility:GetSpecialValueFor("evasion") then
 		local tInfo ={
 			Target = hTarget,
 			Source = hSource,
@@ -32,7 +32,7 @@ function GameMode:RamzaDamageFilter(filterTable)
 	return true
 end
 
-function RamzaInit(hHero)
+function RamzaInit(hHero, context)
 	if hHero:IsRealHero() and not hHero.bSpawned then
 		WearableManager:RemoveOriginalWearables(hHero)
 		WearableManager:AddNewWearable(hHero, "66")
@@ -51,11 +51,11 @@ function RamzaInit(hHero)
 		hHero:FindAbilityByName("ramza_select_secondary_skill_lua"):SetLevel(1)
 		hHero:AddAbility("ramza_empty_1"):SetLevel(1)
 		if not GameMode.bRamzaArchersBaneFileterSet then
-			GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(GameMode, 'RamzaProjecileFilter'), self)
+			GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(GameMode, 'RamzaProjecileFilter'), context)
 			GameMode.bRamzaArchersBaneFileterSet = true
 		end
 		if not GameMode.bRamzaSquireDenfendFilterSet then
-			GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(GameMode, 'RamzaDamageFilter'), self)
+			GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(GameMode, 'RamzaDamageFilter'), context)
 			GameMode.bRamzaSquireDenfendFilterSet = true
 		end
 		hHero.bSpawned = true

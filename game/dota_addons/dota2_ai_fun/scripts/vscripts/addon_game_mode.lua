@@ -163,6 +163,13 @@ function Precache( context )
 	
 	PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_gods_strength_hero_effect.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts", context) -- Hero_PhantomAssassin.CoupDeGrace
+	PrecacheResource("particle", "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf", context)
+	PrecacheUnitByNameAsync('npc_dota_hero_abaddon', function(...) end)
+	PrecacheResource("particle", "particles/econ/items/legion/legion_overwhelming_odds_ti7/legion_commander_odds_ti7_hero.vpcf", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts", context) -- Hero_LegionCommander.Overwhelming.Location.ti7
+	PrecacheResource("particle", "particles/econ/items/legion/legion_overwhelming_odds_ti7/legion_commander_odds_ti7.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_bane/bane_sap.vpcf", context)
 end
 
 

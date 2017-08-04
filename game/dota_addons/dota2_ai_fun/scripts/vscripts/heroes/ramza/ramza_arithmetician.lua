@@ -76,13 +76,3 @@ RamzaArithmeticianArithmeticks = function(keys)
 		PrintTable(tFactors)
 	end
 end
-
-
-
-
-
-
-
-
-
-

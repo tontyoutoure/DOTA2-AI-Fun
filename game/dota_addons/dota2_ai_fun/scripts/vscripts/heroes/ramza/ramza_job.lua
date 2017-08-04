@@ -459,7 +459,7 @@ CRamzaJob.tJobStats = {
 			{ID = "5561"},
 			{ID = "6408"},
 			{ID = "6409"},
-			{ID = "6410"},
+			{ID = "6410", particle_systems = {{system = "particles/units/heroes/hero_abaddon/abaddon_ambient.vpcf", attach_entity = "parent", attach_type = PATTACH_ABSORIGIN_FOLLOW}}},
 			{ID = "6411"},
 		},
 		move_speed = 300,
@@ -991,8 +991,6 @@ function CRamzaJob:RamzaLevelMax()
 			self.tAllRamzas[i].hRamzaJob.tJobLevels[j] = 9
 			self.tAllRamzas[i].hRamzaJob:LevelUpSkills()
 		end
-		self.tAllRamzas[i].hRamzaJob.tJobPoints[RAMZA_JOB_DARK_KNIGHT] = 0
-		self.tAllRamzas[i].hRamzaJob.tJobLevels[RAMZA_JOB_DARK_KNIGHT] = 1
 		
 		CustomNetTables:SetTableValue("ramza_job_level", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), self.tAllRamzas[i].hRamzaJob.tJobLevels)
 		CustomNetTables:SetTableValue("ramza_job_requirement", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), self.tAllRamzas[i].hRamzaJob.tChangeJobRequirements)
