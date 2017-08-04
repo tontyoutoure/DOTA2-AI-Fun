@@ -152,6 +152,10 @@ function GameMode:_OnNPCSpawned(keys)
 
 	if not hHero:IsHero() or hHero:IsIllusion() then return end	
 	if IsInToolsMode() then PlayerResource:SetGold(hHero:GetOwner():GetPlayerID(), 99999, true) end
+	if not hHero.bSpawned then
+		hHero:AddNewModifier(hHero, nil, "modifier_global_hero_respawn_time", {}).fRespawnTime = self.iRespawnTimePercentage/100
+	end
+	--[[
 	hHero:SetTimeUntilRespawn(-1)
 	Timers:CreateTimer(0.06, function ()  
 		
@@ -162,6 +166,7 @@ function GameMode:_OnNPCSpawned(keys)
 			hHero.fBuyBackExtraRespawnTime = 0
 		end
 	end)
+	]]--
 	hHero.bSpawned = true;
 end
 --[[

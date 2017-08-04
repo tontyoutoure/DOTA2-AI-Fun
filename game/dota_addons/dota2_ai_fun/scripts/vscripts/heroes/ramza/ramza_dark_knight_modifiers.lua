@@ -19,6 +19,9 @@ modifier_ramza_dark_knight_vehemence = class({})
 function modifier_ramza_dark_knight_hp_boost:IsPurgable() return false end
 function modifier_ramza_dark_knight_vehemence:IsDebuff() return false end
 function modifier_ramza_dark_knight_vehemence:GetStatusEffectName() return "particles/status_fx/status_effect_abaddon_borrowed_time.vpcf" end
+function modifier_ramza_dark_knight_vehemence:GetEffectName() return "particles/units/heroes/hero_abaddon/abaddon_borrowed_time.vpcf" end
+function modifier_ramza_dark_knight_vehemence:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
+
 function modifier_ramza_dark_knight_vehemence:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,

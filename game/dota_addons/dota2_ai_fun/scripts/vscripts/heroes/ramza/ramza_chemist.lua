@@ -174,7 +174,3 @@ RamzaChemistAutoPotionToggle = function (keys)
 		keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_ramza_chemist_autopotion", {})
 	end
 end
-
-
-
-
