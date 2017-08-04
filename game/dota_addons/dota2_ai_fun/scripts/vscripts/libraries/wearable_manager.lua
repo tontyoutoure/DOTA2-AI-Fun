@@ -3,7 +3,7 @@
 --
 -- Modifier_wearable_hider_while_model_changes is a modifier which will hide all wearable when model changes, e.g., hexed by Lion. It should be add to the unit when it is first spawned using hUnit:AddNewModifier(hUnit, nil, "modifier_wearable_hider_while_model_changes", {}).sOriginalModel = "path/to/orginal/model.vmdl". The sOriginalModel field of the modifier should be updated every time the original model of the unit is changed.
 --
--- New wearable could be added using WearableManager:AddNewWearables(). It need at least two parameters: the handle of the unit and the index of the wearable in script/items/items_game.txt. A third parameter could be given to change the material group of the wearable. A fourth parameter could be given to specify the particle effects you want to add other than the original particles. More info could be found above the function declaration
+-- New wearable could be added using WearableManager:AddNewWearable(). It need at least two parameters: the handle of the unit and the index of the wearable in script/items/items_game.txt. A third parameter could be given to change the material group of the wearable. A fourth parameter could be given to specify the particle effects you want to add other than the original particles. More info could be found above the function declaration
 --
 -- You can remove a wearable by its index in items_game.txt with WearableManager:RemoveWearableByIndex(hUnit, sWearableIndex) or remove all wearable with WearableManager:RemoveAllWearable(hUnit).
 --
@@ -68,7 +68,7 @@ WearableManager.tAttachPoints = {
 	worldorigin = PATTACH_WORLDORIGIN	
 }
 
-function WearableManager:AddNewWearables(hUnit, sWearableIndex, sStyle, tOptionalParticleList)	
+function WearableManager:AddNewWearable(hUnit, sWearableIndex, sStyle, tOptionalParticleList)	
 -- valve did a small trick, new cosmetics will not load their particles, because their key in visuals are the same. 
 -- We could load the particles by ourselves.
 -- Addtional Particles should be look like {{attach_entity = "self", system = "path/to/.vpcf", attach_type = SOMETHING_LIKE_PATTACH_CUSTOMORIGIN_FOLLOW ,control_points = {{control_point_index = 0, attachment = 'attachment_in_vmdl_files'}, {control_point_index = 1, attachment = 'another_attachment_in_vmdl_files'}}}}

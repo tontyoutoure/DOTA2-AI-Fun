@@ -174,7 +174,10 @@ function GameMode:_OnNPCSpawned(keys)
 	
 	if hHero:GetName() == "npc_dota_hero_brewmaster" then
 		if hHero:IsRealHero() and not hHero.bSpawned then
-			HideWearables(hHero)
+			WearableManager:RemoveOriginalWearables(hHero)
+			WearableManager:AddNewWearable(hHero, "66")
+			WearableManager:AddNewWearable(hHero, "67")
+			hHero:AddNewModifier(hHero, nil, "modifier_wearable_hider_while_model_changes", {}).sOriginalModel = "models/heroes/dragon_knight/dragon_knight.vmdl"
 			require("heroes/ramza/ramza_job")
 			local hModifier = hHero:AddNewModifier(hHero, nil, "modifier_ramza_job_manager", {})
 			hModifier.iBonusAttackRange = 0;
