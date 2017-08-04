@@ -8,7 +8,7 @@ tBugHeroRamzaMimic["npc_dota_hero_shadow_demon"] = true --ulti is buggy
 tBugHeroRamzaMimic["npc_dota_hero_visage"] = true -- don't transform
 
 local tBugAbilitiesRamzaMinic = {
-	fluid_engineer_malicious_tampering = true
+	fluid_engineer_malicious_tampering = true,
 	terran_marine_u247_rifle_lua = true,
 	bastion_transference_agi = true,
 	bastion_transference_str = true,
