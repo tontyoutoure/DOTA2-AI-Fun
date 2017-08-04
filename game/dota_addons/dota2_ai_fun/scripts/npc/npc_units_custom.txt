@@ -1,0 +1,79 @@
+"DOTAUnits"
+{	
+	"npc_dota_hero_fun_tactical_hero"
+	{
+		"BaseClass"             		"npc_dota_hero"
+		"BotImplemented"		"0"
+		"NewHero"		"1"
+		"HeroPool1"		"0"
+		"AbilityDraftDisabled"	"1"
+		"ARDMDisabled"			"1"
+		"LoadoutScale"			"1"
+		"Press"			"1"
+		"ForceEnable"	"1"
+		"HeroUnlockOrder"		"1"
+		"CMTournamentIgnore"		"0"
+		"new_player_enable"		"0"
+		"Model"		"models/heroes/dragon_knight/dragon_knight.vmdl"
+		"Portrait"		"vgui/hud/heroportraits/portrait_dragonknight"
+		"IdleExpression"		"scenes/venomancer/venomancer_exp_idle_01.vcd"
+		"IdleSoundLoop"		"Hero_DragonKnight.IdleLoop"
+		"SoundSet"		"Hero_DragonKnight"
+		"Enabled"		"1"
+		"Role"			"Carry,Jungler,Durable"
+		"Rolelevels"	"3,1,2"
+		"Team"		"Bad"
+		"HeroID"		"126"
+		"ModelScale"		"0.880000"
+		"LoadoutScale"		"0.630000"
+		"NameAliases"		"Ramza Beoulve"
+		"url"		"Ramza Beoulve"
+
+		"NoCombine"		"1"
+		"CMEnabled"		"1"
+		"LastHitChallengeRival"		"npc_dota_hero_viper"
+		"HeroSelectSoundEffect"		"Hero_DragonKnight.Pick"
+
+		"ArmorPhysical"				"0"									// Physical protection.
+		"MagicalResistance"			"25"									// Magical protection (percentage).
+
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"21"										// Damage range min.
+		"AttackDamageMax"			"24"										// Damage range max.
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"				// Type of damage dealt. 
+		"AttackRate"				"1.7"									// Speed of attack.
+		"AttackAnimationPoint"		"0.400"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"500"									// Range within a target can be acquired.
+		"AttackRange"				"150"									// Range within a target can be attacked.
+
+		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"			// Primary Attribute
+		"AttributeBaseStrength"		"0"						// Base strength
+		"AttributeStrengthGain"		"0"						// Strength bonus per level.
+		"AttributeBaseIntelligence"	"0"						// Base intelligence
+		"AttributeIntelligenceGain"	"0"						// Intelligence bonus per level.
+		"AttributeBaseAgility"		"0"						// Base agility
+		"AttributeAgilityGain"		"0"						// Agility bonus per level.
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"300"									// Speed.
+		"MovementTurnRate"			"0.4"									// Turning rate.
+
+
+		"TeamName"					"DOTA_TEAM_GOODGUYS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+
+
+		"VisionDaytimeRange"		"1800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"800"									// Range of vision at night time.
+		"HasInventory"				"1"
+
+		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+		"VoiceFile"		"soundevents/voscripts/game_sounds_vo_dragon_knight.vsndevts"
+		"HealthBarOffset"			"100"
+
+
+	}
+}

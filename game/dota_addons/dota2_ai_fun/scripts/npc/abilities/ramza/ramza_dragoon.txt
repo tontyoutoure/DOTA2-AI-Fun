@@ -1,0 +1,376 @@
+"DOTAAbilities"
+{
+	"ramza_dragoon_ignore_elevation"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"rubick_telekinesis"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_ramza_dragoon_ignore_elevation"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"time_reduction"	"4"
+			}
+		}
+	}
+
+	"ramza_dragoon_polearm"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"huskar_burning_spear"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_ramza_dragoon_polearm"
+			{
+				"IsBuff"	"0"
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
+			}
+		}
+	}
+
+	"ramza_dragoon_dragonheart"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"phoenix_supernova"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"AbilityCooldown"	"600"
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_dragoon.lua"
+				"Function"	"RamzaDragoonHeartApply"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"reincarnate_time"	"3"
+			}
+		}
+	}
+
+	"ramza_dragoon_jump1"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"brewmaster_storm_wind_walk"
+		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_dragoon.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"7"
+		"AbilityCastRange"	"300"
+		"AOERadius"	"300"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"300"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"jump_time"	"5"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"	"300"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"100"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"3"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_slow"	"-50"
+			}
+		}
+	}
+
+	"ramza_dragoon_jump2"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"brewmaster_storm_wind_walk"
+		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_dragoon.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"7"
+		"AbilityCastRange"	"600"
+		"AOERadius"	"300"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"300"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"jump_time"	"5"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"	"600"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"200"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"3"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_slow"	"-50"
+			}
+		}
+	}
+
+	"ramza_dragoon_jump3"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"brewmaster_storm_wind_walk"
+		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_dragoon.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"7"
+		"AbilityCastRange"	"900"
+		"AOERadius"	"300"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"300"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"jump_time"	"5"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"	"900"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"300"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"3"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_slow"	"-50"
+			}
+		}
+	}
+
+	"ramza_dragoon_jump4"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"brewmaster_storm_wind_walk"
+		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_dragoon.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"7"
+		"AbilityCastRange"	"1200"
+		"AOERadius"	"300"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"300"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"jump_time"	"5"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"	"1200"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"400"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"3"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_slow"	"-50"
+			}
+		}
+	}
+
+	"ramza_dragoon_jump5"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"brewmaster_storm_wind_walk"
+		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_dragoon.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"7"
+		"AbilityCastRange"	"1500"
+		"AOERadius"	"300"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"300"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"jump_time"	"5"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"	"1500"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"500"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"3"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_slow"	"-50"
+			}
+		}
+	}
+
+	"ramza_dragoon_jump8"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"brewmaster_storm_wind_walk"
+		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_dragoon.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"7"
+		"AbilityCastRange"	"2400"
+		"AOERadius"	"300"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"300"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"jump_time"	"5"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"	"2400"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"800"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"3"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_slow"	"-50"
+			}
+		}
+	}
+}

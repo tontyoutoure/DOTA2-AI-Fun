@@ -1,0 +1,77 @@
+"DOTAHeroes"
+{
+	"npc_dota_hero_fun_bastion"
+	{
+		"override_hero"	"npc_dota_hero_shadow_demon"
+		"Model"	"models/creeps/neutral_creeps/n_creep_thunder_lizard/n_creep_thunder_lizard_big.vmdl"
+		"ModelScale"	"1"
+		"HealthBarOffset"	"240"
+		"SoundSet"	"creep_Thunderlizard_Big"
+		"PickSound"	"creep_Thunderlizard_Big.Roar"
+		"HeroSelectSoundEffect"	"creep_Thunderlizard_Big.Roar"
+		"Portrait"	"vgui/hud/heroportraits/portrait_venomancer"
+		// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		"Ability1"	"bastion_power_flux"
+		"Ability2"	"bastion_speed_flux"
+		"Ability3"	"bastion_mind_flux"
+		"Ability4"	"bastion_transference_str"
+		"Ability5"	"bastion_transference_agi"
+		"Ability6"	"bastion_transference_int"
+		"ArmorPhysical"	"1"
+		"MagicalResistance"	"25"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		// Damage range min.
+		"AttackDamageMin"	"20"
+		// Damage range max.
+		"AttackDamageMax"	"23"
+		// Speed of attack.
+		"AttackRate"	"1.7"
+		// GUESS VALUE
+		"AttackPoint"	"0.9"
+		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"700"
+		// Range within a target can be attacked.
+		"AttackRange"	"500"
+		// Extra range the target can move without canceling the attack
+		"AttackRangeBuffer"	"250"
+		"ProjectileModel"	"particles/units/heroes/hero_morphling/morphling_base_attack.vpcf"
+		// GUESS VALUE
+		"ProjetileSpeed"	"700"
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		// Base strength
+		"AttributeBaseStrength"	"17"
+		// Strength bonus per level.
+		"AttributeStrengthGain"	"2.3"
+		// Base agility
+		"AttributeBaseAgility"	"17"
+		// Agility bonus per level.
+		"AttributeAgilityGain"	"2.3"
+		// Base intelligence
+		"AttributeBaseIntelligence"	"17"
+		// Intelligence bonus per level.
+		"AttributeIntelligenceGain"	"2.3"
+		// Speed
+		"MovementSpeed"	"300"
+		// GUESS VALUE
+		"MovementTurnRate"	"0.4"
+		// Range of vision during day light.
+		"VisionDaytimeRange"	"1800"
+		// Range of vision at night time.
+		"VisionNighttimeRange"	"800"
+		"Role"	"Support,Durable"
+		"Rolelevels"	"2,2"
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	"special_bonus_gold_income_25"
+		"Ability11"	"special_bonus_exp_boost_20"
+		"Ability12"	"special_bonus_armor_10"
+		"Ability13"	"special_bonus_spell_lifesteal_20"
+		"Ability14"	"special_bonus_spell_amplify_20"
+		"Ability15"	"special_bonus_hp_600"
+		"Ability16"	"special_bonus_attack_range_400"
+		"Ability17"	"special_bonus_cast_range_400"
+		"AttackAnimationPoint"	"0.7"
+		"Ability7"	""
+	}
+}
