@@ -1,0 +1,14 @@
+"DOTAAbilities"
+{
+	"ramza_job_white_mage_JC"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"keeper_of_the_light_illuminate_end"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+}

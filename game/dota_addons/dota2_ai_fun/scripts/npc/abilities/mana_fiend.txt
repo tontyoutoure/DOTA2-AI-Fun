@@ -1,0 +1,148 @@
+"DOTAAbilities"
+{	
+	"mana_fiend_equilibrium"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"keeper_of_the_light_spirit_form_illuminate"
+		"ScriptFile"	"heroes/mana_fiend/mana_fiend_equilibrium_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"30 25 20 15"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"750"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"heroes/mana_fiend/mana_fiend_equilibrium_lua.lua"
+				"Function"	"mana_fiend_equilibrium_lua"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Antimage.ManaVoid"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"damage_multiplier"	"0.5 1 1.5 2"
+			}
+		}
+	}
+
+	"mana_field_mana_rift"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"abyssal_underlord_cancel_dark_rift"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"150 165 180 190"
+		"AbilityCastRange"	"750"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"heroes/mana_fiend/mana_fiend_mana_rift_lua.lua"
+				"Function"	"mana_fiend_mana_rift_lua"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_NyxAssassin.ManaBurn.Target"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"mana_burn_multiplier"	"0.5 1 1.5 2"
+			}
+		}
+	}
+
+	"mana_fiend_abandon"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"granite_golem_bash"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.2"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"	"45"
+		"AbilityManaCost"	"100 200 300"
+		"AbilityCastRange"	"0"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_items.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_mana_fiend_abandon"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"DOTA_Item.MaskOfMadness.Activate"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"heroes/mana_fiend/mana_fiend_abandon_lua.lua"
+				"Function"	"mana_fiend_abandon_activate"
+			}
+			"AttachEffect"	{}
+		}
+		"Modifiers"
+		{
+			"modifier_mana_fiend_abandon"
+			{
+				"IsBuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"100"
+				}
+				"StatusEffectName"	"particles/status_fx/status_effect_chemical_rage.vpcf"
+				"Duration"	"%duration"
+				"IsPurgable"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_restored"	"200 300 400"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"10 20 30"
+			}
+		}
+	}
+}

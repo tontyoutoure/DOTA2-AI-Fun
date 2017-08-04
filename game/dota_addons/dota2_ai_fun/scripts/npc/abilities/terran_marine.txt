@@ -1,0 +1,267 @@
+"DOTAAbilities"
+{	
+	"terran_marine_heavy_artillery"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"gyrocopter_flak_cannon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"15"
+		"AbilityManaCost"	"80 90 100 110"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_trail_smk.vpcf"
+			"soundfile"	"soundevents/game_sounds_items.vsndevts"
+			"particle"	"particles/generic_gameplay/generic_minibash.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_terran_marine_heavy_artillery"
+				"Duration"	"%duration"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_terran_marine_heavy_artillery"
+			{
+				"IsBuff"	"1"
+				"OnAttackLanded"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%damage"
+					}
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_terran_marine_heavy_artillery_ministun"
+						"Duration"	"%ministun_duration"
+					}
+					"FireSound"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"DOTA_Item.MKB.Minibash"
+					}
+					"FireEffect"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"particles/generic_gameplay/generic_minibash.vpcf"
+						"EffectAttachType"	"follow_overhead"
+					}
+				}
+				"EffectName"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_trail_smk.vpcf"
+				"EffectAttachType"	"attach_hitloc"
+			}
+			"modifier_terran_marine_heavy_artillery_ministun"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"IsDebuff"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"30"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"ministun_duration"	"0.3"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"2 4 6 8"
+			}
+		}
+	}
+
+	// Rewrite of the Slardar Sprint
+	// Author: chrislotix
+	// Date: 01.01.2015.
+	"terran_marine_stim_pack"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"tinker_laser"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0.0 0.0 0.0 0.0"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"20"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"0"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_items.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_terran_marine_stim_pack"
+			}
+			"FireSound"
+			{
+				"EffectName"	"DOTA_Item.MaskOfMadness.Activate"
+				"Target"	"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"/heroes/terran_marine/terran_marine_stim_pack.lua"
+				"Function"	"stim_pack_activate"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_terran_marine_stim_pack"
+			{
+				"IsBuff"	"1"
+				"Duration"	"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%bonus_damage"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus_speed"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonue_attack"
+				}
+				"StatusEffectName"	"particles/status_fx/status_effect_chemical_rage.vpcf"
+				"IsPurgable"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage"	"10"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"bonus_speed"	"12.5 25 37.5 50"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"20"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonue_attack"	"25 50 75 100"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"life_cost"	"20"
+			}
+		}
+	}
+
+	"terran_marine_precision_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"skywrath_mage_mystic_flare_alt"
+		"ScriptFile"	"/heroes/terran_marine/terran_marine_precision_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shots"	"320 240 160 80"
+			}
+		}
+	}
+
+	"mana_fiend_osmose"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"lion_mana_drain"
+		"ScriptFile"	"heroes/mana_fiend/mana_fiend_osmose_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"Modifiers"
+		{
+			"modifier_mana_fiend_osmose"
+			{
+				"Passive"	"1"
+				"IsBuff"	"1"
+				"IsHidden"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/mana_fiend/mana_fiend_osmose_lua.lua"
+						"Function"	"mana_fiend_osmose_lua"
+					}
+				}
+				"AllowIllusionDuplicate"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_drained"	"10 20 30 40"
+			}
+		}
+	}
+
+	"terran_marine_u247_rifle_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"sniper_assassinate_muh_keen_gun"
+		"ScriptFile"	"/heroes/terran_marine/terran_marine_u247_rifle_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastAnimation"	"0"
+		"AbilityCooldown"	"30"
+		"AbilityManaCost"	"100"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_range"	"1500 2000 2500"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"movement_override"	"150"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"attack_time"	"1.9"
+			}
+		}
+	}
+}
