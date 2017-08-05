@@ -137,21 +137,25 @@ function GameMode:_OnNPCSpawned(keys)
 	local hHero = EntIndexToHScript(keys.entindex)
 	
 	if hHero:GetName() == "npc_dota_hero_visage" then
-		MagicDragonInit(hHero)
+		MagicDragonInit(hHero, self)
 	end
 	
 	if hHero:GetName() == "npc_dota_hero_brewmaster" then
-		RamzaInit(hHero)
+		RamzaInit(hHero, self)
 	end
 
 	if hHero:GetName() == "npc_dota_hero_shadow_demon" then
-		BastionInit(hHero)
+		BastionInit(hHero, self)
 	end
 	
 	LearnInnateSkillOnSpawn(hHero)
 
 	if not hHero:IsHero() or hHero:IsIllusion() then return end	
 	if IsInToolsMode() then PlayerResource:SetGold(hHero:GetOwner():GetPlayerID(), 99999, true) end
+	if not hHero.bSpawned then
+		hHero:AddNewModifier(hHero, nil, "modifier_global_hero_respawn_time", {}).fRespawnTime = self.iRespawnTimePercentage/100
+	end
+	--[[
 	hHero:SetTimeUntilRespawn(-1)
 	Timers:CreateTimer(0.06, function ()  
 		
@@ -162,6 +166,7 @@ function GameMode:_OnNPCSpawned(keys)
 			hHero.fBuyBackExtraRespawnTime = 0
 		end
 	end)
+	]]--
 	hHero.bSpawned = true;
 end
 --[[
@@ -212,46 +217,4 @@ function GameMode:OnFormlessForget(eventSourceIndex, args)
 		hero:RemoveModifierByName(modifiersToRemove[i])
 	  end
     end
-end
-
-function GameMode:OnPlayerUpdateSelectUnit6(keys)
-	print("hohohaha6")
-	for k, v in pairs(keys) do
-		print(k, type(v))
-	end
-end
-
-function GameMode:OnPlayerUpdateSelectUnit1(keys)
-	print("hohohaha1")
-	for k, v in pairs(keys) do
-		print(k, type(v))
-	end
-end
-
-function GameMode:OnPlayerUpdateSelectUnit2(keys)
-	print("hohohaha2")
-	for k, v in pairs(keys) do
-		print(k, type(v))
-	end
-end
-
-function GameMode:OnPlayerUpdateSelectUnit3(keys)
-	print("hohohaha3")
-	for k, v in pairs(keys) do
-		print(k, type(v))
-	end
-end
-
-function GameMode:OnPlayerUpdateSelectUnit4(keys)
-	print("hohohaha4")
-	for k, v in pairs(keys) do
-		print(k, type(v))
-	end
-end
-
-function GameMode:OnPlayerUpdateSelectUnit5(keys)
-	print("hohohaha5")
-	for k, v in pairs(keys) do
-		print(k, type(v))
-	end
 end
