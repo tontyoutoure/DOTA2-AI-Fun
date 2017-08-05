@@ -225,3 +225,55 @@ modifier_ramza_job_point = class({})
 function modifier_ramza_job_point:IsPurgable() return false end
 function modifier_ramza_job_point:RemoveOnDeath() return false end	
 function modifier_ramza_job_point:GetTexture() return "ramza_job_info" end
+
+
+modifier_ramza_samurai_run_animation_manager = class({})
+
+function modifier_ramza_samurai_run_animation_manager:IsPurgable() return false end
+function modifier_ramza_samurai_run_animation_manager:RemoveOnDeath() return false end	
+function modifier_ramza_samurai_run_animation_manager:IsHidden() return true end
+
+function modifier_ramza_samurai_run_animation_manager:OnCreated()
+	if IsClient() then return end
+	self:StartIntervalThink(0.15)
+	local hParent = self:GetParent()
+	AddAnimationTranslate(hParent, "odachi")
+	AddAnimationTranslate(hParent, "arcana")
+	AddAnimationTranslate(hParent, "red")
+	self.hSpeedModifier = AddAnimationTranslate(hParent, "run")
+end
+
+function modifier_ramza_samurai_run_animation_manager:OnIntervalThink()
+	if IsClient() then return end
+	local hParent = self:GetParent()
+	if hParent:GetIdealSpeed() >= 380 and self.hSpeedModifier.translate == "run" then
+		self.hSpeedModifier:Destroy()
+		self.hSpeedModifier = AddAnimationTranslate(hParent, "run_fast")
+		self.fSpeedStartTime = Time()
+	elseif hParent:GetIdealSpeed() < 380 and self.hSpeedModifier.translate == "run_fast" and Time() - self.fSpeedStartTime > 5 then		
+		self.hSpeedModifier:Destroy()		
+		self.hSpeedModifier = AddAnimationTranslate(hParent, "run")
+	end
+	
+	if hParent:GetHealth()/hParent:GetMaxHealth() < 0.25 and not self.hInjuredModifier then
+		self.hInjuredModifier = AddAnimationTranslate(hParent, "injured")
+	elseif hParent:GetHealth()/hParent:GetMaxHealth() >= 0.25 and self.hInjuredModifier  then
+		self.hInjuredModifier:Destroy()
+		self.hInjuredModifier = nil
+	end
+	
+	tHeroes = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetAbsOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE+DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_ANY_ORDER, false)
+	
+	if #tHeroes > 0 and not self.hAggressiveModifier then
+		self.hAggressiveModifier = AddAnimationTranslate(hParent, "aggressive")
+	elseif #tHeroes == 0 and self.hAggressiveModifier then
+		self.hAggressiveModifier:Destroy()
+		self.hAggressiveModifier = nil
+	end
+	
+end
+
+function modifier_ramza_samurai_run_animation_manager:OnDestroy()
+	if IsClient() then return end
+	RemoveAnimationTranslate(self:GetParent())
+end

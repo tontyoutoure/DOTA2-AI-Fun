@@ -78,6 +78,303 @@ CRamzaJob.tRamzaChangeJobRequirements = {
 }
 
 
+CRamzaJob.tJobModels = {
+	{	-- Squire
+		model = "models/heroes/dragon_knight/dragon_knight.vmdl",
+		model_scale = 0.84,
+		--[[
+		wearables = {
+			{ID = "66"},
+			{ID = "67"}
+		},
+		]]--
+		wearables = {
+			{ID = "66", style = "0", model = "models/heroes/dragon_knight/weapon.vmdl", particle_systems = {}},
+			{ID = "67", style = "0", model = "models/heroes/dragon_knight/shield.vmdl", particle_systems = {}},
+		},
+	},
+	{	-- Chemist
+		model = "models/heroes/sniper/sniper.vmdl",
+		model_scale = 0.84,
+		--[[
+		wearables = {
+			{ID = "9093"},
+			{ID = "9097"},
+			{ID = "9197", particle_systems = {{system = "particles/econ/items/sniper/sniper_immortal_cape/sniper_immortal_cape_ambient.vpcf", attach_type = PATTACH_CUSTOMORIGIN_FOLLOW, attach_entity = "self", control_points = {{control_point_index = 0, attachment = 'ArbitraryChain1_plc1'}}}}},
+			{ID = "9095"},
+			{ID = "9096"}
+		},
+		]]--
+		wearables = {
+			{ID = "9093", style = "0", model = "models/items/sniper/witch_hunter_set_head/witch_hunter_set_head.vmdl", particle_systems = {{system = "particles/econ/items/sniper/sniper_witch_hunter/sniper_witch_hunter_head_ambient.vpcf", attach_type = PATTACH_CUSTOMORIGIN, attach_entity = "self", control_points = {{control_point_index = 2, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_head"}, {control_point_index = 1, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_eye_r"}, {control_point_index = 0, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_eye_l"}, }}, }},
+			{ID = "9097", style = "0", model = "models/items/sniper/witch_hunter_set_weapon/witch_hunter_set_weapon.vmdl", particle_systems = {}},
+			{ID = "9197", style = "0", model = "models/items/sniper/sniper_cape_immortal/sniper_cape_immortal.vmdl", particle_systems = {{system = "particles/econ/items/sniper/sniper_immortal_cape/sniper_immortal_cape_ambient.vpcf", attach_type = PATTACH_CUSTOMORIGIN_FOLLOW, attach_entity = "self", control_points = {{control_point_index = 0, attach_type = PATTACH_POINT_FOLLOW, attachment = "ArbitraryChain1_plc1"}, }}, }},
+			{ID = "9095", style = "0", model = "models/items/sniper/witch_hunter_set_arms/witch_hunter_set_arms.vmdl", particle_systems = {}},
+			{ID = "9096", style = "0", model = "models/items/sniper/witch_hunter_set_shoulder/witch_hunter_set_shoulder.vmdl", particle_systems = {}},
+		},
+	},
+	{	-- Knight
+		model = "models/heroes/dragon_knight/dragon_knight.vmdl",
+		model_scale = 0.84,
+		--[[
+		wearables = {
+			{ID = "7438"},
+			{ID = "9135"},
+			{ID = "5084"},
+			{ID = "7440"},
+			{ID = "7439"},
+			{ID = "8798"}
+		},
+		]]--
+		wearables = 		{
+			{ID = "7438", style = "0", model = "models/items/dragon_knight/dragon_lord_head/dragon_lord_head.vmdl", skin = "0", particle_systems = {{system = "particles/econ/items/dragon_knight/dragon_lord/dragon_lord_ambient_golden.vpcf", attach_type = PATTACH_ABSORIGIN_FOLLOW, attach_entity = "parent", control_points = {{control_point_index = 0, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_head"}, }}, }},
+			{ID = "9135", style = "0", model = "models/items/dragon_knight/aurora_warrior_set_weapon/aurora_warrior_set_weapon.vmdl", particle_systems = {{system = "particles/econ/items/dragon_knight/dk_aurora_warrior/dk_aurora_warrior_weapon_ambient.vpcf", attach_type = PATTACH_CUSTOMORIGIN, attach_entity = "self", control_points = {{control_point_index = 0, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_weapon"}, }}, }},
+			{ID = "5084", style = "0", model = "models/items/dragon_knight/dragon_shield/dragon_shield.vmdl", particle_systems = {{system = "particles/econ/items/dragon_knight/dragon_shield/dragon_knight_dragon_shield_ambient.vpcf", attach_type = PATTACH_CUSTOMORIGIN, attach_entity = "self", control_points = {{control_point_index = 0, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_gem"}, }}, }},
+			{ID = "7440", style = "0", model = "models/items/dragon_knight/dragon_lord_shoulder/dragon_lord_shoulder.vmdl", skin = "0", particle_systems = {}},
+			{ID = "7439", style = "0", model = "models/items/dragon_knight/dragon_lord_arms/dragon_lord_arms.vmdl", skin = "0", particle_systems = {}},
+			{ID = "8798", style = "0", model = "models/items/dragon_knight/oblivion_blazer_back/oblivion_blazer_back.vmdl", particle_systems = {}},
+		} ,
+	},
+	{	-- Archer
+		attack_projectile = "particles/units/heroes/hero_clinkz/clinkz_base_attack.vpcf",
+		model = "models/heroes/clinkz/clinkz.vmdl",
+		model_scale = 0.65,
+		--[[
+		wearables = {
+			{ID = "9162", particle_systems = {{system = "particles/econ/items/clinkz/clinkz_maraxiform/clinkz_maraxiform_ambient.vpcf", attach_entity = "self", attach_type = PATTACH_CUSTOMORIGIN_FOLLOW, control_points = {{control_point_index = 2, attachment = 'attach_top'}, {control_point_index = 5, attachment = 'attach_door_inside'}, {control_point_index = 6, attachment = 'attach_drip'}}}}},
+			{ID = "7916", style = "1"},
+			{ID = "7917", style = "1"},
+			{ID = "7918", style = "1"},
+			{ID = "7919", style = "1"}
+		},
+		]]--
+		wearables = 		{
+			{ID = "9162", style = "0", model = "models/items/clinkz/ti7_clinkz_immortal/ti7_clinkz_immortal.vmdl", particle_systems = {{system = "particles/econ/items/clinkz/clinkz_maraxiform/clinkz_maraxiform_ambient.vpcf", attach_type = PATTACH_CUSTOMORIGIN_FOLLOW, attach_entity = "self", control_points = {{control_point_index = 2, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_top"}, {control_point_index = 5, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_door_inside"}, {control_point_index = 6, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_drip"}, }}, }},
+			{ID = "7916", style = "1", model = "models/items/clinkz/ti6_clinkz_weapon/ti6_clinkz_weapon.vmdl", skin = "1", particle_systems = {}},
+			{ID = "7917", style = "1", model = "models/items/clinkz/ti6_clinkz_gloves/ti6_clinkz_gloves.vmdl", skin = "1", particle_systems = {}},
+			{ID = "7918", style = "1", model = "models/items/clinkz/ti6_clinkz_head/ti6_clinkz_head.vmdl", skin = "1", particle_systems = {}},
+			{ID = "7919", style = "1", model = "models/items/clinkz/ti6_clinkz_shoulder/ti6_clinkz_shoulder.vmdl", skin = "1", particle_systems = {}},
+		} ,
+	},
+	{	-- White Mage
+		attack_projectile = "particles/units/heroes/hero_keeper_of_the_light/keeper_base_attack.vpcf",
+		model = "models/heroes/invoker/invoker.vmdl",
+		model_scale = 0.74,
+		wearables = {
+			{ID = "98", style = "0", model = "models/heroes/invoker/invoker_head.vmdl", particle_systems = {}},
+			{ID = "5867", style = "0", model = "models/items/invoker/iceforged_hair/iceforged_hair.vmdl", particle_systems = {}},
+			{ID = "5494", style = "0", model = "models/items/invoker/arcane_drapings/arcane_drapings.vmdl", particle_systems = {}},
+			{ID = "5491", style = "0", model = "models/items/invoker/arcane_shield/arcane_shield.vmdl", particle_systems = {}},
+			{ID = "5492", style = "0", model = "models/items/invoker/arcane_fist/arcane_fist.vmdl", particle_systems = {}},
+			{ID = "6079", style = "0", model = "models/items/invoker/wraps_of_the_eastern_range/wraps_of_the_eastern_range.vmdl", particle_systems = {}},
+		},
+	},
+	{	-- Black Mage
+		attack_projectile = "particles/units/heroes/hero_lina/lina_base_attack.vpcf",
+		model = "models/heroes/invoker/invoker.vmdl",
+		model_scale = 0.74,
+		--[[
+		wearables = {
+			{ID = "98"},
+			{ID = "6441"},
+			{ID = "7979"},
+			{ID = "5156"},
+			{ID = "7988"},
+			{ID = "7989"}
+		},
+		]]--
+		wearables = {
+			{ID = "98", style = "0", model = "models/heroes/invoker/invoker_head.vmdl", particle_systems = {}},
+			{ID = "6441", style = "0", model = "models/items/invoker/sempiternal_revelations_hat/sempiternal_revelations_hat.vmdl", particle_systems = {}},
+			{ID = "7979", style = "0", model = "models/items/invoker/dark_artistry/dark_artistry_cape_model.vmdl", particle_systems = {{system = "particles/econ/items/invoker/invoker_ti6/invoker_ti6_cape_ambient.vpcf", attach_type = PATTACH_ABSORIGIN, attach_entity = "self", control_points = {{control_point_index = 0, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_spine"}, }}, }},
+			{ID = "5156", style = "0", model = "models/items/invoker/immortal_armor/immortal_armor.vmdl", particle_systems = {}},
+			{ID = "7988", style = "0", model = "models/items/invoker/dark_artistry/dark_artistry_bracer_model.vmdl", particle_systems = {}},
+			{ID = "7989", style = "0", model = "models/items/invoker/dark_artistry/dark_artistry_belt_model.vmdl", particle_systems = {}},
+		},
+	},
+	{	-- Monk
+		model = "models/heroes/blood_seeker/blood_seeker.vmdl",
+		model_scale=0.88,
+		wearables = {
+		},
+	},
+	{	-- Thief
+		model = "models/heroes/rikimaru/rikimaru.vmdl",
+		model_scale = 0.870000,
+		wearables = {
+		},
+	},
+	{	-- Mystic
+		attack_projectile = "particles/units/heroes/hero_oracle/oracle_base_attack.vpcf",
+		model = "models/heroes/oracle/oracle.vmdl",
+		model_scale = 1,
+		wearables = {
+		},
+	},
+	{	-- Time Mage
+		attack_projectile = "particles/units/heroes/hero_silencer/silencer_base_attack.vpcf",
+		model = "models/heroes/silencer/silencer.vmdl",
+		model_scale = 0.740000,
+		wearables = {
+		},
+	},
+	{	-- Orator
+		attack_projectile = "particles/units/heroes/hero_shadowshaman/shadowshaman_base_attack.vpcf",
+		model = "models/heroes/shadowshaman/shadowshaman.vmdl",
+		model_scale = 0.91,
+		wearables = {
+		},
+	},
+	{	-- Summoner
+		attack_projectile = "particles/units/heroes/hero_keeper_of_the_light/keeper_base_attack.vpcf",
+		model = "models/heroes/keeper_of_the_light/keeper_of_the_light.vmdl",
+		model_scale = 0.8,
+		wearables = {
+		},
+	},
+	{	-- Geomancer
+		attack_projectile = "particles/units/heroes/hero_invoker/invoker_base_attack.vpcf",
+		model = "models/heroes/warlock/warlock.vmdl",
+		model_scale = 0.930000,
+		wearables = {
+		},
+	},
+	{	-- Dragoon
+		model = "models/heroes/phantom_lancer/phantom_lancer.vmdl",
+		model_scale = 0.84,
+		--[[
+		wearables = {
+			{ID = "7557"},
+			{ID = "127"},
+			{ID = "7749"},
+			{ID = "7746"},
+			{ID = "7747"},
+		},
+		]]--
+		wearables = {
+			{ID = "7557", style = "0", model = "models/items/phantom_lancer/immortal_ti6/mesh/phantom_lancer_immortal_spear_mdoel.vmdl", particle_systems = {{system = "particles/econ/items/phantom_lancer/phantom_lancer_immortal_ti6/phantom_lancer_immortal_ti6.vpcf", attach_type = PATTACH_CUSTOMORIGIN, attach_entity = "self", control_points = {{control_point_index = 0, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_weapon"}, }}, }},
+			{ID = "127", style = "0", model = "models/heroes/phantom_lancer/phantom_lancer_head.vmdl", particle_systems = {}},
+			{ID = "7749", style = "0", model = "models/items/phantom_lancer/vagabond_shoulders/vagabond_shoulders.vmdl", particle_systems = {}},
+			{ID = "7746", style = "0", model = "models/items/phantom_lancer/vagabond_arms/vagabond_arms.vmdl", particle_systems = {}},
+			{ID = "7747", style = "0", model = "models/items/phantom_lancer/vagabond_pants/vagabond_pants.vmdl", particle_systems = {}},
+		},
+	},
+	{	-- Samurai
+		model = "models/heroes/juggernaut/juggernaut_arcana.vmdl",
+		model_scale = 0.85,
+		--[[
+		wearables = {
+			{ID = "4401"},
+			{ID = "4101"},
+			{ID = "8983"},
+			{ID = "8982"},
+			{ID = "9059", style = "1", particle_systems = {{system = "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_ambient.vpcf", attach_type = PATTACH_ABSORIGIN_FOLLOW, attach_entity = "self", control_points = {{control_point_index = 0, attachment = "attach_hitloc"}}}, {system = "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_body_ambient.vpcf", attach_type = PATTACH_ABSORIGIN_FOLLOW, attach_entity = "parent"}}}
+		},
+		]]--
+		
+		wearables = 		{
+			{ID = "4401", style = "0", model = "models/items/juggernaut/thousand_faces_hakama/thousand_faces_hakama.vmdl", particle_systems = {}},
+			{ID = "4101", style = "0", model = "models/items/juggernaut/generic_wep_broadsword.vmdl", particle_systems = {{system = "particles/econ/items/juggernaut/jugg_sword_script/jugg_weapon_glow_variation_script.vpcf", attach_type = PATTACH_CUSTOMORIGIN, attach_entity = "parent", control_points = {{control_point_index = 0, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_sword"}, }}, }},
+			{ID = "8983", style = "0", model = "models/items/juggernaut/armor_for_the_favorite_back/armor_for_the_favorite_back.vmdl", particle_systems = {{system = "particles/econ/items/juggernaut/armor_of_the_favorite/juggernaut_favorite_shoulder_ambient.vpcf", attach_type = PATTACH_CUSTOMORIGIN, attach_entity = "parent", control_points = {{control_point_index = 0, attach_type = PATTACH_ABSORIGIN_FOLLOW, }, }}, }},
+			{ID = "8982", style = "0", model = "models/items/juggernaut/armor_for_the_favorite_arms/armor_for_the_favorite_arms.vmdl", particle_systems = {}},
+			{ID = "9059", style = "1", model = "models/items/juggernaut/arcana/juggernaut_arcana_mask.vmdl", skin = "1", particle_systems = {{system = "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_ambient.vpcf", attach_type = PATTACH_ABSORIGIN_FOLLOW, attach_entity = "self", control_points = {{control_point_index = 0, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_hitloc"}, }}, {system = "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_body_ambient.vpcf", attach_type = PATTACH_ABSORIGIN_FOLLOW, attach_entity = "parent", }, }},
+		},
+		model_material_group = 1,
+	},
+	{	-- Ninja
+		model = "models/heroes/bounty_hunter/bounty_hunter.vmdl",
+		model_scale = 0.84,
+		wearables = {
+		},
+	},
+	{	-- Arithmetician
+		attack_projectile = "particles/econ/items/rubick/rubick_staff_wandering/rubick_base_attack_whset.vpcf",
+		model = "models/heroes/rubick/rubick.vmdl",
+		model_scale = 0.7,
+		--[[
+		wearables = {
+			{ID = "7026"},
+			{ID = "7507"},
+			{ID = "8108"},
+			{ID = "8592"},
+			{ID = "8393"}
+		},
+		]]--
+		wearables = 		{
+			{ID = "7026", style = "0", model = "models/items/rubick/harlequin_head_black/harlequin_head_black.vmdl", particle_systems = {}},
+			{ID = "7507", style = "0", model = "models/items/rubick/force_staff/force_staff.vmdl", particle_systems = {{system = "particles/econ/items/rubick/rubick_force_gold_ambient/rubick_force_ambient_gold.vpcf", attach_type = PATTACH_CUSTOMORIGIN, attach_entity = "self", control_points = {{control_point_index = 0, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_staff_ambient"}, }}, }},
+			{ID = "8108", style = "0", model = "models/items/rubick/golden_ornithomancer_mantle/golden_ornithomancer_mantle.vmdl", particle_systems = {{system = "particles/econ/items/rubick/rubick_ornithomancer_gold/rubick_ornithomancer_gold_ambient.vpcf", attach_type = PATTACH_CUSTOMORIGIN, attach_entity = "parent", control_points = {{control_point_index = 1, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_thorax"}, {control_point_index = 0, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_hitloc"}, }}, }},
+			{ID = "8592", style = "0", model = "models/items/rubick/puppet_master_doll/puppet_master_doll.vmdl", particle_systems = {{system = "particles/econ/items/rubick/rubick_puppet_master/rubick_doll_puppet_ambient.vpcf", attach_type = PATTACH_CUSTOMORIGIN, attach_entity = "self", control_points = {{control_point_index = 2, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_doll_mouth"}, {control_point_index = 1, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_doll_eye_r"}, {control_point_index = 0, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_doll_eye_l"}, }}, }},
+			{ID = "8393", style = "0", model = "models/items/rubick/gemini_juggler_shoulder/gemini_juggler_shoulder.vmdl", particle_systems = {}},
+		},
+	},
+	{	-- Mime
+		attack_projectile = "particles/units/heroes/hero_bane/bane_projectile.vpcf",
+		model = "models/heroes/bane/bane.vmdl",
+		model_scale = 0.93,
+		--[[
+		wearables = {
+			{ID = "7941"},
+			{ID = "7942"},
+			{ID = "7943"},
+			{ID = "7692"}
+		},
+		]]--
+		wearables = {
+			{ID = "7941", style = "0", model = "models/items/bane/heir_of_terror_bane_head/heir_of_terror_bane_head.vmdl", particle_systems = {}},
+			{ID = "7942", style = "0", model = "models/items/bane/heir_of_terror_bane_arms/heir_of_terror_bane_arms.vmdl", particle_systems = {}},
+			{ID = "7943", style = "0", model = "models/items/bane/heir_of_terror_bane_back/heir_of_terror_bane_back.vmdl", particle_systems = {}},
+			{ID = "7692", style = "0", model = "models/items/bane/slumbering_terror/slumbering_terror.vmdl", particle_systems = {{system = "particles/econ/items/bane/slumbering_terror/bane_slumbering_terror_ambient.vpcf", attach_type = PATTACH_CUSTOMORIGIN, attach_entity = "self", control_points = {{control_point_index = 0, attach_type = PATTACH_ABSORIGIN_FOLLOW, }, {control_point_index = 2, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_elbow_l"}, {control_point_index = 1, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_elbow_r"}, }}, }},
+		},
+	},
+	{	-- Dark Knight
+		model = "models/heroes/abaddon/abaddon.vmdl",
+		model_scale = 0.78,
+		--[[
+		wearables = 		
+		{
+			{ID = "5561"},
+			{ID = "6408"},
+			{ID = "6409"},
+			{ID = "6410", particle_systems = {{system = "particles/units/heroes/hero_abaddon/abaddon_ambient.vpcf", attach_entity = "parent", attach_type = PATTACH_ABSORIGIN_FOLLOW}}},
+			{ID = "6411"},
+		},]]--
+		wearables = 		{
+			{ID = "5561", style = "0", model = "models/items/abaddon/phantoms_reaper/phantoms_reaper.vmdl", particle_systems = {{system = "particles/units/heroes/hero_abaddon/abaddon_blade.vpcf", attach_type = PATTACH_CUSTOMORIGIN, attach_entity = "parent", control_points = {{control_point_index = 0, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_attack1"}, }}, }},
+			{ID = "6408", style = "0", model = "models/items/abaddon/alliance_abba_back/alliance_abba_back.vmdl", particle_systems = {}},
+			{ID = "6409", style = "0", model = "models/items/abaddon/alliance_abba_head/alliance_abba_head.vmdl", particle_systems = {}},
+			{ID = "6410", style = "0", model = "models/items/abaddon/alliance_abba_mount/alliance_abba_mount.vmdl", particle_systems = {{system = "particles/units/heroes/hero_abaddon/abaddon_ambient.vpcf", attach_type = PATTACH_ABSORIGIN_FOLLOW, attach_entity = "parent", }, }},
+			{ID = "6411", style = "0", model = "models/items/abaddon/alliance_abba_shoulder/alliance_abba_shoulder.vmdl", particle_systems = {}},
+		},
+	},
+	{	-- Onion knight
+		model = "models/heroes/kunkka/kunkka.vmdl",
+		model_scale = 0.84,
+		--[[
+		wearables = {
+			{ID = "5670"},
+			{ID = "5321", particle_systems = {{system = "particles/econ/items/kunkka/kunkka_weapon_shadow/kunkka_weapon_tidebringer_shadow.vpcf", attach_type = PATTACH_ABSORIGIN_FOLLOW, attach_entity = "parent", control_points = {{control_point_index = 2, attachment = "attach_sword"}, {control_point_index = 0, attachment = "attach_tidebringer"}, {control_point_index = 1, attachment = "attach_tidebringer_2"}}}}},
+			{ID = "5373"},
+			{ID = "9115", particle_systems = {{system = "particles/econ/items/kunkka/kunkka_immortal/kunkka_immortal_ambient.vpcf", attach_type = PATTACH_CUSTOMORIGIN_FOLLOW, attach_entity = "self", control_points = {{control_point_index = 0, attachment = "attach_shark"}, {control_point_index = 3, attachment = "attach_shark_eye_l"}, {control_point_index = 6, attachment = "attach_shark_eye_r"}}}}},
+			{ID = "5669"},
+			{ID = "4500"},
+			{ID = "5385"},
+			{ID = "5661"}
+		},
+		]]--
+		wearables = {
+			{ID = "5670", style = "0", model = "models/items/kunkka/singsingkunkkaset_head/singsingkunkkaset_head.vmdl", particle_systems = {}},
+			{ID = "5321", style = "0", model = "models/items/kunkka/kunkka_shadow_blade/kunkka_shadow_blade.vmdl", particle_systems = {{system = "particles/econ/items/kunkka/kunkka_weapon_shadow/kunkka_weapon_tidebringer_shadow.vpcf", attach_type = PATTACH_ABSORIGIN_FOLLOW, attach_entity = "parent", control_points = {{control_point_index = 2, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_sword"}, {control_point_index = 0, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_tidebringer"}, {control_point_index = 1, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_tidebringer_2"}, }}, }},
+			{ID = "5373", style = "0", model = "models/items/kunkka/singkunkkabackfinal/singkunkkabackfinal.vmdl", particle_systems = {}},
+			{ID = "9115", style = "0", model = "models/items/kunkka/kunkka_immortal/kunkka_shoulder_immortal.vmdl", skin = "0", particle_systems = {{system = "particles/econ/items/kunkka/kunkka_immortal/kunkka_immortal_ambient.vpcf", attach_type = PATTACH_CUSTOMORIGIN_FOLLOW, attach_entity = "self", control_points = {{control_point_index = 0, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_shark"}, {control_point_index = 3, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_shark_eye_l"}, {control_point_index = 6, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_shark_eye_r"}, }}, }},
+			{ID = "5669", style = "0", model = "models/items/kunkka/singsingkunkkaset_gloves/singsingkunkkaset_gloves.vmdl", particle_systems = {}},
+			{ID = "4500", style = "0", model = "models/items/kunkka/singkunkabelt_final/singkunkabelt_final.vmdl", particle_systems = {}},
+			{ID = "5385", style = "0", model = "models/items/kunkka/singsingkunkkaset__cannon/singsingkunkkaset__cannon.vmdl", particle_systems = {}},
+			{ID = "5661", style = "0", model = "models/items/kunkka/singsingkunkkaset_boots/singsingkunkkaset_boots.vmdl", particle_systems = {}},
+		},
+	},
+}
+
 
 
 CRamzaJob.tJobStats = {
@@ -92,12 +389,6 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		model = "models/heroes/dragon_knight/dragon_knight.vmdl",
-		model_scale = 0.84,
-		wearables = {
-			{ID = "66"},
-			{ID = "67"}
-		},
 		move_speed = 300,
 	},
 	{	--Chemist
@@ -111,15 +402,7 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 600,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		model = "models/heroes/sniper/sniper.vmdl",
-		model_scale = 0.84,
-		wearables = {
-			{ID = "9093"},
-			{ID = "9097"},
-			{ID = "9197", particle_systems = {{system = "particles/econ/items/sniper/sniper_immortal_cape/sniper_immortal_cape_ambient.vpcf", attach_type = PATTACH_CUSTOMORIGIN_FOLLOW, attach_entity = "self", control_points = {{control_point_index = 0, attachment = 'ArbitraryChain1_plc1'}}}}},
-			{ID = "9095"},
-			{ID = "9096"}
-		},
+
 		move_speed = 280,
 	},
 	{	--Knight
@@ -133,16 +416,6 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		model = "models/heroes/dragon_knight/dragon_knight.vmdl",
-		model_scale = 0.84,
-		wearables = {
-			{ID = "7438"},
-			{ID = "9135"},
-			{ID = "5084"},
-			{ID = "7440"},
-			{ID = "7439"},
-			{ID = "8798"}
-		},
 		move_speed = 300,
 	},
 	{	--Archer
@@ -156,16 +429,6 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 625,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
-		attack_projectile = "particles/units/heroes/hero_clinkz/clinkz_base_attack.vpcf",
-		model = "models/heroes/clinkz/clinkz.vmdl",
-		model_scale = 0.65,
-		wearables = {
-			{ID = "9162", particle_systems = {{system = "particles/econ/items/clinkz/clinkz_maraxiform/clinkz_maraxiform_ambient.vpcf", attach_entity = "self", attach_type = PATTACH_CUSTOMORIGIN_FOLLOW, control_points = {{control_point_index = 2, attachment = 'attach_top'}, {control_point_index = 5, attachment = 'attach_door_inside'}, {control_point_index = 6, attachment = 'attach_drip'}}}}},
-			{ID = "7916", style = "1"},
-			{ID = "7917", style = "1"},
-			{ID = "7918", style = "1"},
-			{ID = "7919", style = "1"}
-		},
 		move_speed = 310,
 	},
 	{	-- White Mage
@@ -179,17 +442,6 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 550,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
-		attack_projectile = "particles/units/heroes/hero_keeper_of_the_light/keeper_base_attack.vpcf",
-		model = "models/heroes/invoker/invoker.vmdl",
-		model_scale = 0.74,
-		wearables = {
-			{ID = "98"},
-			{ID = "5867"},
-			{ID = "5494"},
-			{ID = "5491"},
-			{ID = "5492"},
-			{ID = "6079"}
-		},
 		move_speed = 290,
 	},
 	{	-- Black Mage
@@ -203,17 +455,6 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 500,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
-		attack_projectile = "particles/units/heroes/hero_lina/lina_base_attack.vpcf",
-		model = "models/heroes/invoker/invoker.vmdl",
-		model_scale = 0.74,
-		wearables = {
-			{ID = "98"},
-			{ID = "6441"},
-			{ID = "7979"},
-			{ID = "5156"},
-			{ID = "7988"},
-			{ID = "7989"}
-		},
 		move_speed = 300,
 	},
 	{	--Monk
@@ -227,10 +468,6 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		model = "models/heroes/blood_seeker/blood_seeker.vmdl",
-		model_scale=0.88,
-		wearables = {
-		},
 		move_speed = 300,
 	},
 	{	--Thief
@@ -244,10 +481,6 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		model = "models/heroes/rikimaru/rikimaru.vmdl",
-		model_scale = 0.870000,
-		wearables = {
-		},
 		move_speed = 310,
 	},
 	{	--Mystic
@@ -261,11 +494,6 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 575,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
-		attack_projectile = "particles/units/heroes/hero_oracle/oracle_base_attack.vpcf",
-		model = "models/heroes/oracle/oracle.vmdl",
-		model_scale = 1,
-		wearables = {
-		},
 		move_speed = 285,
 	},
 	{	--Time Mage
@@ -279,11 +507,6 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 500,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
-		attack_projectile = "particles/units/heroes/hero_silencer/silencer_base_attack.vpcf",
-		model = "models/heroes/silencer/silencer.vmdl",
-		model_scale = 0.740000,
-		wearables = {
-		},
 		move_speed = 295,
 	},
 	{	--Orator
@@ -297,11 +520,6 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 400,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
-		attack_projectile = "particles/units/heroes/hero_shadowshaman/shadowshaman_base_attack.vpcf",
-		model = "models/heroes/shadowshaman/shadowshaman.vmdl",
-		model_scale = 0.91,
-		wearables = {
-		},
 		move_speed = 305,
 	},
 	{	--Summoner
@@ -315,11 +533,6 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 600,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
-		attack_projectile = "particles/units/heroes/hero_keeper_of_the_light/keeper_base_attack.vpcf",
-		model = "models/heroes/keeper_of_the_light/keeper_of_the_light.vmdl",
-		model_scale = 0.8,
-		wearables = {
-		},
 		move_speed = 300,
 	},
 	{	--Geomancer
@@ -333,11 +546,6 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 500,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
-		attack_projectile = "particles/units/heroes/hero_invoker/invoker_base_attack.vpcf",
-		model = "models/heroes/warlock/warlock.vmdl",
-		model_scale = 0.930000,
-		wearables = {
-		},
 		move_speed = 310,
 	},
 	{	--Dragoon
@@ -351,15 +559,6 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		model = "models/heroes/phantom_lancer/phantom_lancer.vmdl",
-		model_scale = 0.84,
-		wearables = {
-			{ID = "7557"},
-			{ID = "127"},
-			{ID = "7749"},
-			{ID = "7746"},
-			{ID = "7747"},
-		},
 		move_speed = 320,
 	},
 	{	--Samurai
@@ -373,11 +572,6 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		model = "models/heroes/juggernaut/juggernaut_arcana.vmdl",
-		model_scale = 0.85,
-		wearables = {
-		},
-		model_material_group = 1,
 		move_speed = 315,
 	},
 	{	--Ninja
@@ -391,13 +585,9 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		model = "models/heroes/bounty_hunter/bounty_hunter.vmdl",
-		model_scale = 0.84,
-		wearables = {
-		},
 		move_speed = 325,
 	},
-	{	--arithmetician
+	{	-- Arithmetician
 		primary_attribute = DOTA_ATTRIBUTE_INTELLECT,
 		base_str = 8,
 		base_agi = 7,
@@ -408,16 +598,6 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 700,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
-		attack_projectile = "particles/econ/items/rubick/rubick_staff_wandering/rubick_base_attack_whset.vpcf",
-		model = "models/heroes/rubick/rubick.vmdl",
-		model_scale = 0.7,
-		wearables = {
-			{ID = "7026"},
-			{ID = "7507"},
-			{ID = "8108"},
-			{ID = "8592"},
-			{ID = "8393"}
-		},
 		move_speed = 295,
 	},
 	{	--Mime
@@ -431,15 +611,7 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 600,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
-		attack_projectile = "particles/units/heroes/hero_bane/bane_projectile.vpcf",
-		model = "models/heroes/bane/bane.vmdl",
-		model_scale = 0.93,
-		wearables = {
-			{ID = "7941"},
-			{ID = "7942"},
-			{ID = "7943"},
-			{ID = "7692"}
-		},
+
 		move_speed = 300,
 	},
 	{	--Dark Knight
@@ -453,15 +625,7 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		model = "models/heroes/abaddon/abaddon.vmdl",
-		model_scale = 0.78,
-		wearables = {
-			{ID = "5561"},
-			{ID = "6408"},
-			{ID = "6409"},
-			{ID = "6410", particle_systems = {{system = "particles/units/heroes/hero_abaddon/abaddon_ambient.vpcf", attach_entity = "parent", attach_type = PATTACH_ABSORIGIN_FOLLOW}}},
-			{ID = "6411"},
-		},
+
 		move_speed = 300,
 	},
 	{	--Onion knight
@@ -475,18 +639,7 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		model = "models/heroes/kunkka/kunkka.vmdl",
-		model_scale = 0.84,
-		wearables = {
-			{ID = "5670"},
-			{ID = "5321", particle_systems = {{system = "particles/econ/items/kunkka/kunkka_weapon_shadow/kunkka_weapon_tidebringer_shadow.vpcf", attach_type = PATTACH_ABSORIGIN_FOLLOW, attach_entity = "parent", control_points = {{control_point_index = 2, attachment = "attach_sword"}, {control_point_index = 0, attachment = "attach_tidebringer"}, {control_point_index = 1, attachment = "attach_tidebringer_2"}}}}},
-			{ID = "5373"},
-			{ID = "9115", particle_systems = {{system = "particles/econ/items/kunkka/kunkka_immortal/kunkka_immortal_ambient.vpcf", attach_type = PATTACH_CUSTOMORIGIN_FOLLOW, attach_entity = "self", control_points = {{control_point_index = 0, attachment = "attach_shark"}, {control_point_index = 3, attachment = "attach_shark_eye_l"}, {control_point_index = 6, attachment = "attach_shark_eye_r"}}}}},
-			{ID = "5669"},
-			{ID = "4500"},
-			{ID = "5385"},
-			{ID = "5661"}
-		},
+
 		move_speed = 350,
 	}
 	
@@ -1191,9 +1344,6 @@ function CRamzaJob:ChangeStat()
 	self.hParent:SetBaseMoveSpeed(self.tJobStats[self.iJobToGo].move_speed)
 	self.hParent:SetPrimaryAttribute(self.tJobStats[self.iJobToGo].primary_attribute)
 	self.hParent:SetAttackCapability(self.tJobStats[self.iJobToGo].attack_cap)
-	if self.tJobStats[self.iJobToGo].attack_cap == DOTA_UNIT_CAP_RANGED_ATTACK then
-		self.hParent:SetRangedProjectileName(self.tJobStats[self.iJobToGo].attack_projectile)	
-	end
 	self.hParent:FindModifierByName("modifier_ramza_job_manager").iBonusAttackRange = self.tJobStats[self.iJobToGo].attack_range-150;
 	self.hParent:FindModifierByName("modifier_ramza_job_manager"):ForceRefresh()
 	self.hParent:SetAcquisitionRange(self.tJobStats[self.iJobToGo].attack_range+200)
@@ -1217,16 +1367,24 @@ function CRamzaJob:ChangeModel()
 	else
 		Timers:CreateTimer(0.04, function () self.hParent:SetMaterialGroup("0") end)
 	end
-	self.hParent:SetModel(self.tJobStats[self.iJobToGo].model)
-	self.hParent:SetOriginalModel(self.tJobStats[self.iJobToGo].model)
-	self.hParent:FindModifierByName("modifier_wearable_hider_while_model_changes").sOriginalModel = self.tJobStats[self.iJobToGo].model
 	
+	if self.tJobStats[self.iJobToGo].attack_cap == DOTA_UNIT_CAP_RANGED_ATTACK then
+		self.hParent:SetRangedProjectileName(self.tJobModels[self.iJobToGo].attack_projectile)	
+	end
+	self.hParent:SetModel(self.tJobModels[self.iJobToGo].model)
+	self.hParent:SetOriginalModel(self.tJobModels[self.iJobToGo].model)
+	self.hParent:FindModifierByName("modifier_wearable_hider_while_model_changes").sOriginalModel = self.tJobModels[self.iJobToGo].model
 	
-	self.hParent:SetModelScale(self.tJobStats[self.iJobToGo].model_scale)
+	if self.iJobToGo == RAMZA_JOB_SAMURAI then
+		self.hParent:AddNewModifier(self.hParent, nil, "modifier_ramza_samurai_run_animation_manager", {})
+	else
+		self.hParent:RemoveModifierByName("modifier_ramza_samurai_run_animation_manager")
+	end
+	
+	self.hParent:SetModelScale(self.tJobModels[self.iJobToGo].model_scale)
 	WearableManager:RemoveAllWearable(self.hParent)
-	for k, v in pairs(self.tJobStats[self.iJobToGo].wearables) do
-		local style = v.style or "0"
-		WearableManager:AddNewWearable(self.hParent, v.ID, style ,v.particle_systems)
+	for k, v in pairs(self.tJobModels[self.iJobToGo].wearables) do
+		WearableManager:AddNewWearable(self.hParent, v)
 	end
 	WearableManager:PrintAllPrecaches(self.hParent)
 end
@@ -1240,5 +1398,7 @@ LinkLuaModifier("modifier_ramza_job_level", "heroes/ramza/ramza_utility_modifier
 LinkLuaModifier("modifier_ramza_job_mastered", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ramza_job_point", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ramza_black_mage_black_magicks_firaga", "heroes/ramza/ramza_black_mage_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_samurai_run_animation_manager", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+
 
 CustomGameEventManager:RegisterListener("ramza_change_job_client_to_server", RamzaJobChangeListener)

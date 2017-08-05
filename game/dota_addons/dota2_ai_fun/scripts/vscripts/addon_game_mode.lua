@@ -170,6 +170,21 @@ function Precache( context )
 	PrecacheResource("particle", "particles/econ/items/legion/legion_overwhelming_odds_ti7/legion_commander_odds_ti7.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bane/bane_sap.vpcf", context)
+	
+	PrecacheUnitByNameAsync('npc_dota_hero_juggernaut', function(...) end)
+	PrecacheResource("particle", "particles/econ/items/juggernaut/jugg_arcana/jugg_arcana_haste.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_ambient.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_body_ambient.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_idle_rare.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_death_model.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_death_light.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_loadout_rare_model.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_idle_rare_energy.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_teleport_end_light.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_teleport_end_model.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_teleport_light.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_teleport_model.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_trigger.vpcf", context)
 end
 
 
