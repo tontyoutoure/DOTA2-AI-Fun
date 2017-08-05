@@ -34,7 +34,7 @@ end
 
 function RamzaInit(hHero, context)
 	if hHero:IsRealHero() and not hHero.bSpawned then
-		WearableManager:RemoveOriginalWearables(hHero)
+--		WearableManager:RemoveOriginalWearables(hHero)
 		WearableManager:AddNewWearable(hHero, {ID = "66", style = "0", model = "models/heroes/dragon_knight/weapon.vmdl", particle_systems = {}})
 		WearableManager:AddNewWearable(hHero, {ID = "67", style = "0", model = "models/heroes/dragon_knight/shield.vmdl", particle_systems = {}})
 		hHero:AddNewModifier(hHero, nil, "modifier_wearable_hider_while_model_changes", {}).sOriginalModel = "models/heroes/dragon_knight/dragon_knight.vmdl"
@@ -58,6 +58,5 @@ function RamzaInit(hHero, context)
 			GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(GameMode, 'RamzaDamageFilter'), context)
 			GameMode.bRamzaSquireDenfendFilterSet = true
 		end
-		hHero.bSpawned = true
 	end	
 end
