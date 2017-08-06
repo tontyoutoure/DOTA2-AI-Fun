@@ -81,6 +81,14 @@
 		"AbilityCooldown"	"0"
 		"AbilityManaCost"	"0"
 		"AbilityGoldCost"	"300"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"reincarnate_time"	"6"
+			}
+		}
 	}
 
 	"ramza_chemist_throw_items"

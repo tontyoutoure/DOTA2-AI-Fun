@@ -90,11 +90,14 @@ end
 
 function modifier_item_fun_escutcheon_lua:ReincarnateTime()
 	if IsClient() then return -1 end
-	local ability = self:GetAbility()
-	if ability:IsCooldownReady() then
---		Timers:CreateTimer(3.06, function () ability:UseResources(false, false, true)end)
-		ability:UseResources(false, false, true)
-		return 3
+	local hAbility = self:GetAbility()
+	local fReincarnateTime = hAbility:GetSpecialValueFor("reincarnate_time")
+	if hAbility:IsCooldownReady() then
+		hAbility:UseResources(false, false, true)
+		self:GetParent().fReincarnateTime = fReincarnateTime
+		
+		Timers:CreateTimer(fReincarnateTime+0.04, function () self:GetParent().fReincarnateTime = nil end)
+		return fReincarnateTime
 	else
 		return -1
 	end

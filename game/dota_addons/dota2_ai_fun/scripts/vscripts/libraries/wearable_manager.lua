@@ -3,17 +3,17 @@
 --
 -- Modifier_wearable_hider_while_model_changes is a modifier which will hide all wearable when model changes, e.g., hexed by Lion. It should be add to the unit when it is first spawned using hUnit:AddNewModifier(hUnit, nil, "modifier_wearable_hider_while_model_changes", {}).sOriginalModel = "path/to/orginal/model.vmdl". The sOriginalModel field of the modifier should be updated every time the original model of the unit is changed.
 --
--- New wearable could be added using WearableManager:AddNewWearable(). It need at least two parameters: the handle of the unit and the index of the wearable in script/items/items_game.txt. A third parameter could be given to change the material group of the wearable. A fourth parameter could be given to specify the particle effects you want to add other than the original particles. More info could be found above the function declaration
+-- New wearable could be added using WearableManager:AddNewWearable(). It accept two parameters: the handle of the unit and a table contains information of the wearable. 
+-- If the library works in tools mode, it will load the items_game.txt file, which contains information of the wearables. The second parameter could be as simple as {ID = "12345"}. If the wearable has multiple style, you could specify it like {ID = "12345", style = "1"}. Generally speaking this will be sufficient to load the wearable and it's particles. However for new cosmetics, Valve somewhat hide their particle information. You will have to add particle information by yourself. The format of the second parameter will then become {ID = "12345", style(optional) = "1", particle_systems = {{system = "path/to/.vpcf", attach_type = SOMETHING_LIKE_PATTACH_CUSTOMORIGIN_FOLLOW, attach_entity(optional, default value is "self", which means it will attach to the wearable. If this value is "parent", it will attach to parent) = "parent" ,control_points(optional) = {{control_point_index = 0, attach_type(optional, default value is PATTACH_POINT_FOLLOW) = SOMETHING_LIKE_PATTACH_POINT_FOLLOW, attachment(optional) = "the_attachment_name_in_model_file"}, {(other control points)}}}, {(other systems)}}}. Notice in this scenario, you have to dig how to add the particles. The items_game.txt file itself contains particles the wearable uses (just cannot be load into lua), you can test them by yourself. After adding new variable, it's information will be stored in the hUnit.tWearables table.
+-- You can remove an added wearable by its index in items_game.txt with WearableManager:RemoveWearableByIndex(hUnit, sID) or remove all wearable with WearableManager:RemoveAllWearable(hUnit).
+-- After successfully add a wearable, you can output the information about the variable so you can use them in non-tools mode so you don't have to load the big-ass items_game.txt file into your vscript system during playtime. Information of a single wearable could be WearableManager:PrintWearableInfo(tWearableInfo). tWearableInfo is a element in the hUnit.tWearables table. A second parameter could be added to specify the output file handle. A third parameter could be added to specify the nesting level (default is 0). You can also output all wearable infos on a unit by using WearableManager:PrintAllWearableInfos(hUnit, hFile, iNestLevel). The output info table could be directly used by WearableManager:AddNewWearable() without loading items_game.txt
 --
--- You can remove a wearable by its index in items_game.txt with WearableManager:RemoveWearableByIndex(hUnit, sID) or remove all wearable with WearableManager:RemoveAllWearable(hUnit).
---
--- Also, WearableManager:PrintAllPrecaches(hUnit) will print all precaches you need for the wearables the unit has in addon_game_mode.lua file.
+-- Also, WearableManager:PrintAllPrecaches(hUnit) will print precaches you need for the wearables the unit has in addon_game_mode.lua file. Notice that some cosmetics (like arcana) contains particles not with type of "particle_create", and these particles may be called by a special animation of the model. In order not to get bunch of red crosses when these animation happenes, you will have to precache these particles as well.
 
 if IsInToolsMode() then _G.GameItems = LoadKeyValues("scripts/items/items_game.txt") end
 --_G.GameItems = LoadKeyValues("scripts/items/items_game.txt")
 
 local INDENT = '\t'
-
 
 LinkLuaModifier("modifier_wearable_hider_while_model_changes", "libraries/wearable_manager.lua", LUA_MODIFIER_MOTION_NONE)
 modifier_wearable_hider_while_model_changes = class({})
@@ -57,8 +57,6 @@ function modifier_wearable_hider_while_model_changes:OnModelChanged()
 	end
 end
 
-
-
 WearableManager = {}
 WearableManager.tAttachTypesReverse = {}
 for k, v in pairs(_G) do
@@ -66,9 +64,6 @@ for k, v in pairs(_G) do
 		WearableManager.tAttachTypesReverse[v] = k
 	end
 end
-
-
-
 
 WearableManager.tAttachPoints = {	
 	customorigin = PATTACH_CUSTOMORIGIN,
@@ -81,14 +76,8 @@ WearableManager.tAttachPoints = {
 	worldorigin = PATTACH_WORLDORIGIN	
 }
 
-function WearableManager:AddNewWearable(hUnit, tInput)	
--- valve did a small trick, new cosmetics will not load their particles, because their key in visuals are the same. 
--- We could load the particles by ourselves.
--- Addtional Particles should be look like {{attach_entity = "self", system = "path/to/.vpcf", attach_type = SOMETHING_LIKE_PATTACH_CUSTOMORIGIN_FOLLOW ,control_points = {{control_point_index = 0, attachment = 'attachment_in_vmdl_files'}, {control_point_index = 1, attachment = 'another_attachment_in_vmdl_files'}}}}
-
-	
-	hUnit.tWearables = hUnit.tWearables or {}
-	
+function WearableManager:AddNewWearable(hUnit, tInput)		
+	hUnit.tWearables = hUnit.tWearables or {}	
 	
 	local hWearable
 	local sModel = tInput.model
@@ -222,7 +211,7 @@ function WearableManager:RemoveOriginalWearables(hUnit)
 	end
 end
 
-function WearableManager:PrintWearableEntity(hWearableEntity, hFile, iNestLevel, bPrintComma)
+function WearableManager:PrintWearableInfo(hWearableEntity, hFile, iNestLevel, bPrintComma)
 	iNestLevel = iNestLevel or 0
 	local sStart = '{ID = "'..hWearableEntity.ID..'", style = "' ..hWearableEntity.style..'", model = "'..hWearableEntity.model..'", '
 	local sSkin
@@ -263,7 +252,7 @@ function WearableManager:PrintWearableEntity(hWearableEntity, hFile, iNestLevel,
 	end	
 end
 
-function WearableManager:PrintAllWearableEntities(hUnit, hFile, iNestLevel)
+function WearableManager:PrintAllWearableInfos(hUnit, hFile, iNestLevel)
 	iNestLevel = iNestLevel or 0
 	if hFile then
 		hFile:write(string.rep(INDENT, iNestLevel)..'{\n')
@@ -271,7 +260,7 @@ function WearableManager:PrintAllWearableEntities(hUnit, hFile, iNestLevel)
 		print(string.rep(INDENT, iNestLevel)..'{')
 	end	
 	for i = 1, #hUnit.tWearables do
-		self:PrintWearableEntity(hUnit.tWearables[i], hFile, iNestLevel+1, true)
+		self:PrintWearableInfo(hUnit.tWearables[i], hFile, iNestLevel+1, true)
 	end
 	if hFile then
 		hFile:write(string.rep(INDENT, iNestLevel)..'}\n')

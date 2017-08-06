@@ -20,6 +20,7 @@
 		"Ability16"	"special_bonus_attack_range_400"
 		"Ability17"	"special_bonus_cast_range_400"
 		"override_hero"	"npc_dota_hero_visage"
+		"DisableWearables" "1"
 		"AttributeBaseStrength"	"23"
 		"Model"	"models/items/dragon_knight/oblivion_blazer_dragon/oblivion_blazer_dragon.vmdl"
 		"ModelScale"	"1"
