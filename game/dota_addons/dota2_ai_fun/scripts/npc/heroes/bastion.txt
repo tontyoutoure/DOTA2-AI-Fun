@@ -9,7 +9,7 @@
 		"SoundSet"	"creep_Thunderlizard_Big"
 		"PickSound"	"creep_Thunderlizard_Big.Roar"
 		"HeroSelectSoundEffect"	"creep_Thunderlizard_Big.Roar"
-		"Portrait"	"vgui/hud/heroportraits/portrait_venomancer"
+		"DisableWearables" "1"
 		// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		"Ability1"	"bastion_power_flux"
 		"Ability2"	"bastion_speed_flux"
