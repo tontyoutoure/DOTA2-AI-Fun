@@ -60,6 +60,18 @@ end
 
 ramza_go_back_lua = class({})
 
+function ramza_go_back_lua:OnHeroLevelUp()	
+	local hCaster = self:GetCaster()
+	local iLevel = hCaster:GetLevel()
+	if iLevel == 17 or iLevel == 19 or iLevel == 21 or iLevel == 22 or iLevel == 23 or iLevel ==24 then
+		hCaster:SetAbilityPoints(hCaster:GetAbilityPoints()+1)
+	end
+	hCaster:SetBaseStrength(hCaster:GetBaseStrength()+hCaster:FindModifierByName("modifier_ramza_job_manager").fStrGrowth)
+	hCaster:SetBaseAgility(hCaster:GetBaseAgility()+hCaster:FindModifierByName("modifier_ramza_job_manager").fAgiGrowth)
+	hCaster:SetBaseIntellect(hCaster:GetBaseIntellect()+hCaster:FindModifierByName("modifier_ramza_job_manager").fIntGrowth)
+end
+
+
 function ramza_go_back_lua:OnSpellStart()	
 	local hCaster = self:GetCaster()
 	local sName
