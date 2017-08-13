@@ -5,106 +5,34 @@
 {
 	"Version"		"1"
 
-	"ramza_ninja_reflexes"
+	"ramza_job_thief_JC"
 	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"bounty_hunter_twinblade_wind_walk"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"MaxLevel"	"1"
-		"OnUpgrade"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_ninja.lua"
-				"Function"	"RmazaNinjaReflexesApply"
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"chance"	"50"
-			}
-		}
-	}
-
-	"ramza_ninja_vanish"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"bounty_hunter_wind_walk"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"riki_permanent_invisibility"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
 		"AbilityCooldown"	"0"
 		"AbilityManaCost"	"0"
-		"AbilityCastRange"	"0"
-		"precache"
-		{
-			"particle"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
-		}
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_ninja.lua"
-				"Function"	"RamzaNinjaVanishToggle"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_ramza_ninja_vanish"
-			{
-				"OnTakeDamage"
-				{
-					"FireEffect"
-					{
-						"Target"	"UNIT"
-						"EffectName"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
-						"EffectAttachType"	"attach_origin"
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_ninja.lua"
-						"Function"	"RamzaNinjaVanishApply"
-					}
-					"FireSound"
-					{
-						"Target"	"UNIT"
-						"EffectName"	"Hero_BountyHunter.WindWalk"
-					}
-				}
-				"IsBuff"	"1"
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"duration"	"30"
-			}
-		}
 	}
 
-	"ramza_ninja_dual_wield"
+	"ramza_thief_move2"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"riki_blink_strike"
+		"AbilityTextureName"	"bounty_hunter_track"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"1"
 		"Modifiers"
 		{
-			"modifier_ramza_ninja_dual_wield"
+			"modifier_ramza_thief_move2"
 			{
 				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
 				"Passive"	"1"
 				"IsHidden"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_bonus"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_percentage"
 				}
 			}
 		}
@@ -113,65 +41,65 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"attack_bonus"	"100"
+				"move_percentage"	"20"
 			}
 		}
 	}
 
-	"ramza_ninja_throw_shuriken"
+	"ramza_thief_vigilance"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"bounty_hunter_shuriken_toss"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityTextureName"	"ramza_thief_vigilance"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_ramza_thief_vigilance"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%evasion"
+				}
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"evasion"	"30"
+			}
+		}
 	}
 
-	"ramza_ninja_throw_axe"
+	"ramza_thief_gil_snapper"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"troll_warlord_whirling_axes_ranged"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	}
-
-	"ramza_ninja_throw_book"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"ramza_ninja_throw_book"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	}
-
-	"ramza_ninja_throw_polearm"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"skywrath_mage_mystic_flare_alt"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	}
-
-	"ramza_ninja_throw_bomb"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"gyrocopter_homing_missile"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	}
-
-	"ramza_ninja_throw_ninja_blade"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"bounty_hunter_jinada"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityTextureName"	"persuasive_high_stakes"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_thief.lua"
+				"Function"	"RamzaThiefGilSnapperApply"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_as_gold"	"10"
+			}
+		}
 	}
 }
+
 #base "abilities\astral_trekker.txt"
 #base "abilities\bastion.txt"
 #base "abilities\fluid_engineer.txt"

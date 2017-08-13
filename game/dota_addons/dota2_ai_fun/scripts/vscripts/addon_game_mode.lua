@@ -148,7 +148,7 @@ function Precache( context )
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts", context)  -- Hero_Zuus.LightningBolt
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_doom_bringer/doom_scorched_earth.vpcf", context)	
-	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts", context)  --Hero_DoomBringer.ScorchedEarthAura
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts", context)  --Hero_DoomBringer.ScorchedEarthAura Hero_DoomBringer.Doom
 	PrecacheResource("particle",  "particles/units/heroes/hero_dazzle/dazzle_poison_debuff.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts", context)  -- Hero_Dazzle.Poison_Touch
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_thundergods_wrath.vpcf", context)
@@ -162,7 +162,7 @@ function Precache( context )
 	PrecacheResource("particle", "particles/status_fx/status_effect_brewmaster_thunder_clap.vpcf", context)
 	
 	PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_gods_strength_hero_effect.vpcf", context)
-	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts", context) -- Hero_PhantomAssassin.CoupDeGrace
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts", context) -- Hero_PhantomAssassin.CoupDeGrace Hero_PhantomAssassin.Dagger.Target Hero_PhantomAssassin.Dagger.Cast
 	PrecacheResource("particle", "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf", context)
 	PrecacheUnitByNameAsync('npc_dota_hero_abaddon', function(...) end)
 	PrecacheResource("particle", "particles/econ/items/legion/legion_overwhelming_odds_ti7/legion_commander_odds_ti7_hero.vpcf", context)
@@ -188,7 +188,40 @@ function Precache( context )
 	
 	PrecacheResource("particle", "particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf", context)
-	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts", context) -- Hero_BountyHunter.WindWalk
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts", context) -- Hero_BountyHunter.WindWalk Hero_BountyHunter.Shuriken.Impact Hero_BountyHunter.Shuriken
+	
+	PrecacheResource("particle", "particles/units/heroes/hero_bounty_hunter/bounty_hunter_suriken_toss.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_troll_warlord/troll_warlord_base_attack.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_lone_druid/lone_druid_base_attack.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_enchantress/enchantress_base_attack.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_techies/techies_base_attack.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_stifling_dagger_arcana.vpcf", context)	
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts", context) -- Hero_Enchantress.Attack Hero_Enchantress.ProjectileImpact
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts", context) -- Hero_Techies.Attack Hero_Techies.ProjectileImpact
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_troll_warlord.vsndevts", context) -- Hero_TrollWarlord.WhirlingAxes.Ranged Hero_TrollWarlord.ProjectileImpact
+	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_death.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/invoker/invoker_ti7/invoker_ti7_bracer_ambient.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/sven/sven_warcry_ti5/sven_warcry_armor_buff_model_ti_5.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/winter_wyvern/winter_wyvern_ti7/wyvern_cold_embrace_ti7buff_warp.vpcf", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_sven.vsndevts", context) -- Hero_Sven.WarCry
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_huskar.vsndevts", context) -- Hero_Huskar.Inner_Vitality
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_arc_warden.vsndevts", context) -- Hero_ArcWarden.MagneticField.Cast
+	PrecacheResource("soundfile", "soundevents/game_sounds_ramza.vsndevts", context)
+	-- Hero_Chen.PenitenceImpact
+	PrecacheResource("particle", "particles/units/heroes/hero_chen/chen_test_of_faith.vpcf", context)
+	
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_chaos_knight.vsndevts", context) -- Hero_ChaosKnight.ChaosBolt.Cast
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts", context) -- Hero_Magnataur.ShockWave.Cast Hero_Magnataur.ShockWave.Target 
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_riki.vsndevts", context)
+	PrecacheResource("particle", "particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil_hit.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_doom_bringer/doom_bringer_doom.vpcf", context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_doom.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/troll_warlord/troll_warlord_ti7_axe/troll_ti7_axe_bash_explosion.vpcf", context)
+	PrecacheUnitByNameSync("npc_dota_hero_oracle", context)
+	
+	
 end
 
 

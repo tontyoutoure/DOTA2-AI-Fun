@@ -10,7 +10,6 @@ function ramza_archer_aim_OnSpellStart(self)
 end
 
 function ramza_archer_aim_OnChannelFinish(self)
-		print(self:GetCursorTarget())
 		ProjectileManager:CreateTrackingProjectile({
 		Target = self.hTarget,
 		Source = self:GetCaster(),

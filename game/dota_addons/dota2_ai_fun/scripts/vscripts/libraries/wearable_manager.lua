@@ -76,6 +76,24 @@ WearableManager.tAttachPoints = {
 	worldorigin = PATTACH_WORLDORIGIN	
 }
 
+function WearableManager:AddParticleSystem(hWearable, hUnit, hParticleSystem)
+	local hBaseAttach
+	--find base attach
+	if hParticleSystem.attach_entity == "parent" then
+		hBaseAttach = hUnit
+	else
+		hBaseAttach = hWearable
+	end
+	local particle_index = ParticleManager:CreateParticle(hParticleSystem.system, hParticleSystem.attach_type, hBaseAttach)
+	
+	for k, v in hParticleSystem.control_points do
+		local hAttach = v.attach_entity or hBaseAttach
+	end
+	
+	return particle_index
+end
+
+
 function WearableManager:AddNewWearable(hUnit, tInput)		
 	hUnit.tWearables = hUnit.tWearables or {}	
 	

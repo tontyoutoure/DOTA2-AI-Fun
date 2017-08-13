@@ -277,3 +277,21 @@ function modifier_ramza_samurai_run_animation_manager:OnDestroy()
 	if IsClient() then return end
 	RemoveAnimationTranslate(self:GetParent())
 end
+
+modifier_ramza_white_mage_animation_manager = class({})
+
+function modifier_ramza_white_mage_animation_manager:IsPurgable() return false end
+function modifier_ramza_white_mage_animation_manager:RemoveOnDeath() return false end	
+function modifier_ramza_white_mage_animation_manager:IsHidden() return true end
+
+function modifier_ramza_white_mage_animation_manager:OnCreated()
+	if IsClient() then return end
+	local hParent = self:GetParent()
+	AddAnimationTranslate(hParent, "ti6")
+	AddAnimationTranslate(hParent, "divine_sorrow_sunstrike")
+end
+
+function modifier_ramza_white_mage_animation_manager:OnDestroy()
+	if IsClient() then return end
+	RemoveAnimationTranslate(self:GetParent())
+end
