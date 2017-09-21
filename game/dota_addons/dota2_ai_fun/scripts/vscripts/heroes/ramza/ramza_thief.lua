@@ -25,6 +25,7 @@ function RamzaThiefStealGil(keys)
 	
 	local iGold = keys.caster:GetLevel()*keys.ability:GetSpecialValueFor("level_gold")
 	
+	if iGold > keys.target:GetGold() then iGold = keys.target:GetGold() end
 	PlayerResource:ModifyGold(keys.target:GetOwner():GetPlayerID(), -iGold, false, DOTA_ModifyGold_Unspecified)
 	PlayerResource:ModifyGold(keys.caster:GetOwner():GetPlayerID(), iGold, false, DOTA_ModifyGold_Unspecified)
 	
@@ -38,6 +39,11 @@ function RamzaThiefStealGil(keys)
 	ParticleManager:SetParticleControl(iParticle1, 1, Vector(0, iGold, 0))
 	ParticleManager:SetParticleControl(iParticle1, 2, Vector(1, math.floor(math.log10(iGold))+2, 100))
 	ParticleManager:SetParticleControl(iParticle1, 3, Vector(255, 230, 0))
+	
+	local iParticle3 = ParticleManager:CreateParticle("particles/msg_fx/msg_gold.vpcf", PATTACH_POINT_FOLLOW, keys.target)
+	ParticleManager:SetParticleControl(iParticle3, 1, Vector(1, iGold, 0))
+	ParticleManager:SetParticleControl(iParticle3, 2, Vector(1, math.floor(math.log10(iGold))+2, 100))
+	ParticleManager:SetParticleControl(iParticle3, 3, Vector(255, 230, 0))
 end
 
 function RamzaThiefStealEXP(keys)
@@ -50,11 +56,34 @@ function RamzaThiefStealEXP(keys)
 end
 
 function RamzaThiefStealHeart(keys)
-	keys.target:SetTeam(keys.caster:GetTeamNumber())
-	keys.target:SetOwner(keys.caster)
-	keys.target:SetControllableByPlayer(keys.caster:GetOwner():GetPlayerID(), true)
-	keys.target:EmitSound("Hero_Enchantress.EnchantCreep")
-	ParticleManager:CreateParticle("particles/units/heroes/hero_enchantress/enchantress_enchant_transform.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.target)
+	if keys.target:GetOwner() then 
+		keys.target:SetTeam(keys.caster:GetTeamNumber())
+		keys.target:SetOwner(keys.caster)
+		keys.target:SetControllableByPlayer(keys.caster:GetPlayerID(), true)
+		keys.target:EmitSound("Hero_Enchantress.EnchantCreep")
+		ParticleManager:CreateParticle("particles/units/heroes/hero_enchantress/enchantress_enchant_transform.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.target)
+	else
+		local vLocation = keys.target:GetAbsOrigin()
+		local sName = keys.target:GetUnitName()
+		local fHealth = keys.target:GetHealth()
+		local fMaxHealth = keys.target:GetMaxHealth()
+		local fAttackMin = keys.target:GetBaseDamageMin()
+		local fAttackMax = keys.target:GetBaseDamageMax()
+		local iGoldBountyMin = keys.target:GetMinimumGoldBounty()
+		local iGoldBountyMax = keys.target:GetMaximumGoldBounty()
+		UTIL_Remove(keys.target)
+		local hNewUnit = CreateUnitByName(sName, vLocation, true, keys.caster, nil, keys.caster:GetTeamNumber())
+		hNewUnit:SetOwner(keys.caster)
+		hNewUnit:SetBaseDamageMin(fAttackMin)
+		hNewUnit:SetBaseDamageMax(fAttackMax)
+		hNewUnit:SetMaxHealth(fMaxHealth)
+		hNewUnit:SetMinimumGoldBounty(iGoldBountyMin)
+		hNewUnit:SetMaximumGoldBounty(iGoldBountyMax)
+		hNewUnit:SetHealth(fHealth)
+		hNewUnit:SetControllableByPlayer(keys.caster:GetPlayerID(), true)
+		hNewUnit:EmitSound("Hero_Enchantress.EnchantCreep")
+		ParticleManager:CreateParticle("particles/units/heroes/hero_enchantress/enchantress_enchant_transform.vpcf", PATTACH_ABSORIGIN_FOLLOW, hNewUnit)
+	end
 end
 
 ramza_thief_steal_accessory = class({})
