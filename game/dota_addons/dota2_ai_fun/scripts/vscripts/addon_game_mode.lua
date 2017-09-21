@@ -220,8 +220,15 @@ function Precache( context )
 	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/troll_warlord/troll_warlord_ti7_axe/troll_ti7_axe_bash_explosion.vpcf", context)
 	PrecacheUnitByNameSync("npc_dota_hero_oracle", context)
-	
-	
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts", context) -- chaos meteor
+	PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_cast.vpcf", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts", context) -- Hero_SkywrathMage.ConcussiveShot.Target
+	PrecacheResource("particle", "particles/econ/items/enigma/enigma_world_chasm/enigma_blackhole_ti5.vpcf", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts", context) -- Hero_Enigma.Black_Hole Hero_Enigma.Black_Hole.Cast
+	PrecacheResource("particle", "particles/econ/items/medusa/medusa_daughters/medusa_daughters_mana_shield.vpcf", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts", context) -- Hero_Medusa.ManaShield.On Hero_Medusa.ManaShield.Off
+	PrecacheResource("particle", "particles/units/heroes/hero_clinkz/clinkz_strafe.vpcf", context)	
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts", context) -- Hero_Clinkz.Strafe
 end
 
 

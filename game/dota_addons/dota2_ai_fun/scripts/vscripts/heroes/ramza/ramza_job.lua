@@ -52,6 +52,17 @@ CRamzaJob.tJobNames = {
 	"ramza_job_onion_knight"
 }
 
+CRamzaJob.tTimeMageAbilities = {
+	ramza_time_mage_time_magicks_haste = true,
+	ramza_time_mage_time_magicks_slow = true,
+	ramza_time_mage_time_magicks_immobilize = true,
+	ramza_time_mage_time_magicks_gravity = true,
+	ramza_time_mage_time_magicks_quick = true,
+	ramza_time_mage_time_magicks_stop = true,
+	ramza_time_mage_time_magicks_meteor = true,
+	ramza_time_mage_teleport = true
+}
+
 CRamzaJob.tRamzaJobReqirement = {0, 200, 400, 700, 1100, 1600, 2200, 3000, 4000}
 
 CRamzaJob.tRamzaChangeJobRequirements = {
@@ -1064,13 +1075,21 @@ function CRamzaJob:LevelUpSkills()
 		for i = 1, 3 do
 			if self.tJobLevels[self.iCurrentJob] >= self.tJobAbilityBuses.tOtherAbilityBusRequirements[self.iCurrentJob][i] then
 				self.hParent:FindAbilityByName(self.tJobAbilityBuses.tOtherAbilityBuses[self.iCurrentJob][i]):SetLevel(1)
+				if self.hParent:HasModifier("modifier_ramza_time_mage_swiftness") and self.tTimeMageAbilities[self.tJobAbilityBuses.tOtherAbilityBuses[self.iCurrentJob][i]] then
+					self.hParent:FindAbilityByName(self.tJobAbilityBuses.tOtherAbilityBuses[self.iCurrentJob][i]):SetLevel(2)
+				end
 			end
 		end
 		
 		if self.hParent.iMenuState == RAMZA_MENU_STATE_PRIMARY then
 			for i = 1, 4 do
 				if i+self.hParent.iPrimaryPointer <= #self.tJobAbilityBuses.tJobCommandBusRequirements[self.iCurrentJob] and self.tJobLevels[self.iCurrentJob] >= self.tJobAbilityBuses.tJobCommandBusRequirements[self.iCurrentJob][i+self.hParent.iPrimaryPointer] then
-					self.hParent:FindAbilityByName(self.tJobAbilityBuses.tJobCommandBuses[self.iCurrentJob][i+self.hParent.iPrimaryPointer]):SetLevel(1)
+					local hAbility = self.hParent:FindAbilityByName(self.tJobAbilityBuses.tJobCommandBuses[self.iCurrentJob][i+self.hParent.iPrimaryPointer])
+					if self.hParent:HasModifier("modifier_ramza_time_mage_swiftness") and self.tTimeMageAbilities[self.tJobAbilityBuses.tJobCommandBuses[self.iCurrentJob][i+self.hParent.iPrimaryPointer]] then
+						hAbility:SetLevel(2)
+					else
+						hAbility:SetLevel(1)
+					end
 				end
 			end
 		end		

@@ -3,6 +3,16 @@ RAMZA_MENU_STATE_UPGRADE = 1
 RAMZA_MENU_STATE_PRIMARY = 2
 RAMZA_MENU_STATE_SECONDARY = 3
 
+local tTimeMageAbilities = {
+	ramza_time_mage_time_magicks_haste = true,
+	ramza_time_mage_time_magicks_slow = true,
+	ramza_time_mage_time_magicks_immobilize = true,
+	ramza_time_mage_time_magicks_gravity = true,
+	ramza_time_mage_time_magicks_quick = true,
+	ramza_time_mage_time_magicks_stop = true,
+	ramza_time_mage_time_magicks_meteor = true,
+	ramza_time_mage_teleport = true
+}
 
 
 ramza_open_stats_lua = class({})
@@ -193,6 +203,9 @@ local RamzaFetchAbilities = function(hCaster, bFromMain, tJobCommandBus, tJobCom
 		if not tJobCommandBusRequirement[i+iPointer] or tJobCommandBusRequirement[i+iPointer] <= iLevel then 
 			if tJobCommandBusRequirement[i+iPointer] then
 				hCaster:FindAbilityByName(sName2):SetLevel(1)
+				if tTimeMageAbilities[sName2] and hCaster:HasModifier("modifier_ramza_time_mage_swiftness") then
+					hCaster:FindAbilityByName(sName2):SetLevel(2)
+				end
 			end
 			hCaster:FindAbilityByName(sName2):SetHidden(false)
 		end
