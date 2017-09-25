@@ -272,8 +272,12 @@ function modifier_ramza_job_level:RemoveOnDeath() return false end
 function modifier_ramza_job_level:GetTexture() return "ramza_job_info" end
 
 function modifier_ramza_job_level:DeclareFunctions() return {MODIFIER_PROPERTY_TOOLTIP} end
+
+local tJobRequirements = {
+	200, 400, 700, 1100, 1600, 2200, 3000, 4000
+}
 function modifier_ramza_job_level:OnTooltip()
-	return self:GetStackCount()
+	return tJobRequirements[self:GetStackCount()]
 end
 
 modifier_ramza_job_mastered = class({})
@@ -291,7 +295,7 @@ function modifier_ramza_job_point:RemoveOnDeath() return false end
 function modifier_ramza_job_point:GetTexture() return "ramza_job_info" end
 function modifier_ramza_job_point:DeclareFunctions() return {MODIFIER_PROPERTY_TOOLTIP} end
 
-function modifier_ramza_job_level:OnTooltip()
+function modifier_ramza_job_point:OnTooltip()
 	return self:GetStackCount()
 end
 
