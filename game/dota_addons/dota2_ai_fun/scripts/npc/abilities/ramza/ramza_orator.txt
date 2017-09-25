@@ -138,7 +138,7 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"monkey_king_pick_pocket"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0.5"

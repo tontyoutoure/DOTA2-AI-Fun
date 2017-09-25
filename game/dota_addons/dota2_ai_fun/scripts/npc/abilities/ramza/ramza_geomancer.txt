@@ -339,7 +339,6 @@
 				{
 					"RunScript"
 					{
-						"Target"	"POINT"
 						"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_geomancer.lua"
 						"Function"	"RamzaGeomancerWillothewisp"
 					}

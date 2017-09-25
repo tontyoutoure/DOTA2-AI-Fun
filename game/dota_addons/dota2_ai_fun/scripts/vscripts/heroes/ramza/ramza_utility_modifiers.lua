@@ -2,7 +2,7 @@ RAMZA_ATTACK_HERO_JOB_POINT = 5
 RAMZA_ATTACK_BUILDING_JOB_POINT = 5
 RAMZA_ATTACK_ANCIENT_JOB_POINT = 5
 RAMZA_ATTACK_CREEP_JOB_POINT = 1
-RAMZA_USE_ABILITY_JOB_POINT = 50
+RAMZA_USE_ABILITY_JOB_POINT = 5
 RAMZA_KILL_BUILDING_JOB_POINT = 50
 RAMZA_KILL_HERO_PER_LEVEL_JOB_POINT = 50
 RAMZA_KILL_ANCIENT_JOB_POINT = 50
@@ -140,35 +140,39 @@ function modifier_ramza_job_manager:DeclareFunctions()
 		MODIFIER_EVENT_ON_ABILITY_EXECUTED,
 		MODIFIER_EVENT_ON_TAKEDAMAGE_KILLCREDIT,
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND
+		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
+		MODIFIER_EVENT_ON_ATTACK
 	}
 end
 
+local tAttackSound = {
+	[1] = "Hero_DragonKnight.Attack",
+	[2] = "Hero_Sniper.attack",
+	[3] = "Hero_DragonKnight.Attack",
+	[4] = "Hero_Clinkz.Attack",
+	[5] = "Hero_KeeperOfTheLight.Attack",
+	[6] = "Hero_Invoker.Attack",
+	[7] = "hero_bloodseeker.attack",
+	[8] = "Hero_Riki.Attack",
+	[9] = "Hero_Oracle.Attack",
+	[10] = "Hero_Silencer.Attack",
+	[11] = "Hero_ShadowShaman.Attack",
+	[12] = "Hero_KeeperOfTheLight.Attack",
+	[13] = "Hero_Warlock.Attack",
+	[14] = "Hero_PhantomLancer.Attack",
+	[15] = "Hero_Juggernaut.Attack",
+	[16] = "Hero_BountyHunter.Attack",
+	[17] = "Hero_Rubick.Attack",
+	[18] = "Hero_Bane.Attack",
+	[19] = "Hero_Abaddon.Attack",
+	[20] = "Hero_Kunkka.Attack"		
+}
+
 function modifier_ramza_job_manager:GetAttackSound()
-	local tAttackSound = {
-		[RAMZA_JOB_SQUIRE] = "Hero_DragonKnight.Attack",
-		[RAMZA_JOB_CHEMIST] = "Hero_Sniper.attack",
-		[RAMZA_JOB_KNIGHT] = "Hero_DragonKnight.Attack",
-		[RAMZA_JOB_ARCHER] = "Hero_Clinkz.Attack",
-		[RAMZA_JOB_WHITE_MAGE] = "Hero_KeeperOfTheLight.Attack",
-		[RAMZA_JOB_BLACK_MAGE] = "Hero_Invoker.Attack",
-		[RAMZA_JOB_MONK] = "hero_bloodseeker.attack",
-		[RAMZA_JOB_THIEF] = "Hero_Riki.Attack",
-		[RAMZA_JOB_MYSTIC] = "Hero_Oracle.Attack",
-		[RAMZA_JOB_TIME_MAGE] = "Hero_Silencer.Attack",
-		[RAMZA_JOB_ORATOR] = "Hero_ShadowShaman.Attack",
-		[RAMZA_JOB_SUMMONER] = "Hero_KeeperOfTheLight.Attack",
-		[RAMZA_JOB_GEOMANCER] = "Hero_Warlock.Attack",
-		[RAMZA_JOB_DRAGOON] = "Hero_PhantomLancer.Attack",
-		[RAMZA_JOB_SAMURAI] = "Hero_Juggernaut.Attack",
-		[RAMZA_JOB_NINJA] = "Hero_BountyHunter.Attack",
-		[RAMZA_JOB_ARITHMETICIAN] = "Hero_Rubick.Attack",
-		[RAMZA_JOB_MIME] = "Hero_Bane.Attack",
-		[RAMZA_JOB_DARK_KNIGHT] = "Hero_Abaddon.Attack",
-		[RAMZA_JOB_ONION_KNIGHT] = "Hero_Kunkka.Attack"		
-	}
-	self:GetParent():EmitSound(tAttackSound[self:GetStackCount()])
-	return tAttackSound[self:GetStackCount()]
+
+	--self:GetParent():EmitSound(tAttackSound[self:GetStackCount()])
+	print(IsClient(), tAttackSound[self:GetStackCount()])
+	return ""
 end
 
 function modifier_ramza_job_manager:OnCreated()
@@ -193,6 +197,17 @@ function modifier_ramza_job_manager:OnAttackLanded(keys)
 		hParent.hRamzaJob:GainJobPoint(RAMZA_ATTACK_ANCIENT_JOB_POINT)
 	else
 		hParent.hRamzaJob:GainJobPoint(RAMZA_ATTACK_CREEP_JOB_POINT)
+	end
+	if hParent:GetAttackCapability() == DOTA_UNIT_CAP_MELEE_ATTACK then
+		hParent:EmitSound(tAttackSound[self:GetStackCount()])
+	end
+end
+
+function modifier_ramza_job_manager:OnAttack(keys)
+	if keys.attacker ~= self:GetParent() then return end
+	local hParent = self:GetParent()
+	if hParent:GetAttackCapability() == DOTA_UNIT_CAP_RANGED_ATTACK then
+		hParent:EmitSound(tAttackSound[self:GetStackCount()])
 	end
 end
 
@@ -258,8 +273,7 @@ function modifier_ramza_job_level:GetTexture() return "ramza_job_info" end
 
 function modifier_ramza_job_level:DeclareFunctions() return {MODIFIER_PROPERTY_TOOLTIP} end
 function modifier_ramza_job_level:OnTooltip()
-	self.iJobpoints = self.iJobpoints or 0
-	return self.iJobpoints
+	return self:GetStackCount()
 end
 
 modifier_ramza_job_mastered = class({})
@@ -275,6 +289,11 @@ modifier_ramza_job_point = class({})
 function modifier_ramza_job_point:IsPurgable() return false end
 function modifier_ramza_job_point:RemoveOnDeath() return false end	
 function modifier_ramza_job_point:GetTexture() return "ramza_job_info" end
+function modifier_ramza_job_point:DeclareFunctions() return {MODIFIER_PROPERTY_TOOLTIP} end
+
+function modifier_ramza_job_level:OnTooltip()
+	return self:GetStackCount()
+end
 
 
 modifier_ramza_samurai_run_animation_manager = class({})

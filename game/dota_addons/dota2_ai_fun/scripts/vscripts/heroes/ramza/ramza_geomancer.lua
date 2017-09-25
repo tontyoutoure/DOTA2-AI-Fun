@@ -26,7 +26,7 @@ function RamzaGeomancerTorrent(keys)
 end
 
 function RamzaGeomancerWillothewisp(keys)
-	local vCenter = keys.target_points[1]
+	local vCenter = keys.target:GetOrigin()
 	local fRadius = keys.ability:GetSpecialValueFor("radius")
 	local vRelative = Vector(RandomFloat(-fRadius, fRadius), RandomFloat(-fRadius, fRadius), 0)
 	while vRelative:Length2D() > fRadius do
@@ -59,7 +59,6 @@ function RamzaGeomancerWindBlast(keys)
 	if not keys.caster.tWindBlastTarget[keys.target] then 
 		keys.caster.tWindBlastTarget[keys.target] = true
 		keys.caster:EmitSound("Hero_Invoker.Tornado.Cast.Immortal")
-		PrintTable(keys.target)
 		local hThinker = CreateUnitByName("npc_dummy_unit", keys.caster:GetAbsOrigin(), true, keys.caster, keys.caster, keys.caster:GetTeamNumber())
 		local hModifier = hThinker:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_geomancer_wind_blast_tornado", {})
 		hModifier.hTarget = keys.target

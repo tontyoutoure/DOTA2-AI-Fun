@@ -1038,12 +1038,12 @@ function CRamzaJob:GainJobPoint(iJobPoint)
 				end
 				if bIsReachRequirement then --New job acquired!
 					self.tJobLevels[v] = 1
-					print(self.tJobNames[v].." is acquired!") 
+--					print(self.tJobNames[v].." is acquired!") 
 				end
 			end
 		end
 		bHasLeveled = true
-		print(self.tJobNames[self.iCurrentJob].." has leveled up to "..tostring(self.tJobLevels[self.iCurrentJob]))		
+--		print(self.tJobNames[self.iCurrentJob].." has leveled up to "..tostring(self.tJobLevels[self.iCurrentJob]))		
 		
 	end
 	if bHasLeveled then		
@@ -1127,8 +1127,13 @@ function CRamzaJob:LevelUpSkills()
 end
 
 function CRamzaJob:New(tNewObject)
+if GameRules:IsCheatMode() then
+	tNewObject.tJobPoints = {4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000}
+	tNewObject.tJobLevels = {9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9}
+else	
 	tNewObject.tJobPoints = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 	tNewObject.tJobLevels = {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+end
 	tNewObject.tChangeJobRequirements = {}
 	tNewObject.tPassiveCooldownReadyTime = {}
 	for i = 1, 20 do
@@ -1373,7 +1378,7 @@ function CRamzaJob:ChangeJob()
 		end
 		
 		-- tell panorama
-		print("job change to", self.tJobNames[self.iCurrentJob])
+--		print("job change to", self.tJobNames[self.iCurrentJob])
 		CustomNetTables:SetTableValue("ramza_current_job", tostring(iPlayerID), {self.iCurrentJob})		
 		CustomGameEventManager:Send_ServerToPlayer( self.hParent:GetOwner(), "ramza_select_job", nil )
 	else	

@@ -122,7 +122,7 @@ end
 
 
 function RamzaOratorBeastTongue(keys)
-	if not keys.target:IsHero() and not keys.target:IsAncient() and keys.target:GetTeamNumber() ~= keys.attacker:GetTeamNumber() and keys.target:GetHealth()/keys.target:GetMaxHealth() < 0.5 then
+	if not keys.target:IsHero() and not keys.target:IsAncient() and not keys.IsBuilding() and keys.target:GetTeamNumber() ~= keys.attacker:GetTeamNumber() and keys.target:GetHealth()/keys.target:GetMaxHealth() < 0.5 then
 
 		if keys.target:GetOwner() then 
 			keys.target:SetTeam(keys.attacker:GetTeamNumber())

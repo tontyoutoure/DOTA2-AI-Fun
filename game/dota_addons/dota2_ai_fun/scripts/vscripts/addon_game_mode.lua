@@ -271,6 +271,12 @@ function Precache( context )
 	PrecacheResource("particle", "particles/econ/items/mirana/mirana_starstorm_bow/mirana_starstorm_starfall_attack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_mirana/mirana_starfall_moonray.vpcf", context)
 	PrecacheResource("soundfile",	"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts", context) -- 	
+	
+	PrecacheResource("particle", "particles/units/heroes/hero_phantom_lancer/pl_attack_blur.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_phantom_lancer/pl_attack_blur_1.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_phantom_lancer/pl_attack_blur_2.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_phantom_lancer/pl_attack_blur_3.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_phantom_lancer/pl_attack_blur_4.vpcf", context)
 end
 
 

@@ -83,10 +83,6 @@ function modifier_ramza_mystic_defense_boost_armor:OnDestroy()
 
 end
 
-function modifier_ramza_mystic_defense_boost_armor:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
-
-function modifier_ramza_mystic_defense_boost_armor:GetEffectName() return "particles/econ/items/treant_protector/ti7_shoulder/treant_ti7_crimson_livingarmor.vpcf" end
-
 modifier_ramza_mystic_manafont = class({})
 
 function modifier_ramza_mystic_manafont:IsHidden() return true end
