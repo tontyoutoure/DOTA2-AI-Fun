@@ -20,7 +20,8 @@
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"ability_datadriven"
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_squire.lua"
 		"AbilityTextureName"	"mud_golem_hurl_boulder"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -46,49 +47,6 @@
 			"particle"	"particles/units/heroes/hero_brewmaster/brewmaster_hurl_boulder.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
 			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
-		}
-		"OnSpellStart"
-		{
-			"TrackingProjectile"
-			{
-				"Target"	"TARGET"
-				"EffectName"	"particles/units/heroes/hero_brewmaster/brewmaster_hurl_boulder.vpcf"
-				"Dodgeable"	"1"
-				"ProvidesVision"	"0"
-				"VisionRadius"	"0"
-				"MoveSpeed"	"%speed"
-				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_2"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Brewmaster_Earth.Boulder.Cast"
-				"Target"	"CASTER"
-			}
-		}
-		"OnProjectileHitUnit"
-		{
-			"DeleteOnHit"	"1"
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_squire.lua"
-				"Function"	"RamzaSquireStoneHit"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_ramza_squire_fundamental_stone_stun"
-			{
-				"IsDebuff"	"1"
-				"Duration"	"%stun"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"OverrideAnimation"	"ACT_DOTA_DISABLED"
-				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"TextureName"	"mud_golem_hurl_boulder"
-			}
 		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------

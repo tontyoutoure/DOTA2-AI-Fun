@@ -277,7 +277,7 @@ CRamzaJob.tJobModels = {
 		}
 	},
 	{	-- Geomancer
-		attack_projectile = "particles/units/heroes/hero_invoker/invoker_base_attack.vpcf",
+		attack_projectile = "particles/units/heroes/hero_warlock/warlock_base_attack.vpcf",
 		model = "models/heroes/warlock/warlock.vmdl",
 		model_scale = 0.930000,
 		wearables = {
@@ -1261,6 +1261,7 @@ function CRamzaJob:ChangeJob()
 		end
 		
 		self.hParent:GetAbilityByIndex(1):SetActivated(true)
+		self.hParent:FindModifierByName("modifier_ramza_job_manager"):SetStackCount(self.iJobToGo)
 		self:ChangeStat()
 		self:ChangeModel()		
 		self.iCurrentJob = self.iJobToGo
@@ -1469,7 +1470,7 @@ function CRamzaJob:ChangeModel()
 	for k, v in pairs(self.tJobModels[self.iJobToGo].wearables) do
 		WearableManager:AddNewWearable(self.hParent, v)
 	end
-	WearableManager:PrintAllPrecaches(self.hParent)
+--	WearableManager:PrintAllPrecaches(self.hParent)
 end
 
 CRamzaJob:Initialize()

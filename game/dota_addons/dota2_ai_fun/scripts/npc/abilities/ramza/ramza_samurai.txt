@@ -1,5 +1,10 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
 "DOTAAbilities"
 {
+	"Version"		"1"
+
 	"ramza_job_samurai_JC"
 	{
 		"BaseClass"	"ability_lua"
@@ -11,7 +16,7 @@
 		"AbilityCooldown"	"0"
 		"AbilityManaCost"	"0"
 	}
-	
+
 	"ramza_samurai_doublehand"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -44,7 +49,7 @@
 	"ramza_samurai_shirahadori"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"ramza_samurai_shirahadori"
+		"AbilityTextureName"	"doom_bringer_infernal_blade"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"1"
 		"Modifiers"
@@ -93,4 +98,414 @@
 			}
 		}
 	}
+
+	"ramza_samurai_iaido_ashura"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"juggernaut_blade_dance_arcana"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK_EVENT"
+		"AbilityCooldown"	"14"
+		"AbilityCastRange"	"600"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Center"	"CASTER"
+					"Radius"	"%radius"
+				}
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_samurai.lua"
+				"Function"	"RamzaSamuraiAshura"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"300"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"600"
+			}
+		}
+	}
+
+	"ramza_samurai_iaido_osafune"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"juggernaut_blade_dance_arcana_style1"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK_EVENT"
+		"AbilityCooldown"	"25"
+		"AbilityCastRange"	"600"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"
+				{
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Center"	"CASTER"
+					"Radius"	"%radius"
+				}
+				"Function"	"RamzaSamuraiOsafune"
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_samurai.lua"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana"	"350"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"600"
+			}
+		}
+	}
+
+	"ramza_samurai_iaido_murasame"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"juggernaut_healing_ward"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"31"
+		"AbilityCastRange"	"500"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"particle"	"particles/items3_fx/warmage.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"Heal"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Center"	"CASTER"
+					"Radius"	"%radius"
+				}
+				"HealAmount"	"%heal"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Juggernaut.HealingWard.Cast"
+			}
+			"FireEffect"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"particles/items3_fx/warmage.vpcf"
+				"EffectAttachType"	"attach_origin"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"heal"	"500"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"500"
+			}
+		}
+	}
+
+	"ramza_samurai_iaido_kikuichimonji"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"juggernaut_blade_fury"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK_EVENT"
+		"AbilityCooldown"	"43"
+		"AbilityCastRange"	"400"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Center"	"CASTER"
+					"Radius"	"%radius"
+				}
+				"Duration"	"%duration"
+				"ModifierName"	"modifier_ramza_samurai_iaido_kikuichimonji"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Juggernaut.BladeDance"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_samurai.lua"
+				"Function"	"RamzaSamuraiKikuichimonji"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_samurai_iaido_kikuichimonji"
+			{
+				"OnIntervalThink"
+				{
+					"FireSound"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"Hero_Juggernaut.OmniSlash"
+					}
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%dps"
+					}
+					"RunScript"
+					{
+						"Target"	"TARGET"
+						"Function"	"RamzaSamuraiKikuichimonjiBlade"
+						"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_samurai.lua"
+					}
+				}
+				"ThinkInterval"	"1"
+				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+				"TextureName"	"juggernaut_blade_fury"
+				"StatusEffectName"	"particles/status_fx/status_effect_templar_slow.vpcf"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"10"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"400"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dps"	"100"
+			}
+		}
+	}
+
+	"ramza_samurai_iaido_masamune"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"juggernaut_omni_slash"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"58"
+		"AbilityCastRange"	"300"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Center"	"CASTER"
+					"Radius"	"%radius"
+				}
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_samurai.lua"
+				"Function"	"RamzaSamuraiMasamune"
+			}
+			"Heal"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Center"	"CASTER"
+					"Radius"	"%radius"
+				}
+				"HealAmount"	"%heal"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"fixed_move_speed"	"550"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_bonus"	"1000"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"heal"	"350"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"300"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"15"
+			}
+		}
+	}
+
+	"ramza_samurai_iaido_chirijiraden"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"juggernaut_blade_fury_arcana_style1"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK_EVENT"
+		"AbilityCooldown"	"77"
+		"AbilityCastRange"	"500"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"particle"	"particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_cowlofice.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+					"Center"	"CASTER"
+					"Radius"	"%radius"
+				}
+				"ModifierName"	"modifier_ramza_samurai_iaido_chirijiraden"
+				"Duration"	"%duration"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Crystal.CrystalNova"
+			}
+			"FireEffect"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_cowlofice.vpcf"
+				"EffectAttachType"	"attach_origin"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_samurai_iaido_chirijiraden"
+			{
+				"IsDebuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_slow"
+				}
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Damage"	"%damage"
+						"Type"	"DAMAGE_TYPE_PURE"
+					}
+					"FireSound"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"Hero_Juggernaut.Attack"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_samurai.lua"
+						"Function"	"RamzaSamuraiChirijiradenBlade"
+					}
+				}
+				"ThinkInterval"	"0.25"
+				"StatusEffectName"	"particles/status_fx/status_effect_wyvern_arctic_burn.vpcf"
+				"TextureName"	"juggernaut_blade_fury_arcana_style1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"500"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"50"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_slow"	"-50"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"10"
+			}
+		}
+	}
 }
+

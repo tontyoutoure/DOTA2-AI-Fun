@@ -15,6 +15,7 @@ function RamzaMonkAurablast(keys)
 	local iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_centaur/centaur_return.vpcf", PATTACH_POINT_FOLLOW, keys.caster)
 	ParticleManager:SetParticleControlEnt(iParticle, 1, keys.target, PATTACH_POINT_FOLLOW, "follow_hitloc", keys.target:GetAbsOrigin(), true)
 	ParticleManager:SetParticleControlEnt(iParticle, 0, keys.caster, PATTACH_POINT_FOLLOW, "follow_hitloc", keys.caster:GetAbsOrigin(), true)
+	
 end
 
 function RamzaMonkPummel(keys)

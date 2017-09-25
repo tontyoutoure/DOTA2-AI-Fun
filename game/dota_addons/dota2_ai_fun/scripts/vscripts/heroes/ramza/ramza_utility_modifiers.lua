@@ -139,10 +139,37 @@ function modifier_ramza_job_manager:DeclareFunctions()
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_EVENT_ON_ABILITY_EXECUTED,
 		MODIFIER_EVENT_ON_TAKEDAMAGE_KILLCREDIT,
-		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
+		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND
 	}
 end
 
+function modifier_ramza_job_manager:GetAttackSound()
+	local tAttackSound = {
+		[RAMZA_JOB_SQUIRE] = "Hero_DragonKnight.Attack",
+		[RAMZA_JOB_CHEMIST] = "Hero_Sniper.attack",
+		[RAMZA_JOB_KNIGHT] = "Hero_DragonKnight.Attack",
+		[RAMZA_JOB_ARCHER] = "Hero_Clinkz.Attack",
+		[RAMZA_JOB_WHITE_MAGE] = "Hero_KeeperOfTheLight.Attack",
+		[RAMZA_JOB_BLACK_MAGE] = "Hero_Invoker.Attack",
+		[RAMZA_JOB_MONK] = "hero_bloodseeker.attack",
+		[RAMZA_JOB_THIEF] = "Hero_Riki.Attack",
+		[RAMZA_JOB_MYSTIC] = "Hero_Oracle.Attack",
+		[RAMZA_JOB_TIME_MAGE] = "Hero_Silencer.Attack",
+		[RAMZA_JOB_ORATOR] = "Hero_ShadowShaman.Attack",
+		[RAMZA_JOB_SUMMONER] = "Hero_KeeperOfTheLight.Attack",
+		[RAMZA_JOB_GEOMANCER] = "Hero_Warlock.Attack",
+		[RAMZA_JOB_DRAGOON] = "Hero_PhantomLancer.Attack",
+		[RAMZA_JOB_SAMURAI] = "Hero_Juggernaut.Attack",
+		[RAMZA_JOB_NINJA] = "Hero_BountyHunter.Attack",
+		[RAMZA_JOB_ARITHMETICIAN] = "Hero_Rubick.Attack",
+		[RAMZA_JOB_MIME] = "Hero_Bane.Attack",
+		[RAMZA_JOB_DARK_KNIGHT] = "Hero_Abaddon.Attack",
+		[RAMZA_JOB_ONION_KNIGHT] = "Hero_Kunkka.Attack"		
+	}
+	self:GetParent():EmitSound(tAttackSound[self:GetStackCount()])
+	return tAttackSound[self:GetStackCount()]
+end
 
 function modifier_ramza_job_manager:OnCreated()
 	if IsClient() then return end
@@ -193,9 +220,32 @@ function modifier_ramza_job_manager:OnTakeDamageKillCredit(keys)
 	end
 end
 
+
+
 function modifier_ramza_job_manager:GetModifierAttackRangeBonus()
-	self.iBonusAttackRange = self.iBonusAttackRange or 0
-	return self.iBonusAttackRange
+	local tRamzaAttackRange = {
+		[1] = 150,
+		[2] = 600,
+		[3] = 150,
+		[4] = 625,
+		[5] = 550,
+		[6] = 500,
+		[7] = 150,
+		[8] = 150,
+		[9] = 575,
+		[10] = 500,
+		[11] = 400,
+		[12] = 600,
+		[13] = 500,
+		[14] = 150,
+		[15] = 150,
+		[16] = 150,
+		[17] = 700,
+		[18] = 600,
+		[19] = 150,
+		[20] = 150		
+	}
+	return tRamzaAttackRange[self:GetStackCount()]-150
 end
 
 

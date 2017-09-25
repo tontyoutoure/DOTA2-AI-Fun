@@ -37,7 +37,7 @@ function RamzaTimeMageGravity(keys)
 	local iParticle=ParticleManager:CreateParticle("particles/econ/items/enigma/enigma_world_chasm/enigma_blackhole_ti5.vpcf", PATTACH_ABSORIGIN, hThinker)
 	
 	ParticleManager:SetParticleControl(iParticle, 1, Vector(fRadius, fRadius, fRadius))
-	Timers:CreateTimer(fDragTime, function () hThinker:StopSound("Hero_Enigma.Black_Hole") hThinker:StopSound("Hero_Enigma.Black_Hole.Stopend") end )
+	Timers:CreateTimer(fDragTime, function () hThinker:StopSound("Hero_Enigma.Black_Hole") hThinker:EmitSound("Hero_Enigma.Black_Hole.Stop") end )
 	for k, v in ipairs(tTargets) do
 		local hModifier = v:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_time_mage_time_magicks_gravity", {Duration = fDragTime})
 		hModifier.vHorizontalSpeed = Vector(Vector(0,0,0).Dot((vTarget-v:GetOrigin())/fDragTime, Vector(1,0,0)),Vector(0,0,0).Dot((vTarget-v:GetOrigin())/fDragTime, Vector(0,1,0)),0)

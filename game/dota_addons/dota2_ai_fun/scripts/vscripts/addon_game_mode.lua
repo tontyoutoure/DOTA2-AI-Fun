@@ -229,6 +229,48 @@ function Precache( context )
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts", context) -- Hero_Medusa.ManaShield.On Hero_Medusa.ManaShield.Off
 	PrecacheResource("particle", "particles/units/heroes/hero_clinkz/clinkz_strafe.vpcf", context)	
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts", context) -- Hero_Clinkz.Strafe
+	PrecacheResource("particle", "particles/econ/items/silencer/silencer_ti6/silencer_last_word_ti6_silence.vpcf", context)	
+	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_fatesedict_disarm.vpcf", context)	
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts", context) -- Hero_DeathProphet.Silence
+	PrecacheResource("particle", "particles/econ/items/treant_protector/ti7_shoulder/treant_ti7_crimson_livingarmor.vpcf", context)	
+	PrecacheResource("particle", "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf", context)	
+	PrecacheResource("particle", "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_omni_slash_tgt.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_cowlofice.vpcf", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts", context)-- Hero_Crystal.CrystalNova
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_treant.vsndevts", context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_templar_slow.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/juggernaut/jugg_serrakura/juggernaut_omni_slash_petals_serrakura.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/juggernaut/jugg_serrakura/juggernaut_omni_slash_tgt_serrakura.vpcf", context)
+	
+	PrecacheResource("particle", "particles/econ/items/invoker/invoker_ti6/invoker_tornado_ti6_funnel.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_lycan/lycan_howl_buff.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/kunkka/kunkka_weapon_whaleblade/kunkka_spell_torrent_splash_whaleblade.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/earthshaker/egteam_set/hero_earthshaker_egset/earthshaker_echoslam_start_egset.vpcf", context)
+	PrecacheResource("soundfile",	"soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts", context) -- Ability.SandKing_SandStorm.loop Ability.SandKing_SandStorm.start
+	
+	PrecacheResource("soundfile",	"soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts", context) 
+	PrecacheResource("soundfile",	"soundevents/game_sounds_heroes/game_sounds_shadowshaman.vsndevts", context) 
+	PrecacheResource("soundfile",	"soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts", context) 
+	PrecacheResource("soundfile",	"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts", context) 
+	PrecacheResource("soundfile",	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts", context) 
+	PrecacheResource("soundfile",	"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts", context) 
+	PrecacheResource("particle", "particles/units/heroes/hero_warlock/warlock_base_attack.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/phantom_lancer/ti7_immortal_shoulder/pl_ti7_edge_boost.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_enigma/enigma_midnight_pulse.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/necrolyte/necro_sullen_harvest/necro_ti7_immortal_scythe_start.vpcf", context)
+	
+	PrecacheResource("soundfile",	"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts", context) -- Hero_Necrolyte.ReapersScythe.Cast
+	PrecacheResource("particle", "particles/econ/items/juggernaut/jugg_fortunes_tout/jugg_healling_ward_fortunes_tout_gold_hero_heal.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/juggernaut/jugg_fortunes_tout/jugg_healing_ward_fortunes_tout_ward_gold.vpcf", context)
+	PrecacheResource("soundfile",	"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts", context)
+	PrecacheResource("particle", "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_wings.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf", context)
+	PrecacheResource("soundfile",	"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts", context) -- 	
+	PrecacheResource("particle", "particles/units/heroes/hero_jakiro/jakiro_dual_breath_fire.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/crystal_maiden/crystal_maiden_maiden_of_icewrack/maiden_freezing_field_snow_arcana1.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/mirana/mirana_starstorm_bow/mirana_starstorm_starfall_attack.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_mirana/mirana_starfall_moonray.vpcf", context)
+	PrecacheResource("soundfile",	"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts", context) -- 	
 end
 
 
