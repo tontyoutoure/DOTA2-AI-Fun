@@ -123,6 +123,7 @@ function GameMode:OnEntityKilled(keys)
 			hHero:SetTimeUntilRespawn(hHero.fReincarnateTime)
 			hHero.fScytheTime = nil
 			hHero.fReincarnateTime = nil
+			hHero.fBloodstoneRespawnTimeReduce = nil	
 		else
 			if hHero.fScytheTime then 
 				fRespawnTime = fRespawnTime+hHero.fScytheTime

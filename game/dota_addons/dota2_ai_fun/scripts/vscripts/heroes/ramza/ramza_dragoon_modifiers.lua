@@ -6,7 +6,7 @@ end
 
 function modifier_ramza_dragoon_dragonheart:OnCreated()
 	local hAbility = self:GetAbility()
-	self.iReincarnateTime = hAbility:GetSpecialValueFor("reincarnate_time")
+	self.fReincarnateTime = hAbility:GetSpecialValueFor("reincarnate_time")
 end
 
 function modifier_ramza_dragoon_dragonheart:IsHidden() return true end
@@ -21,7 +21,8 @@ function modifier_ramza_dragoon_dragonheart:ReincarnateTime()
 		bIsCooldownReady = hParent:FindAbilityByName("ramza_dragoon_dragonheart"):IsCooldownReady()
 		if bIsCooldownReady then
 			hParent:FindAbilityByName("ramza_dragoon_dragonheart"):UseResources(true, true, true)
-			return self.iReincarnateTime
+			hParent.fReincarnateTime = self.fReincarnateTime
+			return self.fReincarnateTime
 		else
 			return -1
 		end
@@ -33,7 +34,8 @@ function modifier_ramza_dragoon_dragonheart:ReincarnateTime()
 			if hParent:HasModifier("modifier_rune_arcane") then fCooldownMultiplier = fCooldownMultiplier*0.7 end
 			if hParent:HasModifier("modifier_item_fun_angelic_alliance_halo") or hParent:HasModifier("modifier_item_fun_economizer_mcr") then fCooldownMultiplier = 0 end
 			hParent.hRamzaJob.tPassiveCooldownReadyTime["ramza_dragoon_dragonheart"] = Time()+60*fCooldownMultiplier		
-			return self.iReincarnateTime
+			hParent.fReincarnateTime = self.fReincarnateTime
+			return self.fReincarnateTime
 		else
 			return -1
 		end

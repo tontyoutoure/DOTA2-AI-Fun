@@ -63,7 +63,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"reincarnate_time"	"3"
+				"reincarnate_time"	"1"
 			}
 		}
 	}
