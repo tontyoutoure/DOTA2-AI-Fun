@@ -59,6 +59,10 @@ function modifier_item_fun_escutcheon_lua:OnTakeDamage(keys)
 	local reverseChance = self:GetAbility():GetSpecialValueFor("damage_reverse")
 	if math.random() < reverseChance/100 then
 		caster:SetHealth(caster:GetHealth() + 2*keys.damage)
+		Timers(0.04, function ()	
+			caster.fScytheTime = nil
+			caster.fReincarnateTime = nil 
+		end)
 	end
 end
 
@@ -95,8 +99,6 @@ function modifier_item_fun_escutcheon_lua:ReincarnateTime()
 	if hAbility:IsCooldownReady() then
 		hAbility:UseResources(false, false, true)
 		self:GetParent().fReincarnateTime = fReincarnateTime
-		
-		Timers:CreateTimer(fReincarnateTime+0.04, function () self:GetParent().fReincarnateTime = nil end)
 		return fReincarnateTime
 	else
 		return -1

@@ -2,11 +2,12 @@
 
 var LUA_CONSOLE_NEST_ERROR = -1;
 
+var LuaConsole = {};
+
+
 if(!Game.IsInToolsMode())
 	$("#ToggleLuaConsole").style.visibility = "collapse";
 
-
-var LuaConsole = {};
 LuaConsole.OnInputSubmitted = function () {
 	var i;
 	var iMaxCharacter = $("#CommandEntry").GetMaxCharCount();

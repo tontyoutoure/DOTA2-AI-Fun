@@ -1,5 +1,10 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
 "DOTAAbilities"
 {
+	"Version"		"1"
+
 	"ramza_job_monk_JC"
 	{
 		"BaseClass"	"ability_lua"
@@ -10,32 +15,286 @@
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"0"
 		"AbilityManaCost"	"0"
-	}	
+	}
 
 	"ramza_monk_martial_arts_aurablast"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityTextureName"	"chaos_knight_chaos_bolt"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"AbilityCooldown"	"37"
+		"AbilityManaCost"	"0"
 		"AbilityCastRange"	"900"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_monk.lua"
+				"Function"	"RamzaMonkAurablast"
+			}
+		}
 	}
 
 	"ramza_monk_martial_arts_doom_fist"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityTextureName"	"doom_bringer_doom"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"AbilityCooldown"	"111"
+		"AbilityManaCost"	"0"
 		"AbilityCastRange"	"600"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_doom_bringer/doom_bringer_doom.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_monk.lua"
+				"Function"	"RamzaMonkDoomFistApply"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_monk_martial_arts_doom_fist"
+			{
+				"StatusEffectName"	"particles/status_fx/status_effect_doom.vpcf"
+				"EffectName"	"particles/units/heroes/hero_doom_bringer/doom_bringer_doom.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Duration"	"%duration"
+				"Properties"	{}
+				"States"
+				{
+					"MODIFIER_STATE_MUTED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_PASSIVES_DISABLED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_PURE"
+						"Damage"	"%damage_per_second"
+					}
+				}
+				"ThinkInterval"	"1"
+				"OnSpellStart"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Damage"	"%damage_per_second"
+						"Type"	"DAMAGE_TYPE_PURE"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_monk.lua"
+						"Function"	"RamzaMonkDoomFistStop"
+					}
+				}
+				"TextureName"	"doom_bringer_doom"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_per_second"	"50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"20"
+			}
+		}
 	}
 
 	"ramza_monk_martial_arts_shockwave"
 	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"magnataur_shockwave_alt"
+		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_monk.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"AbilityCooldown"	"52"
+		"AbilityManaCost"	"0"
 		"AbilityCastRange"	"900"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"500"
+			}
+		}
+	}
+
+	"ramza_monk_brawler"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"brewmaster_drunken_brawler_crit"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_ramza_monk_brawler"
+			{
+				"Passive"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
+				"IsBuff"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%damage_percentage"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_percentage"	"50"
+			}
+		}
+	}
+
+	"ramza_monk_lifefont"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ramza_monk_lifefont"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_monk.lua"
+				"Function"	"RamzaMonkLifefontApply"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"percentage_distance_hp"	"3"
+			}
+		}
+	}
+
+	"ramza_monk_critical_recover_hp"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"life_stealer_assimilate_eject"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"AbilityCooldown"	"100"
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"Function"	"RamzaMonkCriticalRecoverHPApply"
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_monk.lua"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"critical_health_percentage"	"20"
+			}
+		}
+	}
+
+	"ramza_monk_martial_arts_pummel"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ember_spirit_sleight_of_fist"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"AbilityCooldown"	"23"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"150"
+		"AbilityCastRangeBuffer"	"100"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Function"	"RamzaMonkPummel"
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_monk.lua"
+			}
+		}
+	}
+
+	"ramza_monk_martial_arts_purification"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"brewmaster_storm_dispel_magic"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"6"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"800"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_monk.lua"
+				"Function"	"RamzaMonkPurification"
+			}
+		}
+	}
+
+	"ramza_monk_martial_arts_chakra"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"keeper_of_the_light_chakra_magic"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"45"
+		"AbilityManaCost"	"0"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_monk.lua"
+				"Function"	"RamzaMonkChakra"
+			}
+		}
 	}
 }

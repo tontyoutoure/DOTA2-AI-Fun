@@ -83,7 +83,6 @@ local chargedAbilities = {
 	"death_prophet_spirit_siphon"}
 
 function EconomizerResetCooldown(keys)	
-	print(type(dofile), type(assert));
 	local caster = keys.caster
 	local abilityCount = keys.caster:GetAbilityCount()		
 	local abilityName = keys.event_ability:GetAbilityName()	

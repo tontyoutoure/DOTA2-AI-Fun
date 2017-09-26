@@ -36,19 +36,16 @@ function modifier_ramza_arithmetician_accrue_exp:IsPurgable() return false end
 function modifier_ramza_arithmetician_accrue_exp:OnCreated()
 	if IsClient() then return end
 	self.iPecentageDistanceXP = self:GetAbility():GetSpecialValueFor("percentage_distance_xp")
+	self.vPreviousPosition = self:GetParent():GetOrigin()
 	self:StartIntervalThink(0.25)
 end
 
 function modifier_ramza_arithmetician_accrue_exp:OnIntervalThink()
 	if IsClient() then return end
 	local hParent = self:GetParent()
-	if self.vPreviousPosition then 
-		local fDistance = self.vPreviousPosition.Length(hParent:GetOrigin() - self.vPreviousPosition)
-		hParent:AddExperience(fDistance*self.iPecentageDistanceXP/100, DOTA_ModifyXP_Unspecified, false , true)
-		self.vPreviousPosition = hParent:GetOrigin()
-	else
-		self.vPreviousPosition = hParent:GetOrigin()
-	end
+	local fDistance = self.vPreviousPosition.Length(hParent:GetOrigin() - self.vPreviousPosition)
+	hParent:AddExperience(fDistance*self.iPecentageDistanceXP/100, DOTA_ModifyXP_Unspecified, false , true)
+	self.vPreviousPosition = hParent:GetOrigin()
 end
 
 

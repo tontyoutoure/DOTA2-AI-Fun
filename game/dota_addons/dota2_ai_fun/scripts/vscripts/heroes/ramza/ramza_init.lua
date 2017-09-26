@@ -3,6 +3,7 @@
 function GameMode:RamzaProjecileFilter(filterTable)
 	local hTarget = EntIndexToHScript(filterTable.entindex_target_const)
 	local hSource = EntIndexToHScript(filterTable.entindex_source_const)
+	if not hTarget.FindAbilityByName then return true end
 	local hAbility = hTarget:FindAbilityByName('ramza_archer_archers_bane')
 	if hTarget:FindModifierByName("modifier_ramza_archer_archers_bane") and RandomInt(1, 100) < hAbility:GetSpecialValueFor("evasion") then
 		local tInfo ={
@@ -41,15 +42,18 @@ function RamzaInit(hHero, context)
 		require("heroes/ramza/ramza_job")
 		local hModifier = hHero:AddNewModifier(hHero, nil, "modifier_ramza_job_manager", {})
 		hModifier.iBonusAttackRange = 0;
+		hModifier:SetStackCount(1)
 		hModifier = hHero:AddNewModifier(hHero, nil, "modifier_ramza_job_level", {})
 		hModifier:SetStackCount(1)
 		hHero:AddNewModifier(hHero, nil, "modifier_ramza_job_point", {})
 		hHero:FindAbilityByName("ramza_open_stats_lua"):SetLevel(1)
 		hHero:FindAbilityByName("ramza_go_back_lua"):SetLevel(1)
-		hHero:FindAbilityByName("ramza_next_page_lua"):SetLevel(1)
 		hHero:FindAbilityByName("ramza_job_squire_JC"):SetLevel(1)
 		hHero:FindAbilityByName("ramza_select_secondary_skill_lua"):SetLevel(1)
 		hHero:AddAbility("ramza_empty_1"):SetLevel(1)
+		hHero:AddAbility("ramza_squire_fundamental_stone")
+		hHero:FindAbilityByName("ramza_squire_fundamental_stone"):SetLevel(1)
+		hHero:FindAbilityByName("ramza_squire_fundamental_stone"):SetHidden(true)
 		if not GameMode.bRamzaArchersBaneFileterSet then
 			GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(GameMode, 'RamzaProjecileFilter'), context)
 			GameMode.bRamzaArchersBaneFileterSet = true

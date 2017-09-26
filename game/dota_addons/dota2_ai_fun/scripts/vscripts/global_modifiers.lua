@@ -14,6 +14,13 @@ function modifier_global_hero_respawn_time:OnTakeDamage(keys)
 		if hScytheModifier then
 			keys.unit.fScytheTime = hScytheModifier:GetAbility():GetLevel()*GameMode.iRespawnTimePercentage/10
 		end
+		for i = 0, 5 do
+			local hItem = keys.unit:GetItemInSlot(i)
+			if hItem and hItem:GetAbilityName() == "item_bloodstone" then
+				keys.unit.fBloodstoneRespawnTimeReduce = hItem:GetCurrentCharges()*3
+				break
+			end
+		end
 		if keys.unit:HasAbility('skeleton_king_reincarnation') and keys.unit:FindAbilityByName('skeleton_king_reincarnation'):IsFullyCastable() then
 			keys.unit.fReincarnateTime = 3
 			Timers:CreateTimer(3, function () keys.unit.fReincarnateTime = nil end)

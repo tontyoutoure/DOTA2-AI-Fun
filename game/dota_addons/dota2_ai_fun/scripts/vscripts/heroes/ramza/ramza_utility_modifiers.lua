@@ -2,7 +2,7 @@ RAMZA_ATTACK_HERO_JOB_POINT = 5
 RAMZA_ATTACK_BUILDING_JOB_POINT = 5
 RAMZA_ATTACK_ANCIENT_JOB_POINT = 5
 RAMZA_ATTACK_CREEP_JOB_POINT = 1
-RAMZA_USE_ABILITY_JOB_POINT = 50
+RAMZA_USE_ABILITY_JOB_POINT = 5
 RAMZA_KILL_BUILDING_JOB_POINT = 50
 RAMZA_KILL_HERO_PER_LEVEL_JOB_POINT = 50
 RAMZA_KILL_ANCIENT_JOB_POINT = 50
@@ -139,10 +139,41 @@ function modifier_ramza_job_manager:DeclareFunctions()
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_EVENT_ON_ABILITY_EXECUTED,
 		MODIFIER_EVENT_ON_TAKEDAMAGE_KILLCREDIT,
-		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
+		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
+		MODIFIER_EVENT_ON_ATTACK
 	}
 end
 
+local tAttackSound = {
+	[1] = "Hero_DragonKnight.Attack",
+	[2] = "Hero_Sniper.attack",
+	[3] = "Hero_DragonKnight.Attack",
+	[4] = "Hero_Clinkz.Attack",
+	[5] = "Hero_KeeperOfTheLight.Attack",
+	[6] = "Hero_Invoker.Attack",
+	[7] = "hero_bloodseeker.attack",
+	[8] = "Hero_Riki.Attack",
+	[9] = "Hero_Oracle.Attack",
+	[10] = "Hero_Silencer.Attack",
+	[11] = "Hero_ShadowShaman.Attack",
+	[12] = "Hero_KeeperOfTheLight.Attack",
+	[13] = "Hero_Warlock.Attack",
+	[14] = "Hero_PhantomLancer.Attack",
+	[15] = "Hero_Juggernaut.Attack",
+	[16] = "Hero_BountyHunter.Attack",
+	[17] = "Hero_Rubick.Attack",
+	[18] = "Hero_Bane.Attack",
+	[19] = "Hero_Abaddon.Attack",
+	[20] = "Hero_Kunkka.Attack"		
+}
+
+function modifier_ramza_job_manager:GetAttackSound()
+
+	--self:GetParent():EmitSound(tAttackSound[self:GetStackCount()])
+	print(IsClient(), tAttackSound[self:GetStackCount()])
+	return ""
+end
 
 function modifier_ramza_job_manager:OnCreated()
 	if IsClient() then return end
@@ -166,6 +197,17 @@ function modifier_ramza_job_manager:OnAttackLanded(keys)
 		hParent.hRamzaJob:GainJobPoint(RAMZA_ATTACK_ANCIENT_JOB_POINT)
 	else
 		hParent.hRamzaJob:GainJobPoint(RAMZA_ATTACK_CREEP_JOB_POINT)
+	end
+	if hParent:GetAttackCapability() == DOTA_UNIT_CAP_MELEE_ATTACK then
+		hParent:EmitSound(tAttackSound[self:GetStackCount()])
+	end
+end
+
+function modifier_ramza_job_manager:OnAttack(keys)
+	if keys.attacker ~= self:GetParent() then return end
+	local hParent = self:GetParent()
+	if hParent:GetAttackCapability() == DOTA_UNIT_CAP_RANGED_ATTACK then
+		hParent:EmitSound(tAttackSound[self:GetStackCount()])
 	end
 end
 
@@ -193,9 +235,32 @@ function modifier_ramza_job_manager:OnTakeDamageKillCredit(keys)
 	end
 end
 
+
+
 function modifier_ramza_job_manager:GetModifierAttackRangeBonus()
-	self.iBonusAttackRange = self.iBonusAttackRange or 0
-	return self.iBonusAttackRange
+	local tRamzaAttackRange = {
+		[1] = 150,
+		[2] = 600,
+		[3] = 150,
+		[4] = 625,
+		[5] = 550,
+		[6] = 500,
+		[7] = 150,
+		[8] = 150,
+		[9] = 575,
+		[10] = 500,
+		[11] = 400,
+		[12] = 600,
+		[13] = 500,
+		[14] = 150,
+		[15] = 150,
+		[16] = 150,
+		[17] = 700,
+		[18] = 600,
+		[19] = 150,
+		[20] = 150		
+	}
+	return tRamzaAttackRange[self:GetStackCount()]-150
 end
 
 
@@ -207,9 +272,12 @@ function modifier_ramza_job_level:RemoveOnDeath() return false end
 function modifier_ramza_job_level:GetTexture() return "ramza_job_info" end
 
 function modifier_ramza_job_level:DeclareFunctions() return {MODIFIER_PROPERTY_TOOLTIP} end
+
+local tJobRequirements = {
+	200, 400, 700, 1100, 1600, 2200, 3000, 4000
+}
 function modifier_ramza_job_level:OnTooltip()
-	self.iJobpoints = self.iJobpoints or 0
-	return self.iJobpoints
+	return tJobRequirements[self:GetStackCount()]
 end
 
 modifier_ramza_job_mastered = class({})
@@ -225,6 +293,11 @@ modifier_ramza_job_point = class({})
 function modifier_ramza_job_point:IsPurgable() return false end
 function modifier_ramza_job_point:RemoveOnDeath() return false end	
 function modifier_ramza_job_point:GetTexture() return "ramza_job_info" end
+function modifier_ramza_job_point:DeclareFunctions() return {MODIFIER_PROPERTY_TOOLTIP} end
+
+function modifier_ramza_job_point:OnTooltip()
+	return self:GetStackCount()
+end
 
 
 modifier_ramza_samurai_run_animation_manager = class({})
@@ -274,6 +347,24 @@ function modifier_ramza_samurai_run_animation_manager:OnIntervalThink()
 end
 
 function modifier_ramza_samurai_run_animation_manager:OnDestroy()
+	if IsClient() then return end
+	RemoveAnimationTranslate(self:GetParent())
+end
+
+modifier_ramza_white_mage_animation_manager = class({})
+
+function modifier_ramza_white_mage_animation_manager:IsPurgable() return false end
+function modifier_ramza_white_mage_animation_manager:RemoveOnDeath() return false end	
+function modifier_ramza_white_mage_animation_manager:IsHidden() return true end
+
+function modifier_ramza_white_mage_animation_manager:OnCreated()
+	if IsClient() then return end
+	local hParent = self:GetParent()
+	AddAnimationTranslate(hParent, "ti6")
+	AddAnimationTranslate(hParent, "divine_sorrow_sunstrike")
+end
+
+function modifier_ramza_white_mage_animation_manager:OnDestroy()
 	if IsClient() then return end
 	RemoveAnimationTranslate(self:GetParent())
 end

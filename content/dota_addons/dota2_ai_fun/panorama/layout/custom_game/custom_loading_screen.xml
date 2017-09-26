@@ -173,6 +173,9 @@
           <Button id="HeroAvatarBtnEnigma" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelEnigma&quot;);">
             <Image id="HeroAvatarEnigma" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_enigma.png" />
           </Button>
+          <Button id="HeroAvatarBtnBrewmaster" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelBrewmaster&quot;);">
+            <Image id="HeroAvatarBrewmaster" class="HeroAvatar" src="file://{images}/custom_game/ramza/ramza.png" />
+          </Button>
 				</Panel>
 			</Panel>
 			
@@ -222,6 +225,10 @@
       <Panel id="HeroDescriptionPopPanelEnigma" class = "HeroDescriptionPopPanel">
         <Label id="HeroNameEnigma" class="HeroName" text="#npc_dota_hero_enigma_long"/>
         <Label id="HeroBioEnigma" class="HeroBio" text="#npc_dota_hero_enigma_bio"/>
+      </Panel>
+	  <Panel id="HeroDescriptionPopPanelBrewmaster" class = "HeroDescriptionPopPanel">
+        <Label id="HeroNameBrewmaster" class="HeroName" text="#npc_dota_hero_brewmaster_long"/>
+        <Label id="HeroBioBrewmaster" class="HeroBio" text="#npc_dota_hero_brewmaster_bio"/>
       </Panel>
 		</Panel>		
 	</Panel>

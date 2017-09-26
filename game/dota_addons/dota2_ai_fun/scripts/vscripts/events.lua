@@ -118,11 +118,12 @@ function GameMode:OnEntityKilled(keys)
 
 	Timers:CreateTimer(0.04, function ()
 		local fRespawnTime = CalculateLevelRespawnTimeWithDiscount(hHero:GetLevel())
-		print("Normal Respawn Time: ", fRespawnTime, "Reincarnate Time: ", hHero.fReincarnateTime, "Buy back extra time: ", hHero.fBuyBackExtraRespawnTime, "Scythe Extra time: ", hHero.fScytheTime)
+--		print("Normal Respawn Time: ", fRespawnTime, "Reincarnate Time: ", hHero.fReincarnateTime, "Buy back extra time: ", hHero.fBuyBackExtraRespawnTime, "Scythe Extra time: ", hHero.fScytheTime, "BloodStone Time", hHero.fBloodstoneRespawnTimeReduce)
 		if hHero.fReincarnateTime then
 			hHero:SetTimeUntilRespawn(hHero.fReincarnateTime)
 			hHero.fScytheTime = nil
 			hHero.fReincarnateTime = nil
+			hHero.fBloodstoneRespawnTimeReduce = nil	
 		else
 			if hHero.fScytheTime then 
 				fRespawnTime = fRespawnTime+hHero.fScytheTime
@@ -132,6 +133,11 @@ function GameMode:OnEntityKilled(keys)
 				fRespawnTime = fRespawnTime+hHero.fBuyBackExtraRespawnTime
 				hHero.fBuyBackExtraRespawnTime = nil
 			end
+			if hHero.fBloodstoneRespawnTimeReduce then
+				fRespawnTime = fRespawnTime-hHero.fBloodstoneRespawnTimeReduce
+				hHero.fBloodstoneRespawnTimeReduce = nil				
+			end
+			if fRespawnTime < 0 then fRespawnTime = 0 end
 			hHero:SetTimeUntilRespawn(fRespawnTime)
 		end
 		--[[

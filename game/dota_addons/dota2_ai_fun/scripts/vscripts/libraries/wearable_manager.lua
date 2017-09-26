@@ -25,7 +25,8 @@ function modifier_wearable_hider_while_model_changes:IsHidden() return true end
 function modifier_wearable_hider_while_model_changes:RemoveOnDeath() return false end
 function modifier_wearable_hider_while_model_changes:IsPurgable() return false end
 
-function modifier_wearable_hider_while_model_changes:OnModelChanged()
+function modifier_wearable_hider_while_model_changes:OnModelChanged(keys)
+	if keys.attacker ~= self:GetParent() then return end
 	if not self.sOriginalModel then return end
 	local hParent = self:GetParent()
 	if self.sOriginalModel == self:GetParent():GetModelName() then	
@@ -76,6 +77,24 @@ WearableManager.tAttachPoints = {
 	worldorigin = PATTACH_WORLDORIGIN	
 }
 
+function WearableManager:AddParticleSystem(hWearable, hUnit, hParticleSystem)
+	local hBaseAttach
+	--find base attach
+	if hParticleSystem.attach_entity == "parent" then
+		hBaseAttach = hUnit
+	else
+		hBaseAttach = hWearable
+	end
+	local particle_index = ParticleManager:CreateParticle(hParticleSystem.system, hParticleSystem.attach_type, hBaseAttach)
+	
+	for k, v in hParticleSystem.control_points do
+		local hAttach = v.attach_entity or hBaseAttach
+	end
+	
+	return particle_index
+end
+
+
 function WearableManager:AddNewWearable(hUnit, tInput)		
 	hUnit.tWearables = hUnit.tWearables or {}	
 	
@@ -93,7 +112,7 @@ function WearableManager:AddNewWearable(hUnit, tInput)
 		if sSkin then 
 			hWearable:SetMaterialGroup(sSkin)
 		end
-	else	
+	else			
 		if GameItems.items[sID].visuals and GameItems.items[sID].visuals.styles then
 			sModel = GameItems.items[sID].visuals.styles[sStyle].model_player or GameItems.items[sID].model_player
 			hWearable = SpawnEntityFromTableSynchronous("prop_dynamic", {model = sModel})

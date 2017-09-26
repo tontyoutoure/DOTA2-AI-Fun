@@ -1,18 +1,41 @@
 LinkLuaModifier("modifier_ramza_squire_counter_tackle", "heroes/ramza/ramza_squire_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ramza_squire_fundamental_rush", "heroes/ramza/ramza_squire_modifiers.lua", LUA_MODIFIER_MOTION_BOTH)
 
-function RamzaSquireStoneHit(keys)	
-	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
+ramza_squire_fundamental_stone = class({})
+
+function ramza_squire_fundamental_stone:OnSpellStart()
+	local info = 
+	{
+		Target = self:GetCursorTarget(),
+		Source = self:GetCaster(),
+		Ability = self,	
+		EffectName = "particles/units/heroes/hero_brewmaster/brewmaster_hurl_boulder.vpcf",
+		iMoveSpeed = self:GetSpecialValueFor("speed"),
+		vSourceLoc= self:GetCaster():GetAbsOrigin(),                -- Optional (HOW)
+		bDrawsOnMinimap = false,                          -- Optional
+		bDodgeable = true,                                -- Optional
+		bIsAttack = false,                                -- Optional
+		bVisibleToEnemies = true,                         -- Optional
+		bReplaceExisting = false,                         -- Optional
+		flExpireTime = GameRules:GetGameTime() + 20,      -- Optional but recommended
+		bProvidesVision = false,                           -- Optional
+	}
+	ProjectileManager:CreateTrackingProjectile(info)
+	self:GetCaster():EmitSound("Brewmaster_Earth.Boulder.Cast")
+end
+
+function ramza_squire_fundamental_stone:OnProjectileHit(hTarget, vLocation)	
+	if hTarget:TriggerSpellAbsorb( self ) then return end
 	local damageTable = {
-		damage = keys.ability:GetSpecialValueFor("damage"),
+		damage = self:GetSpecialValueFor("damage"),
 		damage_type = DAMAGE_TYPE_MAGICAL,
-		victim = keys.target,
-		attacker = keys.caster,
-		ability = keys.ability
+		victim = hTarget,
+		attacker = self:GetCaster(),
+		ability = self
 	}
 	ApplyDamage(damageTable)
-	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_ramza_squire_fundamental_stone_stun", {})
-	keys.target:EmitSound("Brewmaster_Earth.Boulder.Target")
+	hTarget:AddNewModifier(self:GetCaster(), self, "modifier_stunned", {Duration = self:GetSpecialValueFor("stun")})
+	hTarget:EmitSound("Brewmaster_Earth.Boulder.Target")
 end
 
 function RamzaSquireDefendToggle(keys)
