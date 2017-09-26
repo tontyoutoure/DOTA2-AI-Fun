@@ -25,6 +25,8 @@ function modifier_ramza_archer_archers_bane:DeclareFunctions()
 end
 
 function modifier_ramza_archer_archers_bane:IsHidden() return true end
+function modifier_ramza_archer_archers_bane:RemoveOnDeath() return false end
+function modifier_ramza_archer_archers_bane:IsPurgable() return false end
 
 function modifier_ramza_archer_archers_bane:GetAbsorbSpell(keys)
 	if keys.ability:GetCaster():IsRangedAttacker() and math.random(100) < self:GetAbility():GetSpecialValueFor("evasion") then

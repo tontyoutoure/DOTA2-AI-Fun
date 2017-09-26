@@ -9,7 +9,6 @@ var SELECT_SECONDARY_ABILITY = 1;
 var iPlayerID = Game.GetLocalPlayerID();
 var bInitialized = false;
 
-
 //Main object
 var RamzaJob = {};
 
@@ -231,25 +230,37 @@ RamzaJob.InitializeDescription = function() {
 		
 		$("#JobDescriptionFlyout"+i.toString()).BCreateChildren("<Label id='JobDescriptionTitle"+i.toString()+"' class='JobDescriptionTitle' text='#"+this.tJobNames[i.toString()]+"'/>");
 		$("#JobDescriptionFlyout"+i.toString()).BCreateChildren("<Label id='JobDescriptionLevel"+i.toString()+"'/>");
-		$("#JobDescriptionFlyout"+i.toString()).BCreateChildren("<Label id='JobDescription"+i.toString()+"' class='JobDescription' text='#"+this.tJobNames[i.toString()]+"_description"+"'/>")	
+		$("#JobDescriptionFlyout"+i.toString()).BCreateChildren("<Label id='JobDescription"+i.toString()+"' class='JobDescription' text='#"+this.tJobNames[i.toString()]+"_description"+"'/>")
+		if ($.Language() == 'english') 
+			$("#JobDescription"+i.toString()).SetHasClass("JobDescriptionEnglish", true);
 		$("#JobDescriptionFlyout"+i.toString()).BCreateChildren("<Panel id='JobStatRow"+i.toString()+"' class='JobStatRow' />")
 			$("#JobStatRow"+i.toString()).BCreateChildren("<Panel id='JobStatKeyColumn"+i.toString()+"' class='JobStatColumn' />")
-				$("#JobStatKeyColumn"+i.toString()).BCreateChildren("<Label id='JobStatStrKey"+i.toString()+"' class='JobStatKey' text='#ramza_job_description_stat_str' />")
-				$("#JobStatKeyColumn"+i.toString()).BCreateChildren("<Label id='JobStatAgiKey"+i.toString()+"' class='JobStatKey' text='#ramza_job_description_stat_agi' />")
-				$("#JobStatKeyColumn"+i.toString()).BCreateChildren("<Label id='JobStatIntKey"+i.toString()+"' class='JobStatKey' text='#ramza_job_description_stat_int' />")
-				$("#JobStatKeyColumn"+i.toString()).BCreateChildren("<Label id='JobStatARKey"+i.toString()+"' class='JobStatKey' text='#ramza_job_description_stat_attack_range' />")
-				$("#JobStatKeyColumn"+i.toString()).BCreateChildren("<Label id='JobStatMSKey"+i.toString()+"' class='JobStatKey' text='#ramza_job_description_stat_move_speed' />")
+				$("#JobStatKeyColumn"+i.toString()).BCreateChildren("<Panel id='JobStatStrKeyColumnRow"+i.toString()+"' class='JobStatColumnRow' />")
+				$("#JobStatStrKeyColumnRow"+i.toString()).BCreateChildren("<Label id='JobStatStrKey"+i.toString()+"' class='JobStatKey' text='#ramza_job_description_stat_str' />")
+				$("#JobStatKeyColumn"+i.toString()).BCreateChildren("<Panel id='JobStatAgiKeyColumnRow"+i.toString()+"' class='JobStatColumnRow' />")
+				$("#JobStatAgiKeyColumnRow"+i.toString()).BCreateChildren("<Label id='JobStatAgiKey"+i.toString()+"' class='JobStatKey' text='#ramza_job_description_stat_agi' />")
+				$("#JobStatKeyColumn"+i.toString()).BCreateChildren("<Panel id='JobStatIntKeyColumnRow"+i.toString()+"' class='JobStatColumnRow' />")
+				$("#JobStatIntKeyColumnRow"+i.toString()).BCreateChildren("<Label id='JobStatIntKey"+i.toString()+"' class='JobStatKey' text='#ramza_job_description_stat_int' />")
+				$("#JobStatKeyColumn"+i.toString()).BCreateChildren("<Panel id='JobStatARKeyColumnRow"+i.toString()+"' class='JobStatColumnRow' />")
+				$("#JobStatARKeyColumnRow"+i.toString()).BCreateChildren("<Label id='JobStatARKey"+i.toString()+"' class='JobStatKey' text='#ramza_job_description_stat_attack_range' />")
+				$("#JobStatKeyColumn"+i.toString()).BCreateChildren("<Panel id='JobStatMSKeyColumnRow"+i.toString()+"' class='JobStatColumnRow' />")
+				$("#JobStatMSKeyColumnRow"+i.toString()).BCreateChildren("<Label id='JobStatMSKey"+i.toString()+"' class='JobStatKey' text='#ramza_job_description_stat_move_speed' />")
 			
 			$("#JobStatRow"+i.toString()).BCreateChildren("<Panel id='JobStatValueColumn"+i.toString()+"' class='JobStatColumn' />")
-				$("#JobStatValueColumn"+i.toString()).BCreateChildren("<Label id='JobStatStrValue"+i.toString()+"' class='JobStatValue' text ='"+ this.tJobStats[i.toString()]["base_str"].toString()+'+'+this.tJobStats[i.toString()]["gain_str"].toFixed(1)+"'/>")
-				$("#JobStatValueColumn"+i.toString()).BCreateChildren("<Label id='JobStatAgiValue"+i.toString()+"' class='JobStatValue' text ='"+ this.tJobStats[i.toString()]["base_agi"].toString()+'+'+this.tJobStats[i.toString()]["gain_agi"].toFixed(1)+"'/>")
-				$("#JobStatValueColumn"+i.toString()).BCreateChildren("<Label id='JobStatIntValue"+i.toString()+"' class='JobStatValue' text ='"+ this.tJobStats[i.toString()]["base_int"].toString()+'+'+this.tJobStats[i.toString()]["gain_int"].toFixed(1)+"'/>")
-				$("#JobStatValueColumn"+i.toString()).BCreateChildren("<Label id='JobStatARValue"+i.toString()+"' class='JobStatValue' />")
+				$("#JobStatValueColumn"+i.toString()).BCreateChildren("<Panel id='JobStatStrValueColumnRow"+i.toString()+"' class='JobStatColumnRow' />")
+				$("#JobStatStrValueColumnRow"+i.toString()).BCreateChildren("<Label id='JobStatStrValue"+i.toString()+"' class='JobStatValue' text ='"+ this.tJobStats[i.toString()]["base_str"].toString()+'+'+this.tJobStats[i.toString()]["gain_str"].toFixed(1)+"'/>")
+				$("#JobStatValueColumn"+i.toString()).BCreateChildren("<Panel id='JobStatAgiValueColumnRow"+i.toString()+"' class='JobStatColumnRow' />")
+				$("#JobStatAgiValueColumnRow"+i.toString()).BCreateChildren("<Label id='JobStatAgiValue"+i.toString()+"' class='JobStatValue' text ='"+ this.tJobStats[i.toString()]["base_agi"].toString()+'+'+this.tJobStats[i.toString()]["gain_agi"].toFixed(1)+"'/>")
+				$("#JobStatValueColumn"+i.toString()).BCreateChildren("<Panel id='JobStatIntValueColumnRow"+i.toString()+"' class='JobStatColumnRow' />")
+				$("#JobStatIntValueColumnRow"+i.toString()).BCreateChildren("<Label id='JobStatIntValue"+i.toString()+"' class='JobStatValue' text ='"+ this.tJobStats[i.toString()]["base_int"].toString()+'+'+this.tJobStats[i.toString()]["gain_int"].toFixed(1)+"'/>")
+				$("#JobStatValueColumn"+i.toString()).BCreateChildren("<Panel id='JobStatARValueColumnRow"+i.toString()+"' class='JobStatColumnRow' />")
+				$("#JobStatARValueColumnRow"+i.toString()).BCreateChildren("<Label id='JobStatARValue"+i.toString()+"' class='JobStatValue' />")
 				if (this.tJobStats[i.toString()]["attack_range"] > 150)
 					$("#JobStatARValue"+i.toString()).text = this.tJobStats[i.toString()]["attack_range"].toString();
 				else
 					$("#JobStatARValue"+i.toString()).text = $.Localize('#ramza_job_description_meele')
-				$("#JobStatValueColumn"+i.toString()).BCreateChildren("<Label id='JobStatMSValue"+i.toString()+"' class='JobStatValue' text ='"+ this.tJobStats[i.toString()]["move_speed"].toString()+"'/>")
+				$("#JobStatValueColumn"+i.toString()).BCreateChildren("<Panel id='JobStatMSValueColumnRow"+i.toString()+"' class='JobStatColumnRow' />")
+				$("#JobStatMSValueColumnRow"+i.toString()).BCreateChildren("<Label id='JobStatMSValue"+i.toString()+"' class='JobStatValue' text ='"+ this.tJobStats[i.toString()]["move_speed"].toString()+"'/>")
 				switch (this.tJobStats[i.toString()]["primary_attribute"]) {
 					case Attributes.DOTA_ATTRIBUTE_STRENGTH:
 						$("#JobStatStrKey"+i.toString()).SetHasClass('RedFont', true);
@@ -271,8 +282,10 @@ RamzaJob.InitializeDescription = function() {
 			$("#JobAbilityRow"+i.toString()).BCreateChildren("<Panel id='JobAbilityKeyColumn"+i.toString()+"' class='JobStatColumn' />")
 			$("#JobAbilityRow"+i.toString()).BCreateChildren("<Panel id='JobAbilityValueColumn"+i.toString()+"' class='JobStatColumn' />")		
 			for (j = 1; j < 10; j++) {
-				$("#JobAbilityKeyColumn"+i.toString()).BCreateChildren("<Label id='JobAbilityKey"+i.toString()+"_"+j.toString()+"' class='JobStatKey GrayFont' text='#ramza_job_lv"+j.toString()+"' />")
-				$("#JobAbilityValueColumn"+i.toString()).BCreateChildren("<Label id='JobAbilityValue"+i.toString()+"_"+j.toString()+"' class='JobStatValue GrayFont'/>")
+				$("#JobAbilityKeyColumn"+i.toString()).BCreateChildren("<Panel id='JobAbilityKeyColumnRow"+i.toString()+"_"+j.toString()+"' class='JobStatColumnRow' />")
+				$("#JobAbilityKeyColumnRow"+i.toString()+"_"+j.toString()).BCreateChildren("<Label id='JobAbilityKey"+i.toString()+"_"+j.toString()+"' class='JobStatKey GrayFont' text='#ramza_job_lv"+j.toString()+"' />")
+				$("#JobAbilityValueColumn"+i.toString()).BCreateChildren("<Panel id='JobAbilityValueColumnRow"+i.toString()+"_"+j.toString()+"' class='JobStatColumnRow' />")
+				$("#JobAbilityValueColumnRow"+i.toString()+"_"+j.toString()).BCreateChildren("<Label id='JobAbilityValue"+i.toString()+"_"+j.toString()+"' class='JobStatValue GrayFont'/>")
 				tJobLevelAbilities=this.tJobAbilities[i.toString()][j.toString()];
 				sJobLevelAbilities = "";
 				sDelimiter = "";
@@ -293,9 +306,11 @@ RamzaJob.InitializeDescription = function() {
 			$("#JobRequirementRow"+i.toString()).BCreateChildren("<Panel id='JobRequirementKeyColumn"+i.toString()+"' class='JobStatColumn' />")
 			$("#JobRequirementRow"+i.toString()).BCreateChildren("<Panel id='JobRequirementValueColumn"+i.toString()+"' class='JobStatColumn' />")
 				tSingleJobRequirement=this.tInitJobRequirement[i.toString()]
-				for (k in tSingleJobRequirement) {
-					$("#JobRequirementKeyColumn"+i.toString()).BCreateChildren("<Label id='JobRequirementKey"+i.toString()+"_"+k+"' class='JobStatKey RedFont' text='#"+this.tJobNames[k]+"' />");
-					$("#JobRequirementValueColumn"+i.toString()).BCreateChildren("<Label id='JobRequirementValue"+i.toString()+"_"+k+"' class='JobStatValue RedFont' text='#ramza_job_lv"+tSingleJobRequirement[k]+"' />");
+				for (k in tSingleJobRequirement) {					
+					$("#JobRequirementKeyColumn"+i.toString()).BCreateChildren("<Panel id='JobRequirementKeyColumnRow"+i.toString()+"_"+k.toString()+"' class='JobStatColumnRow' />")
+					$("#JobRequirementKeyColumnRow"+i.toString()+"_"+k.toString()).BCreateChildren("<Label id='JobRequirementKey"+i.toString()+"_"+k+"' class='JobStatKey RedFont' text='#"+this.tJobNames[k]+"' />");
+					$("#JobRequirementValueColumn"+i.toString()).BCreateChildren("<Panel id='JobRequirementValueColumnRow"+i.toString()+"_"+k.toString()+"' class='JobStatColumnRow' />")
+					$("#JobRequirementValueColumnRow"+i.toString()+"_"+k.toString()).BCreateChildren("<Label id='JobRequirementValue"+i.toString()+"_"+k+"' class='JobStatValue RedFont' text='#ramza_job_lv"+tSingleJobRequirement[k]+"' />");
 				}
 					
 		}
