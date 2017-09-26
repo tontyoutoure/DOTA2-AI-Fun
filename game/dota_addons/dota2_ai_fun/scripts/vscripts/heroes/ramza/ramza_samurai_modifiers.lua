@@ -27,33 +27,34 @@ function modifier_ramza_samurai_bonecrusher:OnAttackLanded(keys)
 	ApplyDamage(damageTable)	
 end
 
-modifier_ramza_samurai_murasame = class({})
+modifier_ramza_samurai_iaido_masamune = class({})
 
-function modifier_ramza_samurai_murasame:DeclareFunctions()
+function modifier_ramza_samurai_iaido_masamune:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE
 	}
 end
 
-function modifier_ramza_samurai_murasame:OnCreated()
+function modifier_ramza_samurai_iaido_masamune:OnCreated()
 	if IsClient() then return end
 	local hParent = self:GetParent()
 	self.iParticle = ParticleManager:CreateParticle("particles/econ/items/legion/legion_fallen/legion_fallen_press.vpcf", PATTACH_ABSORIGIN_FOLLOW, hParent)	
 	ParticleManager:SetParticleControlEnt(self.iParticle, 1, hParent, PATTACH_POINT_FOLLOW, 'follow_origin' ,hParent:GetAbsOrigin(), true)
 end
 
-function modifier_ramza_samurai_murasame:OnDestroy()
+function modifier_ramza_samurai_iaido_masamune:GetTexture() return "juggernaut_healing_ward" end
+function modifier_ramza_samurai_iaido_masamune:OnDestroy()
 	if IsClient() then return end
 	ParticleManager:DestroyParticle(self.iParticle, true)
 end
 
-function modifier_ramza_samurai_murasame:GetModifierMoveSpeed_Absolute()
+function modifier_ramza_samurai_iaido_masamune:GetModifierMoveSpeed_Absolute()
 	self.iSpeed = self.iSpeed or self:GetAbility():GetSpecialValueFor("fixed_move_speed")
 	return self.iSpeed
 end
 
-function modifier_ramza_samurai_murasame:GetModifierAttackSpeedBonus_Constant()
+function modifier_ramza_samurai_iaido_masamune:GetModifierAttackSpeedBonus_Constant()
 	self.iAttack = self.iAttack or self:GetAbility():GetSpecialValueFor("attack_bonus")
 	return self.iAttack
 end

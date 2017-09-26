@@ -1,5 +1,5 @@
 LinkLuaModifier("modifier_ramza_samurai_bonecrusher", "heroes/ramza/ramza_samurai_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_ramza_samurai_murasame", "heroes/ramza/ramza_samurai_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_samurai_iaido_masamune", "heroes/ramza/ramza_samurai_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 
 
 
@@ -39,7 +39,7 @@ end
 function RamzaSamuraiMasamune(keys)
 	keys.caster:EmitSound("Hero_LegionCommander.PressTheAttack")
 	for k, v in ipairs(keys.target_entities) do
-		v:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_samurai_murasame", {Duration = keys.ability:GetSpecialValueFor("duration")})
+		v:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_samurai_iaido_masamune", {Duration = keys.ability:GetSpecialValueFor("duration")})
 	end
 end
 
