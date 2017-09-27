@@ -280,6 +280,7 @@ function Precache( context )
 	
 	PrecacheResource("particle", "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodrage_eztzhok.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_spellshield.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger.vpcf", context)
 end
 
 

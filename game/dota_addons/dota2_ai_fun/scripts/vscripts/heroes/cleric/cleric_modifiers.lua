@@ -39,6 +39,7 @@ function modifier_cleric_berserk:OnIntervalThink()
 			}
 			ExecuteOrderFromTable(newOrder)
 			hParent:SetForceAttackTarget(nil)
+			self.hTarget = nil
 		end
 	else	
 		local iNum = 1
@@ -63,6 +64,7 @@ function modifier_cleric_berserk:OnIntervalThink()
 				OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
 				TargetIndex = self.hTarget:entindex()
 			}
+			hParent:SetForceAttackTarget(nil)
 			ExecuteOrderFromTable(tOrder)
 			hParent:SetForceAttackTarget(self.hTarget)
 		end
@@ -89,7 +91,7 @@ function modifier_cleric_berserk:GetStatusEffectName() return "particles/status_
 
 function modifier_cleric_berserk:GetEffectAttachType() return PATTACH_OVERHEAD_FOLLOW end
 
-function modifier_cleric_berserk:GetEffectName() return "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodrage_eztzhok.vpcf" end
+function modifier_cleric_berserk:GetEffectName() return "particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger.vpcf" end
 
 modifier_cleric_berserk_target = class({})
 
@@ -99,9 +101,11 @@ end
 
 function modifier_cleric_berserk_target:IsPurgable() return false end
 
+function modifier_cleric_berserk_target:IsDebuff() return true end
+
 function modifier_cleric_berserk_target:IsPurgeException() return false end
 
-function modifier_cleric_berserk_target:GetEffectName() return "particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger_b.vpcf" end
+function modifier_cleric_berserk_target:GetEffectName() return "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodrage_eztzhok_ovr.vpcf" end
 
 function modifier_cleric_berserk_target:GetEffectAttachType() return PATTACH_OVERHEAD_FOLLOW end
 
@@ -115,7 +119,7 @@ end
 
 function modifier_cleric_magic_mirror:IsPurgable() return false end
 function modifier_cleric_magic_mirror:RemoveOnDeath() return false end
-function modifier_cleric_magic_mirror:IsHidden() return false end
+function modifier_cleric_magic_mirror:IsHidden() return true end
 
 
 function modifier_cleric_magic_mirror:GetAbsorbSpell(keys)
