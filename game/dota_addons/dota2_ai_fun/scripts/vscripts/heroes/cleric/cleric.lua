@@ -2,13 +2,10 @@ LinkLuaModifier("modifier_cleric_berserk", "heroes/cleric/cleric_modifiers.lua",
 LinkLuaModifier("modifier_cleric_berserk_target", "heroes/cleric/cleric_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 function ClericMeteorShower(keys)
 	local iMeteorCount = keys.ability:GetSpecialValueFor("meteor_count")
-	local vTarget 
-	if keys.target_points then
-		vTarget= keys.target_points[1]
-	else
-		vTarget = keys.target:GetOrigin()
-	end
+	local vTarget= keys.target_points[1]
+
 	local fMeteorRadius = keys.ability:GetSpecialValueFor("meteor_radius")
+	AddFOWViewer(keys.caster:GetTeamNumber(), vTarget, 500, 3, true)
 	local fCastRadius = keys.ability:GetSpecialValueFor("cast_radius")
 	local iDamage = keys.ability:GetSpecialValueFor("damage")
 	local fStunDuration = keys.ability:GetSpecialValueFor("stun_duration")
