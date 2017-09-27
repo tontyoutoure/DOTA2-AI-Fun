@@ -169,12 +169,13 @@ function ramza_go_back_lua:OnSpellStart()
 		
 		hCaster:SwapAbilities('ramza_next_page_lua', hCaster.tNormalMenuState[5], true, true)
 		hCaster:FindAbilityByName(hCaster.tNormalMenuState[5]):SetHidden(false)
-		print("haha")
 		hCaster:RemoveAbility('ramza_next_page_lua')
 		
 		hCaster:AddAbility("ramza_open_stats_lua"):SetLevel(1)	
 		hCaster:SwapAbilities("ramza_go_back_lua", "ramza_open_stats_lua", true, true)
 		hCaster:FindAbilityByName("ramza_go_back_lua"):SetHidden(true)
+		hCaster.iPrimaryPointer = 0
+		hCaster.iSecondaryPointer = 0
 	end
 		
 	
@@ -227,7 +228,6 @@ local RamzaFetchAbilities = function(hCaster, bFromMain, tJobCommandBus, tJobCom
 		else
 			hCaster:RemoveAbility(sName1)
 		end
-		
 		if not tJobCommandBusRequirement[i+iPointer] or tJobCommandBusRequirement[i+iPointer] <= iLevel then 
 			if tJobCommandBusRequirement[i+iPointer] then
 				hCaster:FindAbilityByName(sName2):SetLevel(1)
