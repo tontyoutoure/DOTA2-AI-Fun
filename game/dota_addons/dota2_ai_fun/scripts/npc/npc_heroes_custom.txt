@@ -11,3 +11,4 @@
 #base "heroes\telekenetic_blob.txt"
 #base "heroes\terran_marine.txt"
 #base "heroes\void_demon.txt"
+#base "heroes\cleric.txt"

@@ -60,7 +60,7 @@ end
 
 RamzaMimicOnAbilityExecuted = function(self, keys)
 	local hParent = self:GetParent()
-	if hParent:GetTeamNumber() ~= keys.unit:GetTeamNumber() or hParent == keys.unit or tBugHeroRamzaMimic[keys.unit:GetName()] or tBugAbilitiesRamzaMinic[keys.ability:GetName()] or keys.ability:IsItem() or hParent.iMenuState == RAMZA_MENU_STATE_UPGRADE then return end
+	if hParent:GetTeamNumber() ~= keys.unit:GetTeamNumber() or hParent == keys.unit or keys.unit:IsCourier() or tBugHeroRamzaMimic[keys.unit:GetName()] or tBugAbilitiesRamzaMinic[keys.ability:GetName()] or keys.ability:IsItem() or hParent.iMenuState == RAMZA_MENU_STATE_UPGRADE then return end
 
 	if hParent:IsChanneling() then hParent:GetAbilityByIndex(2):EndChannel(true) end
 	hParent:RemoveAbility(hParent:GetAbilityByIndex(2):GetName())

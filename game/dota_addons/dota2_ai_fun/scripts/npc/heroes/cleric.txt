@@ -1,0 +1,63 @@
+"DOTAHeroes"
+{
+	"npc_dota_hero_fun_cleric"
+	{
+		"override_hero"	"npc_dota_hero_rubick"
+		"Ability1"	"cleric_meteor_shower"
+		"Ability2"	"cleric_berserk"
+		"Ability3"	"cleric_magic_mirror"
+		"Ability4"	"cleric_prayer"
+		"Ability5"	""
+		"Ability6"	""
+		"AttributePrimary"	"DOTA_ATTRIBUTE_INTELLECT"
+		// Base strength
+		"AttributeBaseStrength"	"16"
+		// Strength bonus per level.
+		"AttributeStrengthGain"	"2"
+		// Base agility
+		"AttributeBaseAgility"	"14"
+		// Agility bonus per level.
+		"AttributeAgilityGain"	"1.7"
+		// Base intelligence
+		"AttributeBaseIntelligence"	"25"
+		// Intelligence bonus per level.
+		"AttributeIntelligenceGain"	"2.8"
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"25"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		// Damage range min.
+		"AttackDamageMin"	"29"
+		// Damage range max.
+		"AttackDamageMax"	"35"
+		// Speed of attack.
+		"AttackRate"	"1.7"
+		// GUESS VALUE
+		"AttackPoint"	"0.2"
+		// Speed
+		"ProjectileModel"	"particles/units/heroes/hero_oracle/oracle_base_attack.vpcf"
+		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_oracle.vsndevts"
+		"MovementSpeed"	"290"
+		// GUESS VALUE
+		"MovementTurnRate"	"0.4"
+		// Range of vision during day light.
+		"VisionDaytimeRange"	"1800"
+		// Range of vision at night time.
+		"VisionNighttimeRange"	"800"
+		"Role"	"Support, Disable"
+		"Rolelevels"	"2,2"
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	"special_bonus_gold_income_25"
+		"Ability11"	"special_bonus_exp_boost_20"
+		"Ability12"	"special_bonus_armor_10"
+		"Ability13"	"special_bonus_spell_lifesteal_20"
+		"Ability14"	"special_bonus_spell_amplify_20"
+		"Ability15"	"special_bonus_hp_600"
+		"Ability16"	"special_bonus_attack_range_400"
+		"Ability17"	"special_bonus_cast_range_400"
+		"AttackRange"	"600"
+		"AttackAnimationPoint"	"0.3"
+	}
+}

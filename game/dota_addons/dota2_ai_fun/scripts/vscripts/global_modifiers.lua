@@ -23,6 +23,7 @@ function modifier_global_hero_respawn_time:OnTakeDamage(keys)
 		end
 		if keys.unit:HasAbility('skeleton_king_reincarnation') and keys.unit:FindAbilityByName('skeleton_king_reincarnation'):IsFullyCastable() then
 			keys.unit.fReincarnateTime = 3
+			print("hoho")
 			Timers:CreateTimer(3, function () keys.unit.fReincarnateTime = nil end)
 		elseif keys.unit:HasItemInInventory('item_aegis') then
 			keys.unit.fReincarnateTime = 5

@@ -13,4 +13,18 @@
 	"persuasive_raise4"  "，需要消耗"
 	"persuasive_raise5"  "点血量"
 	"persuasive_raise6"  "，不需要消耗血量"
+
+
+
+	// ////////////////////////////////////////////////////////////////////////
+	//
+	// 							Ramza Beoulve
+	//
+	// ////////////////////////////////////////////////////////////////////////
+
+	"error_ramza_cant_change_job_full"  "只能在满血满蓝时更改职业。"
+	"error_ramza_cant_change_secondary_skill_full"  "只能在满血满蓝时更改次要技能。"
+	
+	"error_ramza_cant_change_job_jump"  "跳跃时无法更改职业。"
+	"error_ramza_cant_change_secondary_skill_jump"  "跳跃时无法更改次要技能。"
 }

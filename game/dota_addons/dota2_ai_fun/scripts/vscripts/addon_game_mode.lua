@@ -277,6 +277,10 @@ function Precache( context )
 	PrecacheResource("particle", "particles/units/heroes/hero_phantom_lancer/pl_attack_blur_2.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_phantom_lancer/pl_attack_blur_3.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_phantom_lancer/pl_attack_blur_4.vpcf", context)
+	
+	PrecacheResource("particle", "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodrage_eztzhok.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_spellshield.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger.vpcf", context)
 end
 
 

@@ -1,0 +1,168 @@
+modifier_cleric_berserk = class({})
+
+function modifier_cleric_berserk:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
+	}
+end
+
+function modifier_cleric_berserk:GetModifierBaseDamageOutgoing_Percentage() return self:GetAbility():GetSpecialValueFor("bonus_damage") end
+
+function modifier_cleric_berserk:GetModifierAttackSpeedBonus_Constant() return self:GetAbility():GetSpecialValueFor("bonus_attack") end
+
+function modifier_cleric_berserk:IsPurgable() return false end
+
+function modifier_cleric_berserk:IsPurgeException() return false end
+
+function modifier_cleric_berserk:OnCreated()
+	if IsClient() then return end
+	local hParent = self:GetParent()
+	self.iOwner = hParent:GetPlayerOwnerID()
+	hParent:SetControllableByPlayer(-1, false)
+	self:StartIntervalThink(0.05)
+end
+
+function modifier_cleric_berserk:OnIntervalThink()
+	if IsClient() then return end
+	local hParent = self:GetParent()
+	local vParent =  hParent:GetAbsOrigin()
+	
+	local tTargets = FindUnitsInRadius(hParent:GetTeamNumber(), vParent, none, 1200, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES+DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE+DOTA_UNIT_TARGET_FLAG_NO_INVIS+DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE , FIND_ANY_ORDER, false)
+	
+	if #tTargets == 1 then
+		if self.hTarget then
+			self.hTarget:RemoveModifierByName("modifier_cleric_berserk_target")
+			tOrder = {
+				UnitIndex = hParent:entindex(),
+				OrderType = DOTA_UNIT_ORDER_STOP 
+			}
+			ExecuteOrderFromTable(newOrder)
+			hParent:SetForceAttackTarget(nil)
+			self.hTarget = nil
+		end
+	else	
+		local iNum = 1
+		local iDistance = 99999		
+		for i, v in ipairs(tTargets) do
+			if (vParent-v:GetOrigin()):Length2D() < iDistance and v ~= hParent then
+				iNum = i
+				iDistance = (vParent-v:GetOrigin()):Length2D()
+			end
+		end
+		
+		
+		if tTargets[iNum] ~= self.hTarget then
+			if self.hTarget then 
+				self.hTarget:RemoveModifierByName("modifier_cleric_berserk_target")
+			end
+			self.hTarget = tTargets[iNum]
+			self.hTarget:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_cleric_berserk_target", {})
+			local tOrder = 
+			{
+				UnitIndex = hParent:entindex(),
+				OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+				TargetIndex = self.hTarget:entindex()
+			}
+			hParent:SetForceAttackTarget(nil)
+			ExecuteOrderFromTable(tOrder)
+			hParent:SetForceAttackTarget(self.hTarget)
+		end
+	end
+end
+
+function modifier_cleric_berserk:OnDestroy()
+	if IsClient() then return end
+	local hParent = self:GetParent()
+	tOrder = {
+		UnitIndex = hParent:entindex(),
+		OrderType = DOTA_UNIT_ORDER_STOP 
+	}
+	ExecuteOrderFromTable(newOrder)
+	hParent:SetForceAttackTarget(nil)
+	hParent:SetControllableByPlayer(self.iOwner, false)
+	if self.hTarget then
+		self.hTarget:RemoveModifierByName("modifier_cleric_berserk_target")
+	end
+	
+end
+
+function modifier_cleric_berserk:GetStatusEffectName() return "particles/status_fx/status_effect_gods_strength.vpcf" end
+
+function modifier_cleric_berserk:GetEffectAttachType() return PATTACH_OVERHEAD_FOLLOW end
+
+function modifier_cleric_berserk:GetEffectName() return "particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger.vpcf" end
+
+modifier_cleric_berserk_target = class({})
+
+function modifier_cleric_berserk_target:CheckState()
+	return {[MODIFIER_STATE_SPECIALLY_DENIABLE] = true}
+end
+
+function modifier_cleric_berserk_target:IsPurgable() return false end
+
+function modifier_cleric_berserk_target:IsDebuff() return true end
+
+function modifier_cleric_berserk_target:IsPurgeException() return false end
+
+function modifier_cleric_berserk_target:GetEffectName() return "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodrage_eztzhok_ovr.vpcf" end
+
+function modifier_cleric_berserk_target:GetEffectAttachType() return PATTACH_OVERHEAD_FOLLOW end
+
+modifier_cleric_magic_mirror = class({})
+
+function modifier_cleric_magic_mirror:DeclareFunctions()
+	return {
+        MODIFIER_PROPERTY_ABSORB_SPELL
+	}
+end
+
+function modifier_cleric_magic_mirror:IsPurgable() return false end
+function modifier_cleric_magic_mirror:RemoveOnDeath() return false end
+function modifier_cleric_magic_mirror:IsHidden() return true end
+
+
+function modifier_cleric_magic_mirror:GetAbsorbSpell(keys)
+	if self.bIsTriggering then return false end
+	local hAbility = self:GetAbility()
+	if not hAbility:IsCooldownReady() or hAbility:GetLevel() == 0 then return false end
+	local hParent = self:GetParent()
+	if hParent == keys.ability:GetCaster() then return false end
+	
+	self.bIsTriggering = true
+	local hSphere
+	--Get all spheres on hero
+
+	
+	for i = 0, 8 do
+		if hParent:GetItemInSlot(i) and hParent:GetItemInSlot(i):GetName() == "item_sphere" and hParent:GetItemInSlot(i):IsCooldownReady() then
+			hSphere = hParent:GetItemInSlot(i)
+			break
+		end
+	end
+	
+	if hParent:HasModifier("modifier_item_lotus_orb_active") then --borrows effect of lotus orb
+		hParent:TriggerSpellAbsorb( keys.ability )
+	else
+		hParent:AddNewModifier(hParent, self:GetAbility(), "modifier_item_lotus_orb_active", {Duration = 0.04})
+		hParent:TriggerSpellAbsorb( keys.ability )
+		hParent:RemoveModifierByName("modifier_item_lotus_orb_active")
+	end
+	
+	-- recovering spheres and make sound if needed
+	local tNewSphereModifierList = hParent:FindAllModifiersByName("modifier_item_sphere_target")
+	if hSphere and not hSphere:IsCooldownReady() then
+		hSphere:EndCooldown()
+	else
+		hParent:EmitSound("DOTA_Item.LinkensSphere.Activate")
+		ParticleManager:CreateParticle("particles/items_fx/immunity_sphere.vpcf", PATTACH_POINT_FOLLOW, hParent)
+	end
+	
+	if hParent:HasScepter() then 
+		ParticleManager:CreateParticle("particles/units/heroes/hero_antimage/antimage_spellshield.vpcf" , PATTACH_POINT_FOLLOW, hParent)
+	end
+		
+	hAbility:UseResources(false, false, true)
+	self.bIsTriggering = false
+	return 1
+end
