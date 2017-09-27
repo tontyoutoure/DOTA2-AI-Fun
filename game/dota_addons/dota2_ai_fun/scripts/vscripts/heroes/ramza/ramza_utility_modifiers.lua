@@ -169,9 +169,6 @@ local tAttackSound = {
 }
 
 function modifier_ramza_job_manager:GetAttackSound()
-
-	--self:GetParent():EmitSound(tAttackSound[self:GetStackCount()])
-	print(IsClient(), tAttackSound[self:GetStackCount()])
 	return ""
 end
 

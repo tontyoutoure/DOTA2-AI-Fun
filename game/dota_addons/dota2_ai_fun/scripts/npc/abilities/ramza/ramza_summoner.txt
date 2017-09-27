@@ -105,7 +105,7 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"crystal_maiden_crystal_nova_icecowl"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"1"
 		"AbilityCooldown"	"50"
 		"OnUpgrade"
@@ -163,7 +163,6 @@
 				"Aura_Radius"	"%radius"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 				"OnCreated"
 				{
 					"FireEffect"
@@ -205,7 +204,6 @@
 						{
 							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 							"Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-							"Flags"	"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 							"Center"	"TARGET"
 							"Radius"	"%radius"
 						}
