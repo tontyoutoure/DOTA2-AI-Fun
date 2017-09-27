@@ -163,18 +163,24 @@ function LearnInnateSkillOnSpawn(hero)
 end
 
 
-require('heroes/magic_dragon/magic_dragon_init')
-require('heroes/ramza/ramza_init')
 
 function GameMode:_OnNPCSpawned(keys)
 	local hHero = EntIndexToHScript(keys.entindex)
 	
-	if hHero:GetName() == "npc_dota_hero_visage" then
+	if hHero:GetName() == "npc_dota_hero_visage" and not hHero.bSpawned then
+		require('heroes/magic_dragon/magic_dragon_init')
 		MagicDragonInit(hHero, self)
 	end
 	
-	if hHero:GetName() == "npc_dota_hero_brewmaster" then
+	
+	if hHero:GetName() == "npc_dota_hero_brewmaster" and not hHero.bSpawned then
+		require('heroes/ramza/ramza_init')
 		RamzaInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_rubick" and not hHero.bSpawned then
+		require('heroes/cleric/cleric_init')
+		ClericInit(hHero, self)
 	end
 	
 	LearnInnateSkillOnSpawn(hHero)
