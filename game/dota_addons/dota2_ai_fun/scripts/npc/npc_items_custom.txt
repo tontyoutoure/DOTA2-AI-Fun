@@ -40,6 +40,7 @@
 			{
 				"Passive"	"1"
 				"IsHidden"	"1"
+				"ThinkInterval" "0.1"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MANACOST_PERCENTAGE"	"%mana_cost_reduction_percentage"
@@ -49,8 +50,25 @@
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/fun_items.lua"
-						"Function"	"EconomizerResetCooldown"
+						"Function"	"ResetCooldown"
 					}
+				}
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"fun_items.lua"
+						"Function"	"EAARestoreManaRefresh"
+					}
+				}		
+			}
+			"modifier_item_fun_economizer_cdr"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"	"%cd_reduction_percentage"
 				}
 			}
 			"modifier_item_fun_economizer_cdr_short"
@@ -74,6 +92,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"mana_cost_reduction_percentage"	"99"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cd_reduction_percentage"	"50"
 			}
 		}
 	}
@@ -441,7 +464,7 @@
 		"AbilityTextureName"	"item_fun_angelic_alliance"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityCastPoint"	"0.0"
-		"AbilityCooldown"	"0.0"
+		"AbilityCooldown"	"40"
 		"AbilityManaCost"	"0"
 		"AbilityCastRange"	"0"
 		"ActiveDescriptionLine"         "1"
@@ -502,8 +525,8 @@
 				"EffectAttachType"	"follow_overhead"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MANACOST_PERCENTAGE"	"100"
-					"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"	"100"
+					"MODIFIER_PROPERTY_MANACOST_PERCENTAGE"	"%mana_reduction_percentage"
+					"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"	"%cd_reduction_percentage"
 				}
 				"OnIntervalThink"
 				{
@@ -516,7 +539,15 @@
 					"RunScript"
 					{
 						"ScriptFile"	"fun_items.lua"
-						"Function"	"AngelicAllianceRestoreManaRefresh"
+						"Function"	"EAARestoreManaRefresh"
+					}
+				}				
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/fun_items.lua"
+						"Function"	"ResetCooldown"
 					}
 				}
 			}
@@ -577,6 +608,15 @@
 				"EffectName"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf"
 				"EffectAttachType"	"follow_origin"
 			}
+			"modifier_item_fun_angelic_alliance_cdr_short"
+			{
+				"Passive"	"0"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"	"100"
+				}
+			}
 		}
 		"AbilitySpecial"
 		{
@@ -609,6 +649,16 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"speed"	"650"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cd_reduction_percentage"	"80"
+			}
+			"08"
+			{
+				"var_type"  "FIELD_INTEGER"
+				"mana_reduction_percentage"  "100"
 			}
 		}
 	}

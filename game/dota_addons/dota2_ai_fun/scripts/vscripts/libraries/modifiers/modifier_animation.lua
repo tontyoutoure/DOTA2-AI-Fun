@@ -13,6 +13,7 @@ local _CODE_TO_ANIMATION_TRANSLATE = {
 	[10] = "divine_sorrow_sunstrike",
 	[11] = "wardstaff",
 	[12] = "lightning",
+	[13] = "juggle_gesture"
 }
 
 function modifier_animation:OnCreated(keys) 

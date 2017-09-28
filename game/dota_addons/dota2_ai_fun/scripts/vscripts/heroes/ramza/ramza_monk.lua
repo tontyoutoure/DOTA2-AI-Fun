@@ -75,7 +75,7 @@ function ramza_monk_martial_arts_shockwave:OnSpellStart()
 	local tInfo = {
 		Ability = self,
 		EffectName = "particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil.vpcf",
-		fDistance = 900,
+		fDistance = 2000,
 		fStartRadius = 250,
 		fEndRadius = 250,
 		vSpawnOrigin = self:GetCaster():GetOrigin(), 
@@ -87,7 +87,7 @@ function ramza_monk_martial_arts_shockwave:OnSpellStart()
 		iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
         fExpireTime = GameRules:GetGameTime() + 10.0,
 		bDeleteOnHit = false,
-		vVelocity = self:GetCaster():GetForwardVector() * 1000,
+		vVelocity = self:GetCaster():GetForwardVector() * 2000,
 		bProvidesVision = false,
 		ExtraData = {damage = self:GetSpecialValueFor("damage")}		
 	}

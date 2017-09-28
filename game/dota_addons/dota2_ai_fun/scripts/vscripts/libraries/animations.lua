@@ -79,6 +79,7 @@ local _ANIMATION_TRANSLATE_TO_CODE = {
 	divine_sorrow_sunstrike = 10,
 	wardstaff = 11,
 	lightning = 12,
+	juggle_gesture = 13,
 }
 
 function StartAnimation(unit, table)

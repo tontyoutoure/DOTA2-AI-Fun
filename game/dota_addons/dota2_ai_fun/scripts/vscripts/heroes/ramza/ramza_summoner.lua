@@ -260,23 +260,11 @@ function RamzaSummonerZodiark(keys)
 	local hThinker = CreateUnitByName("npc_dummy_unit", keys.target_points[1], true, keys.caster, keys.caster, keys.caster:GetTeamNumber())
 	
 	
-	hThinker:SetOriginalModel("models/heroes/mirana/mirana.vmdl")
-	tWearables = {
-		{ID = "7936", style = "0", model = "models/items/mirana/ti6_starstorm_bow/mesh/ti6_starstorm_bow_model.vmdl", particle_systems = {{system = "particles/econ/items/mirana/mirana_starstorm_bow/mirana_bowstring_starstorm.vpcf", attach_type = PATTACH_CUSTOMORIGIN, attach_entity = "self", control_points = {{control_point_index = 2, attach_type = PATTACH_POINT_FOLLOW, attachment = "bow_top_attach"}, {control_point_index = 3, attach_type = PATTACH_POINT_FOLLOW, attachment = "bow_front_attach"}, {control_point_index = 1, attach_type = PATTACH_POINT_FOLLOW, attachment = "bow_string_attach"}, {control_point_index = 0, attach_type = PATTACH_POINT_FOLLOW, attachment = "bow_bot_attach"}, }}, }},
-		{ID = "7398", style = "0", model = "models/items/mirana/moon_griffon/moon_griffon.vmdl", particle_systems = {{system = "particles/econ/items/mirana/mirana_moon_griffon/mirana_moon_griffon_eyes_ambient.vpcf", attach_type = PATTACH_CUSTOMORIGIN, attach_entity = "self", control_points = {{control_point_index = 1, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_eye_l"}, {control_point_index = 0, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_eye_r"}, }}, {system = "particles/econ/items/mirana/mirana_moon_griffon/mirana_moon_griffon_tail_ambient_smoke.vpcf", attach_type = PATTACH_CUSTOMORIGIN, attach_entity = "self", control_points = {{control_point_index = 0, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_tail"}, }}, }},
-		{ID = "8834", style = "0", model = "models/items/mirana/warden_of_the_eternal_night_head/warden_of_the_eternal_night_head.vmdl", particle_systems = {}},
-		{ID = "8542", style = "0", model = "models/items/mirana/warden_of_the_eternal_night_misc/warden_of_the_eternal_night_misc.vmdl", particle_systems = {}},
-		{ID = "8541", style = "0", model = "models/items/mirana/warden_of_the_eternal_night_arms/warden_of_the_eternal_night_arms.vmdl", particle_systems = {}},
-		{ID = "8538", style = "0", model = "models/items/mirana/warden_of_the_eternal_night_back/warden_of_the_eternal_night_back.vmdl", particle_systems = {}},
-		{ID = "8537", style = "0", model = "models/items/mirana/warden_of_the_eternal_night_shoulder/warden_of_the_eternal_night_shoulder.vmdl", particle_systems = {}},
-	}
-		
-	for k, v in pairs(tWearables) do
-		WearableManager:AddNewWearable(hThinker, v)
-	end
-	
+	hThinker:SetOriginalModel("models/courier/venoling/venoling_flying.vmdl")
+	Timers:CreateTimer(0.04, function () hThinker:SetMaterialGroup("1") end)
+	hThinker:SetModelScale(3)
 --	WearableManager:PrintAllWearableInfos(hThinker)
-	StartAnimation(hThinker, {duration = 1.1, activity = ACT_DOTA_CAST_ABILITY_1, rate=1})	
+	StartAnimation(hThinker, {duration = 1.5, activity = ACT_DOTA_RUN, rate=1})	
 	hThinker:SetForwardVector(keys.caster:GetForwardVector())
 	
 	Timers:CreateTimer(0.5, function ()

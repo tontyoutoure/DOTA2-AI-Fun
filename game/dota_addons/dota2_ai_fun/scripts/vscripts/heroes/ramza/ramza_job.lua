@@ -1239,7 +1239,7 @@ function RamzaJobChangeListener(eventSourceIndex, args)
 	local hRamza = PlayerResource:GetPlayer(tonumber(args.PlayerID)):GetAssignedHero()
 	hRamza.hRamzaJob.iChangeJobState = tonumber(args.iState)
 	hRamza.hRamzaJob.iJobToGo = tonumber(args.iJob)
-	if (hRamza:HasScepter() or hRamza:GetHealthPercent() == 100 and hRamza:GetManaPercent() == 100) and not hRamza:HasModifier("modifier_ramza_dragoon_jump") then
+	if (hRamza:HasScepter() or GameRules:IsCheatMode() or hRamza:GetHealthPercent() == 100 and hRamza:GetManaPercent() == 100) and not hRamza:HasModifier("modifier_ramza_dragoon_jump") then
 		hRamza.hRamzaJob:ChangeJob()
 	elseif hRamza:HasModifier("modifier_ramza_dragoon_jump") then
 		if tonumber(args.iState) == SELECT_JOB then
@@ -1479,16 +1479,6 @@ function CRamzaJob:ChangeModel()
 end
 
 CRamzaJob:Initialize()
-LinkLuaModifier("modifier_attribute_growth_str", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_attribute_growth_agi", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_attribute_growth_int", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_ramza_job_manager", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_ramza_job_level", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_ramza_job_mastered", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_ramza_job_point", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_ramza_black_mage_black_magicks_firaga", "heroes/ramza/ramza_black_mage_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_ramza_samurai_run_animation_manager", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_ramza_white_mage_animation_manager", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 
 
 function RamzaDeathEffects(keys)

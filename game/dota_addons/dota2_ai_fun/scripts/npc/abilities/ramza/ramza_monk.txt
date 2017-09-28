@@ -139,7 +139,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
 		"AbilityCooldown"	"52"
 		"AbilityManaCost"	"0"
-		"AbilityCastRange"	"900"
+		"AbilityCastRange"	"2000"
 		"AbilitySpecial"
 		{
 			"01"

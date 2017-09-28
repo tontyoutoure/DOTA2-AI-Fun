@@ -42,6 +42,7 @@ function GameMode:LinkLuaModifiers()
 	LinkLuaModifier("modifier_magic_dragon_black_dragon_breath", "heroes/magic_dragon/magic_dragon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_magic_dragon_lightning_form", "heroes/magic_dragon/magic_dragon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_global_hero_respawn_time", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("modifier_imbalanced_economizer", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 end
 
 function GameMode:InitGameOptions()
