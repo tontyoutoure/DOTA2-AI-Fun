@@ -31,3 +31,8 @@ function modifier_global_hero_respawn_time:OnTakeDamage(keys)
 		end
 	end
 end
+
+modifier_imbalanced_economizer = class({})
+function modifier_imbalanced_economizer:IsPurgable() return false end
+function modifier_imbalanced_economizer:IsHidden() return true end
+function modifier_imbalanced_economizer:RemoveOnDeath() return false end

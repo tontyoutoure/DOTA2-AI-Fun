@@ -123,6 +123,10 @@
 						<Label text="800" id="800"/>
 						<Label text="1600" id="1600"/>
 					</DropDown>				
+				</Panel>				
+				<Panel id="ImbalancedEconomizerPanel"  class="GameOptionsSubPanel">
+					<Label id="ImbalancedEconomizerTitle" class="GameOptionsLabel" text="#imbalanced_economizer" />
+					<ToggleButton checked="true" class="GameOptionsToggle" id="imbalanced_economizer"/>		
 				</Panel>
 				<Button id="ConfirmOptionsBtn" onactivate="set_game_options();">
 					<Label id="ConfirmOptionsBtnLabel" text="#confirm_game_options" />

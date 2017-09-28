@@ -62,10 +62,11 @@
 
 .GameOptionsLabel
 {
-	text-align: center;
+	text-align: left;
 	horizontal-align: middle;
 	vertical-align:center;
 	color: #ffffff;
+	
 }
 
 .GameOptionsSubPanel .GameOptionsDropdown
@@ -75,6 +76,11 @@
 	horizontal-align:right;
 }
 
+.GameOptionsToggle
+{
+	margin-left: 10px;
+	horizontal-align:right;
+}
 
 
 /* Confirm options button */

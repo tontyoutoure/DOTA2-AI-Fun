@@ -346,25 +346,3 @@ ramza_job_arithmetician_JC.OnSpellStart = RamzaJCOnSpellStart
 ramza_job_mime_JC.OnSpellStart = RamzaJCOnSpellStart
 ramza_job_dark_knight_JC.OnSpellStart = RamzaJCOnSpellStart
 ramza_job_onion_knight_JC.OnSpellStart = RamzaJCOnSpellStart
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

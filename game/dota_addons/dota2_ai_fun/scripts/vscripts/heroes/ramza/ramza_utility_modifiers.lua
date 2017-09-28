@@ -8,6 +8,10 @@ RAMZA_KILL_HERO_PER_LEVEL_JOB_POINT = 50
 RAMZA_KILL_ANCIENT_JOB_POINT = 50
 RAMZA_KILL_CREEP_JOB_POINT = 10
 
+
+RAMZA_QUOTE_INTERVAL = 10
+RAMZA_QUOTE_DURATION = 3
+
 local tBannedAbilities = {
 	item_armlet = true,
 	item_power_treads = true,
@@ -364,4 +368,74 @@ end
 function modifier_ramza_white_mage_animation_manager:OnDestroy()
 	if IsClient() then return end
 	RemoveAnimationTranslate(self:GetParent())
+end
+
+local tAbilityStyles = 
+{
+	ramza_squire_fundamental_ultima = {color = "#00FF00", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_white_mage_white_magicks_cura = {color = "#fff790", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_white_mage_white_magicks_wall = {color = "#fff790", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_white_mage_white_magicks_curaga = {color = "#fff790", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_white_mage_reraise = {color = "#fff790", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_white_mage_white_magicks_holy = {color = "#fff790", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_black_mage_black_magicks_firaga = {color = "red", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_black_mage_black_magicks_blizzaga = {color = "#00bfff", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_black_mage_black_magicks_thundaga = {color = "#e0ffff", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_black_mage_death = {color = "black", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_black_mage_black_magicks_flare = {color = "red", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_monk_martial_arts_shockwave = {color = "gold", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_monk_martial_arts_doom_fist = {color = "orange", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_mystic_mystic_arts_disbelief = {color = "#101263", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_mystic_mystic_arts_hesitation = {color = "#94baab", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_mystic_mystic_arts_quiescence = {color = "#9d28a8", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_mystic_mystic_arts_invigoration = {color = "#5400C3", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_time_mage_time_magicks_gravity = {color = "#060e38", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_time_mage_time_magicks_quick = {color = "#f7da00", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_time_mage_time_magicks_stop = {color = "#0031f7", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_time_mage_time_magicks_meteor = {color = "red", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_summoner_summon_shiva = {color = "#00bfff", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_summoner_summon_ifrit = {color = "red", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_summoner_summon_ramuh = {color = "#e0ffff", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_summoner_lich = {color = "#5400C3", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_summoner_summon_golem = {color = "#784800", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_summoner_odin = {color = "#5400C3", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_summoner_summon_bahamut = {color = "red", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_summoner_summon_zodiark = {color = "#9659ff", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_samurai_iaido_ashura = {color = "gold", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_samurai_iaido_osafune = {color = "#070ac1", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_samurai_iaido_murasame = {color = "#fff790", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_samurai_iaido_kikuichimonji = {color = "#ffb7c5", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_samurai_iaido_masamune = {color = "#fff790", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_samurai_iaido_chirijiraden = {color = "#00bfff", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_dark_knight_darkness_sanguine_sword = {color = "#8A0707", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_dark_knight_darkness_crushing_blow = {color = "#5400C3", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_dark_knight_darkness_abyssal_blade = {color = "#5400C3", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_dark_knight_darkness_unholy_sacrifice = {color = "#5400C3", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},
+	ramza_dark_knight_darkness_shadowblade = {color = "#5400C3", ["text-shadow"] = "2px 2px 2px 1.0 #333333b0", ["margin-top"] = "0px"},	
+}
+
+modifier_ramza_quote_manager = class({})
+
+function modifier_ramza_quote_manager:DeclareFunctions()
+	return {
+		MODIFIER_EVENT_ON_ABILITY_EXECUTED
+	}
+end
+
+
+function modifier_ramza_quote_manager:IsPurgable() return false end
+function modifier_ramza_quote_manager:RemoveOnDeath() return false end	
+function modifier_ramza_quote_manager:IsHidden() return true end
+
+function modifier_ramza_quote_manager:OnAbilityExecuted(keys)
+	if keys.unit ~= self:GetParent() then return end
+	local sName = keys.ability:GetName()
+	if tAbilityStyles[sName] then
+		self.tAbilityExecutedTime = self.tAbilityExecutedTime or {}
+		if not (self.tAbilityExecutedTime[sName] and Time() - self.tAbilityExecutedTime[sName] < RAMZA_QUOTE_INTERVAL) then 
+			self.tAbilityExecutedTime[sName] = Time()
+			Notifications:BottomToAll({text="#" .. sName .. "_quote", duration=RAMZA_QUOTE_DURATION, style= tAbilityStyles[sName]})
+		end
+	end
+
 end

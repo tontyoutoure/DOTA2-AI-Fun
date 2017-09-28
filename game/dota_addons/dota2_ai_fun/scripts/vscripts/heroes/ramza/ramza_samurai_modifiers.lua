@@ -43,7 +43,7 @@ function modifier_ramza_samurai_iaido_masamune:OnCreated()
 	ParticleManager:SetParticleControlEnt(self.iParticle, 1, hParent, PATTACH_POINT_FOLLOW, 'follow_origin' ,hParent:GetAbsOrigin(), true)
 end
 
-function modifier_ramza_samurai_iaido_masamune:GetTexture() return "juggernaut_healing_ward" end
+function modifier_ramza_samurai_iaido_masamune:GetTexture() return "juggernaut_omni_slash" end
 function modifier_ramza_samurai_iaido_masamune:OnDestroy()
 	if IsClient() then return end
 	ParticleManager:DestroyParticle(self.iParticle, true)

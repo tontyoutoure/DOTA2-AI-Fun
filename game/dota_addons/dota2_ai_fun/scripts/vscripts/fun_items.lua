@@ -1,4 +1,4 @@
-DOTA2_AI_FUN_SPEW = IsInToolsMode()
+DOTA2_AI_FUN_SPEW = false
 local function CheckStringInTable(s, t)
 	for i = 1, #t do
 		if s == t[i] then return true end
@@ -6,46 +6,53 @@ local function CheckStringInTable(s, t)
 	return false
 end
 
-local function ResetAbilityCharge(ability, caster, extraCharge, index)
+local function ResetAbilityCharge(ability)
 	--For if one of these abilities no longer have charges in the future
-	
-	extraCharge = extraCharge or 0
-	
+		
 	local abilityName = ability:GetName()
+	local caster = ability:GetCaster()
 	local buff
 	if abilityName == 'bloodseeker_rupture' then		
-		buff:SetStackCount(2+extraCharge)	
+		buff:SetStackCount(2)	
 	elseif abilityName == 'sniper_shrapnel' then
 		buff = caster:FindModifierByName("modifier_sniper_shrapnel_charge_counter")
-		if caster:GetAbilityByIndex(11):GetLevel() > 0 then
-			buff:SetStackCount(7+extraCharge)
+		if caster:FindAbilityByName("special_bonus_unique_sniper_2") and caster:FindAbilityByName("special_bonus_unique_sniper_2"):GetLevel() > 0 then
+			buff:SetStackCount(7)
 		else
-			buff:SetStackCount(3+extraCharge)
+			buff:SetStackCount(3)
 		end
 	elseif abilityName == 'gyrocopter_homing_missile' then
 		buff = caster:FindModifierByName(ability:GetIntrinsicModifierName())
-		buff:SetStackCount(3+extraCharge)
+		if caster:FindAbilityByName("special_bonus_unique_gyrocopter_1") and caster:FindAbilityByName("special_bonus_unique_gyrocopter_1"):GetLevel() > 0 then
+			buff:SetStackCount(3)
+		end
 	elseif abilityName == 'shadow_demon_demonic_purge' then
 		buff = caster:FindModifierByName(ability:GetIntrinsicModifierName())
-		buff:SetStackCount(3+extraCharge)
+		if caster:HasScepter() then
+			buff:SetStackCount(3)
+		end
 	elseif abilityName == 'ember_spirit_fire_remnant' then
 		buff = caster:FindModifierByName(ability:GetIntrinsicModifierName())
-		buff:SetStackCount(3+extraCharge)
+		buff:SetStackCount(3)
 	elseif abilityName == 'earth_spirit_stone_caller' then
 		buff = caster:FindModifierByName(ability:GetIntrinsicModifierName())
-		buff:SetStackCount(6+extraCharge)
+		buff:SetStackCount(6)
 	elseif abilityName == 'ancient_apparition_cold_feet' then
-		buff = caster:FindModifierByName(ability:GetIntrinsicModifierName())
-		buff:SetStackCount(4+extraCharge)
+		buff = caster:FindModifierByName(ability:GetIntrinsicModifierName())		
+		if caster:FindAbilityByName("special_bonus_unique_ancient_apparition_1") and caster:FindAbilityByName("special_bonus_unique_ancient_apparition_1"):GetLevel() > 0 then
+			buff:SetStackCount(4)
+		end
 	elseif abilityName == 'obsidian_destroyer_astral_imprisonment' then
 		buff = caster:FindModifierByName(ability:GetIntrinsicModifierName())
-		buff:SetStackCount(2+extraCharge)		
+		if caster:HasScepter() then
+			buff:SetStackCount(2)	
+		end
 	elseif abilitiesName == 'death_prophet_spirit_siphon' then
 		buff = caster:FindModifierByName('modifier_death_prophet_spirit_siphon_charge_counter')
-		buff:SetStackCount(caster:GetAbilityByIndex(index):GetLevel()+extraCharge)
+		buff:SetStackCount(ability:GetLevel())
 	elseif abilitiesName == 'broodmother_spin_web' then
 		buff = caster:FindModifierByName('modifier_broodmother_spin_web_charge_counter')
-		buff:SetStackCount(caster:GetAbilityByIndex(index):GetLevel()+extraCharge)
+		buff:SetStackCount(ability:GetLevel())
 	end
 	
 end
@@ -82,8 +89,12 @@ local chargedAbilities = {
 	"broodmother_spin_web",
 	"death_prophet_spirit_siphon"}
 
-function EconomizerResetCooldown(keys)	
+function ResetCooldown(keys)	
 	local caster = keys.caster
+	
+	if not caster:HasModifier("modifier_imbalanced_economizer") then return end
+	local bIsAA = keys.ability:GetName() == "item_fun_angelic_alliance"
+	print(bIsAA)
 	local abilityCount = keys.caster:GetAbilityCount()		
 	local abilityName = keys.event_ability:GetAbilityName()	
 	local allModifiers = caster:FindAllModifiers()	
@@ -107,9 +118,10 @@ function EconomizerResetCooldown(keys)
 			end
 			local indexedAbilityLevel = indexedAbility:GetLevel()
 			if indexedAbilityLevel > 0 and CheckStringInTable(indexedAbilityName, chargedAbilities) then
-				ResetAbilityCharge(indexedAbility, caster, 0, i)
+				ResetAbilityCharge(indexedAbility)
 			end
-			if not CheckStringInTable(indexedAbilityName, bannedItems) and not indexedAbility:IsCooldownReady() then 
+			if (not CheckStringInTable(indexedAbilityName, bannedItems) or bIsAA) and not indexedAbility:IsCooldownReady() then 
+				
 				indexedAbility:EndCooldown()
 			end
 		end
@@ -120,7 +132,8 @@ function EconomizerResetCooldown(keys)
 		local item = caster:GetItemInSlot(i)
 		if item then
 			local name = item:GetAbilityName()
-			if not CheckStringInTable(name, bannedItems) and not item:IsCooldownReady() then 
+			if (not CheckStringInTable(indexedAbilityName, bannedItems) or bIsAA) and not item:IsCooldownReady() then 
+				
 				item:EndCooldown()
 			end
 		end
@@ -129,13 +142,16 @@ function EconomizerResetCooldown(keys)
 	-- if triggered ability is charged one, give an extra charge 
 	
 	if CheckStringInTable(abilityName, chargedAbilities) then
-		ResetAbilityCharge(keys.event_ability, caster, 1)
+		ResetAbilityCharge(keys.event_ability)
 	end
 	
 	-- add a short duration modifier so the triggered ability won't go into cooldown
 	
-	if not CheckStringInTable(abilityName, bannedItems) then		
+	if bIsAA then
+		keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_item_fun_angelic_alliance_cdr_short", {duration = 0.01})
+	elseif not CheckStringInTable(abilityName, bannedItems) then
 		keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_item_fun_economizer_cdr_short", {duration = 0.01})
+	
 	end
 	if fileHandle then fileHandle:close() end
 end
@@ -192,24 +208,28 @@ function EscutcheonReincarnateFinish(keys)
 end
 
 function OrbOfOmnipotenceStopSound(keys)
-	local sound_name = "Hero_ObsidianDestroyer.AstralImprisonment"
-	local target = keys.target
-	StopSoundEvent(sound_name, target)
+	StopSoundEvent("Hero_ObsidianDestroyer.AstralImprisonment", keys.target)
 end
 
-function AngelicAllianceRestoreManaRefresh(keys)
+function EAARestoreManaRefresh(keys)
 	local caster = keys.caster
 	local abilityCount = keys.caster:GetAbilityCount()
 
-	caster:SetMana(caster:GetMaxMana())
-
+	local bIsAA = keys.ability:GetName() == "item_fun_angelic_alliance"
+	
+	if bIsAA then 
+		caster:SetMana(caster:GetMaxMana())
+	end
+	
+	if not caster:HasModifier("modifier_imbalanced_economizer") then return end
+	
 	for i = 0, abilityCount-1 do
 		local indexedAbility = caster:GetAbilityByIndex(i)
-		if indexedAbility then
+		if indexedAbility and (bIsAA or not CheckStringInTable(indexedAbility, bannedItems)) then
 			local indexedAbilityName = indexedAbility:GetAbilityName()
 			local indexedAbilityLevel = indexedAbility:GetLevel()
 			if indexedAbilityLevel > 0 and CheckStringInTable(indexedAbilityName, chargedAbilities) then 
-				ResetAbilityCharge(indexedAbility, caster, 0, i)
+				ResetAbilityCharge(indexedAbility)
 			end
 			if not indexedAbility:IsCooldownReady() then 
 				indexedAbility:EndCooldown()
@@ -220,7 +240,7 @@ function AngelicAllianceRestoreManaRefresh(keys)
 	-- reset item cooldowns
 	for i = 0, 8 do
 		local item = caster:GetItemInSlot(i)
-		if item and not item:IsCooldownReady() then 
+		if item and (bIsAA or not CheckStringInTable(item, bannedItems)) and not item:IsCooldownReady() then 
 			item:EndCooldown()
 		end
 	end

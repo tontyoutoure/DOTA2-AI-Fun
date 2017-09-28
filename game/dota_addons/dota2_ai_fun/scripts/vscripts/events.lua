@@ -190,6 +190,7 @@ function GameMode:_OnNPCSpawned(keys)
 	if IsInToolsMode() then PlayerResource:SetGold(hHero:GetOwner():GetPlayerID(), 99999, true) end
 	if not hHero.bSpawned then
 		hHero:AddNewModifier(hHero, nil, "modifier_global_hero_respawn_time", {})
+		if self.iImbalancedEconomizer > 0 then hHero:AddNewModifier(hHero, nil, "modifier_imbalanced_economizer", {}) end
 	end
 
 	Timers:CreateTimer(0.04, function ()  
@@ -226,6 +227,7 @@ function GameMode:OnGetLoadingSetOptions(eventSourceIndex, args)
 	self.fDireGoldMultiplier = tonumber(args.game_options.dire_gold_multiplier);
 	self.iRespawnTimePercentage = tonumber(args.game_options.respawn_time_percentage)
 	self.iMaxLevel = tonumber(args.game_options.max_level)
+	self.iImbalancedEconomizer = args.game_options.imbalanced_economizer
 	self:PreGameOptions()
 end
 

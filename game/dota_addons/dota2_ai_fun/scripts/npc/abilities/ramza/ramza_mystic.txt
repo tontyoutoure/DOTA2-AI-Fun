@@ -46,7 +46,7 @@
 		{
 			"modifier_ramza_mystic_mystic_arts_umbra"
 			{
-				"Duration"	"troll_warlord_fervor"
+				"TextureName" 	"troll_warlord_fervor"
 				"IsDebuff"	"1"
 				"IsPurgable"	"1"
 				"Properties"
