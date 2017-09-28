@@ -1253,7 +1253,7 @@
 		"ItemResult"	"item_fun_economizer"
 		"ItemRequirements"
 		{
-			"01"	"item_sheepstick;item_mystic_staff;item_staff_of_wizardry;item_robe;item_mantle"
+			"01"	"item_octarine_core;item_mystic_staff;item_staff_of_wizardry;item_robe;item_mantle"
 		}
 	}
 
