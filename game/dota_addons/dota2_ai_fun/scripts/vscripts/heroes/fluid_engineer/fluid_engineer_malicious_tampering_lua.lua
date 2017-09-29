@@ -8,11 +8,11 @@ function fluid_engineer_malicious_tampering_lua:OnSpellStart()
 		self.hFountain = Entities:FindByName(nil, "ent_dota_fountain_good")
 	else
 		self.hFountain = Entities:FindByName(nil, "ent_dota_fountain_bad")
-		print(self.hFountain:GetName())
+--		print(self.hFountain:GetName())
 	end
 	local hModifier = self.hFountain:AddNewModifier(self.hFountain, self, "modifier_fluid_engineer_malicious_tampering_aura", {Duration = self:GetSpecialValueFor("duration")})
 
-	print(self:GetSpecialValueFor("duration"))
+--	print(self:GetSpecialValueFor("duration"))
 end
 
 

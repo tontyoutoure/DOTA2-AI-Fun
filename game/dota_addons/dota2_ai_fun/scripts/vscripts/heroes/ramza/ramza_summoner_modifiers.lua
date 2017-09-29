@@ -160,7 +160,6 @@ function modifier_ramza_summoner_shiva_slow:DeclareFunctions()
 end
 
 function modifier_ramza_summoner_shiva_slow:GetModifierAttackSpeedBonus_Constant()
-	PrintTable(keys)
 	return -30
 end	
 
