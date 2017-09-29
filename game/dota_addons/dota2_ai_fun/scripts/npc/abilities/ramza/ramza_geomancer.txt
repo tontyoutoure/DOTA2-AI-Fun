@@ -611,22 +611,28 @@
 		}
 		"Modifiers"
 		{
+			"modifier_ramza_geomancer_geomancy_magma_surge"
+			{
+				"OnDestroy"
+				{
+					"Damage"
+					{
+						"Target"  "TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%damage"
+					}					
+					"ApplyModifier"
+					{
+						"Target"  "TARGET"
+						"ModifierName"	"modifier_stunned"
+						"Duration"	"%stun_duration"
+					}
+				}
+			}
 			"modifier_ramza_geomancer_geomancy_magma_surge_aura"
 			{
 				"OnCreated"
 				{
-					"Damage"
-					{
-						"Target"
-						{
-							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Center"	"TARGET"
-							"Radius"	"%radius"
-							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-						}
-						"Type"	"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"%damage"
-					}
 					"ApplyModifier"
 					{
 						"Target"
@@ -636,8 +642,8 @@
 							"Radius"	"%radius"
 							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 						}
-						"ModifierName"	"modifier_stunned"
-						"Duration"	"%stun_duration"
+						"ModifierName"	"modifier_ramza_geomancer_geomancy_magma_surge"
+						"Duration"	"0.01"
 					}
 					"FireSound"
 					{

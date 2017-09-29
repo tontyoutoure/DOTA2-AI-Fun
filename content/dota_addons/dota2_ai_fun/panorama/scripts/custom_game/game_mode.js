@@ -46,7 +46,8 @@ function set_game_options()
 			"dire_player_number": $("#dire_player_number_dropdown").GetSelected().id,
 			"respawn_time_percentage": $("#respawn_time_percentage_dropdown").GetSelected().id,
 			"max_level": $("#max_level_dropdown").GetSelected().id,
-			"imbalanced_economizer": $("#imbalanced_economizer").checked
+			"imbalanced_economizer": $("#imbalanced_economizer").checked,
+			"bot_not_attack_tower_pick_rune": $("#bot_not_attack_tower_pick_rune").checked
 		}	
 	});
 	$("#game_options_container").style.visibility='collapse';

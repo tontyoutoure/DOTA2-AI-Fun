@@ -38,14 +38,14 @@ function GameMode:OnGameStateChanged( keys )
 			self:PreGameOptions()
 		end
 	end
-	if IsInToolsMode() then return end
+	
     if state == DOTA_GAMERULES_STATE_STRATEGY_TIME then
         local num = 0
 		local iPlayerNumRadiant = PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS)
 		local iPlayerNumDire = PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_BADGUYS)
         local used_hero_name = "npc_dota_hero_luna"
        
-		
+		self.tHumanPlayerList = {}
         for i=0, DOTA_MAX_TEAM_PLAYERS do
             if PlayerResource:IsValidPlayer(i) then
                 
@@ -63,13 +63,14 @@ function GameMode:OnGameStateChanged( keys )
                 if PlayerResource:GetSelectedHeroName(i) then 
 					used_hero_name = PlayerResource:GetSelectedHeroName(i)
 					print(used_hero_name, "has been picked!")
+					self.tHumanPlayerList[i] = true
 					num = num + 1
 				end
             end
         end
         
         self.numPlayers = num
-
+		if IsInToolsMode() and GetMapName() ~= "dota" then return end
         -- Eanble bots and fill empty slots
         if IsServer() == true then
             print("Adding bots in empty slots")
@@ -111,16 +112,15 @@ local CalculateLevelRespawnTimeWithDiscount = function (iLevel)
 	if iLevel <= 25 then return tDOTARespawnTime[iLevel]*GameMode.iRespawnTimePercentage/100 end
 	return (100+4*(iLevel-25))*GameMode.iRespawnTimePercentage/100
 end
--- TODO: Didn't get Reaper's scythe respawn time penalty right when hero level>25
+
 function GameMode:OnEntityKilled(keys)
 	local hHero = EntIndexToHScript(keys.entindex_killed)
 	if not hHero:IsHero() or hHero:IsIllusion() then return end
 
 	Timers:CreateTimer(0.04, function ()
 		local fRespawnTime = CalculateLevelRespawnTimeWithDiscount(hHero:GetLevel())
-		print("Normal Respawn Time: ", fRespawnTime, "Reincarnate Time: ", hHero.fReincarnateTime, "Buy back extra time: ", hHero.fBuyBackExtraRespawnTime, "Scythe Extra time: ", hHero.fScytheTime, "BloodStone Time", hHero.fBloodstoneRespawnTimeReduce)
+		--print("Normal Respawn Time: ", fRespawnTime, "Reincarnate Time: ", hHero.fReincarnateTime, "Buy back extra time: ", hHero.fBuyBackExtraRespawnTime, "Scythe Extra time: ", hHero.fScytheTime, "BloodStone Time", hHero.fBloodstoneRespawnTimeReduce)
 		if hHero.fReincarnateTime then
-			print("haha")
 			hHero:SetTimeUntilRespawn(hHero.fReincarnateTime)
 			hHero.fScytheTime = nil
 			hHero.fReincarnateTime = nil
@@ -187,6 +187,11 @@ function GameMode:_OnNPCSpawned(keys)
 	LearnInnateSkillOnSpawn(hHero)
 
 	if not hHero:IsHero() or hHero:IsIllusion() then return end	
+	
+	if not self.tHumanPlayerList[hHero:GetPlayerOwnerID()] and self.iBotNotAttackTowerPickRune == 0 then
+		hHero:AddNewModifier(hHero, nil, "modifier_bot_attack_tower_pick_rune", {}).tHumanPlayerList = self.tHumanPlayerList
+	end
+	
 	if IsInToolsMode() then PlayerResource:SetGold(hHero:GetOwner():GetPlayerID(), 99999, true) end
 	if not hHero.bSpawned then
 		hHero:AddNewModifier(hHero, nil, "modifier_global_hero_respawn_time", {})
@@ -228,6 +233,7 @@ function GameMode:OnGetLoadingSetOptions(eventSourceIndex, args)
 	self.iRespawnTimePercentage = tonumber(args.game_options.respawn_time_percentage)
 	self.iMaxLevel = tonumber(args.game_options.max_level)
 	self.iImbalancedEconomizer = args.game_options.imbalanced_economizer
+	self.iBotNotAttackTowerPickRune = args.game_options.bot_not_attack_tower_pick_rune
 	self:PreGameOptions()
 end
 

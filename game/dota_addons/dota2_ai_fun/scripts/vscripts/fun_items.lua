@@ -94,7 +94,6 @@ function ResetCooldown(keys)
 	
 	if not caster:HasModifier("modifier_imbalanced_economizer") then return end
 	local bIsAA = keys.ability:GetName() == "item_fun_angelic_alliance"
-	print(bIsAA)
 	local abilityCount = keys.caster:GetAbilityCount()		
 	local abilityName = keys.event_ability:GetAbilityName()	
 	local allModifiers = caster:FindAllModifiers()	
