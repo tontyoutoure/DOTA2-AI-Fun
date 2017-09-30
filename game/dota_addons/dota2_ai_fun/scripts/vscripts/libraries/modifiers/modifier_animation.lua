@@ -62,7 +62,7 @@ function modifier_animation:DeclareFunctions()
  
 	return funcs
 end
-
+function modifier_animation:RemoveOnDeath() return false end
 function modifier_animation:GetOverrideAnimation(...)
 	return self.activity
 end
@@ -97,6 +97,7 @@ end
 function modifier_animation_freeze:IsDebuff() 
 	return false
 end
+function modifier_animation_freeze:RemoveOnDeath() return false end
 
 function modifier_animation_freeze:IsPurgable() 
 	return false
@@ -135,6 +136,7 @@ end
 function modifier_animation_translate:IsPurgable() 
 	return false
 end
+function modifier_animation_translate:RemoveOnDeath() return false end
 
 function modifier_animation_translate:DeclareFunctions() 
 	local funcs = {

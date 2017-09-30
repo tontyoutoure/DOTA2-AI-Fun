@@ -18,6 +18,7 @@ end
 
 function modifier_ramza_chemist_items_phoenix_down:ReincarnateTime()
 	if IsClient() then return -1 end
+	print("Reincarnate by phoenix down")
 	local hParent = self:GetParent()
 	Timers:CreateTimer(self.fReincarnateTime+0.04, function ()
 		iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_phoenix/phoenix_supernova_reborn.vpcf", PATTACH_ABSORIGIN, hParent)

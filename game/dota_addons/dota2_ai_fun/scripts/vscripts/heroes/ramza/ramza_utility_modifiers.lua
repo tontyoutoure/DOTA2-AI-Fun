@@ -225,7 +225,11 @@ function modifier_ramza_job_manager:OnTakeDamageKillCredit(keys)
 	local hParent = self:GetParent()
 	if keys.damage > keys.target:GetHealth() then 
 		if keys.target:IsHero() then 
-			hParent.hRamzaJob:GainJobPoint(RAMZA_KILL_HERO_PER_LEVEL_JOB_POINT*keys.target:GetLevel())
+			if keys.target:IsRealHero() then
+				hParent.hRamzaJob:GainJobPoint(RAMZA_KILL_HERO_PER_LEVEL_JOB_POINT*keys.target:GetLevel())
+			else 
+				hParent.hRamzaJob:GainJobPoint(RAMZA_KILL_CREEP_JOB_POINT*keys.target:GetLevel())
+			end
 		elseif keys.target:IsBuilding() then			
 			hParent.hRamzaJob:GainJobPoint(RAMZA_KILL_BUILDING_JOB_POINT)
 		elseif keys.target:IsAncient() then

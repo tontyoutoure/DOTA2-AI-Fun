@@ -75,7 +75,7 @@ function modifier_ramza_dragoon_jump:OnDestroy()
 	hParent:SetOrigin(self.vDestination)
 	FindClearSpaceForUnit(hParent, hParent:GetOrigin(), false)
 		
-	local tTargets = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetOrigin(), nil, fRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+	local tTargets = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetOrigin(), nil, fRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	local damageTable = {
 		attacker = hParent,
 		damage = hAbility:GetSpecialValueFor("damage"),
