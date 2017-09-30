@@ -27,6 +27,8 @@ ramza_chemist_items_phoenix_down.GetCastRange = RamzaItemsGetCastRange
 function ramza_chemist_items_phoenix_down:CastFilterResultTarget(hTarget)
 	if IsClient() then return UF_SUCCESS end
 	if hTarget:HasModifier("modifier_ramza_chemist_items_phoenix_down") then return UF_FAIL_CUSTOM end
+	if hTarget:GetTeamNumber() ~= self:GetCaster():GetTeamNumber() then return UF_FAIL_ENEMY end
+	return UF_SUCCESS
 end
 
 function ramza_chemist_items_phoenix_down:GetCustomCastErrorTarget(hTarget) 
@@ -151,11 +153,16 @@ end
 
 
 RamzaChemistAutoPotionTakePotion = function (keys)
-	local hAbility = keys.caster:FindAbilityByName("ramza_chemist_items_potion")
-	if keys.caster:GetGold() < hAbility:GetGoldCost(-1) then return end
+	PrintTable(keys)
+	if keys.caster:GetGold() < 50 then return end
 	keys.caster:EmitSound("General.Buy")
 	keys.caster:EmitSound("DOTA_Item.FaerieSpark.Activate")
-	local iHealthRestore = hAbility:GetSpecialValueFor("health_restore")
+	local iHealthRestore
+	if keys.caster:GetMaxHealth() - keys.caster:GetHealth() > 200 then 
+		iHealthRestore = 200
+	else
+		iHealthRestore = keys.caster:GetMaxHealth() - keys.caster:GetHealth()
+	end
 	keys.caster:Heal(iHealthRestore, keys.caster)	
 	
 	local iParticle1 = ParticleManager:CreateParticle("particles/msg_fx/msg_heal.vpcf", PATTACH_POINT_FOLLOW, keys.caster)
@@ -163,7 +170,7 @@ RamzaChemistAutoPotionTakePotion = function (keys)
 	ParticleManager:SetParticleControl(iParticle1, 2, Vector(1, 4, 200))
 	ParticleManager:SetParticleControl(iParticle1, 3, Vector(60, 255, 60))
 	
-	hAbility:UseResources(true, true, true)
+	keys.caster:SpendGold(50, DOTA_ModifyGold_PurchaseItem)
 	ParticleManager:CreateParticle("particles/items2_fx/mekanism.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.caster)
 end
 

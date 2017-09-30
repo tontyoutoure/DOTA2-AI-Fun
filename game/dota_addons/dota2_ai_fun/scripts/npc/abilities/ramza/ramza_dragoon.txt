@@ -49,7 +49,7 @@
 		"AbilityTextureName"	"phoenix_supernova"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"1"
-		"AbilityCooldown"	"600"
+		"AbilityCooldown"	"60"
 		"OnUpgrade"
 		{
 			"RunScript"
