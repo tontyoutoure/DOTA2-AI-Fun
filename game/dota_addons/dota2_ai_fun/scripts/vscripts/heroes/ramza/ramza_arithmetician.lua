@@ -71,8 +71,5 @@ RamzaArithmeticianArithmeticks = function(keys)
 		
 		damageTable.damage = damageTable.damage+RamzaArithmeticksCalculateDamage(tFactors, tValues, keys.caster:GetIntellect())
 		ApplyDamage(damageTable)
-		print(damageTable.damage)
-		PrintTable(tValues)
-		PrintTable(tFactors)
 	end
 end

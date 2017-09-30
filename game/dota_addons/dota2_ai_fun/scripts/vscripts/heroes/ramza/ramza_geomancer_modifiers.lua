@@ -227,7 +227,6 @@ function modifier_ramza_geomancer_geomancy_tanglevine:OnCreated(keys)
 --	keys.tRooted[hParent] = true
 	Timers:CreateTimer(0.2, function () 
 		local tTargets = FindUnitsInRadius(hCaster:GetTeamNumber(), hParent:GetAbsOrigin(), none, keys.fRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES , FIND_ANY_ORDER, false)
-		print(#tTargets)
 		local iCount = #tTargets
 		for i = 1, iCount do
 			if self.tRooted[tTargets[iCount+1-i]] then

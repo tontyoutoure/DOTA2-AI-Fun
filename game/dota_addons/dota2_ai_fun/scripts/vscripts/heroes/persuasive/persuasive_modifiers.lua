@@ -61,7 +61,6 @@ function modifier_persuasive_lagmonster_lua:OnDestroy()
 	}
 	ApplyDamage(damageTable)
 	hModifier = hParent:AddNewModifier(hCaster, hAbility, "modifier_persuasive_lagmonster_stun_lua", {Duration = self:GetDuration()})
-	print(hModifier:GetName())
 end
 
 function modifier_persuasive_lagmonster_lua:OnTakeDamage(keys)
