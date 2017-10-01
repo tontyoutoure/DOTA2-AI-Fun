@@ -14,7 +14,7 @@ function modifier_ramza_black_mage_magick_counter:GetReflectSpell(keys)
 	local hAbility = keys.ability
 	local hParent = self:GetParent()
 	local hCaster = hAbility:GetCaster()
-	if hCaster:GetTeamNumber() = hParent:GetTeamNumber() then return end
+	if hCaster:GetTeamNumber() == hParent:GetTeamNumber() then return end
 	if hParent.hRamzaJob.tJobLevels[hParent.hRamzaJob.iCurrentJob] < 3 then return end
 	local bHasArcaneStrength = hParent:HasModifier('modifier_ramza_black_mage_arcane_strength')
 	local damageTable = {

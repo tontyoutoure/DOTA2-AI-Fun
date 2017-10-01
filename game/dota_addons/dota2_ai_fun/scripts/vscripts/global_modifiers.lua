@@ -104,27 +104,28 @@ function modifier_tower_power:GetModifierAttackSpeedBonus_Constant() return 500/
 
 function modifier_tower_power:GetModifierPhysicalArmorBonus()	
 	local sName = self:GetParent():GetName()
-	if string.match(sName, "1") then 
-		return 14*(self:GetStackCount()-1)
-	elseif string.match(sName, "[2-3]") then		
-		return 16*(self:GetStackCount()-1)
-	elseif string.match(sName, "4") then		
-		return 24*(self:GetStackCount()-1)
-	elseif string.match(sName, "healer") then		
-		return 20*(self:GetStackCount()-1)
+	
+	if string.match(sName, "healer") then		
+		return 20*(self:GetStackCount()-1)/2
 	elseif string.match(sName, "fort") then		
-		return 15*(self:GetStackCount()-1)
+		return 15*(self:GetStackCount()-1)/2
 	elseif string.match(sName, "range") then		
-		return 10*(self:GetStackCount()-1)
+		return 10*(self:GetStackCount()-1)/2
 	elseif string.match(sName, "melee") then		
-		return 15*(self:GetStackCount()-1)
+		return 15*(self:GetStackCount()-1)/2
+	elseif string.match(sName, "1") then 
+		return 14*(self:GetStackCount()-1)/2
+	elseif string.match(sName, "[2-3]") then		
+		return 16*(self:GetStackCount()-1)/2
+	elseif string.match(sName, "4") then		
+		return 24*(self:GetStackCount()-1)/2
 	end
 end
 
 function modifier_tower_power:GetModifierBaseDamageOutgoing_Percentage()
-	return 100*(self:GetStackCount()-1)
+	return 100*(self:GetStackCount()-1)/2
 end
 
 function modifier_tower_power:GetModifierHealthRegenPercentage()
-	return 1*(self:GetStackCount()-1)
+	return 1*(self:GetStackCount()-1)/2
 end
