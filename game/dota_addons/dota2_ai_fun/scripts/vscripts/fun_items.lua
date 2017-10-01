@@ -338,3 +338,18 @@ function MagicHammerManaBurn(keys)
 		ApplyDamage(damageTable)
 	end	
 end
+
+function GenjiGloveMinibash(keys)
+	if not keys.target:IsBuilding() then
+		keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_item_fun_genji_glove_minibash", {})
+		keys.target:EmitSound("DOTA_Item.MKB.Minibash")
+		ParticleManager:CreateParticle("particles/generic_gameplay/generic_minibash.vpcf", PATTACH_OVERHEAD_FOLLOW, keys.target)
+	end
+end
+
+function BloodSwordCritApply(keys)
+	if not keys.target:IsBuilding() and keys.target:GetTeamNumber() ~= keys.attacker:GetTeamNumber() then
+		keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_item_fun_blood_sword_crit", {})
+	end
+
+end

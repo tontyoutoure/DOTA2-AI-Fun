@@ -142,22 +142,10 @@
 				// "%attack_damage"is set to the damage value before mitigation
 				"OnAttackLanded"
 				{
-					"ApplyModifier"
+					"RunScript"
 					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_item_fun_genji_glove_minibash"
-					}
-					"FireSound"
-					{
-						"EffectName"	"DOTA_Item.MKB.Minibash"
-						"Target"	"TARGET"
-					}
-					"FireEffect"
-					{
-						"EffectName"	"particles/generic_gameplay/generic_minibash.vpcf"
-						"EffectAttachType"	"follow_overhead"
-						"Target"	"TARGET"
-						"OverrideAnimation"	"ACT_DOTA_DISABLED"
+						"ScriptFile"	"scripts/vscripts/fun_items.lua"
+						"Function"	"GenjiGloveMinibash"
 					}
 				}
 			}
@@ -169,6 +157,7 @@
 				"IsBuff"	"0"
 				"IsDebuff"	"1"
 				"IsPurgable"	"0"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
 				"States"
 				{
 					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
@@ -731,10 +720,10 @@
 						"Chance"	"%crit_chance"
 						"OnSuccess"
 						{
-							"ApplyModifier"
+							"RunScript"
 							{
-								"ModifierName"	"modifier_item_fun_blood_sword_crit"
-								"Target"	"CASTER"
+								"ScriptFile"	"fun_items.lua"
+								"Function"	"BloodSwordCritApply"
 							}
 						}
 					}
