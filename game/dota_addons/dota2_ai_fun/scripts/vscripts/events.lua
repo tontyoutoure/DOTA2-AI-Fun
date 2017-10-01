@@ -92,7 +92,28 @@ function GameMode:OnGameStateChanged( keys )
             --SendToServerConsole("dota_bot_set_difficulty 2")
         end
     elseif state == DOTA_GAMERULES_STATE_PRE_GAME then
-      Tutorial:StartTutorialMode()
+		Tutorial:StartTutorialMode()
+		local tTowers = Entities:FindAllByClassname("npc_dota_tower")
+		local iTowerPower = self.iTowerPower or 1
+		for k, v in pairs(tTowers) do
+			v:AddNewModifier(v, nil, "modifier_tower_power", {}):SetStackCount(iTowerPower)
+		end
+		local tTowers = Entities:FindAllByClassname("npc_dota_barracks")
+		local iTowerPower = self.iTowerPower or 1
+		for k, v in pairs(tTowers) do
+			v:AddNewModifier(v, nil, "modifier_tower_power", {}):SetStackCount(iTowerPower)
+		end
+		local tTowers = Entities:FindAllByClassname("npc_dota_healer")
+		local iTowerPower = self.iTowerPower or 1
+		for k, v in pairs(tTowers) do
+			v:AddNewModifier(v, nil, "modifier_tower_power", {}):SetStackCount(iTowerPower)
+		end
+		local tTowers = Entities:FindAllByClassname("npc_dota_fort")
+		local iTowerPower = self.iTowerPower or 1
+		for k, v in pairs(tTowers) do
+			v:AddNewModifier(v, nil, "modifier_tower_power", {}):SetStackCount(iTowerPower)
+		end
+	  
 --      for i=0, DOTA_MAX_TEAM_PLAYERS do`
 --          print(i)
 --          if PlayerResource:IsFakeClient(i) then
@@ -232,6 +253,7 @@ function GameMode:OnGetLoadingSetOptions(eventSourceIndex, args)
 	self.fDireGoldMultiplier = tonumber(args.game_options.dire_gold_multiplier);
 	self.iRespawnTimePercentage = tonumber(args.game_options.respawn_time_percentage)
 	self.iMaxLevel = tonumber(args.game_options.max_level)
+	self.iTowerPower = tonumber(args.game_options.tower_power)
 	self.iImbalancedEconomizer = args.game_options.imbalanced_economizer
 	self.iBotNotAttackTowerPickRune = args.game_options.bot_not_attack_tower_pick_rune
 	self:PreGameOptions()

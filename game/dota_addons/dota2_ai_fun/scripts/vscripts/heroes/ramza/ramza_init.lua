@@ -34,11 +34,11 @@ end
 
 -- for Defend of Ramza
 function GameMode:RamzaDamageFilter(filterTable)
+	if not filterTable.entindex_victim_const or not filterTable.entindex_attacker_const then return true end
 	local hVictim = EntIndexToHScript(filterTable.entindex_victim_const)
 	local hAttacker = EntIndexToHScript(filterTable.entindex_attacker_const)
 	if hVictim:HasModifier('modifier_ramza_squire_defend') and not hAttacker:IsBuilding() and not hAttacker:IsHero() then 
 		filterTable.damage = filterTable.damage*(1-hVictim:FindAbilityByName('ramza_squire_defend'):GetSpecialValueFor("damage_block")/100)
-		PrintTable(filterTable);
 	end
 	return true
 end

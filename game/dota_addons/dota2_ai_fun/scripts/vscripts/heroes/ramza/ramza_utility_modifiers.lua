@@ -324,27 +324,28 @@ end
 function modifier_ramza_samurai_run_animation_manager:OnIntervalThink()
 	if IsClient() then return end
 	local hParent = self:GetParent()
-	if hParent:GetIdealSpeed() >= 380 and self.hSpeedModifier.translate == "run" then
+	hParent:SetMaterialGroup("1")
+	if hParent:GetIdealSpeed() >= 380 and self.hSpeedModifier.translate == "run" and hParent:IsAlive() then
 		self.hSpeedModifier:Destroy()
 		self.hSpeedModifier = AddAnimationTranslate(hParent, "run_fast")
 		self.fSpeedStartTime = Time()
-	elseif hParent:GetIdealSpeed() < 380 and self.hSpeedModifier.translate == "run_fast" and Time() - self.fSpeedStartTime > 5 then		
+	elseif hParent:GetIdealSpeed() < 380 and self.hSpeedModifier.translate == "run_fast" and Time() - self.fSpeedStartTime > 5 and hParent:IsAlive() then		
 		self.hSpeedModifier:Destroy()		
 		self.hSpeedModifier = AddAnimationTranslate(hParent, "run")
 	end
 	
-	if hParent:GetHealth()/hParent:GetMaxHealth() < 0.25 and not self.hInjuredModifier then
+	if hParent:GetHealth()/hParent:GetMaxHealth() < 0.25 and not self.hInjuredModifier and hParent:IsAlive() then
 		self.hInjuredModifier = AddAnimationTranslate(hParent, "injured")
-	elseif hParent:GetHealth()/hParent:GetMaxHealth() >= 0.25 and self.hInjuredModifier  then
+	elseif hParent:GetHealth()/hParent:GetMaxHealth() >= 0.25 and self.hInjuredModifier and hParent:IsAlive()  then
 		self.hInjuredModifier:Destroy()
 		self.hInjuredModifier = nil
 	end
 	
 	tHeroes = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetAbsOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE+DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_ANY_ORDER, false)
 	
-	if #tHeroes > 0 and not self.hAggressiveModifier then
+	if #tHeroes > 0 and not self.hAggressiveModifier and hParent:IsAlive() then
 		self.hAggressiveModifier = AddAnimationTranslate(hParent, "aggressive")
-	elseif #tHeroes == 0 and self.hAggressiveModifier then
+	elseif #tHeroes == 0 and self.hAggressiveModifier and hParent:IsAlive() then
 		self.hAggressiveModifier:Destroy()
 		self.hAggressiveModifier = nil
 	end

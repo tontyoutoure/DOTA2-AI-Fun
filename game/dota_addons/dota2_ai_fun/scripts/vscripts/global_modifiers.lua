@@ -51,7 +51,7 @@ function modifier_bot_attack_tower_pick_rune:OnIntervalThink()
 	local hParent = self:GetParent()
 	local tTowers = FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
 	
-	if tTowers[1] and FindUnitsInRadius(tTowers[1]:GetTeam(), tTowers[1]:GetAbsOrigin(), nil, 750, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_NOT_SUMMONED, FIND_CLOSEST, false)[1] and not FindUnitsInRadius(tTowers[1]:GetTeam(), tTowers[1]:GetAbsOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)[1] and not FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)[1] then
+	if hParent:GetHealth()/hParent:GetMaxHealth() > 0.2 and tTowers[1] and FindUnitsInRadius(tTowers[1]:GetTeam(), tTowers[1]:GetAbsOrigin(), nil, 750, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_NOT_SUMMONED, FIND_CLOSEST, false)[1] and not FindUnitsInRadius(tTowers[1]:GetTeam(), tTowers[1]:GetAbsOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)[1] and not FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)[1] then
 		if self.hTarget == tTowers[1] then return end
 		self.bSentCommand = true
 		self.hTarget = tTowers[1]
@@ -83,12 +83,48 @@ function modifier_bot_attack_tower_pick_rune:OnIntervalThink()
 end
 
 
+modifier_tower_power = class({})
 
 
+function modifier_tower_power:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
+		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
+		
+	}
+end
 
+function modifier_tower_power:IsPurgable() return false end
+function modifier_tower_power:IsDebuff() return false end
+function modifier_tower_power:GetTexture() return "tower_power" end
 
+function modifier_tower_power:GetModifierAttackSpeedBonus_Constant() return 500/9*(self:GetStackCount()-1) end
 
+function modifier_tower_power:GetModifierPhysicalArmorBonus()	
+	local sName = self:GetParent():GetName()
+	if string.match(sName, "1") then 
+		return 14*(self:GetStackCount()-1)
+	elseif string.match(sName, "[2-3]") then		
+		return 16*(self:GetStackCount()-1)
+	elseif string.match(sName, "4") then		
+		return 24*(self:GetStackCount()-1)
+	elseif string.match(sName, "healer") then		
+		return 20*(self:GetStackCount()-1)
+	elseif string.match(sName, "fort") then		
+		return 15*(self:GetStackCount()-1)
+	elseif string.match(sName, "range") then		
+		return 10*(self:GetStackCount()-1)
+	elseif string.match(sName, "melee") then		
+		return 15*(self:GetStackCount()-1)
+	end
+end
 
+function modifier_tower_power:GetModifierBaseDamageOutgoing_Percentage()
+	return 100*(self:GetStackCount()-1)
+end
 
-
-
+function modifier_tower_power:GetModifierHealthRegenPercentage()
+	return 1*(self:GetStackCount()-1)
+end
