@@ -12,3 +12,5 @@
 #base "abilities\void_demon.txt"
 #base "npc_abilities_dummy.txt"
 #base "abilities\cleric.txt"
+#base "abilities\pet_summoner.txt"
+

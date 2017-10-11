@@ -12,3 +12,4 @@
 #base "heroes\terran_marine.txt"
 #base "heroes\void_demon.txt"
 #base "heroes\cleric.txt"
+#base "heroes\pet_summoner.txt"

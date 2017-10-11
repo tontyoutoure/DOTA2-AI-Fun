@@ -65,4 +65,13 @@
 	"ramza_dark_knight_darkness_abyssal_blade_quote" "My evil path leads to devil's breath, my sword is devil's blade! Abyssal blade!"
 	"ramza_dark_knight_darkness_unholy_sacrifice_quote" "Wave of evil, consume my life, show your power! Unholy Sacrifice!"
 	"ramza_dark_knight_darkness_shadowblade_quote" "Sword filled with karma, release wave of darkness! Shadow Blade!"
+	// ////////////////////////////////////////////////////////////////////////
+	//
+	// 							El Dorado, the item master
+	//
+	// ////////////////////////////////////////////////////////////////////////
+	"item_forge1" ""
+	"item_forge2" "×2"
+	"item_forge3" " is forged!"
+	
 }

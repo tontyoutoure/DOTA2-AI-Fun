@@ -66,4 +66,12 @@
 	"ramza_dark_knight_darkness_abyssal_blade_quote" "我的魔道就是恶魔的斗气、我所挥舞的就是恶魔的利刃，恶魔之刃！"
 	"ramza_dark_knight_darkness_unholy_sacrifice_quote" "邪恶的波动啊、以我的生命作为粮食、展现你的力量吧，恶魔之死！"
 	"ramza_dark_knight_darkness_shadowblade_quote" "染尽业障的剑啊、解放来自黑暗的波动吧，暗之兵器！"
+	// ////////////////////////////////////////////////////////////////////////
+	//
+	// 							El Dorado, the item master
+	//
+	// ////////////////////////////////////////////////////////////////////////
+	"item_forge1" "制作了"
+	"item_forge2" "×2"
+	"item_forge3" "！"
 }

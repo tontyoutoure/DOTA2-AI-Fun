@@ -1,0 +1,608 @@
+"DOTAHeroes"
+{
+	"npc_dota_hero_abaddon"
+	{
+		"override_hero"	"npc_dota_hero_abaddon"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_abyssal_underlord"
+	{
+		"override_hero"	"npc_dota_hero_abyssal_underlord"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_alchemist"
+	{
+		"override_hero"	"npc_dota_hero_alchemist"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_ancient_apparition"
+	{
+		"override_hero"	"npc_dota_hero_ancient_apparition"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_antimage"
+	{
+		"override_hero"	"npc_dota_hero_antimage"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_axe"
+	{
+		"override_hero"	"npc_dota_hero_axe"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_bane"
+	{
+		"override_hero"	"npc_dota_hero_bane"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_batrider"
+	{
+		"override_hero"	"npc_dota_hero_batrider"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_bloodseeker"
+	{
+		"override_hero"	"npc_dota_hero_bloodseeker"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_bounty_hunter"
+	{
+		"override_hero"	"npc_dota_hero_bounty_hunter"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_bristleback"
+	{
+		"override_hero"	"npc_dota_hero_bristleback"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_broodmother"
+	{
+		"override_hero"	"npc_dota_hero_broodmother"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_centaur"
+	{
+		"override_hero"	"npc_dota_hero_centaur"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_chaos_knight"
+	{
+		"override_hero"	"npc_dota_hero_chaos_knight"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_chen"
+	{
+		"override_hero"	"npc_dota_hero_chen"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_clinkz"
+	{
+		"override_hero"	"npc_dota_hero_clinkz"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_crystal_maiden"
+	{
+		"override_hero"	"npc_dota_hero_crystal_maiden"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_dark_seer"
+	{
+		"override_hero"	"npc_dota_hero_dark_seer"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_dazzle"
+	{
+		"override_hero"	"npc_dota_hero_dazzle"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_death_prophet"
+	{
+		"override_hero"	"npc_dota_hero_death_prophet"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_disruptor"
+	{
+		"override_hero"	"npc_dota_hero_disruptor"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_doom_bringer"
+	{
+		"override_hero"	"npc_dota_hero_doom_bringer"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_dragon_knight"
+	{
+		"override_hero"	"npc_dota_hero_dragon_knight"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_drow_ranger"
+	{
+		"override_hero"	"npc_dota_hero_drow_ranger"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_earthshaker"
+	{
+		"override_hero"	"npc_dota_hero_earthshaker"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_earth_spirit"
+	{
+		"override_hero"	"npc_dota_hero_earth_spirit"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_elder_titan"
+	{
+		"override_hero"	"npc_dota_hero_elder_titan"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_ember_spirit"
+	{
+		"override_hero"	"npc_dota_hero_ember_spirit"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_enchantress"
+	{
+		"override_hero"	"npc_dota_hero_enchantress"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_faceless_void"
+	{
+		"override_hero"	"npc_dota_hero_faceless_void"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_furion"
+	{
+		"override_hero"	"npc_dota_hero_furion"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_generic"
+	{
+		"override_hero"	"npc_dota_hero_generic"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_gyrocopter"
+	{
+		"override_hero"	"npc_dota_hero_gyrocopter"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_huskar"
+	{
+		"override_hero"	"npc_dota_hero_huskar"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_invoker"
+	{
+		"override_hero"	"npc_dota_hero_invoker"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_jakiro"
+	{
+		"override_hero"	"npc_dota_hero_jakiro"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_juggernaut"
+	{
+		"override_hero"	"npc_dota_hero_juggernaut"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_keeper_of_the_light"
+	{
+		"override_hero"	"npc_dota_hero_keeper_of_the_light"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_kunkka"
+	{
+		"override_hero"	"npc_dota_hero_kunkka"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_legion_commander"
+	{
+		"override_hero"	"npc_dota_hero_legion_commander"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_leshrac"
+	{
+		"override_hero"	"npc_dota_hero_leshrac"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_lich"
+	{
+		"override_hero"	"npc_dota_hero_lich"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_life_stealer"
+	{
+		"override_hero"	"npc_dota_hero_life_stealer"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_lina"
+	{
+		"override_hero"	"npc_dota_hero_lina"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_lion"
+	{
+		"override_hero"	"npc_dota_hero_lion"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_lone_druid"
+	{
+		"override_hero"	"npc_dota_hero_lone_druid"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_luna"
+	{
+		"override_hero"	"npc_dota_hero_luna"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_lycan"
+	{
+		"override_hero"	"npc_dota_hero_lycan"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_magnataur"
+	{
+		"override_hero"	"npc_dota_hero_magnataur"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_medusa"
+	{
+		"override_hero"	"npc_dota_hero_medusa"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_meepo"
+	{
+		"override_hero"	"npc_dota_hero_meepo"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_mirana"
+	{
+		"override_hero"	"npc_dota_hero_mirana"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_monkey_king"
+	{
+		"override_hero"	"npc_dota_hero_monkey_king"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_morphling"
+	{
+		"override_hero"	"npc_dota_hero_morphling"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_naga_siren"
+	{
+		"override_hero"	"npc_dota_hero_naga_siren"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_necrolyte"
+	{
+		"override_hero"	"npc_dota_hero_necrolyte"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_nevermore"
+	{
+		"override_hero"	"npc_dota_hero_nevermore"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_nyx_assassin"
+	{
+		"override_hero"	"npc_dota_hero_nyx_assassin"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_obsidian_destroyer"
+	{
+		"override_hero"	"npc_dota_hero_obsidian_destroyer"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_ogre_magi"
+	{
+		"override_hero"	"npc_dota_hero_ogre_magi"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_omniknight"
+	{
+		"override_hero"	"npc_dota_hero_omniknight"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_oracle"
+	{
+		"override_hero"	"npc_dota_hero_oracle"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_phantom_assassin"
+	{
+		"override_hero"	"npc_dota_hero_phantom_assassin"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_phantom_lancer"
+	{
+		"override_hero"	"npc_dota_hero_phantom_lancer"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_phoenix"
+	{
+		"override_hero"	"npc_dota_hero_phoenix"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_puck"
+	{
+		"override_hero"	"npc_dota_hero_puck"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_pudge"
+	{
+		"override_hero"	"npc_dota_hero_pudge"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_pugna"
+	{
+		"override_hero"	"npc_dota_hero_pugna"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_queenofpain"
+	{
+		"override_hero"	"npc_dota_hero_queenofpain"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_rattletrap"
+	{
+		"override_hero"	"npc_dota_hero_rattletrap"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_razor"
+	{
+		"override_hero"	"npc_dota_hero_razor"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_riki"
+	{
+		"override_hero"	"npc_dota_hero_riki"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_sand_king"
+	{
+		"override_hero"	"npc_dota_hero_sand_king"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_shadow_shaman"
+	{
+		"override_hero"	"npc_dota_hero_shadow_shaman"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_shredder"
+	{
+		"override_hero"	"npc_dota_hero_shredder"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_silencer"
+	{
+		"override_hero"	"npc_dota_hero_silencer"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_skeleton_king"
+	{
+		"override_hero"	"npc_dota_hero_skeleton_king"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_skywrath_mage"
+	{
+		"override_hero"	"npc_dota_hero_skywrath_mage"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_slardar"
+	{
+		"override_hero"	"npc_dota_hero_slardar"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_slark"
+	{
+		"override_hero"	"npc_dota_hero_slark"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_sniper"
+	{
+		"override_hero"	"npc_dota_hero_sniper"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_spectre"
+	{
+		"override_hero"	"npc_dota_hero_spectre"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_storm_spirit"
+	{
+		"override_hero"	"npc_dota_hero_storm_spirit"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_sven"
+	{
+		"override_hero"	"npc_dota_hero_sven"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_templar_assassin"
+	{
+		"override_hero"	"npc_dota_hero_templar_assassin"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_terrorblade"
+	{
+		"override_hero"	"npc_dota_hero_terrorblade"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_tidehunter"
+	{
+		"override_hero"	"npc_dota_hero_tidehunter"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_tiny"
+	{
+		"override_hero"	"npc_dota_hero_tiny"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_troll_warlord"
+	{
+		"override_hero"	"npc_dota_hero_troll_warlord"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_tusk"
+	{
+		"override_hero"	"npc_dota_hero_tusk"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_undying"
+	{
+		"override_hero"	"npc_dota_hero_undying"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_ursa"
+	{
+		"override_hero"	"npc_dota_hero_ursa"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_vengefulspirit"
+	{
+		"override_hero"	"npc_dota_hero_vengefulspirit"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_venomancer"
+	{
+		"override_hero"	"npc_dota_hero_venomancer"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_viper"
+	{
+		"override_hero"	"npc_dota_hero_viper"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_warlock"
+	{
+		"override_hero"	"npc_dota_hero_warlock"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_weaver"
+	{
+		"override_hero"	"npc_dota_hero_weaver"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_windrunner"
+	{
+		"override_hero"	"npc_dota_hero_windrunner"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_winter_wyvern"
+	{
+		"override_hero"	"npc_dota_hero_winter_wyvern"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_witch_doctor"
+	{
+		"override_hero"	"npc_dota_hero_witch_doctor"
+		"BotImplemented"	"1"
+	}
+
+	"npc_dota_hero_zuus"
+	{
+		"override_hero"	"npc_dota_hero_zuus"
+		"BotImplemented"	"1"
+	}
+}
