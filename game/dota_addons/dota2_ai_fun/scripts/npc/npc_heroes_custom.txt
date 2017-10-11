@@ -13,3 +13,4 @@
 #base "heroes\void_demon.txt"
 #base "heroes\cleric.txt"
 #base "heroes\pet_summoner.txt"
+#base "heroes\felguard.txt"

@@ -98,3 +98,19 @@ function PetSummonerPetInvisibleCheck(keys)
 	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_invisible", {}) 
 	end
 end
+
+function PetSummonerTequilaFrostAttackTargetCheck(keys)
+	if keys.target:IsBuilding() then return end
+	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_pet_summoner_tequila_frost_attack_slow", {Duration = keys.ability:GetSpecialValueFor("duration")})
+end
+
+function PetSummonerTequilaFrostAttackTargetCheck(keys)
+	if keys.target:IsBuilding() then return end
+	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_pet_summoner_tequila_frost_attack_slow", {Duration = keys.ability:GetSpecialValueFor("duration")})
+end
+
+function PetSummonerMoumouBiteTargetCheck(keys)
+	if keys.target:IsBuilding() then return end
+	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_pet_summoner_mou_mou_bite", {Duration = keys.ability:GetSpecialValueFor("duration")})
+	keys.target:EmitSound("DOTA_Item.Maim")
+end

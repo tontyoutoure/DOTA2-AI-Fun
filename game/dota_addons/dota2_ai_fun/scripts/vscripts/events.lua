@@ -205,6 +205,11 @@ function GameMode:_OnNPCSpawned(keys)
 		ClericInit(hHero, self)
 	end
 	
+	if hHero:GetName() == "npc_dota_hero_sven" and not hHero.bSpawned then
+		require('heroes/felguard/felguard_init')
+		FelguardInit(hHero, self)
+	end
+	
 	LearnInnateSkillOnSpawn(hHero)
 
 	if not hHero:IsHero() or hHero:IsIllusion() then return end	

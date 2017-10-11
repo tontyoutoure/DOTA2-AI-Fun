@@ -238,17 +238,12 @@
 				"Passive"	"1"
 				"IsHidden"	"1"
 				"OnAttackLanded"
-				{
-					"ApplyModifier"
+				{					
+					"RunScript"
 					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_pet_summoner_mou_mou_bite"
-						"Duration"	"%duration"
-					}
-					"FireSound"
-					{
-						"Target"	"TARGET"
-						"EffectName"	"DOTA_Item.Maim"
+						"Target"  "TARGET"
+						"ScriptFile"	"scripts/vscripts/heroes/pet_summoner/pet_summoner.lua"
+						"Function"	"PetSummonerMoumouBiteTargetCheck"
 					}
 				}
 			}
@@ -374,11 +369,11 @@
 				"IsHidden"	"1"
 				"OnAttackLanded"
 				{
-					"ApplyModifier"
+					"RunScript"
 					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_pet_summoner_tequila_frost_attack_slow"
-						"Duration"	"%duration"
+						"Target"  "TARGET"
+						"ScriptFile"	"scripts/vscripts/heroes/pet_summoner/pet_summoner.lua"
+						"Function"	"PetSummonerTequilaFrostAttackTargetCheck"
 					}
 				}
 			}
