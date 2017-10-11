@@ -281,6 +281,13 @@ function Precache( context )
 	PrecacheResource("particle", "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodrage_eztzhok.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_spellshield.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger.vpcf", context)
+	
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_spell_gods_strength.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_ember_spirit/ember_spirit_hit.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_ember_spirit/ember_spirit_remnant_dash.vpcf", context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_gods_strength.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/ember_spirit/ember_spirit_vanishing_flame/ember_spirit_vanishing_flame_ambient.vpcf", context)
 end
 
 

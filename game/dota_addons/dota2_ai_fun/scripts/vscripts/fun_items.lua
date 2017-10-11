@@ -75,7 +75,16 @@ local bannedItems = {
 	"rattletrap_rocket_flare",
 	"zuus_thundergods_wrath",
 	"zuus_cloud",
-	"silencer_global_silence"}
+	"silencer_global_silence",
+	"pet_summoner_critters",
+	"ramza_arithmetician_arithmeticks_CT",
+	"ramza_arithmetician_arithmeticks_multiple_of_5",
+	"ramza_arithmetician_arithmeticks_multiple_of_4",
+	"ramza_arithmetician_arithmeticks_multiple_of_3",
+	"ramza_arithmetician_arithmeticks_level",
+	"ramza_arithmetician_arithmeticks_exp",
+	"ramza_geomancer_geomancy_magma_surge"
+	}
 		
 local chargedAbilities = {
 	"bloodseeker_rupture",

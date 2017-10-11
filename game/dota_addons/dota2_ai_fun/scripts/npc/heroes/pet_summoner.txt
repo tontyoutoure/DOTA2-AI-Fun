@@ -1,0 +1,57 @@
+"DOTAHeroes"
+{
+	"npc_dota_hero_fun_pet_summoner"
+	{
+		"override_hero"	"npc_dota_hero_windrunner"
+		"Ability1"	"pet_summoner_pets"
+		"Ability2"	"pet_summoner_fix_boo_boo"
+		"Ability3"	"pet_summoner_mittens_meow"
+		"Ability4"	"pet_summoner_critters"
+		"AttributePrimary"	"DOTA_ATTRIBUTE_INTELLECT"
+		// Base strength
+		"AttributeBaseStrength"	"19"
+		// Strength bonus per level.
+		"AttributeStrengthGain"	"2"
+		// Base agility
+		"AttributeBaseAgility"	"16"
+		// Agility bonus per level.
+		"AttributeAgilityGain"	"1.5"
+		// Base intelligence
+		"AttributeBaseIntelligence"	"28"
+		// Intelligence bonus per level.
+		"AttributeIntelligenceGain"	"3.1"
+		"ArmorPhysical"	"1"
+		"MagicalResistance"	"25"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		// Damage   min.
+		"AttackDamageMin"	"19"
+		// Damage range max.
+		"AttackDamageMax"	"27"
+		// Speed of attack.
+		"AttackRate"	"1.7"
+		"MovementSpeed"	"310"
+		"AttackRange"	"550"
+		"MovementTurnRate"	"0.4"
+		// Range of vision during day light.
+		"VisionDaytimeRange"	"1800"
+		// Range of vision at night time.
+		"VisionNighttimeRange"	"800"
+		"Role"	"Carry,Push"
+		"Rolelevels"	"2,2"
+		"Ability10"	"special_bonus_gold_income_25"
+		"Ability11"	"special_bonus_exp_boost_20"
+		"Ability12"	"special_bonus_armor_10"
+		"Ability13"	"special_bonus_attack_speed_30"
+		"Ability14"	"special_bonus_pet_summoner_1"
+		"Ability15"	"special_bonus_hp_600"
+		"Ability16"	"special_bonus_attack_range_400"
+		"Ability17"	"special_bonus_pet_summoner_2"
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"BotImplemented"	"0"
+	}
+}

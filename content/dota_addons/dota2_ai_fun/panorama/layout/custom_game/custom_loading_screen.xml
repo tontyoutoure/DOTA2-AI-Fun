@@ -204,6 +204,12 @@
 					<Button id="HeroAvatarBtnRubick" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelRubick&quot;);"> 
 						<Image id="HeroAvatarRubick" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_rubick.png" />
 					</Button>
+					<Button id="HeroAvatarBtnWindrunner" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelWindrunner&quot;);"> 
+						<Image id="HeroAvatarWindrunner" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_windrunner.png" />
+					</Button>
+					<Button id="HeroAvatarBtnSven" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelSven&quot;);"> 
+						<Image id="HeroAvatarSven" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_sven.png" />
+					</Button>
 				</Panel>
 			</Panel>
 			
@@ -261,6 +267,14 @@
 	  <Panel id="HeroDescriptionPopPanelRubick" class = "HeroDescriptionPopPanel">
         <Label id="HeroNameRubick" class="HeroName" text="#npc_dota_hero_rubick_long"/>
         <Label id="HeroBioRubick" class="HeroBio" text="#npc_dota_hero_rubick_hype"/>
+      </Panel>
+	  <Panel id="HeroDescriptionPopPanelWindrunner" class = "HeroDescriptionPopPanel">
+        <Label id="HeroNameWindrunner" class="HeroName" text="#npc_dota_hero_windrunner_long"/>
+        <Label id="HeroBioWindrunner" class="HeroBio" text="#npc_dota_hero_windrunner_hype"/>
+      </Panel>
+	  <Panel id="HeroDescriptionPopPanelSven" class = "HeroDescriptionPopPanel">
+        <Label id="HeroNameSven" class="HeroName" text="#npc_dota_hero_sven_long"/>
+        <Label id="HeroBioSven" class="HeroBio" text="#npc_dota_hero_sven_hype"/>
       </Panel>
 		</Panel>		
 	</Panel>
