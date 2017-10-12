@@ -155,6 +155,7 @@ function modifier_felguard_strength_and_honor:OnHeroKilled()
 	end
 	self:SetStackCount(self:GetStackCount()+iLevel)
 	if self:GetStackCount() > iMaxLevel then self:SetStackCount(iMaxLevel) end
+	if self:GetStackCount() < 0 then self:SetStackCount(0) end
 	
 	self.iKill = hParent:GetKills()
 	self.iAssist = hParent:GetAssists()
