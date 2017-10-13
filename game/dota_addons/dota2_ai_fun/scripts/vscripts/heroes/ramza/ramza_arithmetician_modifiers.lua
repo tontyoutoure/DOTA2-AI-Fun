@@ -22,7 +22,8 @@ function modifier_ramza_arithmetician_soulbind:OnTakeDamage(keys)
 		damage = keys.original_damage/2,
 		attacker = keys.unit,
 		ability = self:GetAbility(),
-		damage_type = keys.damage_type
+		damage_type = keys.damage_type,
+		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL
 	}
 	ApplyDamage(damageTable)	
 end
