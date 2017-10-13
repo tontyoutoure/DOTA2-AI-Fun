@@ -27,7 +27,10 @@ function Precache( context )
 	PrecacheResource("particle", "particles/econ/items/wisp/wisp_relocate_teleport_ti7_out.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts", context)
 	PrecacheResource("soundfile", "particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength.vpcf", context)
-	
+	PrecacheResource("particle", "particles/econ/items/oracle/oracle_fortune_ti7/oracle_fortune_ti7_purge.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_crit_arcana_swoop.vpcf", context)
+	PrecacheResource("particle", "particles/blood_sword.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_chen/chen_penitence_debuff.vpcf", context)
 	-- for bastion
 	PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts", context)

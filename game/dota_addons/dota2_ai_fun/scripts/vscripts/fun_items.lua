@@ -1,4 +1,8 @@
 DOTA2_AI_FUN_SPEW = false
+LinkLuaModifier("modifier_heros_bow_always_allow_attack", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_angelic_alliance_spell_lifesteal", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_economizer_spell_lifesteal", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
+
 local function CheckStringInTable(s, t)
 	for i = 1, #t do
 		if s == t[i] then return true end
@@ -264,26 +268,27 @@ function AngelicAllianceAngelDown(keys)
 
 end
 
-function BloodSwordLifestealApply(keys)
-	local attacker = keys.attacker
-	local target = keys.target
-	local ability = keys.ability
-	if not target:IsBuilding() then
-		ability:ApplyDataDrivenModifier(attacker, attacker, "modifier_item_fun_blood_sword_lifesteal", {duration = 0.03})
-	end
+function AASpellLifestealApply(keys)
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_angelic_alliance_spell_lifesteal", {Duration = 0.15})
+end
+
+function EconomizerSpellLifestealApply(keys)
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_economizer_spell_lifesteal", {Duration = 0.15})
 end
 
 function HerosBowOnHit(keys)	
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
+	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_item_fun_heros_bow_debuff", {Duration = keys.ability:GetSpecialValueFor("duration")})
+	keys.target:EmitSound("Hero_FacelessVoid.TimeLockImpact")
 	damageTable = {
 		victim = keys.target,
 		attacker = keys.caster,
-		damage = keys.ability:GetSpecialValueFor("light_arrow_damage"),
+		damage = keys.ability:GetSpecialValueFor("light_arrow_damage_mult")*keys.caster:GetAttackDamage(),
 		damage_type = DAMAGE_TYPE_PURE,
 		ability = keys.ability
 	}
 	ApplyDamage(damageTable)
-	keys.target:EmitSound("Hero_FacelessVoid.TimeLockImpact")
+	if keys.caster:IsRangedAttacker() then keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_heros_bow_always_allow_attack", {Duration = keys.ability:GetSpecialValueFor("duration")}) end
 end
 
 function DarksideDamage(keys)
@@ -303,7 +308,7 @@ function DarksideDamage(keys)
 	damageTable.victim = caster
 	ApplyDamage(damageTable)
 end
-
+--[[
 function MagicHammerManaBreak(keys)
 	local attacker = keys.attacker
 	local target = keys.target
@@ -325,6 +330,37 @@ function MagicHammerManaBreak(keys)
 		end
 	end
 end
+]]--
+function MagicHammerSpellStart(keys)
+	local iParticle = ParticleManager:CreateParticle("particles/econ/events/ti7/shivas_guard_active_ti7.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.caster)
+	ParticleManager:SetParticleControl(iParticle, 1, Vector(900,4,350))
+	local tEffectedTargets = {}
+	local iRootDuration = keys.ability:GetSpecialValueFor("root_duration")
+	for i = 1, 26 do
+		Timers:CreateTimer(0.1*i, function()
+			local tTargets = FindUnitsInRadius(keys.caster:GetTeam(), keys.caster:GetAbsOrigin(), nil, 35*i, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
+			for k, v in ipairs(tTargets) do
+				if not tEffectedTargets[v:entindex()] then
+					tEffectedTargets[v:entindex()] = true
+					keys.ability:ApplyDataDrivenModifier(keys.caster, v, "modifier_item_fun_magic_hammer_root", {Duration = iRootDuration})
+					
+					
+					v:EmitSound("Hero_NyxAssassin.ManaBurn.Target")
+				end
+			end
+			if i == 26 then tEffectedTargets = nil end
+		end)
+	end
+end
+
+function MagicHammerRootBegin(keys)
+	keys.target.iMagicHammerRootParticle = ParticleManager:CreateParticle("particles/econ/items/oracle/oracle_fortune_ti7/oracle_fortune_ti7_purge.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.target)
+	ParticleManager:SetParticleControlEnt(keys.target.iMagicHammerRootParticle, 1, keys.target, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.target:GetOrigin(), true)
+end
+function MagicHammerRootEnd(keys)
+	ParticleManager:DestroyParticle(keys.target.iMagicHammerRootParticle, true)
+	keys.target.iMagicHammerRootParticle = nil
+end
 
 function MagicHammerManaBurn(keys)
 	local caster = keys.caster
@@ -333,18 +369,26 @@ function MagicHammerManaBurn(keys)
 	local mana_burn = ability:GetSpecialValueFor("mana_burn")
 	local mana_burn_damage = ability:GetSpecialValueFor("mana_burn_damage")
 	local currentMana = target:GetMana()
-	
-	target:EmitSound("Hero_NyxAssassin.ManaBurn.Target")
-	ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+	target:Purge(true, false, false, false, false)
+	target:EmitSound("DOTA_Item.DiffusalBlade.Activate")
+--	ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	damageTable = {attacker = caster, victim = target, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability}
 	if currentMana > mana_burn then
 		target:SetMana(currentMana-mana_burn)
 		damageTable.damage = mana_burn*mana_burn_damage
 		ApplyDamage(damageTable)
+		local iParticle1 = ParticleManager:CreateParticle("particles/msg_fx/msg_mana_loss.vpcf", PATTACH_POINT_FOLLOW, keys.target)
+		ParticleManager:SetParticleControl(iParticle1, 1, Vector(1, math.floor(mana_burn), 0))
+		ParticleManager:SetParticleControl(iParticle1, 2, Vector(1, 2+math.floor(math.log10(mana_burn)), 500))
+		ParticleManager:SetParticleControl(iParticle1, 3, Vector(120, 120, 200))	
 	else
 		target:SetMana(0)
 		damageTable.damage = currentMana*mana_burn_damage
 		ApplyDamage(damageTable)
+		local iParticle1 = ParticleManager:CreateParticle("particles/msg_fx/msg_mana_loss.vpcf", PATTACH_POINT_FOLLOW, keys.target)
+		ParticleManager:SetParticleControl(iParticle1, 1, Vector(1, math.floor(currentMana), 0))
+		ParticleManager:SetParticleControl(iParticle1, 2, Vector(1, 2+math.floor(math.log10(currentMana)), 500))
+		ParticleManager:SetParticleControl(iParticle1, 3, Vector(120, 120, 200))	
 	end	
 end
 
@@ -361,4 +405,41 @@ function BloodSwordCritApply(keys)
 		keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_item_fun_blood_sword_crit", {})
 	end
 
+end
+
+function BloodSwordLifestealApply(keys)
+	local attacker = keys.attacker
+	local target = keys.target
+	local ability = keys.ability
+	if not target:IsBuilding() then
+		if attacker:HasModifier("modifier_item_fun_blood_sword_extra_attack") then
+			ability:ApplyDataDrivenModifier(attacker, attacker, "modifier_item_fun_blood_sword_extra_lifesteal", {duration = 0.03})
+		else
+			ability:ApplyDataDrivenModifier(attacker, attacker, "modifier_item_fun_blood_sword_lifesteal", {duration = 0.03})
+		end
+	end
+end
+
+function BloodSwordExtraCritParticle(keys)
+	keys.target:EmitSound("Hero_PhantomAssassin.CoupDeGrace.Arcana")
+	local nFXIndex = ParticleManager:CreateParticle( "particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_crit_arcana_swoop.vpcf", PATTACH_CUSTOMORIGIN, nil )
+	ParticleManager:SetParticleControlEnt( nFXIndex, 0, keys.target, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.target:GetOrigin(), true )
+	ParticleManager:SetParticleControl( nFXIndex, 1, keys.target:GetOrigin() )
+	ParticleManager:SetParticleControlForward( nFXIndex, 1, -keys.attacker:GetForwardVector() )
+	ParticleManager:SetParticleControlEnt( nFXIndex, 10, keys.target, PATTACH_ABSORIGIN_FOLLOW, nil, keys.target:GetOrigin(), true )
+	ParticleManager:ReleaseParticleIndex( nFXIndex )
+end
+
+function BloodSwordExtraAttack(keys)
+	if not keys.attacker.IsExtraAttacking and not keys.attacker:IsRangedAttacker() then 		
+		StartAnimation(keys.attacker, {duration = 0.2, activity=ACT_DOTA_ATTACK, rate=7})
+		Timers:CreateTimer(0.04, function () 
+			keys.attacker.IsExtraAttacking = true
+			if not keys.target:IsBuilding() and keys.target:GetTeamNumber() ~= keys.attacker:GetTeamNumber() then 
+				keys.ability:ApplyDataDrivenModifier(keys.attacker, keys.attacker, "modifier_item_fun_blood_sword_extra_crit", {})
+			end
+			keys.attacker:PerformAttack(keys.target, true, true, true, false, true, false, true) 
+			Timers:CreateTimer(0.04, function () keys.attacker.IsExtraAttacking = nil end)
+		end)
+	end
 end

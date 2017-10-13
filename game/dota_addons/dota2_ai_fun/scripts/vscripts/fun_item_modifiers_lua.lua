@@ -115,8 +115,13 @@ function modifier_item_fun_ragnarok_lua:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-		MODIFIER_EVENT_ON_ATTACK_LANDED
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_PROPERTY_HEALTH_BONUS
 	}
+end
+
+function modifier_item_fun_ragnarok_lua:GetModifierHealthBonus()
+	return self:GetAbility():GetSpecialValueFor("bonus_health")
 end
 
 function modifier_item_fun_ragnarok_lua:OnAttackLanded(keys)
@@ -164,9 +169,12 @@ function modifier_magic_hammer_mana_break:IsHidden() return true end
 function modifier_magic_hammer_mana_break:DeclareFunctions()
 	return {
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
-		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL
+		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
+		MODIFIER_PROPERTY_CAST_RANGE_BONUS
 	}
 end
+
+function modifier_magic_hammer_mana_break:GetModifierCastRangeBonus() return self:GetAbility():GetSpecialValueFor("bonus_cast_range") end
 
 function modifier_magic_hammer_mana_break:GetModifierProcAttack_BonusDamage_Physical(keys)
 	if keys.target:IsBuilding() or keys.attacker:GetTeamNumber() == keys.target:GetTeamNumber() or keys.target:GetMaxMana() == 0 or keys.target:IsMagicImmune() then return 0 end
@@ -196,15 +204,69 @@ end
 
 function modifier_magic_hammer_mana_break:AllowIllusionDuplicate() return true end
 
+modifier_heros_bow_always_allow_attack = class({})
 
 
+function modifier_heros_bow_always_allow_attack:OnCreated()
+	if IsClient() then return end
+	if self:GetParent():IsRangedAttacker() then 
+		self.iAttackRange = 99999
+	else
+		self.iAttackRange = 0
+	end
+end
+function modifier_heros_bow_always_allow_attack:DeclareFunctions()
+	return {MODIFIER_EVENT_ON_ATTACK_START, MODIFIER_PROPERTY_ATTACK_RANGE_BONUS}
+end
+
+function modifier_heros_bow_always_allow_attack:OnAttackStart (keys)
+	if keys.attacker~= self:GetParent() or not keys.attacker:IsRangedAttacker() then return end
+	if not keys.target:HasModifier("modifier_item_fun_heros_bow_debuff") then
+		self.iAttackRange = -keys.attacker:GetAttackRangeBuffer()
+		Timers:CreateTimer(0.03, function() self.iAttackRange = 99999 end)
+	end
+end
+
+function modifier_heros_bow_always_allow_attack:GetModifierAttackRangeBonus()
+	return self.iAttackRange
+end
+
+function modifier_heros_bow_always_allow_attack:IsPurgable() return false end
+
+modifier_angelic_alliance_spell_lifesteal = class({})
+
+function modifier_angelic_alliance_spell_lifesteal:IsHidden() return true end
+function modifier_angelic_alliance_spell_lifesteal:IsPurgable() return false end
+
+function modifier_angelic_alliance_spell_lifesteal:DeclareFunctions()
+    return  {
+		MODIFIER_EVENT_ON_TAKEDAMAGE
+    }
+end
+
+function modifier_angelic_alliance_spell_lifesteal:OnTakeDamage(keys)
+	if keys.attacker~=self:GetParent() or not keys.inflictor or bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL)>0 then return end
+	ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.attacker)
+	keys.attacker:Heal(self:GetAbility():GetSpecialValueFor("spell_lifesteal")/100*keys.damage, keys.attacker)
+end
 
 
+modifier_economizer_spell_lifesteal = class({})
 
+function modifier_economizer_spell_lifesteal:IsHidden() return true end
+function modifier_economizer_spell_lifesteal:IsPurgable() return false end
 
+function modifier_economizer_spell_lifesteal:DeclareFunctions()
+    return  {
+		MODIFIER_EVENT_ON_TAKEDAMAGE
+    }
+end
 
-
-
+function modifier_economizer_spell_lifesteal:OnTakeDamage(keys)
+	if keys.attacker~=self:GetParent() or not keys.inflictor or bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL)>0 then return end
+	ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.attacker)
+	keys.attacker:Heal(self:GetAbility():GetSpecialValueFor("spell_lifesteal")/100*keys.damage, keys.attacker)
+end
 
 
 
