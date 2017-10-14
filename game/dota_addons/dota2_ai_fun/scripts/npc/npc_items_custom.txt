@@ -673,7 +673,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_damage"	"300"
+				"bonus_damage"	"100"
 			}
 			"03"
 			{
@@ -937,7 +937,7 @@
 			"06"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"extra_crit"	"400"
+				"extra_crit"	"250"
 			}
 			"07"
 			{
@@ -1104,7 +1104,7 @@
 			"07"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"light_arrow_damage_mult"	"4"
+				"light_arrow_damage_mult"	"2.5"
 			}
 			"08"
 			{
