@@ -216,9 +216,11 @@ function GameMode:_OnNPCSpawned(keys)
 	
 	if not self.tHumanPlayerList[hHero:GetPlayerOwnerID()] and self.iBotNotAttackTowerPickRune == 0 then
 		hHero:AddNewModifier(hHero, nil, "modifier_bot_attack_tower_pick_rune", {}).tHumanPlayerList = self.tHumanPlayerList
+		hHero:AddNewModifier(hHero, nil, "modifier_bot_get_fun_items", {})
+		hHero:AddNewModifier(hHero, nil, "modifier_bot_use_fun_items", {})
 	end
 	
-	if IsInToolsMode() then PlayerResource:SetGold(hHero:GetOwner():GetPlayerID(), 99999, true) end
+--	if IsInToolsMode() then PlayerResource:SetGold(hHero:GetOwner():GetPlayerID(), 99999, true) end
 	if not hHero.bSpawned then
 		hHero:AddNewModifier(hHero, nil, "modifier_global_hero_respawn_time", {})
 		if self.iImbalancedEconomizer > 0 then hHero:AddNewModifier(hHero, nil, "modifier_imbalanced_economizer", {}) end

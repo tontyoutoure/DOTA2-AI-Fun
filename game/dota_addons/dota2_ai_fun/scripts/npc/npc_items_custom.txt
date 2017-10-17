@@ -1035,10 +1035,6 @@
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_int"
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_strength"
 				}
-				"States"
-				{
-					"MODIFIER_STATE_CANNOT_MISS"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
 				"Aura_Radius"	"0"
 				"Aura"	"modifier_item_fun_heros_bow_attack_range"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -1059,6 +1055,15 @@
 				"EffectName"	"particles/units/heroes/hero_chen/chen_penitence_debuff.vpcf"
 				"EffectAttachType"	"follow_origin"
 			}
+			"modifier_item_fun_heros_bow_armor_reduction"
+			{
+				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_reduction"
+				}
+			}
 			"modifier_item_fun_heros_bow_attack_range"
 			{
 				"Properties"
@@ -1067,6 +1072,24 @@
 				}
 				"IsBuff"	"1"
 				"IsHidden"	"1"
+			}
+			"modifier_item_fun_heros_bow_bonus_night_vision"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"%night_vision"
+				}
+				"OnAttackLanded"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_item_fun_heros_bow_armor_reduction"
+						"Duration"	"%armor_reduction_duration"
+					}
+				}
 			}
 		}
 		"AbilitySpecial"
@@ -1125,6 +1148,21 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"duration"	"10"
+			}
+			"12"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"armor_reduction"	"-15"
+			}
+			"13"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"night_vision"	"600"
+			}
+			"14"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"armor_reduction_duration"	"30"
 			}
 		}
 		"ActiveDescriptionLine"	"1"
@@ -1629,7 +1667,7 @@
 		"ItemResult"	"item_fun_heros_bow"
 		"ItemRequirements"
 		{
-			"01"	"item_ethereal_blade;item_dragon_lance;item_moon_shard;item_monkey_king_bar"
+			"01"	"item_ethereal_blade;item_dragon_lance;item_moon_shard;item_desolator"
 		}
 	}
 

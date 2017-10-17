@@ -45,6 +45,8 @@ function GameMode:LinkLuaModifiers()
 	LinkLuaModifier("modifier_imbalanced_economizer", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_bot_attack_tower_pick_rune", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_tower_power", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("modifier_bot_get_fun_items", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("modifier_bot_use_fun_items", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 end
 
 function GameMode:InitGameOptions()
@@ -75,6 +77,7 @@ function GameMode:PreGameOptions()
 	self.iGoldTickTime = self.iGoldTickTime or GOLD_TICK_TIME
 	self.iRespawnTimePercentage = self.iRespawnTimePercentage or RESPAWN_TIME_PERCENTAGE
 	self.iMaxLevel = self.iMaxLevel or MAX_LEVEL
+	self.iImbalancedEconomizer = self.iImbalancedEconomizer or 0
 	GameRules:SetGoldPerTick(self.iGoldPerTick)
 	GameRules:SetGoldTickTime(self.iGoldTickTime)
     GameRules:GetGameModeEntity():SetModifyGoldFilter( Dynamic_Wrap( GameMode, "FilterGold" ), self )	
