@@ -140,6 +140,7 @@
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemPermanent"	"1"
 		"ItemAliases"	"genji"
+		"ItemRequirements"	{}
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_items.vsndevts"
@@ -1042,6 +1043,22 @@
 				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_RANGED_ONLY"
 				"Aura_ApplyToCaster"	"1"
 				"ThinkInterval"	"0.1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/fun_items.lua"
+						"Function"	"HerosbowCreated"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/fun_items.lua"
+						"Function"	"HerosbowDestroy"
+					}
+				}
 			}
 			"modifier_item_fun_heros_bow_debuff"
 			{
@@ -1083,11 +1100,10 @@
 				}
 				"OnAttackLanded"
 				{
-					"ApplyModifier"
+					"RunScript"
 					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_item_fun_heros_bow_armor_reduction"
-						"Duration"	"%armor_reduction_duration"
+						"ScriptFile"	"scripts/vscripts/fun_items.lua"
+						"Function"	"HerosBowReduceArmor"
 					}
 				}
 			}
@@ -1163,6 +1179,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"armor_reduction_duration"	"30"
+			}
+			"15"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"armor_percentage"	"-150"
 			}
 		}
 		"ActiveDescriptionLine"	"1"
@@ -1597,7 +1618,7 @@
 		"ItemResult"	"item_fun_sprint_shoes"
 		"ItemRequirements"
 		{
-			"01"	"item_boots;item_blink;item_blink;item_travel_boots"
+			"01"	"item_boots;item_blink;item_blink;item_travel_boots_2;item_wind_lace"
 		}
 	}
 

@@ -225,7 +225,8 @@
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"ability_datadriven"
+		"BaseClass"	"ability_lua"
+		"ScriptFile"  "heroes/astral_trekker/astral_trekker_entrapment.lua"
 		"AbilityTextureName"	"astral_trekker_entrapment"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -259,6 +260,9 @@
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
+                "TargetTeams"    "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "TargetTypes"    "DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC"
+                "TargetFlags"    "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 				"EffectName"	"particles/units/heroes/hero_siren/siren_net_projectile.vpcf"
 				"Dodgeable"	"1"
 				"ProvidesVision"	"1"

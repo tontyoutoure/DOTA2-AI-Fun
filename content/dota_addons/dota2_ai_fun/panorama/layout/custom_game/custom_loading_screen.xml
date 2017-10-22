@@ -143,9 +143,13 @@
 					<Label id="ImbalancedEconomizerTitle" class="GameOptionsLabel" text="#imbalanced_economizer" />
 					<ToggleButton checked="true" class="GameOptionsToggle" id="imbalanced_economizer"/>		
 				</Panel>
-				<Panel id="BotNotAttackTowerPickRunePanel"  class="GameOptionsSubPanel">
-					<Label id="BotNotAttackTowerPickRuneTitle" class="GameOptionsLabel" text="#bot_not_attack_tower_pick_rune" />
-					<ToggleButton checked="true" class="GameOptionsToggle" id="bot_not_attack_tower_pick_rune"/>		
+				<Panel id="BotAttackTowerPickRunePanel"  class="GameOptionsSubPanel">
+					<Label id="BotAttackTowerPickRuneTitle" class="GameOptionsLabel" text="#bot_attack_tower_pick_rune" />
+					<ToggleButton checked="true" class="GameOptionsToggle" id="bot_attack_tower_pick_rune"/>		
+				</Panel>
+				<Panel id="BotHaveFunItemPanel"  class="GameOptionsSubPanel">
+					<Label id="BotHaveFunItemTitle" class="GameOptionsLabel" text="#bot_has_fun_item" />
+					<ToggleButton checked="true" class="GameOptionsToggle" id="bot_has_fun_item"/>		
 				</Panel>
 				<Button id="ConfirmOptionsBtn" onactivate="set_game_options();">
 					<Label id="ConfirmOptionsBtnLabel" text="#confirm_game_options" />

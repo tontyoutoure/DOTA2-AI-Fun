@@ -2,7 +2,7 @@ DOTA2_AI_FUN_SPEW = false
 LinkLuaModifier("modifier_heros_bow_always_allow_attack", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_angelic_alliance_spell_lifesteal", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_economizer_spell_lifesteal", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
-
+LinkLuaModifier("modifier_heros_bow_minus_armor", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 local function CheckStringInTable(s, t)
 	for i = 1, #t do
 		if s == t[i] then return true end
@@ -358,8 +358,10 @@ function MagicHammerRootBegin(keys)
 	ParticleManager:SetParticleControlEnt(keys.target.iMagicHammerRootParticle, 1, keys.target, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.target:GetOrigin(), true)
 end
 function MagicHammerRootEnd(keys)
-	ParticleManager:DestroyParticle(keys.target.iMagicHammerRootParticle, true)
-	keys.target.iMagicHammerRootParticle = nil
+	if keys.target.iMagicHammerRootParticle then
+		ParticleManager:DestroyParticle(keys.target.iMagicHammerRootParticle, true)
+		keys.target.iMagicHammerRootParticle = nil
+	end
 end
 
 function MagicHammerManaBurn(keys)
@@ -442,4 +444,21 @@ function BloodSwordExtraAttack(keys)
 			Timers:CreateTimer(0.04, function () keys.attacker.IsExtraAttacking = nil end)
 		end)
 	end
+end
+
+function HerosbowCreated(keys)
+	if keys.caster:IsRangedAttacker() then 
+		keys.ability.sOriginalProjectileName = keys.caster:GetRangedProjectileName()
+		keys.caster:SetRangedProjectileName('particles/units/heroes/hero_enchantress/enchantress_impetus.vpcf')
+	end
+end
+
+function HerosbowDestroy(keys)
+	if keys.caster:IsRangedAttacker() then 
+		keys.caster:SetRangedProjectileName(keys.ability.sOriginalProjectileName)
+	end
+end
+
+function HerosBowReduceArmor(keys)
+	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_heros_bow_minus_armor", {Duration = keys.ability:GetSpecialValueFor("armor_reduction_duration")})
 end

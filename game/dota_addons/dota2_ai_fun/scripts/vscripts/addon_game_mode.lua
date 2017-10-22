@@ -38,6 +38,7 @@ function Precache( context )
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_razor/razor_unstable_current.vpcf", context)	
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_chen.vsndevts", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_enchantress/enchantress_impetus.vpcf", context)
 
 	-- for intimidator
 	PrecacheResource("particle", "particles/econ/items/razor/razor_punctured_crest_golden/razor_static_link_new_arc_blade_golden.vpcf", context)
