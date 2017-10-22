@@ -93,7 +93,8 @@ function modifier_item_fun_escutcheon_lua:GetModifierHealthBonus()
 end
 
 function modifier_item_fun_escutcheon_lua:ReincarnateTime()
-	if IsClient() then return -1 end
+	if IsClient() then return -1 end	
+	if self:GetParent():GetHealth() > 0 then return -1 end
 	local hAbility = self:GetAbility()
 	local fReincarnateTime = hAbility:GetSpecialValueFor("reincarnate_time")
 	if hAbility:IsCooldownReady() then
@@ -268,7 +269,14 @@ function modifier_economizer_spell_lifesteal:OnTakeDamage(keys)
 	keys.attacker:Heal(self:GetAbility():GetSpecialValueFor("spell_lifesteal")/100*keys.damage, keys.attacker)
 end
 
+modifier_heros_bow_minus_armor = class({})
+function modifier_heros_bow_minus_armor:OnCreated()
+	self.iArmorPercentage = self:GetAbility():GetSpecialValueFor("armor_percentage")
+end
+function modifier_heros_bow_minus_armor:DeclareFunctions()
+	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
+end
 
-
-
-
+function modifier_heros_bow_minus_armor:GetModifierPhysicalArmorBonus()
+	return self:GetParent():GetPhysicalArmorBaseValue()*self.iArmorPercentage/100
+end

@@ -129,3 +129,223 @@ end
 function modifier_tower_power:GetModifierHealthRegenPercentage()
 	return 1*(self:GetStackCount()-1)/2
 end
+
+local tNotUpgrade = {
+	item_aegis = true,
+	item_courier = true,
+	item_boots_of_elves = true,
+	item_belt_of_strength = true,
+	item_blade_of_alacrity = true,
+	item_blades_of_attack = true,
+	item_blight_stone = true,
+	item_blink = true,
+	item_boots = true,
+	item_bottle = true,
+	item_broadsword = true,
+	item_chainmail = true,
+	item_cheese = true,
+	item_circlet = true,
+	item_clarity = true,
+	item_claymore = true,
+	item_cloak = true,
+	item_demon_edge = true,
+	item_dust = true,
+	item_eagle = true,
+	item_enchanted_mango = true,
+	item_energy_booster = true,
+	item_faerie_fire = true,
+	item_flying_courier = true,
+	item_gauntlets = true,
+	item_gem = true,
+	item_ghost = true,
+	item_gloves = true,
+	item_flask = true,
+	item_helm_of_iron_will = true,
+	item_hyperstone = true,
+	item_infused_raindrop = true,
+	item_branches = true,
+	item_javelin = true,
+	item_magic_stick = true,
+	item_mantle = true,
+	item_mithril_hammer = true,
+	item_lifesteal = true,
+	item_mystic_staff = true,
+	item_ward_observer = true,
+	item_ogre_axe = true,
+	item_orb_of_venom = true,
+	item_platemail = true,
+	item_point_booster = true,
+	item_quarterstaff = true,
+	item_quelling_blade = true,
+	item_reaver = true,
+	item_ring_of_health = true,
+	item_ring_of_protection = true,
+	item_ring_of_regen = true,
+	item_robe = true,
+	item_relic = true,
+	item_sobi_mask = true,
+	item_ward_sentry = true,
+	item_shadow_amulet = true,
+	item_slippers = true,
+	item_smoke_of_deceit = true,
+	item_staff_of_wizardry = true,
+	item_stout_shield = true,
+	item_talisman_of_evasion = true,
+	item_tango = true,
+	item_tango_single = true,
+	item_tome_of_knowledge = true,
+	item_tpscroll = true,
+	item_ultimate_orb = true,
+	item_vitality_booster = true,
+	item_void_stone = true,
+	item_wind_lace = true
+}
+
+local tFunItems = {
+	item_fun_economizer = {"item_octarine_core","item_mystic_staff","item_staff_of_wizardry","item_robe","item_mantle"},
+	item_fun_genji_gloves = {"item_slippers","item_boots_of_elves","item_blade_of_alacrity","item_eagle","item_butterfly"},
+	item_fun_ragnarok = {"item_gauntlets","item_belt_of_strength","item_ogre_axe","item_reaver","item_heart"},
+	item_fun_escutcheon = {"item_hood_of_defiance","item_vanguard","item_bloodstone","item_soul_booster"},
+	item_fun_angelic_alliance = {"item_fun_orb_of_omnipotence","item_fun_sprint_shoes","item_fun_economizer","item_relic"},
+	item_fun_blood_sword = {"item_greater_crit","item_satanic","item_echo_sabre","item_echo_sabre"},
+	item_fun_heros_bow = {"item_ethereal_blade","item_dragon_lance","item_moon_shard","item_desolator"},
+	item_fun_magic_hammer = {"item_rod_of_atos","item_shivas_guard","item_diffusal_blade_2","item_aether_lens"}
+}
+
+local tBotFunItems = {
+	npc_dota_hero_axe = {"item_fun_ragnarok","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_bane = {"item_fun_magic_hammer","item_fun_economizer","item_fun_escutcheon"},
+	npc_dota_hero_bloodseeker = {"item_fun_genji_gloves","item_fun_blood_sword","item_fun_escutcheon"},
+	npc_dota_hero_crystal_maiden = {"item_fun_magic_hammer","item_fun_economizer","item_fun_escutcheon"},
+	npc_dota_hero_drow_ranger = {"item_fun_genji_gloves","item_fun_blood_sword","item_fun_heros_bow"},
+	npc_dota_hero_earthshaker = {"item_fun_magic_hammer","item_fun_economizer","item_fun_escutcheon"},
+	npc_dota_hero_juggernaut = {"item_fun_genji_gloves","item_fun_blood_sword","item_fun_heros_bow"},
+	npc_dota_hero_nevermore = {"item_fun_genji_gloves","item_fun_blood_sword","item_fun_heros_bow"},
+	npc_dota_hero_pudge = {"item_fun_ragnarok","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_razor = {"item_fun_ragnarok","item_fun_genji_gloves","item_fun_heros_bow"},
+	npc_dota_hero_sand_king = {"item_fun_magic_hammer","item_fun_economizer","item_fun_escutcheon"},
+	npc_dota_hero_sven = {"item_fun_blood_sword","item_fun_genji_gloves","item_fun_escutcheon"},
+	npc_dota_hero_tiny = {"item_fun_magic_hammer","item_fun_genji_gloves","item_fun_ragnarok"},
+	npc_dota_hero_vengefulspirit = {"item_fun_magic_hammer","item_fun_genji_gloves","item_fun_escutcheon"},
+	npc_dota_hero_windrunner = {"item_fun_economizer","item_fun_magic_hammer","item_fun_heros_bow"},
+	npc_dota_hero_zuus = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_kunkka = {"item_fun_blood_sword","item_fun_ragnarok","item_fun_genji_gloves"},
+	npc_dota_hero_lina = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_lion = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_lich = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_tidehunter = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_witch_doctor = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_sniper = {"item_fun_blood_sword","item_fun_genji_gloves","item_fun_heros_bow"},
+	npc_dota_hero_necrolyte = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_warlock = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_skeleton_king  = {"item_fun_blood_sword","item_fun_genji_gloves","item_fun_heros_bow"},
+	npc_dota_hero_death_prophet = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_phantom_assassin = {"item_fun_blood_sword","item_fun_escutcheon","item_fun_genji_gloves"},
+	npc_dota_hero_viper = {"item_fun_heros_bow","item_fun_escutcheon","item_fun_genji_gloves"},
+	npc_dota_hero_luna = {"item_fun_blood_sword","item_fun_heros_bow","item_fun_genji_gloves"},
+	npc_dota_hero_dragon_knight = {"item_fun_blood_sword","item_fun_economizer","item_fun_heros_bow"},
+	npc_dota_hero_dazzle = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_omniknight = {"item_fun_economizer","item_fun_ragnarok","item_fun_escutcheon"},
+	npc_dota_hero_bounty_hunter = {"item_fun_blood_sword","item_fun_heros_bow","item_fun_economizer"},
+	npc_dota_hero_jakiro = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_chaos_knight = {"item_fun_ragnarok","item_fun_genji_gloves","item_fun_economizer"},
+	npc_dota_hero_bristleback = {"item_fun_escutcheon","item_fun_ragnarok","item_fun_magic_hammer"},
+	npc_dota_hero_skywrath_mage = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_oracle = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
+}
+
+
+
+local function FindItemByName(hHero, sName)
+	for i = 0, 8 do
+		if hHero:GetItemInSlot(i) and hHero:GetItemInSlot(i):GetName() == sName then return hHero:GetItemInSlot(i) end
+	end
+	return nil
+end
+
+local function CheckFunItems(hHero, sFunItem)
+	if FindItemByName(hHero, sFunItem) then return end
+	local tHasComponent = {}
+	local tLackComponent = {}
+	for j = 1, #tFunItems[sFunItem] do
+		local hItem = FindItemByName(hHero, tFunItems[sFunItem][j])
+--		print(hItem, tFunItems[sFunItem][j])
+		if hItem and not tNotUpgrade[hItem:GetName()] then 
+			table.insert(tHasComponent, hItem)
+		else
+			table.insert(tLackComponent, tFunItems[sFunItem][j])
+		end
+	end
+--	print(#tLackComponent, #tHasComponent, #tFunItems[sFunItem])
+	local iGoldRemaining = 0
+	for k, v in ipairs(tLackComponent) do
+		iGoldRemaining = iGoldRemaining+GetItemCost(v)
+	end
+	if hHero:GetGold() > iGoldRemaining then
+--		print(hHero:GetGold(), iGoldRemaining)
+		for i, v in ipairs(tHasComponent) do
+			hHero:RemoveItem(v)
+		end
+		hHero:AddItemByName(sFunItem)
+		PlayerResource:SpendGold(hHero:GetPlayerOwnerID(), iGoldRemaining, DOTA_ModifyGold_PurchaseItem)
+	end
+end
+
+modifier_bot_get_fun_items = class({})
+
+function modifier_bot_get_fun_items:OnCreated()
+	self:StartIntervalThink(1.5)
+end
+
+function modifier_bot_get_fun_items:IsPurgable() return false end
+function modifier_bot_get_fun_items:IsHidden() return true end
+function modifier_bot_get_fun_items:RemoveOnDeath() return false end
+
+function modifier_bot_get_fun_items:OnIntervalThink()
+	if IsClient() then return end
+	local hParent = self:GetParent()
+	local sHeroName = hParent:GetName()
+	if hParent:HasModifier("modifier_fountain_aura_buff") then
+		for i, v in ipairs(tBotFunItems[sHeroName]) do
+			CheckFunItems(hParent, v)
+		end
+	end
+end
+
+modifier_bot_use_fun_items = class({})
+function modifier_bot_use_fun_items:OnCreated()
+	self:StartIntervalThink(0.1)
+end
+
+function modifier_bot_use_fun_items:IsPurgable() return false end
+function modifier_bot_use_fun_items:IsHidden() return true end
+function modifier_bot_use_fun_items:RemoveOnDeath() return false end
+
+function modifier_bot_use_fun_items:OnIntervalThink()
+	if IsClient() then return end
+	local hParent = self:GetParent()
+	
+	local hItem = FindItemByName(hParent, "item_fun_blood_sword")
+	if hItem and hItem:IsCooldownReady() then
+		local tTargets = FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
+		if #tTargets > 0 then
+			hParent:CastAbilityNoTarget(hItem, hParent:GetPlayerOwnerID())
+		end
+	end
+	
+	hItem = FindItemByName(hParent, "item_fun_magic_hammer")
+	if hItem and hItem:IsCooldownReady() then
+		local tTargets = FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
+		if #tTargets > 0 then
+			hParent:CastAbilityNoTarget(hItem, hParent:GetPlayerOwnerID())
+		end
+	end
+	
+	hItem = FindItemByName(hParent, "item_fun_heros_bow")
+	if hItem and hItem:IsCooldownReady() then
+		local tTargets = FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
+		if #tTargets > 0 then
+			hParent:CastAbilityOnTarget(tTargets[1], hItem, hParent:GetPlayerOwnerID())
+		end
+	end
+end

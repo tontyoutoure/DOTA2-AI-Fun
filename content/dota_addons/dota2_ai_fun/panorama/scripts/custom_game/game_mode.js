@@ -32,7 +32,7 @@ function CheckForHostPrivileges() {
 		return player_info.player_has_host_privileges;
 	}
 }
-
+$("#bot_attack_tower_pick_rune").checked=true;
 function set_game_options()
 {
 	GameEvents.SendCustomGameEventToServer("loading_set_options",{
@@ -48,7 +48,8 @@ function set_game_options()
 			"tower_power": $("#tower_power_dropdown").GetSelected().id,
 			"max_level": $("#max_level_dropdown").GetSelected().id,
 			"imbalanced_economizer": $("#imbalanced_economizer").checked,
-			"bot_not_attack_tower_pick_rune": $("#bot_not_attack_tower_pick_rune").checked
+			"bot_attack_tower_pick_rune": $("#bot_attack_tower_pick_rune").checked,
+			"bot_has_fun_item": $("#bot_has_fun_item").checked
 		}	
 	});
 	$("#game_options_container").style.visibility='collapse';
