@@ -29,8 +29,8 @@
         "04"
         {
             "Key"       "M"
-            "Command"   "KeyClickN"
-            "Name"      "Key Click N"
+            "Command"   "KeyClickM"
+            "Name"      "Key Click M"
         }
     }
 }
