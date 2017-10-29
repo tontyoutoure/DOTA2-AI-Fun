@@ -104,7 +104,7 @@ function el_dorado_item_forge:OnSpellStart()
 	elseif iItem <= #tItemListLv[4] then sColor = "gold" end
 	local sItemName = tItemListLv[self:GetLevel()][iItem]
 --	print(iItem, sItemName, sColor)
-	if hCaster:HasModifier("modifier_el_dorado_piracy_method") and ((hCaster:HasScepter() and RandomFloat(0, 1) < hCaster:FindModifierByName("modifier_el_dorado_piracy_method"):GetAbility():GetSpecialValueFor("bonus_chance_scepter")) or (not hCaster:HasScepter() and RandomFloat(0, 1) < hCaster:FindModifierByName("modifier_item_master_piracy_method"):GetAbility():GetSpecialValueFor("bonus_chance"))) then
+	if hCaster:HasModifier("modifier_el_dorado_piracy_method") and ((hCaster:HasScepter() and RandomFloat(0, 1) < hCaster:FindModifierByName("modifier_el_dorado_piracy_method"):GetAbility():GetSpecialValueFor("bonus_chance_scepter")/100) or (not hCaster:HasScepter() and RandomFloat(0, 1) < hCaster:FindModifierByName("modifier_el_dorado_piracy_method"):GetAbility():GetSpecialValueFor("bonus_chance")/100)) then
 		local hItem = CreateItem(sItemName, hCaster, hCaster)
 		local fAngle = RandomFloat(0, 2*3.1415926)
 		CreateItemOnPositionSync(vLocation+Vector(50*math.sin(fAngle),50*math.	cos(fAngle),0), hItem)
@@ -121,7 +121,7 @@ function el_dorado_item_forge:OnSpellStart()
 		CreateItemOnPositionSync(vLocation, hItem)
 		FindClearSpaceForUnit(hItem, vLocation, false)
 		Notifications:Bottom(hCaster:GetPlayerOwnerID(), {text="#item_forge1", style = {color = sColor}})
-		Notifications:Bottom(hCaster:GetPlayerOwnerID(), {text="#DOTA_Tooltip_Ability_"..sItemName, style = {color = sColor}, continue = true})
+		Notifications:Bottom(hCaster:GetPlayerOwnerID(), {item=sItemName, continue = true})
 		Notifications:Bottom(hCaster:GetPlayerOwnerID(), {text="#item_forge4", style = {color = sColor}, continue = true})
 	end
 end
