@@ -72,6 +72,7 @@
 	// ////////////////////////////////////////////////////////////////////////
 	"item_forge1" ""
 	"item_forge2" "×2"
-	"item_forge3" " is forged!"
+	"item_forge3" "are forged!"
+	"item_forge4" "is forged!"
 	
 }

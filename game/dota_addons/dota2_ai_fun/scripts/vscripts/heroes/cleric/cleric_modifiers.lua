@@ -166,3 +166,10 @@ function modifier_cleric_magic_mirror:GetAbsorbSpell(keys)
 	self.bIsTriggering = false
 	return 1
 end
+
+
+modifier_cleric_berserk_cdr = class({})
+
+function modifier_cleric_berserk_cdr:IsHidden() return false end
+function modifier_cleric_berserk_cdr:IsPurgable() return false end
+function modifier_cleric_berserk_cdr:RemoveOnDeath() return false end

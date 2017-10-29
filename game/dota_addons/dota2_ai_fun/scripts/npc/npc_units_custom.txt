@@ -96,3 +96,4 @@
 }
 
 #base "units\pet_summoner.txt"
+#base "units\el_dorado.txt"

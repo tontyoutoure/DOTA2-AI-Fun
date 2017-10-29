@@ -187,6 +187,19 @@
 	visibility: collapse;
 }
 
+.HeroDescriptionPopPanelTop
+{
+	vertical-align:top;
+	margin-top:40px;
+	width: 100%;
+	visibility: collapse;
+	background-color:  #202327;
+	box-shadow: #000000 0px 0px 20px 0px;
+	flow-children: down;
+}
+
+
+
 .HeroDescriptionPopPanel
 {
 	vertical-align:top;
@@ -198,7 +211,7 @@
 	flow-children: down;
 }
 
-.HeroDescriptionPopPanel .HeroName
+.HeroName
 {
 	margin-top: 3%;
 	font-size: 28px;
@@ -207,7 +220,7 @@
 	font-weight: bold;
 }
 
-.HeroDescriptionPopPanel .HeroBio
+.HeroBio
 {
 	margin-top: 3%;
 	margin-left: 4%;
@@ -217,7 +230,7 @@
 	color: #ffffff;
 }
 
-.HeroDescriptionPopPanel .AbilityLine
+.AbilityLine
 {
 	horizontal-align:center;
 	height:64px;
@@ -225,7 +238,7 @@
 	flow-children: right;
 }
 
-.HeroDescriptionPopPanel .AbiliyLine .AbilityIcon
+.AbiliyLine .AbilityIcon
 {
 	width: 64px;
 	height: 64px;

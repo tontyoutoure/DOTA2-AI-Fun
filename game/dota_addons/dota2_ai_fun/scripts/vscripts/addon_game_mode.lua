@@ -13,6 +13,7 @@ function Precache( context )
 	PrecacheUnitByNameSync("npc_dota_hero_obsidian_destroyer", context)
 	PrecacheUnitByNameSync("npc_dota_hero_omniknight", context)
 	PrecacheUnitByNameSync("npc_dota_hero_bloodseeker", context)
+	PrecacheUnitByNameSync("npc_dota_hero_lone_druid", context)
 	
 	
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts", context)
