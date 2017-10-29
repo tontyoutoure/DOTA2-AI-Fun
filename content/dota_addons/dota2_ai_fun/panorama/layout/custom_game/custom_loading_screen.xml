@@ -215,6 +215,11 @@
 						<Image id="HeroAvatarSven" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_sven.png" />
 					</Button>
 				</Panel>
+				<Panel id="HeroAvatarButtonLine6" class="HeroAvatarButtonLine">
+					<Button id="HeroAvatarBtnPugna" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelPugna&quot;);"> 
+						<Image id="HeroAvatarPugna" class="HeroAvatar" src="file://{images}/custom_game/loading_screen/npc_dota_hero_pugna.png" />
+					</Button>
+				</Panel>
 			</Panel>
 			
 			
@@ -279,6 +284,10 @@
 	  <Panel id="HeroDescriptionPopPanelSven" class = "HeroDescriptionPopPanel">
         <Label id="HeroNameSven" class="HeroName" text="#npc_dota_hero_sven_long"/>
         <Label id="HeroBioSven" class="HeroBio" text="#npc_dota_hero_sven_hype"/>
+      </Panel>
+	  <Panel id="HeroDescriptionPopPanelPugna" class = "HeroDescriptionPopPanelTop">
+        <Label id="HeroNamePugna" class="HeroName" text="#npc_dota_hero_pugna_long"/>
+        <Label id="HeroBioPugna" class="HeroBio" text="#npc_dota_hero_pugna_hype"/>
       </Panel>
 		</Panel>		
 	</Panel>

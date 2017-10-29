@@ -14,3 +14,4 @@
 #base "heroes\cleric.txt"
 #base "heroes\pet_summoner.txt"
 #base "heroes\felguard.txt"
+#base "heroes\el_dorado.txt"

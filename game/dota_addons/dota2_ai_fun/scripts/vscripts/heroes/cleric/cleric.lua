@@ -1,5 +1,7 @@
 LinkLuaModifier("modifier_cleric_berserk", "heroes/cleric/cleric_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_cleric_berserk_target", "heroes/cleric/cleric_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_cleric_berserk_cdr", "heroes/cleric/cleric_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+
 function ClericMeteorShower(keys)
 	local iMeteorCount = keys.ability:GetSpecialValueFor("meteor_count")
 	local vTarget= keys.target_points[1]
@@ -46,18 +48,50 @@ function ClericMeteorShower(keys)
 	end	
 end
 
-function ClericBerserk(keys)	
-	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
-	keys.target:EmitSound("Hero_Axe.Berserkers_Call")
-	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_cleric_berserk", {Duration = keys.ability:GetSpecialValueFor("duration")})
+cleric_berserk = class({})
+
+function cleric_berserk:OnSpellStart()
+	local hTarget = self:GetCursorTarget()
+	if hTarget:TriggerSpellAbsorb( self ) then return end
+	hTarget:EmitSound("Hero_Axe.Berserkers_Call")
+	hTarget:AddNewModifier(self:GetCaster(), self, "modifier_cleric_berserk", {Duration = self:GetSpecialValueFor("duration")})
+end
+
+function cleric_berserk:GetCooldown(iLevel)
+	local hSpecial = Entities:First()
+	
+	while hSpecial and hSpecial:GetName() ~= "special_bonus_cleric_2" do
+		hSpecial = Entities:Next(hSpecial)
+	end		
+	return self.BaseClass.GetCooldown(self, iLevel)-hSpecial:GetSpecialValueFor("value")
 end
 
 function ClericPrayer(keys)
+	local hSpecial = Entities:First()	
+	while hSpecial and hSpecial:GetName() ~= "special_bonus_cleric_3" do
+		hSpecial = Entities:Next(hSpecial)
+	end
 	keys.caster:EmitSound("Hero_Omniknight.GuardianAngel.Cast")
 	local iDuration = keys.ability:GetSpecialValueFor("duration")
+	
 	for k, v in pairs(keys.target_entities) do
-		if not v:HasModifier("modifier_cleric_prayer") then
+		local hModifier = v:FindModifierByName("modifier_cleric_prayer")
+		if not hModifier then
 			keys.ability:ApplyDataDrivenModifier(keys.caster, v, "modifier_cleric_prayer", {Duration = iDuration})
+			v:EmitSound("Hero_Omniknight.GuardianAngel")
+			v:EmitSound("DOTA_Item.Refresher.Activate")
+			ParticleManager:SetParticleControlEnt(ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, v), 0, v, PATTACH_POINT_FOLLOW, "attach_hitloc", v:GetAbsOrigin(), true)
+			for i = 0, 23 do
+				if v:GetAbilityByIndex(i) then v:GetAbilityByIndex(i):EndCooldown() end
+			end
+			
+			for i = 0, 8 do
+				if v:GetItemInSlot(i) then v:GetItemInSlot(i):EndCooldown() end
+			end
+		elseif hModifier:GetStackCount() < hSpecial:GetSpecialValueFor("value") then
+			local iOriginalStackCount = hModifier:GetStackCount()
+			keys.ability:ApplyDataDrivenModifier(keys.caster, v, "modifier_cleric_prayer", {Duration = iDuration})
+			v:FindModifierByName("modifier_cleric_prayer"):SetStackCount(iOriginalStackCount+1)
 			v:EmitSound("Hero_Omniknight.GuardianAngel")
 			v:EmitSound("DOTA_Item.Refresher.Activate")
 			ParticleManager:SetParticleControlEnt(ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, v), 0, v, PATTACH_POINT_FOLLOW, "attach_hitloc", v:GetAbsOrigin(), true)

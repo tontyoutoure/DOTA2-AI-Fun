@@ -42,6 +42,7 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"stun_duration"	"1"
+				"LinkedSpecialBonus"			"special_bonus_cleric_1"
 			}
 			"03"
 			{
@@ -63,7 +64,8 @@
 
 	"cleric_berserk"
 	{
-		"BaseClass"	"ability_datadriven"
+		"BaseClass"	"ability_lua"
+		"ScriptFile"  "scripts/vscripts/heroes/cleric/cleric.lua"
 		"AbilityTextureName"	"axe_berserkers_call_shoutmask"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
@@ -185,6 +187,54 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"radius"	"0 1500 99999"
+			}
+		}
+	}
+	"special_bonus_cleric_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1"
+			}
+		}
+	}
+	"special_bonus_cleric_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"10"
+			}
+		}
+	}
+	"special_bonus_cleric_3"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"2"
 			}
 		}
 	}

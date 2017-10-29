@@ -14,3 +14,4 @@
 #base "abilities\cleric.txt"
 #base "abilities\pet_summoner.txt"
 #base "abilities\felguard.txt"
+#base "abilities\el_dorado.txt"

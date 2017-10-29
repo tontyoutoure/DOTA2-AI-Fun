@@ -74,4 +74,5 @@
 	"item_forge1" "制作了"
 	"item_forge2" "×2"
 	"item_forge3" "！"
+	"item_forge4" "！"
 }

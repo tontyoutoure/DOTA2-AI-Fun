@@ -70,6 +70,7 @@ function GameMode:OnGameStateChanged( keys )
         end
         
         self.numPlayers = num
+		if IsInToolsMode() then return end
 		if IsInToolsMode() and GetMapName() ~= "dota" then return end
         -- Eanble bots and fill empty slots
         if IsServer() == true then
@@ -210,6 +211,11 @@ function GameMode:_OnNPCSpawned(keys)
 		FelguardInit(hHero, self)
 	end
 	
+	if hHero:GetName() == "npc_dota_hero_pugna" and not hHero.bSpawned then
+		require('heroes/el_dorado/el_dorado_init')
+		ElDoradoInit(hHero, self)
+	end
+	
 	LearnInnateSkillOnSpawn(hHero)
 
 	if not hHero:IsHero() or hHero:IsIllusion() then return end	
@@ -225,7 +231,7 @@ function GameMode:_OnNPCSpawned(keys)
 	
 	
 	
---	if IsInToolsMode() then PlayerResource:SetGold(hHero:GetOwner():GetPlayerID(), 99999, true) end
+	if IsInToolsMode() then PlayerResource:SetGold(hHero:GetOwner():GetPlayerID(), 99999, true) end
 	if not hHero.bSpawned then
 		hHero:AddNewModifier(hHero, nil, "modifier_global_hero_respawn_time", {})
 		if self.iImbalancedEconomizer > 0 then hHero:AddNewModifier(hHero, nil, "modifier_imbalanced_economizer", {}) end
