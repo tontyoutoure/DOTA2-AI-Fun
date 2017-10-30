@@ -270,4 +270,13 @@
 		"AbilitySharedCooldown"	"bastion_transference_share_cooldown"
 		"HasScepterUpgrade"	"1"
 	}
+
+	"special_bonus_bastion_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	}
 }

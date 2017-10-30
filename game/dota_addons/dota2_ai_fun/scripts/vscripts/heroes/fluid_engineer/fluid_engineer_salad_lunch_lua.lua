@@ -9,7 +9,7 @@ function fluid_engineer_salad_lunch_lua:OnSpellStart()
 	hCaster:Heal(self:GetSpecialValueFor("restore"), hCaster)
 	hCaster:ReduceMana(-self:GetSpecialValueFor("restore"))
 	local hModifier = hCaster:AddNewModifier(hCaster, self, "modifier_fluid_engineer_salad_lunch", {Duration = self:GetSpecialValueFor("duration")})
-	if hModifier:GetStackCount() < self:GetSpecialValueFor("int_cap") then
-		hModifier:SetStackCount(hModifier:GetStackCount()+self:GetSpecialValueFor("add_int"))
+	if hModifier:GetStackCount() < self:GetSpecialValueFor("int_stack_cap") then
+		hModifier:SetStackCount(hModifier:GetStackCount()+1)
 	end
 end

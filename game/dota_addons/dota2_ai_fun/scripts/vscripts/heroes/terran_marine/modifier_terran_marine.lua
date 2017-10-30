@@ -12,7 +12,13 @@ function modifier_terran_marine_precision:IsBuff()
 end
 
 function modifier_terran_marine_precision:OnTooltip()
-	return self:GetAbility():GetSpecialValueFor("shots")
+	
+	self.hSpecial = Entities:First()
+	
+	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_terran_marine_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+		self.hSpecial = Entities:Next(self.hSpecial)
+	end		
+	return self:GetAbility():GetSpecialValueFor("shots")+self.hSpecial:GetSpecialValueFor("value")
 end 
 
 function modifier_terran_marine_precision:OnAttackLanded(keys)	
@@ -20,7 +26,7 @@ function modifier_terran_marine_precision:OnAttackLanded(keys)
 	if keys.attacker~=hParent then return end;
 	self.iShotCount = self.iShotCount or 0;
 	self.iShotCount = self.iShotCount+1;
-	if self.iShotCount >= self:GetAbility():GetSpecialValueFor("shots") then
+	if self.iShotCount >= self:GetAbility():GetSpecialValueFor("shots")+self:GetCaster():FindAbilityByName("special_bonus_terran_marine_2"):GetSpecialValueFor("value") then
 		self.iShotCount = 0;
 		hParent:SetBaseAgility(hParent:GetBaseAgility()+1)
 		hParent:CalculateStatBonus()

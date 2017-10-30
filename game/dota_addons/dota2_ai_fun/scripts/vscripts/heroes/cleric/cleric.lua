@@ -10,7 +10,13 @@ function ClericMeteorShower(keys)
 	AddFOWViewer(keys.caster:GetTeamNumber(), vTarget, 500, 3, true)
 	local fCastRadius = keys.ability:GetSpecialValueFor("cast_radius")
 	local iDamage = keys.ability:GetSpecialValueFor("damage")
-	local fStunDuration = keys.ability:GetSpecialValueFor("stun_duration")
+	if not keys.ability.hSpecial then 
+		keys.ability.hSpecial = Entities:First()	
+		while keys.ability.hSpecial and (keys.ability.hSpecial:GetName() ~= "special_bonus_cleric_1" or keys.ability.hSpecial:GetCaster() ~= keys.caster) do
+			keys.ability.hSpecial = Entities:Next(keys.ability.hSpecial)
+		end	
+	end
+	local fStunDuration = keys.ability:GetSpecialValueFor("stun_duration")+keys.ability.hSpecial:GetSpecialValueFor("value")
 	for i = 1, iMeteorCount do
 		Timers:CreateTimer(0.2*(i-1), function () 
 			local vRelative = Vector(RandomFloat(-fCastRadius, fCastRadius), RandomFloat(-fCastRadius, fCastRadius), 0)
@@ -60,7 +66,7 @@ end
 function cleric_berserk:GetCooldown(iLevel)
 	local hSpecial = Entities:First()
 	
-	while hSpecial and hSpecial:GetName() ~= "special_bonus_cleric_2" do
+	while hSpecial and (hSpecial:GetName() ~= "special_bonus_cleric_2" or hSpecial:GetCaster() ~= self:GetCaster()) do
 		hSpecial = Entities:Next(hSpecial)
 	end		
 	return self.BaseClass.GetCooldown(self, iLevel)-hSpecial:GetSpecialValueFor("value")

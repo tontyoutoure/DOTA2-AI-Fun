@@ -93,6 +93,7 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"chance"	"25"
+				"LinkedSpecialBonus"  "special_bonus_intimidator_1"
 			}
 			"02"
 			{
@@ -147,6 +148,38 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"dps"	"20"
+			}
+		}
+	}
+	"special_bonus_intimidator_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"10"
+			}
+		}
+	}
+	"special_bonus_intimidator_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"10"
 			}
 		}
 	}

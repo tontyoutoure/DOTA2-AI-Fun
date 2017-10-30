@@ -98,3 +98,33 @@ function fluid_engineer_brainstorm_int_lua:OnSpellStart()
 	}
 	ApplyDamage(damageTable)
 end
+
+function fluid_engineer_brainstorm_agi_lua:GetCooldown(iLevel)
+	if not self.hSpecial then
+		self.hSpecial = Entities:First()	
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_fluid_engineer_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+			self.hSpecial = Entities:Next(self.hSpecial)
+		end		
+	end
+	return self.BaseClass.GetCooldown(self, iLevel)-self.hSpecial:GetSpecialValueFor("value")
+end
+
+function fluid_engineer_brainstorm_str_lua:GetCooldown(iLevel)
+	if not self.hSpecial then
+		self.hSpecial = Entities:First()	
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_fluid_engineer_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+			self.hSpecial = Entities:Next(self.hSpecial)
+		end		
+	end
+	return self.BaseClass.GetCooldown(self, iLevel)-self.hSpecial:GetSpecialValueFor("value")
+end
+
+function fluid_engineer_brainstorm_int_lua:GetCooldown(iLevel)
+	if not self.hSpecial then
+		self.hSpecial = Entities:First()	
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_fluid_engineer_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+			self.hSpecial = Entities:Next(self.hSpecial)
+		end		
+	end
+	return self.BaseClass.GetCooldown(self, iLevel)-self.hSpecial:GetSpecialValueFor("value")
+end
