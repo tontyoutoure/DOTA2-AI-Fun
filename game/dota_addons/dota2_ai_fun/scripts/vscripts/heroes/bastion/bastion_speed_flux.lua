@@ -17,7 +17,7 @@ function bastion_speed_flux:OnSpellStart()
 	self.speedFluxUseCount = self.speedFluxUseCount + 1
 	if self.speedFluxUseCount == countNeed then
 		self.speedFluxUseCount = 0
-		if attributeStack < self:GetSpecialValueFor("max_value") then
+		if attributeStack < self:GetSpecialValueFor("max_value") or caster:FindAbilityByName("special_bonus_bastion_1"):GetLevel() > 0 then
 			buff:IncrementStackCount()
 		end
 	end

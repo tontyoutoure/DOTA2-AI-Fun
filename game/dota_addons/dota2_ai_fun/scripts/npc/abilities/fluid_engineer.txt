@@ -23,7 +23,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"int_cap"	"16 32 48 64"
+				"int_stack_cap"	"4 8 12 16"
 			}
 			"03"
 			{
@@ -33,7 +33,8 @@
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"add_int"	"4"
+				"int_per_stack"	"4"
+				"LinkedSpecialBonus"	"special_bonus_fluid_engineer_1"
 			}
 		}
 	}
@@ -209,6 +210,38 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"aura_radius"	"1200"
+			}
+		}
+	}
+	"special_bonus_fluid_engineer_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"4"
+			}
+		}
+	}
+	"special_bonus_fluid_engineer_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"20"
 			}
 		}
 	}

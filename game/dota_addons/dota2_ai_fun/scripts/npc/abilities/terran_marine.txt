@@ -34,29 +34,17 @@
 			{
 				"IsBuff"	"1"
 				"OnAttackLanded"
-				{
+				{					
+					"RunScript"
+					{
+						"ScriptFile"	"/heroes/terran_marine/terran_marine_heavy_artillery.lua"
+						"Function"	"TerranMarineHeavyArtillery"
+					}
 					"Damage"
 					{
 						"Target"	"TARGET"
 						"Type"	"DAMAGE_TYPE_MAGICAL"
 						"Damage"	"%damage"
-					}
-					"ApplyModifier"
-					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_terran_marine_heavy_artillery_ministun"
-						"Duration"	"%ministun_duration"
-					}
-					"FireSound"
-					{
-						"Target"	"TARGET"
-						"EffectName"	"DOTA_Item.MKB.Minibash"
-					}
-					"FireEffect"
-					{
-						"Target"	"TARGET"
-						"EffectName"	"particles/generic_gameplay/generic_minibash.vpcf"
-						"EffectAttachType"	"follow_overhead"
 					}
 				}
 				"EffectName"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_trail_smk.vpcf"
@@ -82,6 +70,7 @@
 			{
 				"var_type"	"FIELD_FLOAT"
 				"ministun_duration"	"0.3"
+				"LinkedSpecialBonus"  "special_bonus_terran_marine_1"
 			}
 			"03"
 			{
@@ -191,6 +180,7 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"shots"	"320 240 160 80"
+				"LinkedSpecialBonus"  "special_bonus_terran_marine_2"
 			}
 		}
 	}
@@ -261,6 +251,38 @@
 			{
 				"var_type"	"FIELD_FLOAT"
 				"attack_time"	"1.9"
+			}
+		}
+	}
+	"special_bonus_terran_marine_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"				"0.2"
+			}
+		}
+	}
+	"special_bonus_terran_marine_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"-60"
 			}
 		}
 	}

@@ -19,7 +19,7 @@ function bastion_mind_flux:OnSpellStart()
 	self.mindFluxUseCount = self.mindFluxUseCount + 1
 	if self.mindFluxUseCount == countNeed then
 		self.mindFluxUseCount = 0
-		if attributeStack < self:GetSpecialValueFor("max_value") then
+		if caster:FindAbilityByName("special_bonus_bastion_1"):GetLevel() > 0 or attributeStack < self:GetSpecialValueFor("max_value") then
 			buff:IncrementStackCount()
 		end
 	end
