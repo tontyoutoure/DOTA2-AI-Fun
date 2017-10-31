@@ -165,6 +165,9 @@
 		</Panel>	
 		<Panel id="RamzaPortraitContainer" hittest="false">
 			<Image id="RamzaPortrait" src="file://{images}/custom_game/ramza/ramza_select.png" hittest="false"/>
+			<Panel id="RamzaPortraitDeath" hittest="false">
+			
+			</Panel>
 		</Panel>
 	</Panel>
 </root>

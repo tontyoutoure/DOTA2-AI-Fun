@@ -14,7 +14,7 @@ function bastion_power_flux:OnSpellStart(keys)
 	self.powerFluxUseCount = self.powerFluxUseCount+1
 	if self.powerFluxUseCount == countNeed then
 		self.powerFluxUseCount = 0
-		if attributeStack < self:GetSpecialValueFor("max_value") then
+		if attributeStack < self:GetSpecialValueFor("max_value") or caster:FindAbilityByName("special_bonus_bastion_1"):GetLevel() > 0 then
 			buff:IncrementStackCount()
 		end
 	end	

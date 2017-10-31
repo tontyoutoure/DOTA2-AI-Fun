@@ -135,9 +135,18 @@ function modifier_intimidator_physical_activity_speed_lua:IsBuff()
 	return true
 end
 
-function modifier_intimidator_physical_activity_speed_lua:GetEffectName() 
-	return "particles/econ/items/legion/legion_fallen/legion_fallen_press.vpcf"
+function modifier_intimidator_physical_activity_speed_lua:OnCreated() 
+	if IsClient() then return end
+	local hParent = self:GetParent()
+	self.iParticle = ParticleManager:CreateParticle("particles/econ/items/legion/legion_fallen/legion_fallen_press.vpcf", PATTACH_ABSORIGIN_FOLLOW, hParent)
+	ParticleManager:SetParticleControlEnt(self.iParticle, 1, hParent, PATTACH_POINT_FOLLOW, "attach_origin", hParent:GetOrigin(), true)
 end
+function modifier_intimidator_physical_activity_speed_lua:OnDestroy() 
+	if IsClient() then return end
+	ParticleManager:DestroyParticle(self.iParticle, true)
+end
+
+function modifier_intimidator_physical_activity_speed_lua:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
 
 function modifier_intimidator_physical_activity_speed_lua:GetModifierAttackSpeedBonus_Constant()
 	return self:GetAbility():GetSpecialValueFor("movement_percentage")
@@ -173,7 +182,7 @@ function modifier_intimidator_physical_activity_lua:OnAttackLanded(keys)
 	
 	
 	
-	local chance = ability:GetSpecialValueFor("chance")
+	local chance = ability:GetSpecialValueFor("chance")+caster:FindAbilityByName("special_bonus_intimidator_1"):GetSpecialValueFor("value")
 	local chanceDislocate = ability:GetSpecialValueFor("chance_dislocate")
 	if rn <= chance then
 		if glare:GetLevel() > 0 then 

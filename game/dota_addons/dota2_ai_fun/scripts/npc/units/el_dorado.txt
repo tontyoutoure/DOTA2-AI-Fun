@@ -1,0 +1,84 @@
+"DOTAUnits"
+{
+  "Version" "1"
+  "npc_el_dorado_artificial_frog"
+  {
+	    // General
+    //
+    "BaseClass"         "npc_dota_creature"  // Class of entity of link to.
+	"Model"  "models/props_gameplay/frog.vmdl"
+    "SoundSet"          "Creep_Good_Engine"          // Name of sound set.
+    "Level"           "1"
+    "UnitLabel"         "healing_ward"
+    
+    // Abilities
+    //----------------------------------------------------------------
+    "Ability1"	"neutral_spell_immunity"
+
+    // Armor
+    //----------------------------------------------------------------
+    "ArmorPhysical"       "7"     // Physical protection.
+    "MagicalResistance"       "80"     // Magical protection.
+
+    // Attack
+    //----------------------------------------------------------------
+    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"     // Type of attack - melee, ranged, etc.
+    "AttackDamageMin"     "55"     // Damage range min.
+    "AttackDamageMax"     "75"     // Damage range max.
+    "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
+    "AttackRate"        "1.7"     // Speed of attack.
+    "AttackAnimationPoint"    "0.3"   // Normalized time in animation cycle to attack.
+    "AttackAcquisitionRange"  "600"   // Range within a target can be acquired.
+    "AttackRange"       "150"   // Range within a target can be attacked.
+ //   "ProjectileModel"     "" // Particle system model for projectile.
+//    "ProjectileSpeed"     "900"   // Speed of projectile.
+
+    // Attributes
+    //----------------------------------------------------------------
+//    "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+//   "AttributeBaseStrength"   "0"     // Base strength
+//    "AttributeStrengthGain"   "0"     // Strength bonus per level.
+//    "AttributeBaseIntelligence" "0"     // Base intelligence
+//   "AttributeIntelligenceGain" "0"     // Intelligence bonus per level.
+//    "AttributeBaseAgility"    "0"     // Base agility
+//    "AttributeAgilityGain"    "0"     // Agility bonus per level.
+
+    // Bounty
+    //----------------------------------------------------------------
+    "BountyXP"          "88"     // Experience earn.
+    "BountyGoldMin"       "70"     // Gold earned min.
+    "BountyGoldMax"       "80"     // Gold earned max.
+
+    // Bounds
+    //----------------------------------------------------------------
+    "BoundsHullName"      "DOTA_HULL_SIZE_SMALL"      // Hull type used for navigation/locomotion.
+
+    // Movement
+    //----------------------------------------------------------------
+    "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_GROUND"     // Type of locomotion - ground, air
+    "MovementSpeed"       "300"   // Speed
+    "MovementTurnRate"      "1.0"   // Turning rate.
+    "FollowRange"       "250"   // Distance to keep when following
+
+    // Status
+    //----------------------------------------------------------------
+    "StatusHealth"        "1000"     // Base health.
+    "StatusHealthRegen"     "0.0"     // Health regeneration rate.
+    "StatusMana"        "100"     // Base mana.
+    "StatusManaRegen"     "0.75"     // Mana regeneration rate.
+
+    // Team
+    //----------------------------------------------------------------
+    "TeamName"          "DOTA_TEAM_GOODGUYS"      // Team name.
+	"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+	"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+    "UnitRelationshipClass"   "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+    
+    // Vision
+    //----------------------------------------------------------------
+    "VisionDaytimeRange"    "800"   // Range of vision during day light.
+    "VisionNighttimeRange"    "800"   // Range of vision at night time.
+
+    // Bots
+  }
+}

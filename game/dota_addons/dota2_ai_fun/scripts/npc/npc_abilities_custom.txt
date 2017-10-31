@@ -1,3 +1,20 @@
+#base "abilities\astral_trekker.txt"
+#base "abilities\bastion.txt"
+#base "abilities\fluid_engineer.txt"
+#base "abilities\formless.txt"
+#base "abilities\intimidator.txt"
+#base "abilities\magic_dragon.txt"
+#base "abilities\mana_fiend.txt"
+#base "abilities\persuasive.txt"
+#base "abilities\ramza\ramza.txt"
+#base "abilities\telekenetic_blob.txt"
+#base "abilities\terran_marine.txt"
+#base "abilities\void_demon.txt"
+#base "npc_abilities_dummy.txt"
+#base "abilities\cleric.txt"
+#base "abilities\pet_summoner.txt"
+#base "abilities\felguard.txt"
+#base "abilities\el_dorado.txt"
 // Dota2 Editor
 // Get latest version: https://github.com/zombieJ/nw-dota2editor
 

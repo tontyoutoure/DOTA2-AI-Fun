@@ -37,13 +37,15 @@ function GameMode:OnGameStateChanged( keys )
 		if not self.PreGameOptionsSet then
 			self:PreGameOptions()
 		end
-    elseif state == DOTA_GAMERULES_STATE_STRATEGY_TIME then
+	end
+	
+    if state == DOTA_GAMERULES_STATE_STRATEGY_TIME then
         local num = 0
 		local iPlayerNumRadiant = PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS)
 		local iPlayerNumDire = PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_BADGUYS)
         local used_hero_name = "npc_dota_hero_luna"
        
-		
+		self.tHumanPlayerList = {}
         for i=0, DOTA_MAX_TEAM_PLAYERS do
             if PlayerResource:IsValidPlayer(i) then
                 
@@ -61,13 +63,15 @@ function GameMode:OnGameStateChanged( keys )
                 if PlayerResource:GetSelectedHeroName(i) then 
 					used_hero_name = PlayerResource:GetSelectedHeroName(i)
 					print(used_hero_name, "has been picked!")
+					self.tHumanPlayerList[i] = true
 					num = num + 1
 				end
             end
         end
         
         self.numPlayers = num
-
+		if IsInToolsMode() then return end
+		if IsInToolsMode() and GetMapName() ~= "dota" then return end
         -- Eanble bots and fill empty slots
         if IsServer() == true then
             print("Adding bots in empty slots")
@@ -89,7 +93,28 @@ function GameMode:OnGameStateChanged( keys )
             --SendToServerConsole("dota_bot_set_difficulty 2")
         end
     elseif state == DOTA_GAMERULES_STATE_PRE_GAME then
-      Tutorial:StartTutorialMode()
+		Tutorial:StartTutorialMode()
+		local tTowers = Entities:FindAllByClassname("npc_dota_tower")
+		local iTowerPower = self.iTowerPower or 1
+		for k, v in pairs(tTowers) do
+			v:AddNewModifier(v, nil, "modifier_tower_power", {}):SetStackCount(iTowerPower)
+		end
+		local tTowers = Entities:FindAllByClassname("npc_dota_barracks")
+		local iTowerPower = self.iTowerPower or 1
+		for k, v in pairs(tTowers) do
+			v:AddNewModifier(v, nil, "modifier_tower_power", {}):SetStackCount(iTowerPower)
+		end
+		local tTowers = Entities:FindAllByClassname("npc_dota_healer")
+		local iTowerPower = self.iTowerPower or 1
+		for k, v in pairs(tTowers) do
+			v:AddNewModifier(v, nil, "modifier_tower_power", {}):SetStackCount(iTowerPower)
+		end
+		local tTowers = Entities:FindAllByClassname("npc_dota_fort")
+		local iTowerPower = self.iTowerPower or 1
+		for k, v in pairs(tTowers) do
+			v:AddNewModifier(v, nil, "modifier_tower_power", {}):SetStackCount(iTowerPower)
+		end
+	  
 --      for i=0, DOTA_MAX_TEAM_PLAYERS do`
 --          print(i)
 --          if PlayerResource:IsFakeClient(i) then
@@ -103,49 +128,49 @@ end
 function GameMode:OnPlayerSpawn(keys)
 
 end
--- TODO: Didn't get Reaper's scythe respawn time penalty right when hero level>25
+
+local CalculateLevelRespawnTimeWithDiscount = function (iLevel)
+	local tDOTARespawnTime = {8, 10, 12, 14, 16, 26, 28, 30, 32, 34, 36, 46, 48, 50, 52, 54, 56, 66, 70, 74, 78, 82, 86, 90, 100}
+	if iLevel <= 25 then return tDOTARespawnTime[iLevel]*GameMode.iRespawnTimePercentage/100 end
+	return (100+4*(iLevel-25))*GameMode.iRespawnTimePercentage/100
+end
+
 function GameMode:OnEntityKilled(keys)
 	local hHero = EntIndexToHScript(keys.entindex_killed)
 	if not hHero:IsHero() or hHero:IsIllusion() then return end
-	Timers:CreateTimer(0.06, function ()
+
+	Timers:CreateTimer(0.04, function ()
+		local fRespawnTime = CalculateLevelRespawnTimeWithDiscount(hHero:GetLevel())
+		--print("Normal Respawn Time: ", fRespawnTime, "Reincarnate Time: ", hHero.fReincarnateTime, "Buy back extra time: ", hHero.fBuyBackExtraRespawnTime, "Scythe Extra time: ", hHero.fScytheTime, "BloodStone Time", hHero.fBloodstoneRespawnTimeReduce)
+		if hHero.fReincarnateTime then
+			hHero:SetTimeUntilRespawn(hHero.fReincarnateTime)
+			hHero.fScytheTime = nil
+			hHero.fReincarnateTime = nil
+			hHero.fBloodstoneRespawnTimeReduce = nil	
+		else
+			if hHero.fScytheTime then 
+				fRespawnTime = fRespawnTime+hHero.fScytheTime
+				hHero.fScytheTime = nil
+			end
+			if hHero.fBuyBackExtraRespawnTime then
+				fRespawnTime = fRespawnTime+hHero.fBuyBackExtraRespawnTime
+				hHero.fBuyBackExtraRespawnTime = nil
+			end
+			if hHero.fBloodstoneRespawnTimeReduce then
+				fRespawnTime = fRespawnTime-hHero.fBloodstoneRespawnTimeReduce
+				hHero.fBloodstoneRespawnTimeReduce = nil				
+			end
+			if fRespawnTime < 0 then fRespawnTime = 0 end
+			hHero:SetTimeUntilRespawn(fRespawnTime)
+		end
+		--[[
 		local fTimeTillRespawn = hHero:GetTimeUntilRespawn()*self.iRespawnTimePercentage/100
 		if hHero:GetLevel()>25 then fTimeTillRespawn = (hHero:GetLevel()*4+hHero.fBuyBackExtraRespawnTime)*self.iRespawnTimePercentage/100 end
-		if hHero:IsReincarnating() then fTimeTillRespawn = 3 end
+		if hHero:IsReincarnating() then fTimeTillRespawn = hHero.fReincarnateTime or 3 end
 		print("TTR:", fTimeTillRespawn, hHero.fBuyBackExtraRespawnTime, hHero:GetLevel()*4, hHero:GetTimeUntilRespawn(), self.iRespawnTimePercentage/100)
 		hHero:SetTimeUntilRespawn(fTimeTillRespawn)
+		]]--
 	end)
-end
--- for Archer's Bane of Ramza
-function GameMode:RamzaProjecileFilter(filterTable)
-	local hTarget = EntIndexToHScript(filterTable.entindex_target_const)
-	local hSource = EntIndexToHScript(filterTable.entindex_source_const)
-	local hAbility = hTarget:FindAbilityByName('ramza_archer_archers_bane')
-	if hTarget:FindModifierByName("modifier_ramza_archer_archers_bane") and math.random(100) < hAbility:GetSpecialValueFor("evasion") then
-		local tInfo ={
-			Target = hTarget,
-			Source = hSource,
-			Ability = hAbility,
-			flExpireTime = GameRules:GetGameTime() + 10, 
-			EffectName = hSource:GetRangedProjectileName(),
-			iMoveSpeed = hSource:GetProjectileSpeed()
-		}		
-		
-		
-		ProjectileManager:CreateTrackingProjectile(tInfo)		
-		return false
-	end
-	return true
-end
-
--- for Defend of Ramza
-function GameMode:RamzaDamageFilter(filterTable)
-	local hVictim = EntIndexToHScript(filterTable.entindex_victim_const)
-	local hAttacker = EntIndexToHScript(filterTable.entindex_attacker_const)
-	if hVictim:HasModifier('modifier_ramza_squire_defend') and not hAttacker:IsBuilding() and not hAttacker:IsHero() then 
-		filterTable.damage = filterTable.damage*(1-hVictim:FindAbilityByName('ramza_squire_defend'):GetSpecialValueFor("damage_block")/100)
-		PrintTable(filterTable);
-	end
-	return true
 end
 
 function LearnInnateSkillOnSpawn(hero)
@@ -160,64 +185,66 @@ function LearnInnateSkillOnSpawn(hero)
 	end
 end
 
+
+
 function GameMode:_OnNPCSpawned(keys)
 	local hHero = EntIndexToHScript(keys.entindex)
 	
-	if hHero:GetName() == "npc_dota_hero_visage" then	
-		if hHero:IsIllusion() then
-			MagicDragonTransform[hHero:GetOwner():GetAssignedHero().iDragonForm](hHero)
-		elseif not hHero.bSpawned then
-			require("heroes/magic_dragon/magic_dragon_transform")	
-			MagicDragonTransform[MAGIC_DRAGON_GREEN_DRAGON_FORM](hHero)
-		end
+	if hHero:GetName() == "npc_dota_hero_visage" and not hHero.bSpawned then
+		require('heroes/magic_dragon/magic_dragon_init')
+		MagicDragonInit(hHero, self)
 	end
 	
-	if hHero:GetName() == "npc_dota_hero_brewmaster" then
-		if hHero:IsRealHero() and not hHero.bSpawned then
-			HideWearables(hHero)
-			require("heroes/ramza/ramza_job")
-			local hModifier = hHero:AddNewModifier(hHero, nil, "modifier_ramza_job_manager", {})
-			hModifier.iBonusAttackRange = 0;
-			hModifier = hHero:AddNewModifier(hHero, nil, "modifier_ramza_job_level", {})
-			hModifier:SetStackCount(1)
-			hHero:AddNewModifier(hHero, nil, "modifier_ramza_job_point", {})
-			hHero:FindAbilityByName("ramza_open_stats_lua"):SetLevel(1)
-			hHero:FindAbilityByName("ramza_go_back_lua"):SetLevel(1)
-			hHero:FindAbilityByName("ramza_next_page_lua"):SetLevel(1)
-			hHero:FindAbilityByName("ramza_job_squire_JC"):SetLevel(1)
-			hHero:FindAbilityByName("ramza_select_secondary_skill_lua"):SetLevel(1)
-			hHero:AddAbility("ramza_empty_1"):SetLevel(1)
-			if not GameMode.bRamzaArchersBaneFileterSet then
-				GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(GameMode, 'RamzaProjecileFilter'), self)
-				GameMode.bRamzaArchersBaneFileterSet = true
-			end
-			if not GameMode.bRamzaSquireDenfendFilterSet then
-				GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(GameMode, 'RamzaDamageFilter'), self)
-				GameMode.bRamzaSquireDenfendFilterSet = true
-			end
-		end
+	
+	if hHero:GetName() == "npc_dota_hero_brewmaster" and not hHero.bSpawned then
+		require('heroes/ramza/ramza_init')
+		RamzaInit(hHero, self)
 	end
-
+	
+	if hHero:GetName() == "npc_dota_hero_rubick" and not hHero.bSpawned then
+		require('heroes/cleric/cleric_init')
+		ClericInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_sven" and not hHero.bSpawned then
+		require('heroes/felguard/felguard_init')
+		FelguardInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_pugna" and not hHero.bSpawned then
+		require('heroes/el_dorado/el_dorado_init')
+		ElDoradoInit(hHero, self)
+	end
+	
 	LearnInnateSkillOnSpawn(hHero)
-	
-	for i = 1, #GameMode.tStripperList do
-		if not hHero.bSpawned and hHero:GetName() == GameMode.tStripperList[i] then
-			HideWearables(hHero)
-		end
-	end
 
 	if not hHero:IsHero() or hHero:IsIllusion() then return end	
+	
+	if not self.tHumanPlayerList[hHero:GetPlayerOwnerID()] and self.iBotHasFunItem == 1 then
+		hHero:AddNewModifier(hHero, nil, "modifier_bot_get_fun_items", {})
+		hHero:AddNewModifier(hHero, nil, "modifier_bot_use_fun_items", {})
+	end
+	
+	if not self.tHumanPlayerList[hHero:GetPlayerOwnerID()] and self.iBotAttackTowerPickRune == 1 then
+		hHero:AddNewModifier(hHero, nil, "modifier_bot_attack_tower_pick_rune", {}).tHumanPlayerList = self.tHumanPlayerList
+	end
+	
+	
+	
 	if IsInToolsMode() then PlayerResource:SetGold(hHero:GetOwner():GetPlayerID(), 99999, true) end
-	hHero:SetTimeUntilRespawn(-1)
-	Timers:CreateTimer(0.06, function ()  
+	if not hHero.bSpawned then
+		hHero:AddNewModifier(hHero, nil, "modifier_global_hero_respawn_time", {})
+		if self.iImbalancedEconomizer > 0 then hHero:AddNewModifier(hHero, nil, "modifier_imbalanced_economizer", {}) end
+	end
+
+	Timers:CreateTimer(0.04, function ()  
 		
 		local hModifierBGP = hHero:FindModifierByName("modifier_buyback_gold_penalty")
 		if hModifierBGP then 
 			hHero.fBuyBackExtraRespawnTime = hModifierBGP:GetDuration()*0.25
-		else
-			hHero.fBuyBackExtraRespawnTime = 0
 		end
 	end)
+
 	hHero.bSpawned = true;
 end
 --[[
@@ -244,6 +271,10 @@ function GameMode:OnGetLoadingSetOptions(eventSourceIndex, args)
 	self.fDireGoldMultiplier = tonumber(args.game_options.dire_gold_multiplier);
 	self.iRespawnTimePercentage = tonumber(args.game_options.respawn_time_percentage)
 	self.iMaxLevel = tonumber(args.game_options.max_level)
+	self.iTowerPower = tonumber(args.game_options.tower_power)
+	self.iImbalancedEconomizer = args.game_options.imbalanced_economizer
+	self.iBotHasFunItem = args.game_options.bot_has_fun_item
+	self.iBotAttackTowerPickRune = args.game_options.bot_attack_tower_pick_rune
 	self:PreGameOptions()
 end
 

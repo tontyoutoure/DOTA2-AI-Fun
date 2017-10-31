@@ -11,16 +11,23 @@ function modifier_ramza_chemist_items_phoenix_down:IsBuff() return true end
 function modifier_ramza_chemist_items_phoenix_down:IsPurgable() return false end
 function modifier_ramza_chemist_items_phoenix_down:RemoveOnDeath() return false end
 
+function modifier_ramza_chemist_items_phoenix_down:OnCreated() 
+	if IsClient() then return end
+	self.fReincarnateTime = self:GetAbility():GetSpecialValueFor("reincarnate_time")
+end
+
 function modifier_ramza_chemist_items_phoenix_down:ReincarnateTime()
-	if IsClient() then return 3 end
+	if IsClient() then return -1 end
+	print("Reincarnate by phoenix down")
 	local hParent = self:GetParent()
-	Timers:CreateTimer(3+0.04, function ()
+	Timers:CreateTimer(self.fReincarnateTime+0.04, function ()
 		iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_phoenix/phoenix_supernova_reborn.vpcf", PATTACH_ABSORIGIN, hParent)
-		hParent:EmitSound("Hero_Phoenix.SuperNova.Explode")	
+		hParent:EmitSound("Hero_Phoenix.SuperNova.Explode")
 		self:Destroy()
 	end)
-	CreateModifierThinker(hParent, nil, "modifier_ramza_chemist_items_phoenix_down_thinker", {Duration = 3}, hParent:GetOrigin(), hParent:GetTeamNumber() ,false)
-	return 3
+	CreateModifierThinker(hParent, nil, "modifier_ramza_chemist_items_phoenix_down_thinker", {Duration = self.fReincarnateTime}, hParent:GetOrigin(), hParent:GetTeamNumber() ,false)
+	hParent.fReincarnateTime = self.fReincarnateTime
+	return self.fReincarnateTime
 end
 
 modifier_ramza_chemist_items_phoenix_down_thinker = class({})

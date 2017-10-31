@@ -8,7 +8,7 @@ tBugHeroRamzaMimic["npc_dota_hero_shadow_demon"] = true --ulti is buggy
 tBugHeroRamzaMimic["npc_dota_hero_visage"] = true -- don't transform
 
 local tBugAbilitiesRamzaMinic = {
-	fluid_engineer_malicious_tampering = true
+	fluid_engineer_malicious_tampering = true,
 	terran_marine_u247_rifle_lua = true,
 	bastion_transference_agi = true,
 	bastion_transference_str = true,
@@ -60,7 +60,7 @@ end
 
 RamzaMimicOnAbilityExecuted = function(self, keys)
 	local hParent = self:GetParent()
-	if hParent:GetTeamNumber() ~= keys.unit:GetTeamNumber() or hParent == keys.unit or tBugHeroRamzaMimic[keys.unit:GetName()] or tBugAbilitiesRamzaMinic[keys.ability:GetName()] or keys.ability:IsItem() or hParent.iMenuState == RAMZA_MENU_STATE_UPGRADE then return end
+	if hParent:GetTeamNumber() ~= keys.unit:GetTeamNumber() or hParent == keys.unit or keys.unit:IsCourier() or tBugHeroRamzaMimic[keys.unit:GetName()] or tBugAbilitiesRamzaMinic[keys.ability:GetName()] or keys.ability:IsItem() or hParent.iMenuState == RAMZA_MENU_STATE_UPGRADE then return end
 
 	if hParent:IsChanneling() then hParent:GetAbilityByIndex(2):EndChannel(true) end
 	hParent:RemoveAbility(hParent:GetAbilityByIndex(2):GetName())

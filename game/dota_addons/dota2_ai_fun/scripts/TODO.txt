@@ -1,0 +1,7 @@
+void demon arua status effect
+ramza talent
+ramza sound
+black mage aoe hit building
+attributes gain bug
+skill point bug
+squire particle bug

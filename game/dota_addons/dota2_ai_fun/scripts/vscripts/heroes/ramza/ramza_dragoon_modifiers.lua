@@ -6,7 +6,7 @@ end
 
 function modifier_ramza_dragoon_dragonheart:OnCreated()
 	local hAbility = self:GetAbility()
-	self.iReincarnateTime = hAbility:GetSpecialValueFor("reincarnate_time")
+	self.fReincarnateTime = hAbility:GetSpecialValueFor("reincarnate_time")
 end
 
 function modifier_ramza_dragoon_dragonheart:IsHidden() return true end
@@ -21,7 +21,8 @@ function modifier_ramza_dragoon_dragonheart:ReincarnateTime()
 		bIsCooldownReady = hParent:FindAbilityByName("ramza_dragoon_dragonheart"):IsCooldownReady()
 		if bIsCooldownReady then
 			hParent:FindAbilityByName("ramza_dragoon_dragonheart"):UseResources(true, true, true)
-			return self.iReincarnateTime
+			hParent.fReincarnateTime = self.fReincarnateTime
+			return self.fReincarnateTime
 		else
 			return -1
 		end
@@ -33,7 +34,8 @@ function modifier_ramza_dragoon_dragonheart:ReincarnateTime()
 			if hParent:HasModifier("modifier_rune_arcane") then fCooldownMultiplier = fCooldownMultiplier*0.7 end
 			if hParent:HasModifier("modifier_item_fun_angelic_alliance_halo") or hParent:HasModifier("modifier_item_fun_economizer_mcr") then fCooldownMultiplier = 0 end
 			hParent.hRamzaJob.tPassiveCooldownReadyTime["ramza_dragoon_dragonheart"] = Time()+60*fCooldownMultiplier		
-			return self.iReincarnateTime
+			hParent.fReincarnateTime = self.fReincarnateTime
+			return self.fReincarnateTime
 		else
 			return -1
 		end
@@ -73,7 +75,7 @@ function modifier_ramza_dragoon_jump:OnDestroy()
 	hParent:SetOrigin(self.vDestination)
 	FindClearSpaceForUnit(hParent, hParent:GetOrigin(), false)
 		
-	local tTargets = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetOrigin(), nil, fRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+	local tTargets = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetOrigin(), nil, fRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	local damageTable = {
 		attacker = hParent,
 		damage = hAbility:GetSpecialValueFor("damage"),

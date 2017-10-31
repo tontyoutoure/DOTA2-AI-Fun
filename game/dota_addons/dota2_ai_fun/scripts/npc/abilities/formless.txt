@@ -1,0 +1,111 @@
+"DOTAAbilities"
+{
+	"formless_unus"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"formless_unus"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityCooldown"	"5"
+		"AbilityCastRange"	"0"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/formless/formless_modifier_lua.lua"
+				"Function"	"formless_unus"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Rubick.SpellSteal.Cast"
+			}
+		}
+	}
+
+	"formless_duos"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"formless_duos"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityCooldown"	"5"
+		"AbilityCastRange"	"0"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/formless/formless_modifier_lua.lua"
+				"Function"	"formless_duos"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Rubick.SpellSteal.Cast"
+			}
+		}
+	}
+
+	"formless_tertius"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"formless_tertius"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityCooldown"	"5"
+		"AbilityCastRange"	"0"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/formless/formless_modifier_lua.lua"
+				"Function"	"formless_tertius"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Rubick.SpellSteal.Cast"
+			}
+		}
+	}
+
+	"formless_denique"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"formless_denique"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCooldown"	"5"
+		"AbilityCastRange"	"0"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/formless/formless_modifier_lua.lua"
+				"Function"	"formless_denique"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Rubick.SpellSteal.Cast"
+			}
+		}
+	}
+}

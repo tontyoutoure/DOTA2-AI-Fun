@@ -1,3 +1,20 @@
+#base "heroes\astral_trekker.txt"
+#base "heroes\banned_heroes.txt"
+#base "heroes\bastion.txt"
+#base "heroes\fluid_engineer.txt"
+#base "heroes\formless.txt"
+#base "heroes\initimidator.txt"
+#base "heroes\magic_dragon.txt"
+#base "heroes\mana_fiend.txt"
+#base "heroes\persuasive.txt"
+#base "heroes\ramza.txt"
+#base "heroes\telekenetic_blob.txt"
+#base "heroes\terran_marine.txt"
+#base "heroes\void_demon.txt"
+#base "heroes\cleric.txt"
+#base "heroes\pet_summoner.txt"
+#base "heroes\felguard.txt"
+#base "heroes\el_dorado.txt"
 // Dota2 Editor
 // Get latest version: https://github.com/zombieJ/nw-dota2editor
 

@@ -1,0 +1,241 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"cleric_meteor_shower"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"invoker_chaos_meteor"
+		"ScriptFile"	"scripts/vscripts/heroes/cleric/cleric.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"4"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"15"
+		"AbilityManaCost"	"105 125 145 165"
+		"AbilityCastRange"	"99999"
+		"AOERadius"	"300"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"	"POINT"
+				"ScriptFile"	"scripts/vscripts/heroes/cleric/cleric.lua"
+				"Function"	"ClericMeteorShower"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"stun_duration"	"1"
+				"LinkedSpecialBonus"			"special_bonus_cleric_1"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"meteor_count"	"2 4 6 8"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cast_radius"	"300"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"meteor_radius"	"250"
+			}
+		}
+	}
+
+	"cleric_berserk"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile"  "scripts/vscripts/heroes/cleric/cleric.lua"
+		"AbilityTextureName"	"axe_berserkers_call_shoutmask"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"4"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"15"
+		"AbilityManaCost"	"85 100 115 130"
+		"AbilityCastRange"	"700"
+		"AbilityCastRangeBuffer"	"200"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/cleric/cleric.lua"
+				"Function"	"ClericBerserk"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"2 4 6 8"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_attack"	"50 100 150 200"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage"	"50 100 150 200"
+			}
+		}
+	}
+
+	"cleric_magic_mirror"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile" "heroes/cleric/cleric.lua"
+		"AbilityTextureName"	"naga_siren_mirror_image"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"4"
+		"AbilityCooldown"	"120 90 60 30"
+		"HasScepterUpgrade"			"1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"scepter_cooldown"	"20 15 10 5"
+			}
+		}
+	}
+
+	"cleric_prayer"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"omniknight_guardian_angel"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"200 300 400"
+		"AbilityCastRange"	"0 1500 99999"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Flags"	"DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS"
+					"Center"	"CASTER"
+					"Radius"	"%radius"
+				}
+				"ScriptFile"	"scripts/vscripts/heroes/cleric/cleric.lua"
+				"Function"	"ClericPrayer"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_cleric_prayer"
+			{
+				"IsBuff"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Duration"	"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%attribute_bonus"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%attribute_bonus"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%attribute_bonus"
+				}
+				"StatusEffectName"	"particles/status_fx/status_effect_guardian_angel.vpcf"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"30"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attribute_bonus"	"10 20 30"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"0 1500 99999"
+			}
+		}
+	}
+	"special_bonus_cleric_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1"
+			}
+		}
+	}
+	"special_bonus_cleric_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"10"
+			}
+		}
+	}
+	"special_bonus_cleric_3"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"2"
+			}
+		}
+	}
+}

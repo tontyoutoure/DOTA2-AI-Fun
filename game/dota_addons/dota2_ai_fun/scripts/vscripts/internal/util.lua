@@ -195,4 +195,10 @@ function PrintAllModifiers( PlayerID )
 	for i, v in pairs(tModifiers) do print(v:GetName()) end
 
 end
+
+function Vector2D(v3D)
+	return Vector(Vector(0,0,0).Dot(Vector(1,0,0), v3D), Vector(0,0,0).Dot(Vector(0,1,0), v3D),0)
+end
+
 print("Util loaded")
+

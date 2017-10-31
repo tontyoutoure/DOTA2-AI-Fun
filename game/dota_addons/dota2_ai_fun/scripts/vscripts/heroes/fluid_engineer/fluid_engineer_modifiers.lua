@@ -9,7 +9,14 @@ function modifier_fluid_engineer_salad_lunch:DeclareFunctions()
 end
 
 function modifier_fluid_engineer_salad_lunch:GetModifierBonusStats_Intellect()
-	return self:GetStackCount()
+	
+	if not self.hSpecial then 
+		self.hSpecial = Entities:First()	
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_fluid_engineer_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+			self.hSpecial = Entities:Next(self.hSpecial)
+		end	
+	end
+	return self:GetStackCount()*(self:GetAbility():GetSpecialValueFor("int_per_stack")+self.hSpecial:GetSpecialValueFor("value"))
 end
 
 modifier_fluid_engineer_bowel_hydraulics = class({})
@@ -84,6 +91,7 @@ function modifier_fluid_engineer_bowel_hydraulics:OnIntervalThink()
 end
 
 function modifier_fluid_engineer_bowel_hydraulics:OnDestroy()
+	if IsClient() then return end
 	local hParent = self:GetParent()
 	local hCaster = self:GetCaster()
 	if hParent:FindModifierByName("modifier_fountain_aura_buff") then return end

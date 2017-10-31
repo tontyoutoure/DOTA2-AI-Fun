@@ -14,6 +14,7 @@ function modifier_ramza_black_mage_magick_counter:GetReflectSpell(keys)
 	local hAbility = keys.ability
 	local hParent = self:GetParent()
 	local hCaster = hAbility:GetCaster()
+	if hCaster:GetTeamNumber() == hParent:GetTeamNumber() then return end
 	if hParent.hRamzaJob.tJobLevels[hParent.hRamzaJob.iCurrentJob] < 3 then return end
 	local bHasArcaneStrength = hParent:HasModifier('modifier_ramza_black_mage_arcane_strength')
 	local damageTable = {
@@ -191,7 +192,7 @@ end
 function modifier_ramza_black_mage_black_magicks_blizzaga:OnIntervalThink()
 	if IsClient() then return end	
 	local hParent = self:GetParent()
-	local tTargets = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetAbsOrigin(), nil, self.iRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+	local tTargets = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetAbsOrigin(), nil, self.iRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	if #tTargets > 0 then
 		local hTarget = tTargets[RandomInt(1, #tTargets)]
 		ParticleManager:CreateParticle("particles/econ/items/crystal_maiden/crystal_maiden_maiden_of_icewrack/maiden_freezing_field_explosion_arcana1.vpcf", PATTACH_ABSORIGIN, hTarget)		

@@ -8,15 +8,17 @@ end
 require('libraries/timers')
 require('libraries/notifications')
 require('libraries/Playertables')
+require('libraries/lua_console')
 if IsInToolsMode() then
 	require('libraries/modmaker')
-	require('libraries/lua_console')
-require('libraries/attachments')
+	require('libraries/attachments')
 end
 require('internal/util')
 require('settings')
 require('events')
 require('libraries/wearable_manager')
+require('libraries/animations')
+
 
 -- Heroes need to be stripped
 GameMode.tStripperList = {"npc_dota_hero_shadow_demon"}
@@ -39,6 +41,12 @@ function GameMode:LinkLuaModifiers()
 	LinkLuaModifier("modifier_magic_dragon_gold_dragon_hide", "heroes/magic_dragon/magic_dragon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_magic_dragon_black_dragon_breath", "heroes/magic_dragon/magic_dragon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_magic_dragon_lightning_form", "heroes/magic_dragon/magic_dragon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("modifier_global_hero_respawn_time", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("modifier_imbalanced_economizer", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("modifier_bot_attack_tower_pick_rune", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("modifier_tower_power", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("modifier_bot_get_fun_items", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("modifier_bot_use_fun_items", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 end
 
 function GameMode:InitGameOptions()
@@ -69,6 +77,7 @@ function GameMode:PreGameOptions()
 	self.iGoldTickTime = self.iGoldTickTime or GOLD_TICK_TIME
 	self.iRespawnTimePercentage = self.iRespawnTimePercentage or RESPAWN_TIME_PERCENTAGE
 	self.iMaxLevel = self.iMaxLevel or MAX_LEVEL
+	self.iImbalancedEconomizer = self.iImbalancedEconomizer or 0
 	GameRules:SetGoldPerTick(self.iGoldPerTick)
 	GameRules:SetGoldTickTime(self.iGoldTickTime)
     GameRules:GetGameModeEntity():SetModifyGoldFilter( Dynamic_Wrap( GameMode, "FilterGold" ), self )	
@@ -116,13 +125,14 @@ end
 
 function GameMode:InitEvents()	
 --	ListenToGameEvent('player_connect_full', Dynamic_Wrap(GameMode, '_OnConnectFull'), self)
-	if not IsInToolsMode() then ListenToGameEvent( "game_rules_state_change", Dynamic_Wrap( GameMode, 'OnGameStateChanged' ), self ) end
+	ListenToGameEvent( "game_rules_state_change", Dynamic_Wrap( GameMode, 'OnGameStateChanged' ), self )
 	ListenToGameEvent('dota_player_gained_level', Dynamic_Wrap(GameMode, 'OnPlayerLevelUp'), self)	
 	ListenToGameEvent('npc_spawned', Dynamic_Wrap(GameMode, '_OnNPCSpawned'), self)
 	
 --	ListenToGameEvent('dota_player_pick_hero', Dynamic_Wrap(GameMode, 'OnPlayerPickHero'), self)
 	ListenToGameEvent('entity_killed', Dynamic_Wrap(GameMode, 'OnEntityKilled'), self)
-
+	ListenToGameEvent('dota_player_update_hero_selection',  Dynamic_Wrap(GameMode, 'OnPlayerUpdateSelectUnit1'), self)
+	ListenToGameEvent('dota_player_update_selected_unit',  Dynamic_Wrap(GameMode, 'OnPlayerUpdateSelectUnit2'), self)
 	--JS events
 	CustomGameEventManager:RegisterListener("loading_set_options", function (eventSourceIndex, args) return GameMode:OnGetLoadingSetOptions(eventSourceIndex, args) end)
 	CustomGameEventManager:RegisterListener("formless_forget", function(eventSourceIndex, args) return GameMode:OnFormlessForget(eventSourceIndex, args) end )

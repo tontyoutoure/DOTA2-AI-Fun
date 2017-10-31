@@ -34,7 +34,7 @@ function modifier_bastion_power_flux_lua:OnTakeDamage(keys)
 	
 	if self.powerFluxDamageTaken > damageNeed then
 		self.powerFluxDamageTaken = self.powerFluxDamageTaken-damageNeed
-		if self:GetStackCount() < ability:GetSpecialValueFor("max_value") then
+		if caster:FindAbilityByName("special_bonus_bastion_1"):GetLevel() > 0 or self:GetStackCount() < ability:GetSpecialValueFor("max_value") then
 			self:IncrementStackCount()
 		end
 	end
@@ -108,7 +108,7 @@ function modifier_bastion_speed_flux_speed_boost_lua:OnTakeDamage(keys)
 	self.attackedCount = self.attackedCount+1
 	if self.attackedCount == ability:GetSpecialValueFor("attack_need") then
 		self.attackedCount = 0
-		if buff:GetStackCount() < ability:GetSpecialValueFor("max_value") then
+		if self:GetCaster():FindAbilityByName("special_bonus_bastion_1"):GetLevel() > 0 or buff:GetStackCount() < ability:GetSpecialValueFor("max_value") then
 			buff:IncrementStackCount()
 		end
 	end
@@ -159,7 +159,7 @@ function modifier_bastion_mind_flux_lua:GetAbsorbSpell(keys)
 	self.mindFluxSpellTargeted = self.mindFluxSpellTargeted+1
 	if self.mindFluxSpellTargeted == self:GetAbility():GetSpecialValueFor("spell_need") then
 		self.mindFluxSpellTargeted = 0
-		if keys.ability:GetCaster():IsHero() and self:GetStackCount() < self:GetAbility():GetSpecialValueFor("max_value") then
+		if keys.ability:GetCaster():IsHero() and self:GetParent():FindAbilityByName("special_bonus_bastion_1"):GetLevel() > 0 or self:GetStackCount() < self:GetAbility():GetSpecialValueFor("max_value") then
 			self:IncrementStackCount()
 		end
 	end

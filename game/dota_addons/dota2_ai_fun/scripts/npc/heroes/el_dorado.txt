@@ -1,0 +1,60 @@
+"DOTAHeroes"
+{
+	"npc_dota_hero_fun_el_dorado"
+	{
+		"override_hero"	"npc_dota_hero_pugna"
+		"Model"  "models/courier/frog/frog.vmdl"
+		"Ability1"	"el_dorado_item_forge"
+		"Ability2"	"el_dorado_artificial_frog"
+		"Ability3"	"el_dorado_change_item_slot_0_lua"
+		"Ability4"	"el_dorado_refine_weapons"
+		"Ability5"	"el_dorado_piracy_method"
+		"AttributePrimary"	"DOTA_ATTRIBUTE_INTELLECT"
+		// Base strength
+		"AttributeBaseStrength"	"21"
+		// Strength bonus per level.
+		"AttributeStrengthGain"	"2.1"
+		// Base agility
+		"AttributeBaseAgility"	"18"
+		// Agility bonus per level.
+		"AttributeAgilityGain"	"2.1"
+		// Base intelligence
+		"AttributeBaseIntelligence"	"23"
+		// Intelligence bonus per level.
+		"AttributeIntelligenceGain"	"2.5"
+		"ArmorPhysical"	"1"
+		"MagicalResistance"	"25"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		// Damage range min.
+		"AttackDamageMin"	"24"
+		// Damage range max.
+		"AttackDamageMax"	"32"
+		// Speed of attack.
+		"AttackRate"	"1.7"
+		"MovementSpeed"	"315"
+		"MovementTurnRate"	"0.4"
+		// Range of vision during day light.
+		"VisionDaytimeRange"	"1800"
+		// Range of vision at night time.
+		"VisionNighttimeRange"	"800"
+		"Role"	"Support,Push"
+		"Rolelevels"	"2,2"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackRange"	"600"
+		"ProjectileModel"	"particles/econ/items/puck/puck_alliance_set/puck_base_attack_aproset.vpcf"		
+		"ProjetileSpeed"	"1200"
+		"Ability10"	"special_bonus_gold_income_25"
+		"Ability11"	"special_bonus_exp_boost_20"
+		"Ability12"	"special_bonus_intelligence_20"
+		"Ability13"	"special_bonus_movement_speed_35"
+		"Ability14"	"special_bonus_el_dorado_1"
+		"Ability15"	"special_bonus_hp_600"
+		"Ability16"	"special_bonus_el_dorado_2"
+		"Ability17"	"special_bonus_cast_range_400"
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+	}	
+}

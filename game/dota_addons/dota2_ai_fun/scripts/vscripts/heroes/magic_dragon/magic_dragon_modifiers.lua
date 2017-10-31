@@ -6,7 +6,7 @@ modifier_magic_dragon_fire_form = class({})
 modifier_magic_dragon_lightning_form = class({})
 
 function modifier_magic_dragon_lightning_form:RemoveOnDeath() return false end
-function modifier_magic_dragon_lightning_form:IsHidden() return false end
+function modifier_magic_dragon_lightning_form:IsHidden() return true end
 
 function modifier_magic_dragon_lightning_form:GetStatusEffectName()
 	return "particles/status_fx/status_effect_avatar.vpcf"

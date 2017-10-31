@@ -1,0 +1,248 @@
+"DOTAAbilities"
+{
+	"fluid_engineer_salad_lunch_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"treant_living_armor"
+		"ScriptFile"	"heroes/fluid_engineer/fluid_engineer_salad_lunch_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_TREE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0"
+		"AnimationPlaybackRate"	"5"
+		"AbilityCooldown"	"15"
+		"AbilityManaCost"	"5"
+		"AbilityCastRange"	"150"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"restore"	"25 50 75 100"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"int_stack_cap"	"4 8 12 16"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"60"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"int_per_stack"	"4"
+				"LinkedSpecialBonus"	"special_bonus_fluid_engineer_1"
+			}
+		}
+	}
+
+	"fluid_engineer_brainstorm_int_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"fluid_engineer_brainstorm_str"
+		"ScriptFile"	"heroes/fluid_engineer/fluid_engineer_brainstorm_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_OVERRIDE_ABILITY_2"
+		"AbilityCooldown"	"30"
+		"AbilityManaCost"	"80 100 120 140"
+		"AbilityCastRange"	"700"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_per_difference"	"1 2 3 4"
+			}
+		}
+	}
+
+	"fluid_engineer_brainstorm_agi_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"fluid_engineer_brainstorm_agi"
+		"ScriptFile"	"heroes/fluid_engineer/fluid_engineer_brainstorm_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_OVERRIDE_ABILITY_2"
+		"AbilityCooldown"	"30"
+		"AbilityManaCost"	"80 100 120 140"
+		"AbilityCastRange"	"700"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_per_difference"	"1 2 3 4"
+			}
+		}
+	}
+
+	"fluid_engineer_brainstorm_str_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"fluid_engineer_brainstorm_int"
+		"ScriptFile"	"heroes/fluid_engineer/fluid_engineer_brainstorm_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_OVERRIDE_ABILITY_2"
+		"AbilityCooldown"	"30"
+		"AbilityManaCost"	"80 100 120 140"
+		"AbilityCastRange"	"700"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_per_difference"	"1 2 3 4"
+			}
+		}
+	}
+
+	"fluid_engineer_bowel_hydraulics_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"pudge_rot"
+		"ScriptFile"	"heroes/fluid_engineer/fluid_engineer_bowel_hydraulics_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"CastFilterRejectCaster"	"1"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCooldown"	"60"
+		"AbilityManaCost"	"160 220 280"
+		"AbilityCastRange"	"800"
+		"AbilityCastRangeBuffer"	"150"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_over_time"	"50 100 150"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"count_down"	"30 20 10"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"500 1000 1500"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dot_radius"	"600"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"explosion_radius"	"1000"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"speed"	"550"
+			}
+		}
+	}
+
+	"fluid_engineer_malicious_tampering_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"fluid_engineer_malicious_tampering"
+		"ScriptFile"	"heroes/fluid_engineer/fluid_engineer_malicious_tampering_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"25"
+		"AbilityManaCost"	"100"
+		"AbilityChannelTime"	"2.5 5 7.5 10"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"2.5 5 7.5 10"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_percent"	"-4"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"health_percent"	"-4"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_constant"	"-14"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"linger_time"	"3"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"aura_radius"	"1200"
+			}
+		}
+	}
+	"special_bonus_fluid_engineer_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"4"
+			}
+		}
+	}
+	"special_bonus_fluid_engineer_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"20"
+			}
+		}
+	}
+}
