@@ -15,4 +15,4 @@
 #base "heroes\pet_summoner.txt"
 #base "heroes\felguard.txt"
 #base "heroes\el_dorado.txt"
-#base "heroes\hamsterlord.txt"
+//#base "heroes\hamsterlord.txt"
