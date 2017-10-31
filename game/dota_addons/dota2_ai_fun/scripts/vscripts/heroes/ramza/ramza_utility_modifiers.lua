@@ -444,3 +444,122 @@ function modifier_ramza_quote_manager:OnAbilityExecuted(keys)
 	end
 
 end
+
+modifier_ramza_bravery = class({})
+function modifier_ramza_bravery:DeclareFunctions()
+	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE, MODIFIER_PROPERTY_STATS_STRENGTH_BONUS}
+end
+
+function modifier_ramza_bravery:IsPurgable() return false end
+function modifier_ramza_bravery:RemoveOnDeath() return false end	
+function modifier_ramza_bravery:IsHidden() return true end
+
+function modifier_ramza_bravery:OnRefresh()
+	self.iBonusDamage = self:GetAbility():GetSpecialValueFor("bonus_damage")
+	self.iBonusStr = self:GetAbility():GetSpecialValueFor("bonus_strength")
+	if IsClient() then return end
+	self:GetParent():CalculateStatBonus()
+end
+
+function modifier_ramza_bravery:GetModifierPreAttack_BonusDamage()
+	if not self.hSpecial then
+		self.hSpecial = Entities:First()		
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_ramza_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+			self.hSpecial = Entities:Next(self.hSpecial)
+		end
+	end
+	return (self.iBonusDamage or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+end
+
+function modifier_ramza_bravery:GetModifierBonusStats_Strength()
+	if not self.hSpecial then
+		self.hSpecial = Entities:First()		
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_ramza_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+			self.hSpecial = Entities:Next(self.hSpecial)
+		end
+	end
+	return (self.iBonusStr or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+end
+
+modifier_ramza_speed = class({})
+function modifier_ramza_speed:DeclareFunctions()
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_STATS_AGILITY_BONUS}
+end
+
+function modifier_ramza_speed:IsPurgable() return false end
+function modifier_ramza_speed:RemoveOnDeath() return false end	
+function modifier_ramza_speed:IsHidden() return true end
+
+function modifier_ramza_speed:OnRefresh()
+	self.iMove = self:GetAbility():GetSpecialValueFor("bonus_move")
+	self.iAttack = self:GetAbility():GetSpecialValueFor("bonus_attack")
+	self.iAgi = self:GetAbility():GetSpecialValueFor("bonus_agility")
+	if IsClient() then return end
+	self:GetParent():CalculateStatBonus()
+end
+
+function modifier_ramza_speed:GetModifierBonusStats_Agility()
+	if not self.hSpecial then
+		self.hSpecial = Entities:First()		
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_ramza_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+			self.hSpecial = Entities:Next(self.hSpecial)
+		end
+	end
+	return (self.iAgi or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+end
+
+function modifier_ramza_speed:GetModifierMoveSpeedBonus_Percentage()
+	if not self.hSpecial then
+		self.hSpecial = Entities:First()		
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_ramza_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+			self.hSpecial = Entities:Next(self.hSpecial)
+		end
+	end
+	return (self.iMove or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+end
+
+function modifier_ramza_speed:GetModifierAttackSpeedBonus_Constant()
+	if not self.hSpecial then
+		self.hSpecial = Entities:First()		
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_ramza_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+			self.hSpecial = Entities:Next(self.hSpecial)
+		end
+	end
+	return (self.iAttack or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+end
+
+modifier_ramza_faith = class({})
+function modifier_ramza_faith:DeclareFunctions()
+	return {MODIFIER_PROPERTY_MANA_BONUS, MODIFIER_PROPERTY_STATS_INTELLECT_BONUS}
+end
+
+function modifier_ramza_faith:IsPurgable() return false end
+function modifier_ramza_faith:RemoveOnDeath() return false end	
+function modifier_ramza_faith:IsHidden() return true end
+
+function modifier_ramza_faith:OnRefresh()
+	self.iMana = self:GetAbility():GetSpecialValueFor("bonus_mana")
+	self.iInt = self:GetAbility():GetSpecialValueFor("bonus_intelligence")
+	if IsClient() then return end
+	self:GetParent():CalculateStatBonus()
+end
+
+function modifier_ramza_faith:GetModifierManaBonus()
+	if not self.hSpecial then
+		self.hSpecial = Entities:First()		
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_ramza_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+			self.hSpecial = Entities:Next(self.hSpecial)
+		end
+	end
+	return (self.iMana or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+end
+
+function modifier_ramza_faith:GetModifierBonusStats_Intellect()
+	if not self.hSpecial then
+		self.hSpecial = Entities:First()		
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_ramza_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+			self.hSpecial = Entities:Next(self.hSpecial)
+		end
+	end
+	return (self.iInt or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+end

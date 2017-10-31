@@ -30,46 +30,11 @@
 		}
 		"OnSpellStart"
 		{
-			"FireEffect"
+			"RunScript"
 			{
-				"EffectName"	"particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"EffectRadius"	"%radius"
-				"Target"	"CASTER"
-				"ControlPoints"
-				{
-					"01"	"%radius 0 %radius"
-				}
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Centaur.HoofStomp"
-				"Target"	"CASTER"
-			}
-			"ActOnTargets"
-			{
-				"Target"
-				{
-					"Center"	"CASTER"
-					"Radius"	"%radius"
-					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				}
-				"Action"
-				{
-					"Damage"
-					{
-						"Target"	"TARGET"
-						"Type"	"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"%stomp_damage"
-					}
-					"ApplyModifier"
-					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_hoof_stomp"
-					}
-				}
-			}
+				"ScriptFile"	"/heroes/astral_trekker/astral_trekker_giant_growth.lua"
+				"Function"	"AstralTrekkerWarStomp"
+			}			
 		}
 		"Modifiers"
 		{
@@ -234,6 +199,7 @@
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"	"1"
+		"AoERadius"               "400"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"	"0.4"
@@ -254,53 +220,6 @@
 			"particle"	"particles/units/heroes/hero_siren/siren_net_projectile.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_naga_siren.vsndevts"
 			"particle"	"particles/units/heroes/hero_siren/siren_net.vpcf"
-		}
-		"OnSpellStart"
-		{
-			"TrackingProjectile"
-			{
-				"Target"	"TARGET"
-                "TargetTeams"    "DOTA_UNIT_TARGET_TEAM_ENEMY"
-                "TargetTypes"    "DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC"
-                "TargetFlags"    "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				"EffectName"	"particles/units/heroes/hero_siren/siren_net_projectile.vpcf"
-				"Dodgeable"	"1"
-				"ProvidesVision"	"1"
-				"VisionRadius"	"0"
-				"MoveSpeed"	"%net_speed"
-				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_NagaSiren.Ensnare.Cast"
-				"Target"	"CASTER"
-			}
-		}
-		"OnProjectileHitUnit"
-		{
-			"DeleteOnHit"	"1"
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/astral_trekker/astral_trekker_entrapment.lua"
-				"Function"	"AstralTrekkerEntrapmentOnSpellStart"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_astral_trekker_entrapment_datadriven"
-			{
-				"IsHidden"	"0"
-				"IsDebuff"	"1"
-				"IsPurgable"	"0"
-				"Duration"	"%duration"
-				"States"
-				{
-					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_DISABLED"
-				}
-				"EffectName"	"particles/units/heroes/hero_siren/siren_net.vpcf"
-				"EffectAttachType"	"follow_origin"
-			}
 		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
@@ -359,6 +278,38 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"damage"	"14 28 42 56"
+			}
+		}
+	}	
+	"special_bonus_astral_trekker_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"400"
+			}
+		}
+	}
+	"special_bonus_astral_trekker_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1"
 			}
 		}
 	}

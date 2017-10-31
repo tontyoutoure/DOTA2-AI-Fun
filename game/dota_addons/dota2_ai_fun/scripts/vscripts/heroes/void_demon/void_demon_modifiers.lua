@@ -43,7 +43,7 @@ function modifier_void_demon_quake_aura_lua:OnIntervalThink()
 	hParent:EmitSound("Hero_Leshrac.Split_Earth")
 	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_sandking/sandking_epicenter.vpcf", PATTACH_ABSORIGIN, hParent)
 	ParticleManager:SetParticleControl(particle, 1, Vector(self.iRadius, self.iRadius, self.iRadius))
-	local tUnits = FindUnitsInRadius(hCaster:GetTeamNumber(), hParent:GetAbsOrigin(), none, self.iRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_NONE , FIND_ANY_ORDER, false)
+	local tUnits = FindUnitsInRadius(hCaster:GetTeamNumber(), hParent:GetAbsOrigin(), nil, self.iRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_NONE , FIND_ANY_ORDER, false)
 	for k, v in pairs(tUnits) do
 		local tDamageTable = {
 			victim = v, 

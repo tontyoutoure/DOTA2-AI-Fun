@@ -14,9 +14,9 @@
 		"Ability12"	"special_bonus_armor_10"
 		"Ability13"	"special_bonus_spell_lifesteal_20"
 		"Ability14"	"special_bonus_spell_amplify_20"
-		"Ability15"	"special_bonus_hp_600"
-		"Ability16"	"special_bonus_lifesteal_30"
-		"Ability17"	"special_bonus_cast_range_400"
+		"Ability15"	"special_bonus_ramza_1"
+		"Ability16"	"special_bonus_ramza_2"
+		"Ability17"	"special_bonus_ramza_3"
 
 		"DisableWearables" "1"
 		"Model"	"models/heroes/dragon_knight/dragon_knight.vmdl"
