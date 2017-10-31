@@ -540,6 +540,7 @@
 		"AttributeAgilityGain"	"1.6"
 		"AttributeIntelligenceGain"	"3.0"
 	}
+
 	"npc_dota_hero_fun_telekenetic_blob"
 	{
 		"Ability1"	"telekenetic_blob_throw"
@@ -577,14 +578,14 @@
 		"AttackDamageMin"	"0"
 		"AttackDamageMax"	"0"
 	}
+
 	"npc_dota_hero_fun_ramza"
 	{
-
-		"Ability1" "ramza_job_squire_JC"
-		"Ability2" "ramza_select_secondary_skill_lua"
-		"Ability3" "ramza_squire_counter_tackle"
-		"Ability4" "ramza_squire_defend"
-		"Ability5" "ramza_squire_move1"	
+		"Ability1"	"ramza_job_squire_JC"
+		"Ability2"	"ramza_select_secondary_skill_lua"
+		"Ability3"	"ramza_squire_counter_tackle"
+		"Ability4"	"ramza_squire_defend"
+		"Ability5"	"ramza_squire_move1"
 		"Ability6"	"ramza_open_stats_lua"
 		"Ability7"	"ramza_go_back_lua"
 		"Ability8"	"ramza_next_page_lua"
@@ -596,12 +597,10 @@
 		"Ability15"	"special_bonus_hp_600"
 		"Ability16"	"special_bonus_lifesteal_30"
 		"Ability17"	"special_bonus_cast_range_400"
-
-
 		"Model"	"models/heroes/dragon_knight/dragon_knight.vmdl"
 		"ModelScale"	"1"
 		"override_hero"	"npc_dota_hero_brewmaster"
-		"SpawnSound" "dragon_knight_drag_spawn_01"
+		"SpawnSound"	"dragon_knight_drag_spawn_01"
 		"AttributeBaseStrength"	"19"
 		"AttributeStrengthGain"	"0"
 		"AttributeBaseAgility"	"19"
@@ -621,5 +620,26 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
 		"MovementSpeed"	"300"
 		"ProjetileSpeed"	"900"
+		"Ability9"	""
+	}
+
+	"npc_dota_hero_fun_hamsterlord"
+	{
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
 	}
 }
