@@ -1128,9 +1128,9 @@ end
 
 function CRamzaJob:New(tNewObject)
 if GameRules:IsCheatMode() then
-	tNewObject.tJobPoints = {4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000}
-	tNewObject.tJobLevels = {9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9}
-else	
+--	tNewObject.tJobPoints = {4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000}
+--	tNewObject.tJobLevels = {9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9}
+--else	
 	tNewObject.tJobPoints = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 	tNewObject.tJobLevels = {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 end
@@ -1222,11 +1222,12 @@ function CRamzaJob:RamzaLevelMax()
 	for i = 1, #self.tAllRamzas do		
 		for j = 1, 20 do
 			self.tAllRamzas[i].hRamzaJob.tJobPoints[j] = 4000
-			self.tAllRamzas[i].hRamzaJob.tJobLevels[j] = 9
+			self.tAllRamzas[i].hRamzaJob.tJobLevels[j] = 9			
+			for k, v in pairs(self.tRamzaChangeJobRequirements[j]) do
+				self.tAllRamzas[i].hRamzaJob.tChangeJobRequirements[j][k] = true
+			end
 			self.tAllRamzas[i].hRamzaJob:LevelUpSkills()
 		end
-		self.tAllRamzas[i].hRamzaJob.tJobPoints[RAMZA_JOB_NINJA] = 1
-		self.tAllRamzas[i].hRamzaJob.tJobLevels[RAMZA_JOB_NINJA] = 1
 		CustomNetTables:SetTableValue("ramza_job_level", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), self.tAllRamzas[i].hRamzaJob.tJobLevels)
 		CustomNetTables:SetTableValue("ramza_job_requirement", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), self.tAllRamzas[i].hRamzaJob.tChangeJobRequirements)
 		CustomNetTables:SetTableValue("ramza_current_job", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), {self.tAllRamzas[i].hRamzaJob.iCurrentJob})
@@ -1349,7 +1350,7 @@ function CRamzaJob:ChangeJob()
 			self.hParent:RemoveAbility(sName)			
 			if self.tOtherAbilityHasToggleModifiers[sName] then 
 				self.hParent:RemoveModifierByName('modifier_'..sName)
-			elseif not self.tOtherAbilityCastable[sName] then
+			elseif not self.tOtherAbilityCastable[sName] and self.hParent:FindAbilityByName("special_bonus_ramza_3"):GetSpecialValueFor("value") == 0 then
 				self.hParent:RemoveModifierByName('modifier_'..sName)				
 			end
 			local sName1 = self.tJobAbilityBuses.tOtherAbilityBuses[self.iCurrentJob][i]

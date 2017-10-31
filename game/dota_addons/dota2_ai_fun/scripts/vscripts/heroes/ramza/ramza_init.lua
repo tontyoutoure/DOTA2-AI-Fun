@@ -9,6 +9,13 @@ LinkLuaModifier("modifier_ramza_job_point", "heroes/ramza/ramza_utility_modifier
 LinkLuaModifier("modifier_ramza_black_mage_black_magicks_firaga", "heroes/ramza/ramza_black_mage_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ramza_samurai_run_animation_manager", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ramza_white_mage_animation_manager", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_bravery", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_speed", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_faith", "heroes/ramza/ramza_utility_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+
+
+
+
 -- for Archer's Bane of Ramza
 function GameMode:RamzaProjecileFilter(filterTable)
 	local hTarget = EntIndexToHScript(filterTable.entindex_target_const)
@@ -42,6 +49,17 @@ function GameMode:RamzaDamageFilter(filterTable)
 	end
 	return true
 end
+
+function RamzaTalentManager(keys)
+	PrintTable(keys)
+	if PlayerResource:GetPlayer(keys.player-1):GetAssignedHero():GetName() ~= "npc_dota_hero_brewmaster" then return end
+	if keys.abilityname == "special_bonus_ramza_2" then
+		print("haha")
+		PlayerResource:GetPlayer(keys.player-1):GetAssignedHero().hRamzaJob:RamzaLevelMax()
+	end
+end
+
+ListenToGameEvent( "dota_player_learned_ability", RamzaTalentManager, nil )
 
 function RamzaInit(hHero, context)
 	if hHero:IsRealHero() and not hHero.bSpawned then

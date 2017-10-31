@@ -225,9 +225,22 @@ function modifier_ramza_summoner_critical_recover_mp:OnTakeDamage(keys)
 			bIsCooldownReady = Time() > hParent.hRamzaJob.tPassiveCooldownReadyTime["ramza_summoner_critical_recover_mp"]
 			if bIsCooldownReady then
 				fCooldownMultiplier = 1
-				if hParent:HasModifier("modifier_item_octarine_core") then fCooldownMultiplier = fCooldownMultiplier*0.75 end
+				if hParent:HasModifier("modifier_item_fun_angelic_alliance_halo") then
+					if hParent():HasModifier("modifier_imbalanced_economizer") then
+						fCooldownMultiplier = 0
+					else
+						fCooldownMultiplier = fCooldownMultiplier*0.2 
+					end		
+				elseif hParent:HasModifier("modifier_item_fun_economizer_mcr") then 
+					if hParent():HasModifier("modifier_imbalanced_economizer") then
+						fCooldownMultiplier = 0
+					else
+						fCooldownMultiplier = fCooldownMultiplier*0.5 
+					end
+				elseif hParent:HasModifier("modifier_item_octarine_core") then
+					fCooldownMultiplier = fCooldownMultiplier*0.75 					
+				end
 				if hParent:HasModifier("modifier_rune_arcane") then fCooldownMultiplier = fCooldownMultiplier*0.7 end
-				if hParent:HasModifier("modifier_item_fun_angelic_alliance_halo") or hParent:HasModifier("modifier_item_fun_economizer_mcr") then fCooldownMultiplier = 0 end
 				hParent.hRamzaJob.tPassiveCooldownReadyTime["ramza_summoner_critical_recover_mp"] = Time()+100*fCooldownMultiplier		
 				hParent:SetMana(hParent:GetMaxMana())
 			end
