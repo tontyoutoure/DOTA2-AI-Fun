@@ -64,12 +64,14 @@ function cleric_berserk:OnSpellStart()
 end
 
 function cleric_berserk:GetCooldown(iLevel)
-	local hSpecial = Entities:First()
-	
-	while hSpecial and (hSpecial:GetName() ~= "special_bonus_cleric_2" or hSpecial:GetCaster() ~= self:GetCaster()) do
-		hSpecial = Entities:Next(hSpecial)
-	end		
-	return self.BaseClass.GetCooldown(self, iLevel)-hSpecial:GetSpecialValueFor("value")
+	if not self.hSpecial then
+		self.hSpecial = Entities:First()
+		
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_cleric_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+			self.hSpecial = Entities:Next(self.hSpecial)
+		end		
+	end
+	return self.BaseClass.GetCooldown(self, iLevel)-self.hSpecial:GetSpecialValueFor("value")
 end
 
 function ClericPrayer(keys)

@@ -12,7 +12,8 @@
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"ability_datadriven"
+		"BaseClass"	"ability_lua"
+		"ScriptFile"  "scripts/vscripts/heroes/void_demon/void_demon_time_void.lua"
 		"AbilityTextureName"	"void_demon_time_void"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -34,29 +35,6 @@
 		"precache"
 		{
 			"particle"	"particles/units/heroes/hero_night_stalker/nightstalker_void.vpcf"
-		}
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/void_demon/void_demon_time_void.lua"
-				"Function"	"TimeVoidSpellStart"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_void_demon_time_void"
-			{
-				"IsDebuff"	"1"
-				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_void.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed_slow"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attackspeed_slow"
-				}
-				"IsPurgable"	"1"
-			}
 		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
@@ -87,36 +65,13 @@
 
 	"void_demon_degen_aura"
 	{
-		"BaseClass"	"ability_datadriven"
+		"BaseClass"	"ability_lua"
+		"ScriptFile"  "scripts/vscripts/heroes/void_demon/void_demon_time_void.lua"
 		"AbilityTextureName"	"void_demon_regen_aura"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityCastRange"	"%radius"
-		"Modifiers"
-		{
-			"modifier_void_demon_degen_area"
-			{
-				"Aura"	"modifier_void_demon_regen_area_slow"
-				"Aura_Radius"	"%radius"
-				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				"Properties"	{}
-				"Passive"	"1"
-				"IsHidden"	"1"
-			}
-			"modifier_void_demon_regen_area_slow"
-			{
-				"IsDebuff"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movement"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack"
-				}
-				"States"	{}
-			}
-		}
 		"AbilitySpecial"
 		{
 			"01"
@@ -271,5 +226,38 @@
 		// -------------------------------------------------------------------------------------------------------------
 		// Damage is the main component of spell
 		"AbilityModifierSupportValue"	"0.2"
+	}
+	
+	"special_bonus_void_demon_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"15"
+			}
+		}
+	}
+	"special_bonus_void_demon_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1"
+			}
+		}
 	}
 }
