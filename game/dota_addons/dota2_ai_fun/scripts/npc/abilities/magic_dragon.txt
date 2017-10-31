@@ -45,7 +45,7 @@
 		"AbilityCooldown"	"0 0 0 0"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"80 100 140 160"
+		"AbilityManaCost"	"80 100 120 140"
 		"AbilityCastRange"	"%radius"
 		"precache"
 		{
@@ -966,6 +966,22 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"delay"	"0.25"
+			}
+		}
+	}
+	"special_bonus_magic_dragon_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1"
 			}
 		}
 	}

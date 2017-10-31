@@ -124,9 +124,15 @@ function BlueDragonRoarFreeze(keys)
 	end	
 	keys.caster:EmitSound("Hero_LoneDruid.SavageRoar.Cast")
 	
-	math.randomseed(GameRules:GetGameTime())
-	iRandom = math.random(6)
-	MagicDragonTransform[iRandom](keys.caster)
+	
+	MagicDragonTransform[RandomInt(1,6)](keys.caster)
+	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
+		for i = 0, 8 do 
+			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() end
+		end		
+		keys.caster:EmitSound("DOTA_Item.Refresher.Activate")
+		ParticleManager:SetParticleControlEnt(ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.caster), 0, keys.caster, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.caster:GetAbsOrigin(), true)
+	end
 end
 
 function GhostDragonRoarLifeDrain(keys)
@@ -150,9 +156,15 @@ function GhostDragonRoarLifeDrain(keys)
 	keys.caster:Heal(#tTargets*iLifeDrain, keys.caster)
 	keys.caster:EmitSound("Hero_LoneDruid.SavageRoar.Cast")
 	
-	math.randomseed(GameRules:GetGameTime())
-	iRandom = math.random(6)
-	MagicDragonTransform[iRandom](keys.caster)
+	
+	MagicDragonTransform[RandomInt(1,6)](keys.caster)
+	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
+		for i = 0, 8 do 
+			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() end
+		end		
+		keys.caster:EmitSound("DOTA_Item.Refresher.Activate")
+		ParticleManager:SetParticleControlEnt(ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.caster), 0, keys.caster, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.caster:GetAbsOrigin(), true)
+	end
 end
 
 function RedDragonRoarDamage(keys)	
@@ -173,9 +185,15 @@ function RedDragonRoarDamage(keys)
 	end	
 	keys.caster:EmitSound("Hero_LoneDruid.SavageRoar.Cast")
 	
-	math.randomseed(GameRules:GetGameTime())
-	iRandom = math.random(6)
-	MagicDragonTransform[iRandom](keys.caster)
+	
+	MagicDragonTransform[RandomInt(1,6)](keys.caster)
+	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
+		for i = 0, 8 do 
+			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() end
+		end		
+		keys.caster:EmitSound("DOTA_Item.Refresher.Activate")
+		ParticleManager:SetParticleControlEnt(ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.caster), 0, keys.caster, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.caster:GetAbsOrigin(), true)
+	end
 end
 
 function GreenDragonRoarAccelerate(keys)
@@ -186,9 +204,15 @@ function GreenDragonRoarAccelerate(keys)
 	
 	keys.caster:EmitSound("Hero_LoneDruid.SavageRoar.Cast")
 	
-	math.randomseed(GameRules:GetGameTime())
-	iRandom = math.random(6)
-	MagicDragonTransform[iRandom](keys.caster)
+	
+	MagicDragonTransform[RandomInt(1,6)](keys.caster)
+	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
+		for i = 0, 8 do 
+			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() end
+		end		
+		keys.caster:EmitSound("DOTA_Item.Refresher.Activate")
+		ParticleManager:SetParticleControlEnt(ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.caster), 0, keys.caster, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.caster:GetAbsOrigin(), true)
+	end
 end
 
 function BlackDragonRoarManaBurn(keys)	
@@ -221,9 +245,15 @@ function BlackDragonRoarManaBurn(keys)
 	end	
 	keys.caster:EmitSound("Hero_LoneDruid.SavageRoar.Cast")
 	
-	math.randomseed(GameRules:GetGameTime())
-	iRandom = math.random(6)
-	MagicDragonTransform[iRandom](keys.caster)
+	
+	MagicDragonTransform[RandomInt(1,6)](keys.caster)
+	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
+		for i = 0, 8 do 
+			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() end
+		end		
+		keys.caster:EmitSound("DOTA_Item.Refresher.Activate")
+		ParticleManager:SetParticleControlEnt(ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.caster), 0, keys.caster, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.caster:GetAbsOrigin(), true)
+	end
 end
 
 function GoldDragonRoarLightningChain(keys)
@@ -247,9 +277,15 @@ function GoldDragonRoarLightningChain(keys)
 	end
 	keys.caster:EmitSound("Hero_LoneDruid.SavageRoar.Cast")
 	
-	math.randomseed(GameRules:GetGameTime())
-	iRandom = math.random(6)
-	MagicDragonTransform[iRandom](keys.caster)
+	
+	MagicDragonTransform[RandomInt(1,6)](keys.caster)
+	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
+		for i = 0, 8 do 
+			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() end
+		end		
+		keys.caster:EmitSound("DOTA_Item.Refresher.Activate")
+		ParticleManager:SetParticleControlEnt(ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.caster), 0, keys.caster, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.caster:GetAbsOrigin(), true)
+	end
 end
 
 
