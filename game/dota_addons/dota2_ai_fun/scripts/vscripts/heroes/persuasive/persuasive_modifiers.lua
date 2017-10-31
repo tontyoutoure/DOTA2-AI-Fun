@@ -66,7 +66,7 @@ end
 function modifier_persuasive_lagmonster_lua:OnTakeDamage(keys)
 	self.fTotalDamage = self.fTotalDamage or 0
 	if self:GetParent() ~= keys.unit then return end
-	self.fTotalDamage = self.fTotalDamage + keys.damage
+	self.fTotalDamage = self.fTotalDamage + keys.damage*(self:GetCaster():FindAbilityByName("special_bonus_persuasive_1"):GetSpecialValueFor("value")/100+1)
 end
 
 modifier_persuasive_lagmonster_stun_lua = class({})

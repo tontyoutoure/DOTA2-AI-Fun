@@ -36,13 +36,20 @@ function persuasive_swindle_lua:CastFilterResultTarget(hTarget)
 		return UF_SUCCESS
 	end
 	local hCaster = self:GetCaster()
+	
+	self.hSpecial = Entities:First()
+	
+	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_persuasive_3" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+		self.hSpecial = Entities:Next(self.hSpecial)
+	end		
+	
 	local fRaise = hCaster:FindAbilityByName("persuasive_raise_lua").Raise
 	
 	local iCasterValue
 	local iHPCost
 	local iTargetValue	
 	iCasterValue, iTargetValue, iHPCost  = fRaise(hCaster, hTarget)
-	if type(iCasterValue) == "string" or iHPCost >= hCaster:GetHealth() then 
+	if type(iCasterValue) == "string" or (iHPCost >= hCaster:GetHealth() and self.hSpecial:GetSpecialValueFor("value") == 0) then 
 		return UF_FAIL_CUSTOM
 	else 
 		return UF_SUCCESS
@@ -108,8 +115,7 @@ function persuasive_swindle_lua:OnSpellStart()
 	hCaster:EmitSound("General.CoinsBig")
 	local fCurrentHealth = hCaster:GetHealth()
 	if iHPCost >= fCurrentHealth then
-		hCaster:DropItemAtPositionImmediate(hCasterItem, hCaster:GetAbsOrigin())
-		hCaster:Kill(self, hCaster)
+		hCaster:SetHealth(1)
 	elseif iHPCost > 0 then
 		hCaster:SetHealth(fCurrentHealth-iHPCost)
 	end

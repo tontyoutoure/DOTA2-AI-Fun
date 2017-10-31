@@ -34,7 +34,7 @@
 		// GUESS VALUE
 		"AttackPoint"	"0.5"
 		// Speed
-		"MovementSpeed"	"300"
+		"MovementSpeed"	"295"
 		// GUESS VALUE
 		"MovementTurnRate"	"0.4"
 		// Range of vision during day light.

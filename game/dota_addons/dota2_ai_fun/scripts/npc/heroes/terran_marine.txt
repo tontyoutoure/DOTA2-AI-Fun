@@ -26,7 +26,7 @@
 		"AttackAnimationPoint"	"0.15"
 		"AttackRange"	"650"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"MovementSpeed"	"305"
+		"MovementSpeed"	"300"
 		"ArmorPhysical"	"2"
 		"VisionDaytimeRange"	"1800"
 		"VisionNighttimeRange"	"800"
