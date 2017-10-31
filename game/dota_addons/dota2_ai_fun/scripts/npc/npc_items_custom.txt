@@ -1240,7 +1240,6 @@
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_strength"
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"%mana_regen"
 					"MODIFIER_PROPERTY_MANA_BONUS"	"%bonus_mana"
-					"MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE"	"%spell_amp"
 				}
 				"OnIntervalThink"
 				{
@@ -1377,27 +1376,22 @@
 			"12"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"spell_amp"	"20"
+				"bonus_strength"	"20"
 			}
 			"13"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_strength"	"20"
+				"bonus_agility"	"40"
 			}
 			"14"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_agility"	"40"
+				"mana_regen"	"200"
 			}
 			"15"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"mana_regen"	"200"
-			}
-			"16"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"bonus_mana"	"400"
+				"bonus_mana"	"600"
 			}
 		}
 		"ActiveDescriptionLine"	"1"

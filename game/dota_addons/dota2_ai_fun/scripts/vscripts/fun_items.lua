@@ -371,7 +371,6 @@ function MagicHammerManaBurn(keys)
 	local mana_burn = ability:GetSpecialValueFor("mana_burn")
 	local mana_burn_damage = ability:GetSpecialValueFor("mana_burn_damage")
 	local currentMana = target:GetMana()
-	target:Purge(true, false, false, false, false)
 	target:EmitSound("DOTA_Item.DiffusalBlade.Activate")
 --	ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	damageTable = {attacker = caster, victim = target, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability}
