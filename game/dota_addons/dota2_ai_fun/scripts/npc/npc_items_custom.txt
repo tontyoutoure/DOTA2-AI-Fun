@@ -1569,7 +1569,7 @@
 		"ItemResult"	"item_fun_economizer"
 		"ItemRequirements"
 		{
-			"01"	"item_octarine_core;item_mystic_staff;item_staff_of_wizardry;item_robe;item_mantle"
+			"01"	"item_octarine_core;item_mystic_staff;item_staff_of_wizardry;item_staff_of_wizardry;item_robe;item_mantle"
 		}
 	}
 
@@ -1584,7 +1584,7 @@
 		"ItemResult"	"item_fun_genji_gloves"
 		"ItemRequirements"
 		{
-			"01"	"item_slippers;item_boots_of_elves;item_blade_of_alacrity;item_eagle;item_butterfly"
+			"01"	"item_slippers;item_boots_of_elves;item_blade_of_alacrity;item_blade_of_alacrity;item_eagle;item_butterfly;"
 		}
 	}
 
@@ -1598,7 +1598,7 @@
 		"ItemResult"	"item_fun_ragnarok"
 		"ItemRequirements"
 		{
-			"01"	"item_gauntlets;item_belt_of_strength;item_ogre_axe;item_reaver;item_heart"
+			"01"	"item_gauntlets;item_belt_of_strength;item_ogre_axe;item_ogre_axe;item_reaver;item_heart"
 		}
 	}
 
@@ -1696,7 +1696,7 @@
 		"ItemResult"	"item_fun_magic_hammer"
 		"ItemRequirements"
 		{
-			"01"	"item_rod_of_atos;item_shivas_guard;item_diffusal_blade_2;item_aether_lens"
+			"01"	"item_rod_of_atos;item_shivas_guard;item_diffusal_blade;item_aether_lens"
 		}
 	}
 

@@ -202,9 +202,9 @@ local tNotUpgrade = {
 }
 
 local tFunItems = {
-	item_fun_economizer = {"item_octarine_core","item_mystic_staff","item_staff_of_wizardry","item_robe","item_mantle"},
-	item_fun_genji_gloves = {"item_slippers","item_boots_of_elves","item_blade_of_alacrity","item_eagle","item_butterfly"},
-	item_fun_ragnarok = {"item_gauntlets","item_belt_of_strength","item_ogre_axe","item_reaver","item_heart"},
+	item_fun_economizer = {"item_octarine_core","item_mystic_staff","item_staff_of_wizardry","item_staff_of_wizardry","item_robe","item_mantle"},
+	item_fun_genji_gloves = {"item_slippers","item_boots_of_elves","item_blade_of_alacrity","item_blade_of_alacrity","item_eagle","item_butterfly"},
+	item_fun_ragnarok = {"item_gauntlets","item_belt_of_strength","item_ogre_axe","item_ogre_axe","item_reaver","item_heart"},
 	item_fun_escutcheon = {"item_hood_of_defiance","item_vanguard","item_bloodstone","item_soul_booster"},
 	item_fun_angelic_alliance = {"item_fun_orb_of_omnipotence","item_fun_sprint_shoes","item_fun_economizer","item_relic"},
 	item_fun_blood_sword = {"item_greater_crit","item_satanic","item_echo_sabre","item_echo_sabre"},
