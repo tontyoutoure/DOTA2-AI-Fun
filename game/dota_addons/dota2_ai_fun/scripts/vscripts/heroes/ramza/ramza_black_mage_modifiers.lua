@@ -7,7 +7,7 @@ function modifier_ramza_black_mage_magick_counter:DeclareFunctions()
 end
 
 function modifier_ramza_black_mage_magick_counter:IsHidden() return true end
-
+function modifier_ramza_black_mage_magick_counter:IsPurgable() return false end
 function modifier_ramza_black_mage_magick_counter:RemoveOnDeath() return false end
 
 function modifier_ramza_black_mage_magick_counter:GetReflectSpell(keys) 

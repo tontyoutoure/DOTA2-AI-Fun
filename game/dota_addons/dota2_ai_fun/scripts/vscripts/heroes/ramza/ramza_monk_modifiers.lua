@@ -59,13 +59,13 @@ function modifier_ramza_monk_critical_recover_hp:OnTakeDamage(keys)
 			if bIsCooldownReady then
 				fCooldownMultiplier = 1
 				if hParent:HasModifier("modifier_item_fun_angelic_alliance_halo") then
-					if hParent():HasModifier("modifier_imbalanced_economizer") then
+					if hParent:HasModifier("modifier_imbalanced_economizer") then
 						fCooldownMultiplier = 0
 					else
 						fCooldownMultiplier = fCooldownMultiplier*0.2 
 					end				
 				elseif hParent:HasModifier("modifier_item_fun_economizer_mcr") then 
-					if hParent():HasModifier("modifier_imbalanced_economizer") then
+					if hParent:HasModifier("modifier_imbalanced_economizer") then
 						fCooldownMultiplier = 0
 					else
 						fCooldownMultiplier = fCooldownMultiplier*0.5

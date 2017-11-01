@@ -293,6 +293,7 @@ function Precache( context )
 	PrecacheResource("particle", "particles/units/heroes/hero_ember_spirit/ember_spirit_remnant_dash.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_gods_strength.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/ember_spirit/ember_spirit_vanishing_flame/ember_spirit_vanishing_flame_ambient.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_portrait_model.vpcf", context)
 end
 
 

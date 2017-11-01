@@ -95,7 +95,9 @@ ramza_archer_aim_20.OnProjectileHit_ExtraData = ramza_archer_aim_OnProjectileHit
 
 ramza_archer_archers_bane = class({})
 
-function ramza_archer_archers_bane:GetIntrinsicModifierName() return 'modifier_ramza_archer_archers_bane' end
+function ramza_archer_archers_bane:OnUpgrade() 
+	self:GetCaster():AddNewModifier(self:GetCaster(), self, 'modifier_ramza_archer_archers_bane', {})
+end
 
 function ramza_archer_archers_bane:OnProjectileHit(hTarget, vLocation)
 	local iParticle = ParticleManager:CreateParticle( 'particles/msg_fx/msg_miss.vpcf', PATTACH_POINT_FOLLOW, self:GetCaster())

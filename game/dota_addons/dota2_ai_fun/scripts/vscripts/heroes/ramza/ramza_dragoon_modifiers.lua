@@ -7,6 +7,7 @@ end
 function modifier_ramza_dragoon_dragonheart:OnCreated()
 	local hAbility = self:GetAbility()
 	self.fReincarnateTime = hAbility:GetSpecialValueFor("reincarnate_time")
+	print(self.fReincarnateTime)
 end
 
 function modifier_ramza_dragoon_dragonheart:IsHidden() return true end
@@ -17,6 +18,7 @@ function modifier_ramza_dragoon_dragonheart:RemoveOnDeath() return false end
 function modifier_ramza_dragoon_dragonheart:ReincarnateTime()
 	local bIsCooldownReady
 	local hParent = self:GetParent()
+	if IsClient() then return end
 	if hParent:HasAbility("ramza_dragoon_dragonheart") then 
 		bIsCooldownReady = hParent:FindAbilityByName("ramza_dragoon_dragonheart"):IsCooldownReady()
 		if bIsCooldownReady then
@@ -31,13 +33,13 @@ function modifier_ramza_dragoon_dragonheart:ReincarnateTime()
 		if bIsCooldownReady then
 			fCooldownMultiplier = 1
 			if hParent:HasModifier("modifier_item_fun_angelic_alliance_halo") then
-				if hParent():HasModifier("modifier_imbalanced_economizer") then
+				if hParent:HasModifier("modifier_imbalanced_economizer") then
 					fCooldownMultiplier = 0
 				else
 					fCooldownMultiplier = fCooldownMultiplier*0.2	
 				end
 			elseif hParent:HasModifier("modifier_item_fun_economizer_mcr") then 
-				if hParent():HasModifier("modifier_imbalanced_economizer") then
+				if hParent:HasModifier("modifier_imbalanced_economizer") then
 					fCooldownMultiplier = 0
 				else
 					fCooldownMultiplier = fCooldownMultiplier*0.5

@@ -48,7 +48,9 @@ end
 
 ramza_squire_counter_tackle = class({})
 
-function ramza_squire_counter_tackle:GetIntrinsicModifierName() return "modifier_ramza_squire_counter_tackle" end
+function ramza_squire_counter_tackle:OnUpgrade() 
+	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_ramza_squire_counter_tackle" ,{})
+end
 
 function RamzaSquireChant(keys)
 	local fCurrentHealth = keys.caster:GetHealth()

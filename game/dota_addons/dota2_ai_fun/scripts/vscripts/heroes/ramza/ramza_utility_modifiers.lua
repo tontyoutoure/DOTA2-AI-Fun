@@ -455,6 +455,7 @@ function modifier_ramza_bravery:RemoveOnDeath() return false end
 function modifier_ramza_bravery:IsHidden() return true end
 
 function modifier_ramza_bravery:OnRefresh()
+	if not self:GetAbility() then return end
 	self.iBonusDamage = self:GetAbility():GetSpecialValueFor("bonus_damage")
 	self.iBonusStr = self:GetAbility():GetSpecialValueFor("bonus_strength")
 	if IsClient() then return end
@@ -491,6 +492,7 @@ function modifier_ramza_speed:RemoveOnDeath() return false end
 function modifier_ramza_speed:IsHidden() return true end
 
 function modifier_ramza_speed:OnRefresh()
+	if not self:GetAbility() then return end
 	self.iMove = self:GetAbility():GetSpecialValueFor("bonus_move")
 	self.iAttack = self:GetAbility():GetSpecialValueFor("bonus_attack")
 	self.iAgi = self:GetAbility():GetSpecialValueFor("bonus_agility")
@@ -538,6 +540,7 @@ function modifier_ramza_faith:RemoveOnDeath() return false end
 function modifier_ramza_faith:IsHidden() return true end
 
 function modifier_ramza_faith:OnRefresh()
+	if not self:GetAbility() then return end
 	self.iMana = self:GetAbility():GetSpecialValueFor("bonus_mana")
 	self.iInt = self:GetAbility():GetSpecialValueFor("bonus_intelligence")
 	if IsClient() then return end

@@ -21,7 +21,9 @@ end
 
 ramza_black_mage_magick_counter = class({})
 
-function ramza_black_mage_magick_counter:GetIntrinsicModifierName() return "modifier_ramza_black_mage_magick_counter" end
+function ramza_black_mage_magick_counter:OnUpgrade() 
+	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_ramza_black_mage_magick_counter", {})
+end
 
 function RamzaBlackMagicksDamage(hAttacker, hVictim, hAbility)
 		local damageTable = {
