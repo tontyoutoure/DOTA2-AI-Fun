@@ -220,6 +220,9 @@
 						<Image id="HeroAvatarPugna" class="HeroAvatar" src="file://{images}/custom_game/loading_screen/npc_dota_hero_pugna.png" />
 					</Button>
 				</Panel>
+				<Button id="AboutNewVersionButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelAboutNewVersion&quot;);">				
+					<Label id="AboutNewVersionButtonLabel" text="#about_new_version_title" />
+				</Button>
 			</Panel>
 			
 			
@@ -289,6 +292,13 @@
         <Label id="HeroNamePugna" class="HeroName" text="#npc_dota_hero_pugna_long"/>
         <Label id="HeroBioPugna" class="HeroBio" text="#npc_dota_hero_pugna_hype"/>
       </Panel>
+	  <Panel id="HeroDescriptionPopPanelAboutNewVersion" class = "HeroDescriptionPopPanelTop">
+        <Label id="HeroNameAboutNewVersion" class="HeroName" text="#about_new_version_title"/>
+        <Label id="HeroBioAboutNewVersion" class="HeroBio" text="#about_new_version"/>
+      </Panel>
+	  
+	  
+	  
 		</Panel>		
 	</Panel>
   </Panel>

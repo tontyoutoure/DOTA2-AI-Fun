@@ -247,3 +247,35 @@
 	overflow: squish;
 	background-color: white;
 }
+
+#AboutNewVersionButton
+{
+	margin-top: 30px;
+	width: 100%;
+	height: 100px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_large_2x_png.vtex");
+	background-size: 100% 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #303090FF ), to( #4444D0FF ) );
+	box-shadow: #000000 0px 0px 10px 0px;
+	transition-property: background-color;
+	transition-duration: 0.2s;
+}
+
+#AboutNewVersionButton:hover
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #4444D0FF ), to( #6464F0FF ) );
+	box-shadow: #000000 0px 0px 25px 0px;
+}
+
+#AboutNewVersionButton:active
+{
+	transform: translate3d(1px, 1px, 0px);
+}
+
+#AboutNewVersionButtonLabel
+{
+	font-size: 32px;
+	horizontal-align: center;
+	vertical-align: center;
+	color: #ffffff;
+}
