@@ -34,7 +34,7 @@
 		"StatusHealth"	"150"
 		"StatusMana"	"0"
 		"StatusHealthRegen"	"0.15"
-		"StatusManaRegen"	"0"
+		"StatusManaRegen"	"0.9"
 		"AttributeStrengthGain"	"2"
 		"AttributeAgilityGain"	"1.6"
 		"AttributeIntelligenceGain"	"3.0"

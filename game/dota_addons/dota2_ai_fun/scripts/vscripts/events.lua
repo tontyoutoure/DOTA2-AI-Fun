@@ -188,14 +188,63 @@ end
 
 
 function GameMode:_OnNPCSpawned(keys)
-	local hHero = EntIndexToHScript(keys.entindex)
+	local hHero = EntIndexToHScript(keys.entindex)	
+	
+	if hHero:GetName() == "npc_dota_hero_spirit_breaker" and not hHero.bSpawned then
+		require('heroes/astral_trekker/astral_trekker_init')
+		AstralTrekkerInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_shadow_demon" and not hHero.bSpawned then
+		require('heroes/bastion/bastion_init')
+		BastionInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_beastmaster"  and not hHero.bSpawned then
+		require('heroes/fluid_engineer/fluid_engineer_init')
+		FluidEngineerInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_wisp" and not hHero.bSpawned then
+		require('heroes/formless/formless_init')
+		FormlessInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_treant" and not hHero.bSpawned then
+		require('heroes/intimidator/intimidator_init')
+		IntimidatorInit(hHero, self)		
+	end
 	
 	if hHero:GetName() == "npc_dota_hero_visage" and not hHero.bSpawned then
 		require('heroes/magic_dragon/magic_dragon_init')
 		MagicDragonInit(hHero, self)
 	end
 	
+	if hHero:GetName() == "npc_dota_hero_arc_warden" and not hHero.bSpawned then
+		require('heroes/mana_fiend/mana_fiend_init')
+		ManaFiendInit(hHero, self)
+	end
 	
+	if hHero:GetName() == "npc_dota_hero_techies" and not hHero.bSpawned then
+		require('heroes/persuasive/persuasive_init')
+		PersuasiveInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_enigma" and not hHero.bSpawned then
+		require('heroes/telekenetic_blob/telekenetic_blob_init')
+		TelekeneticBlobInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_tinker" and not hHero.bSpawned then
+		require('heroes/terran_marine/terran_marine_init')
+		TerranMarineInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_night_stalker" and not hHero.bSpawned then
+		require('heroes/void_demon/void_demon_init')
+		VoidDemonInit(hHero, self)
+	end
+		
 	if hHero:GetName() == "npc_dota_hero_brewmaster" and not hHero.bSpawned then
 		require('heroes/ramza/ramza_init')
 		RamzaInit(hHero, self)
@@ -204,6 +253,11 @@ function GameMode:_OnNPCSpawned(keys)
 	if hHero:GetName() == "npc_dota_hero_rubick" and not hHero.bSpawned then
 		require('heroes/cleric/cleric_init')
 		ClericInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_windrunner" and not hHero.bSpawned then
+		require('heroes/per_summoner/per_summoner_init')
+		PetSummonerInit(hHero, self)
 	end
 	
 	if hHero:GetName() == "npc_dota_hero_sven" and not hHero.bSpawned then

@@ -30,6 +30,7 @@
 		"AttributeBaseIntelligence"	"18"
 		"AttributeIntelligenceGain"	"1.8"
 		"AttributeAgilityGain"	"1.5"
+		"StatusManaRegen"	"0.9"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackRange"	"500"
 		"MovementSpeed"	"300"

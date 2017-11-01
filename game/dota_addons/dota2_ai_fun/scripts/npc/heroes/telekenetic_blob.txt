@@ -20,6 +20,7 @@
 		"Ability16"	"special_bonus_movement_speed_50"
 		"ModelScale"	"1"
 		"AttributePrimary"	"DOTA_ATTRIBUTE_INTELLECT"
+		"StatusManaRegen"	"0.9"
 		"AttributeBaseStrength"	"19"
 		"AttributeStrengthGain"	"2.6"
 		"AttributeBaseAgility"	"3"

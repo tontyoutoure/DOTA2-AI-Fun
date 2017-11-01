@@ -19,6 +19,7 @@
 		"Ability15"	"special_bonus_hp_600"
 		"Ability16"	"special_bonus_lifesteal_30"
 		"Ability17"	"special_bonus_astral_trekker_2"
+		"StatusManaRegen"	"0.9"
 		"AttributeBaseStrength"	"25"
 		"AttributeBaseAgility"	"18"
 		"AttributeBaseIntelligence"	"16"

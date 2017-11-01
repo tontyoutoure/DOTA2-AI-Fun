@@ -20,6 +20,7 @@
 		"AttributeBaseIntelligence"	"28"
 		// Intelligence bonus per level.
 		"AttributeIntelligenceGain"	"3.1"
+		"StatusManaRegen"	"0.9"
 		"ArmorPhysical"	"1"
 		"MagicalResistance"	"25"
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"

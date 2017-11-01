@@ -20,6 +20,7 @@
 		"Ability16"	"special_bonus_lifesteal_30"
 		"Ability17"	"special_bonus_terran_marine_2"
 		"override_hero"	"npc_dota_hero_tinker"
+		"StatusManaRegen"	"0.9"
 		"AttackDamageMin"	"3"
 		"AttackDamageMax"	"5"
 		"AttackRate"	"1"

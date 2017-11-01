@@ -32,6 +32,7 @@
 		"AttackAnimationPoint"	"0.4"
 		"AttackRate"	"1"
 		"ArmorPhysical"	"1"
+		"StatusManaRegen"	"0.9"
 		"AttackRangeBuffer"	"250"
 		"AttackDamageMin"	"22"
 		"AttackDamageMax"	"26"

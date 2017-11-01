@@ -26,6 +26,7 @@
 		"AttributeBaseIntelligence"	"23"
 		"AttributeIntelligenceGain"	"3.1"
 		"ModelScale"	"1"
+		"StatusManaRegen"	"0.9"
 		"Ability17"	"special_bonus_cast_range_400"
 		"AttackDamageMin"	"23"
 		"AttackDamageMax"	"30"

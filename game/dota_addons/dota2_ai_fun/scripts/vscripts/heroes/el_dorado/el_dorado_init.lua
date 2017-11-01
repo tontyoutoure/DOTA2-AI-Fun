@@ -10,6 +10,7 @@ end
 
 function ElDoradoInit(hHero, context)
 	WearableManager:RemoveOriginalWearables(hHero)
+	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_el_dorado", {})
 	if not GameMode.bEledoradoDemolishFilterSet then
 		GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(GameMode, 'ElDoradoDamageFilter'), context)
 		GameMode.bEledoradoDemolishFilterSet = true

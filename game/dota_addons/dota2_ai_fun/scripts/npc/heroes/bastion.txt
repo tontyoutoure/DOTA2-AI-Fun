@@ -19,6 +19,7 @@
 		"Ability6"	"bastion_transference_int"
 		"ArmorPhysical"	"1"
 		"MagicalResistance"	"25"
+		"StatusManaRegen"	"0.9"
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
 		// Damage range min.
