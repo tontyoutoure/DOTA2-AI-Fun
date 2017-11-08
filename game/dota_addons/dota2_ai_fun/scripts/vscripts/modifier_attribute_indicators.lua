@@ -118,3 +118,12 @@ function modifier_attribute_indicator_el_dorado:IsHidden() return false end
 function modifier_attribute_indicator_el_dorado:IsDebuff() return false end
 function modifier_attribute_indicator_el_dorado:GetTexture() return "attribute_indicator" end
 
+LinkLuaModifier("modifier_attribute_indicator_hurricane", "modifier_attribute_indicators.lua", LUA_MODIFIER_MOTION_NONE)
+modifier_attribute_indicator_hurricane = class({})
+function modifier_attribute_indicator_hurricane:RemoveOnDeath() return false end
+function modifier_attribute_indicator_hurricane:IsPurgable() return false end
+function modifier_attribute_indicator_hurricane:IsHidden() return false end
+function modifier_attribute_indicator_hurricane:IsDebuff() return false end
+function modifier_attribute_indicator_hurricane:GetTexture() return "attribute_indicator" end
+
+

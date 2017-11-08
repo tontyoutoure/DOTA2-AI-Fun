@@ -167,9 +167,33 @@ function modifier_cleric_magic_mirror:GetAbsorbSpell(keys)
 	return 1
 end
 
+modifier_cleric_prayer = class({})
+function modifier_cleric_prayer:IsDebuff() return true end
+function modifier_cleric_prayer:IsPurgable()	
+	if not self.hSpecial then
+		self.hSpecial = Entities:First()		
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_cleric_6" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+			self.hSpecial = Entities:Next(self.hSpecial)
+		end		
+	end
+	
+	if self.hSpecial:GetSpecialValueFor("value") > 1 then 
+		return true 
+	else 
+		return false 
+	end
+end
 
-modifier_cleric_berserk_cdr = class({})
+function modifier_cleric_prayer:GetStatusEffectName() return "particles/status_fx/status_effect_guardian_angel.vpcf" end
 
-function modifier_cleric_berserk_cdr:IsHidden() return false end
-function modifier_cleric_berserk_cdr:IsPurgable() return false end
-function modifier_cleric_berserk_cdr:RemoveOnDeath() return false end
+function modifier_cleric_prayer:DeclareFunctions() return {MODIFIER_PROPERTY_STATS_AGILITY_BONUS, MODIFIER_PROPERTY_STATS_INTELLECT_BONUS, MODIFIER_PROPERTY_STATS_STRENGTH_BONUS} end
+
+local function PrayerStatusBonus(self)
+	return self:GetAbility():GetSpecialValueFor("attribute_bonus")
+end
+
+modifier_cleric_prayer.GetModifierBonusStats_Agility = PrayerStatusBonus
+
+modifier_cleric_prayer.GetModifierBonusStats_Intellect = PrayerStatusBonus
+
+modifier_cleric_prayer.GetModifierBonusStats_Strength = PrayerStatusBonus

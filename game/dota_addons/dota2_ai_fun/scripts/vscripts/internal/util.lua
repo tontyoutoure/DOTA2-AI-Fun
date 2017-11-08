@@ -200,5 +200,21 @@ function Vector2D(v3D)
 	return Vector(Vector(0,0,0).Dot(Vector(1,0,0), v3D), Vector(0,0,0).Dot(Vector(0,1,0), v3D),0)
 end
 
+function CalculateStatusResist(hUnit)
+	local fResist = 1
+	if not hUnit:IsRealHero() then return fResist end
+	if hUnit:GetPrimaryAttribute() == DOTA_ATTRIBUTE_STRENGTH then
+		fResist = fResist*(1-hUnit:GetStrength()*0.0015)
+	end
+	if hUnit:HasAbility("tiny_grow") then
+		fResist = fResist*(1-hUnit:FindAbilityByName("tiny_grow"):GetSpecialValueFor("status_resistance")/100)
+	end
+	if hUnit:HasItemInInventory("item_combo_breaker") then
+		fResist = fResist*(1-0.25)
+	end
+	
+	return fResist
+end
+
 print("Util loaded")
 

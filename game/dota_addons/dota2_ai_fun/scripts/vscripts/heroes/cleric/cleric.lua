@@ -1,7 +1,6 @@
 LinkLuaModifier("modifier_cleric_berserk", "heroes/cleric/cleric_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_cleric_berserk_target", "heroes/cleric/cleric_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_cleric_berserk_cdr", "heroes/cleric/cleric_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-
+LinkLuaModifier("modifier_cleric_prayer", "heroes/cleric/cleric_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 function ClericMeteorShower(keys)
 	local iMeteorCount = keys.ability:GetSpecialValueFor("meteor_count")
 	local vTarget= keys.target_points[1]
@@ -9,14 +8,8 @@ function ClericMeteorShower(keys)
 	local fMeteorRadius = keys.ability:GetSpecialValueFor("meteor_radius")
 	AddFOWViewer(keys.caster:GetTeamNumber(), vTarget, 500, 3, true)
 	local fCastRadius = keys.ability:GetSpecialValueFor("cast_radius")
-	local iDamage = keys.ability:GetSpecialValueFor("damage")
-	if not keys.ability.hSpecial then 
-		keys.ability.hSpecial = Entities:First()	
-		while keys.ability.hSpecial and (keys.ability.hSpecial:GetName() ~= "special_bonus_cleric_1" or keys.ability.hSpecial:GetCaster() ~= keys.caster) do
-			keys.ability.hSpecial = Entities:Next(keys.ability.hSpecial)
-		end	
-	end
-	local fStunDuration = keys.ability:GetSpecialValueFor("stun_duration")+keys.ability.hSpecial:GetSpecialValueFor("value")
+	local iDamage = keys.ability:GetSpecialValueFor("damage")+keys.caster:FindAbilityByName("special_bonus_cleric_4"):GetSpecialValueFor("value")
+	local fStunDuration = keys.ability:GetSpecialValueFor("stun_duration")+keys.caster:FindAbilityByName("special_bonus_cleric_1"):GetSpecialValueFor("value")
 	for i = 1, iMeteorCount do
 		Timers:CreateTimer(0.2*(i-1), function () 
 			local vRelative = Vector(RandomFloat(-fCastRadius, fCastRadius), RandomFloat(-fCastRadius, fCastRadius), 0)
@@ -54,6 +47,16 @@ function ClericMeteorShower(keys)
 	end	
 end
 
+function ClericBerserkAoE(keys)
+	PrintTable(keys)
+	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
+	local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.target:GetOrigin(), nil, keys.ability:GetSpecialValueFor("aoe_radius"), DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
+	for k, v in ipairs(tTargets) do
+		v:EmitSound("Hero_Axe.Berserkers_Call")
+		v:AddNewModifier(keys.caster, keys.ability, "modifier_cleric_berserk", {Duration = keys.ability:GetSpecialValueFor("duration")})
+	end
+end
+
 cleric_berserk = class({})
 
 function cleric_berserk:OnSpellStart()
@@ -85,7 +88,7 @@ function ClericPrayer(keys)
 	for k, v in pairs(keys.target_entities) do
 		local hModifier = v:FindModifierByName("modifier_cleric_prayer")
 		if not hModifier then
-			keys.ability:ApplyDataDrivenModifier(keys.caster, v, "modifier_cleric_prayer", {Duration = iDuration})
+			v:AddNewModifier(keys.caster, keys.ability, "modifier_cleric_prayer", {Duration = iDuration})
 			v:EmitSound("Hero_Omniknight.GuardianAngel")
 			v:EmitSound("DOTA_Item.Refresher.Activate")
 			ParticleManager:SetParticleControlEnt(ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, v), 0, v, PATTACH_POINT_FOLLOW, "attach_hitloc", v:GetAbsOrigin(), true)
@@ -98,7 +101,7 @@ function ClericPrayer(keys)
 			end
 		elseif hModifier:GetStackCount() < hSpecial:GetSpecialValueFor("value") then
 			local iOriginalStackCount = hModifier:GetStackCount()
-			keys.ability:ApplyDataDrivenModifier(keys.caster, v, "modifier_cleric_prayer", {Duration = iDuration})
+			v:AddNewModifier(keys.caster, keys.ability, "modifier_cleric_prayer", {Duration = iDuration})
 			v:FindModifierByName("modifier_cleric_prayer"):SetStackCount(iOriginalStackCount+1)
 			v:EmitSound("Hero_Omniknight.GuardianAngel")
 			v:EmitSound("DOTA_Item.Refresher.Activate")

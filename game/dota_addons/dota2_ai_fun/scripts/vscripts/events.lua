@@ -256,7 +256,7 @@ function GameMode:_OnNPCSpawned(keys)
 	end
 	
 	if hHero:GetName() == "npc_dota_hero_windrunner" and not hHero.bSpawned then
-		require('heroes/per_summoner/per_summoner_init')
+		require('heroes/pet_summoner/pet_summoner_init')
 		PetSummonerInit(hHero, self)
 	end
 	
@@ -268,6 +268,11 @@ function GameMode:_OnNPCSpawned(keys)
 	if hHero:GetName() == "npc_dota_hero_pugna" and not hHero.bSpawned then
 		require('heroes/el_dorado/el_dorado_init')
 		ElDoradoInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_disruptor" and not hHero.bSpawned then
+		require('heroes/hurricane/hurricane_init')
+		HurricaneInit(hHero, self)
 	end
 	
 	LearnInnateSkillOnSpawn(hHero)

@@ -37,10 +37,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"damage"	"50"
+				"LinkedSpecialBonus"			"special_bonus_cleric_4"
 			}
 			"02"
 			{
-				"var_type"	"FIELD_INTEGER"
+				"var_type"	"FIELD_FLOAT"
 				"stun_duration"	"1"
 				"LinkedSpecialBonus"			"special_bonus_cleric_1"
 			}
@@ -106,6 +107,56 @@
 		}
 	}
 
+	"cleric_berserk_aoe"
+	{
+		"BaseClass"	"ability_datadriven"
+		"ScriptFile"  "scripts/vscripts/heroes/cleric/cleric.lua"
+		"AbilityTextureName"	"axe_berserkers_call_shoutmask"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"4"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"15"
+		"AbilityManaCost"	"85 100 115 130"
+		"AbilityCastRange"	"700"
+		"AbilityCastRangeBuffer"	"200"
+		"AoERadius" "%aoe_radius"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"2 4 6 8"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_attack"	"50 100 150 200"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage"	"50 100 150 200"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"aoe_radius"	"300"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/cleric/cleric.lua"
+				"Function"	"ClericBerserkAoE"
+			}
+		}
+	}
+	
 	"cleric_magic_mirror"
 	{
 		"BaseClass"	"ability_lua"
@@ -201,7 +252,7 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"value"				"1"
 			}
 		}
@@ -235,6 +286,54 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"				"2"
+			}
+		}
+	}
+	"special_bonus_cleric_4"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"100"
+			}
+		}
+	}
+	"special_bonus_cleric_5"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"10"
+			}
+		}
+	}
+	"special_bonus_cleric_6"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"10"
 			}
 		}
 	}
