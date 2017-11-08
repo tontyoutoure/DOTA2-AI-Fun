@@ -48,7 +48,6 @@ function ClericMeteorShower(keys)
 end
 
 function ClericBerserkAoE(keys)
-	PrintTable(keys)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.target:GetOrigin(), nil, keys.ability:GetSpecialValueFor("aoe_radius"), DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 	for k, v in ipairs(tTargets) do
