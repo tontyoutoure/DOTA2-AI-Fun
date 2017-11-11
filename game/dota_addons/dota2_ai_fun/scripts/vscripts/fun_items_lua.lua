@@ -2,6 +2,7 @@ LinkLuaModifier("modifier_item_fun_sprint_shoes_lua", "fun_item_modifiers_lua.lu
 LinkLuaModifier("modifier_item_fun_escutcheon_lua", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_item_fun_escutcheon_regen_lua", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_item_fun_ragnarok_lua", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_item_fun_ragnarok_ultra_maim", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 
 item_fun_sprint_shoes = class({})
 

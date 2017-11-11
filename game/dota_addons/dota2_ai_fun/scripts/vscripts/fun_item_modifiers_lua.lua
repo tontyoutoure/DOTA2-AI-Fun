@@ -1,29 +1,53 @@
+modifier_angelic_alliance_maximum_speed = class({})
+
+function modifier_angelic_alliance_maximum_speed:DeclareFunctions()
+	local funcs = 
+	{
+		MODIFIER_PROPERTY_MOVESPEED_MAX,
+		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT
+	}
+
+	return funcs
+end
+
+function modifier_angelic_alliance_maximum_speed:GetModifierMoveSpeed_Max()
+	return 99999
+end
+
+function modifier_angelic_alliance_maximum_speed:GetModifierMoveSpeed_Limit()
+	return 99999
+end
+
+function modifier_angelic_alliance_maximum_speed:IsHidden() return true end
+function modifier_angelic_alliance_maximum_speed:IsPurgable() return false end
+
+function modifier_angelic_alliance_maximum_speed:GetModifierMoveSpeedBonus_Constant()
+	return self:GetAbility():GetSpecialValueFor("speed")
+end
+
 modifier_item_fun_sprint_shoes_lua = class({})
--- Adopted from SpellLibrary. Great thanks for the authors: Perry and Noya!
 
 function modifier_item_fun_sprint_shoes_lua:DeclareFunctions()
 	local funcs = 
 	{
 		MODIFIER_PROPERTY_MOVESPEED_MAX,
 		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE
 	}
 
 	return funcs
 end
 
 function modifier_item_fun_sprint_shoes_lua:GetModifierMoveSpeed_Max()
-	if IsClient() then return 650 end
-	return self:GetAbility():GetSpecialValueFor("speed")
+	return 99999
 end
 
 function modifier_item_fun_sprint_shoes_lua:GetModifierMoveSpeed_Limit()
-	if IsClient() then return 650 end
-	return self:GetAbility():GetSpecialValueFor("speed")
+	return 99999
 end
 
-function modifier_item_fun_sprint_shoes_lua:GetModifierMoveSpeed_Absolute()
-	if IsClient() then return 650 end
+function modifier_item_fun_sprint_shoes_lua:GetModifierMoveSpeedBonus_Special_Boots()
 	return self:GetAbility():GetSpecialValueFor("speed")
 end
 
@@ -50,7 +74,9 @@ function modifier_item_fun_escutcheon_lua:DeclareFunctions()
 		MODIFIER_EVENT_ON_TAKEDAMAGE, 
 		MODIFIER_PROPERTY_REINCARNATION,
 		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
-		MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE}
+		MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE,
+--		MODIFIER_PROPERTY_STATUS_RESISTANCE
+	}
 end
 
 function modifier_item_fun_escutcheon_lua:OnTakeDamage(keys)
@@ -64,6 +90,10 @@ function modifier_item_fun_escutcheon_lua:OnTakeDamage(keys)
 			caster.fReincarnateTime = nil 
 		end)
 	end
+end
+
+function modifier_item_fun_escutcheon_lua:GetModifierStatusResistance()
+	return self:GetAbility():GetSpecialValueFor("status_resistance")
 end
 
 function modifier_item_fun_escutcheon_lua:OnCreated()
@@ -106,62 +136,23 @@ function modifier_item_fun_escutcheon_lua:ReincarnateTime()
 	end
 end
 
+modifier_ragnarok_cleave = class({})
 
-modifier_item_fun_escutcheon_regen_lua = class({})
-
-
-modifier_item_fun_ragnarok_lua = class({})
-
-function modifier_item_fun_ragnarok_lua:DeclareFunctions()
+function modifier_ragnarok_cleave:DeclareFunctions()
 	return {
-		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
-		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-		MODIFIER_EVENT_ON_ATTACK_LANDED,
-		MODIFIER_PROPERTY_HEALTH_BONUS
+		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
 end
+function modifier_ragnarok_cleave:IsHidden() return true end
+function modifier_ragnarok_cleave:IsPurgable() return false end
+function modifier_ragnarok_cleave:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
-function modifier_item_fun_ragnarok_lua:GetModifierHealthBonus()
-	return self:GetAbility():GetSpecialValueFor("bonus_health")
-end
-
-function modifier_item_fun_ragnarok_lua:OnAttackLanded(keys)
+function modifier_ragnarok_cleave:OnAttackLanded(keys)
 	if keys.attacker ~= self:GetParent() then return end
-	if keys.attacker:GetAttackCapability() == DOTA_UNIT_CAP_RANGED_ATTACK then return end
 	local hAbility = self:GetAbility()
 	DoCleaveAttack(keys.attacker, keys.target, hAbility, hAbility:GetSpecialValueFor("cleave_damage")*keys.original_damage/100, hAbility:GetSpecialValueFor("cleave_start_radius"), hAbility:GetSpecialValueFor("cleave_end_radius"),hAbility:GetSpecialValueFor("cleave_distance"), "particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength.vpcf")	
+	self:Destroy()
 end
-
-function modifier_item_fun_ragnarok_lua:OnCreated()
-	self:GetParent().iRagnarokCount = self:GetParent().iRagnarokCount or 0
-	self:GetParent().iRagnarokCount = self:GetParent().iRagnarokCount+1
-end
-
-function modifier_item_fun_ragnarok_lua:IsPurgable() return false end
-
-
-function modifier_item_fun_ragnarok_lua:OnDestroy()
-	self:GetParent().iRagnarokCount = self:GetParent().iRagnarokCount-1
-end
-
-function modifier_item_fun_ragnarok_lua:GetModifierBaseDamageOutgoing_Percentage()
-	return self:GetAbility():GetSpecialValueFor("bonus_damage")/self:GetParent().iRagnarokCount
-end
-
-function modifier_item_fun_ragnarok_lua:GetModifierBonusStats_Strength()
-	return self:GetAbility():GetSpecialValueFor("bonus_strength")
-end
-
-
-function modifier_item_fun_ragnarok_lua:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
-function modifier_item_fun_ragnarok_lua:IsHidden()
-	return true
-end
-
-
 
 modifier_magic_hammer_mana_break = class({})
 
@@ -280,3 +271,11 @@ end
 function modifier_heros_bow_minus_armor:GetModifierPhysicalArmorBonus()
 	return self:GetParent():GetPhysicalArmorBaseValue()*self.iArmorPercentage/100
 end
+
+modifier_economizer_ultimate = class({})
+
+function modifier_economizer_ultimate:DeclareFunctions() return {MODIFIER_PROPERTY_IS_SCEPTER} end
+function modifier_economizer_ultimate:GetModifierScepter() return 1 end
+function modifier_economizer_ultimate:IsHidden() return true end
+function modifier_economizer_ultimate:IsPurgable() return false end
+function modifier_economizer_ultimate:RemoveOnDeath() return false end

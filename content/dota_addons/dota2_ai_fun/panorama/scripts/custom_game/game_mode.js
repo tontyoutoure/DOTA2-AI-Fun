@@ -49,7 +49,8 @@ function set_game_options()
 			"max_level": $("#max_level_dropdown").GetSelected().id,
 			"imbalanced_economizer": $("#imbalanced_economizer").checked,
 			"bot_attack_tower_pick_rune": $("#bot_attack_tower_pick_rune").checked,
-			"bot_has_fun_item": $("#bot_has_fun_item").checked
+			"bot_has_fun_item": $("#bot_has_fun_item").checked,
+			"universal_shop": $("#universal_shop").checked
 		}	
 	});
 	$("#game_options_container").style.visibility='collapse';

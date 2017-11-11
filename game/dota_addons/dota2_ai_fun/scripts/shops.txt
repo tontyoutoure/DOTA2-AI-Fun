@@ -16,6 +16,7 @@
 		"item"		"item_courier"
 		"item"		"item_bottle"
 		"item"		"item_fun_escutcheon"
+		"item"		"item_fun_terra_blade"	
 	}
 
 	"attributes"

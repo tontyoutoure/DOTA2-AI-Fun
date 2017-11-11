@@ -3,6 +3,9 @@ LinkLuaModifier("modifier_heros_bow_always_allow_attack", "fun_item_modifiers_lu
 LinkLuaModifier("modifier_angelic_alliance_spell_lifesteal", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_economizer_spell_lifesteal", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_heros_bow_minus_armor", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_economizer_ultimate", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ragnarok_cleave", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_angelic_alliance_maximum_speed", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 local function CheckStringInTable(s, t)
 	for i = 1, #t do
 		if s == t[i] then return true end
@@ -116,18 +119,6 @@ function ResetCooldown(keys)
 		local indexedAbility = caster:GetAbilityByIndex(i)
 		if indexedAbility then
 			local indexedAbilityName = indexedAbility:GetAbilityName()
-			if DOTA2_AI_FUN_SPEW then
-				local sFileName = "D:/Desktop/dump_abilities_"..caster:GetName()..".log"
-				
-				fileHandle = fileHandle or io.open(sFileName, "w")
-				if fileHandle then
-					fileHandle:write(tostring(i)..". Ability Name: "..indexedAbilityName, '\n')
-					PrintTable(indexedAbility:GetAbilityKeyValues(), 1, fileHandle)
-				else 
-					print("Ability Name: "..indexedAbilityName)
-					PrintTable(indexedAbility:GetAbilityKeyValues(), 1)
-				end
-			end
 			local indexedAbilityLevel = indexedAbility:GetLevel()
 			if indexedAbilityLevel > 0 and CheckStringInTable(indexedAbilityName, chargedAbilities) then
 				ResetAbilityCharge(indexedAbility)
@@ -162,7 +153,7 @@ function ResetCooldown(keys)
 	if bIsAA then
 		keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_item_fun_angelic_alliance_cdr_short", {duration = 0.01})
 	elseif not CheckStringInTable(abilityName, bannedItems) then
-		keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_item_fun_economizer_cdr_short", {duration = 0.01})
+		keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_" .. keys.ability:GetName() .. "_cdr_short", {duration = 0.01})
 	
 	end
 	if fileHandle then fileHandle:close() end
@@ -230,7 +221,7 @@ function EAARestoreManaRefresh(keys)
 	local bIsAA = keys.ability:GetName() == "item_fun_angelic_alliance"
 	
 	if bIsAA then 
-		caster:SetMana(caster:GetMaxMana())
+		caster:AddNewModifier(caster, keys.ability, "modifier_angelic_alliance_maximum_speed", {Duration = 0.15}) 
 	end
 	
 	if not caster:HasModifier("modifier_imbalanced_economizer") then return end
@@ -269,7 +260,8 @@ function AngelicAllianceAngelDown(keys)
 end
 
 function AASpellLifestealApply(keys)
-	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_angelic_alliance_spell_lifesteal", {Duration = 0.15})
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_angelic_alliance_spell_lifesteal", {Duration = 0.15})	
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_economizer_ultimate", {Duration = 0.15})
 end
 
 function EconomizerSpellLifestealApply(keys)
@@ -395,9 +387,10 @@ end
 
 function GenjiGloveMinibash(keys)
 	if not keys.target:IsBuilding() then
-		keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_item_fun_genji_glove_minibash", {})
+		keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_bashed", {Duration = keys.ability:GetSpecialValueFor("bash_stun")})
 		keys.target:EmitSound("DOTA_Item.MKB.Minibash")
 		ParticleManager:CreateParticle("particles/generic_gameplay/generic_minibash.vpcf", PATTACH_OVERHEAD_FOLLOW, keys.target)
+		ApplyDamage({attacker = keys.caster, victim = keys.target, ability = keys.ability, damage_type = DAMAGE_TYPE_PURE, damage = keys.ability:GetSpecialValueFor("extra_damage")})
 	end
 end
 
@@ -461,3 +454,52 @@ end
 function HerosBowReduceArmor(keys)
 	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_heros_bow_minus_armor", {Duration = keys.ability:GetSpecialValueFor("armor_reduction_duration")})
 end
+
+function Economizer2UltimateSpellLifestealApply(keys)
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_economizer_spell_lifesteal", {Duration = 0.15})
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_economizer_ultimate", {Duration = 0.15})
+end
+
+function RagnarokCleaveApply(keys)	
+	if keys.ability.hModifier and not keys.ability.hModifier:IsNull() then 
+		keys.ability.hModifier:Destroy()
+		keys.ability.hModifier = nil
+	end
+	if keys.caster:IsRangedAttacker() then return end
+	keys.ability.hModifier = keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ragnarok_cleave", {Duration = 3})
+end
+
+function RagnarokMaimApply(keys)
+	if keys.target:IsBuilding() then return end
+	keys.target:EmitSound("DOTA_Item.Maim")
+	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_item_fun_ragnarok_2_ultra_maim", {Duration = keys.ability:GetSpecialValueFor("maim_duration")})
+end
+
+function TerraBladeMaimApply(keys)
+	if keys.target:IsBuilding() then return end
+	keys.target:EmitSound("DOTA_Item.Maim")
+	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_item_fun_terra_blade_ultra_maim", {Duration = keys.ability:GetSpecialValueFor("maim_duration")})
+end
+
+function AngelicAllianceDrop(keys)
+	for i = 0, 8 do
+		if keys.caster:GetItemInSlot(i) and keys.caster:GetItemInSlot(i):GetName() == "item_fun_angelic_alliance" then
+			keys.caster:DropItemAtPositionImmediate(keys.caster:GetItemInSlot(i), keys.caster:GetOrigin())
+		end
+	end
+end
+
+function AAChangePurchaser(keys)
+	if keys.itemname == "item_fun_angelic_alliance" then
+		local hPicker = EntIndexToHScript(keys.HeroEntityIndex)
+		local hItem = EntIndexToHScript(keys.ItemEntityIndex)
+		if not hPicker.bIsPick then
+			hPicker.bIsPick = true
+			hItem:RemoveSelf()
+			hPicker:AddItemByName("item_fun_angelic_alliance")
+			Timers:CreateTimer(0.04, function () hPicker.bIsPick = nil end)
+		end
+	end
+end
+
+ListenToGameEvent("dota_item_picked_up", AAChangePurchaser, nil)

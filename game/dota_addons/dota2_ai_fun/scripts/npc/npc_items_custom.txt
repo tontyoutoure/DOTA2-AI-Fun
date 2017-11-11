@@ -52,10 +52,6 @@
 				"Passive"	"1"
 				"IsHidden"	"1"
 				"ThinkInterval"	"0.1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MANACOST_PERCENTAGE"	"%mana_cost_reduction_percentage"
-				}
 				"OnAbilityExecuted"
 				{
 					"RunScript"
@@ -102,24 +98,19 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"mana_cost_reduction_percentage"	"99"
+				"cd_reduction_percentage"	"50"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"cd_reduction_percentage"	"50"
+				"bonus_health"	"500"
 			}
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_health"	"500"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
 				"bonus_mana"	"500"
 			}
-			"06"
+			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"spell_lifesteal"	"50"
@@ -162,38 +153,6 @@
 					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%bat"
 				}
 			}
-			"modifier_item_fun_genji_gloves_maximum_attack_speed_and_minibash"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed_bonus"
-				}
-				// "%attack_damage"is set to the damage value before mitigation
-				"OnAttackLanded"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/fun_items.lua"
-						"Function"	"GenjiGloveMinibash"
-					}
-				}
-			}
-			"modifier_item_fun_genji_glove_minibash"
-			{
-				"Duration"	"%bash_stun"
-				"Passive"	"0"
-				"IsHidden"	"0"
-				"IsBuff"	"0"
-				"IsDebuff"	"1"
-				"IsPurgable"	"0"
-				"OverrideAnimation"	"ACT_DOTA_DISABLED"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
 		}
 		"AbilitySpecial"
 		{
@@ -232,9 +191,8 @@
 
 	"item_fun_ragnarok"
 	{
-		"BaseClass"	"item_lua"
+		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_fun_ragnarok"
-		"ScriptFile"	"fun_items_lua.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"ID"	"15502"
 		"ItemQuality"	"artifact"
@@ -248,6 +206,30 @@
 		{
 			"particle"	"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength.vpcf"
 		}
+		"Modifiers"
+		{
+			"modifier_item_fun_ragnarok_attributes"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_strength"
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_health"
+				}
+			}
+			"modifier_item_fun_ragnarok_bonus_damage_regen"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%bonus_damage_percentage"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"%health_regen"
+				}
+			}
+		}
 		"AbilitySpecial"
 		{
 			"01"
@@ -258,32 +240,17 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"cleave_damage"	"100"
+				"bonus_damage_percentage"	"100"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_damage"	"100"
+				"bonus_health"	"500"
 			}
 			"04"
-			{
+			{	
 				"var_type"	"FIELD_INTEGER"
-				"cleave_start_radius"	"150"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"cleave_end_radius"	"400"
-			}
-			"06"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"cleave_distance"	"600"
-			}
-			"07"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"bonus_health"	"500"
+				"health_regen"	"8"
 			}
 		}
 	}
@@ -311,7 +278,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"speed"	"650"
+				"speed"	"150"
 			}
 		}
 		"ActiveDescriptionLine"	"1"
@@ -357,12 +324,17 @@
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage_reverse"	"20"
+				"damage_reverse"	"30"
 			}
 			"06"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"reincarnate_time"	"3"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"status_resistance"	"99"			
 			}
 		}
 	}
@@ -507,10 +479,14 @@
 		"AbilityCooldown"	"40"
 		"AbilityManaCost"	"0"
 		"AbilityCastRange"	"0"
+		"ItemSellable"  "0"
+		"ItemKillable"  "0"
+		"IsTempestDoubleClonable"  "0"
+		"ItemDisassembleRule"				"DOTA_ITEM_DISASSEMBLE_NEVER"
 		"ID"	"15510"
 		"ItemQuality"	"artifact"
-		"Model"	"models/props_gameplay/red_box.vmdl"
-		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		"Model"	"models/items/sven/ice_sword/ice_sword.vmdl"
+		"Effect"	"particles/econ/courier/courier_donkey_ti7/courier_donkey_ti7_ambient.vpcf"
 		"ItemCost"	"1"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemPermanent"	"1"
@@ -521,6 +497,14 @@
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
 			"particle"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_ally.vpcf"
 			"particle"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf"
+		}
+		"OnOwnerDied"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/fun_items.lua"
+				"Function"	"AngelicAllianceDrop"
+			}
 		}
 		"OnSpellStart"
 		{
@@ -553,8 +537,10 @@
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_all"
 					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_health"
 					"MODIFIER_PROPERTY_MANA_BONUS"	"%bonus_mana"
+					"MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE"	"%spell_amp"
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
 				}
+				
 			}
 			"modifier_item_fun_angelic_alliance_halo"
 			{
@@ -567,15 +553,9 @@
 				{
 					"MODIFIER_PROPERTY_MANACOST_PERCENTAGE"	"%mana_reduction_percentage"
 					"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"	"%cd_reduction_percentage"
-				}
+				}		
 				"OnIntervalThink"
 				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_item_fun_sprint_shoes_lua"
-						"Target"	"CASTER"
-						"Duration"	"0.15"
-					}
 					"RunScript"
 					{
 						"ScriptFile"	"fun_items.lua"
@@ -674,22 +654,22 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_damage"	"100"
+				"bonus_damage"	"400"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"stop_aoe"	"1500"
+				"stop_aoe"	"1000"
 			}
 			"04"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"stop_time"	"7.5"
+				"stop_time"	"5"
 			}
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"speed"	"650"
+				"speed"	"250"
 			}
 			"06"
 			{
@@ -704,17 +684,22 @@
 			"08"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_health"	"600"
+				"bonus_health"	"800"
 			}
 			"09"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_mana"	"600"
+				"bonus_mana"	"800"
 			}
 			"10"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"spell_lifesteal"	"80"
+				"spell_lifesteal"	"100"
+			}
+			"11"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"spell_amp"	"100"
 			}
 		}
 		"ActiveDescriptionLine"	"1"
@@ -770,7 +755,7 @@
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_strength"
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_int"
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"%manaregen"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%manaregen"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed"
 				}
 				"OnAttackStart"
@@ -953,7 +938,7 @@
 			"09"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"manaregen"	"200"
+				"manaregen"	"2"
 			}
 			"10"
 			{
@@ -1238,7 +1223,7 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%bonus_armor"
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_agility"
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_strength"
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"%mana_regen"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%mana_regen"
 					"MODIFIER_PROPERTY_MANA_BONUS"	"%bonus_mana"
 				}
 				"OnIntervalThink"
@@ -1386,7 +1371,7 @@
 			"14"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"mana_regen"	"200"
+				"mana_regen"	"2"
 			}
 			"15"
 			{
@@ -1569,7 +1554,7 @@
 		"ItemResult"	"item_fun_economizer"
 		"ItemRequirements"
 		{
-			"01"	"item_octarine_core;item_mystic_staff;item_staff_of_wizardry;item_staff_of_wizardry;item_robe;item_mantle"
+			"01"	"item_octarine_core;item_mystic_staff;item_staff_of_wizardry;item_robe;item_mantle"
 		}
 	}
 
@@ -1584,7 +1569,7 @@
 		"ItemResult"	"item_fun_genji_gloves"
 		"ItemRequirements"
 		{
-			"01"	"item_slippers;item_boots_of_elves;item_blade_of_alacrity;item_blade_of_alacrity;item_eagle;item_butterfly;"
+			"01"	"item_slippers;item_boots_of_elves;item_blade_of_alacrity;item_eagle;item_butterfly;"
 		}
 	}
 
@@ -1598,7 +1583,7 @@
 		"ItemResult"	"item_fun_ragnarok"
 		"ItemRequirements"
 		{
-			"01"	"item_gauntlets;item_belt_of_strength;item_ogre_axe;item_ogre_axe;item_reaver;item_heart"
+			"01"	"item_gauntlets;item_belt_of_strength;item_ogre_axe;item_reaver;item_heart"
 		}
 	}
 
@@ -1626,7 +1611,7 @@
 		"ItemResult"	"item_fun_escutcheon"
 		"ItemRequirements"
 		{
-			"01"	"item_hood_of_defiance;item_vanguard;item_bloodstone;item_soul_booster"
+			"01"	"item_pipe;item_crimson_guard;item_combo_breaker;item_soul_booster"
 		}
 	}
 
@@ -1654,7 +1639,7 @@
 		"ItemResult"	"item_fun_angelic_alliance"
 		"ItemRequirements"
 		{
-			"01"	"item_fun_orb_of_omnipotence;item_fun_sprint_shoes;item_fun_economizer;item_relic"
+			"01"	"item_fun_orb_of_omnipotence;item_fun_sprint_shoes;item_fun_economizer_2;item_rapier"
 		}
 	}
 
@@ -1711,6 +1696,664 @@
 		"ItemRequirements"
 		{
 			"01"	"item_phase_boots;item_gem;item_ghost;item_soul_ring"
+		}
+	}
+
+	"item_recipe_fun_economizer_2"
+	{
+		// General
+		"BaseClass"	"item_datadriven"
+		"ID"	"15521"
+		"Model"	"models/props_gameplay/recipe.mdl"
+		"ItemCost"	"0"
+		"ItemRecipe"	"1"
+		"ItemResult"	"item_fun_economizer_2"
+		"ItemRequirements"
+		{
+			"01"	"item_fun_economizer;item_ultimate_scepter;item_trident"
+		}
+	}
+
+	"item_fun_economizer_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_fun_economizer"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ID"	"15520"
+		"ItemQuality"	"artifact"
+		"Model"	"models/props_gameplay/red_box.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		"ItemCost"	"1"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemPermanent"	"1"
+		"ItemAliases"	"economizer 2"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_item_fun_economizer_2_attributes"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_intelligence"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_strength"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_agility"
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_health"
+					"MODIFIER_PROPERTY_MANA_BONUS"	"%bonus_mana"
+					"MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE"	"%spell_amp"
+				}
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"Function"	"Economizer2UltimateSpellLifestealApply"
+						"ScriptFile"	"scripts/vscripts/fun_items.lua"
+					}
+				}
+				"ThinkInterval"	"0.1"
+			}
+			"modifier_item_fun_economizer_2_mcr"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"ThinkInterval"	"0.1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANACOST_PERCENTAGE"	"%manacost_reduction"
+				}
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/fun_items.lua"
+						"Function"	"ResetCooldown"
+					}
+				}
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"fun_items.lua"
+						"Function"	"EAARestoreManaRefresh"
+					}
+				}
+			}
+			"modifier_item_fun_economizer_2_cdr"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"	"%cd_reduction_percentage"
+				}
+			}
+			"modifier_item_fun_economizer_2_cdr_short"
+			{
+				"Passive"	"0"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"	"100"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_intelligence"	"150"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_agility"	"10"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_strength"	"10"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"manacost_reduction"	"50"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cd_reduction_percentage"	"50"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_health"	"700"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_mana"	"700"
+			}
+			"08"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"spell_lifesteal"	"50"
+			}
+			"09"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"spell_amp"	"50"
+			}
+		}
+	}
+
+	"item_recipe_fun_ragnarok_2"
+	{
+		// General
+		"BaseClass"	"item_datadriven"
+		"ID"	"15523"
+		"Model"	"models/props_gameplay/recipe.mdl"
+		"ItemCost"	"0"
+		"ItemRecipe"	"1"
+		"ItemResult"	"item_fun_ragnarok_2"
+		"ItemRequirements"
+		{
+			"01"	"item_fun_ragnarok;item_bfury;item_sange"
+		}
+	}
+	
+	"item_fun_ragnarok_2"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_fun_ragnarok"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ID"	"15522"
+		"ItemQuality"	"artifact"
+		"Model"	"models/props_gameplay/red_box.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		"ItemCost"	"1"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemPermanent"	"1"
+		"ItemAliases"	"ragnarok"
+		"precache"
+		{
+			"particle"	"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength.vpcf"
+		}
+		
+		"Modifiers"
+		{
+			"modifier_item_fun_ragnarok_2_attributes"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_strength"
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_health"
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%manaregen"
+				}
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/fun_items.lua"
+						"Function"	"RagnarokCleaveApply"
+					}
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/fun_items.lua"
+						"Function"	"RagnarokMaimApply"
+					}
+				}
+			}
+			"modifier_item_fun_ragnarok_2_bonus_damage_regen"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%bonus_damage_percentage"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"%health_regen"
+				}
+			}
+			"modifier_item_fun_ragnarok_2_ultra_maim"
+			{		
+				"IsHidden"	"0"	
+				"IsDebuff"  "1"
+				"Duration"  "%maim_duration"
+				"IsPurgable"  "1"
+				"EffectName"	"particles/items2_fx/sange_maim.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%maim_movement_percentage"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%maim_attack"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_strength"	"150"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cleave_damage"	"100"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage_percentage"	"100"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cleave_start_radius"	"150"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cleave_end_radius"	"400"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cleave_distance"	"600"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_health"	"500"
+			}
+			"08"
+			{	
+				"var_type"	"FIELD_INTEGER"
+				"health_regen"	"8"
+			}
+			"09"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"maim_movement_percentage"	"-50"				
+			}
+			"10"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"maim_attack"	"-50"		
+			}
+			"10"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"maim_duration"	"10"		
+			}
+			"11"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage"	"50"					
+			}
+			"12"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"manaregen"	"4"
+			}
+		}
+	}
+
+	"item_recipe_fun_genji_gloves_2"
+	{
+		// General
+		"BaseClass"	"item_datadriven"
+		"ID"	"15525"
+		"Model"	"models/props_gameplay/recipe.mdl"
+		"ItemCost"	"0"
+		"ItemRecipe"	"1"
+		"ItemResult"	"item_fun_genji_gloves_2"
+		"ItemRequirements"
+		{
+			"01"	"item_fun_genji_gloves;item_monkey_king_bar;item_yasha"
+		}
+	}
+	
+	"item_fun_genji_gloves_2"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_fun_genji_gloves"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ID"	"15524"
+		"ItemQuality"	"artifact"
+		"Model"	"models/props_gameplay/red_box.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		"ItemCost"	"1"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemPermanent"	"1"
+		"ItemAliases"	"genji 2"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_items.vsndevts"
+			"particle"	"particles/generic_gameplay/generic_minibash.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_item_fun_genji_gloves_attributes"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_agility"
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%evasion"
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%bat"
+				}
+			}
+			"modifier_item_fun_genji_gloves_2_cannot_miss_and_minibash"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%movement_speed_percent_bonus"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_CANNOT_MISS"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				// "%attack_damage"is set to the damage value before mitigation
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/fun_items.lua"
+						"Function"	"GenjiGloveMinibash"
+					}
+				}
+			}
+			"modifier_item_fun_genji_glove_2_minibash"
+			{
+				"Duration"	"%bash_stun"
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"IsBuff"	"0"
+				"IsDebuff"	"1"
+				"IsPurgable"	"0"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_agility"	"150"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"bash_stun"	"0.01"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_attack_speed"	"180"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"evasion"	"50"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage"	"50"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bat"	"1"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"extra_damage"	"100"
+			}
+			"08"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"movement_speed_percent_bonus"	"50"
+			}
+		}
+	}
+	"item_recipe_fun_terra_blade"
+	{
+		// General
+		"BaseClass"	"item_datadriven"
+		"ID"	"15527"
+		"Model"	"models/props_gameplay/recipe.mdl"
+		"ItemCost"	"0"
+		"ItemRecipe"	"1"
+		"ItemResult"	"item_fun_terra_blade"
+		"ItemRequirements"
+		{
+			"01"	"item_fun_genji_gloves_2;item_fun_ragnarok_2"
+		}
+	}
+	
+	"item_fun_terra_blade"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_fun_terra_blade"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ID"	"15526"
+		"ItemQuality"	"artifact"
+		"Model"	"models/props_gameplay/red_box.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		"ItemCost"	"1"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemPermanent"	"1"
+		"ItemAliases"	"terra blade"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_items.vsndevts"
+			"particle"	"particles/generic_gameplay/generic_minibash.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_item_fun_terra_blade_attributes"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_agility"
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%evasion"
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%bat"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_strength"
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_health"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%manaregen"
+				}
+				
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/fun_items.lua"
+						"Function"	"RagnarokCleaveApply"
+					}
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/fun_items.lua"
+						"Function"	"GenjiGloveMinibash"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/fun_items.lua"
+						"Function"	"TerraBladeMaimApply"
+					}
+				}
+			}
+			
+			"modifier_item_fun_terra_blade_ultra_maim"
+			{		
+				"IsHidden"	"0"	
+				"IsDebuff"  "1"
+				"Duration"  "%maim_duration"
+				"IsPurgable"  "1"
+				"EffectName"	"particles/items2_fx/sange_maim.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%maim_movement_percentage"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%maim_attack"
+				}
+			}
+			
+			"modifier_item_fun_terra_blade_single"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%movement_speed_percent_bonus"
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%bonus_damage_percentage"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"%health_regen"
+				}
+				
+				"States"
+				{
+					"MODIFIER_STATE_CANNOT_MISS"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				// "%attack_damage"is set to the damage value before mitigation
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_agility"	"150"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"bash_stun"	"0.01"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_attack_speed"	"180"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"evasion"	"70"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage"	"150"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bat"	"1"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"extra_damage"	"150"
+			}
+			"08"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"movement_speed_percent_bonus"	"70"
+			}
+			"9"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_strength"	"150"
+			}
+			"10"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cleave_damage"	"100"
+			}
+			"11"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage_percentage"	"100"
+			}
+			"12"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cleave_start_radius"	"150"
+			}
+			"13"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cleave_end_radius"	"400"
+			}
+			"14"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cleave_distance"	"600"
+			}
+			"15"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_health"	"700"
+			}
+			"16"
+			{	
+				"var_type"	"FIELD_INTEGER"
+				"health_regen"	"8"
+			}
+			"17"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"maim_movement_percentage"	"-70"				
+			}
+			"18"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"maim_attack"	"-70"		
+			}
+			"19"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"maim_duration"	"10"		
+			}
+			"20"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"manaregen"	"7"
+			}
 		}
 	}
 }

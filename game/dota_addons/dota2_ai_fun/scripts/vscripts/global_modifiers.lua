@@ -202,59 +202,69 @@ local tNotUpgrade = {
 }
 
 local tFunItems = {
-	item_fun_economizer = {"item_octarine_core","item_mystic_staff","item_staff_of_wizardry","item_staff_of_wizardry","item_robe","item_mantle"},
-	item_fun_genji_gloves = {"item_slippers","item_boots_of_elves","item_blade_of_alacrity","item_blade_of_alacrity","item_eagle","item_butterfly"},
-	item_fun_ragnarok = {"item_gauntlets","item_belt_of_strength","item_ogre_axe","item_ogre_axe","item_reaver","item_heart"},
+	item_fun_economizer = {"item_octarine_core","item_mystic_staff","item_staff_of_wizardry","item_robe","item_mantle"},
+	item_fun_economizer_2 = {"item_fun_economizer","item_ultimate_scepter","item_trident"},
+	item_fun_genji_gloves = {"item_slippers","item_boots_of_elves","item_blade_of_alacrity","item_eagle","item_butterfly"},
+	item_fun_genji_gloves_2 = {"item_fun_genji_gloves","item_monkey_king_bar","item_yasha"},
+	item_fun_ragnarok = {"item_gauntlets","item_belt_of_strength","item_ogre_axe","item_reaver","item_heart"},
+	item_fun_ragnarok_2 = {"item_fun_ragnarok", "item_bfury", "item_sange"},
 	item_fun_escutcheon = {"item_hood_of_defiance","item_vanguard","item_bloodstone","item_soul_booster"},
-	item_fun_angelic_alliance = {"item_fun_orb_of_omnipotence","item_fun_sprint_shoes","item_fun_economizer","item_relic"},
+	item_fun_angelic_alliance = {"item_fun_orb_of_omnipotence","item_fun_sprint_shoes","item_fun_economizer","item_rapier"},
 	item_fun_blood_sword = {"item_greater_crit","item_satanic","item_echo_sabre","item_echo_sabre"},
 	item_fun_heros_bow = {"item_ethereal_blade","item_dragon_lance","item_moon_shard","item_desolator"},
-	item_fun_magic_hammer = {"item_rod_of_atos","item_shivas_guard","item_diffusal_blade_2","item_aether_lens"}
+	item_fun_magic_hammer = {"item_rod_of_atos","item_shivas_guard","item_diffusal_blade_2","item_aether_lens"},
+	item_fun_terra_blade = {"item_fun_ragnarok_2","item_fun_genji_gloves_2"},	
 }
 
 local tBotFunItems = {
-	npc_dota_hero_axe = {"item_fun_ragnarok","item_fun_magic_hammer","item_fun_escutcheon"},
-	npc_dota_hero_bane = {"item_fun_magic_hammer","item_fun_economizer","item_fun_escutcheon"},
-	npc_dota_hero_bloodseeker = {"item_fun_genji_gloves","item_fun_blood_sword","item_fun_escutcheon"},
-	npc_dota_hero_crystal_maiden = {"item_fun_magic_hammer","item_fun_economizer","item_fun_escutcheon"},
-	npc_dota_hero_drow_ranger = {"item_fun_genji_gloves","item_fun_blood_sword","item_fun_heros_bow"},
-	npc_dota_hero_earthshaker = {"item_fun_magic_hammer","item_fun_economizer","item_fun_escutcheon"},
-	npc_dota_hero_juggernaut = {"item_fun_genji_gloves","item_fun_blood_sword","item_fun_heros_bow"},
-	npc_dota_hero_nevermore = {"item_fun_genji_gloves","item_fun_blood_sword","item_fun_heros_bow"},
-	npc_dota_hero_pudge = {"item_fun_ragnarok","item_fun_magic_hammer","item_fun_escutcheon"},
-	npc_dota_hero_razor = {"item_fun_ragnarok","item_fun_genji_gloves","item_fun_heros_bow"},
-	npc_dota_hero_sand_king = {"item_fun_magic_hammer","item_fun_economizer","item_fun_escutcheon"},
-	npc_dota_hero_sven = {"item_fun_blood_sword","item_fun_genji_gloves","item_fun_escutcheon"},
-	npc_dota_hero_tiny = {"item_fun_magic_hammer","item_fun_genji_gloves","item_fun_ragnarok"},
-	npc_dota_hero_vengefulspirit = {"item_fun_magic_hammer","item_fun_genji_gloves","item_fun_escutcheon"},
-	npc_dota_hero_windrunner = {"item_fun_economizer","item_fun_magic_hammer","item_fun_heros_bow"},
-	npc_dota_hero_zuus = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
-	npc_dota_hero_kunkka = {"item_fun_blood_sword","item_fun_ragnarok","item_fun_genji_gloves"},
-	npc_dota_hero_lina = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
-	npc_dota_hero_lion = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
-	npc_dota_hero_lich = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
-	npc_dota_hero_tidehunter = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
-	npc_dota_hero_witch_doctor = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
-	npc_dota_hero_sniper = {"item_fun_blood_sword","item_fun_genji_gloves","item_fun_heros_bow"},
-	npc_dota_hero_necrolyte = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
-	npc_dota_hero_warlock = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
-	npc_dota_hero_skeleton_king  = {"item_fun_blood_sword","item_fun_genji_gloves","item_fun_heros_bow"},
-	npc_dota_hero_death_prophet = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
-	npc_dota_hero_phantom_assassin = {"item_fun_blood_sword","item_fun_escutcheon","item_fun_genji_gloves"},
-	npc_dota_hero_viper = {"item_fun_heros_bow","item_fun_escutcheon","item_fun_genji_gloves"},
-	npc_dota_hero_luna = {"item_fun_blood_sword","item_fun_heros_bow","item_fun_genji_gloves"},
-	npc_dota_hero_dragon_knight = {"item_fun_blood_sword","item_fun_economizer","item_fun_heros_bow"},
-	npc_dota_hero_dazzle = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
-	npc_dota_hero_omniknight = {"item_fun_economizer","item_fun_ragnarok","item_fun_escutcheon"},
-	npc_dota_hero_bounty_hunter = {"item_fun_blood_sword","item_fun_heros_bow","item_fun_economizer"},
-	npc_dota_hero_jakiro = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
-	npc_dota_hero_chaos_knight = {"item_fun_ragnarok","item_fun_genji_gloves","item_fun_economizer"},
-	npc_dota_hero_bristleback = {"item_fun_escutcheon","item_fun_ragnarok","item_fun_magic_hammer"},
-	npc_dota_hero_skywrath_mage = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
-	npc_dota_hero_oracle = {"item_fun_economizer","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_axe = {"item_fun_ragnarok","item_fun_ragnarok_2","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_bane = {"item_fun_magic_hammer","item_fun_economizer","item_fun_economizer_2","item_fun_escutcheon"},
+	npc_dota_hero_bloodseeker = {"item_fun_genji_gloves","item_fun_genji_gloves_2","item_fun_blood_sword","item_fun_escutcheon"},
+	npc_dota_hero_crystal_maiden = {"item_fun_magic_hammer","item_fun_economizer","item_fun_economizer_2","item_fun_escutcheon"},
+	npc_dota_hero_drow_ranger = {"item_fun_genji_gloves","item_fun_genji_gloves_2","item_fun_blood_sword","item_fun_heros_bow"},
+	npc_dota_hero_earthshaker = {"item_fun_magic_hammer","item_fun_economizer","item_fun_economizer_2","item_fun_escutcheon"},
+	npc_dota_hero_juggernaut = {"item_fun_genji_gloves","item_fun_genji_gloves_2","item_fun_blood_sword","item_fun_heros_bow"},
+	npc_dota_hero_nevermore = {"item_fun_genji_gloves","item_fun_genji_gloves_2","item_fun_blood_sword","item_fun_heros_bow"},
+	npc_dota_hero_pudge = {"item_fun_ragnarok","item_fun_ragnarok_2","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_razor = {"item_fun_ragnarok","item_fun_ragnarok_2","item_fun_genji_gloves","item_fun_genji_gloves_2","item_fun_heros_bow"},
+	npc_dota_hero_sand_king = {"item_fun_magic_hammer","item_fun_economizer","item_fun_economizer_2","item_fun_escutcheon"},
+	npc_dota_hero_sven = {"item_fun_blood_sword","item_fun_genji_gloves","item_fun_genji_gloves_2","item_fun_escutcheon"},
+	npc_dota_hero_tiny = {"item_fun_magic_hammer","item_fun_genji_gloves","item_fun_genji_gloves_2","item_fun_ragnarok","item_fun_ragnarok_2"},
+	npc_dota_hero_vengefulspirit = {"item_fun_magic_hammer","item_fun_genji_gloves","item_fun_genji_gloves_2","item_fun_escutcheon"},
+	npc_dota_hero_windrunner = {"item_fun_economizer","item_fun_economizer_2","item_fun_magic_hammer","item_fun_heros_bow"},
+	npc_dota_hero_zuus = {"item_fun_economizer","item_fun_economizer_2","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_kunkka = {"item_fun_blood_sword","item_fun_ragnarok","item_fun_ragnarok_2","item_fun_genji_gloves","item_fun_genji_gloves_2"},
+	npc_dota_hero_lina = {"item_fun_economizer","item_fun_economizer_2","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_lion = {"item_fun_economizer","item_fun_economizer_2","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_lich = {"item_fun_economizer","item_fun_economizer_2","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_tidehunter = {"item_fun_economizer","item_fun_economizer_2","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_witch_doctor = {"item_fun_economizer","item_fun_economizer_2","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_sniper = {"item_fun_blood_sword","item_fun_genji_gloves","item_fun_genji_gloves_2","item_fun_heros_bow"},
+	npc_dota_hero_necrolyte = {"item_fun_economizer","item_fun_economizer_2","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_warlock = {"item_fun_economizer","item_fun_economizer_2","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_skeleton_king  = {"item_fun_blood_sword","item_fun_genji_gloves","item_fun_genji_gloves_2","item_fun_heros_bow"},
+	npc_dota_hero_death_prophet = {"item_fun_economizer","item_fun_economizer_2","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_phantom_assassin = {"item_fun_blood_sword","item_fun_escutcheon","item_fun_genji_gloves","item_fun_genji_gloves_2"},
+	npc_dota_hero_viper = {"item_fun_heros_bow","item_fun_escutcheon","item_fun_genji_gloves","item_fun_genji_gloves_2"},
+	npc_dota_hero_luna = {"item_fun_blood_sword","item_fun_heros_bow","item_fun_genji_gloves","item_fun_genji_gloves_2"},
+	npc_dota_hero_dragon_knight = {"item_fun_blood_sword","item_fun_economizer","item_fun_economizer_2","item_fun_heros_bow"},
+	npc_dota_hero_dazzle = {"item_fun_economizer","item_fun_economizer_2","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_omniknight = {"item_fun_economizer","item_fun_economizer_2","item_fun_ragnarok","item_fun_ragnarok_2","item_fun_escutcheon"},
+	npc_dota_hero_bounty_hunter = {"item_fun_blood_sword","item_fun_heros_bow","item_fun_economizer","item_fun_economizer_2"},
+	npc_dota_hero_jakiro = {"item_fun_economizer","item_fun_economizer_2","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_chaos_knight = {"item_fun_ragnarok","item_fun_ragnarok_2","item_fun_genji_gloves","item_fun_genji_gloves_2","item_fun_economizer","item_fun_economizer_2"},
+	npc_dota_hero_bristleback = {"item_fun_escutcheon","item_fun_ragnarok","item_fun_ragnarok_2","item_fun_magic_hammer"},
+	npc_dota_hero_skywrath_mage = {"item_fun_economizer","item_fun_economizer_2","item_fun_magic_hammer","item_fun_escutcheon"},
+	npc_dota_hero_oracle = {"item_fun_economizer","item_fun_economizer_2","item_fun_magic_hammer","item_fun_escutcheon"},
 }
 
-
+local tItemUpgrades = {
+	item_fun_economizer = {"item_fun_economizer_2"},
+	item_fun_genji_gloves = {"item_fun_genji_gloves_2", "item_fun_terra_blade"},
+	item_fun_ragnarok = {"item_fun_ragnarok_2", "item_fun_terra_blade"},
+	item_fun_genji_gloves_2 = {"item_fun_terra_blade"},
+	item_fun_ragnarok_2 = {"item_fun_terra_blade"},
+}
 
 local function FindItemByName(hHero, sName)
 	for i = 0, 8 do
@@ -265,6 +275,11 @@ end
 
 local function CheckFunItems(hHero, sFunItem)
 	if FindItemByName(hHero, sFunItem) then return end
+	if tItemUpgrades[sFunItem] then 
+		for i, v in ipairs(tItemUpgrades[sFunItem]) do
+			if FindItemByName(hHero, v) then return end
+		end
+	end
 	local tHasComponent = {}
 	local tLackComponent = {}
 	for j = 1, #tFunItems[sFunItem] do
@@ -305,7 +320,7 @@ function modifier_bot_get_fun_items:OnIntervalThink()
 	if IsClient() then return end
 	local hParent = self:GetParent()
 	local sHeroName = hParent:GetName()
-	if hParent:HasModifier("modifier_fountain_aura_buff") then
+	if hParent:HasModifier("modifier_fountain_aura_buff") or GameMode.iUniversalShop == 1 then
 		for i, v in ipairs(tBotFunItems[sHeroName]) do
 			CheckFunItems(hParent, v)
 		end

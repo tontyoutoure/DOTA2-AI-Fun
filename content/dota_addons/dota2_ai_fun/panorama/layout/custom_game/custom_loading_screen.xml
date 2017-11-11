@@ -151,6 +151,10 @@
 					<Label id="BotHaveFunItemTitle" class="GameOptionsLabel" text="#bot_has_fun_item" />
 					<ToggleButton checked="true" class="GameOptionsToggle" id="bot_has_fun_item"/>		
 				</Panel>
+				<Panel id="UniversalShopPanel"  class="GameOptionsSubPanel">
+					<Label id="UniversalShopTitle" class="GameOptionsLabel" text="#universal_shop" />
+					<ToggleButton checked="true" class="GameOptionsToggle" id="universal_shop"/>		
+				</Panel>
 				<Button id="ConfirmOptionsBtn" onactivate="set_game_options();">
 					<Label id="ConfirmOptionsBtnLabel" text="#confirm_game_options" />
 				</Button>
@@ -220,8 +224,8 @@
 						<Image id="HeroAvatarPugna" class="HeroAvatar" src="file://{images}/custom_game/loading_screen/npc_dota_hero_pugna.png" />
 					</Button>
 				</Panel>
-				<Button id="AboutNewVersionButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelAboutNewVersion&quot;);">				
-					<Label id="AboutNewVersionButtonLabel" text="#about_new_version_title" />
+				<Button id="JoinUsButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelJoinUs&quot;);">				
+					<Label id="JoinUsButtonLabel" text="#join_us_title" />
 				</Button>
 			</Panel>
 			
@@ -292,9 +296,12 @@
         <Label id="HeroNamePugna" class="HeroName" text="#npc_dota_hero_pugna_long"/>
         <Label id="HeroBioPugna" class="HeroBio" text="#npc_dota_hero_pugna_hype"/>
       </Panel>
-	  <Panel id="HeroDescriptionPopPanelAboutNewVersion" class = "HeroDescriptionPopPanelTop">
-        <Label id="HeroNameAboutNewVersion" class="HeroName" text="#about_new_version_title"/>
-        <Label id="HeroBioAboutNewVersion" class="HeroBio" text="#about_new_version"/>
+	  <Panel id="HeroDescriptionPopPanelJoinUs" class = "HeroDescriptionPopPanelTop">
+        <Label id="HeroNameJoinUs" class="HeroName" text="#join_us_title"/>
+        <Label id="HeroBioJoinUs" class="HeroBio" text="#join_us"/>
+		<Button id="DiscordChannelButton" onactivate="DOTADisplayURL('https://discord.gg/h847NwE');">				
+			<Label id="DiscordChannelLabel" text="#join_discord" />
+		</Button>
       </Panel>
 	  
 	  

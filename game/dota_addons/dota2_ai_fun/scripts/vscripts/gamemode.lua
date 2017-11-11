@@ -60,7 +60,6 @@ function GameMode:InitGameOptions()
 	GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS, RADIANT_PLAYER_COUNT)
 	GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS, DIRE_PLAYER_COUNT)
 	if IsInToolsMode() then
-		 GameRules:SetUseUniversalShopMode(true)
 		 GameRules:SetStrategyTime(0)
 		 GameRules:SetShowcaseTime(0)
 	end
@@ -79,10 +78,14 @@ function GameMode:PreGameOptions()
 	self.iRespawnTimePercentage = self.iRespawnTimePercentage or RESPAWN_TIME_PERCENTAGE
 	self.iMaxLevel = self.iMaxLevel or MAX_LEVEL
 	self.iImbalancedEconomizer = self.iImbalancedEconomizer or 0
+	self.iUniversalShop = self.iUniversalShop or 0
 	GameRules:SetGoldPerTick(self.iGoldPerTick)
 	GameRules:SetGoldTickTime(self.iGoldTickTime)
     GameRules:GetGameModeEntity():SetModifyGoldFilter( Dynamic_Wrap( GameMode, "FilterGold" ), self )	
     GameRules:GetGameModeEntity():SetModifyExperienceFilter( Dynamic_Wrap( GameMode, "FilterXP" ), self )
+	if IsInToolsMode() or self.iUniversalShop == 1 then		
+		GameRules:SetUseUniversalShopMode(true)
+	end
 	if self.iMaxLevel ~= 25 then
 		local tLevelRequire = {
 			0,

@@ -334,6 +334,7 @@ function GameMode:OnGetLoadingSetOptions(eventSourceIndex, args)
 	self.iImbalancedEconomizer = args.game_options.imbalanced_economizer
 	self.iBotHasFunItem = args.game_options.bot_has_fun_item
 	self.iBotAttackTowerPickRune = args.game_options.bot_attack_tower_pick_rune
+	self.iUniversalShop = args.game_options.universal_shop
 	self:PreGameOptions()
 end
 
