@@ -14,8 +14,8 @@ function Precache( context )
 	PrecacheUnitByNameSync("npc_dota_hero_omniknight", context)
 	PrecacheUnitByNameSync("npc_dota_hero_bloodseeker", context)
 	PrecacheUnitByNameSync("npc_dota_hero_lone_druid", context)
-	
-	
+	PrecacheResource("particle", "particles/windrunner_spell_powershot_rainmaker.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_venomancer/venomancer_venomous_gale.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_faceless_void.vsndevts", context)
 	PrecacheResource("particle", "particles/econ/items/enchantress/enchantress_virgas/ench_impetus_virgas.vpcf", context)

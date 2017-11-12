@@ -503,3 +503,46 @@ function AAChangePurchaser(keys)
 end
 
 ListenToGameEvent("dota_item_picked_up", AAChangePurchaser, nil)
+
+function TerraBladeReleaseProjectile(keys)
+	local tInfo = 
+	{
+		Ability = keys.ability,
+		EffectName = "particles/windrunner_spell_powershot_rainmaker.vpcf",
+		vSpawnOrigin = keys.caster:GetAbsOrigin(),
+		fDistance = keys.ability:GetSpecialValueFor("projectile_distance"),
+		fStartRadius = keys.ability:GetSpecialValueFor("projectile_start_radius"),
+		fEndRadius = keys.ability:GetSpecialValueFor("projectile_end_radius"),
+		Source = keys.caster,
+		bHasFrontalCone = false,
+		bReplaceExisting = false,
+		iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+		iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
+		iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+        fExpireTime = GameRules:GetGameTime() + 10.0,
+		bDeleteOnHit = false,
+		vVelocity = keys.caster:GetForwardVector() * keys.ability:GetSpecialValueFor("projectile_speed"),
+		bProvidesVision = true,
+		iVisionRadius = 800,
+		iVisionTeamNumber = keys.caster:GetTeamNumber()
+	}
+	projectile = ProjectileManager:CreateLinearProjectile(tInfo)
+end
+
+function TerraBladeProjectileHit(keys)
+	ApplyDamage({
+		damage_type=DAMAGE_TYPE_PURE,
+		damage = keys.caster:GetAverageTrueAttackDamage(keys.caster),
+		attacker = keys.caster,
+		victim = keys.target,
+		ability = keys.ability
+	})
+end
+
+function TerraBladeMinibash(keys)
+	if not keys.target:IsBuilding() then
+		keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_bashed", {Duration = keys.ability:GetSpecialValueFor("bash_stun")})
+		keys.target:EmitSound("DOTA_Item.MKB.Minibash")
+		ParticleManager:CreateParticle("particles/generic_gameplay/generic_minibash.vpcf", PATTACH_OVERHEAD_FOLLOW, keys.target)
+	end
+end

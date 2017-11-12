@@ -2177,6 +2177,16 @@
 			"soundfile"	"soundevents/game_sounds_items.vsndevts"
 			"particle"	"particles/generic_gameplay/generic_minibash.vpcf"
 		}
+		
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit" "0" // This will make the projectile continues its trajectory after hitting
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/fun_items.lua"
+				"Function"	"TerraBladeProjectileHit"
+			}
+		}
 		"Modifiers"
 		{
 			"modifier_item_fun_terra_blade_attributes"
@@ -2195,13 +2205,12 @@
 					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_health"
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%manaregen"
 				}
-				
-				"OnAttackStart"
+				"OnAttack"
 				{
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/fun_items.lua"
-						"Function"	"RagnarokCleaveApply"
+						"Function"	"TerraBladeReleaseProjectile"
 					}
 				}
 				"OnAttackLanded"
@@ -2209,7 +2218,7 @@
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/fun_items.lua"
-						"Function"	"GenjiGloveMinibash"
+						"Function"	"TerraBladeMinibash"
 					}
 					"RunScript"
 					{
@@ -2302,7 +2311,7 @@
 			"10"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"cleave_damage"	"100"
+				"projectile_speed"	"2000"
 			}
 			"11"
 			{
@@ -2312,17 +2321,17 @@
 			"12"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"cleave_start_radius"	"150"
+				"projectile_start_radius"	"200"
 			}
 			"13"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"cleave_end_radius"	"400"
+				"projectile_end_radius"	"200"
 			}
 			"14"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"cleave_distance"	"600"
+				"projectile_distance"	"4000"
 			}
 			"15"
 			{
