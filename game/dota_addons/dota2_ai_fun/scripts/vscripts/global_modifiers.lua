@@ -82,27 +82,35 @@ function modifier_bot_attack_tower_pick_rune:OnIntervalThink()
 	end
 end
 
+modifier_tower_endure = class({})
 
-modifier_tower_power = class({})
+function modifier_tower_endure:IsPurgable() return false end
+function modifier_tower_endure:IsDebuff() return false end
+function modifier_tower_endure:GetTexture() return "tower_power" end
+function modifier_tower_endure:OnCreated()
+	if IsClient() then return end
+	local hParent = self:GetParent()
+	local iHealth = hParent:GetMaxHealth()	
+	Timers:CreateTimer(0.04, function ()
+		hParent:SetMaxHealth(self:GetStackCount()*iHealth)
+		hParent:SetBaseMaxHealth(self:GetStackCount()*iHealth)
+		hParent:SetHealth(self:GetStackCount()*iHealth)
+	end)
+end
 
-
-function modifier_tower_power:DeclareFunctions()
+function modifier_tower_endure:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
-		
+		MODIFIER_PROPERTY_TOOLTIP
 	}
 end
 
-function modifier_tower_power:IsPurgable() return false end
-function modifier_tower_power:IsDebuff() return false end
-function modifier_tower_power:GetTexture() return "tower_power" end
+function modifier_tower_endure:GetModifierHealthRegenPercentage()
+	return 1*(self:GetStackCount()-1)/2
+end
 
-function modifier_tower_power:GetModifierAttackSpeedBonus_Constant() return 500/9*(self:GetStackCount()-1) end
-
-function modifier_tower_power:GetModifierPhysicalArmorBonus()	
+function modifier_tower_endure:GetModifierPhysicalArmorBonus()	
 	local sName = self:GetParent():GetName()
 	
 	if string.match(sName, "healer") then		
@@ -122,12 +130,51 @@ function modifier_tower_power:GetModifierPhysicalArmorBonus()
 	end
 end
 
-function modifier_tower_power:GetModifierBaseDamageOutgoing_Percentage()
-	return 100*(self:GetStackCount()-1)/2
+function modifier_tower_endure:OnTooltip()
+	return (self:GetStackCount()-1)*100
 end
 
-function modifier_tower_power:GetModifierHealthRegenPercentage()
-	return 1*(self:GetStackCount()-1)/2
+modifier_tower_power = class({})
+
+
+function modifier_tower_power:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_PROPERTY_TOOLTIP		
+	}
+end
+
+function modifier_tower_power:IsPurgable() return false end
+function modifier_tower_power:IsDebuff() return false end
+function modifier_tower_power:GetTexture() return "tower_power" end
+function modifier_tower_power:OnAttackLanded(keys)
+	if keys.attacker ~= self:GetParent() then return end
+	local tTargets = FindUnitsInRadius(keys.attacker:GetTeamNumber(), keys.target:GetOrigin(), nil, (self:GetStackCount()-1)*75, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
+	print(#tTargets)
+	for i, v in ipairs(tTargets) do
+		if v ~= keys.target then
+			ApplyDamage({
+				attacker = keys.attacker,
+				victim = v,
+				damage = keys.damage,
+				damage_type = DAMAGE_TYPE_PHYSICAL,
+				damage_flag = DOTA_DAMAGE_FLAG_IGNORES_PHYSICAL_ARMOR
+			})
+		end
+	end
+end
+
+function modifier_tower_power:OnTooltip()
+	return 75*(self:GetStackCount()-1)
+end
+
+function modifier_tower_power:GetModifierAttackSpeedBonus_Constant() return 500/9*(self:GetStackCount()-1) end
+
+
+function modifier_tower_power:GetModifierBaseDamageOutgoing_Percentage()
+	return 100*(self:GetStackCount()-1)
 end
 
 local tNotUpgrade = {

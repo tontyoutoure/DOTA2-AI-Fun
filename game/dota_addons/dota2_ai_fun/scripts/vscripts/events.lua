@@ -96,23 +96,22 @@ function GameMode:OnGameStateChanged( keys )
 		Tutorial:StartTutorialMode()
 		local tTowers = Entities:FindAllByClassname("npc_dota_tower")
 		local iTowerPower = self.iTowerPower or 1
+		local iTowerEndure = self.iTowerEndure or 1
 		for k, v in pairs(tTowers) do
 			v:AddNewModifier(v, nil, "modifier_tower_power", {}):SetStackCount(iTowerPower)
+			v:AddNewModifier(v, nil, "modifier_tower_endure", {}):SetStackCount(iTowerEndure)
 		end
 		local tTowers = Entities:FindAllByClassname("npc_dota_barracks")
-		local iTowerPower = self.iTowerPower or 1
 		for k, v in pairs(tTowers) do
-			v:AddNewModifier(v, nil, "modifier_tower_power", {}):SetStackCount(iTowerPower)
+			v:AddNewModifier(v, nil, "modifier_tower_endure", {}):SetStackCount(iTowerEndure)
 		end
 		local tTowers = Entities:FindAllByClassname("npc_dota_healer")
-		local iTowerPower = self.iTowerPower or 1
 		for k, v in pairs(tTowers) do
-			v:AddNewModifier(v, nil, "modifier_tower_power", {}):SetStackCount(iTowerPower)
+			v:AddNewModifier(v, nil, "modifier_tower_endure", {}):SetStackCount(iTowerEndure)
 		end
 		local tTowers = Entities:FindAllByClassname("npc_dota_fort")
-		local iTowerPower = self.iTowerPower or 1
 		for k, v in pairs(tTowers) do
-			v:AddNewModifier(v, nil, "modifier_tower_power", {}):SetStackCount(iTowerPower)
+			v:AddNewModifier(v, nil, "modifier_tower_endure", {}):SetStackCount(iTowerEndure)
 		end
 	  
 --      for i=0, DOTA_MAX_TEAM_PLAYERS do`
@@ -336,6 +335,7 @@ function GameMode:OnGetLoadingSetOptions(eventSourceIndex, args)
 	self.iRespawnTimePercentage = tonumber(args.game_options.respawn_time_percentage)
 	self.iMaxLevel = tonumber(args.game_options.max_level)
 	self.iTowerPower = tonumber(args.game_options.tower_power)
+	self.iTowerEndure = tonumber(args.game_options.tower_endure)
 	self.iImbalancedEconomizer = args.game_options.imbalanced_economizer
 	self.iBotHasFunItem = args.game_options.bot_has_fun_item
 	self.iBotAttackTowerPickRune = args.game_options.bot_attack_tower_pick_rune
