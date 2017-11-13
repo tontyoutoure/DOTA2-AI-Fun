@@ -275,6 +275,11 @@ function GameMode:_OnNPCSpawned(keys)
 		HurricaneInit(hHero, self)
 	end
 	
+	if hHero:GetName() == "npc_dota_hero_sniper" and not hHero.bSpawned then
+		require('heroes/sniper/sniper_init')
+		SniperInit(hHero, self)
+	end
+	
 	LearnInnateSkillOnSpawn(hHero)
 
 	if not hHero:IsHero() or hHero:IsIllusion() then return end	

@@ -18,3 +18,4 @@ ramza.txt
 telekenetic_blob.txt
 terran_marine.txt
 void_demon.txt
+sniper.txt
