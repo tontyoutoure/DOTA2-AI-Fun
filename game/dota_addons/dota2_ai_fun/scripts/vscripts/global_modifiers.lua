@@ -86,7 +86,7 @@ modifier_tower_endure = class({})
 
 function modifier_tower_endure:IsPurgable() return false end
 function modifier_tower_endure:IsDebuff() return false end
-function modifier_tower_endure:GetTexture() return "tower_power" end
+function modifier_tower_endure:GetTexture() return "tower_endure" end
 function modifier_tower_endure:OnCreated()
 	if IsClient() then return end
 	local hParent = self:GetParent()
@@ -152,7 +152,7 @@ function modifier_tower_power:GetTexture() return "tower_power" end
 function modifier_tower_power:OnAttackLanded(keys)
 	if keys.attacker ~= self:GetParent() then return end
 	local tTargets = FindUnitsInRadius(keys.attacker:GetTeamNumber(), keys.target:GetOrigin(), nil, (self:GetStackCount()-1)*75, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
-	print(#tTargets)
+	
 	for i, v in ipairs(tTargets) do
 		if v ~= keys.target then
 			ApplyDamage({
