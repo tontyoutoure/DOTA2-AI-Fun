@@ -6,11 +6,15 @@ function telekenetic_blob_throw:CastFilterResultTarget(hTarget)
 	if IsClient () then 
 		return UF_SUCCESS
 	end
-
+	
 	local caster = self:GetCaster()
 	local markedTarget = TelekeneticBlobGetMarkedTarget(caster)
 	if markedTarget == nil or markedTarget:IsAncient() or markedTarget:IsHero() or markedTarget == hTarget or CalcDistanceBetweenEntityOBB(hTarget, markedTarget) > self:GetSpecialValueFor("distance") then
 		return UF_FAIL_CUSTOM 
+	end
+	
+	if markedTarget:HasModifier("telekenetic_blob_throw_modifier") or markedTarget:HasModifier("telekenetic_blob_sling_modifier") or markedTarget:HasModifier("telekenetic_blob_expel_modifier") or markedTarget:HasModifier("telekenetic_blob_catapult_modifier") then
+		return UF_FAIL_CUSTOM
 	end
 end
 
@@ -28,7 +32,9 @@ function telekenetic_blob_throw:GetCustomCastErrorTarget(hTarget)
 	if markedTarget == hTarget then
 		return "error_marked_target_cannot_be_target"
 	end
-
+	if markedTarget:HasModifier("telekenetic_blob_throw_modifier") or markedTarget:HasModifier("telekenetic_blob_sling_modifier") or markedTarget:HasModifier("telekenetic_blob_expel_modifier") or markedTarget:HasModifier("telekenetic_blob_catapult_modifier") then
+		return "error_marked_target_moving"
+	end
 	return "error_marked_target_too_faraway"
 end
 

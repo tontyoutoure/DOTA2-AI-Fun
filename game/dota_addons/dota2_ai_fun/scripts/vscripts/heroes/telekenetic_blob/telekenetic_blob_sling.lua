@@ -12,9 +12,16 @@ function telekenetic_blob_sling:CastFilterResultLocation(vLocation)
 	if markedTarget == nil then
 		return UF_FAIL_CUSTOM
 	end
+	if markedTarget:HasModifier("telekenetic_blob_throw_modifier") or markedTarget:HasModifier("telekenetic_blob_sling_modifier") or markedTarget:HasModifier("telekenetic_blob_expel_modifier") or markedTarget:HasModifier("telekenetic_blob_catapult_modifier") then
+		return UF_FAIL_CUSTOM
+	end
 end
 
 function telekenetic_blob_sling:GetCustomCastErrorLocation(vLocation)
+	local markedTarget = TelekeneticBlobGetMarkedTarget(self:GetCaster())
+	if markedTarget:HasModifier("telekenetic_blob_throw_modifier") or markedTarget:HasModifier("telekenetic_blob_sling_modifier") or markedTarget:HasModifier("telekenetic_blob_expel_modifier") or markedTarget:HasModifier("telekenetic_blob_catapult_modifier") then
+		return "error_marked_target_moving"
+	end
 	return "error_no_market_target"
 end
 

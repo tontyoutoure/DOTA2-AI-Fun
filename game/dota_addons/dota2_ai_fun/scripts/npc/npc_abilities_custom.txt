@@ -1,144 +1,161 @@
-// Dota2 Editor
-// Get latest version: https://github.com/zombieJ/nw-dota2editor
-
 "DOTAAbilities"
 {
 	"Version"		"1"
 
-	"sniper_assassinate_scepter"
+	"hurricane_tempest"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"sniper_assassinate"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+		"AbilityTextureName"	"disruptor_thunder_strike"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
-		"FightRecapLevel"	"2"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCastPoint"	"2.0 2.0 2.0"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCooldown"	"20.0 15.0 10.0"
-		"AbilityManaCost"	"175 275 375"
-		"HasScepterUpgrade"					"1"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"2000 2500 3000"
-		"AbilityCastRangeBuffer"	"600"
-		"AoERadius"	"%scepter_radius"
-		// Data driven
-		// -------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"particle"	"particles/units/heroes/hero_sniper/sniper_assassinate.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
-		}
-		"OnAbilityPhaseStart"
-		{
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"Ability.AssassinateLoad"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"heroes/sniper/sniper.lua"
-				"Function"	"AssassinateAcquireTargets"
-				"Target"
-				{
-					"Center"	"POINT"
-					"Radius"	"%scepter_radius"
-					"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-				}
-			}
-		}
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"Ability.Assassinate"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"heroes/sniper/sniper.lua"
-				"Function"	"AssassinateStart"
-			}
-		}
-		"OnProjectileHitUnit"
-		{
-			"FireSound"
-			{
-				"Target"	"TARGET"
-				"EffectName"	"Hero_Sniper.AssassinateDamage"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/sniper/sniper.lua"
-				"Function"	"AssassinateHit"
-			}
-			"DeleteOnHit"	"0"
-		}
-		"Modifiers"
-		{
-			"modifier_assassinate_caster_datadriven"
-			{
-				"OnOrder"
-				{
-					"RemoveModifier"
-					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_assassinate_caster_datadriven"
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/sniper/sniper.lua"
-						"Function"	"AssassinateRemoveTarget"
-					}
-				}
-			}
-		}
-		// Special
-		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"13"
+		"AbilityManaCost"	"65 90 115 140"
+		"AbilityCastRange"	"600"
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"projectile_speed"	"2500 2500 2500"
+				"bolt_count"	"3 6 9 12"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"tooltip_range"	"2000 2500 3000"
+				"damage"	"100"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun_duration"	"0.5"
+			}
+		}
+	}
+
+	"hurricane_cyclone"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"invoker_tornado"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"75 85 95 105"
+		"AbilityCastRange"	"%radius"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Flags"	"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+					"Center"	"CASTER"
+					"Radius"	"%radius"
+				}
+				"ScriptFile"	"scripts/vscripts/heroes/hurricane/hurricane.lua"
+				"Function"	"HurricaneCyclone"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"throw_distance"	"200 400 600 800"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"throw_damage"	"50 100 150 200"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"total_cast_time_tooltip"	"2"
+				"stun_duration"	"2"
 			}
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"scepter_radius"	"400"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"scepter_crit_bonus"	"280"
+				"radius"	"400"
 			}
 		}
-		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
-		// Stats
-		// -------------------------------------------------------------------------------------------------------------
-		// Modifier just does damage
-		"AbilityModifierSupportValue"	"0.0"
 	}
+
+	"hurricane_whirlewind"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"enraged_wildkin_tornado"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCooldown"	"50"
+		"AbilityManaCost"	"100 120 140 160"
+		"AbilityCastRange"	"750"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dps_125"	"30 60 90 120"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dps_250"	"20 40 60 80"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dps_500"	"10 20 30 40"
+			}
+		}
+	}
+
+	"hurricane_eyes_of_the_storm"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"razor_eye_of_the_storm"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"100"
+		"AbilityManaCost"	"150 225 300"
+		"AbilityCastRange"	"1000"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"max_damage"	"500 1000 1500"
+			}
+		}
+	}
+
+	
 }
+
+#base "abilities\astral_trekker.txt"
+#base "abilities\bastion.txt"
+#base "abilities\fluid_engineer.txt"
+#base "abilities\formless.txt"
+#base "abilities\intimidator.txt"
+#base "abilities\magic_dragon.txt"
+#base "abilities\mana_fiend.txt"
+#base "abilities\persuasive.txt"
+#base "abilities\ramza\ramza.txt"
+#base "abilities\telekenetic_blob.txt"
+#base "abilities\terran_marine.txt"
+#base "abilities\void_demon.txt"
+#base "npc_abilities_dummy.txt"
+#base "abilities\cleric.txt"
+#base "abilities\pet_summoner.txt"
+#base "abilities\felguard.txt"
+#base "abilities\el_dorado.txt"
+#base "abilities\hamsterlord.txt"
+#base "abilities\sniper.txt"

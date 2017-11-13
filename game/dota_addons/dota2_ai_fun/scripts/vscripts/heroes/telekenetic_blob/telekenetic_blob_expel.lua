@@ -12,6 +12,9 @@ function telekenetic_blob_expel:CastFilterResultLocation(vLocation)
 	if markedTarget == nil or CalcDistanceBetweenEntityOBB(markedTarget, caster) > self:GetSpecialValueFor("marked_target_max_distance") then
 		return UF_FAIL_CUSTOM
 	end
+	if markedTarget:HasModifier("telekenetic_blob_throw_modifier") or markedTarget:HasModifier("telekenetic_blob_sling_modifier") or markedTarget:HasModifier("telekenetic_blob_expel_modifier") or markedTarget:HasModifier("telekenetic_blob_catapult_modifier") then
+		return UF_FAIL_CUSTOM
+	end
 end
 
 function telekenetic_blob_expel:GetCustomCastErrorLocation(vLocation)
@@ -21,6 +24,9 @@ function telekenetic_blob_expel:GetCustomCastErrorLocation(vLocation)
 		return "error_no_market_target"
 	end
 
+	if markedTarget:HasModifier("telekenetic_blob_throw_modifier") or markedTarget:HasModifier("telekenetic_blob_sling_modifier") or markedTarget:HasModifier("telekenetic_blob_expel_modifier") or markedTarget:HasModifier("telekenetic_blob_catapult_modifier") then
+		return "error_marked_target_moving"
+	end
 	return "error_marked_target_too_faraway"
 end
 
