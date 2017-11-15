@@ -21,7 +21,7 @@ end
 
 AstralTrekkerWarStomp = function (keys)
 	local iRadius = keys.ability:GetSpecialValueFor("radius")
-	if keys.caster:FindAbilityByName("special_bonus_astral_trekker_2"):GetSpecialValueFor("value") > 0 then
+	if keys.caster:FindAbilityByName("special_bonus_astral_trekker_2") and keys.caster:FindAbilityByName("special_bonus_astral_trekker_2"):GetSpecialValueFor("value") > 0 then
 		local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.caster:GetOrigin(), nil, iRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 		for i, v in ipairs(tTargets) do
 			v:AddNewModifier(keys.caster, keys.ability, "modifier_stunned", {Duration = keys.ability:GetSpecialValueFor("stun_duration")})

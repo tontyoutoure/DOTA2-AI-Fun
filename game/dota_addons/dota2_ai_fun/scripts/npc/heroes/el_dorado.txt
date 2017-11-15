@@ -8,7 +8,8 @@
 		"Ability2"	"el_dorado_artificial_frog"
 		"Ability3"	"el_dorado_change_item_slot_0_lua"
 		"Ability4"	"el_dorado_refine_weapons"
-		"Ability5"	"el_dorado_piracy_method"
+		"Ability5"	"generic_hidden"
+		"Ability6"	"el_dorado_piracy_method"
 		"AttributePrimary"	"DOTA_ATTRIBUTE_INTELLECT"
 		// Base strength
 		"AttributeBaseStrength"	"21"
@@ -53,7 +54,6 @@
 		"Ability15"	"special_bonus_hp_600"
 		"Ability16"	"special_bonus_el_dorado_2"
 		"Ability17"	"special_bonus_cast_range_400"
-		"Ability6"	""
 		"Ability7"	""
 		"Ability8"	""
 		"Ability9"	""

@@ -179,10 +179,13 @@ function modifier_intimidator_physical_activity_lua:OnAttackLanded(keys)
 	local glare = caster:GetAbilityByIndex(0)
 	local grill = caster:GetAbilityByIndex(1)
 	local rn = math.random(100)
+	local chance
 	
-	
-	
-	local chance = ability:GetSpecialValueFor("chance")+caster:FindAbilityByName("special_bonus_intimidator_1"):GetSpecialValueFor("value")
+	if caster:FindAbilityByName("special_bonus_intimidator_1") then
+		chance = ability:GetSpecialValueFor("chance")+caster:FindAbilityByName("special_bonus_intimidator_1"):GetSpecialValueFor("value")
+	else
+		chance = ability:GetSpecialValueFor("chance")
+	end
 	local chanceDislocate = ability:GetSpecialValueFor("chance_dislocate")
 	if rn <= chance then
 		if glare:GetLevel() > 0 then 

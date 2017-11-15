@@ -35,7 +35,7 @@ function ForgetDenique() {
     if (Entities.GetUnitName(hero) == "npc_dota_hero_wisp") {
         GameEvents.SendCustomGameEventToServer("formless_forget", {
             "skillname_to_forget": "formless_denique",
-            "skill_index": "3"
+            "skill_index": "5"
         });
     }
 }

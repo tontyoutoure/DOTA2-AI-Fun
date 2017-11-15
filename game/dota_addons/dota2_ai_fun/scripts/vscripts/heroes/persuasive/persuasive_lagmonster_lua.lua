@@ -20,5 +20,9 @@ function persuasive_kill_steal:GetCooldown(iLevel)
 	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_persuasive_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 		self.hSpecial = Entities:Next(self.hSpecial)
 	end		
-	return self.BaseClass.GetCooldown(self, iLevel)-self.hSpecial:GetSpecialValueFor("value")
+	if self.hSpecial then
+		return self.BaseClass.GetCooldown(self, iLevel)-self.hSpecial:GetSpecialValueFor("value")
+	else
+		return self.BaseClass.GetCooldown(self, iLevel)
+	end
 end

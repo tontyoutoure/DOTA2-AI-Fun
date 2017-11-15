@@ -8,8 +8,18 @@ function ClericMeteorShower(keys)
 	local fMeteorRadius = keys.ability:GetSpecialValueFor("meteor_radius")
 	AddFOWViewer(keys.caster:GetTeamNumber(), vTarget, 500, 3, true)
 	local fCastRadius = keys.ability:GetSpecialValueFor("cast_radius")
-	local iDamage = keys.ability:GetSpecialValueFor("damage")+keys.caster:FindAbilityByName("special_bonus_cleric_4"):GetSpecialValueFor("value")
-	local fStunDuration = keys.ability:GetSpecialValueFor("stun_duration")+keys.caster:FindAbilityByName("special_bonus_cleric_1"):GetSpecialValueFor("value")
+	local iDamage
+	if keys.caster:FindAbilityByName("special_bonus_cleric_4") then
+		iDamage = keys.ability:GetSpecialValueFor("damage")+keys.caster:FindAbilityByName("special_bonus_cleric_4"):GetSpecialValueFor("value")
+	else
+		iDamage = keys.ability:GetSpecialValueFor("damage")
+	end
+	local fStunDuration 
+	if keys.caster:FindAbilityByName("special_bonus_cleric_1") then
+		fStunDuration = keys.ability:GetSpecialValueFor("stun_duration")+keys.caster:FindAbilityByName("special_bonus_cleric_1"):GetSpecialValueFor("value")
+	else
+		fStunDuration = keys.ability:GetSpecialValueFor("stun_duration")
+	end
 	for i = 1, iMeteorCount do
 		Timers:CreateTimer(0.2*(i-1), function () 
 			local vRelative = Vector(RandomFloat(-fCastRadius, fCastRadius), RandomFloat(-fCastRadius, fCastRadius), 0)
@@ -73,7 +83,11 @@ function cleric_berserk:GetCooldown(iLevel)
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end		
 	end
-	return self.BaseClass.GetCooldown(self, iLevel)-self.hSpecial:GetSpecialValueFor("value")
+	if self.hSpecial then
+		return self.BaseClass.GetCooldown(self, iLevel)-self.hSpecial:GetSpecialValueFor("value")
+	else
+		return self.BaseClass.GetCooldown(self, iLevel)
+	end
 end
 
 function ClericPrayer(keys)
@@ -98,7 +112,7 @@ function ClericPrayer(keys)
 			for i = 0, 8 do
 				if v:GetItemInSlot(i) then v:GetItemInSlot(i):EndCooldown() end
 			end
-		elseif hModifier:GetStackCount() < hSpecial:GetSpecialValueFor("value") then
+		elseif hSpecial and hModifier:GetStackCount() < hSpecial:GetSpecialValueFor("value") then
 			local iOriginalStackCount = hModifier:GetStackCount()
 			v:AddNewModifier(keys.caster, keys.ability, "modifier_cleric_prayer", {Duration = iDuration})
 			v:FindModifierByName("modifier_cleric_prayer"):SetStackCount(iOriginalStackCount+1)

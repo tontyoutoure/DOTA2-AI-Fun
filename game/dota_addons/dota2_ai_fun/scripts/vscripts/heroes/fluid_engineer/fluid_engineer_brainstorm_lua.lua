@@ -106,7 +106,11 @@ function fluid_engineer_brainstorm_agi_lua:GetCooldown(iLevel)
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end		
 	end
-	return self.BaseClass.GetCooldown(self, iLevel)-self.hSpecial:GetSpecialValueFor("value")
+	if self.hSpecial then
+		return self.BaseClass.GetCooldown(self, iLevel)-self.hSpecial:GetSpecialValueFor("value")
+	else
+		return self.BaseClass.GetCooldown(self, iLevel)
+	end
 end
 
 function fluid_engineer_brainstorm_str_lua:GetCooldown(iLevel)
@@ -116,7 +120,11 @@ function fluid_engineer_brainstorm_str_lua:GetCooldown(iLevel)
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end		
 	end
-	return self.BaseClass.GetCooldown(self, iLevel)-self.hSpecial:GetSpecialValueFor("value")
+	if self.hSpecial then
+		return self.BaseClass.GetCooldown(self, iLevel)-self.hSpecial:GetSpecialValueFor("value")
+	else
+		return self.BaseClass.GetCooldown(self, iLevel)
+	end
 end
 
 function fluid_engineer_brainstorm_int_lua:GetCooldown(iLevel)
@@ -126,5 +134,9 @@ function fluid_engineer_brainstorm_int_lua:GetCooldown(iLevel)
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end		
 	end
-	return self.BaseClass.GetCooldown(self, iLevel)-self.hSpecial:GetSpecialValueFor("value")
+	if self.hSpecial then
+		return self.BaseClass.GetCooldown(self, iLevel)-self.hSpecial:GetSpecialValueFor("value")
+	else
+		return self.BaseClass.GetCooldown(self, iLevel)
+	end
 end

@@ -10,7 +10,11 @@ function void_demon_time_void:GetCooldown(iLevel)
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end	
 	end	
-	return self.BaseClass.GetCooldown(self, iLevel)-self.hSpecial:GetSpecialValueFor("value")
+	if self.hSpecial then
+		return self.BaseClass.GetCooldown(self, iLevel)-self.hSpecial:GetSpecialValueFor("value")
+	else
+		return self.BaseClass.GetCooldown(self, iLevel)
+	end
 end
 
 function void_demon_time_void:OnSpellStart()

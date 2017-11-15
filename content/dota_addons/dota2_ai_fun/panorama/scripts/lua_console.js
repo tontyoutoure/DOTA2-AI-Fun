@@ -59,6 +59,11 @@ LuaConsole.OnSelectAllActive = function() {
 	$.Msg($("#CommandEntry").inputnamespace)
 }
 
+LuaConsole.OnDofileTestActive = function() {
+	 $("#CommandEntry").text = "dofile('test')";
+	GameEvents.SendCustomGameEventToServer("LuaConsole_CommandInput", {"command": $("#CommandEntry").text});
+}
+
 LuaConsole.OnRamzaLevelMax = function() {
 	 $("#CommandEntry").text = "CRamzaJob:RamzaLevelMax()";
 	 $("#CommandEntry").SetFocus();

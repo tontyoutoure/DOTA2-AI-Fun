@@ -59,7 +59,7 @@ function PetSummonerPets(keys)
 	keys.caster.tSummons = keys.caster.tSummons or {}	
 	
 	
-	if keys.caster:FindAbilityByName("special_bonus_pet_summoner_1"):GetLevel() == 0 then
+	if not keys.caster:FindAbilityByName("special_bonus_pet_summoner_1") or keys.caster:FindAbilityByName("special_bonus_pet_summoner_1"):GetLevel() == 0 then
 		if keys.caster.tSummons.hMouMou and not keys.caster.tSummons.hMouMou:IsNull() and keys.caster.tSummons.hMouMou:IsAlive() then keys.caster.tSummons.hMouMou:ForceKill(false) end
 		if keys.caster.tSummons.hSnowball and not keys.caster.tSummons.hSnowball:IsNull() and keys.caster.tSummons.hSnowball:IsAlive() then keys.caster.tSummons.hSnowball:ForceKill(false) end
 		if keys.caster.tSummons.hTequila and not keys.caster.tSummons.hTequila:IsNull() and keys.caster.tSummons.hTequila:IsAlive() then keys.caster.tSummons.hTequila:ForceKill(false) end
@@ -78,7 +78,7 @@ function PetSummonerPets(keys)
 	keys.caster.tSummons.hSnowball:SetForwardVector(keys.caster:GetForwardVector())
 	keys.caster.tSummons.hTequila:SetForwardVector(keys.caster:GetForwardVector())
 	
-	if keys.caster:FindAbilityByName("special_bonus_pet_summoner_2"):GetLevel() == 0 then
+	if not keys.caster:FindAbilityByName("special_bonus_pet_summoner_2") or keys.caster:FindAbilityByName("special_bonus_pet_summoner_2"):GetLevel() == 0 then
 		keys.caster.tSummons.hMouMou:AddNewModifier(keys.caster, keys.ability, "modifier_kill", {Duration = keys.ability:GetSpecialValueFor("duration")})
 		keys.caster.tSummons.hSnowball:AddNewModifier(keys.caster, keys.ability, "modifier_kill", {Duration = keys.ability:GetSpecialValueFor("duration")})
 		keys.caster.tSummons.hTequila:AddNewModifier(keys.caster, keys.ability, "modifier_kill", {Duration = keys.ability:GetSpecialValueFor("duration")})

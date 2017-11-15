@@ -1,14 +1,14 @@
-modifier_fluid_engineer_salad_lunch = class({})
+modifier_fluid_engineer_salad_lunch_lua = class({})
 
-function modifier_fluid_engineer_salad_lunch:IsPurgable() return false end
+function modifier_fluid_engineer_salad_lunch_lua:IsPurgable() return false end
 
-function modifier_fluid_engineer_salad_lunch:DeclareFunctions()
+function modifier_fluid_engineer_salad_lunch_lua:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS
 	}
 end
 
-function modifier_fluid_engineer_salad_lunch:GetModifierBonusStats_Intellect()
+function modifier_fluid_engineer_salad_lunch_lua:GetModifierBonusStats_Intellect()
 	
 	if not self.hSpecial then 
 		self.hSpecial = Entities:First()	
@@ -16,7 +16,11 @@ function modifier_fluid_engineer_salad_lunch:GetModifierBonusStats_Intellect()
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end	
 	end
-	return self:GetStackCount()*(self:GetAbility():GetSpecialValueFor("int_per_stack")+self.hSpecial:GetSpecialValueFor("value"))
+	if self.hSpecial then
+		return self:GetStackCount()*(self:GetAbility():GetSpecialValueFor("int_per_stack")+self.hSpecial:GetSpecialValueFor("value"))
+	else
+		return self:GetStackCount()*self:GetAbility():GetSpecialValueFor("int_per_stack")
+	end
 end
 
 modifier_fluid_engineer_bowel_hydraulics = class({})

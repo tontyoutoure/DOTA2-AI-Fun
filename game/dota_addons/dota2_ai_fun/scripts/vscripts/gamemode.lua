@@ -140,7 +140,7 @@ function GameMode:InitEvents()
 	ListenToGameEvent('dota_player_update_selected_unit',  Dynamic_Wrap(GameMode, 'OnPlayerUpdateSelectUnit2'), self)
 	--JS events
 	CustomGameEventManager:RegisterListener("loading_set_options", function (eventSourceIndex, args) return GameMode:OnGetLoadingSetOptions(eventSourceIndex, args) end)
-	CustomGameEventManager:RegisterListener("formless_forget", function(eventSourceIndex, args) return GameMode:OnFormlessForget(eventSourceIndex, args) end )
+	
 end
 
 --[==[

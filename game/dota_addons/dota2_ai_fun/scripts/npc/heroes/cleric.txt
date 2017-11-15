@@ -6,9 +6,9 @@
 		"Ability1"	"cleric_meteor_shower"
 		"Ability2"	"cleric_berserk"
 		"Ability3"	"cleric_magic_mirror"
-		"Ability4"	"cleric_prayer"
-		"Ability5"	""
-		"Ability6"	""
+		"Ability4"	"generic_hidden"
+		"Ability5"	"generic_hidden"
+		"Ability6"	"cleric_prayer"
 		"AttributePrimary"	"DOTA_ATTRIBUTE_INTELLECT"
 		// Base strength
 		"AttributeBaseStrength"	"16"

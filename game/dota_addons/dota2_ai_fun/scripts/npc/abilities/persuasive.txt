@@ -264,7 +264,7 @@
 		}
 		"Modifiers"
 		{
-			"modifier_persuasive_high_stake"
+			"modifier_persuasive_high_stakes"
 			{
 				"Passive"	"1"
 				"IsHidden"	"1"

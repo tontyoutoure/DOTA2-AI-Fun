@@ -1,39 +1,27 @@
 
-hHero = PlayerResource:GetPlayer(1):GetAssignedHero()
+SendToServerConsole("dota_create_unit npc_dota_hero_spirit_breaker")
+SendToServerConsole("dota_create_unit npc_dota_hero_enigma")
+SendToServerConsole("dota_create_unit npc_dota_hero_beastmaster")
+SendToServerConsole("dota_create_unit npc_dota_hero_arc_warden")
+SendToServerConsole("dota_create_unit npc_dota_hero_windrunner")
+SendToServerConsole("dota_create_unit npc_dota_hero_sven")
+SendToServerConsole("dota_create_unit npc_dota_hero_disruptor")
+SendToServerConsole("dota_create_unit npc_dota_hero_wisp")
+SendToServerConsole("dota_create_unit npc_dota_hero_treant")
+SendToServerConsole("dota_create_unit npc_dota_hero_brewmaster")
+SendToServerConsole("dota_create_unit npc_dota_hero_night_stalker")
+SendToServerConsole("dota_create_unit npc_dota_hero_shadow_demon")
+SendToServerConsole("dota_create_unit npc_dota_hero_techies")
+SendToServerConsole("dota_create_unit npc_dota_hero_tinker")
+SendToServerConsole("dota_create_unit npc_dota_hero_visage")
+SendToServerConsole("dota_create_unit npc_dota_hero_rubick")
+SendToServerConsole("dota_create_unit npc_dota_hero_pugna")
+hHero = PlayerResource:GetPlayer(0):GetAssignedHero()
 --[[
-tChildren = hHero:GetChildren()
-for i, v in pairs(tChildren) do
-	print(v:GetName(), v:GetClassname())
-	if v:GetClassname() == 'dota_item_wearable' then
-		v:RemoveSelf()
+for i = 0, 23 do
+	if hHero:GetAbilityByIndex(i) then
+		print(i, hHero:GetAbilityByIndex(i):GetName())
 	end
 end
 
-
-hBack = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/items/invoker/magus_apex/magus_apex.vmdl"})
-hBack:FollowEntity(hHero, true)
-]]--
---hBack:RemoveEffects(EF_NODRAW)
---[[
-hHero:SetModel('models/heroes/juggernaut/juggernaut_arcana.vmdl')
-WearableManager:RemoveOriginalWearables(hHero)
-WearableManager:RemoveAllWearable(hHero)
-
-WearableManager:AddNewWearable(hHero, "4101", "0")	--weapon
-WearableManager:AddNewWearable(hHero, "9059", "1")	--head
-WearableManager:AddNewWearable(hHero, "4401", "0") --skirt
-WearableManager:AddNewWearable(hHero, "8983", "0") --shoulder
-WearableManager:AddNewWearable(hHero, "8982", "0") --bracer
-print(hHero:GetActivityName(ACT_DOTA_RUN))
-
-WearableManager:RemoveWearableByIndex(hHero, "98")
-WearableManager:RemoveWearableByIndex(hHero, "7986")
-WearableManager:RemoveWearableByIndex(hHero, "7979")
-WearableManager:RemoveWearableByIndex(hHero, "7987")
-WearableManager:RemoveWearableByIndex(hHero, "7988")
-WearableManager:RemoveWearableByIndex(hHero, "7989")
-]]--
-
-print(hHero:GetItemInSlot(0):GetName())
-
-local iParticle = ParticleManager:CreateParticle("particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_cowlofice.vpcf", PATTACH_ABSORIGIN_, hHero)
+--]]

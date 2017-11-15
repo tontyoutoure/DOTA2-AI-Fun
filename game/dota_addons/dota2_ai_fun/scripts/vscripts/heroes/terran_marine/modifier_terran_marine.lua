@@ -17,8 +17,12 @@ function modifier_terran_marine_precision:OnTooltip()
 	
 	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_terran_marine_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 		self.hSpecial = Entities:Next(self.hSpecial)
-	end		
-	return self:GetAbility():GetSpecialValueFor("shots")+self.hSpecial:GetSpecialValueFor("value")
+	end	
+	if self.hSpecial then
+		return self:GetAbility():GetSpecialValueFor("shots")+self.hSpecial:GetSpecialValueFor("value")
+	else
+		return self:GetAbility():GetSpecialValueFor("shots")
+	end
 end 
 
 function modifier_terran_marine_precision:OnAttackLanded(keys)	
@@ -26,7 +30,13 @@ function modifier_terran_marine_precision:OnAttackLanded(keys)
 	if keys.attacker~=hParent then return end;
 	self.iShotCount = self.iShotCount or 0;
 	self.iShotCount = self.iShotCount+1;
-	if self.iShotCount >= self:GetAbility():GetSpecialValueFor("shots")+self:GetCaster():FindAbilityByName("special_bonus_terran_marine_2"):GetSpecialValueFor("value") then
+	local iShotToGo
+	if self:GetCaster():FindAbilityByName("special_bonus_terran_marine_2") then
+		iShotToGo = self:GetAbility():GetSpecialValueFor("shots")+self:GetCaster():FindAbilityByName("special_bonus_terran_marine_2"):GetSpecialValueFor("value")
+	else
+		iShotToGo = self:GetAbility():GetSpecialValueFor("shots")
+	end
+	if self.iShotCount >= iShotToGo then
 		self.iShotCount = 0;
 		hParent:SetBaseAgility(hParent:GetBaseAgility()+1)
 		hParent:CalculateStatBonus()

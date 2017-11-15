@@ -9,6 +9,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityCooldown"	"5"
 		"AbilityCastRange"	"0"
+		"CastFilterRejectCaster"    "1"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
@@ -36,6 +37,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityCooldown"	"5"
 		"AbilityCastRange"	"0"
+		"CastFilterRejectCaster"    "1"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
@@ -63,6 +65,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityCooldown"	"5"
 		"AbilityCastRange"	"0"
+		"CastFilterRejectCaster"    "1"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
@@ -91,6 +94,7 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityCooldown"	"5"
 		"AbilityCastRange"	"0"
+		"CastFilterRejectCaster"    "1"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"

@@ -6,7 +6,7 @@
 		"Ability2"	"telekenetic_blob_catapult"
 		"Ability3"	"telekenetic_blob_sling"
 		"Ability4"	"telekenetic_blob_mark_target"
-		"Ability5"	""
+		"Ability5"	"generic_hidden"
 		"Ability6"	"telekenetic_blob_expel"
 		"Ability7"	""
 		"Ability8"	""
