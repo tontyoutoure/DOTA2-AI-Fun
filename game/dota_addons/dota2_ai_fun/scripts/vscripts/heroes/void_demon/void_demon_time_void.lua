@@ -56,7 +56,7 @@ function void_demon_degen_aura:GetIntrinsicModifierName() return "modifier_void_
 modifier_void_demon_degen_aura = class({})
 
 
-function modifier_void_demon_degen_aura:IsHidden() return false end
+function modifier_void_demon_degen_aura:IsHidden() return true end
 function modifier_void_demon_degen_aura:IsAura() return true end
 function modifier_void_demon_degen_aura:GetAuraSearchFlags()return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES end
 

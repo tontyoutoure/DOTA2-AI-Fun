@@ -15,6 +15,7 @@ if IsInToolsMode() then
 end
 require('internal/util')
 require('settings')
+require('hero_initiation')
 require('events')
 require('libraries/wearable_manager')
 require('libraries/animations')
@@ -49,6 +50,9 @@ function GameMode:LinkLuaModifiers()
 	LinkLuaModifier("modifier_tower_endure", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_bot_get_fun_items", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_bot_use_fun_items", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("modifier_attack_point_change", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("modifier_attack_time_change", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("modifier_attack_range_change", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 end
 
 function GameMode:InitGameOptions()
@@ -60,10 +64,11 @@ function GameMode:InitGameOptions()
 	GameRules:SetPreGameTime( PRE_GAME_TIME )
 	GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS, RADIANT_PLAYER_COUNT)
 	GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS, DIRE_PLAYER_COUNT)
+	GameRules:SetSameHeroSelectionEnabled(true)
 	if IsInToolsMode() then
-		 GameRules:SetStrategyTime(0)
-		 GameRules:SetShowcaseTime(0)
+	--	 GameRules:SetStrategyTime(0)
 	end
+	GameRules:SetShowcaseTime(0)
 end
 
 
@@ -140,7 +145,7 @@ function GameMode:InitEvents()
 	ListenToGameEvent('dota_player_update_selected_unit',  Dynamic_Wrap(GameMode, 'OnPlayerUpdateSelectUnit2'), self)
 	--JS events
 	CustomGameEventManager:RegisterListener("loading_set_options", function (eventSourceIndex, args) return GameMode:OnGetLoadingSetOptions(eventSourceIndex, args) end)
-	
+	CustomGameEventManager:RegisterListener("fun_hero_selection", function (eventSourceIndex, args) return GameMode:OnFunHeroSelected(eventSourceIndex, args) end)
 end
 
 --[==[

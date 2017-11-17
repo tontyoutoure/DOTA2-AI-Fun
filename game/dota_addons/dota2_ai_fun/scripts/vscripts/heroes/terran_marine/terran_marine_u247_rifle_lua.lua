@@ -8,13 +8,11 @@ function terran_marine_u247_rifle_lua:OnSpellStart()
 	if hModifier then
 		hModifier:Destroy()
 		hCaster:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
-		hCaster:SetBaseAttackTime(1)
 		hCaster:CalculateStatBonus()
 	else
 		hCaster:AddNewModifier(hCaster, self, "modifier_terran_marine_u247_rifle", {})
 		hCaster:SetAttackCapability(DOTA_UNIT_CAP_RANGED_ATTACK)
 		hCaster:SetRangedProjectileName("particles/units/heroes/hero_tinker/tinker_missile.vpcf")
-		hCaster:SetBaseAttackTime(self:GetSpecialValueFor("attack_time"))
 		hCaster:CalculateStatBonus()		
 	end
 end

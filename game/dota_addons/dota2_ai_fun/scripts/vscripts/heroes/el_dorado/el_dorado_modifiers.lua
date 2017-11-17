@@ -110,17 +110,29 @@ function modifier_el_dorado_artificial_frog_disable_healing:IsPurgable() return 
 function modifier_el_dorado_artificial_frog_disable_healing:RemoveOnDeath() return false end
 
 function modifier_el_dorado_artificial_frog_disable_healing:GetDisableHealing() 
-	if self:GetCaster():FindAbilityByName("special_bonus_el_dorado_2"):GetLevel() > 0 then
+	self.hSpecial = Entities:First()
+	
+	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_el_dorado_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+		self.hSpecial = Entities:Next(self.hSpecial)
+	end	
+	
+	if self.hSpecial and self.hSpecial:GetSpecialValueFor("value") == 1 then
 		return false
 	else
-		return 1 
+		return 1
 	end
 end
 
 function modifier_el_dorado_artificial_frog_disable_healing:GetModifierConstantHealthRegen()
-	if self:GetCaster():FindAbilityByName("special_bonus_el_dorado_2"):GetLevel() > 0 then
+	self.hSpecial = Entities:First()
+	
+	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_el_dorado_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+		self.hSpecial = Entities:Next(self.hSpecial)
+	end	
+	
+	if self.hSpecial and self.hSpecial:GetSpecialValueFor("value") == 1 then
 		return 100
 	else
-		return 0 
-	end
+		return 0
+	end	
 end

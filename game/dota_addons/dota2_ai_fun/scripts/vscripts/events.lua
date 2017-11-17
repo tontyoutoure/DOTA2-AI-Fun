@@ -31,11 +31,117 @@ function GameMode:OnConnectFull(keys)
 	
 end
 
+function GameMode:OnFunHeroSelected(eventSourceIndex, args)
+	self.tFunHeroSelection = self.tFunHeroSelection or {}
+	self.tFunHeroSelection[args.player_id] = args.hero_name
+	PlayerResource:GetPlayer(args.player_id).bIsPlayingFunHero = true
+end
+
+function GameMode:InitializeHero(hHero)
+	if hHero:GetName() == "npc_dota_hero_spirit_breaker" then
+		require('heroes/astral_trekker/astral_trekker_init')
+		AstralTrekkerInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_shadow_demon" then
+		require('heroes/bastion/bastion_init')
+		BastionInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_beastmaster"  then
+		require('heroes/fluid_engineer/fluid_engineer_init')
+		FluidEngineerInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_wisp" then
+		require('heroes/formless/formless_init')
+		FormlessInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_treant" then
+		require('heroes/intimidator/intimidator_init')
+		IntimidatorInit(hHero, self)		
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_visage" then
+		require('heroes/magic_dragon/magic_dragon_init')
+		MagicDragonInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_arc_warden" then
+		require('heroes/mana_fiend/mana_fiend_init')
+		ManaFiendInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_techies" then
+		require('heroes/persuasive/persuasive_init')
+		PersuasiveInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_enigma" then
+		require('heroes/telekenetic_blob/telekenetic_blob_init')
+		TelekeneticBlobInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_tinker" then
+		require('heroes/terran_marine/terran_marine_init')
+		TerranMarineInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_night_stalker" then
+		require('heroes/void_demon/void_demon_init')
+		VoidDemonInit(hHero, self)
+	end
+		
+	if hHero:GetName() == "npc_dota_hero_brewmaster" then
+		require('heroes/ramza/ramza_init')
+		RamzaInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_rubick" then
+		require('heroes/cleric/cleric_init')
+		ClericInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_windrunner" then
+		require('heroes/pet_summoner/pet_summoner_init')
+		PetSummonerInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_sven" then
+		require('heroes/felguard/felguard_init')
+		FelguardInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_pugna" then
+		require('heroes/el_dorado/el_dorado_init')
+		ElDoradoInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_disruptor" then
+		require('heroes/hurricane/hurricane_init')
+		HurricaneInit(hHero, self)
+	end
+	
+	if hHero:GetName() == "npc_dota_hero_sniper" then
+		require('heroes/sniper/sniper_init')
+		SniperInit(hHero, self)
+	end
+
+end
+
 function GameMode:OnGameStateChanged( keys )
     local state = GameRules:State_Get()
 	if state == DOTA_GAMERULES_STATE_HERO_SELECTION then
 		if not self.PreGameOptionsSet then
 			self:PreGameOptions()
+		end
+		self.tHumanPlayerList = {}
+		if self.tFunHeroSelection then
+			for k, v in pairs(self.tFunHeroSelection) do
+				CreateHeroForPlayer(v, PlayerResource:GetPlayer(k)):RemoveSelf()
+				self.tHumanPlayerList[k] = true
+			end
 		end
 	end
 	
@@ -45,7 +151,6 @@ function GameMode:OnGameStateChanged( keys )
 		local iPlayerNumDire = PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_BADGUYS)
         local used_hero_name = "npc_dota_hero_luna"
        
-		self.tHumanPlayerList = {}
         for i=0, DOTA_MAX_TEAM_PLAYERS do
             if PlayerResource:IsValidPlayer(i) then
                 
@@ -62,7 +167,6 @@ function GameMode:OnGameStateChanged( keys )
                 end]]--
                 if PlayerResource:GetSelectedHeroName(i) then 
 					used_hero_name = PlayerResource:GetSelectedHeroName(i)
-					print(used_hero_name, "has been picked!")
 					self.tHumanPlayerList[i] = true
 					num = num + 1
 				end
@@ -74,7 +178,6 @@ function GameMode:OnGameStateChanged( keys )
 		if IsInToolsMode() and GetMapName() ~= "dota" then return end
         -- Eanble bots and fill empty slots
         if IsServer() == true then
-            print("Adding bots in empty slots")
             
 			if self.iDesiredRadiant > iPlayerNumRadiant then	
 				for i = 1, self.iDesiredRadiant - iPlayerNumRadiant do
@@ -113,7 +216,8 @@ function GameMode:OnGameStateChanged( keys )
 		for k, v in pairs(tTowers) do
 			v:AddNewModifier(v, nil, "modifier_tower_endure", {}):SetStackCount(iTowerEndure)
 		end
-	  
+		
+		
 --      for i=0, DOTA_MAX_TEAM_PLAYERS do`
 --          print(i)
 --          if PlayerResource:IsFakeClient(i) then
@@ -172,114 +276,13 @@ function GameMode:OnEntityKilled(keys)
 	end)
 end
 
-function LearnInnateSkillOnSpawn(hero)
-	local innateSkillNames = {}
-	innateSkillNames[#innateSkillNames+1] = "telekenetic_blob_mark_target"
-
-	for i = 1, #innateSkillNames do
-		if hero:HasAbility(innateSkillNames[i]) then
-			local ability = hero:FindAbilityByName(innateSkillNames[i])
-			ability:SetLevel(1)
-		end
-	end
-end
-
-
 
 function GameMode:_OnNPCSpawned(keys)
+	if GameRules:State_Get() < DOTA_GAMERULES_STATE_PRE_GAME then return end
 	local hHero = EntIndexToHScript(keys.entindex)	
 	
-	if hHero:GetName() == "npc_dota_hero_spirit_breaker" and not hHero.bSpawned then
-		require('heroes/astral_trekker/astral_trekker_init')
-		AstralTrekkerInit(hHero, self)
-	end
+	if hHero:IsHero() and not hHero.bInitialized and hHero:GetPlayerOwner().bIsPlayingFunHero then self:InitializeHero(hHero) end
 	
-	if hHero:GetName() == "npc_dota_hero_shadow_demon" and not hHero.bSpawned then
-		require('heroes/bastion/bastion_init')
-		BastionInit(hHero, self)
-	end
-	
-	if hHero:GetName() == "npc_dota_hero_beastmaster"  and not hHero.bSpawned then
-		require('heroes/fluid_engineer/fluid_engineer_init')
-		FluidEngineerInit(hHero, self)
-	end
-	
-	if hHero:GetName() == "npc_dota_hero_wisp" and not hHero.bSpawned then
-		require('heroes/formless/formless_init')
-		FormlessInit(hHero, self)
-	end
-	
-	if hHero:GetName() == "npc_dota_hero_treant" and not hHero.bSpawned then
-		require('heroes/intimidator/intimidator_init')
-		IntimidatorInit(hHero, self)		
-	end
-	
-	if hHero:GetName() == "npc_dota_hero_visage" and not hHero.bSpawned then
-		require('heroes/magic_dragon/magic_dragon_init')
-		MagicDragonInit(hHero, self)
-	end
-	
-	if hHero:GetName() == "npc_dota_hero_arc_warden" and not hHero.bSpawned then
-		require('heroes/mana_fiend/mana_fiend_init')
-		ManaFiendInit(hHero, self)
-	end
-	
-	if hHero:GetName() == "npc_dota_hero_techies" and not hHero.bSpawned then
-		require('heroes/persuasive/persuasive_init')
-		PersuasiveInit(hHero, self)
-	end
-	
-	if hHero:GetName() == "npc_dota_hero_enigma" and not hHero.bSpawned then
-		require('heroes/telekenetic_blob/telekenetic_blob_init')
-		TelekeneticBlobInit(hHero, self)
-	end
-	
-	if hHero:GetName() == "npc_dota_hero_tinker" and not hHero.bSpawned then
-		require('heroes/terran_marine/terran_marine_init')
-		TerranMarineInit(hHero, self)
-	end
-	
-	if hHero:GetName() == "npc_dota_hero_night_stalker" and not hHero.bSpawned then
-		require('heroes/void_demon/void_demon_init')
-		VoidDemonInit(hHero, self)
-	end
-		
-	if hHero:GetName() == "npc_dota_hero_brewmaster" and not hHero.bSpawned then
-		require('heroes/ramza/ramza_init')
-		RamzaInit(hHero, self)
-	end
-	
-	if hHero:GetName() == "npc_dota_hero_rubick" and not hHero.bSpawned then
-		require('heroes/cleric/cleric_init')
-		ClericInit(hHero, self)
-	end
-	
-	if hHero:GetName() == "npc_dota_hero_windrunner" and not hHero.bSpawned then
-		require('heroes/pet_summoner/pet_summoner_init')
-		PetSummonerInit(hHero, self)
-	end
-	
-	if hHero:GetName() == "npc_dota_hero_sven" and not hHero.bSpawned then
-		require('heroes/felguard/felguard_init')
-		FelguardInit(hHero, self)
-	end
-	
-	if hHero:GetName() == "npc_dota_hero_pugna" and not hHero.bSpawned then
-		require('heroes/el_dorado/el_dorado_init')
-		ElDoradoInit(hHero, self)
-	end
-	
-	if hHero:GetName() == "npc_dota_hero_disruptor" and not hHero.bSpawned then
-		require('heroes/hurricane/hurricane_init')
-		HurricaneInit(hHero, self)
-	end
-	
-	if hHero:GetName() == "npc_dota_hero_sniper" and not hHero.bSpawned then
-		require('heroes/sniper/sniper_init')
-		SniperInit(hHero, self)
-	end
-	
-	LearnInnateSkillOnSpawn(hHero)
 
 	if not hHero:IsHero() or hHero:IsIllusion() then return end	
 	
@@ -295,20 +298,20 @@ function GameMode:_OnNPCSpawned(keys)
 	
 	
 	if IsInToolsMode() then PlayerResource:SetGold(hHero:GetOwner():GetPlayerID(), 99999, true) end
-	if not hHero.bSpawned then
+	if not hHero.bInitialized then
 		hHero:AddNewModifier(hHero, nil, "modifier_global_hero_respawn_time", {})
 		if self.iImbalancedEconomizer > 0 then hHero:AddNewModifier(hHero, nil, "modifier_imbalanced_economizer", {}) end
 	end
 
 	Timers:CreateTimer(0.04, function ()  
-		
+		if hHero:IsNull() then return end
 		local hModifierBGP = hHero:FindModifierByName("modifier_buyback_gold_penalty")
 		if hModifierBGP then 
 			hHero.fBuyBackExtraRespawnTime = hModifierBGP:GetDuration()*0.25
 		end
 	end)
 
-	hHero.bSpawned = true;
+	hHero.bInitialized = true;
 end
 --[[
 function GameMode:OnPlayerPickHero(keys)	

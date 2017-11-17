@@ -26,6 +26,7 @@ function persuasive_swindle_lua:OnUpgrade()
 	if self:GetLevel() ~= 1 then return end
 	local hCaster = self:GetCaster()
 --	hCaster:UpgradeAbility(hCaster:FindAbilityByName("persuasive_change_item_slot_0_lua"))	
+	hCaster:FindAbilityByName("persuasive_change_item_slot_0_lua"):SetLevel(1)
 	hCaster:FindAbilityByName("persuasive_raise_lua"):SetLevel(1)
 	hCaster:FindAbilityByName("persuasive_empty_for_reflect"):SetLevel(1)
 --	hCaster.iItemSlot = 0

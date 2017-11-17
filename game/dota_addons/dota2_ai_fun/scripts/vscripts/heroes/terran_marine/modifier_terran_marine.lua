@@ -50,7 +50,8 @@ function modifier_terran_marine_u247_rifle:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE,
 		MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS,
-		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
+		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT
 	}
 end
 
@@ -58,9 +59,18 @@ function modifier_terran_marine_u247_rifle:IsBuff()
 	return true
 end
 
-function modifier_terran_marine_u247_rifle:IsPermanent()
+function modifier_terran_marine_u247_rifle:IsPurgable()
 	return true
 end
+function modifier_terran_marine_u247_rifle:RemoveOnDeath()
+	return true
+end
+function modifier_terran_marine_u247_rifle:RemoveOnDeath()
+	return true
+end
+
+
+function modifier_terran_marine_u247_rifle:GetModifierBaseAttackTimeConstant() return self:GetAbility():GetSpecialValueFor("attack_time") end
 
 function modifier_terran_marine_u247_rifle:GetModifierMoveSpeedOverride()
 	return self:GetAbility():GetSpecialValueFor("movement_override")
@@ -73,3 +83,10 @@ end
 function modifier_terran_marine_u247_rifle:GetModifierProjectileSpeedBonus()
 	return -200
 end
+
+modifier_terran_marine_attack_sound = class({})
+function modifier_terran_marine_attack_sound:IsPurgable() return false end
+function modifier_terran_marine_attack_sound:IsHidden() return true end
+function modifier_terran_marine_attack_sound:RemoveOnDeath() return false end
+function modifier_terran_marine_attack_sound:DeclareFunctions() return {MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND} end
+function modifier_terran_marine_attack_sound:GetAttackSound() return "Hero_Gyrocopter.FlackCannon" end

@@ -312,3 +312,63 @@
 	vertical-align: center;
 	color: #ffffff;
 }
+#HeroSelectionLabel
+{
+	font-size: 32px;
+	horizontal-align: center;
+	vertical-align: center;
+	color: #ffffff;
+}
+
+
+.HeroSelectionButton{
+	margin-top: 20px;
+	width: 100%;
+	height: 50px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_large_2x_png.vtex");
+	background-size: 100% 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #5555DDFF ), to( #0000FFFF ) );
+	box-shadow: #000000 0px 0px 10px 0px;
+	transition-property: background-color;
+	transition-duration: 0.2s;
+}
+.HeroSelectionButton:hover
+{
+	box-shadow: #000000 0px 0px 25px 0px;
+}
+
+.HeroSelectionButton:active
+{
+	transform: translate3d(1px, 1px, 0px);
+}
+
+
+#HeroUnselectionLabel
+{
+	font-size: 32px;
+	horizontal-align: center;
+	vertical-align: center;
+	color: #ffffff;
+}
+
+
+.HeroUnselectionButton{
+	margin-top: 5px;
+	width: 100%;
+	height: 50px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_large_2x_png.vtex");
+	background-size: 100% 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #DD5555FF ), to( #FF0000FF ) );
+	box-shadow: #000000 0px 0px 10px 0px;
+	transition-property: background-color;
+	transition-duration: 0.2s;
+}
+.HeroUnselectionButton:hover
+{
+	box-shadow: #000000 0px 0px 25px 0px;
+}
+
+.HeroUnselectionButton:active
+{
+	transform: translate3d(1px, 1px, 0px);
+}

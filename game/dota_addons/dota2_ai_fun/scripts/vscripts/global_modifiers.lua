@@ -411,3 +411,29 @@ function modifier_bot_use_fun_items:OnIntervalThink()
 		end
 	end
 end
+
+modifier_attack_point_change = class({})
+function modifier_attack_point_change:IsPurgable() return false end
+function modifier_attack_point_change:IsHidden() return true end
+function modifier_attack_point_change:RemoveOnDeath() return false end
+function modifier_attack_point_change:DeclareFunctions() return {MODIFIER_PROPERTY_ATTACK_POINT_CONSTANT} end
+function modifier_attack_point_change:GetModifierAttackPointConstant() 
+	return self:GetStackCount()/100
+end
+
+modifier_attack_time_change = class({})
+function modifier_attack_time_change:IsPurgable() return false end
+function modifier_attack_time_change:IsHidden() return true end
+function modifier_attack_time_change:RemoveOnDeath() return false end
+function modifier_attack_time_change:DeclareFunctions() return {MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT} end
+function modifier_attack_time_change:GetModifierBaseAttackTimeConstant() 
+	return self:GetStackCount()/100
+end
+
+
+modifier_attack_range_change = class({})
+function modifier_attack_range_change:IsPurgable() return false end
+function modifier_attack_range_change:IsHidden() return true end
+function modifier_attack_range_change:RemoveOnDeath() return false end
+function modifier_attack_range_change:DeclareFunctions() return {MODIFIER_PROPERTY_ATTACK_RANGE_BONUS} end
+function modifier_attack_range_change:GetModifierAttackRangeBonus() return self:GetStackCount() end

@@ -16,15 +16,17 @@ function HurricaneRemoveParticle(keys)
 		ParticleManager:DestroyParticle(hHero.iParticle1 ,false)
 		ParticleManager:DestroyParticle(hHero.iParticle2 ,false)
 	end
-	PrintTable(keys)
 end
 
-ListenToGameEvent("npc_spawned", HurricaneAddParticle, nil)
-ListenToGameEvent("entity_killed", HurricaneRemoveParticle, nil)
 
 HurricaneInit = function (hHero, context)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_hurricane", {})
 	hHero:SetBaseMoveSpeed(310)
+	if not GameMode.bHurricanParticleListenerSet then
+		GameMode.bHurricanParticleListenerSet = true
+		ListenToGameEvent("npc_spawned", HurricaneAddParticle, nil)
+		ListenToGameEvent("entity_killed", HurricaneRemoveParticle, nil)
+	end
 end
 
 

@@ -1,5 +1,39 @@
 LinkLuaModifier("modifier_cleric_magic_mirror", "heroes/cleric/cleric_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 
+local tNewAbilities = {
+	"cleric_meteor_shower",
+	"cleric_berserk",
+	"cleric_magic_mirror",
+	"generic_hidden",
+	"generic_hidden",
+	"cleric_prayer",
+	"special_bonus_gold_income_25",
+	"special_bonus_exp_boost_20",
+	"special_bonus_cleric_4",
+	"special_bonus_cleric_1",
+	"special_bonus_cleric_2",
+	"special_bonus_cleric_5",
+	"special_bonus_cleric_6",
+	"special_bonus_cleric_3"
+}
+
+local tHeroBaseStats = {
+	MovementSpeed = 290,
+	AttackRate = 1.7,
+	AttackDamageMin = 29,
+	AttackDamageMax = 35,
+	AttackRange = 600,
+	AttributeBaseStrength = 16,
+	AttributeBaseAgility = 14,
+	AttributeBaseIntelligence = 25,
+	AttributeStrenthGain = 2,
+	AttributeAgilityGain = 1.7,
+	AttributeIntelligenceGain = 2.8,
+	ArmorPhysical = 1,
+	PrimaryAttribute = DOTA_ATTRIBUTE_INTELLECT,
+	AttackAnimationPoint = 0.2,
+	ProjectileModel = "particles/units/heroes/hero_oracle/oracle_base_attack.vpcf",
+}
 
 function ClericTalentManager(keys)
 	if PlayerResource:GetPlayer(keys.player-1):GetAssignedHero():GetName() ~= "npc_dota_hero_rubick" then return end
@@ -11,12 +45,12 @@ function ClericTalentManager(keys)
 	end
 end
 
-ListenToGameEvent( "dota_player_learned_ability", ClericTalentManager, nil )
 
 function ClericInit(hHero, context)
-	if hHero:IsRealHero() then
-		local hMagicMirror = hHero:FindAbilityByName("cleric_magic_mirror")
-		hHero:AddNewModifier(hHero, hMagicMirror, "modifier_cleric_magic_mirror", {})
-	end	
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_cleric", {})	
+	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)	
+	if not GameMode.bClericTalentManagerSet then
+		ListenToGameEvent( "dota_player_learned_ability", ClericTalentManager, nil )
+		GameMode.bClericTalentManagerSet = true
+	end
 end

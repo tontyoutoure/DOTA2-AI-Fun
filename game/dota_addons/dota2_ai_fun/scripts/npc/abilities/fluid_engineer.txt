@@ -9,6 +9,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_OVERRIDE_ABILITY_1"
 		"AnimationPlaybackRate"	"5"
 		"AbilityCooldown"	"15"
 		"AbilityManaCost"	"5"
