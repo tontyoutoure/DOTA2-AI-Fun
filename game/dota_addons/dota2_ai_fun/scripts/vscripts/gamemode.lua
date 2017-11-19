@@ -65,9 +65,7 @@ function GameMode:InitGameOptions()
 	GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS, RADIANT_PLAYER_COUNT)
 	GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS, DIRE_PLAYER_COUNT)
 	GameRules:SetSameHeroSelectionEnabled(true)
-	if IsInToolsMode() then
-	--	 GameRules:SetStrategyTime(0)
-	end
+	GameRules:SetStrategyTime(0)
 	GameRules:SetShowcaseTime(0)
 end
 
@@ -146,6 +144,7 @@ function GameMode:InitEvents()
 	--JS events
 	CustomGameEventManager:RegisterListener("loading_set_options", function (eventSourceIndex, args) return GameMode:OnGetLoadingSetOptions(eventSourceIndex, args) end)
 	CustomGameEventManager:RegisterListener("fun_hero_selection", function (eventSourceIndex, args) return GameMode:OnFunHeroSelected(eventSourceIndex, args) end)
+	CustomGameEventManager:RegisterListener("fun_hero_unselection", function (eventSourceIndex, args) return GameMode:OnFunHeroUnselected(eventSourceIndex, args) end)
 end
 
 --[==[

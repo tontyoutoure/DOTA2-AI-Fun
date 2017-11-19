@@ -1,10 +1,8 @@
-hHero = PlayerResource:GetPlayer(0):GetAssignedHero()
-print(hHero:GetIdealSpeed())
-for i, v in ipairs(hHero:FindAllModifiers()) do
-	print(v:GetName())
+hHero = PlayerResource:GetPlayer(1):GetAssignedHero()
+for k, v in ipairs(Entities:FindAllInSphere(hHero:GetOrigin(), 400)) do
+	
+	if v:GetClassname() == "dota_item_drop" then print((v:GetOrigin()-hHero:GetOrigin()):Length2D()) hHero:PickupDroppedItem(v) end
 end
-
-
 
 --[[
 for i = 0, 23 do

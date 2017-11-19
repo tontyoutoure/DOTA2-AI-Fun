@@ -452,6 +452,7 @@ function HerosbowDestroy(keys)
 end
 
 function HerosBowReduceArmor(keys)
+	if keys.caster:IsIllusion() then return end
 	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_heros_bow_minus_armor", {Duration = keys.ability:GetSpecialValueFor("armor_reduction_duration")})
 end
 
@@ -465,18 +466,18 @@ function RagnarokCleaveApply(keys)
 		keys.ability.hModifier:Destroy()
 		keys.ability.hModifier = nil
 	end
-	if keys.caster:IsRangedAttacker() then return end
+	if keys.caster:IsRangedAttacker() or keys.caster:IsIllusion() then return end
 	keys.ability.hModifier = keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ragnarok_cleave", {Duration = 3})
 end
 
 function RagnarokMaimApply(keys)
-	if keys.target:IsBuilding() then return end
+	if keys.target:IsBuilding() or keys.caster:IsIllusion() then return end
 	keys.target:EmitSound("DOTA_Item.Maim")
 	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_item_fun_ragnarok_2_ultra_maim", {Duration = keys.ability:GetSpecialValueFor("maim_duration")})
 end
 
 function TerraBladeMaimApply(keys)
-	if keys.target:IsBuilding() then return end
+	if keys.target:IsBuilding() or keys.caster:IsIllusion() then return end
 	keys.target:EmitSound("DOTA_Item.Maim")
 	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_item_fun_terra_blade_ultra_maim", {Duration = keys.ability:GetSpecialValueFor("maim_duration")})
 end
@@ -530,6 +531,7 @@ function TerraBladeReleaseProjectile(keys)
 end
 
 function TerraBladeProjectileHit(keys)
+	if keys.caster:IsIllusion() then return end
 	ApplyDamage({
 		damage_type=DAMAGE_TYPE_PURE,
 		damage = keys.caster:GetAverageTrueAttackDamage(keys.caster),
@@ -540,7 +542,7 @@ function TerraBladeProjectileHit(keys)
 end
 
 function TerraBladeMinibash(keys)
-	if not keys.target:IsBuilding() then
+	if not keys.target:IsBuilding() and not keys.caster:IsIllusion() then
 		keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_bashed", {Duration = keys.ability:GetSpecialValueFor("bash_stun")})
 		keys.target:EmitSound("DOTA_Item.MKB.Minibash")
 		ParticleManager:CreateParticle("particles/generic_gameplay/generic_minibash.vpcf", PATTACH_OVERHEAD_FOLLOW, keys.target)

@@ -7,6 +7,9 @@ function modifier_terran_marine_precision:DeclareFunctions()
 	}
 end
 
+function modifier_terran_marine_precision:RemoveOnDeath() return false end
+function modifier_terran_marine_precision:IsPurgable() return false end
+
 function modifier_terran_marine_precision:IsBuff()
 	return true
 end

@@ -37,7 +37,13 @@ function GameMode:OnFunHeroSelected(eventSourceIndex, args)
 	PlayerResource:GetPlayer(args.player_id).bIsPlayingFunHero = true
 end
 
-function GameMode:InitializeHero(hHero)
+function GameMode:OnFunHeroUnselected(eventSourceIndex, args)
+	self.tFunHeroSelection = self.tFunHeroSelection or {}
+	self.tFunHeroSelection[args.player_id] = nil
+	PlayerResource:GetPlayer(args.player_id).bIsPlayingFunHero = nil
+end
+
+function GameMode:InitializeFunHero(hHero)
 	if hHero:GetName() == "npc_dota_hero_spirit_breaker" then
 		require('heroes/astral_trekker/astral_trekker_init')
 		AstralTrekkerInit(hHero, self)
@@ -123,10 +129,6 @@ function GameMode:InitializeHero(hHero)
 		HurricaneInit(hHero, self)
 	end
 	
-	if hHero:GetName() == "npc_dota_hero_sniper" then
-		require('heroes/sniper/sniper_init')
-		SniperInit(hHero, self)
-	end
 
 end
 
@@ -281,8 +283,12 @@ function GameMode:_OnNPCSpawned(keys)
 	if GameRules:State_Get() < DOTA_GAMERULES_STATE_PRE_GAME then return end
 	local hHero = EntIndexToHScript(keys.entindex)	
 	
-	if hHero:IsHero() and not hHero.bInitialized and hHero:GetPlayerOwner().bIsPlayingFunHero then self:InitializeHero(hHero) end
+	if hHero:IsHero() and not hHero.bInitialized and hHero:GetPlayerOwner().bIsPlayingFunHero then self:InitializeFunHero(hHero) end
 	
+	if hHero:GetName() == "npc_dota_hero_sniper" then
+		require('heroes/sniper/sniper_init')
+		SniperInit(hHero, self)
+	end
 
 	if not hHero:IsHero() or hHero:IsIllusion() then return end	
 	

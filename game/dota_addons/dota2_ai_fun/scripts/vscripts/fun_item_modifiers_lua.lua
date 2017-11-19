@@ -23,7 +23,11 @@ function modifier_angelic_alliance_maximum_speed:IsHidden() return true end
 function modifier_angelic_alliance_maximum_speed:IsPurgable() return false end
 
 function modifier_angelic_alliance_maximum_speed:GetModifierMoveSpeedBonus_Constant()
-	return self:GetAbility():GetSpecialValueFor("speed")
+	if self:GetAbility() then  
+		return self:GetAbility():GetSpecialValueFor("speed")
+	else
+		return 0
+	end
 end
 
 modifier_item_fun_sprint_shoes_lua = class({})
@@ -48,7 +52,11 @@ function modifier_item_fun_sprint_shoes_lua:GetModifierMoveSpeed_Limit()
 end
 
 function modifier_item_fun_sprint_shoes_lua:GetModifierMoveSpeedBonus_Special_Boots()
-	return self:GetAbility():GetSpecialValueFor("speed")
+	if self:GetAbility() then  
+		return self:GetAbility():GetSpecialValueFor("speed")
+	else
+		return 0
+	end
 end
 
 function modifier_item_fun_sprint_shoes_lua:IsHidden()
@@ -239,7 +247,7 @@ function modifier_angelic_alliance_spell_lifesteal:DeclareFunctions()
 end
 
 function modifier_angelic_alliance_spell_lifesteal:OnTakeDamage(keys)
-	if keys.attacker~=self:GetParent() or not keys.inflictor or bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL)>0 then return end
+	if keys.attacker~=self:GetParent() or keys.attacker:IsIllusion() or not keys.inflictor or bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL)>0 then return end
 	ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.attacker)
 	keys.attacker:Heal(self:GetAbility():GetSpecialValueFor("spell_lifesteal")/100*keys.damage, keys.attacker)
 end
@@ -257,7 +265,7 @@ function modifier_economizer_spell_lifesteal:DeclareFunctions()
 end
 
 function modifier_economizer_spell_lifesteal:OnTakeDamage(keys)
-	if keys.attacker~=self:GetParent() or not keys.inflictor or bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL)>0 then return end
+	if keys.attacker~=self:GetParent() or keys.attacker:IsIllusion() or not keys.inflictor or bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL)>0 then return end
 	ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.attacker)
 	keys.attacker:Heal(self:GetAbility():GetSpecialValueFor("spell_lifesteal")/100*keys.damage, keys.attacker)
 end

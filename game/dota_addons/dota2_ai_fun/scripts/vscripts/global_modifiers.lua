@@ -270,7 +270,7 @@ local tBotFunItems = {
 	npc_dota_hero_crystal_maiden = {"item_fun_magic_hammer","item_fun_economizer","item_fun_economizer_2","item_fun_escutcheon"},
 	npc_dota_hero_drow_ranger = {"item_fun_genji_gloves","item_fun_genji_gloves_2","item_fun_blood_sword","item_fun_heros_bow"},
 	npc_dota_hero_earthshaker = {"item_fun_magic_hammer","item_fun_economizer","item_fun_economizer_2","item_fun_escutcheon"},
-	npc_dota_hero_juggernaut = {"item_fun_genji_gloves","item_fun_genji_gloves_2","item_fun_blood_sword","item_fun_heros_bow"},
+	npc_dota_hero_juggernaut = {"item_fun_genji_gloves","item_fun_genji_gloves_2","item_fun_ragnarok","item_fun_ragnarok_2","item_fun_blood_sword","item_fun_economizer","item_fun_economizer_2"},
 	npc_dota_hero_nevermore = {"item_fun_genji_gloves","item_fun_genji_gloves_2","item_fun_blood_sword","item_fun_heros_bow"},
 	npc_dota_hero_pudge = {"item_fun_ragnarok","item_fun_ragnarok_2","item_fun_magic_hammer","item_fun_escutcheon"},
 	npc_dota_hero_razor = {"item_fun_ragnarok","item_fun_ragnarok_2","item_fun_genji_gloves","item_fun_genji_gloves_2","item_fun_heros_bow"},
@@ -387,6 +387,36 @@ function modifier_bot_use_fun_items:OnIntervalThink()
 	if IsClient() then return end
 	local hParent = self:GetParent()
 	
+	for k, v in pairs(Entities:FindAllByClassnameWithin("dota_item_drop", hParent:GetOrigin(), 800)) do
+		if v:GetContainedItem():GetAbilityName() == "item_fun_angelic_alliance" then
+			if (hParent:GetOrigin()-v:GetOrigin()):Length2D() < 140 then
+				local iMinimumCost = 99999
+				local hMinimumCostItem
+				local bHasEmpty = false
+				for i = 0, 8 do
+					if not hParent:GetItemInSlot(i) then
+						bHasEmpty = true
+						break
+					else						
+						if iMinimumCost > hParent:GetItemInSlot(i):GetCost() then
+							iMinimumCost = hParent:GetItemInSlot(i):GetCost()
+							hMinimumCostItem = hParent:GetItemInSlot(i)
+						end
+					end
+				end
+--				print(bHasEmpty, iMinimumCost, hMinimumCostItem:GetName())
+				if bHasEmpty then
+					hParent:PickupDroppedItem(v)
+				else
+					hParent:DropItemAtPositionImmediate(hMinimumCostItem, hParent:GetOrigin())
+					hParent:PickupDroppedItem(v)
+				end
+			else
+				hParent:MoveToPosition(v:GetOrigin())
+			end
+		end
+	end
+	
 	local hItem = FindItemByName(hParent, "item_fun_blood_sword")
 	if hItem and hItem:IsCooldownReady() then
 		local tTargets = FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
@@ -408,6 +438,18 @@ function modifier_bot_use_fun_items:OnIntervalThink()
 		local tTargets = FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
 		if #tTargets > 0 then
 			hParent:CastAbilityOnTarget(tTargets[1], hItem, hParent:GetPlayerOwnerID())
+		end
+	end
+	
+	hItem = FindItemByName(hParent, "item_fun_angelic_alliance")
+	if hItem and hItem:IsCooldownReady() then
+		local tTargets = FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
+		if #tTargets > 0 then
+			if hParent:IsRangedAttacker() then 
+				hParent:CastAbilityOnPosition(tTargets[1]:GetOrigin()+600*(hParent:GetOrigin()-tTargets[1]:GetOrigin()):Normalized(), hItem, hParent:GetPlayerOwnerID()) 
+			else
+				hParent:CastAbilityOnPosition(tTargets[1]:GetOrigin(), hItem, hParent:GetPlayerOwnerID()) 
+			end
 		end
 	end
 end

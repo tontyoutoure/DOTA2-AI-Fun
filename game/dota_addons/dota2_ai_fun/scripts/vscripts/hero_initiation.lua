@@ -18,6 +18,14 @@ function GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)
 		end
 		for i, v in ipairs(tNewAbilities) do hHero:AddAbility(v) end
 		
+		local tModifiers = hHero:FindAllModifiers()
+		for i, v in ipairs(tModifiers) do
+			if string.find(v:GetName(), "special_bonus") then
+				v:Destroy()
+			end
+		end
+		
+		
 		Timers:CreateTimer(0.5, function() 
 			hHero:SetBaseMoveSpeed(tHeroBaseStats.MovementSpeed)
 			hHero:SetPrimaryAttribute(tHeroBaseStats.PrimaryAttribute)

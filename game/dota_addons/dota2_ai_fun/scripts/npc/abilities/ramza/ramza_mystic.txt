@@ -170,6 +170,7 @@
 				"EffectAttachType"	"follow_overhead"
 				"States"
 				{
+					"MODIFIER_STATE_DISARMED"  "MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 		}
@@ -217,7 +218,8 @@
 				"IsPurgable"	"1"
 				"IsDebuff"	"1"
 				"States"
-				{
+				{					
+					"MODIFIER_STATE_SILENCED"  "MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"TextureName"	"death_prophet_silence"
 			}

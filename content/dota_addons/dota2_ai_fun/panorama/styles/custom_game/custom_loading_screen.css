@@ -118,7 +118,7 @@
 
 #HeroDescriptionContainer
 {
-	width: 420px;
+	width: 550px;
 	height: 100%;
 	horizontal-align: left;
 	margin-left:25%;
@@ -177,9 +177,17 @@
 	horizontal-align: center;
 }
 
+.HeroAvatarCover
+{
+	width:100%;
+	height:100%;
+	background-color: #FFD70099;
+	visibility:collapse;
+}
+
 #HeroDescriptionPopPanelContainer
 {
-	width: 420px;
+	width: 550px;
 	height: 100%;
 	vertical-align: top;
 	margin-left:25%;
@@ -320,9 +328,14 @@
 	color: #ffffff;
 }
 
+.HeroSelectionButtonContainer{
+	margin-top: 20px;
+	width: 100%;
+	height: 50px;
+}
 
 .HeroSelectionButton{
-	margin-top: 20px;
+	margin-top:10px;
 	width: 100%;
 	height: 50px;
 	background-image: url("s2r://panorama/images/backgrounds/background_play_button_large_2x_png.vtex");
@@ -340,6 +353,7 @@
 .HeroSelectionButton:active
 {
 	transform: translate3d(1px, 1px, 0px);
+	sound: "ui_team_select_lock_and_start";
 }
 
 
@@ -353,7 +367,7 @@
 
 
 .HeroUnselectionButton{
-	margin-top: 5px;
+	margin-top:10px;
 	width: 100%;
 	height: 50px;
 	background-image: url("s2r://panorama/images/backgrounds/background_play_button_large_2x_png.vtex");
@@ -362,6 +376,7 @@
 	box-shadow: #000000 0px 0px 10px 0px;
 	transition-property: background-color;
 	transition-duration: 0.2s;
+	visibility:collapse;
 }
 .HeroUnselectionButton:hover
 {
@@ -371,4 +386,5 @@
 .HeroUnselectionButton:active
 {
 	transform: translate3d(1px, 1px, 0px);
+	sound: "ui_team_select_cancel_and_lock";
 }
