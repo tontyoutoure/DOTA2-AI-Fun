@@ -1,7 +1,6 @@
-hHero = PlayerResource:GetPlayer(1):GetAssignedHero()
-for k, v in ipairs(Entities:FindAllInSphere(hHero:GetOrigin(), 400)) do
-	
-	if v:GetClassname() == "dota_item_drop" then print((v:GetOrigin()-hHero:GetOrigin()):Length2D()) hHero:PickupDroppedItem(v) end
+hHero = PlayerResource:GetPlayer(0):GetAssignedHero()
+for k, v in ipairs(Entities:FindAllInSphere(hHero:GetOrigin(), 400)) do	
+	if v.GetModelName then print(v:GetModelName()) end
 end
 
 --[[

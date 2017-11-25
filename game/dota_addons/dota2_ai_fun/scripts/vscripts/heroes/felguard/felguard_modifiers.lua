@@ -38,7 +38,7 @@ end
 
 function modifier_felguard_fireblade_strike:OnDestroy()
 	if IsClient() then return end
-	hParent = self:GetParent()
+	local hParent = self:GetParent()
 	hParent:RemoveHorizontalMotionController(self)
 	hParent:RemoveVerticalMotionController(self)
 	FindClearSpaceForUnit(hParent, hParent:GetOrigin(), false)
@@ -83,7 +83,7 @@ function modifier_felguard_felguard_wrath:GetEffectAttachType() return PATTACH_P
 
 function modifier_felguard_felguard_wrath:OnDestroy()
 	if IsClient() then return end
-	hParent = self:GetParent()
+	local hParent = self:GetParent()
 	hParent:StopSound("Hero_EmberSpirit.FireRemnant.Activate")
 	hAbility = self:GetAbility()
 	hParent:SetOrigin(self.vTarget)

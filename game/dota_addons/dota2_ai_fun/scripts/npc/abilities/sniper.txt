@@ -5,7 +5,7 @@
 {
 	"Version"		"1"
 
-	"sniper_assassinate_scepter"
+	"sniper_assassinate_upgrade"
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
