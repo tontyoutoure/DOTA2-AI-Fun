@@ -89,7 +89,7 @@ function hurricane_eyes_of_the_storm:OnSpellStart()
 end
 
 hurricane_eyes_of_the_storm_upgrade = class({})
-function hurricane_eyes_of_the_storm_upgrade:GetIntrinsicModifierName() return "modifier_hurricane_eyes_of_the_storm_scepter" end
+function hurricane_eyes_of_the_storm_upgrade:GetIntrinsicModifierName() return "modifier_hurricane_eyes_of_the_storm_upgrade" end
 
 function hurricane_eyes_of_the_storm_upgrade:GetAbilityDamageType()
   if not self:GetCaster():HasScepter() then 

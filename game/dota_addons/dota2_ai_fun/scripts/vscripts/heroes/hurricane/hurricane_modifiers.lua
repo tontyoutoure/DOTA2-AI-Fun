@@ -233,5 +233,6 @@ function modifier_hurricane_eyes_of_the_storm_upgrade:OnIntervalThink()
 		local iLevel = hParent:FindAbilityByName("hurricane_eyes_of_the_storm_upgrade"):GetLevel()
 		hParent:RemoveAbility("hurricane_eyes_of_the_storm_upgrade")
 		hParent:AddAbility("hurricane_eyes_of_the_storm"):SetLevel(iLevel)
+		self:Destroy()
 	end
 end
