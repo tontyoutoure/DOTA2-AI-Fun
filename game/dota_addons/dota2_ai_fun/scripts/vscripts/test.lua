@@ -1,7 +1,8 @@
 hHero = PlayerResource:GetPlayer(0):GetAssignedHero()
-for k, v in ipairs(Entities:FindAllInSphere(hHero:GetOrigin(), 400)) do	
-	if v.GetModelName then print(v:GetModelName()) end
-end
+
+		local iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_ogre_magi/ogre_magi_ignite_explosion.vpcf", PATTACH_ABSORIGIN_FOLLOW, hHero)
+		ParticleManager:SetParticleControl(iParticle, 1, hHero:GetOrigin())
+		ParticleManager:SetParticleControl(iParticle, 3, hHero:GetOrigin())
 
 --[[
 for i = 0, 23 do

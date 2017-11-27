@@ -1,0 +1,214 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"capslockftw_flamer"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"scripts/vscripts/heroes/capslockftw/capslockftw.lua"
+		"AbilityTextureName"	"batrider_flamebreak"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"CastFilterRejectCaster"	"1"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_RAZE_3"
+		"AbilityCooldown"	"15"
+		"AbilityManaCost"	"70 80 90 100"
+		"AbilityCastRange"	"600"
+		"AbilityCastRangeBuffer"	"200"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"75 150 225 300"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"movement_slow"	"-10 -20 -30 -40"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"movement_buff"	"10 20 30 40"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"5"
+			}
+		}
+	}
+
+	"capslockftw_hax"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"capslockftw_hax"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE "
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_IDLE"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"100"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/capslockftw/capslockftw.lua"
+				"Function"	"CAPSLOCKFTWHax"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"Function"	"CAPSLOCKFTWHaxUpgrade"
+				"ScriptFile"	"scripts/vscripts/heroes/capslockftw/capslockftw.lua"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_drain"	"50 40 30 20"
+			}
+		}
+	}
+
+	"capslockftw_sarcasm"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"blue_dragonspawn_overseer_devotion_aura"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/capslockftw/capslockftw.lua"
+				"Function"	"CAPSLOCKFTWSarcasmApply"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"silence_duration"	"2"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"lifesteal_percentage"	"50"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"splash_aoe"	"200"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chance"	"20"
+			}
+		}
+	}
+
+	"capslockftw_ban"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"shadow_demon_shadow_poison"
+		"ScriptFile"	"scripts/vscripts/heroes/capslockftw/capslockftw.lua"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_RAZE_2"
+		"AbilityCooldown"	"120"
+		"AbilityManaCost"	"125 175 225"
+		"AbilityCastRange"	"600"
+		"HasScepterUpgrade"			"1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"100 200 300"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"stun_duration"	"3 4 5"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"aoe_scepter"	"400"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cooldown_scepter"	"40"
+			}
+		}
+	}
+
+	"capslockftw_hax_close"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"capslockftw_hax"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_IDLE"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Function"	"CAPSLOCKFTWHaxClose"
+				"ScriptFile"	"scripts/vscripts/heroes/capslockftw/capslockftw.lua"
+			}
+		}
+	}
+	"special_bonus_capslockftw_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1"
+			}
+		}
+	}
+	"special_bonus_capslockftw_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"10"
+			}
+		}
+	}
+}

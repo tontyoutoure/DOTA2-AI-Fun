@@ -126,4 +126,12 @@ function modifier_attribute_indicator_hurricane:IsHidden() return false end
 function modifier_attribute_indicator_hurricane:IsDebuff() return false end
 function modifier_attribute_indicator_hurricane:GetTexture() return "attribute_indicator" end
 
+LinkLuaModifier("modifier_attribute_indicator_capslockftw", "modifier_attribute_indicators.lua", LUA_MODIFIER_MOTION_NONE)
+modifier_attribute_indicator_capslockftw = class({})
+function modifier_attribute_indicator_capslockftw:RemoveOnDeath() return false end
+function modifier_attribute_indicator_capslockftw:IsPurgable() return false end
+function modifier_attribute_indicator_capslockftw:IsHidden() return false end
+function modifier_attribute_indicator_capslockftw:IsDebuff() return false end
+function modifier_attribute_indicator_capslockftw:GetTexture() return "attribute_indicator" end
+
 

@@ -20,3 +20,4 @@ terran_marine.txt
 void_demon.txt
 sniper.txt
 hurricane.txt
+capslockftw.txt

@@ -129,6 +129,10 @@ function GameMode:InitializeFunHero(hHero)
 		HurricaneInit(hHero, self)
 	end
 	
+	if hHero:GetName() == "npc_dota_hero_nevermore" then
+		require('heroes/capslockftw/capslockftw_init')
+		CAPSLOCKFTWInit(hHero, self)
+	end
 
 end
 

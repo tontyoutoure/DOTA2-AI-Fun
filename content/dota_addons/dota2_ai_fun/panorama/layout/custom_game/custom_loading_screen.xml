@@ -256,6 +256,10 @@
 						<Image id="HeroAvatarDisruptor" class="HeroAvatar" src="file://{images}/custom_game/npc_dota_hero_disruptor.png" />
 						<Panel id="HeroAvatarCoverDisruptor" class="HeroAvatarCover"/>
 					</Button>
+					<Button id="HeroAvatarBtnNevermore" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelNevermore&quot;);"> 
+						<Image id="HeroAvatarNevermore" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_nevermore.png" />
+						<Panel id="HeroAvatarCoverNevermore" class="HeroAvatarCover"/>
+					</Button>
 				</Panel>
 				<Panel id="HeroAvatarButtonLine6" class="HeroAvatarButtonLine">
 				</Panel>
@@ -435,6 +439,16 @@
 					<Label id="HeroSelectionLabel" text="#select_hero" />
 				</Button>
 				<Button id="HeroUnselectionDisruptor" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_disruptor', 'Disruptor');">				
+					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+				</Button>
+			</Panel>
+			<Panel id="HeroDescriptionPopPanelNevermore" class = "HeroDescriptionPopPanel">
+				<Label id="HeroNameNevermore" class="HeroName" text="#npc_dota_hero_nevermore_long"/>
+				<Label id="HeroBioNevermore" class="HeroBio" text="#npc_dota_hero_nevermore_bio"/>
+				<Button id="HeroSelectionNevermore" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_nevermore', 'Nevermore');">				
+					<Label id="HeroSelectionLabel" text="#select_hero" />
+				</Button>
+				<Button id="HeroUnselectionNevermore" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_nevermore', 'Nevermore');">				
 					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
 				</Button>
 			</Panel>

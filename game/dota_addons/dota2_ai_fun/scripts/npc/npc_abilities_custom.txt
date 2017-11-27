@@ -1,5 +1,3 @@
-
-
 #base "abilities\astral_trekker.txt"
 #base "abilities\bastion.txt"
 #base "abilities\fluid_engineer.txt"
@@ -20,3 +18,4 @@
 #base "abilities\hamsterlord.txt"
 #base "abilities\sniper.txt"
 #base "abilities\hurricane.txt"
+#base "abilities\capslockftw.txt"

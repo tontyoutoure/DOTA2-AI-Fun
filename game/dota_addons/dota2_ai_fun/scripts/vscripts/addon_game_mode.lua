@@ -298,6 +298,10 @@ function Precache( context )
 	PrecacheResource("particle", "particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_razor/razor_storm_lightning_strike.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_razor.vsndevts", context)
+	
+	PrecacheResource("soundfile", "particles/units/heroes/hero_ogre_magi/ogre_magi_ignite_explosion.vpcf", context)
+	PrecacheResource("soundfile", "particles/units/heroes/hero_ogre_magi/ogre_magi_ignite_debuff.vpcf", context)
+	PrecacheResource("soundfile", "particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf", context)
 end
 
 
