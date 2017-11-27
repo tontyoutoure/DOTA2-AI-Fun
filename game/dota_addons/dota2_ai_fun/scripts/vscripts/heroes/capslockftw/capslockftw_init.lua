@@ -9,7 +9,7 @@ local tNewAbilities = {
 	"capslockftw_hax_close",
 	"special_bonus_gold_income_25",
 	"special_bonus_exp_boost_20",
-	"special_bonus_attack_speed_30",
+	"special_bonus_attack_speed_40",
 	"special_bonus_capslockftw_2",
 	"special_bonus_armor_15",
 	"special_bonus_attack_range_200",

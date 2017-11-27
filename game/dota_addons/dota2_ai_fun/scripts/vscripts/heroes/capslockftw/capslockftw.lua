@@ -47,6 +47,7 @@ function CAPSLOCKFTWHax(keys)
 	keys.caster:SwapAbilities("capslockftw_hax", "capslockftw_hax_close", true, true)
 	keys.caster:FindAbilityByName("capslockftw_hax_close"):SetHidden(false)
 	keys.caster:FindAbilityByName("capslockftw_hax"):SetHidden(true)
+	keys.caster:FindAbilityByName("capslockftw_hax_close"):StartCooldown(0.5)
 end
 
 function CAPSLOCKFTWHaxUpgrade(keys)
@@ -85,10 +86,12 @@ end
 function capslockftw_ban:OnSpellStart()
 	local hCaster = self:GetCaster()
 	if hCaster:HasScepter() then
-		local tTargets = FindUnitsInRadius(hCaster:GetTeamNumber(), self:GetCursorTarget():GetOrigin(), nil, self:GetSpecialValueFor("aoe_scepter"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
+		local tTargets = FindUnitsInRadius(hCaster:GetTeamNumber(), self:GetCursorTarget():GetOrigin(), nil, self:GetSpecialValueFor("aoe_scepter"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 		for k, hTarget in ipairs(tTargets) do
 			ApplyDamage({victim = hTarget, attacker = hCaster, damage_type = self:GetAbilityDamageType(), damage = self:GetSpecialValueFor("damage")*(PlayerResource:GetDeaths(hTarget:GetPlayerOwnerID())-PlayerResource:GetKills(hTarget:GetPlayerOwnerID())), ability = self})
 			hTarget:AddNewModifier(hCaster, self, "modifier_stunned", {Duration = self:GetSpecialValueFor("stun_duration")})
+			hTarget:EmitSound("ui.ban_captains")
+			hTarget:EmitSound("ui.ban_captains")
 			hTarget:EmitSound("ui.ban_captains")
 			hTarget:EmitSound("ui.ban_captains")
 			hTarget:EmitSound("ui.ban_captains")
