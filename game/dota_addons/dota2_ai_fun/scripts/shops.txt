@@ -184,7 +184,7 @@
  		"item"		"item_dragon_lance"
 		"item"		"item_sange"
  		"item"		"item_yasha"
- 		"item"		"item_trident"
+ 		"item"		"item_kaya"
  		"item"		"item_mask_of_madness"
  		"item"		"item_helm_of_the_dominator"
 		"item"		"item_echo_sabre"	

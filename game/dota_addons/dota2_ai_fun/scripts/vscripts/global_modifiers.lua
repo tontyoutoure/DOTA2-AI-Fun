@@ -250,7 +250,7 @@ local tNotUpgrade = {
 
 local tFunItems = {
 	item_fun_economizer = {"item_octarine_core","item_mystic_staff","item_staff_of_wizardry","item_robe","item_mantle"},
-	item_fun_economizer_2 = {"item_fun_economizer","item_ultimate_scepter","item_trident"},
+	item_fun_economizer_2 = {"item_fun_economizer","item_ultimate_scepter","item_kaya"},
 	item_fun_genji_gloves = {"item_slippers","item_boots_of_elves","item_blade_of_alacrity","item_eagle","item_butterfly"},
 	item_fun_genji_gloves_2 = {"item_fun_genji_gloves","item_monkey_king_bar","item_yasha"},
 	item_fun_ragnarok = {"item_gauntlets","item_belt_of_strength","item_ogre_axe","item_reaver","item_heart"},

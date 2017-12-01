@@ -1710,7 +1710,7 @@
 		"ItemResult"	"item_fun_economizer_2"
 		"ItemRequirements"
 		{
-			"01"	"item_fun_economizer;item_ultimate_scepter;item_trident"
+			"01"	"item_fun_economizer;item_ultimate_scepter;item_kaya"
 		}
 	}
 
