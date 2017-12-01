@@ -1611,7 +1611,7 @@
 		"ItemResult"	"item_fun_escutcheon"
 		"ItemRequirements"
 		{
-			"01"	"item_pipe;item_crimson_guard;item_combo_breaker;item_soul_booster"
+			"01"	"item_pipe;item_crimson_guard;item_aeon_disk;item_soul_booster"
 		}
 	}
 

@@ -147,7 +147,7 @@
 		"item"		"item_blade_mail"
 		"item"		"item_soul_booster"
 		"item"		"item_crimson_guard"		
-		"item"		"item_combo_breaker"	
+		"item"		"item_aeon_disk"	
 		"item"		"item_black_king_bar"
 		"item"		"item_lotus_orb"		
 		"item"		"item_shivas_guard"
