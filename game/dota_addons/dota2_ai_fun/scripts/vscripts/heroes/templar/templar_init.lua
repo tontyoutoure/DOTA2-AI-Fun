@@ -10,7 +10,7 @@ local tNewAbilities = {
 	"special_bonus_templar_1",
 	"special_bonus_templar_2",
 	"special_bonus_templar_3",
-	"special_bonus_spell_amplify_15",
+	"special_bonus_attack_speed_250",
 	"special_bonus_cleave_100",
 	"special_bonus_templar_4"
 }

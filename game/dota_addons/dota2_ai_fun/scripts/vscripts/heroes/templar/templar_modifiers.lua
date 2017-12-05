@@ -86,7 +86,13 @@ function modifier_templar_faith:OnTakeDamage(keys)
 	
 	if keys.unit == self:GetParent() or keys.attacker == self:GetParent() then
 		local hAbility = self:GetAbility()
-		ApplyDamage({damage = self:GetParent():GetIntellect()*hAbility:GetSpecialValueFor("intellect_damage"), damage_type = hAbility:GetAbilityDamageType(), ability = hAbility, attacker = keys.attacker, victim = keys.unit})
+		local fDamage = self:GetParent():GetIntellect()*hAbility:GetSpecialValueFor("intellect_damage")
+		local iParticle = ParticleManager:CreateParticle("particles/msg_fx/msg_spell.vpcf", PATTACH_OVERHEAD_FOLLOW, keys.unit)
+		ParticleManager:SetParticleControlEnt(iParticle, 0, keys.unit, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.unit:GetOrigin(), true)
+		ParticleManager:SetParticleControl(iParticle, 1, Vector(0, fDamage, 6))
+		ParticleManager:SetParticleControl(iParticle, 2, Vector(1, math.floor(math.log10(fDamage))+2, 100))
+		ParticleManager:SetParticleControl(iParticle, 3, Vector(85+80,26+40,139+40))
+		ApplyDamage({damage = fDamage, damage_type = hAbility:GetAbilityDamageType(), ability = hAbility, attacker = keys.attacker, victim = keys.unit})
 	end
 end
 
