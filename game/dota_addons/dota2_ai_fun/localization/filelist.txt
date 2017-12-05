@@ -21,3 +21,4 @@ void_demon.txt
 sniper.txt
 hurricane.txt
 capslockftw.txt
+templar.txt

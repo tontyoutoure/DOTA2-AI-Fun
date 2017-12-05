@@ -19,3 +19,4 @@
 #base "abilities\sniper.txt"
 #base "abilities\hurricane.txt"
 #base "abilities\capslockftw.txt"
+#base "abilities\templar.txt"

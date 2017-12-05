@@ -260,6 +260,10 @@
 						<Image id="HeroAvatarNevermore" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_nevermore.png" />
 						<Panel id="HeroAvatarCoverNevermore" class="HeroAvatarCover"/>
 					</Button>
+					<Button id="HeroAvatarBtnOmniknight" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelOmniknight&quot;);"> 
+						<Image id="HeroAvatarOmniknight" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_omniknight.png" />
+						<Panel id="HeroAvatarCoverOmniknight" class="HeroAvatarCover"/>
+					</Button>
 				</Panel>
 				<Panel id="HeroAvatarButtonLine6" class="HeroAvatarButtonLine">
 				</Panel>
@@ -449,6 +453,16 @@
 					<Label id="HeroSelectionLabel" text="#select_hero" />
 				</Button>
 				<Button id="HeroUnselectionNevermore" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_nevermore', 'Nevermore');">				
+					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+				</Button>
+			</Panel>
+			<Panel id="HeroDescriptionPopPanelOmniknight" class = "HeroDescriptionPopPanel">
+				<Label id="HeroNameOmniknight" class="HeroName" text="#npc_dota_hero_omniknight_long"/>
+				<Label id="HeroBioOmniknight" class="HeroBio" text="#npc_dota_hero_omniknight_bio"/>
+				<Button id="HeroSelectionOmniknight" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_omniknight', 'Omniknight');">				
+					<Label id="HeroSelectionLabel" text="#select_hero" />
+				</Button>
+				<Button id="HeroUnselectionOmniknight" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_omniknight', 'Omniknight');">				
 					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
 				</Button>
 			</Panel>

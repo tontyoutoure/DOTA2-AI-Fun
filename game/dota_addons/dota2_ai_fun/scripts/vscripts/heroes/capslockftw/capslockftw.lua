@@ -18,6 +18,7 @@ function capslockftw_flamer:GetCooldown(iLevel)
 		return self.BaseClass.GetCooldown(self, iLevel)
 	end
 end
+
 function capslockftw_flamer:OnSpellStart()
 	local hCaster = self:GetCaster()
 	local hTarget = self:GetCursorTarget()

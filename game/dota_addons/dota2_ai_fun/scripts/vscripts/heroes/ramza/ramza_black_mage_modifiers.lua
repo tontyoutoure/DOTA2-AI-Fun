@@ -163,7 +163,7 @@ function modifier_ramza_black_mage_black_magicks_toad:GetModifierMoveSpeedOverri
 	return 140
 end
 
-function modifier_ramza_black_mage_black_magicks_toad:IsPurgable() return true end
+function modifier_ramza_black_mage_black_magicks_toad:IsPurgable() return false end
 function modifier_ramza_black_mage_black_magicks_toad:GetTexture() return "lion_voodoo" end
 
 modifier_ramza_black_mage_black_magicks_blizzaga = class({})
