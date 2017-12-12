@@ -95,7 +95,11 @@ function GameMode:InitializeFunHero(hHero)
 		require('heroes/templar/templar_init')
 		TemplarInit(hHero, self)
 	end
-
+	
+	if hHero:GetName() == "npc_dota_hero_meepo" then
+		require('heroes/spongebob/spongebob_init')
+		SpongeBobInit(hHero, self)
+	end
 end
 
 function GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)

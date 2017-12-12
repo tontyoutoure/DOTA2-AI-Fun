@@ -11,6 +11,7 @@ function modifier_ramza_ninja_reflexes:DeclareFunctions()
 end
 
 function modifier_ramza_ninja_reflexes:OnCreated()
+	if IsClient() then return end
 	self.fChance = self:GetAbility():GetSpecialValueFor("chance")
 end
 

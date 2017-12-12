@@ -1,5 +1,5 @@
 "use strict";
-
+$("#HeroAvatarBtnMeepo").style.visibility = 'collapse';
 
 var sActivatingPanel
 var sSelectingPart
@@ -24,7 +24,8 @@ function HeroDescription(sPanelID){
 function HeroSelection(sHeroName, sHeroPart) {
 	GameEvents.SendCustomGameEventToServer("fun_hero_selection", {
 		"hero_name": sHeroName,
-		"player_id": Players.GetLocalPlayer()
+		"player_id": Players.GetLocalPlayer(),
+		"language": $.Language()
 	})
 	if (sSelectingPart) {
 		$("#HeroSelection"+sSelectingPart).style.visibility = 'visible';

@@ -8,7 +8,9 @@ function RamzaTimeMageHaste(keys)
 end
 
 function RamzaTimeMageUpgradeTeleport(keys)
-	keys.caster:FindAbilityByName("ramza_time_mage_teleport"):SetLevel(2)
+	if keys.caster:HasAbility("ramza_time_mage_teleport") then
+		keys.caster:FindAbilityByName("ramza_time_mage_teleport"):SetLevel(2)
+	end
 end
 
 function RamzaTimeMageSlow(keys)	

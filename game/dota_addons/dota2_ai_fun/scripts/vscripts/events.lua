@@ -35,6 +35,9 @@ function GameMode:OnFunHeroSelected(eventSourceIndex, args)
 	self.tFunHeroSelection = self.tFunHeroSelection or {}
 	self.tFunHeroSelection[args.player_id] = args.hero_name
 	PlayerResource:GetPlayer(args.player_id).bIsPlayingFunHero = true
+	if args.language == "schinese" then
+		self.bIsChinese = true
+	end
 end
 
 function GameMode:OnFunHeroUnselected(eventSourceIndex, args)

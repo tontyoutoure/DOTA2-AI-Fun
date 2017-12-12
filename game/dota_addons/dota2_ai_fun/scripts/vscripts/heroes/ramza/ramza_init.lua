@@ -55,6 +55,21 @@ function RamzaTalentManager(keys)
 	if keys.abilityname == "special_bonus_ramza_2" then
 		PlayerResource:GetPlayer(keys.player-1):GetAssignedHero().hRamzaJob:RamzaLevelMax()
 	end
+	if keys.abilityname == "special_bonus_ramza_3" and PlayerResource:GetPlayer(keys.player-1):GetAssignedHero().hRamzaJob.iSecondarySkill > 0 then
+		local self = PlayerResource:GetPlayer(keys.player-1):GetAssignedHero().hRamzaJob
+		if self.tJobLevels[self.iSecondarySkill] >= 3 then
+			self.hParent:AddAbility(self.tOtherAbilities[self.iSecondarySkill][3][1]):SetLevel(1)
+			self.hParent:RemoveAbility(self.tOtherAbilities[self.iSecondarySkill][3][1])
+		end
+		if self.tJobLevels[self.iSecondarySkill] >= 5 then
+			self.hParent:AddAbility(self.tOtherAbilities[self.iSecondarySkill][5][1]):SetLevel(1)
+			self.hParent:RemoveAbility(self.tOtherAbilities[self.iSecondarySkill][5][1])
+		end
+		if self.tJobLevels[self.iSecondarySkill] >= 7 then
+			self.hParent:AddAbility(self.tOtherAbilities[self.iSecondarySkill][7][1]):SetLevel(1)
+			self.hParent:RemoveAbility(self.tOtherAbilities[self.iSecondarySkill][7][1])
+		end
+	end
 end
 
 ListenToGameEvent( "dota_player_learned_ability", RamzaTalentManager, nil )

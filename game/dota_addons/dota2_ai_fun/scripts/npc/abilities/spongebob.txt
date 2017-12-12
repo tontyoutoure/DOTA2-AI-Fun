@@ -1,9 +1,3 @@
-// Dota2 Editor
-// Get latest version: https://github.com/zombieJ/nw-dota2editor
-
-"DOTAAbilities"
-{
-}
 #base "abilities\astral_trekker.txt"
 #base "abilities\bastion.txt"
 #base "abilities\fluid_engineer.txt"
@@ -26,4 +20,4 @@
 #base "abilities\hurricane.txt"
 #base "abilities\capslockftw.txt"
 #base "abilities\templar.txt"
-//#base "abilities\spongebob.txt"
+#base "abilities\spongebob.txt"
