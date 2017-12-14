@@ -307,6 +307,7 @@ function Precache( context )
 	PrecacheResource("particle", "particles/units/heroes/hero_chen/chen_penitence.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_chen/chen_test_of_faith.vpcf", context)
 	PrecacheResource("particle", "particles/healing_flask_modified.vpcf", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_naga_siren.vsndevts", context)
 end
 
 

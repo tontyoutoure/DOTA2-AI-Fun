@@ -8,12 +8,12 @@ local tNewAbilities = {
 	"hero_attribute_gain_manager",
 	"special_bonus_gold_income_25",
 	"special_bonus_exp_boost_20",
-	"special_bonus_armor_10",
-	"special_bonus_movement_speed_25",
-	"special_bonus_cooldown_reduction_20",
+	"special_bonus_magic_resistance_20",
+	"special_bonus_spongebob_1",
+	"special_bonus_spongebob_2",
 	"special_bonus_hp_600",
-	"special_bonus_attack_range_400",
-	"special_bonus_bastion_1"
+	"special_bonus_spongebob_3",
+	"special_bonus_spongebob_4"
 }
 
 local tHeroBaseStats = {
@@ -34,10 +34,12 @@ local tHeroBaseStats = {
 
 function SpongeBobInit(hHero)		
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_spongebob", {})
---	if GameMode.bIsChinese then
+	if GameMode.bIsChinese then
 		hHero:SetModel("models/heroes/bob/spongbob.vmdl")
 		hHero:SetOriginalModel("models/heroes/bob/spongbob.vmdl")
 		WearableManager:RemoveOriginalWearables(hHero)
---	end
+	end
 	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)
+	
+
 end

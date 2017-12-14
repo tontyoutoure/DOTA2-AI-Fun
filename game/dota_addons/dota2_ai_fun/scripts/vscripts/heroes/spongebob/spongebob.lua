@@ -1,4 +1,5 @@
 LinkLuaModifier("modifier_spongebob_krabby_food", "heroes/spongebob/spongebob_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_spongebob_spongify", "heroes/spongebob/spongebob_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 spongebob_krabby_food = class({})
 
 function spongebob_krabby_food:CastFilterResultTarget(hTarget)
@@ -39,11 +40,16 @@ function spongebob_krabby_food:OnChannelFinish(bInterrupted)
 		self:GetCursorTarget():EmitSound("DOTA_Item.HealingSalve.Activate")
 		self:GetCursorTarget():EmitSound("DOTA_Item.HealingSalve.Activate")
 		self:GetCursorTarget():AddNewModifier(self:GetCaster(), self, "modifier_spongebob_krabby_food", {Duration = self:GetSpecialValueFor("duration")})
+		if self:GetCaster():HasAbility("special_bonus_spongebob_3") and self:GetCaster():FindAbilityByName("special_bonus_spongebob_3"):GetSpecialValueFor("value") > 0 then
+			self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_spongebob_krabby_food", {Duration = self:GetSpecialValueFor("duration")})
+		end
 	end
 end
 
 spongebob_karate_chop = class({})
-
+function spongebob_karate_chop:GetCastRange()
+	return self:GetSpecialValueFor("range")
+end
 function spongebob_karate_chop:GetCooldown(iLevel)
 	self.hSpecial = Entities:First()
 	
@@ -62,18 +68,44 @@ function spongebob_karate_chop:OnSpellStart()
 	if hTarget:TriggerSpellAbsorb(self) then return end
 	ApplyDamage({victim = hTarget, ability = self, attacker = hCaster, damage_type = self:GetAbilityDamageType(), damage = self:GetSpecialValueFor("damage")})
 	hTarget:ReduceMana(self:GetSpecialValueFor("mana_loss"))
-	hTarget:AddNewModifier("modifier_stunned", {Duration = self:GetSpecialValueFor("stun_duration")})	
+	hTarget:AddNewModifier(hCaster, self, "modifier_stunned", {Duration = self:GetSpecialValueFor("stun_duration")})	
 	hTarget:EmitSound("Hero_Sven.StormBoltImpact")	
 	local iParticle = ParticleManager:CreateParticle("particles/econ/items/troll_warlord/troll_warlord_ti7_axe/troll_ti7_axe_bash_explosion_swish.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget)
 	ParticleManager:SetParticleControlEnt(iParticle, 1, hCaster, PATTACH_POINT_FOLLOW, "attach_origin", hTarget:GetAbsOrigin(), true)
 end
 
+function SpongeBobJellyfishNet(keys)
+	local iChance
+	local iDuration
+	if keys.caster:IsIllusion() then 
+		if keys.target:IsHero() then
+			iChance = keys.ability:GetSpecialValueFor("chance_illusion_hero")
+			iDuration = keys.ability:GetSpecialValueFor("hero_duration")
+		else
+			iChance = keys.ability:GetSpecialValueFor("chance_illusion")
+			iDuration = keys.ability:GetSpecialValueFor("duration")
+		end
+	else
+		if keys.target:IsHero() then
+			iChance = keys.ability:GetSpecialValueFor("chance_hero")
+			iDuration = keys.ability:GetSpecialValueFor("hero_duration")
+		else
+			iChance = keys.ability:GetSpecialValueFor("chance")
+			iDuration = keys.ability:GetSpecialValueFor("duration")
+		end
+	end
+	if keys.caster:HasAbility("special_bonus_spongebob_1") then
+		iDuration = iDuration+keys.caster:FindAbilityByName("special_bonus_spongebob_1"):GetSpecialValueFor("value")
+	end
+	if RandomInt(1, 100) <= iChance then
+		keys.target:EmitSound("Hero_NagaSiren.Ensnare.Target")
+		keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_naga_siren_ensnare", {Duration = iDuration})
+	end
+end
 
+spongebob_spongify = class({})
 
-
-
-
-
-
-
+function spongebob_spongify:GetIntrinsicModifierName()
+	return "modifier_spongebob_spongify"
+end
 

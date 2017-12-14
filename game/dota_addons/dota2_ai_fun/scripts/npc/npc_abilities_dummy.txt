@@ -25,4 +25,12 @@
 			}
 		}
 	}
+
+	"hero_attribute_gain_manager"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"hero_initiation.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"1"
+	}
 }

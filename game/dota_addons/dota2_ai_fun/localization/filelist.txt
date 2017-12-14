@@ -22,3 +22,4 @@ sniper.txt
 hurricane.txt
 capslockftw.txt
 templar.txt
+spongebob.txt

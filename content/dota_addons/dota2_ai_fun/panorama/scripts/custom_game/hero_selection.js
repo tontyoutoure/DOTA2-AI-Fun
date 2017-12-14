@@ -21,11 +21,12 @@ function HeroDescription(sPanelID){
 	}
 }
 
+var sLanguage = $.Language()
 function HeroSelection(sHeroName, sHeroPart) {
 	GameEvents.SendCustomGameEventToServer("fun_hero_selection", {
 		"hero_name": sHeroName,
 		"player_id": Players.GetLocalPlayer(),
-		"language": $.Language()
+		"language": sLanguage
 	})
 	if (sSelectingPart) {
 		$("#HeroSelection"+sSelectingPart).style.visibility = 'visible';
