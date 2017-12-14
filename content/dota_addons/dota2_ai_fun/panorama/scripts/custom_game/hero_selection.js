@@ -1,5 +1,5 @@
 "use strict";
-$("#HeroAvatarBtnMeepo").style.visibility = 'collapse';
+//$("#HeroAvatarBtnMeepo").style.visibility = 'collapse';
 
 var sActivatingPanel
 var sSelectingPart

@@ -5,6 +5,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"generic_hidden",
 	"spongebob_krabby_food",
+	"hero_attribute_gain_manager",
 	"special_bonus_gold_income_25",
 	"special_bonus_exp_boost_20",
 	"special_bonus_armor_10",
@@ -29,14 +30,14 @@ local tHeroBaseStats = {
 	AttackAnimationPoint = 0.3,
 	ArmorPhysical = -1,
 	PrimaryAttribute = DOTA_ATTRIBUTE_AGILITY,
-	DisableWearables = true,
 }
 
 function SpongeBobInit(hHero)		
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_spongebob", {})
-	if GameMode.bIsChinese then
+--	if GameMode.bIsChinese then
 		hHero:SetModel("models/heroes/bob/spongbob.vmdl")
 		hHero:SetOriginalModel("models/heroes/bob/spongbob.vmdl")
-	end
+		WearableManager:RemoveOriginalWearables(hHero)
+--	end
 	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)
 end

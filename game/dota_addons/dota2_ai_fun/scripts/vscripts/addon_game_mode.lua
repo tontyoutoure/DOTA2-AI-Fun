@@ -306,6 +306,7 @@ function Precache( context )
 	PrecacheResource("particle", "particles/units/heroes/hero_shadowshaman/shadowshaman_voodoo.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_chen/chen_penitence.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_chen/chen_test_of_faith.vpcf", context)
+	PrecacheResource("particle", "particles/healing_flask_modified.vpcf", context)
 end
 
 

@@ -1,5 +1,4 @@
-
-
+print(GameMode, IsClient())
 function GameMode:InitializeFunHero(hHero)
 	if hHero:GetName() == "npc_dota_hero_spirit_breaker" then
 		require('heroes/astral_trekker/astral_trekker_init')
@@ -102,26 +101,25 @@ function GameMode:InitializeFunHero(hHero)
 	end
 end
 
+hero_attribute_gain_manager = class({})
+
+function hero_attribute_gain_manager:OnHeroLevelUp()
+	local hCaster = self:GetCaster()
+	hCaster:SetBaseStrength(hCaster:GetBaseStrength()+self.AttributeStrenthGain-hCaster:GetStrengthGain())
+	hCaster:SetBaseAgility(hCaster:GetBaseAgility()+self.AttributeAgilityGain-hCaster:GetAgilityGain())
+	hCaster:SetBaseIntellect(hCaster:GetBaseIntellect()+self.AttributeIntelligenceGain-hCaster:GetIntellectGain())	
+end
+
 function GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)
 		
-		local sName = hHero:GetName()		
-		
-		ListenToGameEvent('dota_player_gained_level', function (keys)		
-			local hStatChangedHero = PlayerResource:GetPlayer(keys.player-1):GetAssignedHero()
-			if hStatChangedHero:GetName() == sName and PlayerResource:GetPlayer(keys.player-1).bIsPlayingFunHero then
-				hStatChangedHero:SetBaseStrength(hStatChangedHero:GetBaseStrength()+tHeroBaseStats.AttributeStrenthGain-hStatChangedHero:GetStrengthGain())
-				hStatChangedHero:SetBaseAgility(hStatChangedHero:GetBaseAgility()+tHeroBaseStats.AttributeAgilityGain-hStatChangedHero:GetAgilityGain())
-				hStatChangedHero:SetBaseIntellect(hStatChangedHero:GetBaseIntellect()+tHeroBaseStats.AttributeIntelligenceGain-hStatChangedHero:GetIntellectGain())
-			end		
-		end, nil)	
-		
+		local sName = hHero:GetName()	
 		for i = 0, 23 do
 			if hHero:GetAbilityByIndex(i) then
 				hHero:RemoveAbility(hHero:GetAbilityByIndex(i):GetName())
 			end
-		end
+		end	
 		for i, v in ipairs(tNewAbilities) do hHero:AddAbility(v) end
-		
+		local hAttributeManager = hHero:FindAbilityByName("hero_attribute_gain_manager")
 		local tModifiers = hHero:FindAllModifiers()
 		for i, v in ipairs(tModifiers) do
 			if string.find(v:GetName(), "special_bonus") then
@@ -129,15 +127,29 @@ function GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)
 			end
 		end
 		
+		hAttributeManager:SetLevel(1)
+		hAttributeManager.AttributeStrenthGain = tHeroBaseStats.AttributeStrenthGain
+		hAttributeManager.AttributeAgilityGain = tHeroBaseStats.AttributeAgilityGain
+		hAttributeManager.AttributeIntelligenceGain = tHeroBaseStats.AttributeIntelligenceGain
+		
+		
+		
 		
 		Timers:CreateTimer(0.5, function() 
 			hHero:SetBaseMoveSpeed(tHeroBaseStats.MovementSpeed)
 			hHero:SetPrimaryAttribute(tHeroBaseStats.PrimaryAttribute)
 		end)
-		
-		hHero:SetBaseAgility(tHeroBaseStats.AttributeBaseAgility)
-		hHero:SetBaseStrength(tHeroBaseStats.AttributeBaseStrength)
-		hHero:SetBaseIntellect(tHeroBaseStats.AttributeBaseIntelligence)
+		if hHero:IsIllusion() then
+			local iLevel = hHero:GetPlayerOwner():GetAssignedHero():GetLevel()
+			print(iLevel, tHeroBaseStats.AttributeStrenthGain, tHeroBaseStats.AttributeStrenthGain-hHero:GetPlayerOwner():GetAssignedHero():GetStrengthGain())
+			hHero:SetBaseStrength(tHeroBaseStats.AttributeBaseStrength+(iLevel-1)*(tHeroBaseStats.AttributeStrenthGain-hHero:GetPlayerOwner():GetAssignedHero():GetStrengthGain()))
+			hHero:SetBaseAgility(tHeroBaseStats.AttributeBaseAgility+(iLevel-1)*(tHeroBaseStats.AttributeAgilityGain-hHero:GetPlayerOwner():GetAssignedHero():GetAgilityGain()))
+			hHero:SetBaseIntellect(tHeroBaseStats.AttributeBaseIntelligence+(iLevel-1)*(tHeroBaseStats.AttributeIntelligenceGain-hHero:GetPlayerOwner():GetAssignedHero():GetIntellectGain()))
+		else
+			hHero:SetBaseAgility(tHeroBaseStats.AttributeBaseAgility)
+			hHero:SetBaseStrength(tHeroBaseStats.AttributeBaseStrength)
+			hHero:SetBaseIntellect(tHeroBaseStats.AttributeBaseIntelligence)
+		end
 		hHero:SetPhysicalArmorBaseValue(tHeroBaseStats.ArmorPhysical)
 		hHero:SetBaseDamageMin(tHeroBaseStats.AttackDamageMin)
 		hHero:SetBaseDamageMax(tHeroBaseStats.AttackDamageMax)

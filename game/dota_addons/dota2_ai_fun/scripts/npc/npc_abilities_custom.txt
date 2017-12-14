@@ -3,27 +3,164 @@
 
 "DOTAAbilities"
 {
+	"Version"		"1"
+
+	"spongebob_karate_chop"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"lone_druid_rabid"
+		"ScriptFile"	"scripts/vscripts/heroes/spongebob/spongebob.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"35 30 25 20"
+		"AbilityManaCost"	"50"
+		"AbilityCastRange"	"%range"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"	"150 200 250 300"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"100 150 200 250"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_loss"	"25 50 75 100"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"stun_duration"	"2"
+			}
+		}
+	}
+
+	"spongebob_spongify"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"visage_gravekeepers_cloak"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityManaCost"	"5"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chance"	"6 12 18 24"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"heal"	"30 60 90 120"
+			}
+		}
+	}
+
+	"spongebob_jellyfish_net"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"naga_siren_ensnare"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"modifier_spongebob_jellyfish_net"
+			{
+				"Passive"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"4"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"hero_duration"	"2"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chance"	"8 16 24 32"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chance_hero"	"4 8 12 16"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chance_illusion"	"4 8 12 16"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chance_illusion_hero"	"2 4 6 8"
+			}
+		}
+	}
+
+	"spongebob_krabby_food"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"roshan__halloween_shell"
+		"ScriptFile"	"scripts/vscripts/heroes/spongebob/spongebob.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
+		"CastFilterRejectCaster"	"0"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.2"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"	"130"
+		"AbilityManaCost"	"125 250 375"
+		"AbilityCastRange"	"600"
+		"AbilityCastRangeBuffer"	"200"
+		"AbilityChannelTime"	"3"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"20"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"heal"	"100 200 300"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"heal_scepter"	"125 250 375"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"manacost_scepter"	"100 200 300"
+			}
+		}
+		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
+	}
+
+	"hero_attribute_gain_manager"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"hero_initiation.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"1"
+	}
 }
-#base "abilities\astral_trekker.txt"
-#base "abilities\bastion.txt"
-#base "abilities\fluid_engineer.txt"
-#base "abilities\formless.txt"
-#base "abilities\intimidator.txt"
-#base "abilities\magic_dragon.txt"
-#base "abilities\mana_fiend.txt"
-#base "abilities\persuasive.txt"
-#base "abilities\ramza\ramza.txt"
-#base "abilities\telekenetic_blob.txt"
-#base "abilities\terran_marine.txt"
-#base "abilities\void_demon.txt"
-#base "npc_abilities_dummy.txt"
-#base "abilities\cleric.txt"
-#base "abilities\pet_summoner.txt"
-#base "abilities\felguard.txt"
-#base "abilities\el_dorado.txt"
-#base "abilities\hamsterlord.txt"
-#base "abilities\sniper.txt"
-#base "abilities\hurricane.txt"
-#base "abilities\capslockftw.txt"
-#base "abilities\templar.txt"
-//#base "abilities\spongebob.txt"
