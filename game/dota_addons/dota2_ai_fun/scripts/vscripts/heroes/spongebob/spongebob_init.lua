@@ -5,7 +5,6 @@ local tNewAbilities = {
 	"generic_hidden",
 	"generic_hidden",
 	"spongebob_krabby_food",
-	"hero_attribute_gain_manager",
 	"special_bonus_gold_income_25",
 	"special_bonus_exp_boost_20",
 	"special_bonus_magic_resistance_20",

@@ -88,11 +88,11 @@ function ramza_open_stats_lua:OnHeroLevelUp()
 	local iLevel = hCaster:GetLevel()
 	if iLevel == 17 or iLevel == 19 or iLevel == 21 or iLevel == 22 or iLevel == 23 or iLevel ==24 then
 		--print(hCaster:GetAbilityPoints())
-		--hCaster:SetAbilityPoints(hCaster:GetAbilityPoints()+1)
+		hCaster:SetAbilityPoints(hCaster:GetAbilityPoints()+1)
 	end
-	hCaster:SetBaseStrength(hCaster:GetBaseStrength()+hCaster:FindModifierByName("modifier_ramza_job_manager").fStrGrowth)
-	hCaster:SetBaseAgility(hCaster:GetBaseAgility()+hCaster:FindModifierByName("modifier_ramza_job_manager").fAgiGrowth)
-	hCaster:SetBaseIntellect(hCaster:GetBaseIntellect()+hCaster:FindModifierByName("modifier_ramza_job_manager").fIntGrowth)
+	hCaster:SetBaseStrength(hCaster:GetBaseStrength()+hCaster:FindModifierByName("modifier_ramza_job_manager").fStrGrowth-hCaster:GetStrengthGain())
+	hCaster:SetBaseAgility(hCaster:GetBaseAgility()+hCaster:FindModifierByName("modifier_ramza_job_manager").fAgiGrowth-hCaster:GetAgilityGain())
+	hCaster:SetBaseIntellect(hCaster:GetBaseIntellect()+hCaster:FindModifierByName("modifier_ramza_job_manager").fIntGrowth-hCaster:GetIntellectGain())
 end
 
 ramza_go_back_lua = class({})
@@ -101,11 +101,11 @@ function ramza_go_back_lua:OnHeroLevelUp()
 	local hCaster = self:GetCaster()
 	local iLevel = hCaster:GetLevel()
 	if iLevel == 17 or iLevel == 19 or iLevel == 21 or iLevel == 22 or iLevel == 23 or iLevel ==24 then
-		hCaster:SetAbilityPoints(hCaster:GetAbilityPoints()+1)
+--		hCaster:SetAbilityPoints(hCaster:GetAbilityPoints()+1)
 	end
-	hCaster:SetBaseStrength(hCaster:GetBaseStrength()+hCaster:FindModifierByName("modifier_ramza_job_manager").fStrGrowth)
-	hCaster:SetBaseAgility(hCaster:GetBaseAgility()+hCaster:FindModifierByName("modifier_ramza_job_manager").fAgiGrowth)
-	hCaster:SetBaseIntellect(hCaster:GetBaseIntellect()+hCaster:FindModifierByName("modifier_ramza_job_manager").fIntGrowth)
+--	hCaster:SetBaseStrength(hCaster:GetBaseStrength()+hCaster:FindModifierByName("modifier_ramza_job_manager").fStrGrowth)
+--	hCaster:SetBaseAgility(hCaster:GetBaseAgility()+hCaster:FindModifierByName("modifier_ramza_job_manager").fAgiGrowth)
+--	hCaster:SetBaseIntellect(hCaster:GetBaseIntellect()+hCaster:FindModifierByName("modifier_ramza_job_manager").fIntGrowth)
 end
 
 

@@ -121,7 +121,6 @@ if not IsClient() then
 				end
 			end	
 			for i, v in ipairs(tNewAbilities) do hHero:AddAbility(v) end
-			local hAttributeManager = hHero:FindAbilityByName("hero_attribute_gain_manager")
 			local tModifiers = hHero:FindAllModifiers()
 			for i, v in ipairs(tModifiers) do
 				if string.find(v:GetName(), "special_bonus") then
@@ -129,14 +128,15 @@ if not IsClient() then
 				end
 			end
 			
+			if not tHeroBaseStats.bNoAttributeManager then
 			
+				local hAttributeManager = hHero:AddAbility("hero_attribute_gain_manager")
+				hAttributeManager:SetLevel(1)
+				hAttributeManager.AttributeStrenthGain = tHeroBaseStats.AttributeStrenthGain
+				hAttributeManager.AttributeAgilityGain = tHeroBaseStats.AttributeAgilityGain
+				hAttributeManager.AttributeIntelligenceGain = tHeroBaseStats.AttributeIntelligenceGain
 			
-			hAttributeManager:SetLevel(1)
-			hAttributeManager.AttributeStrenthGain = tHeroBaseStats.AttributeStrenthGain
-			hAttributeManager.AttributeAgilityGain = tHeroBaseStats.AttributeAgilityGain
-			hAttributeManager.AttributeIntelligenceGain = tHeroBaseStats.AttributeIntelligenceGain
-			
-			
+			end
 			
 			
 			Timers:CreateTimer(0.5, function() 

@@ -2,16 +2,18 @@ LinkLuaModifier("modifier_spongebob_krabby_food", "heroes/spongebob/spongebob_mo
 LinkLuaModifier("modifier_spongebob_spongify", "heroes/spongebob/spongebob_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 spongebob_krabby_food = class({})
 
-function spongebob_krabby_food:CastFilterResultTarget(hTarget)
-	if IsClient() then return UF_SUCCESS end
-	if self:GetCaster() == hTarget then return UF_FAIL_CUSTOM end
-	if self:GetCaster():GetTeam() ~= hTarget:GetTeam() then return UF_FAIL_ENEMY end
+function spongebob_krabby_food:GetBehavior()
+	self.hSpecial = Entities:First()
+	
+	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_spongebob_3" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+		self.hSpecial = Entities:Next(self.hSpecial)
+	end		
+	if self.hSpecial and self.hSpecial:GetSpecialValueFor("value") > 0 then
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET+DOTA_ABILITY_BEHAVIOR_CHANNELLED
+	else
+		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET+DOTA_ABILITY_BEHAVIOR_CHANNELLED
+	end
 end
-
-function spongebob_krabby_food:GetCustomCastErrorTarget(hTarget)
-	return "#dota_hud_error_cant_cast_on_self"
-end
-
 function spongebob_krabby_food:GetManaCost(iLevel)
 	if IsClient() then
 		if self:GetCaster():HasScepter() then
@@ -36,12 +38,17 @@ end
 
 function spongebob_krabby_food:OnChannelFinish(bInterrupted)
 	if not bInterrupted then
-		self:GetCursorTarget():EmitSound("DOTA_Item.HealingSalve.Activate")
-		self:GetCursorTarget():EmitSound("DOTA_Item.HealingSalve.Activate")
-		self:GetCursorTarget():EmitSound("DOTA_Item.HealingSalve.Activate")
-		self:GetCursorTarget():AddNewModifier(self:GetCaster(), self, "modifier_spongebob_krabby_food", {Duration = self:GetSpecialValueFor("duration")})
-		if self:GetCaster():HasAbility("special_bonus_spongebob_3") and self:GetCaster():FindAbilityByName("special_bonus_spongebob_3"):GetSpecialValueFor("value") > 0 then
-			self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_spongebob_krabby_food", {Duration = self:GetSpecialValueFor("duration")})
+		
+	local hCaster = self:GetCaster()
+		if hCaster:HasAbility("special_bonus_spongebob_3") and hCaster:FindAbilityByName("special_bonus_spongebob_3"):GetSpecialValueFor("value") > 0 then
+			for k, v in pairs(FindUnitsInRadius(hCaster:GetTeamNumber(), hCaster:GetOrigin(), nil, 600, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false))
+			do
+				v:EmitSound("DOTA_Item.HealingSalve.Activate")
+				v:AddNewModifier(hCaster, self, "modifier_spongebob_krabby_food", {Duration = self:GetSpecialValueFor("duration")})
+			end
+		else
+			self:GetCursorTarget():EmitSound("DOTA_Item.HealingSalve.Activate")
+			self:GetCursorTarget():AddNewModifier(hCaster, self, "modifier_spongebob_krabby_food", {Duration = self:GetSpecialValueFor("duration")})
 		end
 	end
 end

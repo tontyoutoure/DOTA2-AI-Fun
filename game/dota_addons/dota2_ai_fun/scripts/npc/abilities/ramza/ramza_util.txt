@@ -29,7 +29,7 @@
 	"ramza_empty_3"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"modifier_magicimmune"
+		"AbilityTextureName"	"neutral_spell_immunity"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"0"
 	}
@@ -37,7 +37,7 @@
 	"ramza_empty_4"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"modifier_magicimmune"
+		"AbilityTextureName"	"neutral_spell_immunity"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"0"
 	}

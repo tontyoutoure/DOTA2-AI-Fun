@@ -107,6 +107,7 @@ local tHeroBaseStats = {
 	AttributeAgilityGain = 0,
 	AttributeIntelligenceGain = 0,
 	ArmorPhysical = 1,
+	bNoAttributeManager = true,
 	PrimaryAttribute = DOTA_ATTRIBUTE_STRENGTH,
 	AttackAnimationPoint = 0.5
 }
@@ -128,7 +129,6 @@ function RamzaInit(hHero, context)
 	hHero:FindAbilityByName("ramza_go_back_lua"):SetLevel(1)
 	hHero:FindAbilityByName("ramza_job_squire_JC"):SetLevel(1)
 	hHero:FindAbilityByName("ramza_select_secondary_skill_lua"):SetLevel(1)
-	hHero:AddAbility("ramza_empty_1"):SetLevel(1)
 	hHero:AddAbility("ramza_squire_fundamental_stone")
 	hHero:FindAbilityByName("ramza_squire_fundamental_stone"):SetLevel(1)
 	hHero:FindAbilityByName("ramza_squire_fundamental_stone"):SetHidden(true)

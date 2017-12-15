@@ -5,9 +5,9 @@ function modifier_ramza_dragoon_dragonheart:DeclareFunctions()
 end
 
 function modifier_ramza_dragoon_dragonheart:OnCreated()
+	if IsClient() then return end
 	local hAbility = self:GetAbility()
 	self.fReincarnateTime = hAbility:GetSpecialValueFor("reincarnate_time")
-	print(self.fReincarnateTime)
 end
 
 function modifier_ramza_dragoon_dragonheart:IsHidden() return true end
