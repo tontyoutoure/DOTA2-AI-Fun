@@ -7,12 +7,12 @@ local tNewAbilities = {
 	"fluid_engineer_bowel_hydraulics_lua",
 	"special_bonus_gold_income_25",
 	"special_bonus_exp_boost_20",
-	"special_bonus_armor_10",
+	"special_bonus_spell_lifesteal_10",
 	"special_bonus_spell_amplify_15",
-	"special_bonus_hp_600",
+	"special_bonus_hp_800",
 	"special_bonus_fluid_engineer_1",
 	"special_bonus_fluid_engineer_2",
-	"special_bonus_cast_range_400"
+	"special_bonus_fluid_engineer_3"
 }
 
 local tHeroBaseStats = {

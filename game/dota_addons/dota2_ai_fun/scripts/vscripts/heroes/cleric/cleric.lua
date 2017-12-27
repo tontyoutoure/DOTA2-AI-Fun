@@ -2,6 +2,7 @@ LinkLuaModifier("modifier_cleric_berserk", "heroes/cleric/cleric_modifiers.lua",
 LinkLuaModifier("modifier_cleric_berserk_target", "heroes/cleric/cleric_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_cleric_prayer", "heroes/cleric/cleric_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 function ClericMeteorShower(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local iMeteorCount = keys.ability:GetSpecialValueFor("meteor_count")
 	local vTarget= keys.target_points[1]
 
@@ -49,7 +50,7 @@ function ClericMeteorShower(keys)
 				for k, v in ipairs(tTargets) do
 					damageTable.victim = v
 					ApplyDamage(damageTable)
-					v:AddNewModifier(keys.caster, keys.ability, "modifier_stunned", {Duration = fStunDuration})
+					v:AddNewModifier(keys.caster, keys.ability, "modifier_stunned", {Duration = fStunDuration*CalculateStatusResist(v)})
 				end
 			end)
 			
@@ -58,11 +59,11 @@ function ClericMeteorShower(keys)
 end
 
 function ClericBerserkAoE(keys)
-	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
-	local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.target:GetOrigin(), nil, keys.ability:GetSpecialValueFor("aoe_radius"), DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
+	ProcsArroundingMagicStick(keys.caster)
+	local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.target_points[1], nil, keys.ability:GetSpecialValueFor("aoe_radius"), DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 	for k, v in ipairs(tTargets) do
 		v:EmitSound("Hero_Axe.Berserkers_Call")
-		v:AddNewModifier(keys.caster, keys.ability, "modifier_cleric_berserk", {Duration = keys.ability:GetSpecialValueFor("duration")})
+		v:AddNewModifier(keys.caster, keys.ability, "modifier_cleric_berserk", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(v)})
 	end
 end
 
@@ -72,7 +73,7 @@ function cleric_berserk:OnSpellStart()
 	local hTarget = self:GetCursorTarget()
 	if hTarget:TriggerSpellAbsorb( self ) then return end
 	hTarget:EmitSound("Hero_Axe.Berserkers_Call")
-	hTarget:AddNewModifier(self:GetCaster(), self, "modifier_cleric_berserk", {Duration = self:GetSpecialValueFor("duration")})
+	hTarget:AddNewModifier(self:GetCaster(), self, "modifier_cleric_berserk", {Duration = self:GetSpecialValueFor("duration")*CalculateStatusResist(hTarget)})
 end
 
 function cleric_berserk:GetCooldown(iLevel)
@@ -91,6 +92,7 @@ function cleric_berserk:GetCooldown(iLevel)
 end
 
 function ClericPrayer(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local hSpecial = Entities:First()	
 	while hSpecial and hSpecial:GetName() ~= "special_bonus_cleric_3" do
 		hSpecial = Entities:Next(hSpecial)

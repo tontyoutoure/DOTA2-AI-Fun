@@ -23,5 +23,5 @@ function fluid_engineer_malicious_tampering_lua:OnChannelFinish(bInterrupted)
 end
 
 function fluid_engineer_malicious_tampering_lua:GetChannelAnimation()
-	return ACT_DOTA_RUN
+	return ACT_DOTA_GENERIC_CHANNEL_1
 end

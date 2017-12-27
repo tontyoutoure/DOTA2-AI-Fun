@@ -21,9 +21,10 @@ end
 
 function capslockftw_flamer:OnSpellStart()
 	local hCaster = self:GetCaster()
+--	ProcsArroundingMagicStick(hCaster)
 	local hTarget = self:GetCursorTarget()
 	if hTarget:GetTeam() == hCaster:GetTeam() then
-		hTarget:AddNewModifier(hCaster, self, "modifier_capslockftw_flamer_buff", {Duration = self:GetSpecialValueFor("duration")})
+		hTarget:AddNewModifier(hCaster, self, "modifier_capslockftw_flamer_buff", {Duration = self:GetSpecialValueFor("duration")*CalculateStatusResist(hTarget)})
 		hCaster:EmitSound("Hero_OgreMagi.Fireblast.Cast")
 		hTarget:EmitSound("Hero_OgreMagi.Ignite.Target")
 		local iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_ogre_magi/ogre_magi_ignite_explosion.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget)
@@ -32,7 +33,7 @@ function capslockftw_flamer:OnSpellStart()
 		ApplyDamage({damage = self:GetSpecialValueFor("damage"), attacker = hCaster, victim = hTarget, ability = self, damage_type = self:GetAbilityDamageType()})
 	else
 		if hTarget:TriggerSpellAbsorb( self ) then return end
-		hTarget:AddNewModifier(hCaster, self, "modifier_capslockftw_flamer_debuff", {Duration = self:GetSpecialValueFor("duration")})
+		hTarget:AddNewModifier(hCaster, self, "modifier_capslockftw_flamer_debuff", {Duration = self:GetSpecialValueFor("duration")*CalculateStatusResist(hTarget)})
 		hCaster:EmitSound("Hero_OgreMagi.Fireblast.Cast")
 		hTarget:EmitSound("Hero_OgreMagi.Ignite.Target")
 		local iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_ogre_magi/ogre_magi_ignite_explosion.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget)
@@ -42,24 +43,15 @@ function capslockftw_flamer:OnSpellStart()
 	end
 end
 
-function CAPSLOCKFTWHax(keys)
+function CAPSLOCKFTWHaxOn(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	keys.caster:EmitSound("DOTA_Item.InvisibilitySword.Activate")
 	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_capslockftw_hax", {})
-	keys.caster:SwapAbilities("capslockftw_hax", "capslockftw_hax_close", true, true)
-	keys.caster:FindAbilityByName("capslockftw_hax_close"):SetHidden(false)
-	keys.caster:FindAbilityByName("capslockftw_hax"):SetHidden(true)
-	keys.caster:FindAbilityByName("capslockftw_hax_close"):StartCooldown(0.5)
+	keys.ability:StartCooldown(0.5)
 end
 
-function CAPSLOCKFTWHaxUpgrade(keys)
-	keys.caster:FindAbilityByName("capslockftw_hax_close"):SetLevel(1)
-end
-
-function CAPSLOCKFTWHaxClose(keys)
+function CAPSLOCKFTWHaxOff(keys)
 	keys.caster:RemoveModifierByName("modifier_capslockftw_hax")
-	keys.caster:SwapAbilities("capslockftw_hax_close", "capslockftw_hax", true, true)
-	keys.caster:FindAbilityByName("capslockftw_hax"):SetHidden(false)
-	keys.caster:FindAbilityByName("capslockftw_hax_close"):SetHidden(true)
 end
 
 function CAPSLOCKFTWSarcasmApply(keys)

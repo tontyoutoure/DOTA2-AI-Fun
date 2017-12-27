@@ -24,7 +24,7 @@ local function TempestStrike(hAbility, hLastTarget, hUnit, fStunDuration, fDamag
 	ParticleManager:SetParticleControl(iParticle, 1, Vector(0,0,1000)+hTarget:GetOrigin())
 	hTarget:EmitSound("Hero_Disruptor.ThunderStrike.Target")
 	ApplyDamage({attacker = hUnit, victim = hTarget, damage = fDamage, damage_type = DAMAGE_TYPE_MAGICAL, ability = hAbility})
-	hTarget:AddNewModifier(hUnit, hAbility, "modifier_stunned", {Duration = fStunDuration})
+	hTarget:AddNewModifier(hUnit, hAbility, "modifier_stunned", {Duration = fStunDuration*CalculateStatusResist(hTarget)})
 	return hTarget
 end
 

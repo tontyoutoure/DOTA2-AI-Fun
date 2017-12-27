@@ -5,10 +5,12 @@ LinkLuaModifier("modifier_hurricane_eyes_of_the_storm", "heroes/hurricane/hurric
 LinkLuaModifier("modifier_hurricane_eyes_of_the_storm_upgrade", "heroes/hurricane/hurricane_modifiers.lua", LUA_MODIFIER_MOTION_BOTH)
 
 function HurricaneTempestApply(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_hurricane_tempest", {})
 end
 
 function HurricaneCyclone(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	for i, v in ipairs(keys.target_entities) do
 		if v ~= keys.caster then
 			v:AddNewModifier(keys.caster, keys.ability, "modifier_hurricane_cyclone", {Duration = 1})

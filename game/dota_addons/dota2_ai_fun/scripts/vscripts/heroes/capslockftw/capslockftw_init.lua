@@ -6,7 +6,6 @@ local tNewAbilities = {
 	"generic_hidden",
 	"generic_hidden",
 	"capslockftw_ban",
-	"capslockftw_hax_close",
 	"special_bonus_gold_income_25",
 	"special_bonus_exp_boost_20",
 	"special_bonus_attack_speed_40",

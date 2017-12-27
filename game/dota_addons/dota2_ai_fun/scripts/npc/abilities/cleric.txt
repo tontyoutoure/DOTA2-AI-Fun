@@ -112,7 +112,7 @@
 		"BaseClass"	"ability_datadriven"
 		"ScriptFile"  "scripts/vscripts/heroes/cleric/cleric.lua"
 		"AbilityTextureName"	"axe_berserkers_call_shoutmask"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
@@ -151,6 +151,7 @@
 		{
 			"RunScript"
 			{
+				"Target"  "POINT"
 				"ScriptFile"	"scripts/vscripts/heroes/cleric/cleric.lua"
 				"Function"	"ClericBerserkAoE"
 			}

@@ -124,6 +124,7 @@ function modifier_cleric_magic_mirror:IsHidden() return true end
 
 function modifier_cleric_magic_mirror:GetAbsorbSpell(keys)
 	if self.bIsTriggering then return false end
+	if self:GetParent():PassivesDisabled() then return end
 	local hAbility = self:GetAbility()
 	if not hAbility:IsCooldownReady() or hAbility:GetLevel() == 0 then return false end
 	local hParent = self:GetParent()

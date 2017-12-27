@@ -114,7 +114,7 @@ function modifier_felguard_felguard_wrath:OnDestroy()
 	}
 	
 	for k, v in pairs(tTargets) do
-		v:AddNewModifier(hParent, hAbility, "modifier_stunned", {Duration = fDuration})
+		v:AddNewModifier(hParent, hAbility, "modifier_stunned", {Duration = fDuration*CalculateStatusResist(v)})
 		damageTable.victim = v
 		ApplyDamage(damageTable)
 	end
@@ -148,15 +148,16 @@ function modifier_felguard_strength_and_honor:OnHeroKilled()
 	local hAbility = self:GetAbility()
 	local iLevel = (hParent:GetKills()-self.iKill)*hAbility:GetSpecialValueFor("kill_level")+(hParent:GetAssists()-self.iAssist)*hAbility:GetSpecialValueFor("assist_level")+(hParent:GetDeaths()-self.iDeath)*hAbility:GetSpecialValueFor("death_level")
 	local iMaxLevel 
-	if hParent:FindAbilityByName("special_bonus_felguard_1") and hParent:FindAbilityByName("special_bonus_felguard_1"):GetLevel() > 0 then 
-		iMaxLevel = hAbility:GetSpecialValueFor("max_level") *2
-	else
-		iMaxLevel = hAbility:GetSpecialValueFor("max_level") 
+	if not hParent:PassivesDisabled() then 
+		if hParent:FindAbilityByName("special_bonus_felguard_1") and hParent:FindAbilityByName("special_bonus_felguard_1"):GetLevel() > 0 then 
+			iMaxLevel = hAbility:GetSpecialValueFor("max_level") *2
+		else
+			iMaxLevel = hAbility:GetSpecialValueFor("max_level") 
+		end
+		self:SetStackCount(self:GetStackCount()+iLevel)
+		if self:GetStackCount() > iMaxLevel then self:SetStackCount(iMaxLevel) end
+		if self:GetStackCount() < 0 then self:SetStackCount(0) end
 	end
-	self:SetStackCount(self:GetStackCount()+iLevel)
-	if self:GetStackCount() > iMaxLevel then self:SetStackCount(iMaxLevel) end
-	if self:GetStackCount() < 0 then self:SetStackCount(0) end
-	
 	self.iKill = hParent:GetKills()
 	self.iAssist = hParent:GetAssists()
 	self.iDeath = hParent:GetDeaths()

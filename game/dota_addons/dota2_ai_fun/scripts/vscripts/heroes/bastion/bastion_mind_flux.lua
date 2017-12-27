@@ -8,6 +8,7 @@ LinkLuaModifier("modifier_bastion_mind_flux_lua", "heroes/bastion/bastion_modifi
 function bastion_mind_flux:OnSpellStart()
 	local level = self:GetLevel()
 	local caster = self:GetCaster()
+	ProcsArroundingMagicStick(caster)
 	local countNeed = self:GetSpecialValueFor("count_need")
 	local maxValue = self:GetSpecialValueFor("max_value")
 	

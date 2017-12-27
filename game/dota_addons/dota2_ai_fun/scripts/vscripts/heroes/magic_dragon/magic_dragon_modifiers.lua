@@ -155,7 +155,7 @@ function modifier_magic_dragon_gold_dragon_hide:DeclareFunctions()
 end
 
 function modifier_magic_dragon_gold_dragon_hide:OnAttacked(keys)
-	if keys.target~= self:GetParent() then return end
+	if keys.target~= self:GetParent() or self:GetParent():PassivesDisabled() then return end
 	local damageTable = {
 		victim = keys.attacker,
 		attacker = keys.target,
@@ -183,7 +183,7 @@ function modifier_magic_dragon_black_dragon_breath:DeclareFunctions()
 end
 
 function modifier_magic_dragon_black_dragon_breath:GetModifierProcAttack_BonusDamage_Physical(keys)
-	if keys.target:IsBuilding() or keys.attacker:GetTeamNumber() == keys.target:GetTeamNumber() or keys.target:GetMaxMana() == 0 or keys.target:IsMagicImmune() then return 0 end
+	if keys.target:IsBuilding() or keys.attacker:GetTeamNumber() == keys.target:GetTeamNumber() or keys.target:GetMaxMana() == 0 or keys.target:IsMagicImmune() or keys.attacker:PassivesDisabled() then return 0 end
 	
 	local hAbility = self:GetAbility()
 	local iManaBreak = hAbility:GetSpecialValueFor("mana_break")
@@ -196,7 +196,7 @@ function modifier_magic_dragon_black_dragon_breath:GetModifierProcAttack_BonusDa
 end
 
 function modifier_magic_dragon_black_dragon_breath:OnAttackLanded(keys)
-	if self:GetParent() ~= keys.attacker or keys.target:IsBuilding() or keys.attacker:GetTeamNumber() == keys.target:GetTeamNumber() or keys.target:GetMaxMana() == 0 or keys.target:IsMagicImmune() then return end
+	if self:GetParent() ~= keys.attacker or keys.target:IsBuilding() or keys.attacker:GetTeamNumber() == keys.target:GetTeamNumber() or keys.target:GetMaxMana() == 0 or keys.target:IsMagicImmune() or keys.attacker:PassivesDisabled() then return end
 	local hAbility = self:GetAbility()
 	local iManaBreak = hAbility:GetSpecialValueFor("mana_break")
 	local fCurrentMana = keys.target:GetMana()

@@ -9,6 +9,10 @@ function ramza_archer_aim_OnSpellStart(self)
 	end
 end
 
+function ramza_archer_aim_GetChannelAnimation(self)
+	return ACT_DOTA_GENERIC_CHANNEL_1
+end
+
 function ramza_archer_aim_OnChannelFinish(self)
 		ProjectileManager:CreateTrackingProjectile({
 		Target = self.hTarget,
@@ -46,6 +50,8 @@ ramza_archer_aim_2.OnChannelFinish = ramza_archer_aim_OnChannelFinish
 
 ramza_archer_aim_2.OnProjectileHit_ExtraData = ramza_archer_aim_OnProjectileHit_ExtraData
 
+ramza_archer_aim_2.GetChannelAnimation = ramza_archer_aim_GetChannelAnimation
+
 
 ramza_archer_aim_4 = class({})
 
@@ -55,6 +61,8 @@ ramza_archer_aim_4.OnChannelFinish = ramza_archer_aim_OnChannelFinish
 
 ramza_archer_aim_4.OnProjectileHit_ExtraData = ramza_archer_aim_OnProjectileHit_ExtraData
 
+ramza_archer_aim_4.GetChannelAnimation = ramza_archer_aim_GetChannelAnimation
+
 
 ramza_archer_aim_6 = class({})
 
@@ -63,6 +71,8 @@ ramza_archer_aim_6.OnSpellStart = ramza_archer_aim_OnSpellStart
 ramza_archer_aim_6.OnChannelFinish = ramza_archer_aim_OnChannelFinish
 
 ramza_archer_aim_6.OnProjectileHit_ExtraData = ramza_archer_aim_OnProjectileHit_ExtraData
+
+ramza_archer_aim_6.GetChannelAnimation = ramza_archer_aim_GetChannelAnimation
 
 
 
@@ -74,6 +84,8 @@ ramza_archer_aim_7.OnChannelFinish = ramza_archer_aim_OnChannelFinish
 
 ramza_archer_aim_7.OnProjectileHit_ExtraData = ramza_archer_aim_OnProjectileHit_ExtraData
 
+ramza_archer_aim_7.GetChannelAnimation = ramza_archer_aim_GetChannelAnimation
+
 
 
 ramza_archer_aim_10 = class({})
@@ -84,6 +96,8 @@ ramza_archer_aim_10.OnChannelFinish = ramza_archer_aim_OnChannelFinish
 
 ramza_archer_aim_10.OnProjectileHit_ExtraData = ramza_archer_aim_OnProjectileHit_ExtraData
 
+ramza_archer_aim_10.GetChannelAnimation = ramza_archer_aim_GetChannelAnimation
+
 
 ramza_archer_aim_20 = class({})
 
@@ -92,6 +106,8 @@ ramza_archer_aim_20.OnSpellStart = ramza_archer_aim_OnSpellStart
 ramza_archer_aim_20.OnChannelFinish = ramza_archer_aim_OnChannelFinish
 
 ramza_archer_aim_20.OnProjectileHit_ExtraData = ramza_archer_aim_OnProjectileHit_ExtraData
+
+ramza_archer_aim_20.GetChannelAnimation = ramza_archer_aim_GetChannelAnimation
 
 ramza_archer_archers_bane = class({})
 

@@ -129,6 +129,7 @@ end
 
 function bastion_transference_str:OnSpellStart()
 	local caster = self:GetCaster()
+	ProcsArroundingMagicStick(caster)
 	local target = self:GetCursorTarget()
 	local buff = caster:FindModifierByName("modifier_bastion_power_flux_lua")
 	local bonus
@@ -152,6 +153,7 @@ end
 
 function bastion_transference_agi:OnSpellStart()
 	local caster = self:GetCaster()
+	ProcsArroundingMagicStick(caster)
 	local target = self:GetCursorTarget()
 	local buff = caster:FindModifierByName("modifier_bastion_speed_flux_lua")
 	local bonus
@@ -177,6 +179,7 @@ end
 
 function bastion_transference_int:OnSpellStart()
 	local caster = self:GetCaster()
+	ProcsArroundingMagicStick(caster)
 	local target = self:GetCursorTarget()
 	local buff = caster:FindModifierByName("modifier_bastion_mind_flux_lua")
 	local bonus

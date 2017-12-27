@@ -41,6 +41,7 @@ function modifier_capslockftw_sarcasm:RemoveOnDeath() return false end
 function modifier_capslockftw_sarcasm:DeclareFunctions() return {MODIFIER_EVENT_ON_ATTACK_LANDED, MODIFIER_EVENT_ON_TAKEDAMAGE} end
 function modifier_capslockftw_sarcasm:OnAttackLanded(keys)
 	if keys.attacker ~= self:GetParent() then return end
+	if keys.attacker:PassivesDisabled() then return end
 	if keys.target:IsBuilding() or keys.target:GetTeam() == keys.attacker:GetTeam() then return end
 	local iLevel = self:GetAbility():GetLevel()
 	local fProc = RandomFloat(0,1)
@@ -52,7 +53,7 @@ function modifier_capslockftw_sarcasm:OnAttackLanded(keys)
 		keys.target:Purge(true, false, false, false, false)
 	end
 	if iLevel >1 and fProc > fChance and fProc < 2*fChance then
-		keys.target:AddNewModifier(keys.attacker, hAbility, "modifier_silence", {Duration = hAbility:GetSpecialValueFor("silence_duration")})
+		keys.target:AddNewModifier(keys.attacker, hAbility, "modifier_silence", {Duration = hAbility:GetSpecialValueFor("silence_duration")*CalculateStatusResist(keys.target)})
 	end
 	if iLevel >2 and fProc > 2*fChance and fProc < 3*fChance then
 		self.bLifeSteal = true

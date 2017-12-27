@@ -53,4 +53,8 @@ function ClericInit(hHero, context)
 		ListenToGameEvent( "dota_player_learned_ability", ClericTalentManager, nil )
 		GameMode.bClericTalentManagerSet = true
 	end
+ 	if hHero:IsRealHero() then
+ 		local hMagicMirror = hHero:FindAbilityByName("cleric_magic_mirror")
+ 		hHero:AddNewModifier(hHero, hMagicMirror, "modifier_cleric_magic_mirror", {})
+ 	end	
 end

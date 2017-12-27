@@ -189,17 +189,17 @@ function modifier_intimidator_physical_activity_lua:OnAttackLanded(keys)
 	local chanceDislocate = ability:GetSpecialValueFor("chance_dislocate")
 	if rn <= chance then
 		if glare:GetLevel() > 0 then 
-			local hModifier = target:AddNewModifier(caster, glare, "modifier_intimidator_glare_lua", {Duration = glare:GetSpecialValueFor("duration")})
+			local hModifier = target:AddNewModifier(caster, glare, "modifier_intimidator_glare_lua", {Duration = glare:GetSpecialValueFor("duration")*CalculateStatusResist(target)})
 		end
 		caster:EmitSound('Hero_LegionCommander.PressTheAttack')
 		caster:AddNewModifier(caster, ability, "modifier_intimidator_physical_activity_speed_lua", {Duration = ability:GetSpecialValueFor("buff_duration")})
 		
 	elseif rn <= chance*2 then
 		if grill:GetLevel() > 0 then
-			local hModifier = target:AddNewModifier(caster, grill, "modifier_intimidator_grill_lua", {Duration = grill:GetSpecialValueFor("duration")})
+			local hModifier = target:AddNewModifier(caster, grill, "modifier_intimidator_grill_lua", {Duration = grill:GetSpecialValueFor("duration")*CalculateStatusResist(target)})
 		end
 	elseif rn <= chance*2+chanceDislocate then
-		caster:AddNewModifier(caster, ability, "modifier_intimidator_physical_activity_dislocate_lua", {Duration = ability:GetSpecialValueFor("dislocate_duration")})
+		caster:AddNewModifier(caster, ability, "modifier_intimidator_physical_activity_dislocate_lua", {Duration = ability:GetSpecialValueFor("dislocate_duration")*CalculateStatusResist(caster)})
 	end
 	
 end
@@ -221,6 +221,21 @@ function modifier_intimidator_be_my_friend_lua:IsStunDebuff() return true end
 
 function modifier_intimidator_be_my_friend_lua:OnCreated()
 	self:StartIntervalThink(1)
+end
+
+function modifier_intimidator_be_my_friend_lua:OnDestroy()
+	if IsClient() then return end
+	if #(self:GetAbility().tModifiers) < 2 then
+		self:GetCaster():InterruptChannel()
+	else
+		for i, v in pairs(self:GetAbility().tModifiers) do
+			if v == self then
+				ParticleManager:DestroyParticle(self:GetAbility().tParticles[i], false)
+				table.remove(self:GetAbility().tParticles, i)
+				table.remove(self:GetAbility().tModifiers, i)
+			end
+		end
+	end
 end
 
 function modifier_intimidator_be_my_friend_lua:OnIntervalThink()

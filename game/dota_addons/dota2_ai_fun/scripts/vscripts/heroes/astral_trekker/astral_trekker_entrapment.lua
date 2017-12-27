@@ -12,7 +12,10 @@ function astral_trekker_entrapment:GetBehavior()
 	else return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
 	end
 end
+--function astral_trekker_entrapment:ProcsMagicStick() return true end
+
 function astral_trekker_entrapment:OnSpellStart()
+	self:ProcsMagicStick()
 	if not self.hSpecial then
 		self.hSpecial = Entities:First()
 		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_astral_trekker_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
@@ -54,7 +57,7 @@ function astral_trekker_entrapment:OnProjectileHit_ExtraData(hTarget, vLocation,
 	if tExtraData.bIsTarget > 0 then
 		if hTarget:TriggerSpellAbsorb( self ) then return end
 	end
-	hTarget:AddNewModifier(self:GetCaster(), self, "modifier_astral_trekker_entrapment", {Duration = self:GetSpecialValueFor("duration")})
+	hTarget:AddNewModifier(self:GetCaster(), self, "modifier_astral_trekker_entrapment", {Duration = self:GetSpecialValueFor("duration")*CalculateStatusResist(hTarget)})
 	hTarget:EmitSound("Hero_NagaSiren.Ensnare.Target")
 end
 modifier_astral_trekker_entrapment = class({})

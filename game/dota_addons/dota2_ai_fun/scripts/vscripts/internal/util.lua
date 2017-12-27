@@ -1,3 +1,5 @@
+local CHARGE_RADIUS = 1200
+
 function IsDebugSpewOn()
 	local spew = Convars:GetInt('dota2aifun_spew') or -1
 	if spew == -1 and DOTA2_AI_FUN_SPEW then
@@ -209,12 +211,37 @@ function CalculateStatusResist(hUnit)
 	if hUnit:HasAbility("tiny_grow") then
 		fResist = fResist*(1-hUnit:FindAbilityByName("tiny_grow"):GetSpecialValueFor("status_resistance")/100)
 	end
-	if hUnit:HasItemInInventory("item_combo_breaker") then
+	if hUnit:HasItemInInventory("item_aeon_disk") then
 		fResist = fResist*(1-0.25)
 	end
 	
 	return fResist
 end
 
+function ProcsArroundingMagicStick(hUnit)
+	local tUnits =  FindUnitsInRadius(hUnit:GetTeamNumber(), hUnit:GetOrigin(), nil, CHARGE_RADIUS, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES+DOTA_UNIT_TARGET_FLAG_INVULNERABLE+DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS, FIND_ANY_ORDER, false)
+	for i, v in ipairs(tUnits) do
+	 if v:CanEntityBeSeenByMyTeam(hUnit) then
+		for i = 0, 9 do
+			if v:GetItemInSlot(i) and v:GetItemInSlot(i):GetName() == "item_magic_stick" then
+				CHARGE_RADIUS = v:GetItemInSlot(i):GetSpecialValueFor("charge_radius")
+				if v:GetItemInSlot(i):GetCurrentCharges() < v:GetItemInSlot(i):GetSpecialValueFor("max_charges") then
+					v:GetItemInSlot(i):SetCurrentCharges(v:GetItemInSlot(i):GetCurrentCharges()+1)
+					break
+				end
+			end
+			if v:GetItemInSlot(i) and v:GetItemInSlot(i):GetName() == "item_magic_wand" then
+				CHARGE_RADIUS = v:GetItemInSlot(i):GetSpecialValueFor("charge_radius")
+				if v:GetItemInSlot(i):GetCurrentCharges() < v:GetItemInSlot(i):GetSpecialValueFor("max_charges") then
+					v:GetItemInSlot(i):SetCurrentCharges(v:GetItemInSlot(i):GetCurrentCharges()+1)
+					break
+				end
+			end
+		end
+	 end
+	end
+end
+
 print("Util loaded")
 
+ 

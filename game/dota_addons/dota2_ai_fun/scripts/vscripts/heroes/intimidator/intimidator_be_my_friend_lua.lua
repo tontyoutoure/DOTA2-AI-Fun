@@ -30,7 +30,7 @@ function intimidator_be_my_friend_lua:OnSpellStart()
 		local duration = self:GetChannelTime()
 		local tTargets = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetOrigin(), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS+DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 		for k, v in ipairs(tTargets) do
-			self.tModifiers[k] = v:AddNewModifier(caster, self, "modifier_intimidator_be_my_friend_lua", {Duration = duration})
+			self.tModifiers[k] = v:AddNewModifier(caster, self, "modifier_intimidator_be_my_friend_lua", {Duration = duration*CalculateStatusResist(v)})
 			self.tParticles[k] = ParticleManager:CreateParticle("particles/econ/items/razor/razor_punctured_crest_golden/razor_static_link_new_arc_blade_golden.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, v)
 			ParticleManager:SetParticleControlEnt(self.tParticles[k], 0, caster, PATTACH_POINT, "follow_attack1", caster:GetAbsOrigin(), true)
 			ParticleManager:SetParticleControlEnt(self.tParticles[k], 1, v, PATTACH_POINT, "follow_origin", v:GetAbsOrigin(), true)
@@ -40,7 +40,7 @@ function intimidator_be_my_friend_lua:OnSpellStart()
 		local caster = self:GetCaster()
 		local target = self:GetCursorTarget()
 		local duration = self:GetChannelTime()
-		self.appliedModifier = target:AddNewModifier(caster, self, "modifier_intimidator_be_my_friend_lua", {Duration = duration})
+		self.appliedModifier = target:AddNewModifier(caster, self, "modifier_intimidator_be_my_friend_lua", {Duration = duration*CalculateStatusResist(target)})
 		self.particle = ParticleManager:CreateParticle("particles/econ/items/razor/razor_punctured_crest_golden/razor_static_link_new_arc_blade_golden.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, target)
 		ParticleManager:SetParticleControlEnt(self.particle, 0, caster, PATTACH_POINT, "follow_attack1", caster:GetAbsOrigin(), true)
 		ParticleManager:SetParticleControlEnt(self.particle, 1, target, PATTACH_POINT, "follow_origin", target:GetAbsOrigin(), true)
@@ -72,5 +72,5 @@ function intimidator_be_my_friend_lua:OnChannelFinish(interrupted)
 end
 
 function intimidator_be_my_friend_lua:GetChannelAnimation()
-	return ACT_DOTA_RUN
+	return ACT_DOTA_GENERIC_CHANNEL_1
 end

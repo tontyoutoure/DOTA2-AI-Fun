@@ -13,6 +13,7 @@ function modifier_el_dorado_refine_weapons:OnIntervalThink()
 	if IsClient() then return end
 	local tItems = {}
 	local hParent = self:GetParent()
+	if hParent:PassivesDisabled() then return end
 	local hAbility = self:GetAbility()
 	for i = 0, 8 do
 		if hParent:GetItemInSlot(i) then

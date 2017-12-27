@@ -50,25 +50,25 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"capslockftw_hax"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE "
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE "
 		"AbilityCastPoint"	"0"
 		"AbilityCastAnimation"	"ACT_DOTA_IDLE"
 		"AbilityCooldown"	"0"
 		"AbilityManaCost"	"100"
-		"OnSpellStart"
+		"OnToggleOn"
 		{
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/capslockftw/capslockftw.lua"
-				"Function"	"CAPSLOCKFTWHax"
+				"Function"	"CAPSLOCKFTWHaxOn"
 			}
 		}
-		"OnUpgrade"
+		"OnToggleOff"
 		{
 			"RunScript"
 			{
-				"Function"	"CAPSLOCKFTWHaxUpgrade"
 				"ScriptFile"	"scripts/vscripts/heroes/capslockftw/capslockftw.lua"
+				"Function"	"CAPSLOCKFTWHaxOff"
 			}
 		}
 		"AbilitySpecial"
@@ -159,26 +159,7 @@
 			}
 		}
 	}
-
-	"capslockftw_hax_close"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"capslockftw_hax"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0"
-		"AbilityCastAnimation"	"ACT_DOTA_IDLE"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"Function"	"CAPSLOCKFTWHaxClose"
-				"ScriptFile"	"scripts/vscripts/heroes/capslockftw/capslockftw.lua"
-			}
-		}
-	}
+	
 	"special_bonus_capslockftw_1"
 	{
 		// General

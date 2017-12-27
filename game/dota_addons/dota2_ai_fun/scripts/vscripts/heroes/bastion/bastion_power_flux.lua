@@ -4,6 +4,7 @@ LinkLuaModifier("modifier_bastion_power_flux_lua", "heroes/bastion/bastion_modif
 function bastion_power_flux:OnSpellStart(keys)
 	local level = self:GetLevel()
 	local caster = self:GetCaster()	
+	ProcsArroundingMagicStick(caster)
 	local countNeed = self:GetSpecialValueFor("count_need")
 	local maxValue = self:GetSpecialValueFor("max_value")
 	local buff = caster:FindModifierByName(self:GetIntrinsicModifierName())

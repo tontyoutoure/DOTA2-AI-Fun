@@ -1,4 +1,5 @@
 function MagicDragonDragonMagic(keys)
+	ProcsArroundingMagicStick(keys.target)
 	keys.caster.iDragonForm = keys.caster.iDragonForm or MAGIC_DRAGON_GREEN_DRAGON_FORM
 	if keys.caster.iDragonForm < MAGIC_DRAGON_BLACK_DRAGON_FORM then
 		MagicDragonTransform[keys.caster.iDragonForm+1](keys.caster)
@@ -10,14 +11,15 @@ end
 function GreenDragonBreathSlowApply(keys)
 	local hTarget = keys.target
 	local hAttacker = keys.attacker
+	if hAttacker:PassivesDisabled() then return end
 	if hTarget:IsMagicImmune() or hTarget:IsBuilding() or hTarget:GetTeamNumber() == hAttacker:GetTeamNumber() then return end
-	keys.ability:ApplyDataDrivenModifier(hAttacker, hTarget, "modifier_magic_dragon_green_dragon_breath_slow", {Duration = keys.ability:GetSpecialValueFor("duration")})
+	keys.ability:ApplyDataDrivenModifier(hAttacker, hTarget, "modifier_magic_dragon_green_dragon_breath_slow", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(hTarget)})
 	hTarget:EmitSound("hero_viper.PoisonAttack.Target")
 end
 
 function GhostDragonBreathLifestealApply(keys)
 	local hAttacker = keys.attacker
-	if not keys.target:IsBuilding() then
+	if not keys.target:IsBuilding() and not hAttacker:PassivesDisabled() then
 		keys.ability:ApplyDataDrivenModifier(hAttacker, hAttacker, "modifier_magic_dragon_ghost_dragon_breath_lifesteal", {duration = 0.03})
 	end
 end
@@ -26,7 +28,7 @@ function RedDragonBreathDamageApply(keys)
 	local hTarget = keys.target
 	local hAttacker = keys.attacker
 	local hAbility = keys.ability
-	if hTarget:IsMagicImmune() or hTarget:IsBuilding() or hTarget:GetTeamNumber() == hAttacker:GetTeamNumber() then return end
+	if hTarget:IsMagicImmune() or hAttacker:PassivesDisabled() or hTarget:IsBuilding() or hTarget:GetTeamNumber() == hAttacker:GetTeamNumber() then return end
 	local damageTable = {
 		victim = hTarget,
 		attacker = hAttacker,
@@ -44,8 +46,15 @@ function BlueDragonBreathNova(keys)
 	local hTarget = keys.target
 	local hAttacker = keys.attacker
 	local hAbility = keys.ability
-	if hTarget:IsMagicImmune() or hTarget:IsBuilding() or hTarget:GetTeamNumber() == hAttacker:GetTeamNumber() then return end
-	hAbility:ApplyDataDrivenModifier(hAttacker, hTarget, "modifier_magic_dragon_blue_dragon_breath_target", {Duration = 0.03})
+	local iRadius =  hAbility:GetSpecialValueFor("radius")
+	if hTarget:IsMagicImmune() or hAttacker:PassivesDisabled()  or hTarget:IsBuilding() or hTarget:GetTeamNumber() == hAttacker:GetTeamNumber() then return end
+	for k, v in pairs(FindUnitsInRadius(hAttacker:GetTeamNumber(), hTarget:GetAbsOrigin(), nil, iRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false))	
+	do
+		ApplyDamage({attacker = hAttacker, victim = v, ability = hAbility, damage = hAbility:GetSpecialValueFor("damage"), damage_type = hAbility:GetAbilityDamageType()})
+		hAbility:ApplyDataDrivenModifier(hAttacker, v, "modifier_magic_dragon_blue_dragon_breath_slow", {Duration = hAbility:GetSpecialValueFor("duration")*CalculateStatusResist(v)})
+	end
+	hTarget:EmitSound("Ability.FrostNova")
+	ParticleManager:SetParticleControl(ParticleManager:CreateParticle("particles/units/heroes/hero_lich/lich_frost_nova.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget),1, Vector(iRadius, iRadius, iRadius))
 end
 
 function ChainLightningBounce(hCaster, hSource, iRadius, fDamage, iBounce, tTargets, hAbility, fDelay)
@@ -87,7 +96,7 @@ function GoldDragonBreathLightning(keys)
 	local hAbility = keys.ability
 	local fDamage = hAbility:GetSpecialValueFor("damage")
 	local fDelay = hAbility:GetSpecialValueFor("delay")
-	if hTarget:IsMagicImmune() or hTarget:IsBuilding() or hTarget:GetTeamNumber() == hAttacker:GetTeamNumber() then return end
+	if hTarget:IsMagicImmune() or hAttacker:PassivesDisabled() or hTarget:IsBuilding() or hTarget:GetTeamNumber() == hAttacker:GetTeamNumber() then return end
 	
 	local damageTable = {
 		victim = hTarget,
@@ -116,10 +125,11 @@ function GoldDragonHideApply(keys)
 end
 
 function BlueDragonRoarFreeze(keys)	
+	ProcsArroundingMagicStick(keys.target)
 	local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.caster:GetAbsOrigin(), nil, keys.ability:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	
 	for i, v in ipairs(tTargets) do
-		keys.ability:ApplyDataDrivenModifier(keys.caster, v, "modifier_magic_dragon_blue_dragon_roar", {Duration = keys.ability:GetSpecialValueFor("duration")})
+		keys.ability:ApplyDataDrivenModifier(keys.caster, v, "modifier_magic_dragon_blue_dragon_roar", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(v)})
 		v:EmitSound("Hero_Ancient_Apparition.ColdFeetFreeze")
 	end	
 	keys.caster:EmitSound("Hero_LoneDruid.SavageRoar.Cast")
@@ -136,6 +146,7 @@ function BlueDragonRoarFreeze(keys)
 end
 
 function GhostDragonRoarLifeDrain(keys)
+	ProcsArroundingMagicStick(keys.target)
 	local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.caster:GetAbsOrigin(), nil, keys.ability:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	local iLifeDrain = keys.ability:GetSpecialValueFor("life_drain")
 	for i, v in ipairs(tTargets) do
@@ -168,6 +179,7 @@ function GhostDragonRoarLifeDrain(keys)
 end
 
 function RedDragonRoarDamage(keys)	
+	ProcsArroundingMagicStick(keys.target)
 	local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.caster:GetAbsOrigin(), nil, keys.ability:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	local iDamage = keys.ability:GetSpecialValueFor("damage")
 	for i, v in ipairs(tTargets) do
@@ -197,6 +209,7 @@ function RedDragonRoarDamage(keys)
 end
 
 function GreenDragonRoarAccelerate(keys)
+	ProcsArroundingMagicStick(keys.target)
 	local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.caster:GetAbsOrigin(), nil, keys.ability:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	for i, v in ipairs(tTargets) do
 		keys.ability:ApplyDataDrivenModifier(keys.caster, v, "modifier_magic_dragon_green_dragon_roar", {Duration = keys.ability:GetSpecialValueFor("duration")})
@@ -216,6 +229,7 @@ function GreenDragonRoarAccelerate(keys)
 end
 
 function BlackDragonRoarManaBurn(keys)	
+	ProcsArroundingMagicStick(keys.target)
 	local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.caster:GetAbsOrigin(), nil, keys.ability:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MANA_ONLY, FIND_ANY_ORDER, false)
 	local iManaBurn = keys.ability:GetSpecialValueFor("mana_burn")
 	for i, v in ipairs(tTargets) do
@@ -257,6 +271,7 @@ function BlackDragonRoarManaBurn(keys)
 end
 
 function GoldDragonRoarLightningChain(keys)
+	ProcsArroundingMagicStick(keys.target)
 	local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.caster:GetAbsOrigin(), nil, keys.ability:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	local fDamage = keys.ability:GetSpecialValueFor("damage")
 	local fDelay = keys.ability:GetSpecialValueFor("delay")

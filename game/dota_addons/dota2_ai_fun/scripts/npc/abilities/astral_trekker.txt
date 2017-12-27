@@ -9,7 +9,8 @@
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"ability_datadriven"
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"/heroes/astral_trekker/astral_trekker_giant_growth.lua"
 		"AbilityTextureName"	"astral_trekker_war_stomp"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -28,28 +29,51 @@
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts"
 			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
 		}
-		"OnSpellStart"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
 		{
-			"RunScript"
+			"01"
 			{
-				"ScriptFile"	"/heroes/astral_trekker/astral_trekker_giant_growth.lua"
-				"Function"	"AstralTrekkerWarStomp"
-			}			
-		}
-		"Modifiers"
-		{
-			"modifier_hoof_stomp"
-			{
-				"IsDebuff"	"1"
-				"Duration"	"%stun_duration"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"OverrideAnimation"	"ACT_DOTA_DISABLED"
-				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhead"
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"350"
 			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun_duration"	"3 4 5 6"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"stomp_damage"	"25 50 75 100"
+			}
+		}
+	}
+	
+	"astral_trekker_war_stomp_talented"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"/heroes/astral_trekker/astral_trekker_giant_growth.lua"
+		"AbilityTextureName"	"astral_trekker_war_stomp"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"	"1"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"	"0.5 0.5 0.5 0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"	"6"
+		"AbilityManaCost"	"90"
+		"AbilityCastRange"	"%radius"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts"
+			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
 		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
@@ -254,7 +278,7 @@
 			{
 				"OnAttackLanded"
 				{
-					"Damage"
+					"RunScript"
 					{
 						"Target"
 						{
@@ -263,8 +287,8 @@
 							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 						}
-						"Type"	"DAMAGE_TYPE_PHYSICAL"
-						"Damage"	"%damage"
+						"ScriptFile"  "/heroes/astral_trekker/astral_trekker_giant_growth.lua"
+						"Function"  "AstralTrekkerPulverize"
 					}
 				}
 				"IsBuff"	"1"

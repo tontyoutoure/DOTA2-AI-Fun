@@ -164,6 +164,17 @@ function modifier_fluid_engineer_malicious_tampering:DeclareFunctions()
 	}
 end
 
+function modifier_fluid_engineer_malicious_tampering:OnCreated()
+	self:StartIntervalThink(0.1)
+end
+
+function modifier_fluid_engineer_malicious_tampering:OnIntervalThink()
+	if IsClient() then return end
+	if self:GetParent():GetHealth() <= 1 and self:GetAbility():GetCaster():FindAbilityByName("special_bonus_fluid_engineer_3"):GetLevel() > 0 then
+		self:GetParent():Kill(self:GetAbility(), self:GetAbility():GetCaster())
+	end
+end
+
 function modifier_fluid_engineer_malicious_tampering:GetModifierConstantManaRegen() return self:GetAbility():GetSpecialValueFor("mana_constant")-self:GetAbility():GetCaster():GetIntellect() end
 
 function modifier_fluid_engineer_malicious_tampering:GetModifierTotalPercentageManaRegen() return self:GetAbility():GetSpecialValueFor("mana_percent") end

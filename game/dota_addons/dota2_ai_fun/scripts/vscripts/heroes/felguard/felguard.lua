@@ -5,6 +5,7 @@ LinkLuaModifier("modifier_felguard_overflow", "heroes/felguard/felguard_modifier
 
 
 function FelguardFirebladeStrike(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end	
 	local vSpeedHorizontal = 2500*Vector2D(keys.target:GetOrigin()-keys.caster:GetOrigin()):Normalized()
 	local hModifier = keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_felguard_fireblade_strike", {Duration=keys.ability:GetSpecialValueFor("knock_back")/2500})
@@ -14,6 +15,7 @@ function FelguardFirebladeStrike(keys)
 end
 
 function FelguardWrath(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local vSpeedHorizontal = 2500*Vector2D(keys.target_points[1]-keys.caster:GetOrigin()):Normalized()
 	local hModifier = keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_felguard_felguard_wrath", {Duration=Vector2D(keys.target_points[1]-keys.caster:GetOrigin()):Length2D()/2500})
 	hModifier.vTarget = keys.target_points[1]
@@ -25,6 +27,7 @@ felguard_strength_and_honor = class({})
 function felguard_strength_and_honor:GetIntrinsicModifierName() return "modifier_felguard_strength_and_honor" end
 
 function FelguardOverflow(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	keys.caster:EmitSound("Hero_Sven.GodsStrength")
 	ParticleManager:CreateParticle("particles/units/heroes/hero_sven/sven_spell_gods_strength.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.caster)
 	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_felguard_overflow", {Duration = keys.ability:GetSpecialValueFor("duration")})
