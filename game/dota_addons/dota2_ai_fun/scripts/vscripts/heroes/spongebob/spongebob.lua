@@ -84,6 +84,7 @@ end
 function SpongeBobJellyfishNet(keys)
 	local iChance
 	local iDuration
+	if keys.target:IsBuilding() or keys.target:GetTeam() == keys.caster:GetTeam() then return end
 	if keys.caster:IsIllusion() then 
 		if keys.target:IsHero() then
 			iChance = keys.ability:GetSpecialValueFor("chance_illusion_hero")

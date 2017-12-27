@@ -218,16 +218,18 @@ function modifier_heros_bow_always_allow_attack:OnCreated()
 	end
 end
 function modifier_heros_bow_always_allow_attack:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ATTACK_START, MODIFIER_PROPERTY_ATTACK_RANGE_BONUS}
+	return {MODIFIER_PROPERTY_ATTACK_RANGE_BONUS, MODIFIER_EVENT_ON_ORDER}
 end
 
-function modifier_heros_bow_always_allow_attack:OnAttackStart (keys)
-	if keys.attacker~= self:GetParent() or not keys.attacker:IsRangedAttacker() then return end
-	if not keys.target:HasModifier("modifier_item_fun_heros_bow_debuff") then
-		self.iAttackRange = -keys.attacker:GetAttackRangeBuffer()
-		Timers:CreateTimer(0.03, function() self.iAttackRange = 99999 end)
+function modifier_heros_bow_always_allow_attack:OnOrder(keys)
+	if keys.unit~= self:GetParent() then return end
+	if keys.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET and keys.target:HasModifier("modifier_item_fun_heros_bow_debuff") and keys.unit:IsRangedAttacker() then
+		self.iAttackRange = 99999
+	else
+		self.iAttackRange = 0
 	end
 end
+
 
 function modifier_heros_bow_always_allow_attack:GetModifierAttackRangeBonus()
 	return self.iAttackRange

@@ -469,7 +469,11 @@ function modifier_ramza_bravery:GetModifierPreAttack_BonusDamage()
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end
 	end
-	return (self.iBonusDamage or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+	if not self.hSpecial:IsNull() then
+		return (self.iBonusDamage or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+	else
+		return (self.iBonusDamage or 0)
+	end
 end
 
 function modifier_ramza_bravery:GetModifierBonusStats_Strength()
@@ -479,7 +483,11 @@ function modifier_ramza_bravery:GetModifierBonusStats_Strength()
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end
 	end
-	return (self.iBonusStr or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+	if not self.hSpecial:IsNull() then
+		return (self.iBonusStr or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+	else
+		return (self.iBonusStr or 0)
+	end
 end
 
 modifier_ramza_speed = class({})
@@ -507,7 +515,11 @@ function modifier_ramza_speed:GetModifierBonusStats_Agility()
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end
 	end
-	return (self.iAgi or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+	if not self.hSpecial:IsNull() then
+		return (self.iAgi or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+	else
+		return (self.iAgi or 0)
+	end
 end
 
 function modifier_ramza_speed:GetModifierMoveSpeedBonus_Percentage()
@@ -517,7 +529,11 @@ function modifier_ramza_speed:GetModifierMoveSpeedBonus_Percentage()
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end
 	end
-	return (self.iMove or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+	if not self.hSpecial:IsNull() then
+		return (self.iMove or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+	else
+		return (self.iMove or 0)
+	end
 end
 
 function modifier_ramza_speed:GetModifierAttackSpeedBonus_Constant()
@@ -527,7 +543,11 @@ function modifier_ramza_speed:GetModifierAttackSpeedBonus_Constant()
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end
 	end
-	return (self.iAttack or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+	if not self.hSpecial:IsNull() then
+		return (self.iAttack or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+	else
+		return (self.iAttack or 0)
+	end
 end
 
 modifier_ramza_faith = class({})
@@ -554,7 +574,11 @@ function modifier_ramza_faith:GetModifierManaBonus()
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end
 	end
-	return (self.iMana or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+	if not self.hSpecial:IsNull() then
+		return (self.iMana or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+	else
+		return (self.iMana or 0)
+	end
 end
 
 function modifier_ramza_faith:GetModifierBonusStats_Intellect()
@@ -564,5 +588,9 @@ function modifier_ramza_faith:GetModifierBonusStats_Intellect()
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end
 	end
-	return (self.iInt or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+	if not self.hSpecial:IsNull() then
+		return (self.iInt or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+	else
+		return (self.iInt or 0)
+	end
 end

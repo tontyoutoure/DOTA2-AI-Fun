@@ -295,7 +295,7 @@
 		"ItemQuality"	"artifact"
 		"Model"	"models/props_gameplay/red_box.vmdl"
 		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
-		"ItemCost"	"13575"
+		"ItemCost"	"13250"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemPermanent"	"1"
 		"ItemAliases"	"escutcheon"

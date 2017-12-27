@@ -85,6 +85,8 @@ function modifier_spongebob_spongify:OnAttackLanded(keys)
 		for i = 2, hParent:GetLevel() do
 			hIllusion:HeroLevelUp(false)
 		end
+		
+		hIllusion:GetItemInSlot(0):RemoveSelf()
 		for i = 0, 8 do
 			local hItem = hParent:GetItemInSlot(i)
 			if hItem then
@@ -94,6 +96,7 @@ function modifier_spongebob_spongify:OnAttackLanded(keys)
 		
 		hIllusion:AddNewModifier(hCaster, hAbility, "modifier_illusion", { duration = hAbility:GetSpecialValueFor("duration"), outgoing_damage = hAbility:GetSpecialValueFor("illusion_outgoing_damage"), incoming_damage = hAbility:GetSpecialValueFor("illusion_incoming_damage") })
 		hIllusion:MakeIllusion()
+		Timers:CreateTimer(hAbility:GetSpecialValueFor("duration"), function () hIllusion:RemoveSelf() end)
 		if hParent:GetAttackTarget() then
 			ExecuteOrderFromTable({
 				UnitIndex = hIllusion:entindex(),

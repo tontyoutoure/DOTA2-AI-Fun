@@ -21,7 +21,24 @@ function telekenetic_blob_catapult_modifier:OnCreated(kv)
 end
 
 function telekenetic_blob_catapult_modifier:OnDestroy()
-    if IsServer() then TelekeneticBlobFlyTearDown(self) end
+	if IsClient() then return end
+	TelekeneticBlobFlyTearDown(self)
+	local modifier = self
+	local damageTable = {
+		attacker = modifier:GetCaster(),
+		damage_type = modifier:GetAbility():GetAbilityDamageType(),
+		damage = modifier:GetAbility():GetSpecialValueFor("damage"),
+		ability = modifier:GetAbility()
+	}
+	local stunDuration = modifier:GetAbility():GetSpecialValueFor("stun_duration")
+	local units = FindUnitsInRadius(modifier:GetParent():GetTeamNumber(), modifier:GetParent():GetOrigin(), nil, modifier:GetAbility():GetSpecialValueFor("AOE_radius"), DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+	for i,v in ipairs(units) do
+		if v ~= modifier:GetCaster() then
+			damageTable.victim = v
+			ApplyDamage(damageTable)
+			v:AddNewModifier(modifier:GetCaster(), modifier:GetAbility(), "modifier_stunned", {Duration = stunDuration})
+		end
+	end
 end
 
 function telekenetic_blob_catapult_modifier:DeclareFunctions()
@@ -47,48 +64,5 @@ function telekenetic_blob_catapult_modifier:UpdateHorizontalMotion(me, dt)
 end
 
 function telekenetic_blob_catapult_modifier:UpdateVerticalMotion(me, dt)
-    local dealDamageAndStunOnLanding= function (modifier)
-			local damageTable = {
-				attacker = modifier:GetCaster(),
-				damage_type = modifier:GetAbility():GetAbilityDamageType(),
-				damage = modifier:GetAbility():GetSpecialValueFor("damage"),
-				ability = modifier:GetAbility()
-			}
-			local stunDuration = modifier:GetAbility():GetSpecialValueFor("stun_duration")
-			local units = FindUnitsInRadius(modifier:GetParent():GetTeamNumber(), modifier:GetParent():GetOrigin(), nil, modifier:GetAbility():GetSpecialValueFor("AOE_radius"), DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
-			for i,v in ipairs(units) do
-				if v ~= modifier:GetCaster() then
-					damageTable.victim = v
-					ApplyDamage(damageTable)
-					v:AddNewModifier(modifier:GetCaster(), modifier:GetAbility(), "telekenetic_blob_catapult_stun_modifier", {Duration = stunDuration})
-				end
-			end
-	end
-	TelekeneticBlobFlyUpdateVertical(me, dt, self, dealDamageAndStunOnLanding)
-end
-
-telekenetic_blob_catapult_stun_modifier = class({})
-
-function telekenetic_blob_catapult_stun_modifier:IsDebuff()
-	return true
-end
-
-function telekenetic_blob_catapult_stun_modifier:IsStunDebuff()
-	return true
-end
-
-function telekenetic_blob_catapult_stun_modifier:IsHidden()
-	return false
-end
-
-function telekenetic_blob_catapult_stun_modifier:GetEffectName()
-	return "particles/generic_gameplay/generic_stunned.vpcf"
-end
-
-function telekenetic_blob_catapult_stun_modifier:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
-end
-
-function telekenetic_blob_catapult_stun_modifier:CheckState()
-	return {[MODIFIER_STATE_STUNNED] = true}
+	TelekeneticBlobFlyUpdateVertical(me, dt, self, nil)
 end

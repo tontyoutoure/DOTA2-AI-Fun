@@ -142,6 +142,9 @@ if not IsClient() then
 			Timers:CreateTimer(0.5, function() 
 				hHero:SetBaseMoveSpeed(tHeroBaseStats.MovementSpeed)
 				hHero:SetPrimaryAttribute(tHeroBaseStats.PrimaryAttribute)
+			end)
+			
+			Timers:CreateTimer(0.04, function() 
 				if hHero ~= hHero:GetPlayerOwner():GetAssignedHero() then 
 					for i = 0, 23 do
 						if hHero:GetAbilityByIndex(i) then
@@ -149,8 +152,11 @@ if not IsClient() then
 						end
 					end
 					hHero:SetAbilityPoints(0)
+					hHero:SetHealth(hHero:GetPlayerOwner():GetAssignedHero():GetHealth())
+					hHero:SetMana(hHero:GetPlayerOwner():GetAssignedHero():GetMana())
 				end
 			end)
+			
 			if hHero:IsIllusion() then
 				local iLevel = hHero:GetPlayerOwner():GetAssignedHero():GetLevel()
 				hHero:SetBaseStrength(tHeroBaseStats.AttributeBaseStrength+(iLevel-1)*(tHeroBaseStats.AttributeStrenthGain-hHero:GetPlayerOwner():GetAssignedHero():GetStrengthGain()))

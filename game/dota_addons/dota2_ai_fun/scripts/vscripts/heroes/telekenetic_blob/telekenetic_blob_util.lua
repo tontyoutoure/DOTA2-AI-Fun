@@ -21,9 +21,12 @@ function TelekeneticBlobFlySetup(modifier, fixedSpeed)
     modifier.flDistance        = (modifier.vTargetPosition - modifier.vStartPosition):Length2D()
 	if fixedSpeed then
 		modifier.flHorizontalSpeed = modifier:GetAbility():GetSpecialValueFor("fly_speed")
+		modifier.fDuration = modifier.flDistance / modifier:GetAbility():GetSpecialValueFor("fly_speed")
 	else
 		modifier.flHorizontalSpeed = modifier.flDistance / modifier:GetAbility():GetSpecialValueFor("fly_duration")
+		modifier.fDuration = modifier:GetAbility():GetSpecialValueFor("fly_duration")
 	end
+	PrintTable(modifier)
     EmitSoundOnLocationWithCaster(modifier.vStartPosition, "Ability.TossThrow", modifier:GetParent())
 end
 
@@ -46,12 +49,11 @@ function TelekeneticBlobFlyUpdateVertical(me, dt, modifier, landingCallback)
     if IsServer() then
         local vOrigin        = me:GetOrigin()
         local vDistance      = (vOrigin - modifier.vStartPosition):Length2D()
-        local vZ             = (2*modifier.flTargetHeight-2*modifier.flStartHeight-4*modifier.flHeight)/(modifier.flDistance*modifier.flDistance) * (vDistance*vDistance) + (4*modifier.flHeight+modifier.flStartHeight-modifier.flTargetHeight) / modifier.flDistance * vDistance + modifier.flStartHeight
+        local vZ             = (2*modifier.flTargetHeight-2*modifier.flStartHeight-4*modifier.flHeight)/(modifier.fDuration*modifier.fDuration) * (modifier:GetElapsedTime()*modifier:GetElapsedTime()) + (4*modifier.flHeight+modifier.flStartHeight-modifier.flTargetHeight) / modifier.fDuration * modifier:GetElapsedTime() + modifier.flStartHeight
         vOrigin.z            = vZ
         local flGroundHeight = GetGroundHeight( vOrigin, modifier:GetParent() )
         local bLanded        = false
-
-        if (vDistance >= modifier.flDistance) then
+        if (modifier:GetElapsedTime() >= modifier.fDuration) then
             vOrigin.z = flGroundHeight
             bLanded   = true
         end

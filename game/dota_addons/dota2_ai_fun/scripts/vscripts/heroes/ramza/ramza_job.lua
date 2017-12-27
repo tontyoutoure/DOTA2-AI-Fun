@@ -247,7 +247,7 @@ function CRamzaJob:ChangeJob()
 		
 		--remove secondary skill if it's job command of current job or current job can have no secondary skill
 		if self.iCurrentJob == self.iSecondarySkill or self.iCurrentJob == RAMZA_JOB_MIME or self.iCurrentJob == RAMZA_JOB_ONION_KNIGHT then 
-			if self.hParent:FindAbilityByName("special_bonus_ramza_3"):GetLevel() == 1 then
+			if self.hParent:FindAbilityByName("special_bonus_ramza_3"):GetLevel() == 1 and self.iSecondarySkill > 0 then
 				self.hParent:RemoveModifierByName("modifier_" .. self.tOtherAbilities[self.iSecondarySkill][3][1])
 				self.hParent:RemoveModifierByName("modifier_" .. self.tOtherAbilities[self.iSecondarySkill][5][1])
 				self.hParent:RemoveModifierByName("modifier_" .. self.tOtherAbilities[self.iSecondarySkill][7][1])
