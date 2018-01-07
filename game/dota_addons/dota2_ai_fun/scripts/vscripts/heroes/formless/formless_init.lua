@@ -62,7 +62,8 @@ end
 
 function FormlessInit(hHero)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_formless", {})
-	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)	
+	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)		
+	hHero:AddNewModifier(hHero, nil, "modifier_sniper_assassinate_thinker", {})
 	if not GameMode.bFormlessForgetListenerSet then 
 		GameMode.bFormlessForgetListenerSet = true
 		CustomGameEventManager:RegisterListener("formless_forget", function(eventSourceIndex, args) return GameMode:OnFormlessForget(eventSourceIndex, args) end )

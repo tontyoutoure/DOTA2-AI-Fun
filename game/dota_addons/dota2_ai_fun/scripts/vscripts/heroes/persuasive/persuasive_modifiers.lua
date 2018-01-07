@@ -60,7 +60,7 @@ function modifier_persuasive_lagmonster_lua:OnDestroy()
 		ability = hAbility
 	}
 	ApplyDamage(damageTable)
-	hModifier = hParent:AddNewModifier(hCaster, hAbility, "modifier_persuasive_lagmonster_stun_lua", {Duration = self:GetDuration()})
+	hModifier = hParent:AddNewModifier(hCaster, hAbility, "modifier_stunned", {Duration = self:GetDuration()})
 end
 
 function modifier_persuasive_lagmonster_lua:OnTakeDamage(keys)
@@ -73,20 +73,20 @@ function modifier_persuasive_lagmonster_lua:OnTakeDamage(keys)
 	end
 end
 
-modifier_persuasive_lagmonster_stun_lua = class({})
+modifier_persuasive_high_stakes = class({})
 
-function modifier_persuasive_lagmonster_stun_lua:CheckState()
-	return {[MODIFIER_STATE_STUNNED] = true}
+function modifier_persuasive_high_stakes:IsHidden() return true end
+function modifier_persuasive_high_stakes:DeclareFunctions() return {MODIFIER_EVENT_ON_ATTACK_LANDED, MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE} end
+
+function modifier_persuasive_high_stakes:GetModifierPhysicalArmorBonus() 
+	if self:GetParent():PassivesDisabled() then return 0 else return self:GetAbility():GetSpecialValueFor("armor") end
 end
 
-function modifier_persuasive_lagmonster_stun_lua:GetEffectName()
-	return "particles/generic_gameplay/generic_stunned.vpcf"
+function modifier_persuasive_high_stakes:GetModifierPreAttack_CriticalStrike() 
+	if self:GetParent():PassivesDisabled() then return 0 else return self:GetAbility():GetSpecialValueFor("crit") end
 end
 
-function modifier_persuasive_lagmonster_stun_lua:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
-end
-
-function modifier_persuasive_lagmonster_stun_lua:IsStunDebuff()
-	return true
+function modifier_persuasive_high_stakes:OnAttackLanded(keys) 
+	if keys.attacker ~= self:GetParent() or self:GetAbility():GetLevel() == 0 or keys.attacker:PassivesDisabled() then return end
+	keys.attacker:EmitSound("DOTA_Item.Daedelus.Crit")
 end

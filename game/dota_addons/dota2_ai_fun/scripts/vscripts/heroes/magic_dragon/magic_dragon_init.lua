@@ -38,6 +38,7 @@ local tHeroBaseStats = {
 function MagicDragonInit(hHero)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_magic_dragon", {})
 	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)	
+	hHero:SetBaseMagicalResistanceValue(25)
 	if hHero:IsIllusion() then
 		MagicDragonTransform[hHero:GetOwner():GetAssignedHero().iDragonForm](hHero)
 	elseif not hHero.bSpawned then

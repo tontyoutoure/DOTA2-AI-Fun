@@ -16,6 +16,7 @@
 		"ScriptFile"  "scripts/vscripts/heroes/void_demon/void_demon_time_void.lua"
 		"AbilityTextureName"	"void_demon_time_void"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		// Unit Targeting
 		// -------------------------------------------------------------------------------------------------------------
@@ -70,6 +71,7 @@
 		"AbilityTextureName"	"void_demon_regen_aura"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityCastRange"	"%radius"
 		"AbilitySpecial"
@@ -104,7 +106,6 @@
 		"AbilityTextureName"	"void_demon_mass_haste"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
@@ -114,44 +115,27 @@
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
 			"particle"	"particles/generic_gameplay/rune_haste_owner.vpcf"
 		}
-		"Modifiers"
-		{
-			"modifier_degen_aura"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"IsBuff"	"1"
-				"Aura"	"modifier_degen_aura_effect"
-				"Aura_Radius"	"%radius"
-				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-			}
-			"modifier_degen_aura_effect"
-			{
-				"IsDebuff"	"0"
-				"EffectName"	"particles/generic_gameplay/rune_haste_owner.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%speed_bonus"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_bonus_tooltip"
-				}
-				"IsBuff"	"1"
-			}
-		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/void_demon/void_demon_time_void.lua"
+				"Function"	"VoidDemonMassHasteApply"
+			}
+		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"speed_bonus"	"30 60 90"
+				"movespeed_bonus"	"30 60 90"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"attack_bonus_tooltip"	"40 60 80"
+				"attackspeed_bonus"	"40 60 80"
 			}
 			"03"
 			{

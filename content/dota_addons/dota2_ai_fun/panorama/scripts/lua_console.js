@@ -64,12 +64,6 @@ LuaConsole.OnDofileTestActive = function() {
 	GameEvents.SendCustomGameEventToServer("LuaConsole_CommandInput", {"command": $("#CommandEntry").text});
 }
 
-LuaConsole.OnRamzaLevelMax = function() {
-	 $("#CommandEntry").text = "CRamzaJob:RamzaLevelMax()";
-	 $("#CommandEntry").SetFocus();
-	 $("#CommandEntry").SetCursorOffset(35);
-}
-
 LuaConsole.OnCleanInputActive = function() {
 	$("#CommandEntry").SetFocus();
 	$("#CommandEntry").SetCursorOffset(0);
@@ -78,6 +72,45 @@ LuaConsole.OnCleanInputActive = function() {
 	$("#CommandEntry").SetMaxChars(iMaxCharacter);
 }
 
+LuaConsole.OnAddEscutcheonActive = function () {
+	$("#CommandEntry").text = "SendToServerConsole(\"dota_bot_give_item item_fun_escutcheon\")";
+	LuaConsole.OnInputSubmitted();
+	$("#CommandEntry").text = "SendToServerConsole(\"dota_bot_give_item item_fun_escutcheon\")";
+	LuaConsole.OnInputSubmitted();
+	$("#CommandEntry").text = "SendToServerConsole(\"dota_bot_give_item item_fun_escutcheon\")";
+	LuaConsole.OnInputSubmitted();
+	$("#CommandEntry").text = "";
+}
+
+LuaConsole.OnAddAAActive = function () {
+	$("#CommandEntry").text = "SendToServerConsole(\"dota_bot_give_item item_fun_angelic_alliance\")";
+	LuaConsole.OnInputSubmitted();
+	$("#CommandEntry").text = "SendToServerConsole(\"dota_bot_give_item item_fun_angelic_alliance\")";
+	LuaConsole.OnInputSubmitted();
+	$("#CommandEntry").text = "SendToServerConsole(\"dota_bot_give_item item_fun_angelic_alliance\")";
+	LuaConsole.OnInputSubmitted();
+	$("#CommandEntry").text = "";
+}
+
+LuaConsole.OnAddTestItemsActive = function () {
+	$("#CommandEntry").text = "SendToServerConsole(\"dota_bot_give_item item_magic_stick\")";
+	LuaConsole.OnInputSubmitted();
+	$("#CommandEntry").text = "SendToServerConsole(\"dota_bot_give_item item_silver_edge\")";
+	LuaConsole.OnInputSubmitted();
+	$("#CommandEntry").text = "";
+}
+
+LuaConsole.OnBotAddLevelActive = function () {
+	$("#CommandEntry").text = "SendToServerConsole(\"dota_bot_give_level 5\")";
+	LuaConsole.OnInputSubmitted();
+	$("#CommandEntry").text = "";
+}
+
+LuaConsole.OnAddTinyActive = function () {
+	$("#CommandEntry").text = "SendToServerConsole(\"dota_create_unit npc_dota_hero_tiny enemy\")";
+	LuaConsole.OnInputSubmitted();
+	$("#CommandEntry").text = "";
+}
 LuaConsole.GetCurrentObject = function (sName) {
 	
 }

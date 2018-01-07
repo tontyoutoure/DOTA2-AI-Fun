@@ -1,8 +1,3 @@
---[[
-modifier_magic_dragon_undead_form = class({})
-modifier_magic_dragon_ice_form = class({})
-modifier_magic_dragon_fire_form = class({})
-]]--
 modifier_magic_dragon_lightning_form = class({})
 
 function modifier_magic_dragon_lightning_form:RemoveOnDeath() return false end
@@ -11,139 +6,7 @@ function modifier_magic_dragon_lightning_form:IsHidden() return true end
 function modifier_magic_dragon_lightning_form:GetStatusEffectName()
 	return "particles/status_fx/status_effect_avatar.vpcf"
 end	
-	
-	
---[[
-modifier_magic_dragon_anti_magic_form = class({})
-modifier_magic_dragon_magic_form = class({})
 
-function modifier_magic_dragon_undead_form:RemoveOnDeath() return false end
-function modifier_magic_dragon_ice_form:RemoveOnDeath() return false end
-function modifier_magic_dragon_fire_form:RemoveOnDeath() return false end
-function modifier_magic_dragon_anti_magic_form:RemoveOnDeath() return false end
-function modifier_magic_dragon_magic_form:RemoveOnDeath() return false end
-
-function modifier_magic_dragon_undead_form:IsHidden() return true end
-function modifier_magic_dragon_ice_form:IsHidden() return true end
-function modifier_magic_dragon_fire_form:IsHidden() return true end
-function modifier_magic_dragon_anti_magic_form:IsHidden() return true end
-function modifier_magic_dragon_magic_form:IsHidden() return true end
-
-
-
-
-function modifier_magic_dragon_undead_form:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MODEL_CHANGE}
-end
-
-function modifier_magic_dragon_undead_form:GetModifierModelChange()
-	return "models/heroes/visage/visage.vmdl"
-end
-
-function modifier_magic_dragon_undead_form:OnCreated()
-	if IsClient() then return end
-	
-	local hParent = self:GetParent()
-	HideWearables(hParent)
-	hParent:SetRenderColor(255, 255, 255)
-	hParent:SetModelScale(1.2)
-	hParent:SetRangedProjectileName("particles/units/heroes/hero_visage/visage_base_attack.vpcf")
-end
-
-
-function modifier_magic_dragon_ice_form:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MODEL_CHANGE}
-end
-
-function modifier_magic_dragon_ice_form:GetModifierModelChange()
-	return "models/items/dragon_knight/aurora_warrior_set_dragon_style2_aurora_warrior_set/aurora_warrior_set_dragon_style2_aurora_warrior_set.vmdl"
-end
-
-function modifier_magic_dragon_ice_form:OnCreated()
-	if IsClient() then return end
-	local hParent = self:GetParent()
-	HideWearables(hParent)
-	Timers:CreateTimer(0.03, function () hParent:SetMaterialGroup("2") end)
-	hParent:SetRenderColor(255, 255, 255)
-	hParent:SetModelScale(1)
-	hParent:SetRangedProjectileName("particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_frost.vpcf")
-end
-
-
-function modifier_magic_dragon_fire_form:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MODEL_CHANGE}
-end
-
-function modifier_magic_dragon_fire_form:GetModifierModelChange()
-	return "models/items/dragon_knight/fireborn_dragon/fireborn_dragon.vmdl"
-end
-
-function modifier_magic_dragon_fire_form:OnCreated()
-	if IsClient() then return end
-	local hParent = self:GetParent()
-	HideWearables(hParent)
-	Timers:CreateTimer(0.03, function () hParent:SetMaterialGroup("1") end)
-	hParent:SetRenderColor(255, 255, 255)
-	hParent:SetModelScale(1)
-	hParent:SetRangedProjectileName("particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_fire.vpcf")
-end
-
-
-function modifier_magic_dragon_lightning_form:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MODEL_CHANGE}
-end
-
-function modifier_magic_dragon_lightning_form:GetModifierModelChange()
-	return "models/items/dragon_knight/dragon_immortal_1/dragon_immortal_1.vmdl"
-end
-
-function modifier_magic_dragon_lightning_form:OnCreated()
-	if IsClient() then return end
-	local hParent = self:GetParent()
-	HideWearables(hParent)
-	hParent:SetRenderColor(185, 110, 255)
-	hParent:SetModelScale(1)
-	hParent:SetRangedProjectileName("particles/econ/items/razor/razor_ti6/razor_base_attack_ti6.vpcf")
-end
-
-
-function modifier_magic_dragon_anti_magic_form:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MODEL_CHANGE}
-end
-
-function modifier_magic_dragon_anti_magic_form:GetModifierModelChange()
-	return "models/items/dragon_knight/aurora_warrior_set_dragon_style2_aurora_warrior_set/aurora_warrior_set_dragon_style2_aurora_warrior_set.vmdl"
-end
-
-function modifier_magic_dragon_anti_magic_form:OnCreated()
-	if IsClient() then return end
-	local hParent = self:GetParent()
-	HideWearables(hParent)
-	hParent:SetRenderColor(0, 0, 0)
-	hParent:SetModelScale(1)
-	hParent:SetRangedProjectileName("particles/neutral_fx/black_dragon_attack.vpcf")
-end
-
-
-function modifier_magic_dragon_magic_form:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MODEL_CHANGE}
-end
-
-function modifier_magic_dragon_magic_form:GetModifierModelChange()
-	return "models/items/dragon_knight/oblivion_blazer_dragon/oblivion_blazer_dragon.vmdl"
-end
-
-function modifier_magic_dragon_magic_form:OnCreated()
-	if IsClient() then return end
-	local hParent = self:GetParent()
-	HideWearables(hParent)
-	hParent:SetMaterialGroup("0")
-	hParent:SetRenderColor(255, 255, 255)
-	hParent:SetModelScale(1)
-	hParent:SetRangedProjectileName("particles/econ/items/viper/viper_ti7_immortal/viper_poison_attack_ti7.vpcf")
-end
-
-]]--
 modifier_magic_dragon_gold_dragon_hide = class({})
 
 function modifier_magic_dragon_gold_dragon_hide:RemoveOnDeath() return false end
@@ -156,6 +19,7 @@ end
 
 function modifier_magic_dragon_gold_dragon_hide:OnAttacked(keys)
 	if keys.target~= self:GetParent() or self:GetParent():PassivesDisabled() then return end
+	if keys.target:PassivesDisabled() then return end
 	local damageTable = {
 		victim = keys.attacker,
 		attacker = keys.target,
@@ -211,27 +75,156 @@ end
 
 function modifier_magic_dragon_black_dragon_breath:AllowIllusionDuplicate() return true end
 
+modifier_magic_dragon_green_dragon_breath_slow = class({})
+
+function modifier_magic_dragon_green_dragon_breath_slow:DeclareFunctions() return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE} end
+function modifier_magic_dragon_green_dragon_breath_slow:GetModifierMoveSpeedBonus_Percentage()
+	
+	local fResist
+	if IsClient() then 
+		fResist = -self:GetStackCount()/1000
+	else
+		fResist = CalculateStatusResist(self:GetParent())
+		self:SetStackCount(-fResist*1000)
+	end
+	self.fSlow = self.fSlow or self:GetAbility():GetSpecialValueFor("speed_slow")
+	return fResist*self.fSlow
+end
+function modifier_magic_dragon_green_dragon_breath_slow:GetEffectName() return 		
+	"particles/econ/items/viper/viper_ti7_immortal/viper_poison_debuff_ti7.vpcf" 
+end
+
+function modifier_magic_dragon_green_dragon_breath_slow:GetEffectAttachType() return PATTACH_POINT_FOLLOW end
+
+modifier_magic_dragon_green_dragon_hide = class({})
+function modifier_magic_dragon_green_dragon_hide:IsAura() return true end
+function modifier_magic_dragon_green_dragon_hide:GetModifierAura() 
+	return "modifier_magic_dragon_green_dragon_hide_slow" 
+end
+function modifier_magic_dragon_green_dragon_hide:GetAuraRadius() return self:GetAbility():GetSpecialValueFor("radius") end
+function modifier_magic_dragon_green_dragon_hide:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_ENEMY end
+function modifier_magic_dragon_green_dragon_hide:GetAuraSearchFlags() return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES end
+function modifier_magic_dragon_green_dragon_hide:GetAuraSearchType() return DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO end
+function modifier_magic_dragon_green_dragon_hide:IsHidden() return true end
+function modifier_magic_dragon_green_dragon_hide:RemoveOnDeath() return false end
+function modifier_magic_dragon_green_dragon_hide:IsPurgable() return false end
+
+modifier_magic_dragon_green_dragon_hide_slow = class({})
+
+function modifier_magic_dragon_green_dragon_hide_slow:DeclareFunctions() return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT} end
+function modifier_magic_dragon_green_dragon_hide_slow:GetStatusEffectName() return "particles/status_fx/status_effect_enchantress_untouchable.vpcf" end
+function modifier_magic_dragon_green_dragon_hide_slow:GetModifierAttackSpeedBonus_Constant() 
+	self.iSlow = self.iSlow or self:GetAbility():GetSpecialValueFor("attack_slow")
+	if self:GetCaster():PassivesDisabled() then return 0
+	else return self.iSlow end
+end
+
+modifier_magic_dragon_red_dragon_hide = class({})
+
+function modifier_magic_dragon_red_dragon_hide:IsAura() return true end
+function modifier_magic_dragon_red_dragon_hide:GetModifierAura() 
+	return "modifier_magic_dragon_red_dragon_hide_impact" 
+end
+function modifier_magic_dragon_red_dragon_hide:GetAuraRadius() return self:GetAbility():GetSpecialValueFor("radius") end
+function modifier_magic_dragon_red_dragon_hide:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_ENEMY end
+function modifier_magic_dragon_red_dragon_hide:GetAuraSearchFlags() return DOTA_UNIT_TARGET_FLAG_NONE end
+function modifier_magic_dragon_red_dragon_hide:GetAuraSearchType() return DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO end
+function modifier_magic_dragon_red_dragon_hide:IsHidden() return true end
+function modifier_magic_dragon_red_dragon_hide:RemoveOnDeath() return false end
+function modifier_magic_dragon_red_dragon_hide:IsPurgable() return false end
+
+modifier_magic_dragon_red_dragon_hide_impact = class({})
+function modifier_magic_dragon_red_dragon_hide_impact:GetEffectName() return 	"particles/units/heroes/hero_ember_spirit/ember_spirit_flameguard_column.vpcf" end
+function modifier_magic_dragon_red_dragon_hide_impact:GetEffectAttachType() return PATTACH_POINT_FOLLOW end
+function modifier_magic_dragon_red_dragon_hide_impact:OnCreated() self:StartIntervalThink(1) end
+function modifier_magic_dragon_red_dragon_hide_impact:OnIntervalThink() 
+	if IsClient() then return end
+	local hAbility = self:GetAbility()
+	if not hAbility then return end
+	if self:GetCaster():PassivesDisabled() then return end
+	ApplyDamage({victim = self:GetParent(), attacker = self:GetCaster(), damage = hAbility:GetSpecialValueFor("damage"), damage_type = hAbility:GetAbilityDamageType(), ability = hAbility})
+end 
 
 
+modifier_magic_dragon_black_dragon_hide = class({})
+
+function modifier_magic_dragon_black_dragon_hide:DeclareFunctions() return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS} end
+function modifier_magic_dragon_black_dragon_hide:IsHidden() return true end
+function modifier_magic_dragon_black_dragon_hide:RemoveOnDeath() return false end
+function modifier_magic_dragon_black_dragon_hide:IsPurgable() return false end
+function modifier_magic_dragon_black_dragon_hide:AllowIllusionDuplicate() return true end
+function modifier_magic_dragon_black_dragon_hide:GetModifierMagicalResistanceBonus() 
+	if self:GetParent():PassivesDisabled() then return 0 else return self:GetAbility():GetSpecialValueFor("magic_resistence") end
+end
 
 
+modifier_magic_dragon_ghost_dragon_hide = class({})
+function modifier_magic_dragon_ghost_dragon_hide:IsAura() return true end
+function modifier_magic_dragon_ghost_dragon_hide:GetModifierAura() 
+	return "modifier_magic_dragon_ghost_dragon_hide_damage_reduction" 
+end
+function modifier_magic_dragon_ghost_dragon_hide:GetAuraRadius() return self:GetAbility():GetSpecialValueFor("radius") end
+function modifier_magic_dragon_ghost_dragon_hide:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_ENEMY end
+function modifier_magic_dragon_ghost_dragon_hide:GetAuraSearchFlags() return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES end
+function modifier_magic_dragon_ghost_dragon_hide:GetAuraSearchType() return DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO end
+function modifier_magic_dragon_ghost_dragon_hide:IsHidden() return true end
+function modifier_magic_dragon_ghost_dragon_hide:RemoveOnDeath() return false end
+function modifier_magic_dragon_ghost_dragon_hide:IsPurgable() return false end
+
+modifier_magic_dragon_ghost_dragon_hide_damage_reduction = class({})
+function modifier_magic_dragon_ghost_dragon_hide_damage_reduction:DeclareFunctions() return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE} end
+function modifier_magic_dragon_ghost_dragon_hide_damage_reduction:GetModifierPreAttack_BonusDamage()
+	self.fDamageReduction = self.fDamageReduction or self:GetAbility():GetSpecialValueFor("damage_reduction") 
+	if self:GetCaster():PassivesDisabled() then return 0
+	else return self.fDamageReduction end
+end
 
 
+modifier_magic_dragon_blue_dragon_hide = class({})
+function modifier_magic_dragon_blue_dragon_hide:IsAura() return true end
+function modifier_magic_dragon_blue_dragon_hide:GetModifierAura() 
+	return "modifier_magic_dragon_blue_dragon_hide_speed_slow" 
+end
+function modifier_magic_dragon_blue_dragon_hide:GetAuraRadius() return self:GetAbility():GetSpecialValueFor("radius") end
+function modifier_magic_dragon_blue_dragon_hide:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_ENEMY end
+function modifier_magic_dragon_blue_dragon_hide:GetAuraSearchFlags() return DOTA_UNIT_TARGET_NONE end
+function modifier_magic_dragon_blue_dragon_hide:GetAuraSearchType() return DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO end
+function modifier_magic_dragon_blue_dragon_hide:IsHidden() return true end
+function modifier_magic_dragon_blue_dragon_hide:RemoveOnDeath() return false end
+function modifier_magic_dragon_blue_dragon_hide:IsPurgable() return false end
 
+modifier_magic_dragon_blue_dragon_hide_speed_slow = class({})
+function modifier_magic_dragon_blue_dragon_hide_speed_slow:DeclareFunctions() return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE} end
+function modifier_magic_dragon_blue_dragon_hide_speed_slow:GetStatusEffectName() return "particles/status_fx/status_effect_frost.vpcf"  end
+function modifier_magic_dragon_blue_dragon_hide_speed_slow:GetModifierMoveSpeedBonus_Percentage()
+	if self:GetCaster():PassivesDisabled() then return 0 end
+	local fResist
+	self.fSlow = self.fSlow or self:GetAbility():GetSpecialValueFor("speed_reduction")
+	if IsClient() then
+		fResist = -self:GetStackCount()/1000
+	else
+		fResist = CalculateStatusResist(self:GetParent())
+		self:SetStackCount(-fResist*1000)
+	end
+	return fResist*self.fSlow
+end
+modifier_magic_dragon_blue_dragon_breath_slow = class({})
+function modifier_magic_dragon_blue_dragon_breath_slow:DeclareFunctions() return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE} end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function modifier_magic_dragon_blue_dragon_breath_slow:IsPurgable() return true end
+function modifier_magic_dragon_blue_dragon_breath_slow:GetStatusEffectName() return "particles/status_fx/status_effect_frost.vpcf" end
+function modifier_magic_dragon_blue_dragon_breath_slow:GetModifierMoveSpeedBonus_Percentage()
+	local fResist
+	if IsClient() then 
+		fResist = -self:GetStackCount()/1000
+	else
+		fResist = CalculateStatusResist(self:GetParent())
+		self:SetStackCount(-fResist*1000)
+	end
+	self.fSlow = self.fSlow or self:GetAbility():GetSpecialValueFor("nova_speed_slow")
+	return fResist*self.fSlow
+end
+function modifier_magic_dragon_blue_dragon_breath_slow:GetModifierAttackSpeedBonus_Constant()
+	self.fAttack = self.fAttack or self:GetAbility():GetSpecialValueFor("attack_slow")
+	return self.fAttack
+end

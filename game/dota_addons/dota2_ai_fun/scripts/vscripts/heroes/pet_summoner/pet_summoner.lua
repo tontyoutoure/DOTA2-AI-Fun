@@ -3,20 +3,21 @@ LinkLuaModifier("modifier_pet_summoner_mittens_meow_aura", "heroes/pet_summoner/
 LinkLuaModifier("modifier_pet_summoner_mittens_meow", "heroes/pet_summoner/pet_summoner_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 
 function PetSummonerCritters (keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local tTargets
 	local iOwnerID = keys.caster:GetPlayerOwnerID()
 	local iDuration = keys.ability:GetSpecialValueFor("duration")
 	if keys.caster:HasScepter() then
 		tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.caster:GetAbsOrigin(), none, 99999, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE , FIND_UNITS_EVERYWHERE, false)
 		for k, v in pairs(tTargets) do
-			v:AddNewModifier(keys.caster, keys.ability, "modifier_pet_summoner_critters", {Duration = iDuration})
+			v:AddNewModifier(keys.caster, keys.ability, "modifier_pet_summoner_critters", {Duration = iDuration*CalculateStatusResist(v)})
 			v:EmitSound("DOTA_Item.Sheepstick.Activate")
 		end
 	else
 		tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.caster:GetAbsOrigin(), none, 99999, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE , FIND_UNITS_EVERYWHERE, false)
 		for k, v in pairs(tTargets) do
 			if v:GetPlayerOwnerID() ~= iOwnerID then
-				v:AddNewModifier(keys.caster, keys.ability, "modifier_pet_summoner_critters", {Duration = iDuration})
+				v:AddNewModifier(keys.caster, keys.ability, "modifier_pet_summoner_critters", {Duration = iDuration*CalculateStatusResist(v)})
 				v:EmitSound("DOTA_Item.Sheepstick.Activate")
 			end
 		end
@@ -28,6 +29,7 @@ function PetSummonerMittensMeowApply (keys)
 end
 
 function PetSummonerFixBooBoo(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local iOwnerID = keys.caster:GetPlayerOwnerID()
 	local iHeal = keys.ability:GetSpecialValueFor("heal")
 	local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.caster:GetAbsOrigin(), none, 99999, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE , FIND_UNITS_EVERYWHERE, false)
@@ -54,7 +56,7 @@ function PetSummonerFixBooBoo(keys)
 end
 
 function PetSummonerPets(keys)
-
+	ProcsArroundingMagicStick(keys.caster)
 	keys.caster:EmitSound("DOTA_Item.Necronomicon.Activate")
 	keys.caster.tSummons = keys.caster.tSummons or {}	
 	

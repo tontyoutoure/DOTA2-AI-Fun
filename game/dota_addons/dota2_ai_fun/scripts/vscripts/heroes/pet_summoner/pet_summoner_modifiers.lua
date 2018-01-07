@@ -58,4 +58,10 @@ modifier_pet_summoner_mittens_meow = class({})
 
 function modifier_pet_summoner_mittens_meow:DeclareFunctions() return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE} end
 
-function modifier_pet_summoner_mittens_meow:GetModifierPreAttack_BonusDamage() return self:GetAbility():GetSpecialValueFor("bonus_damage") end
+function modifier_pet_summoner_mittens_meow:GetModifierPreAttack_BonusDamage() 
+	if self:GetCaster():PassivesDisabled() then
+		return 0 
+	else 
+		return self:GetAbility():GetSpecialValueFor("bonus_damage") 
+	end
+end

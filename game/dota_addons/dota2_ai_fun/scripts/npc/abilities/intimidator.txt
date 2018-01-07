@@ -33,12 +33,12 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"movement_percentage"	"5 10 15 20"
+				"movement_percentage"	"-5 -10 -15 -20"
 			}
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"attack"	"5 10 15 20"
+				"attack"	"-5 -10 -15 -20"
 			}
 			"05"
 			{

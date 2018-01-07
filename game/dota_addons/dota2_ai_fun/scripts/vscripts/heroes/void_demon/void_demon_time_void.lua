@@ -1,6 +1,8 @@
 LinkLuaModifier("modifier_void_demon_time_void", "heroes/void_demon/void_demon_time_void.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_void_demon_degen_aura", "heroes/void_demon/void_demon_time_void.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_void_demon_degen_aura_slow", "heroes/void_demon/void_demon_time_void.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_void_demon_mass_haste", "heroes/void_demon/void_demon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_void_demon_mass_haste_accelerate", "heroes/void_demon/void_demon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 void_demon_time_void = class({})
 
 function void_demon_time_void:GetCooldown(iLevel)
@@ -31,7 +33,7 @@ function void_demon_time_void:OnSpellStart()
 	}
 	ApplyDamage(damageTable)
 	hTarget:AddNewModifier(hCaster, self, "modifier_stunned", {Duration = 0.01})
-	hTarget:AddNewModifier(hCaster, self, "modifier_void_demon_time_void", {Duration = self:GetSpecialValueFor("duration")})
+	hTarget:AddNewModifier(hCaster, self, "modifier_void_demon_time_void", {Duration = self:GetSpecialValueFor("duration")*CalculateStatusResist(hTarget)})
 end
 
 modifier_void_demon_time_void = class({})
@@ -43,8 +45,16 @@ function modifier_void_demon_time_void:GetEffectName() return "particles/units/h
 
 function modifier_void_demon_time_void:DeclareFunctions() return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT} end
 
-function modifier_void_demon_time_void:GetModifierMoveSpeedBonus_Percentage() 
-	return self:GetAbility():GetSpecialValueFor("movespeed_slow") 
+function modifier_void_demon_time_void:GetModifierMoveSpeedBonus_Percentage()
+	local fResist
+	if IsClient() then 
+		fResist = -self:GetStackCount()/1000
+	else
+		fResist = CalculateStatusResist(self:GetParent())
+		self:SetStackCount(-fResist*1000)
+	end
+	self.fSlow = self.fSlow or self:GetAbility():GetSpecialValueFor("movespeed_slow")
+	return fResist*self.fSlow
 end
 
 function modifier_void_demon_time_void:GetModifierAttackSpeedBonus_Constant() return self:GetAbility():GetSpecialValueFor("attackspeed_slow") end
@@ -73,24 +83,49 @@ modifier_void_demon_degen_aura_slow = class({})
 function modifier_void_demon_degen_aura_slow:DeclareFunctions() return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT} end
 
 function modifier_void_demon_degen_aura_slow:GetModifierMoveSpeedBonus_Percentage()
+	if self:GetCaster():PassivesDisabled() then return 0 end
 	if not self.hSpecial then
 		self.hSpecial = Entities:First()
 		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_void_demon_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end	
 	end
-	return (self.hSpecial:GetSpecialValueFor("value")+1)*self:GetAbility():GetSpecialValueFor("movement")
+	
+	local fResist
+	if IsClient() then 
+		fResist = -self:GetStackCount()/1000
+	else
+		fResist = CalculateStatusResist(self:GetParent())
+		self:SetStackCount(-fResist*1000)
+	end
+	
+	if self.hSpecial then
+		self.fSlow = (self.hSpecial:GetSpecialValueFor("value")+1)*self:GetAbility():GetSpecialValueFor("movement")
+	else
+		self.fSlow = self:GetAbility():GetSpecialValueFor("movement")
+	end
+	
+	return fResist*self.fSlow
 end
 
 function modifier_void_demon_degen_aura_slow:GetModifierAttackSpeedBonus_Constant()
+	if self:GetCaster():PassivesDisabled() then return 0 end
 	if not self.hSpecial then
 		self.hSpecial = Entities:First()
 		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_void_demon_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end	
 	end
-	return (self.hSpecial:GetSpecialValueFor("value")+1)*self:GetAbility():GetSpecialValueFor("attack")
+	if self.hSpecial then
+		return (self.hSpecial:GetSpecialValueFor("value")+1)*self:GetAbility():GetSpecialValueFor("attack")
+	else
+		return self:GetAbility():GetSpecialValueFor("attack")
+	end
 end
 
 function modifier_void_demon_degen_aura_slow:GetEffectName() return "particles/degen_aura_debuff.vpcf" end
 function modifier_void_demon_degen_aura_slow:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
+
+function VoidDemonMassHasteApply(keys)
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_void_demon_mass_haste", {})
+end

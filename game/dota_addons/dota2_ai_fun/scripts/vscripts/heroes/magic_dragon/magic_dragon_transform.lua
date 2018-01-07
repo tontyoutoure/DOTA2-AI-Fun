@@ -1,3 +1,4 @@
+LinkLuaModifier("modifier_magic_dragon_lightning_form", "heroes/magic_dragon/magic_dragon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 -- This file records functions about transformation of magic dragon
 
 MagicDragonTransform = {}

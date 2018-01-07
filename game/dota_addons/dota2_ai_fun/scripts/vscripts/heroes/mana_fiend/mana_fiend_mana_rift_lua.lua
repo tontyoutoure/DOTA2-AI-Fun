@@ -1,4 +1,5 @@
 function mana_fiend_mana_rift_lua(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb(keys.ability) then return end
 
 	local target = keys.target

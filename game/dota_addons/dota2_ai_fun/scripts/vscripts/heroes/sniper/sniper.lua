@@ -10,6 +10,7 @@ end
 
 function AssassinateStart(keys)
 	keys.caster:RemoveModifierByName("modifier_assassinate_caster_datadriven")
+	ProcsArroundingMagicStick(keys.caster)
 	for i, v in pairs(keys.ability.tTargets) do 
 		keys.caster:EmitSound("Hero_Sniper.AssassinateProjectile")
 		ProjectileManager:CreateTrackingProjectile({

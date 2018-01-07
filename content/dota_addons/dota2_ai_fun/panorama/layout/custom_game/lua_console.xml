@@ -36,7 +36,23 @@
 			</Button>			
 			<Button id="DofileTestButton" class="RightButton" onactivate="LuaConsole.OnDofileTestActive();">
 				<Label text="dofile('test')" id="DofileTestLabel" class="ButtonLabel"/>
+			</Button>		
+			<Button id="AddEscutcheonButton" class="RightButton" onactivate="LuaConsole.OnAddEscutcheonActive();">
+				<Label text="Add Escutcheon" id="AddEscutcheonLabel" class="ButtonLabel"/>
+			</Button>	
+			<Button id="AddAA" class="RightButton" onactivate="LuaConsole.OnAddAAActive();">
+				<Label text="Add AA for bots" id="AddAALabel" class="ButtonLabel"/>
 			</Button>
+			<Button id="AddTestItems" class="RightButton" onactivate="LuaConsole.OnAddTestItemsActive();">
+				<Label text="Add Test Items" id="AddTestItemsLabel" class="ButtonLabel"/>
+			</Button>
+			<Button id="BotAddLevel" class="RightButton" onactivate="LuaConsole.OnBotAddLevelActive();">
+				<Label text="Bot Add Level" id="AddLevelLabel" class="ButtonLabel"/>
+			</Button>
+			<Button id="AddTiny" class="RightButton" onactivate="LuaConsole.OnAddTinyActive();">
+				<Label text="Add Tiny" id="AddtinyLabel" class="ButtonLabel"/>
+			</Button>
+			
 		</Panel>
 	</Panel>
 </root>

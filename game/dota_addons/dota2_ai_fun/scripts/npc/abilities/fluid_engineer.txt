@@ -6,7 +6,7 @@
 		"AbilityTextureName"	"treant_living_armor"
 		"ScriptFile"	"heroes/fluid_engineer/fluid_engineer_salad_lunch_lua.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_TREE"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"	"0"
 		"AbilityCastAnimation"	"ACT_DOTA_OVERRIDE_ABILITY_1"

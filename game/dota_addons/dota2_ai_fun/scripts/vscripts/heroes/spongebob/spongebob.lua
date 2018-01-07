@@ -75,13 +75,14 @@ function spongebob_karate_chop:OnSpellStart()
 	if hTarget:TriggerSpellAbsorb(self) then return end
 	ApplyDamage({victim = hTarget, ability = self, attacker = hCaster, damage_type = self:GetAbilityDamageType(), damage = self:GetSpecialValueFor("damage")})
 	hTarget:ReduceMana(self:GetSpecialValueFor("mana_loss"))
-	hTarget:AddNewModifier(hCaster, self, "modifier_stunned", {Duration = self:GetSpecialValueFor("stun_duration")})	
+	hTarget:AddNewModifier(hCaster, self, "modifier_stunned", {Duration = self:GetSpecialValueFor("stun_duration")*CalculateStatusResist(hTarget)})	
 	hTarget:EmitSound("Hero_Sven.StormBoltImpact")	
 	local iParticle = ParticleManager:CreateParticle("particles/econ/items/troll_warlord/troll_warlord_ti7_axe/troll_ti7_axe_bash_explosion_swish.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget)
 	ParticleManager:SetParticleControlEnt(iParticle, 1, hCaster, PATTACH_POINT_FOLLOW, "attach_origin", hTarget:GetAbsOrigin(), true)
 end
 
 function SpongeBobJellyfishNet(keys)
+	if keys.caster:PassivesDisabled() then return end
 	local iChance
 	local iDuration
 	if keys.target:IsBuilding() or keys.target:GetTeam() == keys.caster:GetTeam() then return end

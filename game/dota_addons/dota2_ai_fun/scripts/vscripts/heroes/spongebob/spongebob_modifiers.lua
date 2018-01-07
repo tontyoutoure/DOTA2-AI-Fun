@@ -55,6 +55,7 @@ end
 function modifier_spongebob_spongify:IsHidden() return true end
 function modifier_spongebob_spongify:OnAttackLanded(keys)
 	local hParent = self:GetParent()
+	if hParent:PassivesDisabled() then return end
 	local hAbility = self:GetAbility()
 	local hCaster = self:GetCaster()
 	local bGenerateIllusion

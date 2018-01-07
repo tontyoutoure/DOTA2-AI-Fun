@@ -12,11 +12,19 @@ function modifier_intimidator_glare_lua:DeclareFunctions()
 end
 
 function modifier_intimidator_glare_lua:GetModifierAttackSpeedBonus_Constant()
-	return -(self:GetAbility():GetSpecialValueFor("attack"))
+	return self:GetAbility():GetSpecialValueFor("attack")
 end
 
 function modifier_intimidator_glare_lua:GetModifierMoveSpeedBonus_Percentage()
-	return -(self:GetAbility():GetSpecialValueFor("movement_percentage"))
+	local fResist
+	if IsClient() then 
+		fResist = -self:GetStackCount()/1000
+	else
+		fResist = CalculateStatusResist(self:GetParent())
+		self:SetStackCount(-fResist*1000)
+	end
+	self.fSlow = self.fSlow or self:GetAbility():GetSpecialValueFor("movement_percentage")
+	return fResist*self.fSlow
 end
 
 function modifier_intimidator_glare_lua:GetTexture()
@@ -172,6 +180,7 @@ end
 function modifier_intimidator_physical_activity_lua:OnAttackLanded(keys)
 	local target = keys.target
 	local caster = self:GetCaster()
+	if caster:PassivesDisabled() then return end
 	
 	
 	if caster ~= keys.attacker then return end
@@ -180,7 +189,6 @@ function modifier_intimidator_physical_activity_lua:OnAttackLanded(keys)
 	local grill = caster:GetAbilityByIndex(1)
 	local rn = math.random(100)
 	local chance
-	
 	if caster:FindAbilityByName("special_bonus_intimidator_1") then
 		chance = ability:GetSpecialValueFor("chance")+caster:FindAbilityByName("special_bonus_intimidator_1"):GetSpecialValueFor("value")
 	else

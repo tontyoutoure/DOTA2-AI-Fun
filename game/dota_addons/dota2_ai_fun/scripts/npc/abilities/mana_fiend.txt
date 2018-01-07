@@ -94,6 +94,7 @@
 		"AbilityCooldown"	"45"
 		"AbilityManaCost"	"100 200 300"
 		"AbilityCastRange"	"0"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_items.vsndevts"
@@ -128,7 +129,7 @@
 				}
 				"StatusEffectName"	"particles/status_fx/status_effect_chemical_rage.vpcf"
 				"Duration"	"%duration"
-				"IsPurgable"	"1"
+				"IsPurgable"	"0"
 			}
 		}
 		"AbilitySpecial"
@@ -142,6 +143,44 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"duration"	"10 20 30"
+			}
+		}
+	}
+
+	"mana_fiend_osmose"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"lion_mana_drain"
+		"ScriptFile"	"heroes/mana_fiend/mana_fiend_osmose_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"Modifiers"
+		{
+			"modifier_mana_fiend_osmose"
+			{
+				"Passive"	"1"
+				"IsBuff"	"1"
+				"IsHidden"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/mana_fiend/mana_fiend_osmose_lua.lua"
+						"Function"	"mana_fiend_osmose_lua"
+					}
+				}
+				"AllowIllusionDuplicate"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_drained"	"10 20 30 40"
 			}
 		}
 	}

@@ -8,7 +8,6 @@ LinkLuaModifier("modifier_bastion_mind_flux_lua", "heroes/bastion/bastion_modifi
 function bastion_mind_flux:OnSpellStart()
 	local level = self:GetLevel()
 	local caster = self:GetCaster()
-	ProcsArroundingMagicStick(caster)
 	local countNeed = self:GetSpecialValueFor("count_need")
 	local maxValue = self:GetSpecialValueFor("max_value")
 	
@@ -20,7 +19,7 @@ function bastion_mind_flux:OnSpellStart()
 	self.mindFluxUseCount = self.mindFluxUseCount + 1
 	if self.mindFluxUseCount == countNeed then
 		self.mindFluxUseCount = 0
-		if caster:FindAbilityByName("special_bonus_bastion_1"):GetLevel() > 0 or attributeStack < self:GetSpecialValueFor("max_value") then
+		if (caster:FindAbilityByName("special_bonus_bastion_1"):GetLevel() > 0 or attributeStack < self:GetSpecialValueFor("max_value")) and not caster:PassivesDisabled() then
 			buff:IncrementStackCount()
 		end
 	end

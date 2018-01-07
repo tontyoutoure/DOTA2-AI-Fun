@@ -33,11 +33,13 @@ local tHeroBaseStats = {
 
 function SpongeBobInit(hHero)		
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_spongebob", {})
+	--[[
 	if GameMode.bIsChinese then
 		hHero:SetModel("models/heroes/bob/spongbob.vmdl")
 		hHero:SetOriginalModel("models/heroes/bob/spongbob.vmdl")
 		WearableManager:RemoveOriginalWearables(hHero)
 	end
+	--]]
 	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)
 	
 

@@ -43,8 +43,8 @@ function templar_chicken:OnSpellStart()
 			if v:IsIllusion() then 
 				v:Kill(self, hCaster)
 			else
-				v:AddNewModifier(hCaster, self, "modifier_templar_chicken", {Duration = self:GetSpecialValueFor("duration")})
-				v:AddNewModifier(hCaster, self, "modifier_templar_chicken_strength_loss", {Duration = self:GetSpecialValueFor("strength_loss_duration")})
+				v:AddNewModifier(hCaster, self, "modifier_templar_chicken", {Duration = self:GetSpecialValueFor("duration")*CalculateStatusResist(v)})
+				v:AddNewModifier(hCaster, self, "modifier_templar_chicken_strength_loss", {Duration = self:GetSpecialValueFor("strength_loss_duration")*CalculateStatusResist(v)})
 				v:EmitSound("Hero_ShadowShaman.Hex.Target")
 				ParticleManager:CreateParticle("particles/units/heroes/hero_shadowshaman/shadowshaman_voodoo.vpcf", PATTACH_ABSORIGIN_FOLLOW, v)
 			end
@@ -56,8 +56,8 @@ function templar_chicken:OnSpellStart()
 			return
 		end
 		if hTarget:TriggerSpellAbsorb(self) then return end
-			hTarget:AddNewModifier(hCaster, self, "modifier_templar_chicken", {Duration = self:GetSpecialValueFor("duration")})
-			hTarget:AddNewModifier(hCaster, self, "modifier_templar_chicken_strength_loss", {Duration = self:GetSpecialValueFor("strength_loss_duration")})
+			hTarget:AddNewModifier(hCaster, self, "modifier_templar_chicken", {Duration = self:GetSpecialValueFor("duration")*CalculateStatusResist(hTarget)})
+			hTarget:AddNewModifier(hCaster, self, "modifier_templar_chicken_strength_loss", {Duration = self:GetSpecialValueFor("strength_loss_duration")*CalculateStatusResist(hTarget)})
 			hTarget:EmitSound("Hero_ShadowShaman.Hex.Target")
 			ParticleManager:CreateParticle("particles/units/heroes/hero_shadowshaman/shadowshaman_voodoo.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget)
 	end
@@ -68,6 +68,7 @@ function TemplarDrainApplyWatcher(keys)
 end
 
 function TemplarDrainSpellStart(keys)
+		ProcsArroundingMagicStick(keys.caster)
 		if keys.target:TriggerSpellAbsorb(keys.ability) then return end
 		local iLifeDrain = keys.ability:GetSpecialValueFor("life_drain")
 		local iManaDrain = keys.ability:GetSpecialValueFor("mana_drain")
@@ -120,6 +121,7 @@ end
 
 
 function TemplarFaithApply(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb(keys.ability) then return end
 	ParticleManager:CreateParticle("particles/units/heroes/hero_chen/chen_penitence.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.target)
 	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_templar_faith", {Duration = keys.ability:GetSpecialValueFor("duration")})

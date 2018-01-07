@@ -15,18 +15,18 @@ function modifier_sniper_assassinate_thinker:OnIntervalThink()
 		local iLevel = hParent:FindAbilityByName("sniper_assassinate"):GetLevel()
 		hParent:RemoveAbility("sniper_assassinate")
 		hParent:AddAbility("sniper_assassinate_upgrade"):SetLevel(iLevel)
-		if hParent:FindAbilityByName("special_bonus_unique_sniper_4"):GetLevel() > 0 then
+		if hParent:HasAbility("special_bonus_unique_sniper_4") and hParent:FindAbilityByName("special_bonus_unique_sniper_4"):GetLevel() > 0 then
 			hParent:FindAbilityByName("sniper_assassinate_upgrade"):SetOverrideCastPoint(0.5)
 		end
 	end
 	
-	if not hParent:HasScepter() and not hParent:HasAbility("sniper_assassinate") then
+	if not hParent:HasScepter() and hParent:HasAbility("sniper_assassinate_upgrade") then
 		local iLevel = hParent:FindAbilityByName("sniper_assassinate_upgrade"):GetLevel()
 		hParent:RemoveAbility("sniper_assassinate_upgrade")
 		hParent:AddAbility("sniper_assassinate"):SetLevel(iLevel)	
 	end
 	
-	if hParent:FindAbilityByName("special_bonus_unique_sniper_4"):GetLevel() > 0 and not self.bSetCastPoint then
+	if hParent:HasAbility("special_bonus_unique_sniper_4") and hParent:FindAbilityByName("special_bonus_unique_sniper_4"):GetLevel() > 0 and not self.bSetCastPoint then
 		if hParent:HasAbility("sniper_assassinate_upgrade") then
 			hParent:FindAbilityByName("sniper_assassinate_upgrade"):SetOverrideCastPoint(0.5)
 		end

@@ -30,6 +30,7 @@ end
 
 function modifier_terran_marine_precision:OnAttackLanded(keys)	
 	local hParent = self:GetParent();
+	if hParent:PassivesDisabled() then return end
 	if keys.attacker~=hParent then return end;
 	self.iShotCount = self.iShotCount or 0;
 	self.iShotCount = self.iShotCount+1;
@@ -63,15 +64,11 @@ function modifier_terran_marine_u247_rifle:IsBuff()
 end
 
 function modifier_terran_marine_u247_rifle:IsPurgable()
-	return true
+	return false
 end
 function modifier_terran_marine_u247_rifle:RemoveOnDeath()
-	return true
+	return false
 end
-function modifier_terran_marine_u247_rifle:RemoveOnDeath()
-	return true
-end
-
 
 function modifier_terran_marine_u247_rifle:GetModifierBaseAttackTimeConstant() return self:GetAbility():GetSpecialValueFor("attack_time") end
 

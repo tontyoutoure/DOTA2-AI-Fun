@@ -1,9 +1,7 @@
 LinkLuaModifier("modifier_fluid_engineer_salad_lunch_lua", "heroes/fluid_engineer/fluid_engineer_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 
 fluid_engineer_salad_lunch_lua = class({})
-function fluid_engineer_salad_lunch_lua:CastFilterResultTarget(hTarget)
-	return true
-end
+
 function fluid_engineer_salad_lunch_lua:OnSpellStart()
 	local hTree = self:GetCursorTarget()
 	local hCaster = self:GetCaster()

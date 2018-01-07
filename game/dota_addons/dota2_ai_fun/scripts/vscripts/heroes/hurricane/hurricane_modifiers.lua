@@ -89,7 +89,7 @@ function modifier_hurricane_cyclone:UpdateHorizontalMotion(me, dt)
 	for k, v in ipairs(FindUnitsInRadius(me:GetTeam(), me:GetOrigin(), nil, 150, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)) do
 		if v:GetTeam() ~= hCaster:GetTeam() and not v:HasModifier("modifier_hurricane_cyclone") and not self.tHitUnits[v:entindex()] then
 			self.tHitUnits[v:entindex()] = true
-			v:AddNewModifier(hCaster, hAbility, "modifier_stunned", {Duration = self.iStunDuration})
+			v:AddNewModifier(hCaster, hAbility, "modifier_stunned", {Duration = self.iStunDuration*CalculateStatusResist(v)})
 			ApplyDamage({attacker = hCaster, damage = self.iDamage, damage_type = DAMAGE_TYPE_MAGICAL, victim = v, ability = hAbility})
 		end
 	end
@@ -111,7 +111,7 @@ function modifier_hurricane_cyclone:OnDestroy()
 	hParent:RemoveVerticalMotionController(self)
 	FindClearSpaceForUnit(hParent, hParent:GetOrigin(), false)
 	if hParent:GetTeam() ~= hCaster:GetTeam() then
-		hParent:AddNewModifier(hCaster, hAbility, "modifier_stunned", {Duration = self.iStunDuration})
+		hParent:AddNewModifier(hCaster, hAbility, "modifier_stunned", {Duration = self.iStunDuration*CalculateStatusResist(hParent)})
 		ApplyDamage({attacker = hCaster, damage = self.iDamage, damage_type = DAMAGE_TYPE_MAGICAL, victim = hParent, ability = hAbility})
 	end
 end

@@ -14,15 +14,6 @@
 		"AbilityCooldown"	"5"
 		"AbilityManaCost"	"50"
 		"AbilityCastRange"	"600"
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_persuasive_kill_steal_lua"
-				"Target"	"TARGET"
-				"Duration"	"%duration"
-			}
-		}
 		"AbilitySpecial"
 		{
 			"01"
@@ -50,24 +41,6 @@
 		"precache"
 		{
 			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
-		}
-		"Modifiers"
-		{
-			"modifier_persuasive_lagmonster_stun"
-			{
-				"Passive"	"0"
-				"IsHidden"	"0"
-				"IsDebuff"	"1"
-				"IsPurgable"	"0"
-				"IsPurgeException"	"1"
-				// Purge(bool RemovePositiveBuffs, bool RemoveDebuffs, bool BuffsCreatedThisFrameOnly, bool RemoveStuns, bool RemoveExceptions)
-				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhaed"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
 		}
 		"AbilitySpecial"
 		{
@@ -253,9 +226,9 @@
 
 	"persuasive_high_stakes"
 	{
-		"BaseClass"	"ability_datadriven"
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"heroes/persuasive/persuasive_lagmonster_lua.lua"
 		"AbilityTextureName"	"persuasive_high_stakes"
-		"ScriptFile"	"heroes/intimidator/intimidator_be_my_friend_lua.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"precache"

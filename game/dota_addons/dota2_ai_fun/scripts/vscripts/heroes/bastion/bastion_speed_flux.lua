@@ -5,7 +5,6 @@ LinkLuaModifier("modifier_bastion_speed_flux_speed_boost_lua", "heroes/bastion/b
 function bastion_speed_flux:OnSpellStart()
 	local level = self:GetLevel()
 	local caster = self:GetCaster()
-	ProcsArroundingMagicStick(caster)
 	local countNeed = self:GetSpecialValueFor("count_need")
 	local maxValue = self:GetSpecialValueFor("max_value")
 	
@@ -18,7 +17,7 @@ function bastion_speed_flux:OnSpellStart()
 	self.speedFluxUseCount = self.speedFluxUseCount + 1
 	if self.speedFluxUseCount == countNeed then
 		self.speedFluxUseCount = 0
-		if attributeStack < self:GetSpecialValueFor("max_value") or caster:FindAbilityByName("special_bonus_bastion_1"):GetLevel() > 0 then
+		if (attributeStack < self:GetSpecialValueFor("max_value") or caster:FindAbilityByName("special_bonus_bastion_1"):GetLevel() > 0 ) and not caster:PassivesDisabled() then
 			buff:IncrementStackCount()
 		end
 	end

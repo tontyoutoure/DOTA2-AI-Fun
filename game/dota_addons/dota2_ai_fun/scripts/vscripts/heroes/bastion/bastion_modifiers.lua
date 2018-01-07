@@ -24,6 +24,7 @@ end
 
 function modifier_bastion_power_flux_lua:OnTakeDamage(keys)
 	if self:GetParent() ~= keys.unit then return end
+	if keys.unit:PassivesDisabled() then return end
 	local ability = self:GetAbility()
 	local level = ability:GetLevel()
 	local caster = self:GetCaster()
@@ -100,6 +101,7 @@ end
 
 function modifier_bastion_speed_flux_speed_boost_lua:OnTakeDamage(keys)
 	if self:GetParent() ~= keys.unit then return end
+	if self:GetCaster():PassivesDisabled() then return end
 	local ability = self:GetAbility()
 	local buff = self:GetCaster():FindModifierByName(ability:GetIntrinsicModifierName())
 	local parent = self:GetParent()
@@ -152,6 +154,7 @@ end
 
 function modifier_bastion_mind_flux_lua:GetAbsorbSpell(keys)
 	local caster = self:GetCaster()
+	if caster:PassivesDisabled() then return end
 	self.mindFluxSpellTargeted = self.mindFluxSpellTargeted or 0
 	if caster:GetTeamNumber() == keys.ability:GetCaster():GetTeamNumber() then 
 		return false 

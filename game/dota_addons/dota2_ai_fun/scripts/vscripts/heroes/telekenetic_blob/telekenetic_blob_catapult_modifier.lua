@@ -36,7 +36,7 @@ function telekenetic_blob_catapult_modifier:OnDestroy()
 		if v ~= modifier:GetCaster() then
 			damageTable.victim = v
 			ApplyDamage(damageTable)
-			v:AddNewModifier(modifier:GetCaster(), modifier:GetAbility(), "modifier_stunned", {Duration = stunDuration})
+			v:AddNewModifier(modifier:GetCaster(), modifier:GetAbility(), "modifier_stunned", {Duration = stunDuration*CalculateStatusResist(v)})
 		end
 	end
 end

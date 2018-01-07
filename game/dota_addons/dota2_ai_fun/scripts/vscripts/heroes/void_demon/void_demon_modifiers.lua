@@ -5,7 +5,15 @@ function modifier_void_demon_quake_slow_lua:DeclareFunctions()
 end 
 
 function modifier_void_demon_quake_slow_lua:GetModifierMoveSpeedBonus_Percentage()
-	return self:GetAbility():GetSpecialValueFor("quake_slow_percentage")
+	local fResist
+	if IsClient() then 
+		fResist = -self:GetStackCount()/1000
+	else
+		fResist = CalculateStatusResist(self:GetParent())
+		self:SetStackCount(-fResist*1000)
+	end
+	self.fSlow = self.fSlow or self:GetAbility():GetSpecialValueFor("quake_slow_percentage")
+	return fResist*self.fSlow
 end
 
 modifier_void_demon_quake_aura_lua = class({})
@@ -56,3 +64,29 @@ function modifier_void_demon_quake_aura_lua:OnIntervalThink()
 		ApplyDamage(tDamageTable)
 	end
 end
+
+modifier_void_demon_mass_haste = class({})
+
+function modifier_void_demon_mass_haste:IsAura() return true end
+function modifier_void_demon_mass_haste:GetModifierAura() 
+	return "modifier_void_demon_mass_haste_accelerate" 
+end
+function modifier_void_demon_mass_haste:GetAuraRadius() return self:GetAbility():GetSpecialValueFor("radius") end
+function modifier_void_demon_mass_haste:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_FRIENDLY end
+function modifier_void_demon_mass_haste:GetAuraSearchFlags() return DOTA_UNIT_TARGET_FLAG_NONE end
+function modifier_void_demon_mass_haste:GetAuraSearchType() return DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO end
+function modifier_void_demon_mass_haste:IsHidden() return true end
+function modifier_void_demon_mass_haste:RemoveOnDeath() return false end
+function modifier_void_demon_mass_haste:IsPurgable() return false end
+
+modifier_void_demon_mass_haste_accelerate = class({})
+function modifier_void_demon_mass_haste_accelerate:DeclareFunctions() return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT} end
+function modifier_void_demon_mass_haste_accelerate:GetModifierMoveSpeedBonus_Percentage() 
+	if self:GetCaster():PassivesDisabled() then return 0 else return self:GetAbility():GetSpecialValueFor("movespeed_bonus") end
+end
+function modifier_void_demon_mass_haste_accelerate:GetModifierAttackSpeedBonus_Constant()
+	if self:GetCaster():PassivesDisabled() then return 0 else return self:GetAbility():GetSpecialValueFor("attackspeed_bonus") end
+end
+	
+function modifier_void_demon_mass_haste_accelerate:GetEffectName() return "particles/generic_gameplay/rune_haste_owner.vpcf" end
+function modifier_void_demon_mass_haste_accelerate:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
