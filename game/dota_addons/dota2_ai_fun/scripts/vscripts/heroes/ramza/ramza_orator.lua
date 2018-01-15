@@ -1,7 +1,8 @@
 LinkLuaModifier("modifier_ramza_orator_speechcraft_mimic_darlavon", "heroes/ramza/ramza_orator_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-
+LinkLuaModifier("modifier_ramza_orator_speechcraft_condemn", "heroes/ramza/ramza_orator_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 
 function RamzaOratorPraise(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	keys.target:ModifyStrength(1)
 	
 	local iParticle1 = ParticleManager:CreateParticle("particles/msg_fx/msg_gold.vpcf", PATTACH_POINT_FOLLOW, keys.target)
@@ -13,6 +14,7 @@ function RamzaOratorPraise(keys)
 end
 
 function RamzaOratorPreach(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	keys.target:ModifyIntellect(1)
 	
 	local iParticle1 = ParticleManager:CreateParticle("particles/msg_fx/msg_gold.vpcf", PATTACH_POINT_FOLLOW, keys.target)
@@ -23,13 +25,15 @@ function RamzaOratorPreach(keys)
 end
 
 function RamzaOratorMimicDarlavon(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
-	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_orator_speechcraft_mimic_darlavon", {Duration = keys.ability:GetSpecialValueFor("duration")})
+	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_orator_speechcraft_mimic_darlavon", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(keys.target)})
 	keys.target:EmitSound('Hero_Bane.Nightmare')
 	keys.target:EmitSound('Hero_Bane.Nightmare.Loop')
 end
 
 function RamzaOratorEntice(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:GetOwner() then 
 		keys.target:SetTeam(keys.caster:GetTeamNumber())
 		keys.target:SetOwner(keys.caster)
@@ -62,6 +66,7 @@ function RamzaOratorEntice(keys)
 end
 
 function RamzaOratorBeg(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	if keys.target:IsIllusion() then return end
 	
@@ -88,20 +93,19 @@ function RamzaOratorBeg(keys)
 end
 
 function RamzaOratorStall(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_stunned", {Duration = keys.ability:GetSpecialValueFor("stun_duration")})
 end
 
 function RamzaOratorCondemn(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
-	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_ramza_orator_speechcraft_condemn", {duration = keys.ability:GetSpecialValueFor("duration")})
-end
-
-function RamzaOratorCondemnStopSound(keys)
-	keys.target:StopSound('Hero_DoomBringer.Doom')
+	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_orator_speechcraft_condemn", {duration = CalculateStatusResist(keys.target)*keys.ability:GetSpecialValueFor("duration")})
 end
 
 function RamzaOratorEnlighten(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	keys.target:EmitSound('Hero_Axe.BerserkersCall.Start')
 	local iParticle1 = ParticleManager:CreateParticle("particles/msg_fx/msg_gold.vpcf", PATTACH_POINT_FOLLOW, keys.target)
@@ -112,6 +116,7 @@ function RamzaOratorEnlighten(keys)
 end
 
 function RamzaOratorIntimidate(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	keys.target:EmitSound('Hero_Axe.BerserkersCall.Start')
 	local iParticle1 = ParticleManager:CreateParticle("particles/msg_fx/msg_gold.vpcf", PATTACH_POINT_FOLLOW, keys.target)
@@ -123,6 +128,7 @@ end
 
 
 function RamzaOratorBeastTongue(keys)
+	if keys.caster:PassivesDisabled() then return end
 	if not keys.target:IsHero() and not keys.target:IsAncient() and not keys.IsBuilding() and keys.target:GetTeamNumber() ~= keys.attacker:GetTeamNumber() and keys.target:GetHealth()/keys.target:GetMaxHealth() < 0.5 then
 
 		if keys.target:GetOwner() then 

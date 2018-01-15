@@ -1,7 +1,9 @@
 LinkLuaModifier("modifier_ramza_monk_lifefont", "heroes/ramza/ramza_monk_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ramza_monk_critical_recover_hp", "heroes/ramza/ramza_monk_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-
+LinkLuaModifier("modifier_ramza_monk_martial_arts_doom_fist", "heroes/ramza/ramza_monk_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_monk_brawler", "heroes/ramza/ramza_monk_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 function RamzaMonkAurablast(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	keys.caster:EmitSound("Hero_ChaosKnight.ChaosBolt.Cast")	
 	local damageTable = {
@@ -19,6 +21,7 @@ function RamzaMonkAurablast(keys)
 end
 
 function RamzaMonkPummel(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	keys.caster:EmitSound("Hero_Sven.StormBoltImpact")	
 	local damageTable = {
@@ -34,6 +37,7 @@ function RamzaMonkPummel(keys)
 end
 
 function RamzaMonkChakra(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local fHeal = RandomFloat(0, keys.caster:GetMaxHealth())
 	local fMana = RandomFloat(0, keys.caster:GetMaxMana())
 	
@@ -54,6 +58,10 @@ function RamzaMonkChakra(keys)
 	
 	keys.caster:EmitSound("Item.GuardianGreaves.Activate")
 	ParticleManager:CreateParticle("particles/items3_fx/warmage_recipient.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.caster)
+end
+
+function RamzaMonkBrawlerApply(keys)
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_monk_brawler", {})
 end
 
 function RamzaMonkLifefontApply(keys)
@@ -108,17 +116,14 @@ function ramza_monk_martial_arts_shockwave:OnProjectileHit_ExtraData(hTarget, vL
 	ParticleManager:CreateParticle("particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil_hit.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget)
 end
 
-function RamzaMonkDoomFistApply(keys)	
+function RamzaMonkDoomFistApply(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
-	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_ramza_monk_martial_arts_doom_fist", {})
-	keys.target:EmitSound('Hero_DoomBringer.Doom')
-end
-
-function RamzaMonkDoomFistStop(keys)
-	keys.target:StopSound('Hero_DoomBringer.Doom')
+	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_monk_martial_arts_doom_fist", {Duration=keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(keys.target)})
 end
 
 function RamzaMonkPurification(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	keys.target:EmitSound('DOTA_Item.DiffusalBlade.Target')
 	ParticleManager:CreateParticle("particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.target)
 	keys.target:Purge(false, true, false, true, true)

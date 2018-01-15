@@ -65,7 +65,8 @@ function modifier_ramza_dragoon_jump:CheckState()
 		[MODIFIER_STATE_INVULNERABLE] = true,
 		[MODIFIER_STATE_SILENCED] = true,
 		[MODIFIER_STATE_ROOTED] = true,
-		[MODIFIER_STATE_MUTED] = true,		
+		[MODIFIER_STATE_MUTED] = true,	
+		[MODIFIER_STATE_DISARMED] = true,		
 	}
 end
 
@@ -97,13 +98,13 @@ function modifier_ramza_dragoon_jump:OnDestroy()
 		damage_type = DAMAGE_TYPE_MAGICAL,
 		ability = hAbility
 	}
-	if hParent:HasModifier("modifier_ramza_dragoon_polearm") then
+	if hParent:HasModifier("modifier_ramza_dragoon_polearm") and not hParent:PassivesDisabled() then
 		hParent:EmitSound("Hero_Centaur.HoofStomp")
 		local iParticle = ParticleManager:CreateParticle("particles/econ/items/centaur/centaur_ti6_gold/centaur_ti6_warstomp_gold.vpcf", PATTACH_ABSORIGIN, hParent)
 		ParticleManager:SetParticleControl(iParticle, 1, Vector(fRadius, fRadius, fRadius))
 		
 		for k, v in pairs(tTargets) do
-			v:AddNewModifier(hParent, hAbility, "modifier_stunned", {Duration = fDuration})
+			v:AddNewModifier(hParent, hAbility, "modifier_stunned", {Duration = fDuration*CalculateStatusResist(v)})
 			damageTable.victim = v
 			ApplyDamage(damageTable)
 		end
@@ -113,7 +114,7 @@ function modifier_ramza_dragoon_jump:OnDestroy()
 		ParticleManager:SetParticleControl(iParticle, 1, Vector(fRadius, fRadius, fRadius))		
 		
 		for k, v in pairs(tTargets) do
-			v:AddNewModifier(hParent, hAbility, "modifier_ramza_dragoon_jump_slow", {Duration = fDuration})
+			v:AddNewModifier(hParent, hAbility, "modifier_ramza_dragoon_jump_slow", {Duration = fDuration*CalculateStatusResist(v)})
 			damageTable.victim = v
 			ApplyDamage(damageTable)
 		end
@@ -140,7 +141,17 @@ end
 function modifier_ramza_dragoon_jump_slow:IsHidden() return false end
 function modifier_ramza_dragoon_jump_slow:IsPurgable() return true end
 function modifier_ramza_dragoon_jump_slow:GetTexture() return "brewmaster_storm_wind_walk" end
-function modifier_ramza_dragoon_jump_slow:GetModifierMoveSpeedBonus_Percentage() return self:GetAbility():GetSpecialValueFor("move_slow") end
+function modifier_ramza_dragoon_jump_slow:GetModifierMoveSpeedBonus_Percentage() 
+	local fResist
+	if IsClient() then 
+		fResist = -self:GetStackCount()/1000
+	else
+		fResist = CalculateStatusResist(self:GetParent())
+		self:SetStackCount(-fResist*1000)
+	end
+	self.fSlow = self.fSlow or self:GetAbility():GetSpecialValueFor("move_slow")
+	return fResist*self.fSlow
+end
 function modifier_ramza_dragoon_jump_slow:GetStatusEffectName() return "particles/status_fx/status_effect_brewmaster_thunder_clap.vpcf" end
 
 

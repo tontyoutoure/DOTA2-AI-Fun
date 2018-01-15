@@ -150,6 +150,7 @@ end
 
 function modifier_ramza_geomancer_attack_boost:OnAttacked(keys)
 	if keys.target~= self:GetParent() then return end
+	if keys.target:PassivesDisabled() then return end
 	keys.target:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_ramza_geomancer_attack_boost_bonus_damage", {Duration = self.fDuration}):SetStackCount(self.iBonusDamage)
 end
 
@@ -236,12 +237,12 @@ function modifier_ramza_geomancer_geomancy_tanglevine:OnCreated(keys)
 		if #tTargets > 0 then
 			local iNum = RandomInt(1, #tTargets)
 			self.tRooted[tTargets[iNum]]=true
-			local hModifier = tTargets[iNum]:AddNewModifier(hCaster, self:GetAbility(), "modifier_ramza_geomancer_geomancy_tanglevine", {Duration = keys.Duration, fDamage = keys.fDamage, fRadius = keys.fRadius})
+			local hModifier = tTargets[iNum]:AddNewModifier(hCaster, self:GetAbility(), "modifier_ramza_geomancer_geomancy_tanglevine", {Duration = keys.Duration*CalculateStatusResist(tTargets[iNum]), fDamage = keys.fDamage, fRadius = keys.fRadius})
 			hModifier.tRooted = self.tRooted
 		end
 	end)
 	self.fDamage = keys.fDamage
-	self:StartIntervalThink(1)
+	self:StartIntervalThink(1*CalculateStatusResist(hParent))
 end
 
 function modifier_ramza_geomancer_geomancy_tanglevine:OnIntervalThink()

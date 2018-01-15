@@ -3,11 +3,16 @@ LinkLuaModifier("modifier_ramza_white_mage_regenerate", "heroes/ramza/ramza_whit
 LinkLuaModifier("modifier_ramza_white_mage_white_magicks_regen", "heroes/ramza/ramza_white_mage_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ramza_white_mage_white_magicks_shell", "heroes/ramza/ramza_white_mage_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ramza_white_mage_white_magicks_protect", "heroes/ramza/ramza_white_mage_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_white_mage_arcane_defense", "heroes/ramza/ramza_white_mage_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+function RamzaWhiteCureProc(keys)
+	ProcsArroundingMagicStick(keys.caster)
+end
 ramza_white_mage_reraise = class({})
 
 function ramza_white_mage_reraise:CastFilterResultTarget(hTarget)
 	if IsClient() then return UF_SUCCESS end
 	if hTarget:HasModifier("modifier_ramza_white_mage_reraise") then return UF_FAIL_CUSTOM end
+	if hTarget:GetTeam() ~= self:GetCaster():GetTeam() then return UF_FAIL_ENEMY end
 	return UF_SUCCESS
 end
 
@@ -26,7 +31,12 @@ function RamzaWhiteMageRegenerateApply(keys)
 	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_white_mage_regenerate", {})
 end
 
+function RamzaWhiteMageArcaneDefenseApply(keys)
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_white_mage_arcane_defense", {})
+end
+
 function RamzaWhiteMageWallApply(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_white_mage_white_magicks_shell", {Duration = keys.ability:GetSpecialValueFor("duration")}).fDamageAbsorb = keys.ability:GetSpecialValueFor("damga_absorb")
 	keys.target:EmitSound('Hero_ArcWarden.MagneticField.Cast')
 	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_white_mage_white_magicks_protect", {Duration = keys.ability:GetSpecialValueFor("duration"), fArmor = keys.ability:GetSpecialValueFor("bonus_armor")})
@@ -34,16 +44,19 @@ function RamzaWhiteMageWallApply(keys)
 end
 
 function RamzaWhiteMageShellApply(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_white_mage_white_magicks_shell", {Duration = keys.ability:GetSpecialValueFor("duration")}).fDamageAbsorb = keys.ability:GetSpecialValueFor("damga_absorb")
 	keys.target:EmitSound('Hero_ArcWarden.MagneticField.Cast')
 end
 
 function RamzaWhiteMageRegenApply(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	keys.target:EmitSound('Hero_Huskar.Inner_Vitality')
 	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_white_mage_white_magicks_regen", {Duration = keys.ability:GetSpecialValueFor("duration"), fRegen = keys.ability:GetSpecialValueFor("regen")})
 end
 
 function RamzaWhiteMageProtectApply(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_white_mage_white_magicks_protect", {Duration = keys.ability:GetSpecialValueFor("duration"), fArmor = keys.ability:GetSpecialValueFor("bonus_armor")})
 	keys.target:EmitSound('Hero_Sven.WarCry')
 end
@@ -98,6 +111,7 @@ function RamzaWhiteMageCuragaSingleTarget(hFrom, tHealedTargets, fHeal, iBounceL
 end
 
 function RamzaWhiteMageCuraga (keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local hFrom = keys.caster
 	local hTo = keys.target
 	local fHeal = keys.ability:GetSpecialValueFor("heal")
@@ -123,6 +137,7 @@ function RamzaWhiteMageCuraga (keys)
 end
 
 function RamzaWhiteMageCura (keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local fHeal = keys.ability:GetSpecialValueFor("heal")
 	local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.target_points[1], nil, keys.ability:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	for k,v in pairs(tTargets) do		
@@ -146,8 +161,9 @@ end
 
 
 function RamzaWhiteMageHoly(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
-	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_ramza_white_mage_white_magicks_holy", {})
+	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_ramza_white_mage_white_magicks_holy", {Duration = keys.ability:GetSpecialValueFor("blind_duration")*CalculateStatusResist(keys.target)})
 	ParticleManager:CreateParticle("particles/units/heroes/hero_chen/chen_test_of_faith.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.target)
 	keys.target:EmitSound('Hero_Chen.PenitenceImpact')
 	local damageTable = {

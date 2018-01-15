@@ -88,7 +88,7 @@ function modifier_item_fun_escutcheon_lua:DeclareFunctions()
 end
 
 function modifier_item_fun_escutcheon_lua:AllowIllusionDuplicate() return false end
-
+--function modifier_item_fun_escutcheon_lua:GetModifierStatusResistance() return 80 end
 function modifier_item_fun_escutcheon_lua:OnTakeDamage(keys)
 	local caster = self:GetCaster()
 	if self:GetParent() ~= keys.unit then return end

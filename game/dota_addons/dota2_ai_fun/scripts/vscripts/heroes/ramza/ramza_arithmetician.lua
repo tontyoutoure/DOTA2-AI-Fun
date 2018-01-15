@@ -33,7 +33,7 @@ end
 
 RamzaArithmeticianArithmeticks = function(keys)
 	local sName = keys.ability:GetName()
-	
+	ProcsArroundingMagicStick(keys.caster)
 	local tEnemyHeros = {}
 	for i = 0, PlayerResource:GetPlayerCount()-1 do 
 		local hHero = PlayerResource:GetPlayer(i):GetAssignedHero()

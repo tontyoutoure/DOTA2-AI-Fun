@@ -4,10 +4,11 @@ function modifier_ramza_squire_counter_tackle:DeclareFunctions() return {MODIFIE
 function modifier_ramza_squire_counter_tackle:RemoveOnDeath() return false end
 function modifier_ramza_squire_counter_tackle:IsHidden() return true end
 function modifier_ramza_squire_counter_tackle:OnCreated()
+	if IsClient() then return end
 	self.iDamageReturn = self.iDamageReturn or self:GetAbility():GetSpecialValueFor("damage_return")
 end
 function modifier_ramza_squire_counter_tackle:OnAttackLanded(keys)
-	if keys.target ~= self:GetParent() or keys.attacker:IsRangedAttacker() then return end
+	if keys.target ~= self:GetParent() or keys.attacker:IsRangedAttacker() or keys.target:PassivesDisabled() then return end
 	local hAbility = self:GetAbility()
 	local hParent = self:GetParent()
 	local damageTable = {
@@ -61,6 +62,20 @@ function modifier_ramza_squire_fundamental_rush:OnDestroy()
 	hParent:RemoveHorizontalMotionController(self)
 	hParent:RemoveVerticalMotionController(self)
 	FindClearSpaceForUnit(hParent, hParent:GetOrigin(), false)
+end
+
+modifier_ramza_squire_move1 = class({})
+
+function modifier_ramza_squire_move1:IsHidden() return true end
+function modifier_ramza_squire_move1:RemoveOnDeath() return false end
+function modifier_ramza_squire_move1:IsPurgable() return false end
+
+function modifier_ramza_squire_move1:DeclareFunctions() return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE} end
+function modifier_ramza_squire_move1:OnCreated() 
+	if IsClient() then return end
+	self:SetStackCount(-self:GetAbility():GetSpecialValueFor("bonus_speed")) end
+function modifier_ramza_squire_move1:GetModifierMoveSpeedBonus_Percentage()
+	if self:GetParent():PassivesDisabled() then return 0 else return -self:GetStackCount() end
 end
 
 

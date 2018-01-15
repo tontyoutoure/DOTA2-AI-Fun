@@ -1,4 +1,5 @@
 title_options.txt
+donation.txt
 hero_names.txt
 attribute_growths.txt
 fun_items.txt

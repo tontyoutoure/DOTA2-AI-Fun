@@ -1,9 +1,14 @@
 LinkLuaModifier("modifier_ramza_dark_knight_hp_boost", "heroes/ramza/ramza_dark_knight_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ramza_dark_knight_vehemence", "heroes/ramza/ramza_dark_knight_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_dark_knight_move3", "heroes/ramza/ramza_dark_knight_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 RamzaDarkKnightHPBoostApply = function(keys)
+	print("hoho")
 	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_dark_knight_hp_boost", {})
 end
-
+RamzaDarkKnightMove3Apply = function(keys)
+	print("haha")
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_dark_knight_move3", {})
+end
 
 RamzaDarkKnightVehemenceToggle = function(keys)
 	if keys.caster:HasModifier("modifier_ramza_dark_knight_vehemence") then
@@ -15,6 +20,7 @@ end
 
 
 RamzaDarkKnightSanguineSword = function(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	local iDamage = keys.ability:GetSpecialValueFor("damage")
 	local damageTable = {
@@ -37,6 +43,7 @@ RamzaDarkKnightSanguineSword = function(keys)
 end
 
 RamzaDarkKnightUnholySacrificeSelfDamage = function(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local iRadius = keys.ability:GetSpecialValueFor("radius")
 	local damageTable = {
 		damage = keys.caster:GetMaxHealth()*keys.ability:GetSpecialValueFor("self_damage")/100,
@@ -53,6 +60,7 @@ RamzaDarkKnightUnholySacrificeSelfDamage = function(keys)
 end
 
 RamzaDarkKnightShadowblade = function(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	local fMana = keys.target:GetMana()
 	local fHealth = keys.target:GetHealth()
@@ -80,10 +88,11 @@ RamzaDarkKnightShadowblade = function(keys)
 end
 
 RamzaDarkKnightCrushingBlow = function(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end	
 	keys.target:EmitSound("DOTA_Item.AbyssalBlade.Activate")		
 	ParticleManager:CreateParticle("particles/items_fx/abyssal_blade.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.target)
-	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_stunned", {Duration = keys.ability:GetSpecialValueFor("stun_duration")})
+	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_stunned", {Duration = keys.ability:GetSpecialValueFor("stun_duration")*CalculateStatusResist(keys.target)})
 	local damageTable = {
 		damage = keys.ability:GetSpecialValueFor("damage"),
 		victim = keys.target,
@@ -95,6 +104,7 @@ RamzaDarkKnightCrushingBlow = function(keys)
 end
 
 RamzaDarkKnightAbyssalBlade = function(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local fRadius = keys.ability:GetSpecialValueFor("radius")
 	local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.caster:GetAbsOrigin(), nil, fRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	local fMaxDamage = keys.ability:GetSpecialValueFor("damage")
@@ -150,6 +160,7 @@ RamzaDarkKnightAbyssalBlade = function(keys)
 end
 
 RamzaDarkKnightInfernalStrike = function(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end	
 	local fMana = keys.ability:GetSpecialValueFor("mana_take")
 	local fMana1 = keys.target:GetMana()

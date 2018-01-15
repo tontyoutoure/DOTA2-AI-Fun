@@ -1,6 +1,9 @@
 LinkLuaModifier("modifier_ramza_ninja_reflexes", "heroes/ramza/ramza_ninja_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_ninja_dual_wield", "heroes/ramza/ramza_ninja_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+RmazaNinjaDualWieldApply = function (keys)
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_ninja_dual_wield", {})
 
-
+end
 RmazaNinjaReflexesApply = function (keys)
 	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_ninja_reflexes", {})
 end
@@ -105,7 +108,7 @@ local RamzaThrowOnProjectileHit_ExtraData = function(self, hTarget, vLocation, t
 	}
 	ApplyDamage(damageTable)
 	hTarget:EmitSound(tExtraData.impact_sound)
-	hTarget:AddNewModifier(self:GetCaster(), self, "modifier_stunned", {Duration = tExtraData.stun_duration})
+	hTarget:AddNewModifier(self:GetCaster(), self, "modifier_stunned", {Duration = CalculateStatusResist(hTarget)*tExtraData.stun_duration})
 end
 
 ramza_ninja_throw_shuriken.OnSpellStart = RamzaThrowOnSpellStart

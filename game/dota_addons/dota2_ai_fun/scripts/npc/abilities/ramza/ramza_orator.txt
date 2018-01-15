@@ -233,49 +233,6 @@
 				"Function"	"RamzaOratorCondemn"
 			}
 		}
-		"Modifiers"
-		{
-			"modifier_ramza_orator_speechcraft_condemn"
-			{
-				"Duration"	"%duration"
-				"TextureName"	"doom_bringer_doom"
-				"IsDebuff"	"1"
-				"EffectName"	"particles/units/heroes/hero_doom_bringer/doom_bringer_doom.vpcf"
-				"StatusEffectName"	"particles/status_fx/status_effect_doom.vpcf"
-				"Properties"	{}
-				"States"
-				{
-					"MODIFIER_STATE_MUTED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"OnIntervalThink"
-				{
-					"Damage"
-					{
-						"Target"	"TARGET"
-						"Type"	"DAMAGE_TYPE_PURE"
-						"Damage"	"%damage"
-					}
-				}
-				"ThinkInterval"	"1"
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_orator.lua"
-						"Function"	"RamzaOratorCondemnStopSound"
-					}
-				}
-				"OnCreated"
-				{
-					"FireSound"
-					{
-						"Target"	"TARGET"
-						"EffectName"	"Hero_DoomBringer.Doom"
-					}
-				}
-			}
-		}
 		"AbilitySpecial"
 		{
 			"01"

@@ -32,7 +32,7 @@ function RamzaBlackMagicksDamage(hAttacker, hVictim, hAbility)
 			damage_type = DAMAGE_TYPE_MAGICAL,
 			ability = hAbility
 		}
-		if hAttacker:HasModifier("modifier_ramza_black_mage_arcane_strength") then
+		if hAttacker:HasModifier("modifier_ramza_black_mage_arcane_strength") and not hAttacker:PassivesDisabled() then
 			damageTable.damage = hAbility:GetSpecialValueFor("damage_arcane")
 		else			
 			damageTable.damage = hAbility:GetSpecialValueFor("damage")
@@ -42,6 +42,7 @@ end
 
 
 RamzaBlackMageBlizzard = function(keys)	
+	ProcsArroundingMagicStick(keys.caster)
 	local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.caster:GetAbsOrigin(), nil, keys.ability:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 
 	for k, v in pairs(tTargets) do
@@ -54,6 +55,7 @@ RamzaBlackMageBlizzard = function(keys)
 end
 
 RamzaBlackMageFire = function (keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	RamzaBlackMagicksDamage(keys.caster, keys.target, keys.ability)
 	keys.target:EmitSound("Hero_OgreMagi.Fireblast.Target")	
@@ -63,6 +65,7 @@ RamzaBlackMageFire = function (keys)
 end
 
 RamzaBlackMageThunder = function (keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	RamzaBlackMagicksDamage(keys.caster, keys.target, keys.ability)
 	keys.target:Purge(true, false, false, false, false)
@@ -79,6 +82,7 @@ RamzaBlackMageThunder = function (keys)
 end
 
 RamzaBlackMageFlare = function (keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	RamzaBlackMagicksDamage(keys.caster, keys.target, keys.ability)
 	keys.target:EmitSound("Hero_EarthShaker.EchoSlam")
@@ -91,6 +95,7 @@ RamzaBlackMageFlare = function (keys)
 end
 
 RamzaBlackMageThundaga = function (keys)	
+	ProcsArroundingMagicStick(keys.caster)
 	local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.target:GetAbsOrigin(), nil, keys.ability:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 
 	for k, v in pairs(tTargets) do
@@ -101,23 +106,27 @@ RamzaBlackMageThundaga = function (keys)
 		ParticleManager:SetParticleControl(particle, 2, v:GetAbsOrigin())
 		RamzaBlackMagicksDamage(keys.caster, v, keys.ability)
 		v:EmitSound("Hero_Zuus.GodsWrath.Target")
-		v:AddNewModifier(keys.caster, keys.ability, "modifier_stunned", {Duration = keys.ability:GetSpecialValueFor("ministun_duration")})
+		v:AddNewModifier(keys.caster, keys.ability, "modifier_stunned", {Duration = keys.ability:GetSpecialValueFor("ministun_duration")*CalculateStatusResist(v)})
 	end
 end
 
 
 RamzaBlackMageToad = function (keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	keys.target:EmitSound("Hero_Lion.Voodoo")
-	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_black_mage_black_magicks_toad", {Duration = keys.ability:GetSpecialValueFor("duration")})
+	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_black_mage_black_magicks_toad", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(keys.target)})
 end
 
 RamzaBlackMagePoison = function(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
-	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_black_mage_black_magicks_poison", {Duration = keys.ability:GetSpecialValueFor("duration")})
+	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_black_mage_black_magicks_poison", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(keys.target)})
 end
 
-
+function RamzaBlackMageFiragaProcs(keys)	
+	ProcsArroundingMagicStick(keys.caster)
+end
 function RamzaBlackMageFiraga(keys)
 	local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.target:GetAbsOrigin(), nil, keys.ability:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 
@@ -127,6 +136,7 @@ function RamzaBlackMageFiraga(keys)
 end
 
 function RamzaBlackMageBlizzaga(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_black_mage_black_magicks_blizzaga", {Duration = 10})
 end
 

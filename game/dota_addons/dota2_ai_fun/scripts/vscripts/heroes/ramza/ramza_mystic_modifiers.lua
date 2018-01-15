@@ -56,6 +56,7 @@ end
 
 function modifier_ramza_mystic_defense_boost:OnAttacked(keys)
 	if keys.target ~= self:GetParent() then return end
+	if keys.target:PassivesDisabled() then return end
 	keys.target:AddNewModifier(keys.target, nil, "modifier_ramza_mystic_defense_boost_armor", {Duration = self.fDuration}):SetStackCount(self.iBonusArmor)
 end
 
@@ -100,8 +101,9 @@ function modifier_ramza_mystic_manafont:OnIntervalThink()
 	if IsClient() then return end
 	local hParent = self:GetParent()
 	local fDistance = self.vPreviousPosition.Length(hParent:GetOrigin() - self.vPreviousPosition)
-
-	hParent:GiveMana(fDistance*self.iPercentageDistanceMP/100)
+	if not hParent:PassivesDisabled() then
+		hParent:GiveMana(fDistance*self.iPercentageDistanceMP/100)
+	end
 
 	self.vPreviousPosition = hParent:GetOrigin()
 end
@@ -114,8 +116,9 @@ function modifier_ramza_mystic_absorb_mp:IsPurgable() return false end
 function modifier_ramza_mystic_absorb_mp:DeclareFunctions() return {MODIFIER_PROPERTY_ABSORB_SPELL} end
 
 function modifier_ramza_mystic_absorb_mp:GetAbsorbSpell(keys)
-	local fMana = keys.ability:GetManaCost(keys.ability:GetLevel()-1)
 	local hParent = self:GetParent()
+	if hParent:PassivesDisabled() then return end
+	local fMana = keys.ability:GetManaCost(keys.ability:GetLevel()-1)
 	hParent:GiveMana(fMana)
 	ParticleManager:CreateParticle("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf", PATTACH_ABSORIGIN_FOLLOW, hParent)
 	hParent:EmitSound("Hero_ObsidianDestroyer.EssenceAura")	

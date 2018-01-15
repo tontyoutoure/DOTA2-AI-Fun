@@ -23,19 +23,15 @@
 		"AbilityTextureName"	"ember_spirit_fire_remnant"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"1"
-		"Modifiers"
+		"OnUpgrade"
 		{
-			"modifier_ramza_samurai_doublehand"
+			"RunScript"
 			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%damage_bonus"
-				}
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_samurai.lua"
+				"Function"	"RamzaSamuraiDoublehandApply"
 			}
 		}
+		
 		"AbilitySpecial"
 		{
 			"01"
@@ -52,17 +48,12 @@
 		"AbilityTextureName"	"doom_bringer_infernal_blade"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"1"
-		"Modifiers"
+		"OnUpgrade"
 		{
-			"modifier_ramza_samurai_shirahadori"
+			"RunScript"
 			{
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%evasion"
-				}
-				"Passive"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
-				"IsHidden"	"1"
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_samurai.lua"
+				"Function"	"RamzaSamuraiShirahadoriApply"
 			}
 		}
 		"AbilitySpecial"
@@ -225,6 +216,12 @@
 				"EffectName"	"particles/items3_fx/warmage.vpcf"
 				"EffectAttachType"	"attach_origin"
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_samurai.lua"
+				"Function"	"RamzaSamuraiProc"
+			}
+			
 		}
 		"AbilitySpecial"
 		{
@@ -261,7 +258,12 @@
 		}
 		"OnSpellStart"
 		{
-			"ApplyModifier"
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Juggernaut.BladeDance"
+			}
+			"RunScript"
 			{
 				"Target"
 				{
@@ -270,49 +272,8 @@
 					"Center"	"CASTER"
 					"Radius"	"%radius"
 				}
-				"Duration"	"%duration"
-				"ModifierName"	"modifier_ramza_samurai_iaido_kikuichimonji"
-			}
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"Hero_Juggernaut.BladeDance"
-			}
-			"RunScript"
-			{
 				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_samurai.lua"
 				"Function"	"RamzaSamuraiKikuichimonji"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_ramza_samurai_iaido_kikuichimonji"
-			{
-				"OnIntervalThink"
-				{
-					"FireSound"
-					{
-						"Target"	"TARGET"
-						"EffectName"	"Hero_Juggernaut.OmniSlash"
-					}
-					"Damage"
-					{
-						"Target"	"TARGET"
-						"Type"	"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"%dps"
-					}
-					"RunScript"
-					{
-						"Target"	"TARGET"
-						"Function"	"RamzaSamuraiKikuichimonjiBlade"
-						"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_samurai.lua"
-					}
-				}
-				"ThinkInterval"	"1"
-				"IsDebuff"	"1"
-				"IsPurgable"	"1"
-				"TextureName"	"juggernaut_blade_fury"
-				"StatusEffectName"	"particles/status_fx/status_effect_templar_slow.vpcf"
 			}
 		}
 		"AbilitySpecial"
@@ -330,7 +291,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"dps"	"100"
+				"damage"	"100"
 			}
 		}
 	}
@@ -425,19 +386,6 @@
 		}
 		"OnSpellStart"
 		{
-			"ApplyModifier"
-			{
-				"Target"
-				{
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-					"Center"	"CASTER"
-					"Radius"	"%radius"
-				}
-				"ModifierName"	"modifier_ramza_samurai_iaido_chirijiraden"
-				"Duration"	"%duration"
-			}
 			"FireSound"
 			{
 				"Target"	"CASTER"
@@ -449,38 +397,18 @@
 				"EffectName"	"particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_cowlofice.vpcf"
 				"EffectAttachType"	"attach_origin"
 			}
-		}
-		"Modifiers"
-		{
-			"modifier_ramza_samurai_iaido_chirijiraden"
+			"RunScript"
 			{
-				"IsDebuff"	"1"
-				"Properties"
+				"Target"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_slow"
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+					"Center"	"CASTER"
+					"Radius"	"%radius"
 				}
-				"OnIntervalThink"
-				{
-					"Damage"
-					{
-						"Target"	"TARGET"
-						"Damage"	"%damage"
-						"Type"	"DAMAGE_TYPE_PURE"
-					}
-					"FireSound"
-					{
-						"Target"	"TARGET"
-						"EffectName"	"Hero_Juggernaut.Attack"
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_samurai.lua"
-						"Function"	"RamzaSamuraiChirijiradenBlade"
-					}
-				}
-				"ThinkInterval"	"0.25"
-				"StatusEffectName"	"particles/status_fx/status_effect_wyvern_arctic_burn.vpcf"
-				"TextureName"	"juggernaut_blade_fury_arcana_style1"
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_samurai.lua"
+				"Function"	"RamzaSamuraiChirijiradenBlade"
 			}
 		}
 		"AbilitySpecial"

@@ -70,3 +70,23 @@ function modifier_ramza_time_mage_mana_shield:OnTakeDamage(keys)
 		keys.unit:SetHealth(keys.unit:GetHealth()+keys.damage*keys.unit:GetMana()/keys.original_damage)
 	end
 end
+
+modifier_ramza_time_mage_time_magicks_slow = class({})
+function modifier_ramza_time_mage_time_magicks_slow:GetTexture() return "skywrath_mage_concussive_shot" end
+function modifier_ramza_time_mage_time_magicks_slow:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
+function modifier_ramza_time_mage_time_magicks_slow:GetEffectName() return "particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_slow_debuff.vpcf" end
+function modifier_ramza_time_mage_time_magicks_slow:DeclareFunctions() return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE} end
+function modifier_ramza_time_mage_time_magicks_slow:GetModifierAttackSpeedBonus_Constant() 
+	return -50
+end
+
+function modifier_ramza_time_mage_time_magicks_slow:GetModifierMoveSpeedBonus_Percentage()
+	local fResist
+	if IsClient() then 
+		fResist = -self:GetStackCount()/1000
+	else
+		fResist = CalculateStatusResist(self:GetParent())
+		self:SetStackCount(-fResist*1000)
+	end
+	return -50*fResist
+end

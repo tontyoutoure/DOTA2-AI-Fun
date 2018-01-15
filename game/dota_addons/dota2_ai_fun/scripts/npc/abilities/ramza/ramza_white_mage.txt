@@ -53,6 +53,11 @@
 				"Target"	"TARGET"
 				"HealAmount"	"%heal"
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_white_mage.lua"
+				"Function"	"RamzaWhiteCureProc"
+			}
 		}
 		"AbilitySpecial"
 		{
@@ -144,17 +149,12 @@
 		"AbilityTextureName"	"antimage_spell_shield"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"1"
-		"Modifiers"
+		"OnUpgrade"
 		{
-			"modifier_ramza_white_mage_arcane_defense"
+			"RunScript"
 			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"%magic_resist"
-				}
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_white_mage.lua"
+				"Function"	"RamzaWhiteMageArcaneDefenseApply"
 			}
 		}
 		"AbilitySpecial"
@@ -447,7 +447,6 @@
 				"States"	{}
 				"IsDebuff"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-				"Duration"	"%blind_duration"
 				"TextureName"	"chen_test_of_faith_teleport"
 			}
 		}

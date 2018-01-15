@@ -1,6 +1,16 @@
 LinkLuaModifier("modifier_ramza_time_mage_time_magicks_gravity", "heroes/ramza/ramza_time_mage_modifiers.lua", LUA_MODIFIER_MOTION_BOTH)
 LinkLuaModifier("modifier_ramza_time_mage_mana_shield", "heroes/ramza/ramza_time_mage_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_time_mage_time_magicks_slow", "heroes/ramza/ramza_time_mage_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+function RamzaTimeMageProc(keys)
+	ProcsArroundingMagicStick(keys.caster)
+end
+
+function RamzaTimeMageStop(keys)
+	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_ramza_time_mage_time_magicks_stop", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(keys.target)})
+end
+
 function RamzaTimeMageHaste(keys)	
+	ProcsArroundingMagicStick(keys.caster)
 	local iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_cast.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, keys.caster)
 	ParticleManager:SetParticleControlEnt(iParticle, 0, keys.caster, PATTACH_POINT_FOLLOW, "attach_attack1", keys.target:GetAbsOrigin(), true)
 	ParticleManager:SetParticleControlEnt(iParticle, 2, keys.target, PATTACH_POINT_FOLLOW, "attach_origin", keys.target:GetAbsOrigin(), true)
@@ -14,19 +24,22 @@ function RamzaTimeMageUpgradeTeleport(keys)
 end
 
 function RamzaTimeMageSlow(keys)	
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	keys.target:EmitSound("Hero_SkywrathMage.ConcussiveShot.Target")
-	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_ramza_time_mage_time_magicks_slow", {Duration = keys.ability:GetSpecialValueFor("duration")})
+	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_time_mage_time_magicks_slow", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(keys.target)})
 end
 
 function RamzaTimeMageImmobilize(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	keys.target:EmitSound("n_creep_Spawnlord.Freeze")
 	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_stunned", {Duration = 0.01})
-	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_ramza_time_mage_time_magicks_immobilize", {Duration = keys.ability:GetSpecialValueFor("duration")})
+	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_ramza_time_mage_time_magicks_immobilize", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(keys.target)})
 end
 
 function RamzaTimeMageGravity(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local vTarget = keys.target_points[1]
 	local fDragTime = keys.ability:GetSpecialValueFor("drag_time")
 	local fHealthPercentage = keys.ability:GetSpecialValueFor("health_percentage")
@@ -49,6 +62,7 @@ function RamzaTimeMageGravity(keys)
 end
 
 function RamzaTimeMageMeteor(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local vTarget = keys.target_points[1]
 
 	local iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_invoker/invoker_chaos_meteor_fly.vpcf", PATTACH_CUSTOMORIGIN, PlayerResource:GetPlayer(0):GetAssignedHero())
@@ -79,7 +93,7 @@ function RamzaTimeMageMeteor(keys)
 		for k, v in ipairs(tTargets) do
 			damageTable.victim = v
 			ApplyDamage(damageTable)
-			v:AddNewModifier(keys.caster, keys.ability, "modifier_stunned", {Duration = keys.ability:GetSpecialValueFor("stun_duration")})
+			v:AddNewModifier(keys.caster, keys.ability, "modifier_stunned", {Duration = keys.ability:GetSpecialValueFor("stun_duration")*CalculateStatusResist(v)})
 		end
 	end)
 
@@ -100,6 +114,7 @@ function RamzaTimeMageShield(keys)
 end
 
 function RamzaTimeMageTeleport(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local vTarget = keys.target_points[1]
 	local fDistance = (vTarget-keys.caster:GetOrigin()):Length2D()
 	local fChance = 20+80*math.exp(-fDistance/3000)

@@ -1,10 +1,17 @@
 LinkLuaModifier("modifier_ramza_archer_concentration_immune", "heroes/ramza/ramza_archer_modifiers", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ramza_archer_archers_bane", "heroes/ramza/ramza_archer_modifiers", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_archer_aimed", "heroes/ramza/ramza_archer_modifiers", LUA_MODIFIER_MOTION_NONE)
+
+function RamzaArcherAdrenalineRush(keys)
+	if keys.caster:PassivesDisabled() then return end
+	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_ramza_archer_adrenaline_rush_speed", {Duration = keys.ability:GetSpecialValueFor("duration")})
+end
 
 function ramza_archer_aim_OnSpellStart(self)
 	local hCaster = self:GetCaster()
 	self.hTarget = self:GetCursorTarget()
-	if hCaster:FindModifierByName("modifier_ramza_archer_concentration") then
+	self.hTarget:AddNewModifier(hCaster, self, "modifier_ramza_archer_aimed", {duration = self:GetChannelTime()})
+	if hCaster:FindModifierByName("modifier_ramza_archer_concentration") and not hCaster:PassivesDisabled() then
 		hCaster:AddNewModifier(hCaster, hCaster:FindAbilityByName("ramza_archer_concentration"), "modifier_ramza_archer_concentration_immune", {Duration = self:GetSpecialValueFor("maximum_channel_time")})
 	end
 end
@@ -25,6 +32,7 @@ function ramza_archer_aim_OnChannelFinish(self)
 		bVisibleToEnemies = true,
 		ExtraData = {damage = self:GetSpecialValueFor("damage_per_half_sec")*math.floor((GameRules:GetGameTime()-self:GetChannelStartTime())*2), victim = self:GetCursorTarget()}
 	})
+	self:GetCursorTarget():FindModifierByName("modifier_ramza_archer_aimed"):SetDuration(5, true)
 	self:GetCaster():RemoveModifierByName("modifier_ramza_archer_concentration_immune")
 	self:GetCaster():StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 3)
 end
@@ -39,6 +47,7 @@ function ramza_archer_aim_OnProjectileHit_ExtraData(self, hTarget, vLocation, tE
 		ability = self
 	}
 	ApplyDamage(damageTable)
+	hTarget:RemoveModifierByName("modifier_ramza_archer_aimed")
 end
 
 

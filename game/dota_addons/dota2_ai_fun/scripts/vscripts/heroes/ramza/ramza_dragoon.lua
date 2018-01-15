@@ -8,7 +8,7 @@ end
 RamzaDragoonJumpOnSpellStart = function (self)
 	local hCaster = self:GetCaster()
 	local iFlyTime 
-	if hCaster:HasModifier("modifier_ramza_dragoon_ignore_elevation") then
+	if hCaster:HasModifier("modifier_ramza_dragoon_ignore_elevation") and not hCaster:PassivesDisabled() then
 		fFlyTime = 1
 	else
 		fFlyTime = 5

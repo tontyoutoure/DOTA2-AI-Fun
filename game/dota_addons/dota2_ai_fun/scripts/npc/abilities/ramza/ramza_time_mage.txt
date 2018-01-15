@@ -280,6 +280,11 @@
 		}
 		"OnSpellStart"
 		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_time_mage.lua"
+				"Function"	"RamzaTimeMageProc"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"TARGET"
@@ -344,16 +349,15 @@
 		}
 		"OnSpellStart"
 		{
-			"ApplyModifier"
-			{
-				"Target"	"TARGET"
-				"ModifierName"	"modifier_ramza_time_mage_time_magicks_stop"
-				"Duration"	"%duration"
-			}
 			"FireSound"
 			{
 				"Target"	"TARGET"
 				"EffectName"	"Hero_FacelessVoid.TimeLockImpact"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_time_mage.lua"
+				"Function"	"RamzaTimeMageStop"
 			}
 		}
 		"Modifiers"
@@ -433,12 +437,20 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"medusa_mana_shield"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"0"
 		"AbilityCastRange"	"0"
-		"OnSpellStart"
+		"OnToggleOn"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_time_mage.lua"
+				"Function"	"RamzaTimeMageShieldToggle"
+			}
+		}
+		"OnToggleOff"
 		{
 			"RunScript"
 			{

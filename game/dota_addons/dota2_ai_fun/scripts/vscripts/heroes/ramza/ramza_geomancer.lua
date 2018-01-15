@@ -7,6 +7,7 @@ LinkLuaModifier("modifier_ramza_geomancer_geomancy_sinkhole", "heroes/ramza/ramz
 LinkLuaModifier("modifier_ramza_geomancer_geomancy_tanglevine", "heroes/ramza/ramza_geomancer_modifiers.lua", LUA_MODIFIER_MOTION_VERTICAL)
 
 function RamzaGeomancerSinkhole(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local tDamageTable = {
 		attacker = keys.caster,
 		ability = keys.ability,
@@ -16,15 +17,18 @@ function RamzaGeomancerSinkhole(keys)
 	for k, v in ipairs(keys.target_entities) do
 		tDamageTable.victim = v
 		ApplyDamage(tDamageTable)
-		v:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_geomancer_geomancy_sinkhole", {Duration = keys.ability:GetSpecialValueFor("stun_duration")})
+		v:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_geomancer_geomancy_sinkhole", {Duration = keys.ability:GetSpecialValueFor("stun_duration")*CalculateStatusResist(v)})
 	end
 end
 
 function RamzaGeomancerTorrent(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local iParticle = ParticleManager:CreateParticle("particles/econ/items/kunkka/kunkka_weapon_whaleblade/kunkka_spell_torrent_splash_whaleblade.vpcf", PATTACH_ABSORIGIN, keys.caster)
 	ParticleManager:SetParticleControl(iParticle, 0, keys.caster:GetOrigin())
 end
-
+function RamzaGeomancerProc(keys)
+	ProcsArroundingMagicStick(keys.caster)
+end
 function RamzaGeomancerWillothewisp(keys)
 	local vCenter = keys.target:GetOrigin()
 	local fRadius = keys.ability:GetSpecialValueFor("radius")
@@ -36,16 +40,19 @@ function RamzaGeomancerWillothewisp(keys)
 end
 
 function RamzaGeomancerSandstormStopSound(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	keys.target:StopSound("Ability.SandKing_SandStorm.loop")
 end
 
 function RamzaGeomancerTanglevine(keys)	
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	keys.caster:EmitSound("Hero_Treant.Overgrowth.Cast")
-	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_geomancer_geomancy_tanglevine", {Duration = keys.ability:GetSpecialValueFor("duration"), fDamage = keys.ability:GetSpecialValueFor("damage"), fRadius = keys.ability:GetSpecialValueFor("radius")}).tRooted = {[keys.target] = true}
+	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_geomancer_geomancy_tanglevine", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(keys.target), fDamage = keys.ability:GetSpecialValueFor("damage"), fRadius = keys.ability:GetSpecialValueFor("radius")}).tRooted = {[keys.target] = true}
 end
 
 function RamzaGeomancerMagmaSurge(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	for k, v in ipairs(keys.target_entities) do
 		if v:IsAlive() then
 			AddFOWViewer(keys.caster:GetTeamNumber(), v:GetOrigin(), 400, 4, true)
@@ -55,6 +62,7 @@ function RamzaGeomancerMagmaSurge(keys)
 end
 
 function RamzaGeomancerWindBlast(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	keys.caster.tWindBlastTarget = keys.caster.tWindBlastTarget or {}
 	if not keys.caster.tWindBlastTarget[keys.target] then 
 		keys.caster.tWindBlastTarget[keys.target] = true
@@ -68,6 +76,7 @@ function RamzaGeomancerWindBlast(keys)
 end
 
 function RamzaGeomancerContortion(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	CreateModifierThinker(keys.caster, keys.ability, "modifier_ramza_geomancer_contortion", {iRadius = keys.ability:GetSpecialValueFor("radius"), Duration = 5}, keys.target_points[1], keys.caster:GetTeamNumber(), false):SetModel("models/heroes/earth_spirit/stonesummon.vmdl")
 end
 
@@ -75,4 +84,8 @@ function RamzaGeomancerAttackBoostApply(keys)
 	local hModifier = keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_geomancer_attack_boost", {})
 	hModifier.iBonusDamage = keys.ability:GetSpecialValueFor("damage_bonus")
 	hModifier.fDuration = keys.ability:GetSpecialValueFor("duration")
+end
+
+function RamzaGeomancerMagmaSurgeApplyStun(keys)
+	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_stunned", {Duration= keys.ability:GetSpecialValueFor("stun_duration")*CalculateStatusResist(keys.target)})
 end

@@ -1,6 +1,7 @@
 LinkLuaModifier("modifier_ramza_chemist_items_phoenix_down", "heroes/ramza/ramza_chemist_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ramza_chemist_items_phoenix_down_thinker", "heroes/ramza/ramza_chemist_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 function RamzaChemistTreasureHunterParticles(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local iGold = keys.ability:GetSpecialValueFor("gold")
 	local iParticle1 = ParticleManager:CreateParticle("particles/msg_fx/msg_gold.vpcf", PATTACH_POINT_FOLLOW, keys.caster)
 	ParticleManager:SetParticleControl(iParticle1, 1, Vector(0, iGold, 0))
@@ -16,7 +17,7 @@ end
 ramza_chemist_items_phoenix_down = class({})
 
 local function RamzaItemsGetCastRange(self, vLocation, hTarget)
-	if self:GetCaster():HasModifier("modifier_ramza_chemist_throw_items") then return 99999
+	if self:GetCaster():HasModifier("modifier_ramza_chemist_throw_items") and not self:GetCaster():PassivesDisabled() then return 99999
 	else return 1200
 	end
 end

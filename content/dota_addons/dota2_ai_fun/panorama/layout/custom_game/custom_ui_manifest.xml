@@ -28,5 +28,6 @@
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_attachments.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/formless_forget.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/ramza_job.xml" />
+		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/donation.xml" />
 	</Panel>
 </root>

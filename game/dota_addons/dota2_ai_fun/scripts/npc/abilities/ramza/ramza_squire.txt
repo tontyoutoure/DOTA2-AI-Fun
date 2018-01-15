@@ -98,6 +98,11 @@
 				"Target"	"CASTER"
 				"EffectName"	"Hero_Magnataur.Empower.Cast"
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_squire.lua"
+				"Function"  "RamzaSquireProcsMagicStick"
+			}
 		}
 		"Modifiers"
 		{
@@ -195,6 +200,11 @@
 				"ModifierName"	"modifier_windrun_caster_datadriven"
 				"Duration"	"%duration"
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_squire.lua"
+				"Function"  "RamzaSquireProcsMagicStick"
+			}
 		}
 		"Modifiers"
 		{
@@ -231,7 +241,7 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"dragon_knight_dragon_tail"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"MaxLevel"	"1"
 		"AbilityCastPoint"	"0"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
@@ -241,7 +251,15 @@
 		{
 			"particle"	"particles/econ/items/sven/sven_warcry_ti5/sven_warcry_buff_ti_5.vpcf"
 		}
-		"OnSpellStart"
+		"OnToggleOn"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"heroes/ramza/ramza_squire.lua"
+				"Function"	"RamzaSquireDefendToggle"
+			}
+		}
+		"OnToggleOff"
 		{
 			"RunScript"
 			{
@@ -350,17 +368,13 @@
 		"AbilityTextureName"	"bounty_hunter_track"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"1"
-		"Modifiers"
+		
+		"OnUpgrade"
 		{
-			"modifier_ramza_squire_move1"
+			"RunScript"
 			{
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus_speed"
-				}
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
+					"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_squire.lua"
+					"Function"	"RamzaSquireMove1Apply"
 			}
 		}
 		// Special
@@ -407,6 +421,11 @@
 				"Target"	"CASTER"
 				"EffectName"	"particles/econ/items/axe/axe_helm_shoutmask/axe_beserkers_call_buff_shout_mask.vpcf"
 				"EffectAttachType"	"follow_eyes"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_squire.lua"
+				"Function"  "RamzaSquireProcsMagicStick"
 			}
 		}
 		"Modifiers"
@@ -491,6 +510,11 @@
 			{
 				"Target"	"POINT"
 				"ModifierName"	"modifier_ramza_squire_fundamental_ultima"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_squire.lua"
+				"Function"  "RamzaSquireProcsMagicStick"
 			}
 		}
 		"Modifiers"

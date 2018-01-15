@@ -270,10 +270,10 @@
 				"AllowIllusionDuplicate"	"1"
 				"OnAttacked"
 				{
-					"ApplyModifier"
+					"RunScript"
 					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_ramza_archer_adrenaline_rush_speed"
+						"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_archer.lua"
+						"Function"	"RamzaArcherAdrenalineRush"
 					}
 				}
 				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"

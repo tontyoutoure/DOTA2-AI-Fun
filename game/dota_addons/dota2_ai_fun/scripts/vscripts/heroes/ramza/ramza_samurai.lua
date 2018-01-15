@@ -1,9 +1,11 @@
 LinkLuaModifier("modifier_ramza_samurai_bonecrusher", "heroes/ramza/ramza_samurai_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ramza_samurai_iaido_masamune", "heroes/ramza/ramza_samurai_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-
-
-
+LinkLuaModifier("modifier_ramza_samurai_doublehand", "heroes/ramza/ramza_samurai_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_samurai_shirahadori", "heroes/ramza/ramza_samurai_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_samurai_iaido_chirijiraden", "heroes/ramza/ramza_samurai_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_samurai_iaido_kikuichimonji", "heroes/ramza/ramza_samurai_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 function RamzaSamuraiAshura(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local tDamageTable = {
 		attacker = keys.caster,
 		damage = keys.ability:GetSpecialValueFor("damage"),
@@ -21,6 +23,7 @@ function RamzaSamuraiAshura(keys)
 end
 
 function RamzaSamuraiOsafune(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	for k, v in ipairs(keys.target_entities) do
 		if v:GetMana() > 0 then
 			local fMana = keys.ability:GetSpecialValueFor("mana")
@@ -37,6 +40,7 @@ function RamzaSamuraiOsafune(keys)
 end
 
 function RamzaSamuraiMasamune(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	keys.caster:EmitSound("Hero_LegionCommander.PressTheAttack")
 	for k, v in ipairs(keys.target_entities) do
 		v:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_samurai_iaido_masamune", {Duration = keys.ability:GetSpecialValueFor("duration")})
@@ -44,6 +48,7 @@ function RamzaSamuraiMasamune(keys)
 end
 
 function RamzaSamuraiKikuichimonji(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local iRadius = keys.ability:GetSpecialValueFor("radius")
 	for i = 1, 100 do
 		local iParticle = ParticleManager:CreateParticle("particles/econ/items/juggernaut/jugg_serrakura/juggernaut_omni_slash_petals_serrakura.vpcf", PATTACH_ABSORIGIN, keys.caster)
@@ -51,20 +56,33 @@ function RamzaSamuraiKikuichimonji(keys)
 		ParticleManager:SetParticleControlEnt(iParticle, 3, keys.caster, PATTACH_POINT_FOLLOW, 'attach_attack1' ,keys.caster:GetAbsOrigin(), true)
 		ParticleManager:SetParticleControl(iParticle, 2, keys.caster:GetAbsOrigin()+RandomVector(iRadius))
 	end
+	for k, v in pairs(keys.target_entities) do
+		v:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_samurai_iaido_kikuichimonji", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(v)})
+	end
 end
 
-function RamzaSamuraiKikuichimonjiBlade(keys)
+function RamzaSamuraiKikuichimonjiRamzaSamuraiKikuichimonjiBlade(keys)
 	local iParticle = ParticleManager:CreateParticle("particles/econ/items/juggernaut/jugg_serrakura/juggernaut_omni_slash_tgt_serrakura.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.caster)
-	ParticleManager:SetParticleControlEnt(iParticle, 0, keys.target, PATTACH_POINT, 'follow_overhead' ,keys.target:GetAbsOrigin(), true)
-	ParticleManager:SetParticleControlEnt(iParticle, 1, keys.target, PATTACH_POINT_FOLLOW, 'attach_hitloc' ,keys.target:GetAbsOrigin(), true)
-end
-
-function RamzaSamuraiChirijiradenBlade(keys)
-	local iParticle = ParticleManager:CreateParticle("particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_omni_slash_tgt.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.caster)
 	ParticleManager:SetParticleControlEnt(iParticle, 0, keys.target, PATTACH_POINT, 'follow_overhead' ,keys.target:GetAbsOrigin(), true)
 	ParticleManager:SetParticleControlEnt(iParticle, 1, keys.target, PATTACH_POINT_FOLLOW, 'attach_hitloc' ,keys.target:GetAbsOrigin(), true)
 end
 
 RamzaSamuraiBoneCrusherApply = function(keys)
 	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_samurai_bonecrusher", {})
+end
+
+RamzaSamuraiDoublehandApply = function(keys)
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_samurai_doublehand", {})
+end
+RamzaSamuraiShirahadoriApply = function(keys)
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_samurai_shirahadori", {})
+end
+
+function RamzaSamuraiProc(keys) ProcsArroundingMagicStick(keys.caster) end
+
+function RamzaSamuraiChirijiradenBlade(keys)
+	ProcsArroundingMagicStick(keys.caster) 
+	for k, v in pairs(keys.target_entities) do
+		v:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_samurai_iaido_chirijiraden", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(v)})
+	end
 end

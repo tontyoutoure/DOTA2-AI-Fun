@@ -1,25 +1,34 @@
 LinkLuaModifier("modifier_ramza_thief_gil_snapper", "heroes/ramza/ramza_thief_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-
-
+LinkLuaModifier("modifier_ramza_thief_move2", "heroes/ramza/ramza_thief_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_thief_vigilance", "heroes/ramza/ramza_thief_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+function RamzaThiefMove2Apply(keys)
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_thief_move2", {})
+end
 function RamzaThiefGilSnapperApply(keys)
 	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_thief_gil_snapper", {})
 end
+function RamzaThiefVigilanceApply(keys)
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_thief_vigilance", {})
+end
 
 function RamzaThiefStealArmor(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	keys.caster:EmitSound("DOTA_Item.MedallionOfCourage.Activate")
 	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_ramza_thief_steal_armor_bonus", {})
-	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_ramza_thief_steal_armor_reduction", {})
+	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_ramza_thief_steal_armor_reduction", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(keys.target)})
 end
 
 function RamzaThiefStealWeapon(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	keys.target:EmitSound("Hero_Bane.Enfeeble") 
 	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_ramza_thief_steal_weapon_damage_bonus", {})
-	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_ramza_thief_steal_weapon_damage_reduction", {})
+	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_ramza_thief_steal_weapon_damage_reduction", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(keys.target)})
 end
 
 function RamzaThiefStealGil(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	if keys.target:IsIllusion() then return end
 	
@@ -47,6 +56,7 @@ function RamzaThiefStealGil(keys)
 end
 
 function RamzaThiefStealEXP(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	if keys.target:IsIllusion() then return end
 	local iEXP = keys.caster:GetLevel()*keys.ability:GetSpecialValueFor("level_xp")
@@ -56,6 +66,7 @@ function RamzaThiefStealEXP(keys)
 end
 
 function RamzaThiefStealHeart(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:GetOwner() then 
 		keys.target:SetTeam(keys.caster:GetTeamNumber())
 		keys.target:SetOwner(keys.caster)

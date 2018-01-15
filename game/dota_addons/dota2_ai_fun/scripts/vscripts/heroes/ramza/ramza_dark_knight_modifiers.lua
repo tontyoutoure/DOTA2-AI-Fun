@@ -12,7 +12,7 @@ end
 
 function modifier_ramza_dark_knight_hp_boost:GetModifierExtraHealthPercentage()
 	self.fExtraHealth = self.fExtraHealth or self:GetAbility():GetSpecialValueFor("extra_health_percentage")/100
-	return self.fExtraHealth
+	if self:GetParent():PassivesDisabled() then return 0 else return self.fExtraHealth end
 end
 
 modifier_ramza_dark_knight_vehemence = class({})
@@ -35,4 +35,16 @@ end
 
 function modifier_ramza_dark_knight_vehemence:GetModifierIncomingDamage_Percentage()
 	return self:GetAbility():GetSpecialValueFor("incoming_damage_percentage")
+end
+
+modifier_ramza_dark_knight_move3 = class({})
+
+function modifier_ramza_dark_knight_move3:IsHidden() return true end
+function modifier_ramza_dark_knight_move3:RemoveOnDeath() return false end
+function modifier_ramza_dark_knight_move3:IsPurgable() return false end
+
+function modifier_ramza_dark_knight_move3:DeclareFunctions() return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE} end
+function modifier_ramza_dark_knight_move3:OnCreated() if IsClient() then return end self:SetStackCount(-self:GetAbility():GetSpecialValueFor("move_percentage")) end
+function modifier_ramza_dark_knight_move3:GetModifierMoveSpeedBonus_Percentage()
+	if self:GetParent():PassivesDisabled() then return 0 else return -self:GetStackCount() end
 end

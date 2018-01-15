@@ -330,6 +330,11 @@
 				"Target"	"POINT"
 				"ModifierName"	"modifier_ramza_geomancer_geomancy_willothewisp"
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_geomancer.lua"
+				"Function"	"RamzaGeomancerProc"
+			}
 		}
 		"Modifiers"
 		{
@@ -621,11 +626,10 @@
 						"Type"	"DAMAGE_TYPE_MAGICAL"
 						"Damage"	"%damage"
 					}					
-					"ApplyModifier"
+					"RunScript"
 					{
-						"Target"  "TARGET"
-						"ModifierName"	"modifier_stunned"
-						"Duration"	"%stun_duration"
+						"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_geomancer.lua"
+						"Function"	"RamzaGeomancerMagmaSurgeApplyStun"
 					}
 				}
 			}

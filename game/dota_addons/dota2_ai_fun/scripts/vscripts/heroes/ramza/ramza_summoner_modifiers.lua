@@ -135,7 +135,7 @@ function modifier_ramza_summoner_shiva:OnIntervalThink()
 		ApplyDamage(damageTable)
 		tTargets[iNum]:EmitSound("hero_Crystal.freezingField.explosion")
 		ParticleManager:CreateParticle("particles/econ/items/crystal_maiden/crystal_maiden_maiden_of_icewrack/maiden_freezing_field_explosion_arcana1.vpcf", PATTACH_ABSORIGIN, tTargets[iNum])
-		tTargets[iNum]:AddNewModifier(hCaster, self:GetAbility(), "modifier_ramza_summoner_shiva_slow", {Duration = self.fSlowDuration, fMoveSlow = self.fMoveSlow, fAttackSlow = self.fAttackSlow})
+		tTargets[iNum]:AddNewModifier(hCaster, self:GetAbility(), "modifier_ramza_summoner_shiva_slow", {Duration = self.fSlowDuration*CalculateStatusResist(tTargets[iNum]), fMoveSlow = self.fMoveSlow, fAttackSlow = self.fAttackSlow})
 	end
 end
 
@@ -164,7 +164,14 @@ function modifier_ramza_summoner_shiva_slow:GetModifierAttackSpeedBonus_Constant
 end	
 
 function modifier_ramza_summoner_shiva_slow:GetModifierMoveSpeedBonus_Percentage()
-	return -30
+	local fResist
+	if IsClient() then 
+		fResist = -self:GetStackCount()/1000
+	else
+		fResist = CalculateStatusResist(self:GetParent())
+		self:SetStackCount(-fResist*1000)
+	end
+	return -30*fResist
 end
 
 function modifier_ramza_summoner_shiva_slow:GetTexture() return "crystal_maiden_freezing_field_alt1" end
@@ -185,7 +192,14 @@ function modifier_ramza_summoner_golem_slow:GetModifierAttackSpeedBonus_Constant
 end	
 
 function modifier_ramza_summoner_golem_slow:GetModifierMoveSpeedBonus_Percentage()
-	return -50
+	local fResist
+	if IsClient() then 
+		fResist = -self:GetStackCount()/1000
+	else
+		fResist = CalculateStatusResist(self:GetParent())
+		self:SetStackCount(-fResist*1000)
+	end
+	return -50*fResist
 end
 
 function modifier_ramza_summoner_golem_slow:GetTexture() return "granite_golem_bash" end
@@ -213,7 +227,7 @@ function modifier_ramza_summoner_critical_recover_mp:OnTakeDamage(keys)
 	if keys.unit ~= self:GetParent() then return end
 	local bIsCooldownReady
 	local hParent = self:GetParent()
-		
+	if hParent:PassivesDisabled() then return end
 	if hParent:GetHealth()/hParent:GetMaxHealth() < self.iCriticalHealthPercentage/100 then
 		
 		if hParent:HasAbility("ramza_summoner_critical_recover_mp") then 

@@ -1,8 +1,14 @@
 LinkLuaModifier("modifier_ramza_squire_counter_tackle", "heroes/ramza/ramza_squire_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ramza_squire_fundamental_rush", "heroes/ramza/ramza_squire_modifiers.lua", LUA_MODIFIER_MOTION_BOTH)
-
+LinkLuaModifier("modifier_ramza_squire_move1", "heroes/ramza/ramza_squire_modifiers.lua", LUA_MODIFIER_MOTION_BOTH)
 ramza_squire_fundamental_stone = class({})
 
+RamzaSquireMove1Apply = function(keys)
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_squire_move1", {})
+end
+function RamzaSquireProcsMagicStick(keys)
+	ProcsArroundingMagicStick(keys.caster)
+end
 function ramza_squire_fundamental_stone:OnSpellStart()
 	local info = 
 	{
@@ -34,7 +40,7 @@ function ramza_squire_fundamental_stone:OnProjectileHit(hTarget, vLocation)
 		ability = self
 	}
 	ApplyDamage(damageTable)
-	hTarget:AddNewModifier(self:GetCaster(), self, "modifier_stunned", {Duration = self:GetSpecialValueFor("stun")})
+	hTarget:AddNewModifier(self:GetCaster(), self, "modifier_stunned", {Duration = self:GetSpecialValueFor("stun")*CalculateStatusResist(hTarget)})
 	hTarget:EmitSound("Brewmaster_Earth.Boulder.Target")
 end
 
@@ -53,6 +59,7 @@ function ramza_squire_counter_tackle:OnUpgrade()
 end
 
 function RamzaSquireChant(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local fCurrentHealth = keys.caster:GetHealth()
 	local fHealthCost = keys.ability:GetSpecialValueFor("health_cost")
 	if fHealthCost < fCurrentHealth-1 then 

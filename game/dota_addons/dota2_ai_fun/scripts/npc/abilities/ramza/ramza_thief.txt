@@ -22,18 +22,13 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"bounty_hunter_track"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"MaxLevel"	"1"
-		"Modifiers"
+		"MaxLevel"	"1"		
+		"OnUpgrade"
 		{
-			"modifier_ramza_thief_move2"
+			"RunScript"
 			{
-				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_percentage"
-				}
+					"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_thief.lua"
+					"Function"	"RamzaThiefMove2Apply"
 			}
 		}
 		"AbilitySpecial"
@@ -52,19 +47,15 @@
 		"AbilityTextureName"	"ramza_thief_vigilance"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"MaxLevel"	"1"
-		"Modifiers"
+		"OnUpgrade"
 		{
-			"modifier_ramza_thief_vigilance"
+			"RunScript"
 			{
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%evasion"
-				}
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
+					"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_thief.lua"
+					"Function"	"RamzaThiefVigilanceApply"
 			}
 		}
+		
 		"AbilitySpecial"
 		{
 			"01"
@@ -234,7 +225,6 @@
 			{
 				"IsDebuff"	"1"
 				"IsPurgable"	"1"
-				"Duration"	"%duration"
 				"TextureName"	"dazzle_weave"
 				"EffectName"	"particles/items2_fx/medallion_of_courage.vpcf"
 				"EffectAttachType"	"follow_overhead"
@@ -312,7 +302,6 @@
 				{
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%damage_reduction"
 				}
-				"Duration"	"%duration"
 				"EffectName"	"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
 				"EffectAttachType"	"follow_overhead"
 				"TextureName"	"ramza_thief_steal_weapon"

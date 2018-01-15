@@ -14,6 +14,7 @@ function modifier_ramza_black_mage_magick_counter:GetReflectSpell(keys)
 	local hAbility = keys.ability
 	local hParent = self:GetParent()
 	local hCaster = hAbility:GetCaster()
+	if hParent:PassivesDisabled() then return end
 	if hCaster:GetTeamNumber() == hParent:GetTeamNumber() then return end
 	if hParent.hRamzaJob.tJobLevels[hParent.hRamzaJob.iCurrentJob] < 3 then return end
 	local bHasArcaneStrength = hParent:HasModifier('modifier_ramza_black_mage_arcane_strength')
@@ -205,7 +206,7 @@ function modifier_ramza_black_mage_black_magicks_blizzaga:OnIntervalThink()
 			damage_type = DAMAGE_TYPE_MAGICAL
 		}
 		ApplyDamage(damageTable)
-		local hModifier = hTarget:AddNewModifier(hParent, nil, "modifier_ramza_black_mage_black_magicks_blizzaga_slow", {Duration = self.iSlowDuration})
+		local hModifier = hTarget:AddNewModifier(hParent, nil, "modifier_ramza_black_mage_black_magicks_blizzaga_slow", {Duration = self.iSlowDuration*CalculateStatusResist(hTarget)})
 		
 		
 		self.iCount = self.iCount + 1
@@ -229,7 +230,14 @@ function modifier_ramza_black_mage_black_magicks_blizzaga_slow:DeclareFunctions(
 end
 
 function modifier_ramza_black_mage_black_magicks_blizzaga_slow:GetModifierMoveSpeedBonus_Percentage()
-	return -30
+	local fResist
+	if IsClient() then 
+		fResist = -self:GetStackCount()/1000
+	else
+		fResist = CalculateStatusResist(self:GetParent())
+		self:SetStackCount(-fResist*1000)
+	end
+	return -30*fResist
 end
 
 function modifier_ramza_black_mage_black_magicks_blizzaga_slow:GetTexture()

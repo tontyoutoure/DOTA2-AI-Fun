@@ -20,6 +20,7 @@ require('events')
 require('libraries/wearable_manager')
 require('libraries/animations')
 require('modifier_attribute_indicators')
+require('donation')
 
 
 -- Heroes need to be stripped

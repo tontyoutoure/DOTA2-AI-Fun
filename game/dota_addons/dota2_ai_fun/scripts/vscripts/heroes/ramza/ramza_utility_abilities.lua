@@ -27,7 +27,7 @@ local function PrintAbilities(hHero)
 	end
 	print(iCount, sNames)
 end
-
+function ramza_open_stats_lua:ProcsMagicStick() return false end
 function ramza_open_stats_lua:OnSpellStart()
 	local hCaster = self:GetCaster()
 	hCaster.iBraveryLevel = hCaster.iBraveryLevel or 0
@@ -85,6 +85,7 @@ end
 
 
 ramza_go_back_lua = class({})
+function ramza_go_back_lua:ProcsMagicStick() return false end
 
 function ramza_go_back_lua:OnHeroLevelUp()	
 	local hCaster = self:GetCaster()
@@ -175,12 +176,14 @@ function ramza_go_back_lua:OnSpellStart()
 end
 
 ramza_select_job_lua = class({})
+function ramza_select_job_lua:ProcsMagicStick() return false end
 	
 function ramza_select_job_lua:OnSpellStart()
 	CustomGameEventManager:Send_ServerToPlayer( self:GetCaster():GetOwner(), "ramza_select_job", nil )
 end
 
 ramza_select_secondary_skill_lua = class({})
+function ramza_select_secondary_skill_lua:ProcsMagicStick() return false end
 
 function ramza_select_secondary_skill_lua:OnSpellStart()
 	CustomGameEventManager:Send_ServerToPlayer( self:GetCaster():GetOwner(), "ramza_select_secondary_skill", nil )
@@ -243,6 +246,7 @@ local RamzaFetchAbilities = function(hCaster, bFromMain, tJobCommandBus, tJobCom
 end
 
 ramza_next_page_lua = class({})
+function ramza_next_page_lua:ProcsMagicStick() return false end
 
 function ramza_next_page_lua:OnSpellStart()
 	local hCaster = self:GetCaster()
@@ -317,6 +321,26 @@ ramza_job_arithmetician_JC = class({})
 ramza_job_mime_JC = class({})
 ramza_job_dark_knight_JC = class({})
 ramza_job_onion_knight_JC = class({})
+function ramza_job_squire_JC:ProcsMagicStick() return false end
+function ramza_job_chemist_JC:ProcsMagicStick() return false end
+function ramza_job_knight_JC:ProcsMagicStick() return false end
+function ramza_job_archer_JC:ProcsMagicStick() return false end
+function ramza_job_white_mage_JC:ProcsMagicStick() return false end
+function ramza_job_black_mage_JC:ProcsMagicStick() return false end
+function ramza_job_monk_JC:ProcsMagicStick() return false end
+function ramza_job_thief_JC:ProcsMagicStick() return false end
+function ramza_job_mystic_JC:ProcsMagicStick() return false end
+function ramza_job_time_mage_JC:ProcsMagicStick() return false end
+function ramza_job_orator_JC:ProcsMagicStick() return false end
+function ramza_job_summoner_JC:ProcsMagicStick() return false end
+function ramza_job_geomancer_JC:ProcsMagicStick() return false end
+function ramza_job_dragoon_JC:ProcsMagicStick() return false end
+function ramza_job_samurai_JC:ProcsMagicStick() return false end
+function ramza_job_ninja_JC:ProcsMagicStick() return false end
+function ramza_job_arithmetician_JC:ProcsMagicStick() return false end
+function ramza_job_mime_JC:ProcsMagicStick() return false end
+function ramza_job_dark_knight_JC:ProcsMagicStick() return false end
+function ramza_job_onion_knight_JC:ProcsMagicStick() return false end
 
 ramza_job_squire_JC.OnSpellStart = RamzaJCOnSpellStart
 ramza_job_chemist_JC.OnSpellStart = RamzaJCOnSpellStart

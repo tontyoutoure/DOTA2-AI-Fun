@@ -317,6 +317,11 @@
 				"Target"	"POINT"
 				"ModifierName"	"modifier_ramza_black_mage_black_magicks_firaga"
 			}
+			"RunScript"
+			{				
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_black_mage.lua"
+				"Function"	"RamzaBlackMageFiragaProcs"
+			}
 		}
 		"AbilitySpecial"
 		{

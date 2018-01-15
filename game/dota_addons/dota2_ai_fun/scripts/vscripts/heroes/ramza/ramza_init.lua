@@ -22,7 +22,7 @@ function GameMode:RamzaProjecileFilter(filterTable)
 	local hSource = EntIndexToHScript(filterTable.entindex_source_const)
 	if not hTarget.FindAbilityByName then return true end
 	local hAbility = hTarget:FindAbilityByName('ramza_archer_archers_bane')
-	if hTarget:FindModifierByName("modifier_ramza_archer_archers_bane") and RandomInt(1, 100) < 50 then
+	if hTarget:FindModifierByName("modifier_ramza_archer_archers_bane") and not hTarget:PassivesDisabled() and RandomInt(1, 100) < 50 then
 		local tInfo ={
 			Target = hTarget,
 			Source = hSource,

@@ -11,6 +11,7 @@ function RamzaSummonerCriticalRecoverMPApply(keys)
 end
 
 function RamzaSummonerLich(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local hThinker = CreateUnitByName("npc_dummy_unit", keys.target_points[1], true, keys.caster, keys.caster, keys.caster:GetTeamNumber())
 	hThinker:SetOriginalModel("models/heroes/lich/lich.vmdl")
 	local tWearables = 
@@ -31,6 +32,7 @@ function RamzaSummonerLich(keys)
 	hThinker:SetForwardVector(keys.caster:GetForwardVector())
 end
 function RamzaSummonerOdin(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local hThinker = CreateUnitByName("npc_dummy_unit", keys.target_points[1], true, keys.caster, keys.caster, keys.caster:GetTeamNumber())
 	hThinker:SetOriginalModel("models/heroes/abaddon/abaddon.vmdl")	
 	local tWearables = 
@@ -49,6 +51,7 @@ function RamzaSummonerOdin(keys)
 end
 
 function RamzaSummonerMoogle(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local hThinker = CreateUnitByName("npc_dummy_unit", keys.target_points[1], true, keys.caster, keys.caster, keys.caster:GetTeamNumber())
 	hThinker:SetOriginalModel("models/items/juggernaut/ward/fortunes_tout/fortunes_tout.vmdl")
 	Timers:CreateTimer(0.04, function () hThinker:SetMaterialGroup("1") end)
@@ -63,6 +66,7 @@ function RamzaSummonerMoogleStop(keys)
 end
 
 function RamzaSummonerShiva(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local hThinker = CreateUnitByName("npc_dummy_unit", keys.target_points[1], true, keys.caster, keys.caster, keys.caster:GetTeamNumber())
 	hThinker:SetModel("models/heroes/crystal_maiden/crystal_maiden_arcana.vmdl")
 	hThinker:SetOriginalModel("models/heroes/crystal_maiden/crystal_maiden_arcana.vmdl")
@@ -86,6 +90,7 @@ function RamzaSummonerShiva(keys)
 end
 
 function RamzaSummonerIfrit(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local fDelay = keys.ability:GetSpecialValueFor("delay")
 	local fRadius = keys.ability:GetSpecialValueFor("radius")
 	local fDamage = keys.ability:GetSpecialValueFor("damage")
@@ -126,6 +131,7 @@ function RamzaSummonerIfrit(keys)
 end
 
 function RamzaSummonerRamuh(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local fRadius = keys.ability:GetSpecialValueFor("radius")
 	local fDamage = keys.ability:GetSpecialValueFor("damage")
 	local fDuration = keys.ability:GetSpecialValueFor("stun_duration")
@@ -168,13 +174,14 @@ function RamzaSummonerRamuh(keys)
 			local iParticle = ParticleManager:CreateParticle("particles/econ/items/zeus/arcana_chariot/zeus_arcana_thundergods_wrath.vpcf", PATTACH_CUSTOMORIGIN, v)
 			ParticleManager:SetParticleControl(iParticle, 1, v:GetAbsOrigin())
 			ParticleManager:SetParticleControl(iParticle, 0, v:GetAbsOrigin()+Vector(0,0,1000))
-			v:AddNewModifier(keys.caster, keys.ability, "modifier_stunned", {Duration = fDuration})
+			v:AddNewModifier(keys.caster, keys.ability, "modifier_stunned", {Duration = fDuration*CalculateStatusResist(v)})
 			v:Purge(true, false, false, false, false)
 		end
 	end)
 end
 
 function RamzaSummonerGolem(keys)	
+	ProcsArroundingMagicStick(keys.caster)
 	local fRadius = keys.ability:GetSpecialValueFor("radius")
 	local fDamage = keys.ability:GetSpecialValueFor("damage")
 	local fDuration = keys.ability:GetSpecialValueFor("slow_duration")
@@ -196,13 +203,14 @@ function RamzaSummonerGolem(keys)
 			v:EmitSound("Hero_Brewmaster.ThunderClap.Target")
 			damageTable.victim = v
 			ApplyDamage(damageTable)
-			v:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_summoner_golem_slow", {Duration = fDuration})
+			v:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_summoner_golem_slow", {Duration = fDuration*CalculateStatusResist(v)})
 		end
 	end)
 	Timers:CreateTimer(1, function () hThinker:RemoveSelf() end)
 end
 
 function RamzaSummonerBahamut(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local fRadius = keys.ability:GetSpecialValueFor("radius")
 	local fDamage = keys.ability:GetSpecialValueFor("damage")	
 	local fDistance = keys.ability:GetSpecialValueFor("distance")	
@@ -254,6 +262,7 @@ function ramza_summoner_bahamut_dummy:OnProjectileHit_ExtraData(hTarget, vLocati
 end
 
 function RamzaSummonerZodiark(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local vLocation = keys.target_points[1]
 	local fRadius = keys.ability:GetSpecialValueFor("radius")
 	local fDamage = keys.ability:GetSpecialValueFor("damage")	

@@ -17,6 +17,7 @@ end
 
 function modifier_ramza_arithmetician_soulbind:OnTakeDamage(keys)
 	if keys.unit ~= self:GetParent() then return end
+	if keys.unit:PassivesDisabled() then return end
 	damageTable = {
 		victim = keys.attacker,
 		damage = keys.original_damage/2,
@@ -44,6 +45,7 @@ end
 function modifier_ramza_arithmetician_accrue_exp:OnIntervalThink()
 	if IsClient() then return end
 	local hParent = self:GetParent()
+	if hParent:PassivesDisabled() then return end
 	local fDistance = self.vPreviousPosition.Length(hParent:GetOrigin() - self.vPreviousPosition)
 	hParent:AddExperience(fDistance*self.iPecentageDistanceXP/100, DOTA_ModifyXP_Unspecified, false , true)
 	self.vPreviousPosition = hParent:GetOrigin()
@@ -65,5 +67,5 @@ end
 
 function modifier_ramza_arithmetician_exp_boost:GetModifierPercentageExpRateBoost()
 	self.fExpBoost = self.fExpBoost or self:GetAbility():GetSpecialValueFor("percentage_extra_xp")
-	return self.fExpBoost
+	if self:GetParent():PassivesDisabled() then return 0 else return self.fExpBoost end
 end

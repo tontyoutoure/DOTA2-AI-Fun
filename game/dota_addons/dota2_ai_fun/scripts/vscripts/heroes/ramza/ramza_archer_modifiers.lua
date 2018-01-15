@@ -8,7 +8,7 @@ function modifier_ramza_archer_concentration_immune:GetEffectName() return "part
 
 function modifier_ramza_archer_concentration_immune:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
 
-function modifier_ramza_archer_concentration_immune:GetTexture() return "bristleback_warpath" end
+function modifier_ramza_archer_concentration_immune:GetTexture() return "modifier_magicimmune" end
 
 function modifier_ramza_archer_concentration_immune:CheckState()
 	return {
@@ -29,7 +29,7 @@ function modifier_ramza_archer_archers_bane:RemoveOnDeath() return false end
 function modifier_ramza_archer_archers_bane:IsPurgable() return false end
 
 function modifier_ramza_archer_archers_bane:GetAbsorbSpell(keys)
-	if keys.ability:GetCaster():IsRangedAttacker() and math.random(100) < self:GetAbility():GetSpecialValueFor("evasion") then
+	if not self:GetParent():PassivesDisabled() and keys.ability:GetCaster():IsRangedAttacker() and math.random(100) < self:GetAbility():GetSpecialValueFor("evasion") then
 		self:GetParent():EmitSound("DOTA_Item.LinkensSphere.Activate")
 		ParticleManager:CreateParticle("particles/items_fx/immunity_sphere.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		return 1
@@ -37,3 +37,10 @@ function modifier_ramza_archer_archers_bane:GetAbsorbSpell(keys)
 		return false
 	end
 end
+
+modifier_ramza_archer_aimed = class({})
+function modifier_ramza_archer_aimed:IsHidden() return false end
+function modifier_ramza_archer_aimed:IsPurgable() return false end
+function modifier_ramza_archer_aimed:DeclareFunctions() return {MODIFIER_PROPERTY_PROVIDES_FOW_POSITION} end
+function modifier_ramza_archer_aimed:GetModifierProvidesFOWVision() return 1 end
+function modifier_ramza_archer_aimed:CheckState() return {[MODIFIER_STATE_INVISIBLE]= false} end

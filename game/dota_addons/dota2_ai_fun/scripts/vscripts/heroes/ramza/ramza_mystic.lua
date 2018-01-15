@@ -6,12 +6,14 @@ LinkLuaModifier("modifier_ramza_mystic_defense_boost", "heroes/ramza/ramza_mysti
 LinkLuaModifier("modifier_ramza_mystic_manafont", "heroes/ramza/ramza_mystic_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 
 function RamzaMysticUmbra(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
-	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_ramza_mystic_mystic_arts_umbra", {Duration = keys.ability:GetSpecialValueFor("duration")})
+	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_ramza_mystic_mystic_arts_umbra", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(keys.target)})
 	keys.target:EmitSound("Hero_Brewmaster.DrunkenHaze.Target")
 end
 
 function RamzaMysticEmpowerment(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	local fMana = keys.ability:GetSpecialValueFor("mana")
 	if keys.target:GetMana()<fMana then fMana = keys.target:GetMana() end
@@ -36,26 +38,30 @@ function RamzaMysticEmpowerment(keys)
 end
 
 function RamzaMysticDisbelief(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
-	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_mystic_mystic_arts_disbelief", {Duration = keys.ability:GetSpecialValueFor("duration")})
+	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_mystic_mystic_arts_disbelief", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(keys.target)})
 	keys.target:EmitSound("Hero_SkywrathMage.AncientSeal.Target")
 end
 
 function RamzaMysticHesitation(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
-	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_ramza_mystic_mystic_arts_hesitation", {Duration = keys.ability:GetSpecialValueFor("duration")})
+	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_ramza_mystic_mystic_arts_hesitation", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(keys.target)})
 	keys.caster:EmitSound("Hero_Oracle.FatesEdict.Cast")
 	keys.target:EmitSound("Hero_Oracle.FatesEdict")
 end
 
 
 function RamzaMysticQuiescence(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
-	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_ramza_mystic_mystic_arts_quiescence", {Duration = keys.ability:GetSpecialValueFor("duration")})
+	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_ramza_mystic_mystic_arts_quiescence", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(keys.target)})
 	keys.target:EmitSound("Hero_DeathProphet.Silence")
 end
 
 function RamzaMysticInvigoration(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	local iDamage = keys.ability:GetSpecialValueFor("damage")
 	local damageTable = {

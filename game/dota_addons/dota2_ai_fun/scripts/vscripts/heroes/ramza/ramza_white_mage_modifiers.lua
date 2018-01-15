@@ -42,9 +42,22 @@ end
 
 function modifier_ramza_white_mage_regenerate:OnTakeDamage(keys)
 	if keys.unit ~= self:GetParent() then return end
+	if keys.unit:PassivesDisabled() then return end
 	local hParent = self:GetParent()
 	hParent:AddNewModifier(hParent, nil, "modifier_ramza_white_mage_white_magicks_regen", {Duration = self.fDuration, fRegen = self.fRegen})
 end
+
+modifier_ramza_white_mage_arcane_defense = class({})
+function modifier_ramza_white_mage_arcane_defense:OnCreated() self.iResist = self:GetAbility():GetSpecialValueFor("magic_resist") end
+function modifier_ramza_white_mage_arcane_defense:IsHidden() return true end
+function modifier_ramza_white_mage_arcane_defense:RemoveOnDeath() return false end
+function modifier_ramza_white_mage_arcane_defense:IsPurgable() return false end
+function modifier_ramza_white_mage_arcane_defense:DeclareFunctions() return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS} end
+function modifier_ramza_white_mage_arcane_defense:GetModifierMagicalResistanceBonus() 
+	if self:GetParent():PassivesDisabled() then return 0
+	else return self.iResist end
+end
+
 
 modifier_ramza_white_mage_white_magicks_regen = class({})
 

@@ -86,7 +86,7 @@
 					{
 						"Target"	"TARGET"
 						"Type"	"DAMAGE_TYPE_PURE"
-						"Damage"	"%damage_per_second"
+						"Damage"	"%damage"
 					}
 				}
 				"ThinkInterval"	"1"
@@ -115,7 +115,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage_per_second"	"50"
+				"damage"	"50"
 			}
 			"02"
 			{
@@ -156,18 +156,12 @@
 		"AbilityTextureName"	"brewmaster_drunken_brawler_crit"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"1"
-		"Modifiers"
+		"OnUpgrade"
 		{
-			"modifier_ramza_monk_brawler"
+			"RunScript"
 			{
-				"Passive"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
-				"IsBuff"	"1"
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%damage_percentage"
-				}
+				"Function"	"RamzaMonkBrawlerApply"
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_monk.lua"
 			}
 		}
 		"AbilitySpecial"

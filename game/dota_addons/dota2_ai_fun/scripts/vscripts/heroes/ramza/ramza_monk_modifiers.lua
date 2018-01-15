@@ -16,7 +16,9 @@ function modifier_ramza_monk_lifefont:OnIntervalThink()
 	if IsClient() then return end
 	local hParent = self:GetParent()
 	local fDistance = self.vPreviousPosition.Length(hParent:GetOrigin() - self.vPreviousPosition)
-	hParent:Heal(fDistance*self.iPercentageDistanceHP/100, hParent)
+	if not hParent:PassivesDisabled() then
+		hParent:Heal(fDistance*self.iPercentageDistanceHP/100, hParent)
+	end
 	self.vPreviousPosition = hParent:GetOrigin()
 end
 
@@ -41,7 +43,7 @@ function modifier_ramza_monk_critical_recover_hp:OnTakeDamage(keys)
 	if keys.unit ~= self:GetParent() then return end
 	local bIsCooldownReady
 	local hParent = self:GetParent()
-		
+	if hParent:PassivesDisabled() then return end
 	if hParent:GetHealth()/hParent:GetMaxHealth() < self.iCriticalHealthPercentage/100 then
 		
 		if hParent:HasAbility("ramza_monk_critical_recover_hp") then 
@@ -85,3 +87,27 @@ function modifier_ramza_monk_critical_recover_hp:OnTakeDamage(keys)
 		end
 	end
 end
+
+modifier_ramza_monk_brawler = class({})
+function modifier_ramza_monk_brawler:IsHidden() return true end
+function modifier_ramza_monk_brawler:RemoveOnDeath() return false end
+function modifier_ramza_monk_brawler:IsPurgable() return false end
+function modifier_ramza_monk_brawler:DeclareFunctions() return {MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE} end
+function modifier_ramza_monk_brawler:OnCreated() if IsClient() then return end self:SetStackCount(self:GetAbility():GetSpecialValueFor("damage_percentage")) end
+function modifier_ramza_monk_brawler:GetModifierBaseDamageOutgoing_Percentage() if self:GetParent():PassivesDisabled() then return 0 else return self:GetStackCount() end end
+
+modifier_ramza_monk_martial_arts_doom_fist = class({})
+function modifier_ramza_monk_martial_arts_doom_fist:OnCreated()
+	if IsClient() then return end
+	self.iDamage = self:GetAbility():GetSpecialValueFor("damage")
+	self:StartIntervalThink(1*CalculateStatusResist(self:GetParent()))
+	self:GetParent():EmitSound('Hero_DoomBringer.Doom')
+end
+function modifier_ramza_monk_martial_arts_doom_fist:IsPurgable() return false end
+function modifier_ramza_monk_martial_arts_doom_fist:OnDestroy() if IsClient() then return end self:GetParent():StopSound('Hero_DoomBringer.Doom') end
+function modifier_ramza_monk_martial_arts_doom_fist:CheckState() return {[MODIFIER_STATE_MUTED] = true, [MODIFIER_STATE_SILENCED] = true} end
+function modifier_ramza_monk_martial_arts_doom_fist:OnIntervalThink() if IsClient() then return end ApplyDamage({damage = self.iDamage, ability = self:GetAbility(), attacker = self:GetCaster(), victim = self:GetParent(), damage_type=DAMAGE_TYPE_PURE}) end
+function modifier_ramza_monk_martial_arts_doom_fist:GetStatusEffectName() return "particles/status_fx/status_effect_doom.vpcf" end
+function modifier_ramza_monk_martial_arts_doom_fist:GetEffectName() return "particles/units/heroes/hero_doom_bringer/doom_bringer_doom.vpcf" end
+function modifier_ramza_monk_martial_arts_doom_fist:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
+function modifier_ramza_monk_martial_arts_doom_fist:GetTexture() return "doom_bringer_doom" end
