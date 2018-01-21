@@ -88,7 +88,6 @@ function StartAnimation(unit, table)
 	local translate = table.translate
 	local translate2 = table.translate2
 	local rate = table.rate or 1.0
-
 	rate = math.floor(math.max(0,math.min(255/20, rate)) * 20 + .5)
 
 	local stacks = activity + bit.lshift(rate,11)
@@ -123,7 +122,6 @@ function StartAnimation(unit, table)
 			unit:AddNewModifier(unit, nil, "modifier_animation_translate", {duration=duration, translate=translate2})
 			unit:SetModifierStackCount("modifier_animation_translate", unit, _ANIMATION_TRANSLATE_TO_CODE[translate2])
 		end
-
 		unit._animationEnd = GameRules:GetGameTime() + duration
 		unit:AddNewModifier(unit, nil, "modifier_animation", {duration=duration, translate=translate})
 		unit:SetModifierStackCount("modifier_animation", unit, stacks)

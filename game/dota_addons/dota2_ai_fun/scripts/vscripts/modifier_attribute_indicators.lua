@@ -150,4 +150,12 @@ function modifier_attribute_indicator_spongebob:IsHidden() return false end
 function modifier_attribute_indicator_spongebob:IsDebuff() return false end
 function modifier_attribute_indicator_spongebob:GetTexture() return "attribute_indicator" end
 
+LinkLuaModifier("modifier_attribute_indicator_hamsterlord", "modifier_attribute_indicators.lua", LUA_MODIFIER_MOTION_NONE)
+modifier_attribute_indicator_hamsterlord = class({})
+function modifier_attribute_indicator_hamsterlord:RemoveOnDeath() return false end
+function modifier_attribute_indicator_hamsterlord:IsPurgable() return false end
+function modifier_attribute_indicator_hamsterlord:IsHidden() return false end
+function modifier_attribute_indicator_hamsterlord:IsDebuff() return false end
+function modifier_attribute_indicator_hamsterlord:GetTexture() return "attribute_indicator" end
+
 

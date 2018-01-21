@@ -1,7 +1,10 @@
 hHero = PlayerResource:GetPlayer(0):GetAssignedHero()
-tTest = Entities:FindAllByName("npc_dota_ward_base")
-for i, v in ipairs(tTest) do
-print(v:GetOwner():GetPlayerID())
+for k, v in pairs(Entities:FindAllInSphere(hHero:GetOrigin(), 400)) do
+	if v:GetName() == "npc_dota_warlock_golem" then
+		for k1, v1 in pairs(v:FindAllModifiers()) do
+			print(v1:GetName())
+		end
+	end
 end
 --[[
 for i = 0, 23 do

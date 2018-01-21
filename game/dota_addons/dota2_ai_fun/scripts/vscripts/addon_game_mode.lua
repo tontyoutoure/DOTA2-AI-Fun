@@ -308,6 +308,10 @@ function Precache( context )
 	PrecacheResource("particle", "particles/units/heroes/hero_chen/chen_test_of_faith.vpcf", context)
 	PrecacheResource("particle", "particles/healing_flask_modified.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_naga_siren.vsndevts", context)
+	
+	PrecacheResource("particle", "particles/econ/items/invoker/invoker_ti7/status_effect_alacrity_ti7.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/invoker/invoker_ti7/invoker_ti7_alacrity_buff.vpcf", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts", context)
 end
 
 

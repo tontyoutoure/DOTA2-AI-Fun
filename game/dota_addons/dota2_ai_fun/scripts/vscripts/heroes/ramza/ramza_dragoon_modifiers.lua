@@ -71,8 +71,8 @@ function modifier_ramza_dragoon_jump:CheckState()
 end
 
 function modifier_ramza_dragoon_jump:IsHidden() return true end
-function modifier_ramza_dragoon_dragonheart:IsPurgable() return false end
-function modifier_ramza_dragoon_dragonheart:IsDebuff() return false end
+function modifier_ramza_dragoon_jump:IsPurgable() return false end
+function modifier_ramza_dragoon_jump:IsDebuff() return false end
 
 function modifier_ramza_dragoon_jump:OnCreated()
 	if IsClient() then return end	
@@ -153,9 +153,6 @@ function modifier_ramza_dragoon_jump_slow:GetModifierMoveSpeedBonus_Percentage()
 	return fResist*self.fSlow
 end
 function modifier_ramza_dragoon_jump_slow:GetStatusEffectName() return "particles/status_fx/status_effect_brewmaster_thunder_clap.vpcf" end
-
-
-
 
 
 

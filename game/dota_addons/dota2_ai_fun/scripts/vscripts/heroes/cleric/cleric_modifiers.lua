@@ -33,7 +33,7 @@ function modifier_cleric_berserk:OnIntervalThink()
 	if #tTargets == 1 then
 		if self.hTarget then
 			self.hTarget:RemoveModifierByName("modifier_cleric_berserk_target")
-			tOrder = {
+			local tOrder = {
 				UnitIndex = hParent:entindex(),
 				OrderType = DOTA_UNIT_ORDER_STOP 
 			}
@@ -74,7 +74,7 @@ end
 function modifier_cleric_berserk:OnDestroy()
 	if IsClient() then return end
 	local hParent = self:GetParent()
-	tOrder = {
+	local tOrder = {
 		UnitIndex = hParent:entindex(),
 		OrderType = DOTA_UNIT_ORDER_STOP 
 	}

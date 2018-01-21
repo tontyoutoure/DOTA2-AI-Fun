@@ -99,6 +99,11 @@ if not IsClient() then
 			require('heroes/spongebob/spongebob_init')
 			SpongeBobInit(hHero, self)
 		end
+		
+		if hHero:GetName() == "npc_dota_hero_tusk" then
+			require('heroes/hamsterlord/hamsterlord_init')
+			HampsterLordInit(hHero, self)
+		end
 	end
 
 

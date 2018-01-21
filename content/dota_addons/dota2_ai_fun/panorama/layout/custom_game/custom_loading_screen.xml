@@ -270,6 +270,10 @@
 					</Button>
 				</Panel>
 				<Panel id="HeroAvatarButtonLine6" class="HeroAvatarButtonLine">
+					<Button id="HeroAvatarBtnTusk" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelTusk&quot;);"> 
+						<Image id="HeroAvatarTusk" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_tusk.png" />
+						<Panel id="HeroAvatarCoverTusk" class="HeroAvatarCover"/>
+					</Button>
 				</Panel>
 				<Button id="JoinUsButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelJoinUs&quot;);">				
 					<Label id="JoinUsButtonLabel" text="#join_us_title" />
@@ -477,6 +481,16 @@
 					<Label id="HeroSelectionLabel" text="#select_hero" />
 				</Button>
 				<Button id="HeroUnselectionMeepo" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_meepo', 'Meepo');">				
+					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+				</Button>
+			</Panel>
+			<Panel id="HeroDescriptionPopPanelTusk" class = "HeroDescriptionPopPanel">
+				<Label id="HeroNameTusk" class="HeroName" text="#npc_dota_hero_tusk_long"/>
+				<Label id="HeroBioTusk" class="HeroBio" text="#npc_dota_hero_tusk_bio"/>
+				<Button id="HeroSelectionTusk" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_tusk', 'Tusk');">				
+					<Label id="HeroSelectionLabel" text="#select_hero" />
+				</Button>
+				<Button id="HeroUnselectionTusk" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_tusk', 'Tusk');">				
 					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
 				</Button>
 			</Panel>

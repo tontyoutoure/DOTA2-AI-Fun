@@ -12,7 +12,7 @@ end
 
 function modifier_ramza_thief_gil_snapper:OnTakeDamage(keys)
 	if keys.unit ~= self:GetParent() or keys.unit:PassivesDisabled() then return end
-	iGold = math.floor(keys.damage/10)
+	local iGold = math.floor(keys.damage/10)
 	PlayerResource:ModifyGold(keys.unit:GetOwner():GetPlayerID(), iGold, false, DOTA_ModifyGold_Unspecified)
 	local iParticle1 = ParticleManager:CreateParticle("particles/msg_fx/msg_gold.vpcf", PATTACH_POINT_FOLLOW, keys.unit)
 	ParticleManager:SetParticleControl(iParticle1, 1, Vector(0, iGold, 0))

@@ -24,3 +24,4 @@ hurricane.txt
 capslockftw.txt
 templar.txt
 spongebob.txt
+hamsterlord.txt
