@@ -291,3 +291,17 @@ function modifier_economizer_ultimate:GetModifierScepter() return 1 end
 function modifier_economizer_ultimate:IsHidden() return true end
 function modifier_economizer_ultimate:IsPurgable() return false end
 function modifier_economizer_ultimate:RemoveOnDeath() return false end
+
+modifier_angelic_alliance_death_drop = class({})
+function modifier_angelic_alliance_death_drop:IsHidden() return true end
+function modifier_angelic_alliance_death_drop:IsPurgable() return false end
+function modifier_angelic_alliance_death_drop:RemoveOnDeath() return false end
+function modifier_angelic_alliance_death_drop:DeclareFunctions() return {MODIFIER_EVENT_ON_DEATH} end
+function modifier_angelic_alliance_death_drop:OnDeath(keys)
+	if keys.unit ~= self:GetParent() or keys.reincarnate then return end
+	for i = 0, 8 do
+		if keys.unit:GetItemInSlot(i) and keys.unit:GetItemInSlot(i):GetName() == "item_fun_angelic_alliance" then
+			keys.unit:DropItemAtPositionImmediate(keys.unit:GetItemInSlot(i), keys.unit:GetOrigin())
+		end
+	end
+end

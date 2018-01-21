@@ -16,7 +16,6 @@
 		$.GetContextPanel().GetParent().GetParent().FindChildTraverse('EconSetPreview2').visible=false
 		$.GetContextPanel().GetParent().GetParent().FindChildTraverse('SelectedHeroDetails').visible=false
 		$.GetContextPanel().GetParent().GetParent().FindChildTraverse('SelectedHeroPrimaryAttribute').visible=false
-		$.Msg($.GetContextPanel().GetParent().GetParent().FindChildTraverse('SelectedHeroDetails'))
 	</script>
 	<Panel>
 		<CustomUIElement type="HudTopBar"			layoutfile="file://{resources}/layout/custom_game/multiteam_top_scoreboard.xml" />

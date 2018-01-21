@@ -10,501 +10,509 @@
 	</scripts>
 	<Panel class="AddonLoadingRoot">
 		<Panel id="CustomBg" >
-		<Panel id="game_options_container" >
-			<Panel id = "GameOptionsPanel">
-				<Label id="GameOptionsPanelTitle" text="#addon_option_title" />
-				<Panel id="RadiantGoldMultiplierPanel"	class="GameOptionsSubPanel">
-					<Label id="RadiantGoldMultiplierTitle" class="GameOptionsLabel" text="#radiant_gold_multiplier" />
-					<DropDown id="radiant_gold_multiplier_dropdown" class="GameOptionsDropdown">
-						<Label text="1" id="1" />
-						<Label text="1.5" id="1.5"/>
-						<Label text="2" id="2"/>
-						<Label text="2.5" id="2.5"	/>
-						<Label text="3" id="3"/>
-						<Label text="3.5" id="3.5"/>
-						<Label text="4" id="4"/>
-						<Label text="4.5" id="4.5"/>
-						<Label text="5" id="5"/>
-					</DropDown>				
+			<Panel id="game_options_container" >
+				<Panel id = "GameOptionsPanel">
+					<Label id="GameOptionsPanelTitle" text="#addon_option_title" />
+					<Panel id="RadiantGoldMultiplierPanel"	class="GameOptionsSubPanel">
+						<Label id="RadiantGoldMultiplierTitle" class="GameOptionsLabel" text="#radiant_gold_multiplier" />
+						<DropDown id="radiant_gold_multiplier_dropdown" class="GameOptionsDropdown">
+							<Label text="1" id="1" />
+							<Label text="1.5" id="1.5"/>
+							<Label text="2" id="2"/>
+							<Label text="2.5" id="2.5"	/>
+							<Label text="3" id="3"/>
+							<Label text="3.5" id="3.5"/>
+							<Label text="4" id="4"/>
+							<Label text="4.5" id="4.5"/>
+							<Label text="5" id="5"/>
+						</DropDown>				
+					</Panel>
+					<Panel id="DireGoldMultiplierPanel"	class="GameOptionsSubPanel">
+						<Label id="DireGoldMultiplierTitle" class="GameOptionsLabel" text="#dire_gold_multiplier" />
+						<DropDown id="dire_gold_multiplier_dropdown" class="GameOptionsDropdown">
+							<Label text="1" id="1" />
+							<Label text="1.5" id="1.5"/>
+							<Label text="2" id="2"/>
+							<Label text="2.5" id="2.5"	/>
+							<Label text="3" id="3"/>
+							<Label text="3.5" id="3.5"/>
+							<Label text="4" id="4"/>
+							<Label text="4.5" id="4.5"/>
+							<Label text="5" id="5"/>
+						</DropDown>				
+					</Panel>
+					<Panel id="RadiantXPMultiplierPanel"	class="GameOptionsSubPanel">
+						<Label id="RadiantXPMultiplierTitle" class="GameOptionsLabel" text="#radiant_xp_multiplier" />
+						<DropDown id="radiant_xp_multiplier_dropdown" class="GameOptionsDropdown">
+							<Label text="1" id="1" />
+							<Label text="1.5" id="1.5"/>
+							<Label text="2" id="2"/>
+							<Label text="2.5" id="2.5"	/>
+							<Label text="3" id="3"/>
+							<Label text="3.5" id="3.5"/>
+							<Label text="4" id="4"/>
+							<Label text="4.5" id="4.5"/>
+							<Label text="5" id="5"/>
+						</DropDown>				
+					</Panel>
+					<Panel id="DireXPMultiplierPanel"	class="GameOptionsSubPanel">
+						<Label id="DireXPMultiplierTitle" class="GameOptionsLabel" text="#dire_xp_multiplier" />
+						<DropDown id="dire_xp_multiplier_dropdown" class="GameOptionsDropdown">
+							<Label text="1" id="1" />
+							<Label text="1.5" id="1.5"/>
+							<Label text="2" id="2"/>
+							<Label text="2.5" id="2.5"	/>
+							<Label text="3" id="3"/>
+							<Label text="3.5" id="3.5"/>
+							<Label text="4" id="4"/>
+							<Label text="4.5" id="4.5"/>
+							<Label text="5" id="5"/>
+						</DropDown>				
+					</Panel>
+					<Panel id="RadiantPlayerNumberMultiplierPanel"	class="GameOptionsSubPanel">
+						<Label id="RadiantPlayerNumberMultiplierTitle" class="GameOptionsLabel" text="#radiant_player_number" />
+						<DropDown id="radiant_player_number_dropdown" class="GameOptionsDropdown">
+							<Label text="10" id="10" />
+							<Label text="9" id="9"/>
+							<Label text="8" id="8"/>
+							<Label text="7" id="7"	/>
+							<Label text="6" id="6"/>
+							<Label text="5" id="5"/>
+							<Label text="4" id="4"/>
+							<Label text="3" id="3"/>
+							<Label text="2" id="2"/>
+							<Label text="1" id="1"/>
+						</DropDown>				
+					</Panel>
+					<Panel id="DirePlayerNumberMultiplierPanel"	class="GameOptionsSubPanel">
+						<Label id="DirePlayerNumberMultiplierTitle" class="GameOptionsLabel" text="#dire_player_number" />
+						<DropDown id="dire_player_number_dropdown" class="GameOptionsDropdown">
+							<Label text="10" id="10" />
+							<Label text="9" id="9"/>
+							<Label text="8" id="8"/>
+							<Label text="7" id="7"/>
+							<Label text="6" id="6"/>
+							<Label text="5" id="5"/>
+							<Label text="4" id="4"/>
+							<Label text="3" id="3"/>
+							<Label text="2" id="2"/>
+							<Label text="1" id="1"/>
+						</DropDown>				
+					</Panel>
+					<Panel id="RespawnTimePercentagePanel"	class="GameOptionsSubPanel">
+						<Label id="RespawnTimePercentagePanelTitle" class="GameOptionsLabel" text="#respawn_time_percentage" />
+						<DropDown id="respawn_time_percentage_dropdown" class="GameOptionsDropdown">
+							<Label text="100%" id="100" />
+							<Label text="70%" id="70"/>
+							<Label text="40%" id="40"/>
+							<Label text="10%" id="10"/>
+							<Label text="7%" id="7"/>
+							<Label text="4%" id="4"/>
+							<Label text="1%" id="1"/>
+							<Label text="0%" id="0"/>
+						</DropDown>				
+					</Panel>
+					<Panel id="MaxLevelPanel"	class="GameOptionsSubPanel">
+						<Label id="MaxLevelTitle" class="GameOptionsLabel" text="#max_level" />
+						<DropDown id="max_level_dropdown" class="GameOptionsDropdown">
+							<Label text="25" id="25" />
+							<Label text="50" id="50"/>
+							<Label text="100" id="100"/>
+							<Label text="200" id="200"/>
+							<Label text="400" id="400"/>
+							<Label text="800" id="800"/>
+							<Label text="1600" id="1600"/>
+						</DropDown>				
+					</Panel>	
+					<Panel id="TowerPowerPanel"	class="GameOptionsSubPanel">
+						<Label id="TowerPowerTitle" class="GameOptionsLabel" text="#tower_power" />
+						<DropDown id="tower_power_dropdown" class="GameOptionsDropdown">
+							<Label text="1" id="1" />
+							<Label text="2" id="2"/>
+							<Label text="3" id="3"/>
+							<Label text="4" id="4"/>
+							<Label text="5" id="5"/>
+							<Label text="6" id="6"/>
+							<Label text="7" id="7"/>
+							<Label text="8" id="8"/>
+							<Label text="9" id="9"/>
+							<Label text="10" id="10"/>
+						</DropDown>				
+					</Panel>		
+					<Panel id="TowerEndurePanel"	class="GameOptionsSubPanel">
+						<Label id="TowerEndureTitle" class="GameOptionsLabel" text="#tower_endure" />
+						<DropDown id="tower_endure_dropdown" class="GameOptionsDropdown">
+							<Label text="1" id="1" />
+							<Label text="2" id="2"/>
+							<Label text="3" id="3"/>
+							<Label text="4" id="4"/>
+							<Label text="5" id="5"/>
+							<Label text="6" id="6"/>
+							<Label text="7" id="7"/>
+							<Label text="8" id="8"/>
+							<Label text="9" id="9"/>
+							<Label text="10" id="10"/>
+						</DropDown>				
+					</Panel>			
+					<Panel id="ImbalancedEconomizerPanel"	class="GameOptionsSubPanel">
+						<Label id="ImbalancedEconomizerTitle" class="GameOptionsLabel" text="#imbalanced_economizer" />
+						<ToggleButton checked="true" class="GameOptionsToggle" id="imbalanced_economizer"/>		
+					</Panel>
+					<Panel id="BotAttackTowerPickRunePanel"	class="GameOptionsSubPanel">
+						<Label id="BotAttackTowerPickRuneTitle" class="GameOptionsLabel" text="#bot_attack_tower_pick_rune" />
+						<ToggleButton checked="true" class="GameOptionsToggle" id="bot_attack_tower_pick_rune"/>		
+					</Panel>
+					<Panel id="BotHaveFunItemPanel"	class="GameOptionsSubPanel">
+						<Label id="BotHaveFunItemTitle" class="GameOptionsLabel" text="#bot_has_fun_item" />
+						<ToggleButton checked="true" class="GameOptionsToggle" id="bot_has_fun_item"/>		
+					</Panel>
+					<Panel id="UniversalShopPanel"	class="GameOptionsSubPanel">
+						<Label id="UniversalShopTitle" class="GameOptionsLabel" text="#universal_shop" />
+						<ToggleButton checked="true" class="GameOptionsToggle" id="universal_shop"/>		
+					</Panel>
+					<Button id="ConfirmOptionsBtn" onactivate="set_game_options();">
+						<Label id="ConfirmOptionsBtnLabel" text="#confirm_game_options" />
+					</Button>
 				</Panel>
-				<Panel id="DireGoldMultiplierPanel"	class="GameOptionsSubPanel">
-					<Label id="DireGoldMultiplierTitle" class="GameOptionsLabel" text="#dire_gold_multiplier" />
-					<DropDown id="dire_gold_multiplier_dropdown" class="GameOptionsDropdown">
-						<Label text="1" id="1" />
-						<Label text="1.5" id="1.5"/>
-						<Label text="2" id="2"/>
-						<Label text="2.5" id="2.5"	/>
-						<Label text="3" id="3"/>
-						<Label text="3.5" id="3.5"/>
-						<Label text="4" id="4"/>
-						<Label text="4.5" id="4.5"/>
-						<Label text="5" id="5"/>
-					</DropDown>				
-				</Panel>
-				<Panel id="RadiantXPMultiplierPanel"	class="GameOptionsSubPanel">
-					<Label id="RadiantXPMultiplierTitle" class="GameOptionsLabel" text="#radiant_xp_multiplier" />
-					<DropDown id="radiant_xp_multiplier_dropdown" class="GameOptionsDropdown">
-						<Label text="1" id="1" />
-						<Label text="1.5" id="1.5"/>
-						<Label text="2" id="2"/>
-						<Label text="2.5" id="2.5"	/>
-						<Label text="3" id="3"/>
-						<Label text="3.5" id="3.5"/>
-						<Label text="4" id="4"/>
-						<Label text="4.5" id="4.5"/>
-						<Label text="5" id="5"/>
-					</DropDown>				
-				</Panel>
-				<Panel id="DireXPMultiplierPanel"	class="GameOptionsSubPanel">
-					<Label id="DireXPMultiplierTitle" class="GameOptionsLabel" text="#dire_xp_multiplier" />
-					<DropDown id="dire_xp_multiplier_dropdown" class="GameOptionsDropdown">
-						<Label text="1" id="1" />
-						<Label text="1.5" id="1.5"/>
-						<Label text="2" id="2"/>
-						<Label text="2.5" id="2.5"	/>
-						<Label text="3" id="3"/>
-						<Label text="3.5" id="3.5"/>
-						<Label text="4" id="4"/>
-						<Label text="4.5" id="4.5"/>
-						<Label text="5" id="5"/>
-					</DropDown>				
-				</Panel>
-				<Panel id="RadiantPlayerNumberMultiplierPanel"	class="GameOptionsSubPanel">
-					<Label id="RadiantPlayerNumberMultiplierTitle" class="GameOptionsLabel" text="#radiant_player_number" />
-					<DropDown id="radiant_player_number_dropdown" class="GameOptionsDropdown">
-						<Label text="10" id="10" />
-						<Label text="9" id="9"/>
-						<Label text="8" id="8"/>
-						<Label text="7" id="7"	/>
-						<Label text="6" id="6"/>
-						<Label text="5" id="5"/>
-						<Label text="4" id="4"/>
-						<Label text="3" id="3"/>
-						<Label text="2" id="2"/>
-						<Label text="1" id="1"/>
-					</DropDown>				
-				</Panel>
-				<Panel id="DirePlayerNumberMultiplierPanel"	class="GameOptionsSubPanel">
-					<Label id="DirePlayerNumberMultiplierTitle" class="GameOptionsLabel" text="#dire_player_number" />
-					<DropDown id="dire_player_number_dropdown" class="GameOptionsDropdown">
-						<Label text="10" id="10" />
-						<Label text="9" id="9"/>
-						<Label text="8" id="8"/>
-						<Label text="7" id="7"/>
-						<Label text="6" id="6"/>
-						<Label text="5" id="5"/>
-						<Label text="4" id="4"/>
-						<Label text="3" id="3"/>
-						<Label text="2" id="2"/>
-						<Label text="1" id="1"/>
-					</DropDown>				
-				</Panel>
-				<Panel id="RespawnTimePercentagePanel"	class="GameOptionsSubPanel">
-					<Label id="RespawnTimePercentagePanelTitle" class="GameOptionsLabel" text="#respawn_time_percentage" />
-					<DropDown id="respawn_time_percentage_dropdown" class="GameOptionsDropdown">
-						<Label text="100%" id="100" />
-						<Label text="70%" id="70"/>
-						<Label text="40%" id="40"/>
-						<Label text="10%" id="10"/>
-						<Label text="7%" id="7"/>
-						<Label text="4%" id="4"/>
-						<Label text="1%" id="1"/>
-						<Label text="0%" id="0"/>
-					</DropDown>				
-				</Panel>
-				<Panel id="MaxLevelPanel"	class="GameOptionsSubPanel">
-					<Label id="MaxLevelTitle" class="GameOptionsLabel" text="#max_level" />
-					<DropDown id="max_level_dropdown" class="GameOptionsDropdown">
-						<Label text="25" id="25" />
-						<Label text="50" id="50"/>
-						<Label text="100" id="100"/>
-						<Label text="200" id="200"/>
-						<Label text="400" id="400"/>
-						<Label text="800" id="800"/>
-						<Label text="1600" id="1600"/>
-					</DropDown>				
-				</Panel>	
-				<Panel id="TowerPowerPanel"	class="GameOptionsSubPanel">
-					<Label id="TowerPowerTitle" class="GameOptionsLabel" text="#tower_power" />
-					<DropDown id="tower_power_dropdown" class="GameOptionsDropdown">
-						<Label text="1" id="1" />
-						<Label text="2" id="2"/>
-						<Label text="3" id="3"/>
-						<Label text="4" id="4"/>
-						<Label text="5" id="5"/>
-						<Label text="6" id="6"/>
-						<Label text="7" id="7"/>
-						<Label text="8" id="8"/>
-						<Label text="9" id="9"/>
-						<Label text="10" id="10"/>
-					</DropDown>				
-				</Panel>		
-				<Panel id="TowerEndurePanel"	class="GameOptionsSubPanel">
-					<Label id="TowerEndureTitle" class="GameOptionsLabel" text="#tower_endure" />
-					<DropDown id="tower_endure_dropdown" class="GameOptionsDropdown">
-						<Label text="1" id="1" />
-						<Label text="2" id="2"/>
-						<Label text="3" id="3"/>
-						<Label text="4" id="4"/>
-						<Label text="5" id="5"/>
-						<Label text="6" id="6"/>
-						<Label text="7" id="7"/>
-						<Label text="8" id="8"/>
-						<Label text="9" id="9"/>
-						<Label text="10" id="10"/>
-					</DropDown>				
-				</Panel>			
-				<Panel id="ImbalancedEconomizerPanel"	class="GameOptionsSubPanel">
-					<Label id="ImbalancedEconomizerTitle" class="GameOptionsLabel" text="#imbalanced_economizer" />
-					<ToggleButton checked="true" class="GameOptionsToggle" id="imbalanced_economizer"/>		
-				</Panel>
-				<Panel id="BotAttackTowerPickRunePanel"	class="GameOptionsSubPanel">
-					<Label id="BotAttackTowerPickRuneTitle" class="GameOptionsLabel" text="#bot_attack_tower_pick_rune" />
-					<ToggleButton checked="true" class="GameOptionsToggle" id="bot_attack_tower_pick_rune"/>		
-				</Panel>
-				<Panel id="BotHaveFunItemPanel"	class="GameOptionsSubPanel">
-					<Label id="BotHaveFunItemTitle" class="GameOptionsLabel" text="#bot_has_fun_item" />
-					<ToggleButton checked="true" class="GameOptionsToggle" id="bot_has_fun_item"/>		
-				</Panel>
-				<Panel id="UniversalShopPanel"	class="GameOptionsSubPanel">
-					<Label id="UniversalShopTitle" class="GameOptionsLabel" text="#universal_shop" />
-					<ToggleButton checked="true" class="GameOptionsToggle" id="universal_shop"/>		
-				</Panel>
-				<Button id="ConfirmOptionsBtn" onactivate="set_game_options();">
-					<Label id="ConfirmOptionsBtnLabel" text="#confirm_game_options" />
-				</Button>
 			</Panel>
-		</Panel>
-		<Panel id="HeroDescriptionContainer">
-			<Label id="HeroDescriptionTitle" text="#hero_selection_title"/>
-			<Panel id="HeroDescriptionPanel">	
-				<Panel id="HeroAvatarButtonLine1" class="HeroAvatarButtonLine">
-					<Button id="HeroAvatarBtnShadowDemon" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelShadowDemon&quot;);">
-						<Image id="HeroAvatarShadowDemon" class="HeroAvatar" src="file://{images}/custom_game/loading_screen/npc_dota_hero_shadow_demon.png" />
-						<Panel id="HeroAvatarCoverShadowDemon" class="HeroAvatarCover"/>
-					</Button>
-					<Button id="HeroAvatarBtnTreant" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelTreant&quot;);"> 
-						<Image id="HeroAvatarTreant" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_treant.png" />
-						<Panel id="HeroAvatarCoverTreant" class="HeroAvatarCover"/>
-					</Button>
-					<Button id="HeroAvatarBtnTechies" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelTechies&quot;);"> 
-						<Image id="HeroAvatarTechies" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_techies.png" />
-						<Panel id="HeroAvatarCoverTechies" class="HeroAvatarCover"/>
-					</Button>
-					<Button id="HeroAvatarBtnNightStalker" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelNightStalker&quot;);"> 
-						<Image id="HeroAvatarNightStalker" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_night_stalker.png" />
-						<Panel id="HeroAvatarCoverNightStalker" class="HeroAvatarCover"/>
-					</Button>
-				</Panel>
-				<Panel id="HeroAvatarButtonLine2" class="HeroAvatarButtonLine">
-					<Button id="HeroAvatarBtnSpiritBreaker" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelSpiritBreaker&quot;);"> 
-						<Image id="HeroAvatarSpiritBreaker" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_spirit_breaker.png" />
-						<Panel id="HeroAvatarCoverSpiritBreaker" class="HeroAvatarCover"/>
-					</Button>
-					<Button id="HeroAvatarBtnTinker" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelTinker&quot;);"> 
-						<Image id="HeroAvatarTinker" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_tinker.png" />
-						<Panel id="HeroAvatarCoverTinker" class="HeroAvatarCover"/>
-					</Button>
-					<Button id="HeroAvatarBtnVisage" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelVisage&quot;);"> 
-						<Image id="HeroAvatarVisage" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_visage.png" />
-						<Panel id="HeroAvatarCoverVisage" class="HeroAvatarCover"/>
-					</Button>
-					<Button id="HeroAvatarBtnArcWarden" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelArcWarden&quot;);">
-						<Image id="HeroAvatarArcWarden" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_arc_warden.png" />
-						<Panel id="HeroAvatarCoverArcWarden" class="HeroAvatarCover"/>
-					</Button>
-				</Panel>
-				<Panel id="HeroAvatarButtonLine3" class="HeroAvatarButtonLine">
-					<Button id="HeroAvatarBtnWisp" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelWisp&quot;);">
-						<Image id="HeroAvatarWisp" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_wisp.png" />
-						<Panel id="HeroAvatarCoverWisp" class="HeroAvatarCover"/>
-					</Button>
-					<Button id="HeroAvatarBtnBeastmaster" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelBeastmaster&quot;);"> 
-						<Image id="HeroAvatarBeastmaster" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_beastmaster.png" />
-						<Panel id="HeroAvatarCoverBeastmaster" class="HeroAvatarCover"/>
-					</Button>
-					<Button id="HeroAvatarBtnEnigma" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelEnigma&quot;);">
-						<Image id="HeroAvatarEnigma" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_enigma.png" />
-						<Panel id="HeroAvatarCoverEnigma" class="HeroAvatarCover"/>
-					</Button>
-					<Button id="HeroAvatarBtnBrewmaster" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelBrewmaster&quot;);">
-						<Image id="HeroAvatarBrewmaster" class="HeroAvatar" src="file://{images}/custom_game/ramza/ramza.png" />
-						<Panel id="HeroAvatarCoverBrewmaster" class="HeroAvatarCover"/>
+			<Panel id="HeroDescriptionContainer">
+				<Label id="HeroDescriptionTitle" text="#hero_selection_title"/>
+				<Panel id="HeroDescriptionPanel">	
+					<Panel id="HeroAvatarButtonLine1" class="HeroAvatarButtonLine">
+						<Button id="HeroAvatarBtnShadowDemon" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelShadowDemon&quot;);">
+							<Image id="HeroAvatarShadowDemon" class="HeroAvatar" src="file://{images}/custom_game/loading_screen/npc_dota_hero_shadow_demon.png" />
+							<Panel id="HeroAvatarCoverShadowDemon" class="HeroAvatarCover"/>
+						</Button>
+						<Button id="HeroAvatarBtnTreant" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelTreant&quot;);"> 
+							<Image id="HeroAvatarTreant" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_treant.png" />
+							<Panel id="HeroAvatarCoverTreant" class="HeroAvatarCover"/>
+						</Button>
+						<Button id="HeroAvatarBtnTechies" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelTechies&quot;);"> 
+							<Image id="HeroAvatarTechies" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_techies.png" />
+							<Panel id="HeroAvatarCoverTechies" class="HeroAvatarCover"/>
+						</Button>
+						<Button id="HeroAvatarBtnNightStalker" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelNightStalker&quot;);"> 
+							<Image id="HeroAvatarNightStalker" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_night_stalker.png" />
+							<Panel id="HeroAvatarCoverNightStalker" class="HeroAvatarCover"/>
+						</Button>
+					</Panel>
+					<Panel id="HeroAvatarButtonLine2" class="HeroAvatarButtonLine">
+						<Button id="HeroAvatarBtnSpiritBreaker" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelSpiritBreaker&quot;);"> 
+							<Image id="HeroAvatarSpiritBreaker" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_spirit_breaker.png" />
+							<Panel id="HeroAvatarCoverSpiritBreaker" class="HeroAvatarCover"/>
+						</Button>
+						<Button id="HeroAvatarBtnTinker" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelTinker&quot;);"> 
+							<Image id="HeroAvatarTinker" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_tinker.png" />
+							<Panel id="HeroAvatarCoverTinker" class="HeroAvatarCover"/>
+						</Button>
+						<Button id="HeroAvatarBtnVisage" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelVisage&quot;);"> 
+							<Image id="HeroAvatarVisage" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_visage.png" />
+							<Panel id="HeroAvatarCoverVisage" class="HeroAvatarCover"/>
+						</Button>
+						<Button id="HeroAvatarBtnArcWarden" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelArcWarden&quot;);">
+							<Image id="HeroAvatarArcWarden" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_arc_warden.png" />
+							<Panel id="HeroAvatarCoverArcWarden" class="HeroAvatarCover"/>
+						</Button>
+					</Panel>
+					<Panel id="HeroAvatarButtonLine3" class="HeroAvatarButtonLine">
+						<Button id="HeroAvatarBtnWisp" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelWisp&quot;);">
+							<Image id="HeroAvatarWisp" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_wisp.png" />
+							<Panel id="HeroAvatarCoverWisp" class="HeroAvatarCover"/>
+						</Button>
+						<Button id="HeroAvatarBtnBeastmaster" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelBeastmaster&quot;);"> 
+							<Image id="HeroAvatarBeastmaster" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_beastmaster.png" />
+							<Panel id="HeroAvatarCoverBeastmaster" class="HeroAvatarCover"/>
+						</Button>
+						<Button id="HeroAvatarBtnEnigma" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelEnigma&quot;);">
+							<Image id="HeroAvatarEnigma" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_enigma.png" />
+							<Panel id="HeroAvatarCoverEnigma" class="HeroAvatarCover"/>
+						</Button>
+						<Button id="HeroAvatarBtnBrewmaster" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelBrewmaster&quot;);">
+							<Image id="HeroAvatarBrewmaster" class="HeroAvatar" src="file://{images}/custom_game/ramza/ramza.png" />
+							<Panel id="HeroAvatarCoverBrewmaster" class="HeroAvatarCover"/>
+						</Button>
+					</Panel>
+					
+					<Panel id="HeroAvatarButtonLine4" class="HeroAvatarButtonLine">
+						<Button id="HeroAvatarBtnRubick" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelRubick&quot;);"> 
+							<Image id="HeroAvatarRubick" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_rubick.png" />
+							<Panel id="HeroAvatarCoverRubick" class="HeroAvatarCover"/>
+						</Button>
+						<Button id="HeroAvatarBtnWindrunner" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelWindrunner&quot;);"> 
+							<Image id="HeroAvatarWindrunner" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_windrunner.png" />
+							<Panel id="HeroAvatarCoverWindrunner" class="HeroAvatarCover"/>
+						</Button>
+						<Button id="HeroAvatarBtnSven" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelSven&quot;);"> 
+							<Image id="HeroAvatarSven" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_sven.png" />
+							<Panel id="HeroAvatarCoverSven" class="HeroAvatarCover"/>
+						</Button>
+						<Button id="HeroAvatarBtnPugna" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelPugna&quot;);"> 
+							<Image id="HeroAvatarPugna" class="HeroAvatar" src="file://{images}/custom_game/loading_screen/npc_dota_hero_pugna.png" />
+							<Panel id="HeroAvatarCoverPugna" class="HeroAvatarCover"/>
+						</Button>
+					</Panel>
+					<Panel id="HeroAvatarButtonLine5" class="HeroAvatarButtonLine">
+						<Button id="HeroAvatarBtnDisruptor" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelDisruptor&quot;);"> 
+							<Image id="HeroAvatarDisruptor" class="HeroAvatar" src="file://{images}/custom_game/npc_dota_hero_disruptor.png" />
+							<Panel id="HeroAvatarCoverDisruptor" class="HeroAvatarCover"/>
+						</Button>
+						<Button id="HeroAvatarBtnNevermore" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelNevermore&quot;);"> 
+							<Image id="HeroAvatarNevermore" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_nevermore.png" />
+							<Panel id="HeroAvatarCoverNevermore" class="HeroAvatarCover"/>
+						</Button>
+						<Button id="HeroAvatarBtnOmniknight" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelOmniknight&quot;);"> 
+							<Image id="HeroAvatarOmniknight" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_omniknight.png" />
+							<Panel id="HeroAvatarCoverOmniknight" class="HeroAvatarCover"/>
+						</Button>
+						<Button id="HeroAvatarBtnMeepo" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelMeepo&quot;);"> 
+							<Image id="HeroAvatarMeepo" class="HeroAvatar" src="file://{images}/custom_game/npc_dota_hero_meepo.png" />
+							<Panel id="HeroAvatarCoverMeepo" class="HeroAvatarCover"/>
+						</Button>
+					</Panel>
+					<Panel id="HeroAvatarButtonLine6" class="HeroAvatarButtonLine">
+						<Button id="HeroAvatarBtnTusk" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelTusk&quot;);"> 
+							<Image id="HeroAvatarTusk" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_tusk.png" />
+							<Panel id="HeroAvatarCoverTusk" class="HeroAvatarCover"/>
+						</Button>
+					</Panel>
+					<Button id="JoinUsButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelJoinUs&quot;);">				
+						<Label id="JoinUsButtonLabel" text="#join_us_title" />
 					</Button>
 				</Panel>
 				
-				<Panel id="HeroAvatarButtonLine4" class="HeroAvatarButtonLine">
-					<Button id="HeroAvatarBtnRubick" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelRubick&quot;);"> 
-						<Image id="HeroAvatarRubick" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_rubick.png" />
-						<Panel id="HeroAvatarCoverRubick" class="HeroAvatarCover"/>
-					</Button>
-					<Button id="HeroAvatarBtnWindrunner" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelWindrunner&quot;);"> 
-						<Image id="HeroAvatarWindrunner" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_windrunner.png" />
-						<Panel id="HeroAvatarCoverWindrunner" class="HeroAvatarCover"/>
-					</Button>
-					<Button id="HeroAvatarBtnSven" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelSven&quot;);"> 
-						<Image id="HeroAvatarSven" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_sven.png" />
-						<Panel id="HeroAvatarCoverSven" class="HeroAvatarCover"/>
-					</Button>
-					<Button id="HeroAvatarBtnPugna" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelPugna&quot;);"> 
-						<Image id="HeroAvatarPugna" class="HeroAvatar" src="file://{images}/custom_game/loading_screen/npc_dota_hero_pugna.png" />
-						<Panel id="HeroAvatarCoverPugna" class="HeroAvatarCover"/>
-					</Button>
-				</Panel>
-				<Panel id="HeroAvatarButtonLine5" class="HeroAvatarButtonLine">
-					<Button id="HeroAvatarBtnDisruptor" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelDisruptor&quot;);"> 
-						<Image id="HeroAvatarDisruptor" class="HeroAvatar" src="file://{images}/custom_game/npc_dota_hero_disruptor.png" />
-						<Panel id="HeroAvatarCoverDisruptor" class="HeroAvatarCover"/>
-					</Button>
-					<Button id="HeroAvatarBtnNevermore" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelNevermore&quot;);"> 
-						<Image id="HeroAvatarNevermore" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_nevermore.png" />
-						<Panel id="HeroAvatarCoverNevermore" class="HeroAvatarCover"/>
-					</Button>
-					<Button id="HeroAvatarBtnOmniknight" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelOmniknight&quot;);"> 
-						<Image id="HeroAvatarOmniknight" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_omniknight.png" />
-						<Panel id="HeroAvatarCoverOmniknight" class="HeroAvatarCover"/>
-					</Button>
-					<Button id="HeroAvatarBtnMeepo" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelMeepo&quot;);"> 
-						<Image id="HeroAvatarMeepo" class="HeroAvatar" src="file://{images}/custom_game/npc_dota_hero_meepo.png" />
-						<Panel id="HeroAvatarCoverMeepo" class="HeroAvatarCover"/>
-					</Button>
-				</Panel>
-				<Panel id="HeroAvatarButtonLine6" class="HeroAvatarButtonLine">
-					<Button id="HeroAvatarBtnTusk" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelTusk&quot;);"> 
-						<Image id="HeroAvatarTusk" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_tusk.png" />
-						<Panel id="HeroAvatarCoverTusk" class="HeroAvatarCover"/>
-					</Button>
-				</Panel>
-				<Button id="JoinUsButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelJoinUs&quot;);">				
-					<Label id="JoinUsButtonLabel" text="#join_us_title" />
-				</Button>
-			</Panel>
-			
-			
-		</Panel>
-		<Panel id="HeroDescriptionPopPanelContainer">
-			<Panel id="HeroDescriptionPopPanelShadowDemon" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameShadowDemon" class="HeroName" text="#npc_dota_hero_shadow_demon_long"/>
-				<Label id="HeroBioShadowDemon" class="HeroBio" text="#npc_dota_hero_shadow_demon_bio"/>
-				<Button id="HeroSelectionShadowDemon" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_shadow_demon', 'ShadowDemon');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
-				</Button>
-				<Button id="HeroUnselectionShadowDemon" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_shadow_demon', 'ShadowDemon');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
-				</Button>
-			</Panel>
-			<Panel id="HeroDescriptionPopPanelTreant" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameTreant" class="HeroName" text="#npc_dota_hero_treant_long"/>
-				<Label id="HeroBioTreant" class="HeroBio" text="#npc_dota_hero_treant_bio"/>
-				<Button id="HeroSelectionTreant" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_treant', 'Treant');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
-				</Button>
-				<Button id="HeroUnselectionTreant" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_treant', 'Treant');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
-				</Button>
-			</Panel>
-			<Panel id="HeroDescriptionPopPanelTechies" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameTechies" class="HeroName" text="#npc_dota_hero_techies_long"/>				
-				<Label id="HeroBioTechies" class="HeroBio" text="#npc_dota_hero_techies_bio"/>
-				<Button id="HeroSelectionTechies" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_techies', 'Techies');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
-				</Button>
-				<Button id="HeroUnselectionTechies" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_techies', 'Techies');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
-				</Button>
-			</Panel>
-			<Panel id="HeroDescriptionPopPanelNightStalker" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameNightStalker" class="HeroName" text="#npc_dota_hero_night_stalker_long"/>				
-				<Label id="HeroBioNightStalker" class="HeroBio" text="#npc_dota_hero_night_stalker_bio"/>
-				<Button id="HeroSelectionNightStalker" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_night_stalker', 'NightStalker');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
-				</Button>
-				<Button id="HeroUnselectionNightStalker" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_night_stalker', 'NightStalker');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
-				</Button>
-			</Panel>
-			<Panel id="HeroDescriptionPopPanelSpiritBreaker" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameSpiritBreaker" class="HeroName" text="#npc_dota_hero_spirit_breaker_long"/>			
-				<Label id="HeroBioSpiritBreaker" class="HeroBio" text="#npc_dota_hero_spirit_breaker_bio"/>
 				
-				<Button id="HeroSelectionSpiritBreaker" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_spirit_breaker', 'SpiritBreaker');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
+			</Panel>
+			<Panel id="HeroDescriptionPopPanelContainer">
+				<Panel id="HeroDescriptionPopPanelShadowDemon" class = "HeroDescriptionPopPanel">
+					<Label id="HeroNameShadowDemon" class="HeroName" text="#npc_dota_hero_shadow_demon_long"/>
+					<Label id="HeroBioShadowDemon" class="HeroBio" text="#npc_dota_hero_shadow_demon_bio"/>
+					<Button id="HeroSelectionShadowDemon" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_shadow_demon', 'ShadowDemon');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionShadowDemon" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_shadow_demon', 'ShadowDemon');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelTreant" class = "HeroDescriptionPopPanel">
+					<Label id="HeroNameTreant" class="HeroName" text="#npc_dota_hero_treant_long"/>
+					<Label id="HeroBioTreant" class="HeroBio" text="#npc_dota_hero_treant_bio"/>
+					<Button id="HeroSelectionTreant" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_treant', 'Treant');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionTreant" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_treant', 'Treant');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelTechies" class = "HeroDescriptionPopPanel">
+					<Label id="HeroNameTechies" class="HeroName" text="#npc_dota_hero_techies_long"/>				
+					<Label id="HeroBioTechies" class="HeroBio" text="#npc_dota_hero_techies_bio"/>
+					<Button id="HeroSelectionTechies" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_techies', 'Techies');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionTechies" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_techies', 'Techies');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelNightStalker" class = "HeroDescriptionPopPanel">
+					<Label id="HeroNameNightStalker" class="HeroName" text="#npc_dota_hero_night_stalker_long"/>				
+					<Label id="HeroBioNightStalker" class="HeroBio" text="#npc_dota_hero_night_stalker_bio"/>
+					<Button id="HeroSelectionNightStalker" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_night_stalker', 'NightStalker');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionNightStalker" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_night_stalker', 'NightStalker');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelSpiritBreaker" class = "HeroDescriptionPopPanel">
+					<Label id="HeroNameSpiritBreaker" class="HeroName" text="#npc_dota_hero_spirit_breaker_long"/>			
+					<Label id="HeroBioSpiritBreaker" class="HeroBio" text="#npc_dota_hero_spirit_breaker_bio"/>
+					
+					<Button id="HeroSelectionSpiritBreaker" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_spirit_breaker', 'SpiritBreaker');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionSpiritBreaker" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_spirit_breaker', 'SpiritBreaker');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelTinker" class = "HeroDescriptionPopPanel">
+					<Label id="HeroNameTinker" class="HeroName" text="#npc_dota_hero_tinker_long"/>			
+					<Label id="HeroBioTinker" class="HeroBio" text="#npc_dota_hero_tinker_bio"/>
+					<Button id="HeroSelectionTinker" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_tinker', 'Tinker');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionTinker" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_tinker', 'Tinker');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelVisage" class = "HeroDescriptionPopPanel">
+					<Label id="HeroNameVisage" class="HeroName" text="#npc_dota_hero_visage_long"/>			
+					<Label id="HeroBioVisage" class="HeroBio" text="#npc_dota_hero_visage_bio"/>
+					<Button id="HeroSelectionVisage" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_visage', 'Visage');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionVisage" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_visage', 'Visage');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelArcWarden" class = "HeroDescriptionPopPanel">
+					<Label id="HeroNameArcWarden" class="HeroName" text="#npc_dota_hero_arc_warden_long"/>
+					<Label id="HeroBioArcWarden" class="HeroBio" text="#npc_dota_hero_arc_warden_bio"/>
+					<Button id="HeroSelectionArcWarden" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_arc_warden', 'ArcWarden');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionArcWarden" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_arc_warden', 'ArcWarden');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelWisp" class = "HeroDescriptionPopPanel">
+					<Label id="HeroNameWisp" class="HeroName" text="#npc_dota_hero_wisp_long"/>
+					<Label id="HeroBioWisp" class="HeroBio" text="#npc_dota_hero_wisp_bio"/>
+					<Button id="HeroSelectionWisp" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_wisp', 'Wisp');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionWisp" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_wisp', 'Wisp');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelBeastmaster" class = "HeroDescriptionPopPanel">
+					<Label id="HeroNameBeastmaster" class="HeroName" text="#npc_dota_hero_beastmaster_long"/>			
+					<Label id="HeroBioBeastmaster" class="HeroBio" text="#npc_dota_hero_beastmaster_bio"/>
+					<Button id="HeroSelectionBeastmaster" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_beastmaster', 'Beastmaster');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionBeastmaster" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_beastmaster', 'Beastmaster');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelEnigma" class = "HeroDescriptionPopPanel">
+					<Label id="HeroNameEnigma" class="HeroName" text="#npc_dota_hero_enigma_long"/>
+					<Label id="HeroBioEnigma" class="HeroBio" text="#npc_dota_hero_enigma_bio"/>
+					<Button id="HeroSelectionEnigma" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_enigma', 'Enigma');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionEnigma" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_enigma', 'Enigma');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelBrewmaster" class = "HeroDescriptionPopPanel">
+					<Label id="HeroNameBrewmaster" class="HeroName" text="#npc_dota_hero_brewmaster_long"/>
+					<Label id="HeroBioBrewmaster" class="HeroBio" text="#npc_dota_hero_brewmaster_bio"/>
+					<Button id="HeroSelectionBrewmaster" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_brewmaster', 'Brewmaster');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionBrewmaster" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_brewmaster', 'Brewmaster');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelRubick" class = "HeroDescriptionPopPanel">
+					<Label id="HeroNameRubick" class="HeroName" text="#npc_dota_hero_rubick_long"/>
+					<Label id="HeroBioRubick" class="HeroBio" text="#npc_dota_hero_rubick_bio"/>
+					<Button id="HeroSelectionRubick" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_rubick', 'Rubick');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionRubick" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_rubick', 'Rubick');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelWindrunner" class = "HeroDescriptionPopPanel">
+					<Label id="HeroNameWindrunner" class="HeroName" text="#npc_dota_hero_windrunner_long"/>
+					<Label id="HeroBioWindrunner" class="HeroBio" text="#npc_dota_hero_windrunner_bio"/>
+					<Button id="HeroSelectionWindrunner" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_windrunner', 'Windrunner');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionWindrunner" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_windrunner', 'Windrunner');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelSven" class = "HeroDescriptionPopPanel">
+					<Label id="HeroNameSven" class="HeroName" text="#npc_dota_hero_sven_long"/>
+					<Label id="HeroBioSven" class="HeroBio" text="#npc_dota_hero_sven_bio"/>
+					<Button id="HeroSelectionSven" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_sven', 'Sven');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionSven" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_sven', 'Sven');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelPugna" class = "HeroDescriptionPopPanel">
+					<Label id="HeroNamePugna" class="HeroName" text="#npc_dota_hero_pugna_long"/>
+					<Label id="HeroBioPugna" class="HeroBio" text="#npc_dota_hero_pugna_bio"/>
+					<Button id="HeroSelectionPugna" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_pugna', 'Pugna');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionPugna" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_pugna', 'Pugna');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelDisruptor" class = "HeroDescriptionPopPanel">
+					<Label id="HeroNameDisruptor" class="HeroName" text="#npc_dota_hero_disruptor_long"/>
+					<Label id="HeroBioDisruptor" class="HeroBio" text="#npc_dota_hero_disruptor_bio"/>
+					<Button id="HeroSelectionDisruptor" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_disruptor', 'Disruptor');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionDisruptor" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_disruptor', 'Disruptor');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelNevermore" class = "HeroDescriptionPopPanel">
+					<Label id="HeroNameNevermore" class="HeroName" text="#npc_dota_hero_nevermore_long"/>
+					<Label id="HeroBioNevermore" class="HeroBio" text="#npc_dota_hero_nevermore_bio"/>
+					<Button id="HeroSelectionNevermore" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_nevermore', 'Nevermore');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionNevermore" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_nevermore', 'Nevermore');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelOmniknight" class = "HeroDescriptionPopPanel">
+					<Label id="HeroNameOmniknight" class="HeroName" text="#npc_dota_hero_omniknight_long"/>
+					<Label id="HeroBioOmniknight" class="HeroBio" text="#npc_dota_hero_omniknight_bio"/>
+					<Button id="HeroSelectionOmniknight" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_omniknight', 'Omniknight');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionOmniknight" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_omniknight', 'Omniknight');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelMeepo" class = "HeroDescriptionPopPanel">
+					<Label id="HeroNameMeepo" class="HeroName" text="#npc_dota_hero_meepo_long"/>
+					<Label id="HeroBioMeepo" class="HeroBio" text="#npc_dota_hero_meepo_bio"/>
+					<Button id="HeroSelectionMeepo" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_meepo', 'Meepo');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionMeepo" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_meepo', 'Meepo');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelTusk" class = "HeroDescriptionPopPanelTop">
+					<Label id="HeroNameTusk" class="HeroName" text="#npc_dota_hero_tusk_long"/>
+					<Label id="HeroBioTusk" class="HeroBio" text="#npc_dota_hero_tusk_bio"/>
+					<Button id="HeroSelectionTusk" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_tusk', 'Tusk');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionTusk" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_tusk', 'Tusk');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelJoinUs" class = "HeroDescriptionPopPanelTop">
+					<Label id="HeroNameJoinUs" class="HeroName" text="#join_us_title"/>
+					<Label id="HeroBioJoinUs" class="HeroBio" text="#join_us"/>
+					<Button id="DiscordChannelButton" onactivate="DOTADisplayURL('https://discord.gg/h847NwE');">				
+						<Label id="DiscordChannelLabel" text="#join_discord" />
+					</Button>
+				</Panel>
+			
+			
+			
+			</Panel>		
+			<Panel id="ChatHideButtonContainer" hittest="false">
+				<Button id="ChatHideButtonHide" class="ChatHideButton" onactivate="HideChatActivate()">
+					<Label id="ChatHideButtonLabelHide" class="ChatHideButtonLabel" text="#hide_chat" />
 				</Button>
-				<Button id="HeroUnselectionSpiritBreaker" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_spirit_breaker', 'SpiritBreaker');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+				<Button id="ChatHideButtonShow" class="ChatHideButton" onactivate="ShowChatActivate()">
+					<Label id="ChatHideButtonLabelShow" class="ChatHideButtonLabel" text="#show_chat" />
 				</Button>
 			</Panel>
-			<Panel id="HeroDescriptionPopPanelTinker" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameTinker" class="HeroName" text="#npc_dota_hero_tinker_long"/>			
-				<Label id="HeroBioTinker" class="HeroBio" text="#npc_dota_hero_tinker_bio"/>
-				<Button id="HeroSelectionTinker" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_tinker', 'Tinker');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
-				</Button>
-				<Button id="HeroUnselectionTinker" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_tinker', 'Tinker');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
-				</Button>
-			</Panel>
-			<Panel id="HeroDescriptionPopPanelVisage" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameVisage" class="HeroName" text="#npc_dota_hero_visage_long"/>			
-				<Label id="HeroBioVisage" class="HeroBio" text="#npc_dota_hero_visage_bio"/>
-				<Button id="HeroSelectionVisage" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_visage', 'Visage');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
-				</Button>
-				<Button id="HeroUnselectionVisage" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_visage', 'Visage');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
-				</Button>
-			</Panel>
-			<Panel id="HeroDescriptionPopPanelArcWarden" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameArcWarden" class="HeroName" text="#npc_dota_hero_arc_warden_long"/>
-				<Label id="HeroBioArcWarden" class="HeroBio" text="#npc_dota_hero_arc_warden_bio"/>
-				<Button id="HeroSelectionArcWarden" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_arc_warden', 'ArcWarden');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
-				</Button>
-				<Button id="HeroUnselectionArcWarden" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_arc_warden', 'ArcWarden');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
-				</Button>
-			</Panel>
-			<Panel id="HeroDescriptionPopPanelWisp" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameWisp" class="HeroName" text="#npc_dota_hero_wisp_long"/>
-				<Label id="HeroBioWisp" class="HeroBio" text="#npc_dota_hero_wisp_bio"/>
-				<Button id="HeroSelectionWisp" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_wisp', 'Wisp');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
-				</Button>
-				<Button id="HeroUnselectionWisp" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_wisp', 'Wisp');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
-				</Button>
-			</Panel>
-			<Panel id="HeroDescriptionPopPanelBeastmaster" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameBeastmaster" class="HeroName" text="#npc_dota_hero_beastmaster_long"/>			
-				<Label id="HeroBioBeastmaster" class="HeroBio" text="#npc_dota_hero_beastmaster_bio"/>
-				<Button id="HeroSelectionBeastmaster" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_beastmaster', 'Beastmaster');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
-				</Button>
-				<Button id="HeroUnselectionBeastmaster" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_beastmaster', 'Beastmaster');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
-				</Button>
-			</Panel>
-			<Panel id="HeroDescriptionPopPanelEnigma" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameEnigma" class="HeroName" text="#npc_dota_hero_enigma_long"/>
-				<Label id="HeroBioEnigma" class="HeroBio" text="#npc_dota_hero_enigma_bio"/>
-				<Button id="HeroSelectionEnigma" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_enigma', 'Enigma');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
-				</Button>
-				<Button id="HeroUnselectionEnigma" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_enigma', 'Enigma');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
-				</Button>
-			</Panel>
-			<Panel id="HeroDescriptionPopPanelBrewmaster" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameBrewmaster" class="HeroName" text="#npc_dota_hero_brewmaster_long"/>
-				<Label id="HeroBioBrewmaster" class="HeroBio" text="#npc_dota_hero_brewmaster_bio"/>
-				<Button id="HeroSelectionBrewmaster" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_brewmaster', 'Brewmaster');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
-				</Button>
-				<Button id="HeroUnselectionBrewmaster" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_brewmaster', 'Brewmaster');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
-				</Button>
-			</Panel>
-			<Panel id="HeroDescriptionPopPanelRubick" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameRubick" class="HeroName" text="#npc_dota_hero_rubick_long"/>
-				<Label id="HeroBioRubick" class="HeroBio" text="#npc_dota_hero_rubick_bio"/>
-				<Button id="HeroSelectionRubick" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_rubick', 'Rubick');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
-				</Button>
-				<Button id="HeroUnselectionRubick" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_rubick', 'Rubick');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
-				</Button>
-			</Panel>
-			<Panel id="HeroDescriptionPopPanelWindrunner" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameWindrunner" class="HeroName" text="#npc_dota_hero_windrunner_long"/>
-				<Label id="HeroBioWindrunner" class="HeroBio" text="#npc_dota_hero_windrunner_bio"/>
-				<Button id="HeroSelectionWindrunner" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_windrunner', 'Windrunner');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
-				</Button>
-				<Button id="HeroUnselectionWindrunner" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_windrunner', 'Windrunner');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
-				</Button>
-			</Panel>
-			<Panel id="HeroDescriptionPopPanelSven" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameSven" class="HeroName" text="#npc_dota_hero_sven_long"/>
-				<Label id="HeroBioSven" class="HeroBio" text="#npc_dota_hero_sven_bio"/>
-				<Button id="HeroSelectionSven" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_sven', 'Sven');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
-				</Button>
-				<Button id="HeroUnselectionSven" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_sven', 'Sven');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
-				</Button>
-			</Panel>
-			<Panel id="HeroDescriptionPopPanelPugna" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNamePugna" class="HeroName" text="#npc_dota_hero_pugna_long"/>
-				<Label id="HeroBioPugna" class="HeroBio" text="#npc_dota_hero_pugna_bio"/>
-				<Button id="HeroSelectionPugna" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_pugna', 'Pugna');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
-				</Button>
-				<Button id="HeroUnselectionPugna" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_pugna', 'Pugna');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
-				</Button>
-			</Panel>
-			<Panel id="HeroDescriptionPopPanelDisruptor" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameDisruptor" class="HeroName" text="#npc_dota_hero_disruptor_long"/>
-				<Label id="HeroBioDisruptor" class="HeroBio" text="#npc_dota_hero_disruptor_bio"/>
-				<Button id="HeroSelectionDisruptor" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_disruptor', 'Disruptor');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
-				</Button>
-				<Button id="HeroUnselectionDisruptor" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_disruptor', 'Disruptor');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
-				</Button>
-			</Panel>
-			<Panel id="HeroDescriptionPopPanelNevermore" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameNevermore" class="HeroName" text="#npc_dota_hero_nevermore_long"/>
-				<Label id="HeroBioNevermore" class="HeroBio" text="#npc_dota_hero_nevermore_bio"/>
-				<Button id="HeroSelectionNevermore" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_nevermore', 'Nevermore');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
-				</Button>
-				<Button id="HeroUnselectionNevermore" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_nevermore', 'Nevermore');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
-				</Button>
-			</Panel>
-			<Panel id="HeroDescriptionPopPanelOmniknight" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameOmniknight" class="HeroName" text="#npc_dota_hero_omniknight_long"/>
-				<Label id="HeroBioOmniknight" class="HeroBio" text="#npc_dota_hero_omniknight_bio"/>
-				<Button id="HeroSelectionOmniknight" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_omniknight', 'Omniknight');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
-				</Button>
-				<Button id="HeroUnselectionOmniknight" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_omniknight', 'Omniknight');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
-				</Button>
-			</Panel>
-			<Panel id="HeroDescriptionPopPanelMeepo" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameMeepo" class="HeroName" text="#npc_dota_hero_meepo_long"/>
-				<Label id="HeroBioMeepo" class="HeroBio" text="#npc_dota_hero_meepo_bio"/>
-				<Button id="HeroSelectionMeepo" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_meepo', 'Meepo');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
-				</Button>
-				<Button id="HeroUnselectionMeepo" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_meepo', 'Meepo');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
-				</Button>
-			</Panel>
-			<Panel id="HeroDescriptionPopPanelTusk" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameTusk" class="HeroName" text="#npc_dota_hero_tusk_long"/>
-				<Label id="HeroBioTusk" class="HeroBio" text="#npc_dota_hero_tusk_bio"/>
-				<Button id="HeroSelectionTusk" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_tusk', 'Tusk');">				
-					<Label id="HeroSelectionLabel" text="#select_hero" />
-				</Button>
-				<Button id="HeroUnselectionTusk" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_tusk', 'Tusk');">				
-					<Label id="HeroUnselectionLabel" text="#unselect_hero" />
-				</Button>
-			</Panel>
-			<Panel id="HeroDescriptionPopPanelJoinUs" class = "HeroDescriptionPopPanel">
-				<Label id="HeroNameJoinUs" class="HeroName" text="#join_us_title"/>
-				<Label id="HeroBioJoinUs" class="HeroBio" text="#join_us"/>
-				<Button id="DiscordChannelButton" onactivate="DOTADisplayURL('https://discord.gg/h847NwE');">				
-					<Label id="DiscordChannelLabel" text="#join_discord" />
-				</Button>
-			</Panel>
-		
-		
-		
-		</Panel>		
-	</Panel>
+		</Panel>
 	</Panel>
 </root>

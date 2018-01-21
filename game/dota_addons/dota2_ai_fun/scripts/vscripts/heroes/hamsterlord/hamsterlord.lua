@@ -111,9 +111,7 @@ function hamsterlord_call_of_hamster:OnSpellStart()
 		else
 			hCaster["hHamster"..tostring(i)] = hUnit
 		end
-		if hCaster:HasAbility("special_bonus_hamsterlord_5") and hCaster:FindAbilityByName("special_bonus_hamsterlord_5"):GetLevel() > 0 then
-			hUnit:AddNewModifier(hCaster, nil, "modifier_special_bonus_hamsterlord_5",{})
-		end
+		
 		hCaster:EmitSound("Hero_LoneDruid.SpiritBear.Cast")
 		ParticleManager:CreateParticle("particles/units/heroes/hero_lone_druid/lone_druid_bear_spawn.vpcf", PATTACH_ABSORIGIN_FOLLOW, hUnit)
 	end

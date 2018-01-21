@@ -26,7 +26,7 @@ function modifier_hamsterlord_injure_knees:OnAttackFinished(keys)
 end
 
 function modifier_hamsterlord_injure_knees:OnAttackLanded(keys)
-	if keys.attacker ~= self:GetParent() or keys.attacker:PassivesDisabled() then return end
+	if keys.attacker ~= self:GetParent() or keys.attacker:PassivesDisabled() or keys.target:IsBuilding() then return end
 	local hAbility = self:GetAbility()
 	local hParent = self:GetParent()
 	if not keys.target:HasModifier("modifier_hamsterlord_injure_knees_slow") then
@@ -190,21 +190,23 @@ function modifier_hamsterlord_take_nap:OnDestroy()
 	if IsClient() then return end
 	local hParent = self:GetParent()
 	local hAbility = self:GetAbility()
+	local fDuration = hAbility:GetSpecialValueFor("buff_duration")
+	if hParent:HasAbility("special_bonus_hamsterlord_0") then
+		fDuration = fDuration+hParent:FindAbilityByName("special_bonus_hamsterlord_0"):GetSpecialValueFor("value")
+	end
 	EndAnimation(hParent)
 	if self:GetStackCount() > 0 then
 		hParent:EmitSound("Hero_Invoker.Alacrity")
-		hParent:AddNewModifier(hParent, hAbility, "modifier_hamsterlord_take_nap_buff", {duration = hAbility:GetSpecialValueFor("buff_duration")}):SetStackCount(self:GetStackCount())
+		hParent:AddNewModifier(hParent, hAbility, "modifier_hamsterlord_take_nap_buff", {duration = fDuration}):SetStackCount(self:GetStackCount())
 		
-		if hParent:HasAbility("special_bonus_hamsterlord_0") and hParent:FindAbilityByName("special_bonus_hamsterlord_0"):GetLevel() > 0 then
-			if hParent.hHamster1 and not hParent.hHamster1:IsNull() and hParent.hHamster1:IsAlive() then			
-				hParent.hHamster1:AddNewModifier(hParent, hAbility, "modifier_hamsterlord_take_nap_buff", {duration = hAbility:GetSpecialValueFor("buff_duration")}):SetStackCount(self:GetStackCount())
-			end
-			if hParent.hHamster2 and not hParent.hHamster2:IsNull() and hParent.hHamster2:IsAlive() then			
-				hParent.hHamster2:AddNewModifier(hParent, hAbility, "modifier_hamsterlord_take_nap_buff", {duration = hAbility:GetSpecialValueFor("buff_duration")}):SetStackCount(self:GetStackCount())
-			end
-			if hParent.hHamster3 and not hParent.hHamster3:IsNull() and hParent.hHamster3:IsAlive() then			
-				hParent.hHamster3:AddNewModifier(hParent, hAbility, "modifier_hamsterlord_take_nap_buff", {duration = hAbility:GetSpecialValueFor("buff_duration")}):SetStackCount(self:GetStackCount())
-			end
+		if hParent:HasAbility("special_bonus_hamsterlord_5") and hParent:FindAbilityByName("special_bonus_hamsterlord_5"):GetLevel() > 0 then		
+			local hBoy = Entities:First()	
+			while hBoy do
+				if hBoy.GetUnitName and (hBoy:GetUnitName() == "hamsterlord_pizza_house_deliver_boy" or hBoy:GetUnitName() == "hamsterlord_hamster" ) and hParent:GetPlayerOwnerID() == hBoy:GetOwner():GetPlayerID() then	
+					hBoy:AddNewModifier(hParent, hAbility, "modifier_hamsterlord_take_nap_buff", {duration = fDuration}):SetStackCount(self:GetStackCount())		
+				end			
+				hBoy = Entities:Next(hBoy)
+			end	
 		end
 	else
 		hParent:StopSound("Hero_Bane.Nightmare.End")

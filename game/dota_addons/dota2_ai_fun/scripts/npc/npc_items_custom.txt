@@ -498,14 +498,6 @@
 			"particle"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_ally.vpcf"
 			"particle"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf"
 		}
-		"OnOwnerDied"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/fun_items.lua"
-				"Function"	"AngelicAllianceDrop"
-			}
-		}
 		"OnSpellStart"
 		{
 			"RunScript"

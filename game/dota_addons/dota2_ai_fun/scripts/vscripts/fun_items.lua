@@ -6,6 +6,7 @@ LinkLuaModifier("modifier_heros_bow_minus_armor", "fun_item_modifiers_lua.lua", 
 LinkLuaModifier("modifier_economizer_ultimate", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ragnarok_cleave", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_angelic_alliance_maximum_speed", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_angelic_alliance_death_drop", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 local function CheckStringInTable(s, t)
 	for i = 1, #t do
 		if s == t[i] then return true end
@@ -261,6 +262,7 @@ end
 
 function AASpellLifestealApply(keys)
 	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_angelic_alliance_spell_lifesteal", {Duration = 0.15})	
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_angelic_alliance_death_drop", {Duration = 0.15})
 	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_economizer_ultimate", {Duration = 0.15})
 end
 

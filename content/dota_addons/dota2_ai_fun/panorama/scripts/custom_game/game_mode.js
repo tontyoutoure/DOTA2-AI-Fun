@@ -10,6 +10,7 @@
 		hit_test_blocker.hittest = false;
 		hit_test_blocker.hittestchildren = false;
 	}
+	$("#ChatHideButtonHide").visible=true;
 })();
 
 function InitializeUI() {
@@ -22,7 +23,17 @@ function InitializeUI() {
 	}
 }
 
+function HideChatActivate() {
+	$.GetContextPanel().GetParent().GetParent().FindChildTraverse("ChatLinesArea").visible=false;
+	$("#ChatHideButtonHide").visible=false;
+	$("#ChatHideButtonShow").visible=true;
+}
 
+function ShowChatActivate() {
+	$.GetContextPanel().GetParent().GetParent().FindChildTraverse("ChatLinesArea").visible=true;
+	$("#ChatHideButtonHide").visible=true;
+	$("#ChatHideButtonShow").visible=false;
+}
 
 function CheckForHostPrivileges() {
 	var player_info = Game.GetLocalPlayerInfo();

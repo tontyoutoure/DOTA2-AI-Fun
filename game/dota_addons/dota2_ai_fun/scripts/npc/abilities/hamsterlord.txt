@@ -83,6 +83,7 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"buff_duration"	"10"
+				"LinkedSpecialBonus"		"special_bonus_hamsterlord_0"
 			}
 		}
 	}
@@ -378,7 +379,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"0"
+				"value"				"10"
 			}
 		}
 	}
@@ -394,7 +395,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"80"
+				"value"				"120"
 			}
 		}
 	}

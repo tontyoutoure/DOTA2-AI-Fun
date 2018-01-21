@@ -45,25 +45,12 @@ local function HamsterlordTalentManager(keys)
 		local hBoy = Entities:First()	
 		while hBoy do
 			if hBoy.GetUnitName and hBoy:GetUnitName() == "hamsterlord_pizza_house_deliver_boy" and keys.player-1 == hBoy:GetOwner():GetPlayerID() then	
-				print("haha", hPlayer:GetPlayerID(), hBoy:GetOwner():GetPlayerID(), keys.player)
 				hBoy:RemoveAbility("hamsterlord_pizza_house_deliver_boy_gather_tips")
 				hBoy:RemoveModifierByName("modifier_hamsterlord_pizza_house_deliver_boy_gather_tips")
 				hBoy:AddAbility("hamsterlord_pizza_house_deliver_boy_gather_tips_upgraded"):SetLevel(1)				
 			end			
 			hBoy = Entities:Next(hBoy)
 		end		
-	end
-	if keys.abilityname == "special_bonus_hamsterlord_5" then	
-		local hHero = PlayerResource:GetPlayer(keys.player-1):GetAssignedHero()
-		if hHero.hHamster1 and not hHero.hHamster1:IsNull() and hHero.hHamster1:IsAlive() then			
-			hHero.hHamster1:AddNewModifier(hHero, nil, "modifier_special_bonus_hamsterlord_5", {})
-		end
-		if hHero.hHamster2 and not hHero.hHamster2:IsNull() and hHero.hHamster2:IsAlive() then			
-			hHero.hHamster2:AddNewModifier(hHero, nil, "modifier_special_bonus_hamsterlord_5", {})
-		end
-		if hHero.hHamster3 and not hHero.hHamster3:IsNull() and hHero.hHamster3:IsAlive() then			
-			hHero.hHamster3:AddNewModifier(hHero, nil, "modifier_special_bonus_hamsterlord_5", {})
-		end	
 	end
 end
 
