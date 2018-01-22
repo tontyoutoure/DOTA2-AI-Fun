@@ -20,7 +20,31 @@ modifier_wearable_hider_while_model_changes = class({})
 function modifier_wearable_hider_while_model_changes:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_MODEL_CHANGED}
 end
-
+function modifier_wearable_hider_while_model_changes:OnCreated()
+	if IsClient() then return end
+	self:StartIntervalThink(0.04)
+end
+function modifier_wearable_hider_while_model_changes:OnIntervalThink()
+	if IsClient() then return end
+	local hParent = self:GetParent()
+	if hParent:IsInvisible() then
+		if not self.bWasInvisible then
+			for k, v in pairs(hParent.tWearables) do
+				v.wearable:AddNewModifier(hParent, nil, "modifier_invisible",{})
+				v.wearable:SetModel(v.model)
+			end
+			self.bWasInvisible = true
+		end
+	else
+		if self.bWasInvisible then
+			for k, v in pairs(hParent.tWearables) do
+				v.wearable:RemoveModifierByName("modifier_invisible")
+				v.wearable:SetModel(v.model)
+			end
+			self.bWasInvisible = false
+		end
+	end
+end
 function modifier_wearable_hider_while_model_changes:IsHidden() return true end
 function modifier_wearable_hider_while_model_changes:RemoveOnDeath() return false end
 function modifier_wearable_hider_while_model_changes:IsPurgable() return false end
@@ -30,6 +54,7 @@ function modifier_wearable_hider_while_model_changes:OnModelChanged(keys)
 	if not self.sOriginalModel then return end
 	local hParent = self:GetParent()
 	if self.sOriginalModel == self:GetParent():GetModelName() then	
+		print("gaga")
 		for k, v in pairs(hParent.tWearables) do
 			v.wearable:RemoveEffects(EF_NODRAW)
 			for k1, v1 in pairs(v.particle_systems) do
@@ -107,7 +132,9 @@ function WearableManager:AddNewWearable(hUnit, tInput)
 	local tParticles = {}
 	
 	if sModel then
-		hWearable = SpawnEntityFromTableSynchronous("prop_dynamic", {model = sModel})
+		hWearable = CreateUnitByName("npc_dummy_unit", Vector(0, 0, 0), false, nil, nil, hUnit:GetTeam())
+		hWearable:SetModel(sModel)
+		hWearable:SetOriginalModel(sModel)
 		hWearable:FollowEntity(hUnit, true)
 		if sSkin then 
 			hWearable:SetMaterialGroup(sSkin)
@@ -115,7 +142,10 @@ function WearableManager:AddNewWearable(hUnit, tInput)
 	else			
 		if GameItems.items[sID].visuals and GameItems.items[sID].visuals.styles then
 			sModel = GameItems.items[sID].visuals.styles[sStyle].model_player or GameItems.items[sID].model_player
-			hWearable = SpawnEntityFromTableSynchronous("prop_dynamic", {model = sModel})
+			hWearable = CreateUnitByName("npc_dummy_unit", Vector(0, 0, 0), false, nil, nil, hUnit:GetTeam())
+			hWearable:SetModel(sModel)
+			hWearable:SetOriginalModel(sModel)
+			hWearable:FollowEntity(hUnit, true)
 			hWearable:FollowEntity(hUnit, true)
 			
 			if GameItems.items[sID].visuals.styles[sStyle].skin then
@@ -129,7 +159,10 @@ function WearableManager:AddNewWearable(hUnit, tInput)
 			end
 		else
 			sModel = GameItems.items[sID].model_player
-			hWearable = SpawnEntityFromTableSynchronous("prop_dynamic", {model = sModel})
+			hWearable = CreateUnitByName("npc_dummy_unit", Vector(0, 0, 0), false, nil, nil, hUnit:GetTeam())
+			hWearable:SetModel(sModel)
+			hWearable:SetOriginalModel(sModel)
+			hWearable:FollowEntity(hUnit, true)
 			hWearable:FollowEntity(hUnit, true)
 			if GameItems.items[sID].visuals then
 				for k, v in pairs(GameItems.items[sID].visuals) do

@@ -495,7 +495,7 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 625,
 		attack_cap = DOTA_UNIT_CAP_RANGED_ATTACK,
-		move_speed = 310,
+		move_speed = 305,
 	},
 	{	-- White Mage
 		primary_attribute = DOTA_ATTRIBUTE_INTELLECT,
@@ -547,7 +547,7 @@ CRamzaJob.tJobStats = {
 		armor = 1,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		move_speed = 310,
+		move_speed = 305,
 	},
 	{	--Mystic
 		primary_attribute = DOTA_ATTRIBUTE_INTELLECT,
@@ -625,7 +625,7 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		move_speed = 320,
+		move_speed = 315,
 	},
 	{	--Samurai
 		primary_attribute = DOTA_ATTRIBUTE_STRENGTH,
@@ -651,7 +651,7 @@ CRamzaJob.tJobStats = {
 		armor = 0,
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
-		move_speed = 325,
+		move_speed = 320,
 	},
 	{	-- Arithmetician
 		primary_attribute = DOTA_ATTRIBUTE_INTELLECT,
@@ -706,7 +706,7 @@ CRamzaJob.tJobStats = {
 		attack_range = 150,
 		attack_cap = DOTA_UNIT_CAP_MELEE_ATTACK,
 
-		move_speed = 350,
+		move_speed = 345,
 	}
 	
 }

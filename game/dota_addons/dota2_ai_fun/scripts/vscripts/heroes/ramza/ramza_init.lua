@@ -71,9 +71,7 @@ function RamzaTalentManager(keys)
 		end
 	end
 end
-
 ListenToGameEvent( "dota_player_learned_ability", RamzaTalentManager, nil )
-
 local tNewAbilities = {
 	"ramza_job_squire_JC",
 	"ramza_select_secondary_skill_lua",

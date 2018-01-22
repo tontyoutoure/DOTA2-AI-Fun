@@ -21,22 +21,103 @@ function formless_copy_skill(keys)
   end
 end
 
+local tPos = {0, 1, 2, 5}
+local tOriginAbilities = {"formless_unus", "formless_duos", "formless_tertius", "formless_denique"}
+
+function formless_forget_all(keys)
+	if keys.caster:GetName() ~= "npc_dota_hero_wisp" then return end
+	local tAbilities = {}
+	local tNames = {}
+	for i = 1, 4 do
+		tAbilities[i] = keys.caster:GetAbilityByIndex(tPos[i])
+		tNames[i] = tAbilities[i]:GetName()
+	end
+	
+	if keys.caster:FindAbilityByName("formless_forget_choose"):GetToggleState() then
+		for i = 1, 4 do
+			formless_forget({ability=keys.caster:FindAbilityByName(tOriginAbilities[i].."_forget"), caster = keys.caster, bNotToggleBack = true})
+		end				
+		keys.caster:FindAbilityByName("formless_forget_choose"):ToggleAbility()
+	else
+		keys.caster:FindAbilityByName("formless_forget_choose"):ToggleAbility()
+		for i = 1, 4 do
+			formless_forget({ability=keys.caster:FindAbilityByName(tOriginAbilities[i].."_forget"), caster = keys.caster, bNotToggleBack = true})
+		end				
+		keys.caster:FindAbilityByName("formless_forget_choose"):ToggleAbility()
+	end	
+end
+
+function formless_forget_choose(keys)
+	if keys.caster:GetName() ~= "npc_dota_hero_wisp" then return end
+	local hAbility0 = keys.caster:GetAbilityByIndex(0)
+	local hAbility1 = keys.caster:GetAbilityByIndex(1)
+	local hAbility2 = keys.caster:GetAbilityByIndex(2)
+	local hAbility5 = keys.caster:GetAbilityByIndex(5)
+	local sName0 = hAbility0:GetAbilityName()
+	local sName1 = hAbility1:GetAbilityName()
+	local sName2 = hAbility2:GetAbilityName()
+	local sName5 = hAbility5:GetAbilityName()
+	if sName0 == "formless_unus_forget" then		
+		keys.caster:SwapAbilities(sName0, hAbility0.sName, false, true)
+		keys.caster:SwapAbilities(sName1, hAbility1.sName, false, true)
+		keys.caster:SwapAbilities(sName2, hAbility2.sName, false, true)
+		keys.caster:SwapAbilities(sName5, hAbility5.sName, false, true)
+	else
+		keys.caster:SwapAbilities(sName0, "formless_unus_forget", false, true)
+		keys.caster:SwapAbilities(sName1, "formless_duos_forget", false, true)
+		keys.caster:SwapAbilities(sName2, "formless_tertius_forget", false, true)
+		keys.caster:SwapAbilities(sName5, "formless_denique_forget", false, true)
+		
+		keys.caster:FindAbilityByName("formless_unus_forget").sName = sName0
+		keys.caster:FindAbilityByName("formless_duos_forget").sName = sName1
+		keys.caster:FindAbilityByName("formless_tertius_forget").sName = sName2
+		keys.caster:FindAbilityByName("formless_denique_forget").sName = sName5		
+	end
+end
+
+function formless_forget(keys)
+	local sCurrentName = keys.ability:GetAbilityName()
+	if string.sub(sCurrentName, 1, -8) ~= keys.ability.sName then	
+		keys.caster:RemoveAbility(keys.ability.sName)
+		local tAllModifiers = keys.caster:FindAllModifiers()
+		for k, v in ipairs(tAllModifiers) do
+			if string.find(v:GetName(), keys.ability.sName) and v:GetCaster() == keys.caster then
+				v:Destroy()
+			end
+		end	  	
+		keys.ability.sName = string.sub(sCurrentName, 1, -8)
+	end
+	if not keys.bNotToggleBack then 
+		keys.caster:FindAbilityByName("formless_forget_choose"):ToggleAbility()
+	end
+end
+
+function formless_upgrade(keys)
+	keys.caster:FindAbilityByName(keys.ability:GetAbilityName().."_forget"):SetLevel(1)
+	keys.caster:FindAbilityByName("formless_forget_choose"):SetLevel(1)
+	keys.caster:FindAbilityByName("formless_forget_all"):SetLevel(1)
+end
+
 function formless_unus(keys)
+	if keys.caster:GetName() ~= "npc_dota_hero_wisp" then return end
   keys.abilityIndexToCopy = 0
   formless_copy_skill(keys)
 end
 
 function formless_duos(keys)
+	if keys.caster:GetName() ~= "npc_dota_hero_wisp" then return end
   keys.abilityIndexToCopy = 1
   formless_copy_skill(keys)
 end
 
 function formless_tertius(keys)
+	if keys.caster:GetName() ~= "npc_dota_hero_wisp" then return end
   keys.abilityIndexToCopy = 2
   formless_copy_skill(keys)
 end
 
 function formless_denique(keys)
+	if keys.caster:GetName() ~= "npc_dota_hero_wisp" then return end
   keys.abilityIndexToCopy = 3
   formless_copy_skill(keys)
 end
@@ -126,7 +207,7 @@ tHero["npc_dota_hero_storm_spirit"] = {0, 1, 2, -1}
 tHero["npc_dota_hero_templar_assassin"] = {0, 1, 2, 5}  --  multiple ability
 tHero["npc_dota_hero_terrorblade"] = {0, 1, 2, 5}
 tHero["npc_dota_hero_tidehunter"] = {0, 1, 2, 5}
-tHero["npc_dota_hero_tiny"] = {0, 1, 2, 5}
+tHero["npc_dota_hero_tiny"] = {0, 1, -1, 5}
 tHero["npc_dota_hero_troll_warlord"] = {0, -1, 3, 5} --  multiple ability
 tHero["npc_dota_hero_tusk"] = {0, -1, 2, 5} --  multiple ability	
 tHero["npc_dota_hero_undying"] = {0, 1, 2, 5}

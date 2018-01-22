@@ -45,7 +45,7 @@
 						"ScriptFile"	"scripts/vscripts/fun_items.lua"
 					}
 				}
-				"ThinkInterval"	"0.1"
+				"ThinkInterval"	"1"
 			}
 			"modifier_item_fun_economizer_mcr"
 			{
@@ -1019,7 +1019,6 @@
 				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_RANGED_ONLY"
 				"Aura_ApplyToCaster"	"1"
-				"ThinkInterval"	"0.1"
 				"OnCreated"
 				{
 					"RunScript"
@@ -1224,10 +1223,10 @@
 					{
 						"Target"	"CASTER"
 						"ModifierName"	"modifier_magic_hammer_mana_break"
-						"Duration"	"0.15"
+						"Duration"	"1.5"
 					}
 				}
-				"ThinkInterval"	"0.1"
+				"ThinkInterval"	"1"
 				"AllowIllusionDuplicate"	"1"
 			}
 			"modifier_item_fun_magic_hammer_aura"
@@ -1247,50 +1246,6 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%aura_attack"
 				}
 				"IsDebuff"	"1"
-			}
-			"modifier_item_fun_magic_hammer_root"
-			{
-				"Properties"	{}
-				"States"
-				{
-					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"IsPurgable"	"1"
-				"IsDebuff"	"1"
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"Target"	"TARGET"
-						"ScriptFile"	"scripts/vscripts/fun_items.lua"
-						"Function"	"MagicHammerManaBurn"
-					}
-					"RunScript"
-					{
-						"Target"	"TARGET"
-						"ScriptFile"	"scripts/vscripts/fun_items.lua"
-						"Function"	"MagicHammerRootBegin"
-					}
-				}
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"Target"	"TARGET"
-						"ScriptFile"	"scripts/vscripts/fun_items.lua"
-						"Function"	"MagicHammerManaBurn"
-					}
-				}
-				"ThinkInterval"	"1"
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/fun_items.lua"
-						"Function"	"MagicHammerRootEnd"
-					}
-				}
 			}
 		}
 		"AbilitySpecial"
@@ -1749,7 +1704,7 @@
 						"ScriptFile"	"scripts/vscripts/fun_items.lua"
 					}
 				}
-				"ThinkInterval"	"0.1"
+				"ThinkInterval"	"1"
 			}
 			"modifier_item_fun_economizer_2_mcr"
 			{

@@ -25,7 +25,7 @@ function RamzaSummonerLich(keys)
 	for k, v in pairs(tWearables) do
 		WearableManager:AddNewWearable(hThinker, v)
 	end
-	StartAnimation(hThinker, {duration = 15, activity=ACT_DOTA_RUN, rate=1})
+	StartAnimation(hThinker, {duration = 15, activity=ACT_DOTA_GENERIC_CHANNEL_1, rate=1})
 --	WearableManager:PrintAllPrecaches(hThinker)
 --	WearableManager:PrintAllWearableInfos(hThinker)
 	hThinker:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_summoner_lich", {Duration = keys.ability:GetSpecialValueFor("duration"), fPercentageDamage = keys.ability:GetSpecialValueFor("percentage_damage"), fRadius = keys.ability:GetSpecialValueFor("radius")})
@@ -34,7 +34,9 @@ end
 function RamzaSummonerOdin(keys)
 	ProcsArroundingMagicStick(keys.caster)
 	local hThinker = CreateUnitByName("npc_dummy_unit", keys.target_points[1], true, keys.caster, keys.caster, keys.caster:GetTeamNumber())
-	hThinker:SetOriginalModel("models/heroes/abaddon/abaddon.vmdl")	
+	hThinker:SetOriginalModel("models/heroes/abaddon/abaddon.vmdl")
+	hThinker:SetThink(function() print("hoho") end, 0.1)
+	
 	local tWearables = 
 	{
 		{ID = "5561", style = "0", model = "models/items/abaddon/phantoms_reaper/phantoms_reaper.vmdl", particle_systems = {{system = "particles/units/heroes/hero_abaddon/abaddon_blade.vpcf", attach_type = PATTACH_CUSTOMORIGIN, attach_entity = "parent", control_points = {{control_point_index = 0, attach_type = PATTACH_POINT_FOLLOW, attachment = "attach_attack1"}, }}, }},

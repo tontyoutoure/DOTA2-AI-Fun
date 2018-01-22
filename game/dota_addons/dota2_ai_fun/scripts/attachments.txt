@@ -9,9 +9,9 @@
 				"scale"		"1"
 				"pitch"		"20"
 				"roll"		"105"
-				"yaw"		"-35"
-				"YPos"		"-10"
 				"ZPos"		"-159"
+				"YPos"		"-10"
+				"yaw"		"-35"
 				"XPos"		"19"
 			}
 		}
@@ -25,9 +25,9 @@
 				"scale"		"0.89999997615814"
 				"pitch"		"-105"
 				"roll"		"-35"
-				"yaw"		"0"
-				"YPos"		"-6"
 				"ZPos"		"-146"
+				"YPos"		"-6"
+				"yaw"		"0"
 				"XPos"		"14"
 			}
 		}
@@ -41,9 +41,9 @@
 				"scale"		"1.1000000238419"
 				"pitch"		"-70"
 				"roll"		"0"
-				"ZPos"		"0"
-				"YPos"		"-17"
 				"yaw"		"-135"
+				"YPos"		"-17"
+				"ZPos"		"0"
 				"XPos"		"-13"
 			}
 			"models/particle/snowball.vmdl"
@@ -51,9 +51,9 @@
 				"scale"		"0.30000001192093"
 				"pitch"		"-113"
 				"roll"		"131"
-				"ZPos"		"112"
-				"YPos"		"-27"
 				"yaw"		"45"
+				"YPos"		"-27"
+				"ZPos"		"112"
 				"XPos"		"-65"
 			}
 		}
@@ -64,9 +64,9 @@
 				"scale"		"0.30000001192093"
 				"pitch"		"105"
 				"roll"		"-90"
-				"ZPos"		"-19"
-				"YPos"		"-50"
 				"yaw"		"-90"
+				"YPos"		"-50"
+				"ZPos"		"-19"
 				"XPos"		"-80"
 			}
 		}
@@ -77,9 +77,9 @@
 				"scale"		"0.30000001192093"
 				"pitch"		"-113"
 				"roll"		"0"
-				"ZPos"		"-19"
-				"YPos"		"97"
 				"yaw"		"0"
+				"YPos"		"97"
+				"ZPos"		"-19"
 				"XPos"		"60"
 			}
 		}
@@ -93,9 +93,9 @@
 				"scale"		"1.7999999523163"
 				"pitch"		"180"
 				"roll"		"10"
-				"ZPos"		"-90"
-				"YPos"		"120"
 				"yaw"		"190"
+				"YPos"		"120"
+				"ZPos"		"-90"
 				"XPos"		"0"
 			}
 		}
@@ -104,25 +104,25 @@
 	{
 		"attach_weapon"
 		{
-			"models/items/faceless_void/battlefury/battlefury.vmdl"
-			{
-				"scale"		"2"
-				"pitch"		"-50"
-				"roll"		"28"
-				"ZPos"		"-63"
-				"YPos"		"111"
-				"yaw"		"0"
-				"XPos"		"0"
-			}
 			"models/items/wraith_king/winterblight_weapon/winterblight_weapon.vmdl"
 			{
 				"scale"		"2.2999999523163"
 				"YPos"		"0"
 				"pitch"		"-140"
-				"ZPos"		"0"
-				"roll"		"30"
 				"yaw"		"180"
+				"roll"		"30"
+				"ZPos"		"0"
 				"XPos"		"70"
+			}
+			"models/items/faceless_void/battlefury/battlefury.vmdl"
+			{
+				"scale"		"2"
+				"pitch"		"-50"
+				"roll"		"28"
+				"yaw"		"0"
+				"YPos"		"111"
+				"ZPos"		"-63"
+				"XPos"		"0"
 			}
 		}
 		"attach_hitloc"
@@ -132,9 +132,9 @@
 				"scale"		"1.2999999523163"
 				"pitch"		"-70"
 				"roll"		"0"
-				"yaw"		"-135"
-				"YPos"		"0"
 				"ZPos"		"0"
+				"YPos"		"0"
+				"yaw"		"-135"
 				"XPos"		"-13"
 			}
 			"models/heroes/tiny_04/tiny04_deathsim.vmdl"
@@ -143,9 +143,9 @@
 				"scale"		"1"
 				"pitch"		"0"
 				"roll"		"0"
-				"ZPos"		"0"
-				"YPos"		"0"
 				"yaw"		"0"
+				"YPos"		"0"
+				"ZPos"		"0"
 				"XPos"		"0"
 			}
 		}
@@ -156,9 +156,9 @@
 				"scale"		"2"
 				"pitch"		"0"
 				"roll"		"0"
-				"yaw"		"0"
-				"YPos"		"0"
 				"ZPos"		"0"
+				"YPos"		"0"
+				"yaw"		"0"
 				"XPos"		"0"
 			}
 		}
@@ -172,9 +172,9 @@
 				"scale"		"0.89999997615814"
 				"pitch"		"-165"
 				"roll"		"169"
-				"yaw"		"186"
-				"YPos"		"5"
 				"ZPos"		"-159"
+				"YPos"		"5"
+				"yaw"		"186"
 				"XPos"		"39"
 			}
 		}
@@ -188,10 +188,26 @@
 				"scale"		"0.89999997615814"
 				"pitch"		"-111"
 				"roll"		"-6"
-				"yaw"		"-19"
-				"YPos"		"-5"
 				"ZPos"		"-144"
+				"YPos"		"-5"
+				"yaw"		"-19"
 				"XPos"		"9"
+			}
+		}
+	}
+	"models/heroes/juggernaut/juggernaut_arcana.vmdl"
+	{
+		"attach_sword"
+		{
+			"models/items/sven/sven_ti7_immortal_sword/sven_ti7_immortal_sword.vmdl"
+			{
+				"scale"		"1"
+				"pitch"		"0"
+				"roll"		"105"
+				"ZPos"		"0"
+				"YPos"		"0"
+				"yaw"		"0"
+				"XPos"		"0"
 			}
 		}
 	}
@@ -204,9 +220,9 @@
 				"scale"		"0.89999997615814"
 				"pitch"		"-165"
 				"roll"		"169"
-				"yaw"		"186"
-				"YPos"		"5"
 				"ZPos"		"-99"
+				"YPos"		"5"
+				"yaw"		"186"
 				"XPos"		"39"
 			}
 		}
@@ -217,9 +233,9 @@
 				"scale"		"1.2000000476837"
 				"pitch"		"-95"
 				"roll"		"-90"
-				"yaw"		"0"
-				"YPos"		"0"
 				"ZPos"		"-174"
+				"YPos"		"0"
+				"yaw"		"0"
 				"XPos"		"14"
 			}
 		}

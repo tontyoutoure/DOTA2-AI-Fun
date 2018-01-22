@@ -305,3 +305,53 @@ function modifier_angelic_alliance_death_drop:OnDeath(keys)
 		end
 	end
 end
+modifier_item_fun_magic_hammer_root = class({})
+
+function modifier_item_fun_magic_hammer_root:CheckState()
+	return {[MODIFIER_STATE_ROOTED] = true}
+end
+
+local function MagicHammerManaBurn(caster, target, ability)
+	local mana_burn = ability:GetSpecialValueFor("mana_burn")
+	local mana_burn_damage = ability:GetSpecialValueFor("mana_burn_damage")
+	local currentMana = target:GetMana()
+	target:EmitSound("DOTA_Item.DiffusalBlade.Activate")
+--	ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+	damageTable = {attacker = caster, victim = target, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability}
+	if currentMana > mana_burn then
+		target:SetMana(currentMana-mana_burn)
+		damageTable.damage = mana_burn*mana_burn_damage
+		ApplyDamage(damageTable)
+		local iParticle1 = ParticleManager:CreateParticle("particles/msg_fx/msg_mana_loss.vpcf", PATTACH_POINT_FOLLOW, target)
+		ParticleManager:SetParticleControl(iParticle1, 1, Vector(1, math.floor(mana_burn), 0))
+		ParticleManager:SetParticleControl(iParticle1, 2, Vector(1, 2+math.floor(math.log10(mana_burn)), 500))
+		ParticleManager:SetParticleControl(iParticle1, 3, Vector(120, 120, 200))	
+	else
+		target:SetMana(0)
+		damageTable.damage = currentMana*mana_burn_damage
+		ApplyDamage(damageTable)
+		local iParticle1 = ParticleManager:CreateParticle("particles/msg_fx/msg_mana_loss.vpcf", PATTACH_POINT_FOLLOW, target)
+		ParticleManager:SetParticleControl(iParticle1, 1, Vector(1, math.floor(currentMana), 0))
+		ParticleManager:SetParticleControl(iParticle1, 2, Vector(1, 2+math.floor(math.log10(currentMana)), 500))
+		ParticleManager:SetParticleControl(iParticle1, 3, Vector(120, 120, 200))	
+	end	
+end
+
+function modifier_item_fun_magic_hammer_root:OnCreated()
+	if IsClient() then return end
+	local hParent = self:GetParent()
+	MagicHammerManaBurn(self:GetCaster(), hParent, self:GetAbility())
+	self.iParticle = ParticleManager:CreateParticle("particles/econ/items/oracle/oracle_fortune_ti7/oracle_fortune_ti7_purge.vpcf", PATTACH_ABSORIGIN_FOLLOW, hParent)
+	ParticleManager:SetParticleControlEnt(self.iParticle, 1, hParent, PATTACH_POINT_FOLLOW, "attach_hitloc", hParent:GetOrigin(), true)
+	self:StartIntervalThink(CalculateStatusResist(hParent))
+end
+
+function modifier_item_fun_magic_hammer_root:OnIntervalThink()
+	if IsClient() then return end
+	MagicHammerManaBurn(self:GetCaster(), self:GetParent(), self:GetAbility())
+end
+
+function modifier_item_fun_magic_hammer_root:OnDestroy()
+	if IsClient() then return end
+	ParticleManager:DestroyParticle(self.iParticle, true)
+end

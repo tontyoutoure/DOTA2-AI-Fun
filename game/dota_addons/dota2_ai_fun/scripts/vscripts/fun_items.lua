@@ -7,6 +7,7 @@ LinkLuaModifier("modifier_economizer_ultimate", "fun_item_modifiers_lua.lua", LU
 LinkLuaModifier("modifier_ragnarok_cleave", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_angelic_alliance_maximum_speed", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_angelic_alliance_death_drop", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_item_fun_magic_hammer_root", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 local function CheckStringInTable(s, t)
 	for i = 1, #t do
 		if s == t[i] then return true end
@@ -222,7 +223,7 @@ function EAARestoreManaRefresh(keys)
 	local bIsAA = keys.ability:GetName() == "item_fun_angelic_alliance"
 	
 	if bIsAA then 
-		caster:AddNewModifier(caster, keys.ability, "modifier_angelic_alliance_maximum_speed", {Duration = 0.15}) 
+		caster:AddNewModifier(caster, keys.ability, "modifier_angelic_alliance_maximum_speed", {Duration = 1.5}) 
 	end
 	
 	if not caster:HasModifier("modifier_imbalanced_economizer") then return end
@@ -259,20 +260,23 @@ function AngelicAllianceAngelDown(keys)
 	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_item_fun_angelic_alliance_out", {duration = 0.07})
 
 end
-
+local iCounter = 0
 function AASpellLifestealApply(keys)
-	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_angelic_alliance_spell_lifesteal", {Duration = 0.15})	
-	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_angelic_alliance_death_drop", {Duration = 0.15})
-	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_economizer_ultimate", {Duration = 0.15})
+	if iCounter%10 == 0 then
+		keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_angelic_alliance_spell_lifesteal", {Duration = 1.5})	
+		keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_angelic_alliance_death_drop", {Duration = 1.5})
+		keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_economizer_ultimate", {Duration = 1.5})
+	end
+	iCounter = iCounter+1
 end
 
 function EconomizerSpellLifestealApply(keys)
-	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_economizer_spell_lifesteal", {Duration = 0.15})
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_economizer_spell_lifesteal", {Duration = 1.5})
 end
 
 function HerosBowOnHit(keys)	
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
-	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_item_fun_heros_bow_debuff", {Duration = keys.ability:GetSpecialValueFor("duration")})
+	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_item_fun_heros_bow_debuff", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(keys.target)})
 	keys.target:EmitSound("Hero_FacelessVoid.TimeLockImpact")
 	damageTable = {
 		victim = keys.target,
@@ -282,7 +286,7 @@ function HerosBowOnHit(keys)
 		ability = keys.ability
 	}
 	ApplyDamage(damageTable)
-	if keys.caster:IsRangedAttacker() then keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_heros_bow_always_allow_attack", {Duration = keys.ability:GetSpecialValueFor("duration")}) end
+	if keys.caster:IsRangedAttacker() then keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_heros_bow_always_allow_attack", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(keys.target)}) end
 end
 
 function DarksideDamage(keys)
@@ -336,9 +340,7 @@ function MagicHammerSpellStart(keys)
 			for k, v in ipairs(tTargets) do
 				if not tEffectedTargets[v:entindex()] then
 					tEffectedTargets[v:entindex()] = true
-					keys.ability:ApplyDataDrivenModifier(keys.caster, v, "modifier_item_fun_magic_hammer_root", {Duration = iRootDuration})
-					
-					
+					v:AddNewModifier(keys.caster, keys.ability, "modifier_item_fun_magic_hammer_root", {Duration = iRootDuration*CalculateStatusResist(v)})
 					v:EmitSound("Hero_NyxAssassin.ManaBurn.Target")
 				end
 			end
@@ -358,38 +360,9 @@ function MagicHammerRootEnd(keys)
 	end
 end
 
-function MagicHammerManaBurn(keys)
-	local caster = keys.caster
-	local target = keys.target
-	local ability = keys.ability
-	local mana_burn = ability:GetSpecialValueFor("mana_burn")
-	local mana_burn_damage = ability:GetSpecialValueFor("mana_burn_damage")
-	local currentMana = target:GetMana()
-	target:EmitSound("DOTA_Item.DiffusalBlade.Activate")
---	ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
-	damageTable = {attacker = caster, victim = target, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability}
-	if currentMana > mana_burn then
-		target:SetMana(currentMana-mana_burn)
-		damageTable.damage = mana_burn*mana_burn_damage
-		ApplyDamage(damageTable)
-		local iParticle1 = ParticleManager:CreateParticle("particles/msg_fx/msg_mana_loss.vpcf", PATTACH_POINT_FOLLOW, keys.target)
-		ParticleManager:SetParticleControl(iParticle1, 1, Vector(1, math.floor(mana_burn), 0))
-		ParticleManager:SetParticleControl(iParticle1, 2, Vector(1, 2+math.floor(math.log10(mana_burn)), 500))
-		ParticleManager:SetParticleControl(iParticle1, 3, Vector(120, 120, 200))	
-	else
-		target:SetMana(0)
-		damageTable.damage = currentMana*mana_burn_damage
-		ApplyDamage(damageTable)
-		local iParticle1 = ParticleManager:CreateParticle("particles/msg_fx/msg_mana_loss.vpcf", PATTACH_POINT_FOLLOW, keys.target)
-		ParticleManager:SetParticleControl(iParticle1, 1, Vector(1, math.floor(currentMana), 0))
-		ParticleManager:SetParticleControl(iParticle1, 2, Vector(1, 2+math.floor(math.log10(currentMana)), 500))
-		ParticleManager:SetParticleControl(iParticle1, 3, Vector(120, 120, 200))	
-	end	
-end
-
 function GenjiGloveMinibash(keys)
 	if not keys.target:IsBuilding() then
-		keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_bashed", {Duration = keys.ability:GetSpecialValueFor("bash_stun")})
+		keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_bashed", {Duration = keys.ability:GetSpecialValueFor("bash_stun")*CalculateStatusResist(keys.target)})
 		keys.target:EmitSound("DOTA_Item.MKB.Minibash")
 		ParticleManager:CreateParticle("particles/generic_gameplay/generic_minibash.vpcf", PATTACH_OVERHEAD_FOLLOW, keys.target)
 		ApplyDamage({attacker = keys.caster, victim = keys.target, ability = keys.ability, damage_type = DAMAGE_TYPE_PURE, damage = keys.ability:GetSpecialValueFor("extra_damage")})
@@ -455,12 +428,12 @@ end
 
 function HerosBowReduceArmor(keys)
 	if keys.caster:IsIllusion() then return end
-	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_heros_bow_minus_armor", {Duration = keys.ability:GetSpecialValueFor("armor_reduction_duration")})
+	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_heros_bow_minus_armor", {Duration = keys.ability:GetSpecialValueFor("armor_reduction_duration")*CalculateStatusResist(keys.target)})
 end
 
 function Economizer2UltimateSpellLifestealApply(keys)
-	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_economizer_spell_lifesteal", {Duration = 0.15})
-	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_economizer_ultimate", {Duration = 0.15})
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_economizer_spell_lifesteal", {Duration = 1.5})
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_economizer_ultimate", {Duration = 1.5})
 end
 
 function RagnarokCleaveApply(keys)	
@@ -475,21 +448,13 @@ end
 function RagnarokMaimApply(keys)
 	if keys.target:IsBuilding() or keys.caster:IsIllusion() then return end
 	keys.target:EmitSound("DOTA_Item.Maim")
-	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_item_fun_ragnarok_2_ultra_maim", {Duration = keys.ability:GetSpecialValueFor("maim_duration")})
+	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_item_fun_ragnarok_2_ultra_maim", {Duration = keys.ability:GetSpecialValueFor("maim_duration")*CalculateStatusResist(keys.target)})
 end
 
 function TerraBladeMaimApply(keys)
 	if keys.target:IsBuilding() or keys.caster:IsIllusion() then return end
 	keys.target:EmitSound("DOTA_Item.Maim")
-	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_item_fun_terra_blade_ultra_maim", {Duration = keys.ability:GetSpecialValueFor("maim_duration")})
-end
-
-function AngelicAllianceDrop(keys)
-	for i = 0, 8 do
-		if keys.caster:GetItemInSlot(i) and keys.caster:GetItemInSlot(i):GetName() == "item_fun_angelic_alliance" then
-			keys.caster:DropItemAtPositionImmediate(keys.caster:GetItemInSlot(i), keys.caster:GetOrigin())
-		end
-	end
+	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_item_fun_terra_blade_ultra_maim", {Duration = keys.ability:GetSpecialValueFor("maim_duration")*CalculateStatusResist(keys.target)})
 end
 
 function AAChangePurchaser(keys)
@@ -545,7 +510,7 @@ end
 
 function TerraBladeMinibash(keys)
 	if not keys.target:IsBuilding() and not keys.caster:IsIllusion() then
-		keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_bashed", {Duration = keys.ability:GetSpecialValueFor("bash_stun")})
+		keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_bashed", {Duration = keys.ability:GetSpecialValueFor("bash_stun")*CalculateStatusResist(keys.target)})
 		keys.target:EmitSound("DOTA_Item.MKB.Minibash")
 		ParticleManager:CreateParticle("particles/generic_gameplay/generic_minibash.vpcf", PATTACH_OVERHEAD_FOLLOW, keys.target)
 	end

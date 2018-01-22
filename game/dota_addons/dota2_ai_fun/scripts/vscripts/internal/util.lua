@@ -198,6 +198,17 @@ function PrintAllModifiers( PlayerID )
 
 end
 
+
+function PrintAllAbilities( PlayerID )
+	local tModifiers = PlayerResource:GetPlayer(PlayerID):GetAssignedHero():FindAllModifiers()
+	for i = 0, 23 do
+		if PlayerResource:GetPlayer(PlayerID):GetAssignedHero():GetAbilityByIndex(i) then
+			print(PlayerResource:GetPlayer(PlayerID):GetAssignedHero():GetAbilityByIndex(i):GetName())
+		end
+	end
+
+end
+
 function Vector2D(v3D)
 	return Vector(Vector(0,0,0).Dot(Vector(1,0,0), v3D), Vector(0,0,0).Dot(Vector(0,1,0), v3D),0)
 end

@@ -1,0 +1,165 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"exsoldier_braver"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.2"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"9"
+		"AbilityManaCost"	"80 100 120 140"
+		"AbilityCastRange"	"%range"
+		"AOERadius"	"%radius"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"65 130 195 260"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"300 400 500 600"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"	"500 700 900 1100"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun_duration"	"0.75 1 1.25 1.5"
+			}
+		}
+	}
+
+	"exsoldier_blade_beam"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.2"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK_STATUE"
+		"AbilityCooldown"	"7"
+		"AbilityManaCost"	"90 100 110 120"
+		"AbilityCastRange"	"600"
+		"AbilityCastRangeBuffer"	"200"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"75 150 225 300"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"blast_damage"	"65 130 195 260"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"blast_radius"	"600"
+			}
+		}
+	}
+
+	"exsoldier_meteorain"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"invoker_chaos_meteor"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chance"	"10 15 20 25"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"100"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun_duration"	"0.01"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"250"
+			}
+		}
+	}
+
+	"exsoldier_omnislash"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"juggernaut_omni_slash_arcana"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"	"120 100 80"
+		"AbilityManaCost"	"120 160 200"
+		"AbilityCastRange"	"1000"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"search_radius"	"1000"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"truesight_radius"	"1000"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"crit"	"200 250 300"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_count"	"5 10 15"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"attack_interval"	"0.3"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_count_scepter"	"10 15 20"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cooldown_scepter"	"40"
+			}
+		}
+	}
+}

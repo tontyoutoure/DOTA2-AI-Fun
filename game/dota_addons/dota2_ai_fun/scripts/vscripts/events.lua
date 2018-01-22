@@ -197,7 +197,7 @@ function GameMode:_OnNPCSpawned(keys)
 	if GameRules:State_Get() < DOTA_GAMERULES_STATE_PRE_GAME then return end
 	local hHero = EntIndexToHScript(keys.entindex)	
 	if hHero:IsHero() and not hHero.bInitialized and ((hHero:GetPlayerOwner() and hHero:GetPlayerOwner().bIsPlayingFunHero) or hHero.bIsPlayingFunHero ) then self:InitializeFunHero(hHero) end
-	
+--	if hHero:IsHero() and not hHero.bInitialized then self:InitializeFunHero(hHero) end
 	if hHero:GetName() == "npc_dota_hero_sniper" then
 		require('heroes/sniper/sniper_init')
 		SniperInit(hHero, self)

@@ -6,31 +6,4 @@
 	{
 					"MaxPlayers"                    "20"
 	}
-	"Default_Keys"
-    {
-        "01"
-        {
-            "Key"       "V"
-            "Command"   "KeyClickV"
-            "Name"      "Key Click V"
-        }
-        "02"
-        {
-            "Key"       "B"
-            "Command"   "KeyClickB"
-            "Name"      "Key Click B"
-        }
-        "03"
-        {
-            "Key"       "N"
-            "Command"   "KeyClickN"
-            "Name"      "Key Click N"
-        }
-        "04"
-        {
-            "Key"       "M"
-            "Command"   "KeyClickM"
-            "Name"      "Key Click M"
-        }
-    }
 }
