@@ -1,6 +1,6 @@
 hHero = PlayerResource:GetPlayer(0):GetAssignedHero()
-PrintAllModifiers(0)
-PrintAllAbilities(0)
+print(Time())
+print(GameRules:GetGameTime())
 
 --[[
 for i = 0, 23 do

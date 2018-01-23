@@ -145,7 +145,8 @@ function modifier_ramza_job_manager:DeclareFunctions()
 		MODIFIER_EVENT_ON_TAKEDAMAGE_KILLCREDIT,
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
-		MODIFIER_EVENT_ON_ATTACK
+		MODIFIER_EVENT_ON_ATTACK,
+		MODIFIER_EVENT_ON_DEATH
 	}
 end
 
@@ -171,6 +172,11 @@ local tAttackSound = {
 	[19] = "Hero_Abaddon.Attack",
 	[20] = "Hero_Kunkka.Attack"		
 }
+
+function modifier_ramza_job_manager:OnDeath(keys)
+	if keys.unit ~= self:GetParent() or keys.unit:IsIllusion() then return end	
+	CustomGameEventManager:Send_ServerToPlayer( keys.unit:GetOwner(), "ramza_close_selection", nil )
+end
 
 function modifier_ramza_job_manager:GetAttackSound()
 	return ""

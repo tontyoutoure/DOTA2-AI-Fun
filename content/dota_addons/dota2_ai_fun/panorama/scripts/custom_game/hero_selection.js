@@ -1,6 +1,6 @@
 "use strict";
 //$("#HeroAvatarBtnMeepo").style.visibility = 'collapse';
-
+$("#HeroAvatarBtnJuggernaut").visible = false
 var sActivatingPanel
 var sSelectingPart
 function HeroDescription(sPanelID){

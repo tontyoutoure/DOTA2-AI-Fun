@@ -274,6 +274,10 @@
 							<Image id="HeroAvatarTusk" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_tusk.png" />
 							<Panel id="HeroAvatarCoverTusk" class="HeroAvatarCover"/>
 						</Button>
+						<Button id="HeroAvatarBtnJuggernaut" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelJuggernaut&quot;);"> 
+							<Image id="HeroAvatarJuggernaut" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_juggernaut.png" />
+							<Panel id="HeroAvatarCoverJuggernaut" class="HeroAvatarCover"/>
+						</Button>
 					</Panel>
 					<Button id="JoinUsButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelJoinUs&quot;);">				
 						<Label id="JoinUsButtonLabel" text="#join_us_title" />
@@ -491,6 +495,16 @@
 						<Label id="HeroSelectionLabel" text="#select_hero" />
 					</Button>
 					<Button id="HeroUnselectionTusk" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_tusk', 'Tusk');">				
+						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
+					</Button>
+				</Panel>
+				<Panel id="HeroDescriptionPopPanelJuggernaut" class = "HeroDescriptionPopPanelTop">
+					<Label id="HeroNameJuggernaut" class="HeroName" text="#npc_dota_hero_juggernaut_long"/>
+					<Label id="HeroBioJuggernaut" class="HeroBio" text="#npc_dota_hero_juggernaut_bio"/>
+					<Button id="HeroSelectionJuggernaut" class="HeroSelectionButton" onactivate="HeroSelection('npc_dota_hero_juggernaut', 'Juggernaut');">				
+						<Label id="HeroSelectionLabel" text="#select_hero" />
+					</Button>
+					<Button id="HeroUnselectionJuggernaut" class="HeroUnselectionButton" onactivate="HeroUnselection('npc_dota_hero_juggernaut', 'Juggernaut');">				
 						<Label id="HeroUnselectionLabel" text="#unselect_hero" />
 					</Button>
 				</Panel>

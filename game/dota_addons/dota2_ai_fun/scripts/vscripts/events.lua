@@ -132,7 +132,8 @@ function GameMode:OnGameStateChanged( keys )
 		for k, v in pairs(tTowers) do
 			v:AddNewModifier(v, nil, "modifier_tower_endure", {}):SetStackCount(iTowerEndure)
 		end
-		
+	elseif state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+		self.fGameStartTime = GameRules:GetGameTime()
 		
 --      for i=0, DOTA_MAX_TEAM_PLAYERS do`
 --          print(i)
@@ -149,7 +150,7 @@ function GameMode:OnPlayerSpawn(keys)
 end
 
 local CalculateLevelRespawnTimeWithDiscount = function (iLevel)
-	local tDOTARespawnTime = {8, 10, 12, 14, 16, 26, 28, 30, 32, 34, 36, 46, 48, 50, 52, 54, 56, 66, 70, 74, 78, 82, 86, 90, 100}
+	local tDOTARespawnTime = {8, 10, 12, 14, 16, 26, 28, 30, 32, 34, 36, 48,52,54,56,58,60,70,74,76, 78, 82, 86, 90, 100}
 	if iLevel <= 25 then return tDOTARespawnTime[iLevel]*GameMode.iRespawnTimePercentage/100 end
 	return (100+4*(iLevel-25))*GameMode.iRespawnTimePercentage/100
 end

@@ -81,10 +81,12 @@ function GameMode:PreGameOptions()
 	self.iMaxLevel = self.iMaxLevel or MAX_LEVEL
 	self.iImbalancedEconomizer = self.iImbalancedEconomizer or 0
 	self.iUniversalShop = self.iUniversalShop or 0
+	self.fGameStartTime = 0
 	GameRules:SetGoldPerTick(self.iGoldPerTick)
 	GameRules:SetGoldTickTime(self.iGoldTickTime)
     GameRules:GetGameModeEntity():SetModifyGoldFilter( Dynamic_Wrap( GameMode, "FilterGold" ), self )	
     GameRules:GetGameModeEntity():SetModifyExperienceFilter( Dynamic_Wrap( GameMode, "FilterXP" ), self )
+	GameRules:GetGameModeEntity():SetRuneSpawnFilter( Dynamic_Wrap( GameMode, "FilterRune" ), self )
 	if IsInToolsMode() or self.iUniversalShop == 1 then		
 		GameRules:SetUseUniversalShopMode(true)
 	end
@@ -266,4 +268,60 @@ function GameMode:FilterXP(tXPFilter)
 --		print("Dire XP", tXPFilter["experience"], iXP)
 	end
 	return true
+end
+
+local bFirstRuneShouldSpawned = false
+local bFirstRuneActuallySpawned = false
+local tPossibleRunes = {
+	DOTA_RUNE_ILLUSION,
+	DOTA_RUNE_REGENERATION,
+	DOTA_RUNE_HASTE,
+	DOTA_RUNE_INVISIBILITY,
+	DOTA_RUNE_DOUBLEDAMAGE,
+	DOTA_RUNE_ARCANE
+}
+
+local tLastRunes = {}
+
+function GameMode:FilterRune(tRuneFilter)
+	if GameRules:GetGameTime() > 2395+self.fGameStartTime then
+		tRuneFilter.rune_type = tPossibleRunes[RandomInt(1, 6)]
+		while tRuneFilter.rune_type == tLastRunes[tRuneFilter.spawner_entindex_const] do
+			tRuneFilter.rune_type = tPossibleRunes[RandomInt(1, 6)]
+		end
+		tLastRunes[tRuneFilter.spawner_entindex_const] = tRuneFilter.rune_type
+		return true
+	else
+		if bFirstRuneShouldSpawned then
+			if bFirstRuneActuallySpawned then
+				tLastRunes[tRuneFilter.spawner_entindex_const] = nil
+				bFirstRuneShouldSpawned = false
+				return false
+			else
+				tRuneFilter.rune_type = tPossibleRunes[RandomInt(1, 6)]
+				while tRuneFilter.rune_type == tLastRunes[tRuneFilter.spawner_entindex_const] do
+					tRuneFilter.rune_type = tPossibleRunes[RandomInt(1, 6)]
+				end
+				tLastRunes[tRuneFilter.spawner_entindex_const] = tRuneFilter.rune_type
+				bFirstRuneShouldSpawned = false
+				return true
+			end
+		else
+			if RandomInt(0,1) > 0 then
+				bFirstRuneActuallySpawned = true
+				bFirstRuneShouldSpawned = true
+				tRuneFilter.rune_type = tPossibleRunes[RandomInt(1, 6)]
+				while tRuneFilter.rune_type == tLastRunes[tRuneFilter.spawner_entindex_const] do
+					tRuneFilter.rune_type = tPossibleRunes[RandomInt(1, 6)]
+				end
+				tLastRunes[tRuneFilter.spawner_entindex_const] = tRuneFilter.rune_type
+				return true
+			else
+				bFirstRuneActuallySpawned = false
+				bFirstRuneShouldSpawned = true
+				tLastRunes[tRuneFilter.spawner_entindex_const] = nil
+				return false
+			end
+		end
+	end
 end

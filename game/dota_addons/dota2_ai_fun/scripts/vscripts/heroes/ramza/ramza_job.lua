@@ -354,7 +354,7 @@ function CRamzaJob:ChangeJob()
 		-- tell panorama
 --		print("job change to", self.tJobNames[self.iCurrentJob])
 		CustomNetTables:SetTableValue("ramza_current_job", tostring(iPlayerID), {self.iCurrentJob})		
-		CustomGameEventManager:Send_ServerToPlayer( self.hParent:GetOwner(), "ramza_select_job", nil )
+		CustomGameEventManager:Send_ServerToPlayer( self.hParent:GetOwner(), "ramza_close_selection", nil )
 	else	
 		if self.hParent:GetAbilityByIndex(5):GetName() == 'ramza_go_back_lua' then
 			self.hParent:FindAbilityByName('ramza_go_back_lua'):CastAbility()
@@ -411,7 +411,7 @@ function CRamzaJob:ChangeJob()
 		end
 
 		CustomNetTables:SetTableValue("ramza_current_secondary_skill", tostring(iPlayerID), {self.iSecondarySkill})
-		CustomGameEventManager:Send_ServerToPlayer( self.hParent:GetOwner(), "ramza_select_secondary_skill", nil )
+		CustomGameEventManager:Send_ServerToPlayer( self.hParent:GetOwner(), "ramza_close_selection", nil )
 	end
 end
 

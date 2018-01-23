@@ -30,6 +30,7 @@ end
 function ramza_open_stats_lua:ProcsMagicStick() return false end
 function ramza_open_stats_lua:OnSpellStart()
 	local hCaster = self:GetCaster()
+	CustomGameEventManager:Send_ServerToPlayer( hCaster:GetOwner(), "ramza_close_selection", nil )
 	hCaster.iBraveryLevel = hCaster.iBraveryLevel or 0
 	hCaster.iSpeedLevel = hCaster.iSpeedLevel or 0
 	hCaster.iFaithLevel = hCaster.iFaithLevel or 0
@@ -105,6 +106,7 @@ end
 function ramza_go_back_lua:OnSpellStart()	
 	local hCaster = self:GetCaster()
 	local sName
+	CustomGameEventManager:Send_ServerToPlayer( hCaster:GetOwner(), "ramza_close_selection", nil )
 	
 	if hCaster.iMenuState == RAMZA_MENU_STATE_UPGRADE then
 		hCaster:FindAbilityByName(hCaster.tNormalMenuState[1]):SetHidden(false)	
@@ -277,6 +279,7 @@ end
 
 local RamzaJCOnSpellStart = function (self)
 	local hCaster = self:GetCaster()
+	CustomGameEventManager:Send_ServerToPlayer( hCaster:GetOwner(), "ramza_close_selection", nil )
 	local tJobCommandBus
 	local iPointer
 	local tJobCommandBusRequirement

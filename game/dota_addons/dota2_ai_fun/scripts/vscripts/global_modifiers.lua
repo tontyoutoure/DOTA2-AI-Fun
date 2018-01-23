@@ -51,7 +51,7 @@ function modifier_bot_attack_tower_pick_rune:OnIntervalThink()
 	local hParent = self:GetParent()
 	local tTowers = FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
 	
-	if hParent:GetHealth()/hParent:GetMaxHealth() > 0.2 and tTowers[1] and FindUnitsInRadius(tTowers[1]:GetTeam(), tTowers[1]:GetAbsOrigin(), nil, 750, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_NOT_SUMMONED, FIND_CLOSEST, false)[1] and not FindUnitsInRadius(tTowers[1]:GetTeam(), tTowers[1]:GetAbsOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)[1] and not FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)[1] then
+	if hParent:GetHealth()/hParent:GetMaxHealth() > 0.2 and tTowers[1] and tTowers[1]:GetClassname() ~= "npc_dota_healer" and FindUnitsInRadius(tTowers[1]:GetTeam(), tTowers[1]:GetAbsOrigin(), nil, 750, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_NOT_SUMMONED, FIND_CLOSEST, false)[1] and not FindUnitsInRadius(tTowers[1]:GetTeam(), tTowers[1]:GetAbsOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)[1] and not FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)[1] then
 		if self.hTarget == tTowers[1] then return end
 		self.bSentCommand = true
 		self.hTarget = tTowers[1]
@@ -64,10 +64,8 @@ function modifier_bot_attack_tower_pick_rune:OnIntervalThink()
 		hParent:SetForceAttackTarget(nil)
 		ExecuteOrderFromTable(tOrder)
 		hParent:SetForceAttackTarget(self.hTarget)
-	elseif Entities:FindAllByClassnameWithin("dota_item_rune", hParent:GetOrigin(), 800)[1] then
-		if self.bSentCommand then return end	
-		local hRune = Entities:FindAllByClassnameWithin("dota_item_rune", hParent:GetOrigin(), 800)[1]
-		self.bSentCommand = true
+	elseif Entities:FindAllByClassnameWithin("dota_item_rune", hParent:GetOrigin(), 500)[1] then
+		local hRune = Entities:FindAllByClassnameWithin("dota_item_rune", hParent:GetOrigin(), 500)[1]
 		local tOrder = 
 		{
 			UnitIndex = hParent:entindex(),
@@ -75,7 +73,7 @@ function modifier_bot_attack_tower_pick_rune:OnIntervalThink()
 			TargetIndex = hRune:entindex()
 		}
 		ExecuteOrderFromTable(tOrder)		
-	elseif self.bSentCommand then
+	elseif self.bSentCommand then	
 		hParent:SetForceAttackTarget(nil)
 		self.bSentCommand = false
 		self.hTarget = nil
