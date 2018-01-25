@@ -158,4 +158,10 @@ function modifier_attribute_indicator_hamsterlord:IsHidden() return false end
 function modifier_attribute_indicator_hamsterlord:IsDebuff() return false end
 function modifier_attribute_indicator_hamsterlord:GetTexture() return "attribute_indicator" end
 
-
+LinkLuaModifier("modifier_attribute_indicator_exsoldier", "modifier_attribute_indicators.lua", LUA_MODIFIER_MOTION_NONE)
+modifier_attribute_indicator_exsoldier = class({})
+function modifier_attribute_indicator_exsoldier:RemoveOnDeath() return false end
+function modifier_attribute_indicator_exsoldier:IsPurgable() return false end
+function modifier_attribute_indicator_exsoldier:IsHidden() return false end
+function modifier_attribute_indicator_exsoldier:IsDebuff() return false end
+function modifier_attribute_indicator_exsoldier:GetTexture() return "attribute_indicator" end

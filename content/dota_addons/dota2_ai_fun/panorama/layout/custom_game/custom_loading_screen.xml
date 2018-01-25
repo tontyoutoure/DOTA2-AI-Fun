@@ -275,7 +275,7 @@
 							<Panel id="HeroAvatarCoverTusk" class="HeroAvatarCover"/>
 						</Button>
 						<Button id="HeroAvatarBtnJuggernaut" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelJuggernaut&quot;);"> 
-							<Image id="HeroAvatarJuggernaut" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_juggernaut.png" />
+							<Image id="HeroAvatarJuggernaut" class="HeroAvatar" src="file://{images}/custom_game/npc_dota_hero_juggernaut.png" />
 							<Panel id="HeroAvatarCoverJuggernaut" class="HeroAvatarCover"/>
 						</Button>
 					</Panel>

@@ -29,7 +29,8 @@ local tHeroBaseStats = {
 	ArmorPhysical = 2,
 	PrimaryAttribute = DOTA_ATTRIBUTE_STRENGTH,
 	AttackAnimationPoint = 0.4,
-	Model = 'models/heroes/attachto_ghost/attachto_ghost.vmdl',
+	Model = 'models/ghostanim.vmdl',
+	ModelScale = 10,
 	DisableWearables = true
 }
 
@@ -85,7 +86,7 @@ HurricaneInit = function (hHero, context)
 		ListenToGameEvent("npc_spawned", HurricaneAddParticle, nil)
 		ListenToGameEvent("entity_killed", HurricaneRemoveParticle, nil)
 	end
-	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)	
+	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)
 end
 
 

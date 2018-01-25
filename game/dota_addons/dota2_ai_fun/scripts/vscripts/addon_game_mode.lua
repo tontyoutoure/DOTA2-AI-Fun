@@ -312,6 +312,7 @@ function Precache( context )
 	PrecacheResource("particle", "particles/econ/items/invoker/invoker_ti7/status_effect_alacrity_ti7.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/invoker/invoker_ti7/invoker_ti7_alacrity_buff.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts", context)
+	PrecacheResource("particle", "particles/econ/items/centaur/centaur_ti6/centaur_ti6_warstomp.vpcf", context)
 end
 
 

@@ -1848,7 +1848,8 @@
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%manaregen"
 				}
-				"OnAttackStart"
+				"ThinkInterval"  "1"
+				"OnIntervalThink"
 				{
 					"RunScript"
 					{

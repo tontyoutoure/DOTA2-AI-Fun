@@ -21,3 +21,4 @@
 #base "abilities\capslockftw.txt"
 #base "abilities\templar.txt"
 #base "abilities\spongebob.txt"
+#base "abilities\exsoldier.txt"

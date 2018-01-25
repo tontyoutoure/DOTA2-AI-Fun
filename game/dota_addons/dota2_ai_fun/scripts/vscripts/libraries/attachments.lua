@@ -524,6 +524,9 @@ function Attachments:AttachProp(unit, attachPoint, model, scale, properties)
 			prop = model
 		else
 			prop = SpawnEntityFromTableSynchronous("prop_dynamic", {model = propModel, DefaultAnim=animation, targetname=DoUniqueString("prop_dynamic")})
+--			prop = CreateUnitByName("npc_dummy_unit", Vector(0, 0, 0), false, nil, nil, unit:GetTeam())
+--			prop:SetModel(propModel)
+--			prop:SetOriginalModel(propModel)
 			prop:SetModelScale(scale * unit:GetModelScale())
 		end
 

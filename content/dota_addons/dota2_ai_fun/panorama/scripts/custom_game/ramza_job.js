@@ -432,13 +432,8 @@ function UpdateRamzaDeath(keys) {
 	}
 }
 
-function TestFunction(keys) {
-	$.Msg(Game.Time())
-}
-
 GameEvents.Subscribe( "ramza_select_job", RamzaSelectJobListener);
 GameEvents.Subscribe( "ramza_select_secondary_skill", RamzaSelectSecondarySkillListener);
 GameEvents.Subscribe( "ramza_close_selection", RamzaCloseSelectionListener)
 GameEvents.Subscribe( "dota_player_update_selected_unit", RamzaPortraitApply);
-GameEvents.Subscribe( "dota_player_shop_changed", TestFunction);
 GameEvents.Subscribe( "dota_player_update_killcam_unit", UpdateRamzaDeath);

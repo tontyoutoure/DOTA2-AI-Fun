@@ -104,6 +104,11 @@ if not IsClient() then
 			require('heroes/hamsterlord/hamsterlord_init')
 			HampsterLordInit(hHero, self)
 		end
+		
+		if hHero:GetName() == "npc_dota_hero_juggernaut" then
+			require('heroes/exsoldier/exsoldier_init')
+			ExsoldierInit(hHero, self)
+		end
 	end
 
 

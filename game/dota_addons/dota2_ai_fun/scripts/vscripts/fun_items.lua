@@ -442,7 +442,7 @@ function RagnarokCleaveApply(keys)
 		keys.ability.hModifier = nil
 	end
 	if keys.caster:IsRangedAttacker() or keys.caster:IsIllusion() then return end
-	keys.ability.hModifier = keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ragnarok_cleave", {Duration = 3})
+	keys.ability.hModifier = keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ragnarok_cleave", {Duration = 1.5})
 end
 
 function RagnarokMaimApply(keys)

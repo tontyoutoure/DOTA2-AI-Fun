@@ -161,7 +161,6 @@ function modifier_ragnarok_cleave:OnAttackLanded(keys)
 	if keys.attacker ~= self:GetParent() then return end
 	local hAbility = self:GetAbility()
 	DoCleaveAttack(keys.attacker, keys.target, hAbility, hAbility:GetSpecialValueFor("cleave_damage")*keys.original_damage/100, hAbility:GetSpecialValueFor("cleave_start_radius"), hAbility:GetSpecialValueFor("cleave_end_radius"),hAbility:GetSpecialValueFor("cleave_distance"), "particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength.vpcf")	
-	self:Destroy()
 end
 
 modifier_magic_hammer_mana_break = class({})
