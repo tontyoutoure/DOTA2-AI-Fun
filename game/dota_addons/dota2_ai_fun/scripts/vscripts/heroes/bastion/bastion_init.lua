@@ -15,6 +15,7 @@ local tNewAbilities = {
 	"special_bonus_bastion_1"
 }
 
+
 local tHeroBaseStats = {
 	MovementSpeed = 300,
 	AttackRate = 1.7,
@@ -32,6 +33,8 @@ local tHeroBaseStats = {
 	ProjectileModel = "particles/units/heroes/hero_morphling/morphling_base_attack.vpcf"
 }
 
+CustomNetTables:SetTableValue("fun_hero_abilities", "bastion", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "bastion", tHeroBaseStats)
 function BastionInit(hHero)	
 	WearableManager:RemoveOriginalWearables(hHero)
 	hHero:SetModel("models/creeps/neutral_creeps/n_creep_thunder_lizard/n_creep_thunder_lizard_big.vmdl")

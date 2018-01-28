@@ -31,6 +31,8 @@ local tHeroBaseStats = {
 	ArmorPhysical = 3,
 	PrimaryAttribute = DOTA_ATTRIBUTE_STRENGTH
 }
+CustomNetTables:SetTableValue("fun_hero_abilities", "felguard", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "felguard", tHeroBaseStats)
 
 function FelguardInit(hHero, context)
 	hHero:AddNewModifier(hHero, nil, "modifier_felguard_color", {})

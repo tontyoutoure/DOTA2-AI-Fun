@@ -26,3 +26,4 @@ templar.txt
 spongebob.txt
 hamsterlord.txt
 exsoldier.txt
+gambler.txt

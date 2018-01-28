@@ -32,8 +32,9 @@ local tHeroBaseStats = {
 	ArmorPhysical = 1,
 	PrimaryAttribute = DOTA_ATTRIBUTE_INTELLECT,
 	AttackAnimationPoint = 0.2,
-	ProjectileModel = "particles/units/heroes/hero_oracle/oracle_base_attack.vpcf",
 }
+CustomNetTables:SetTableValue("fun_hero_abilities", "cleric", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "cleric", tHeroBaseStats)
 
 function ClericTalentManager(keys)
 	if PlayerResource:GetPlayer(keys.player-1):GetAssignedHero():GetName() ~= "npc_dota_hero_rubick" then return end

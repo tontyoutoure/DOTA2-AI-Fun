@@ -1,10 +1,4 @@
-LinkLuaModifier("modifier_special_bonus_hamsterlord_5", "heroes/hamsterlord/hamsterlord_init.lua", LUA_MODIFIER_MOTION_NONE)
-modifier_special_bonus_hamsterlord_5 = class({})
-function modifier_special_bonus_hamsterlord_5:IsHidden() return true end
-function modifier_special_bonus_hamsterlord_5:IsPurgable() return false end
-function modifier_special_bonus_hamsterlord_5:CheckState() return {[MODIFIER_STATE_MAGIC_IMMUNE]=true} end
-function modifier_special_bonus_hamsterlord_5:GetEffectName() return "particles/items_fx/black_king_bar_avatar.vpcf" end
-function modifier_special_bonus_hamsterlord_5:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
+LinkLuaModifier("modifier_special_bonus_hamsterlord_5", "heroes/hamsterlord/hamsterlord_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 
 local tNewAbilities = {
 	"hamsterlord_pizza_house_delivery",
@@ -39,6 +33,8 @@ local tHeroBaseStats = {
 	AttackAnimationPoint = 0.36,
 }
 
+CustomNetTables:SetTableValue("fun_hero_abilities", "hamsterlord", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "hamsterlord", tHeroBaseStats)
 local function HamsterlordTalentManager(keys)
 	if keys.abilityname == "special_bonus_hamsterlord_2" then	
 		local hPlayer = PlayerResource:GetPlayer(keys.player-1)

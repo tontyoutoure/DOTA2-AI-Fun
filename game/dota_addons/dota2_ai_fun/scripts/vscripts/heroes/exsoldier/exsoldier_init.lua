@@ -72,33 +72,9 @@ local tJuggernautWeaponModels = {
 	["models/items/juggernaut/armor_for_the_favorite_weapon/armor_for_the_favorite_weapon.vmdl"] = true,
 }
 
-LinkLuaModifier("modifier_exsoldier_change_attack_sound", "heroes/exsoldier/exsoldier_init.lua", LUA_MODIFIER_MOTION_NONE)
-modifier_exsoldier_change_attack_sound = class({})
-function modifier_exsoldier_change_attack_sound:DeclareFunctions()
-	return {MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND, MODIFIER_EVENT_ON_ATTACK_LANDED, MODIFIER_EVENT_ON_DEATH}
-end
-
-function modifier_exsoldier_change_attack_sound:GetAttackSound()
-	return "Hero_Sven.Attack.Impact"
-end
-
-function modifier_exsoldier_change_attack_sound:OnDeath()
-	if self:GetParent():IsIllusion() then
-		print(self:GetParent().tWearables[1].wearable:IsNull())
-		self:GetParent().tWearables[1].wearable:AddEffects(EF_NODRAW)
-	end
-end
-function modifier_exsoldier_change_attack_sound:RemoveOnDeath() return false end
-function modifier_exsoldier_change_attack_sound:IsPurgable() return false end
-function modifier_exsoldier_change_attack_sound:IsHidden() return true end
-
-function modifier_exsoldier_change_attack_sound:OnAttackLanded(keys)
-	if self:GetParent() ~= keys.attacker then return end
-	keys.attacker:EmitSound("Hero_Sven.Attack.Ring")
-	keys.attacker:EmitSound("Hero_Sven.Attack.Ring")
-	keys.attacker:EmitSound("Hero_Sven.Attack.Impact")
-	keys.attacker:EmitSound("Hero_Sven.Attack.Impact")
-end
+CustomNetTables:SetTableValue("fun_hero_abilities", "exsoldier", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "exsoldier", tHeroBaseStats)
+LinkLuaModifier("modifier_exsoldier_sword_manager", "heroes/exsoldier/exsoldier_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 
 
 function ExsoldierReplaceSword(hHero)	
@@ -110,7 +86,7 @@ function ExsoldierReplaceSword(hHero)
 				v:RemoveSelf()
 				hHero.tWearables = {}
 				hHero.tWearables[1]={}
-				hHero.tWearables[1].wearable = Attachments:AttachProp(hHero, "attach_sword", "models/items/sven/shattered_greatsword/sven_shattered_greatsword.vmdl", hHero:GetModelScale()*1.5, {
+				hHero:AddNewModifier(hHero, nil, "modifier_exsoldier_sword_manager", {}).hSword = Attachments:AttachProp(hHero, "attach_sword", "models/items/sven/shattered_greatsword/sven_shattered_greatsword.vmdl", hHero:GetModelScale()*1.5, {
 					pitch = 0,
 					yaw = 0,
 					roll = -105.0,
@@ -119,8 +95,6 @@ function ExsoldierReplaceSword(hHero)
 					ZPos = 0,
 					Animation = "idle"
 				})
-				hHero:AddNewModifier(hHero, nil, "modifier_wearable_hider_while_model_changes", {}).sOriginalModel = hHero:GetModelName()
-				hHero:AddNewModifier(hHero, nil, "modifier_exsoldier_change_attack_sound", {})
 			end
 		end
 	end

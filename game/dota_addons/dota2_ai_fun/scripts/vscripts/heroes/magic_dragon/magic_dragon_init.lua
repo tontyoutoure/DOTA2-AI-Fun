@@ -34,6 +34,8 @@ local tHeroBaseStats = {
 	Model = "models/items/dragon_knight/oblivion_blazer_dragon/oblivion_blazer_dragon.vmdl",
 	ModelScale = 1
 }
+CustomNetTables:SetTableValue("fun_hero_abilities", "magic_dragon", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "magic_dragon", tHeroBaseStats)
 
 function MagicDragonInit(hHero)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_magic_dragon", {})

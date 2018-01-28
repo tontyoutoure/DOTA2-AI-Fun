@@ -30,6 +30,8 @@ local tHeroBaseStats = {
 	PrimaryAttribute = DOTA_ATTRIBUTE_INTELLECT,
 	AttackCapabilities = DOTA_UNIT_CAP_NO_ATTACK
 }
+CustomNetTables:SetTableValue("fun_hero_abilities", "telekenetic_blob", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "telekenetic_blob", tHeroBaseStats)
 
 function TelekeneticBlobInit(hHero, context)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_telekenetic_blob", {})	

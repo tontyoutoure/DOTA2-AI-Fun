@@ -332,3 +332,10 @@ function modifier_hamsterlord_hamster_flaming_hamster_grenade:OnDestroy()
 	end
 	hParent:Kill(hAbility, hParent)
 end
+
+modifier_special_bonus_hamsterlord_5 = class({})
+function modifier_special_bonus_hamsterlord_5:IsHidden() return true end
+function modifier_special_bonus_hamsterlord_5:IsPurgable() return false end
+function modifier_special_bonus_hamsterlord_5:CheckState() return {[MODIFIER_STATE_MAGIC_IMMUNE]=true} end
+function modifier_special_bonus_hamsterlord_5:GetEffectName() return "particles/items_fx/black_king_bar_avatar.vpcf" end
+function modifier_special_bonus_hamsterlord_5:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end

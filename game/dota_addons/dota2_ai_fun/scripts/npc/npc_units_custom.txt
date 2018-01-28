@@ -1,4 +1,4 @@
-#base "npc_units_dummy"
+#base "npc_units_dummy.txt"
 #base "units\pet_summoner.txt"
 #base "units\el_dorado.txt"
 #base "units\hamsterlord.txt"

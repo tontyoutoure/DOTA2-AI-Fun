@@ -30,24 +30,16 @@ function modifier_wearable_hider_while_model_changes:OnIntervalThink()
 	if hParent:IsInvisible() then
 		if not self.bWasInvisible then
 			for k, v in pairs(hParent.tWearables) do
-				if v.wearable.AddNewModifier then
-					v.wearable:AddNewModifier(hParent, nil, "modifier_invisible",{})
-					v.wearable:SetModel(v.model)
-				else
-					v.wearable:AddEffects(EF_NODRAW)
-				end
+				v.wearable:AddNewModifier(hParent, nil, "modifier_invisible",{})
+				v.wearable:SetModel(v.model)
 			end
 			self.bWasInvisible = true
 		end
 	else
 		if self.bWasInvisible then
 			for k, v in pairs(hParent.tWearables) do
-				if v.wearable.AddNewModifier then
-					v.wearable:RemoveModifierByName("modifier_invisible")
-					v.wearable:SetModel(v.model)
-				else
-					v.wearable:RemoveEffects(EF_NODRAW)
-				end
+				v.wearable:RemoveModifierByName("modifier_invisible")
+				v.wearable:SetModel(v.model)
 			end
 			self.bWasInvisible = false
 		end
@@ -136,23 +128,12 @@ function WearableManager:AddNewWearable(hUnit, tInput)
 	local sID = tInput.ID
 	local sStyle = tInput.style or "0"	
 	local tParticles = {}
-	local tExtraData = tInput.tExtraData
 	
 	if sModel then
 		hWearable = CreateUnitByName("npc_dummy_unit", Vector(0, 0, 0), false, nil, nil, hUnit:GetTeam())
 		hWearable:SetModel(sModel)
 		hWearable:SetOriginalModel(sModel)
-		if tExtraData then
-			local iAttach = hUnit:ScriptLookupAttachment(tExtraData.sAttachmentPoint)
-			local vAttachAngle = hUnit:GetAttachmentAngles(iAttach)
-			local qAttachAngle = QAngle(vAttachAngle.x, vAttachAngle.y, vAttachAngle.z)
-			
-			hWearable:SetAngles(qAttachAngle.x,qAttachAngle.y,qAttachAngle.z)
-			hWearable:SetAbsOrigin(hUnit:GetAttachmentOrigin(iAttach))
-			hWearable:SetParent(hUnit, tExtraData.sAttachmentPoint)
-		else
-			hWearable:FollowEntity(hUnit, true)
-		end
+		hWearable:FollowEntity(hUnit, true)
 		if sSkin then 
 			hWearable:SetMaterialGroup(sSkin)
 		end

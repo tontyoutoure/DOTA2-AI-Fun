@@ -6,10 +6,11 @@
         "ramza_current_secondary_skill",
         "ramza_job_level",
         "ramza_job_requirement",
-
         "ramza_init_job_requirement",
         "ramza_job_abilities",
         "ramza_job_names",
-        "ramza_job_stats"
+        "ramza_job_stats",
+		"fun_hero_abilities",
+		"fun_hero_stats",
     ]
 }

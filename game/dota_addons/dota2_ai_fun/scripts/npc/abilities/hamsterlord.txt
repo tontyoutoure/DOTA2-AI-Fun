@@ -181,6 +181,11 @@
 				"summon_count_scepter"	"2"
 				"LinkedSpecialBonus"		"special_bonus_hamsterlord_4"
 			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gold_bounty"	"100 150 200"
+			}
 		}
 		"HasScepterUpgrade"	"1"
 	}

@@ -236,3 +236,25 @@ function modifier_hurricane_eyes_of_the_storm_upgrade:OnIntervalThink()
 		self:Destroy()
 	end
 end
+
+modifier_hurricane_sound_manager = class({})
+
+function modifier_hurricane_sound_manager:IsPurgable() return false end
+function modifier_hurricane_sound_manager:IsHidden() return true end
+
+function modifier_hurricane_sound_manager:OnCreated()
+	if IsClient() then return end
+	self:GetParent():EmitSound('n_creep_Wildkin.Tornado')
+	self:StartIntervalThink(30)
+end
+
+function modifier_hurricane_sound_manager:OnIntervalThink()
+	if IsClient() then return end
+	self:GetParent():StopSound('n_creep_Wildkin.Tornado')
+	self:GetParent():EmitSound('n_creep_Wildkin.Tornado')
+end
+
+function modifier_hurricane_sound_manager:OnDestroy()
+	if IsClient() then return end
+	self:GetParent():StopSound('n_creep_Wildkin.Tornado')
+end

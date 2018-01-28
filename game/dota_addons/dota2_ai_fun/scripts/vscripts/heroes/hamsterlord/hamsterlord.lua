@@ -89,6 +89,8 @@ function hamsterlord_call_of_hamster:OnSpellStart()
 		hUnit:SetPhysicalArmorBaseValue(iArmor)
 		hUnit:SetBaseDamageMax(iDamage-4)
 		hUnit:SetBaseDamageMin(iDamage+5)
+		hUnit:SetMaximumGoldBounty(self:GetSpecialValueFor("gold_bounty"))
+		hUnit:SetMinimumGoldBounty(self:GetSpecialValueFor("gold_bounty"))
 		hUnit:SetForwardVector(vForward)
 		if self:GetLevel() == 1 then
 			hUnit:FindAbilityByName("hamsterlord_hamster_courage_of_the_hamster"):SetLevel(1)

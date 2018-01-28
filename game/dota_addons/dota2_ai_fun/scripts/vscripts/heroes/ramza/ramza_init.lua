@@ -90,6 +90,23 @@ local tNewAbilities = {
 	"special_bonus_ramza_3",
 }
 
+local tShowedAbilities = {
+	"ramza_select_job_lua",
+	"ramza_select_secondary_skill_lua",
+	"ramza_bravery",
+	"ramza_speed",
+	"ramza_faith"	,
+	"ramza_open_stats_lua",
+	"special_bonus_gold_income_25",
+	"special_bonus_exp_boost_20",
+	"special_bonus_armor_10",
+	"special_bonus_spell_lifesteal_20",
+	"special_bonus_spell_amplify_20",
+	"special_bonus_ramza_1",
+	"special_bonus_ramza_2",
+	"special_bonus_ramza_3",
+}
+
 local tHeroBaseStats = {
 	MovementSpeed = 300,
 	AttackRate = 1.7,
@@ -111,6 +128,8 @@ local tHeroBaseStats = {
 }
 
 
+CustomNetTables:SetTableValue("fun_hero_abilities", "ramza", tShowedAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "ramza", {})
 
 function RamzaInit(hHero, context)
 	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)	

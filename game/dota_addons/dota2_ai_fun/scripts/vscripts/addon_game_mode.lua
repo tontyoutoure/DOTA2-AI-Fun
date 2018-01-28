@@ -313,6 +313,10 @@ function Precache( context )
 	PrecacheResource("particle", "particles/econ/items/invoker/invoker_ti7/invoker_ti7_alacrity_buff.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts", context)
 	PrecacheResource("particle", "particles/econ/items/centaur/centaur_ti6/centaur_ti6_warstomp.vpcf", context)
+	
+	PrecacheResource("particle", "particles/econ/items/bounty_hunter/bounty_hunter_hunters_hoard/bounty_hunter_hoard_track_reward.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/alchemist/alchemist_midas_knuckles/alch_hand_of_midas.vpcf", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts", context)
 end
 
 

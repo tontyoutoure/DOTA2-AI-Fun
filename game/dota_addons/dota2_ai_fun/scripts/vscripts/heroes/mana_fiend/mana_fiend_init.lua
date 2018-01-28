@@ -31,6 +31,8 @@ local tHeroBaseStats = {
 	PrimaryAttribute = DOTA_ATTRIBUTE_INTELLECT,
 	AttackAnimationPoint = 0.4
 }
+CustomNetTables:SetTableValue("fun_hero_abilities", "mana_fiend", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "mana_fiend", tHeroBaseStats)
 
 function ManaFiendInit(hHero)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_mana_fiend", {})	

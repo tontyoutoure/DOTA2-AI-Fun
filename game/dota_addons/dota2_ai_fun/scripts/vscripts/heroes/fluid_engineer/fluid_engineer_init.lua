@@ -31,6 +31,8 @@ local tHeroBaseStats = {
 	AttackAnimationPoint = 0.4,
 }
 
+CustomNetTables:SetTableValue("fun_hero_abilities", "fluid_engineer", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "fluid_engineer", tHeroBaseStats)
 
 function FluidEngineerInit (hHero)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_fluid_engineer", {}) 

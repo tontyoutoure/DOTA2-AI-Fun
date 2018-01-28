@@ -31,6 +31,8 @@ local tHeroBaseStats = {
 	PrimaryAttribute = DOTA_ATTRIBUTE_AGILITY,
 }
 
+CustomNetTables:SetTableValue("fun_hero_abilities", "spongebob", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "spongebob", tHeroBaseStats)
 function SpongeBobInit(hHero)		
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_spongebob", {})
 	--[[

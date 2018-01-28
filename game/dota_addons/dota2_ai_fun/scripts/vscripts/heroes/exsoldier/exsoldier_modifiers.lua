@@ -71,15 +71,13 @@ modifier_exsoldier_omnislash = class({})
 
 function modifier_exsoldier_omnislash:DeclareFunctions()
 	return {
-		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,	MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE	
+		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE	
 	}
 end
 
 function modifier_exsoldier_omnislash:GetModifierPreAttack_CriticalStrike()
 	return self:GetAbility():GetSpecialValueFor("crit")
 end
-
-function modifier_exsoldier_omnislash:GetModifierMoveSpeed_Absolute() return 0 end
 
 function modifier_exsoldier_omnislash:IsAura() return true end
 function modifier_exsoldier_omnislash:GetModifierAura() return "modifier_truesight" end
@@ -154,4 +152,69 @@ function modifier_exsoldier_omnislash:OnDestroy()
 	if IsClient() then return end
 	local hParent = self:GetParent()
 	hParent:SetOrigin(self.vStartPoint)
+end
+modifier_exsoldier_sword_manager = class({})
+function modifier_exsoldier_sword_manager:DeclareFunctions()
+	return {MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND, MODIFIER_EVENT_ON_ATTACK_LANDED, MODIFIER_EVENT_ON_DEATH, MODIFIER_EVENT_ON_MODEL_CHANGED}
+end
+
+function modifier_exsoldier_sword_manager:OnCreated()
+	if IsClient() then return end
+	self.sOriginalModel = self:GetParent():GetModelName()
+	self:StartIntervalThink(0.1)
+end
+
+function modifier_exsoldier_sword_manager:OnIntervalThink()
+	if IsClient() then return end
+	local hParent = self:GetParent()
+	if hParent:IsInvisible() then
+		if not self.bWasInvisible then
+			self.hSword:AddEffects(EF_NODRAW)
+			self.bWasInvisible = true
+		end
+	else
+		if self.bWasInvisible then
+			self.hSword:RemoveEffects(EF_NODRAW)
+			self.bWasInvisible = false
+		end
+	end
+end
+
+function modifier_exsoldier_sword_manager:OnModelChanged(keys)
+	if keys.attacker ~= self:GetParent() then return end
+	local hParent = self:GetParent()
+	if hParent:GetModelName() ~= self.sOriginalModel then
+		self.hSword:RemoveSelf()
+	else
+		self.hSword = Attachments:AttachProp(hParent, "attach_sword", "models/items/sven/shattered_greatsword/sven_shattered_greatsword.vmdl", hParent:GetModelScale()*1.5, {
+			pitch = 0,
+			yaw = 0,
+			roll = -105.0,
+			XPos = -35,
+			YPos = 0,
+			ZPos = 0,
+			Animation = "idle"
+		})
+	end
+end
+
+function modifier_exsoldier_sword_manager:GetAttackSound()
+	return "Hero_Sven.Attack.Impact"
+end
+
+function modifier_exsoldier_sword_manager:OnDeath()
+	if self:GetParent():IsIllusion() then
+		self.hSword:AddEffects(EF_NODRAW)
+	end
+end
+function modifier_exsoldier_sword_manager:RemoveOnDeath() return false end
+function modifier_exsoldier_sword_manager:IsPurgable() return false end
+function modifier_exsoldier_sword_manager:IsHidden() return true end
+
+function modifier_exsoldier_sword_manager:OnAttackLanded(keys)
+	if self:GetParent() ~= keys.attacker then return end
+	keys.attacker:EmitSound("Hero_Sven.Attack.Ring")
+	keys.attacker:EmitSound("Hero_Sven.Attack.Ring")
+	keys.attacker:EmitSound("Hero_Sven.Attack.Impact")
+	keys.attacker:EmitSound("Hero_Sven.Attack.Impact")
 end

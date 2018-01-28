@@ -1,20 +1,6 @@
 hHero = PlayerResource:GetPlayer(0):GetAssignedHero()
+--hHero1 = PlayerResource:GetPlayer(1):GetAssignedHero()
 
-			print(hHero:GetModelName())
+iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_alchemist/alchemist_lasthit_coins.vpcf", PATTACH_ABSORIGIN_FOLLOW, hHero)
 
-	for i, v in ipairs(hHero:GetChildren()) do
-		if v:GetClassname() == 'dota_item_wearable' then
-			print(v:GetModelName())
-			if v:GetModelName() == "models/heroes/terrorblade/horns_arcana.vmdl" then 
-				StopEffect(v, "particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_ambient_body_arcana_horns.vpcf")
-				StopEffect(v, "particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_ambient_eyes_arcana_horns.vpcf")
-			end
-		end
-				StopEffect(v, "particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_l.vpcf")
-				StopEffect(v, "particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_r.vpcf")
-				StopEffect(v, "particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade.vpcf")
-				StopEffect(v, "particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade_2.vpcf")
-				StopEffect(hHero, "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf")
-				StopEffect(hHero, "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_head.vpcf")
-	end
-	ParticleManager:CreateParticle("particles/units/heroes/hero_terrorblade/terrorblade_feet_effects.vpcf", PATTACH_ABSORIGIN_FOLLOW, hHero )
+		ParticleManager:SetParticleControlEnt(iParticle, 1, hHero, PATTACH_POINT_FOLLOW, "follow_origin", hHero:GetOrigin(), true)

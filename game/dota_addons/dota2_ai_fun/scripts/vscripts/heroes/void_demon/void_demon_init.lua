@@ -32,6 +32,8 @@ local tHeroBaseStats = {
 	VisionNighttimeRange = 800
 }
 
+CustomNetTables:SetTableValue("fun_hero_abilities", "void_demon", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "void_demon", tHeroBaseStats)
 function VoidDemonInit(hHero)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_void_demon", {})	
 	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)

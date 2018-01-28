@@ -34,6 +34,8 @@ local tHeroBaseStats = {
 	DisableWearables = true
 }
 
+CustomNetTables:SetTableValue("fun_hero_abilities", "hurricane", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "hurricane", tHeroBaseStats)
 function HurricaneAddParticle(keys)
 	if IsClient() then return end
 	if EntIndexToHScript(keys.entindex):GetName() == "npc_dota_hero_disruptor" then
@@ -55,29 +57,8 @@ function HurricaneRemoveParticle(keys)
 		ParticleManager:DestroyParticle(hHero.iParticle2 ,false)
 	end
 end
-LinkLuaModifier("modifier_hurricane_sound_manager", "heroes/hurricane/hurricane_init.lua", LUA_MODIFIER_MOTION_NONE)
+-- LinkLuaModifier("modifier_hurricane_sound_manager", "heroes/hurricane/hurricane_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 
-modifier_hurricane_sound_manager = class({})
-
-function modifier_hurricane_sound_manager:IsPurgable() return false end
-function modifier_hurricane_sound_manager:IsHidden() return true end
-
-function modifier_hurricane_sound_manager:OnCreated()
-	if IsClient() then return end
-	self:GetParent():EmitSound('n_creep_Wildkin.Tornado')
-	self:StartIntervalThink(30)
-end
-
-function modifier_hurricane_sound_manager:OnIntervalThink()
-	if IsClient() then return end
-	self:GetParent():StopSound('n_creep_Wildkin.Tornado')
-	self:GetParent():EmitSound('n_creep_Wildkin.Tornado')
-end
-
-function modifier_hurricane_sound_manager:OnDestroy()
-	if IsClient() then return end
-	self:GetParent():StopSound('n_creep_Wildkin.Tornado')
-end
 
 HurricaneInit = function (hHero, context)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_hurricane", {})

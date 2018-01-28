@@ -19,6 +19,23 @@ local tNewAbilities = {
 	"special_bonus_cast_range_400"
 }
 
+local tShowAbilities = {
+	"formless_unus",
+	"formless_duos",
+	"formless_tertius",
+	"formless_forget_choose",
+	"formless_forget_all",
+	"formless_denique",
+	"special_bonus_gold_income_25",
+	"special_bonus_exp_boost_20",
+	"special_bonus_armor_10",
+	"special_bonus_spell_lifesteal_20",
+	"special_bonus_spell_amplify_20",
+	"special_bonus_hp_600",
+	"special_bonus_attack_range_400",
+	"special_bonus_cast_range_400"
+}
+
 local tHeroBaseStats = {
 	MovementSpeed = 300,
 	AttackRate = 1.7,
@@ -35,6 +52,9 @@ local tHeroBaseStats = {
 	PrimaryAttribute = DOTA_ATTRIBUTE_INTELLECT,
 	AttackAnimationPoint = 0.1,
 }
+
+CustomNetTables:SetTableValue("fun_hero_abilities", "formless", tShowAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "formless", tHeroBaseStats)
 
 function FormlessInit(hHero)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_formless", {})

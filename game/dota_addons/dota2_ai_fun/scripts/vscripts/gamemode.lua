@@ -9,9 +9,9 @@ require('libraries/timers')
 require('libraries/notifications')
 require('libraries/Playertables')
 require('libraries/lua_console')
+require('libraries/attachments')
 if IsInToolsMode() then
 	require('libraries/modmaker')
-	require('libraries/attachments')
 end
 require('internal/util')
 require('settings')

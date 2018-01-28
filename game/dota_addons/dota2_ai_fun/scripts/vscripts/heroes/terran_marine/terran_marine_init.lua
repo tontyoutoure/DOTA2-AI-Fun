@@ -34,6 +34,8 @@ local tHeroBaseStats = {
 	AttackCapabilities = DOTA_UNIT_CAP_MELEE_ATTACK
 }
 
+CustomNetTables:SetTableValue("fun_hero_abilities", "terran_marine", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "terran_marine", tHeroBaseStats)
 
 function TerranMarineInit(hHero)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_terran_marine", {})	

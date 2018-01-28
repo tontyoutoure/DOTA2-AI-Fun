@@ -32,6 +32,8 @@ local tHeroBaseStats = {
 }
 
 
+CustomNetTables:SetTableValue("fun_hero_abilities", "pet_summoner", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "pet_summoner", tHeroBaseStats)
 function PetSummonerInit(hHero)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_pet_summoner", {})	
 	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)	

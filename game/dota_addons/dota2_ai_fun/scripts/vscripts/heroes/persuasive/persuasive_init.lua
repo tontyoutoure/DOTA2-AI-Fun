@@ -32,6 +32,8 @@ local tHeroBaseStats = {
 	AttackRange = 625,
 	AttackAnimationPoint = 0.3
 }
+CustomNetTables:SetTableValue("fun_hero_abilities", "persuasive", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "persuasive", tHeroBaseStats)
 
 function PersuasiveInit(hHero)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_persuasive", {})	

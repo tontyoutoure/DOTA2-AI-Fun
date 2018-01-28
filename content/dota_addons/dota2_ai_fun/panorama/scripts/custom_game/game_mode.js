@@ -13,6 +13,11 @@
 	$("#ChatHideButtonHide").visible=true;
 })();
 
+function ShowGameOptions() {
+	$("#game_options_container").style.visibility='visible';	
+	$("#GameOptionShowButton").style.visibility='collapse';	
+}
+
 function InitializeUI() {
 	var is_host = CheckForHostPrivileges();
 	if (is_host === undefined) {
@@ -24,13 +29,13 @@ function InitializeUI() {
 }
 
 function HideChatActivate() {
-	$.GetContextPanel().GetParent().GetParent().FindChildTraverse("ChatLinesArea").visible=false;
+	$.GetContextPanel().GetParent().GetParent().FindChildTraverse("LoadingScreenChat").visible=false;
 	$("#ChatHideButtonHide").visible=false;
 	$("#ChatHideButtonShow").visible=true;
 }
 
 function ShowChatActivate() {
-	$.GetContextPanel().GetParent().GetParent().FindChildTraverse("ChatLinesArea").visible=true;
+	$.GetContextPanel().GetParent().GetParent().FindChildTraverse("LoadingScreenChat").visible=true;
 	$("#ChatHideButtonHide").visible=true;
 	$("#ChatHideButtonShow").visible=false;
 }
@@ -66,4 +71,5 @@ function set_game_options()
 		}	
 	});
 	$("#game_options_container").style.visibility='collapse';
+	$("#GameOptionShowButton").style.visibility='visible';	
 }

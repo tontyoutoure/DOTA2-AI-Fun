@@ -36,6 +36,7 @@ ExsoldierMeteorRain = function(keys)
 end
 
 function ExsoldierBraver(keys)
+	ProcsArroundingMagicStick(keys.caster)
 	local fFlyTime = keys.ability:GetSpecialValueFor("fly_time")
 	local vMove = keys.target_points[1] - keys.caster:GetOrigin()
 	local vHorizantalSpeed = Vector(vMove.Dot(vMove, Vector(1, 0, 0)), vMove.Dot(vMove, Vector(0, 1, 0)), 0)/fFlyTime
