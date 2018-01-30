@@ -1223,7 +1223,13 @@
 					{
 						"Target"	"CASTER"
 						"ModifierName"	"modifier_magic_hammer_mana_break"
-						"Duration"	"1.5"
+						"Duration"	"1"
+					}
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_special_bonus_cast_range"
+						"Duration"	"1"
 					}
 				}
 				"ThinkInterval"	"1"
@@ -1293,7 +1299,7 @@
 			"09"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_cast_range"	"1000"
+				"value"	"1000"
 			}
 			"10"
 			{

@@ -12,7 +12,7 @@ function modifier_spongebob_krabby_food:OnCreated()
 	if fHealthRestore > hParent:GetMaxHealth() - hParent:GetHealth() then fHealthRestore = hParent:GetMaxHealth() - hParent:GetHealth() end
 	
 	if fHealthRestore > 0 then
-		local iParticle2 = ParticleManager:CreateParticle("particles/msg_fx/msg_heal.vpcf", PATTACH_POINT_FOLLOW, hParent)		
+		local iParticle2 = ParticleManager:CreateParticleForPlayer("particles/msg_fx/msg_heal.vpcf", PATTACH_POINT_FOLLOW, hParent, hParent:GetPlayerOwner())		
 		ParticleManager:SetParticleControl(iParticle2, 1, Vector(0, math.floor(fHealthRestore), 0))
 		ParticleManager:SetParticleControl(iParticle2, 2, Vector(1, 2+math.floor(math.log10(fHealthRestore)), 200))
 		ParticleManager:SetParticleControl(iParticle2, 3, Vector(60, 255, 60))
@@ -29,7 +29,7 @@ function modifier_spongebob_krabby_food:OnIntervalThink()
 	if fHealthRestore > hParent:GetMaxHealth() - hParent:GetHealth() then fHealthRestore = hParent:GetMaxHealth() - hParent:GetHealth() end
 	
 	if fHealthRestore > 0 then
-		local iParticle2 = ParticleManager:CreateParticle("particles/msg_fx/msg_heal.vpcf", PATTACH_POINT_FOLLOW, hParent)		
+		local iParticle2 = ParticleManager:CreateParticleForPlayer("particles/msg_fx/msg_heal.vpcf", PATTACH_POINT_FOLLOW, hParent, hParent:GetPlayerOwner())		
 		ParticleManager:SetParticleControl(iParticle2, 1, Vector(0, math.floor(fHealthRestore), 0))
 		ParticleManager:SetParticleControl(iParticle2, 2, Vector(1, 2+math.floor(math.log10(fHealthRestore)), 200))
 		ParticleManager:SetParticleControl(iParticle2, 3, Vector(60, 255, 60))
@@ -71,7 +71,7 @@ function modifier_spongebob_spongify:OnAttackLanded(keys)
 			if fHealthRestore > hParent:GetMaxHealth() - hParent:GetHealth() then fHealthRestore = hParent:GetMaxHealth() - hParent:GetHealth() end
 			
 			if fHealthRestore > 0 then
-				local iParticle2 = ParticleManager:CreateParticle("particles/msg_fx/msg_heal.vpcf", PATTACH_POINT_FOLLOW, hParent)		
+				local iParticle2 = ParticleManager:CreateParticleForPlayer("particles/msg_fx/msg_heal.vpcf", PATTACH_POINT_FOLLOW, hParent, hParent:GetPlayerOwner())		
 				ParticleManager:SetParticleControl(iParticle2, 1, Vector(0, math.floor(fHealthRestore), 0))
 				ParticleManager:SetParticleControl(iParticle2, 2, Vector(1, 2+math.floor(math.log10(fHealthRestore)), 200))
 				ParticleManager:SetParticleControl(iParticle2, 3, Vector(60, 255, 60))

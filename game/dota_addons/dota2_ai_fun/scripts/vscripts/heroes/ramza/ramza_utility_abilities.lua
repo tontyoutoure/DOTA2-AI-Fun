@@ -2,6 +2,8 @@ RAMZA_MENU_STATE_NORMAL = 0
 RAMZA_MENU_STATE_UPGRADE = 1
 RAMZA_MENU_STATE_PRIMARY = 2
 RAMZA_MENU_STATE_SECONDARY = 3
+RAMZA_MENU_STATE_SELECT_JOB = 4
+RAMZA_MENU_STATE_SELECT_SECONDARY = 5
 
 local tTimeMageAbilities = {
 	ramza_time_mage_time_magicks_haste = true,
@@ -30,7 +32,7 @@ end
 function ramza_open_stats_lua:ProcsMagicStick() return false end
 function ramza_open_stats_lua:OnSpellStart()
 	local hCaster = self:GetCaster()
-	CustomGameEventManager:Send_ServerToPlayer( hCaster:GetOwner(), "ramza_close_selection", nil )
+	CustomGameEventManager:Send_ServerToPlayer( hCaster:GetOwner(), "ramza_close_selection", {iHeroEntityIndex=self:GetCaster():entindex()} )
 	hCaster.iBraveryLevel = hCaster.iBraveryLevel or 0
 	hCaster.iSpeedLevel = hCaster.iSpeedLevel or 0
 	hCaster.iFaithLevel = hCaster.iFaithLevel or 0
@@ -43,13 +45,13 @@ function ramza_open_stats_lua:OnSpellStart()
 	
 	--first ability is always hide
 	hCaster:AddAbility('ramza_select_job_lua'):SetLevel(1);	
-	hCaster:SwapAbilities(hCaster.tNormalMenuState[1], "ramza_select_job_lua", true, true)	
-	hCaster:FindAbilityByName(hCaster.tNormalMenuState[1]):SetHidden(true)	
+	hCaster:SwapAbilities(hCaster.tNormalMenuState[1], "ramza_select_job_lua", false, true)	
+--	hCaster:FindAbilityByName(hCaster.tNormalMenuState[1]):SetHidden(true)	
 	
 	if hCaster.tNormalMenuState[2] ~= "ramza_select_secondary_skill_lua" then
 		hCaster:AddAbility("ramza_select_secondary_skill_lua"):SetLevel(1);	
-		hCaster:SwapAbilities(hCaster.tNormalMenuState[2], "ramza_select_secondary_skill_lua", true, true)
-		hCaster:FindAbilityByName(hCaster.tNormalMenuState[2]):SetHidden(true)		
+		hCaster:SwapAbilities(hCaster.tNormalMenuState[2], "ramza_select_secondary_skill_lua", false, true)
+--		hCaster:FindAbilityByName(hCaster.tNormalMenuState[2]):SetHidden(true)		
 	end
 	
 	local hAbility = hCaster:AddAbility("ramza_bravery")
@@ -71,17 +73,17 @@ function ramza_open_stats_lua:OnSpellStart()
 		PrintAbilities(hCaster)
 	end
 	
-	hCaster:SwapAbilities(hCaster.tNormalMenuState[3], "ramza_bravery", true, true)
-	hCaster:SwapAbilities(hCaster.tNormalMenuState[4], "ramza_speed", true, true)
-	hCaster:SwapAbilities(hCaster.tNormalMenuState[5], "ramza_faith", true, true)
-	hCaster:SwapAbilities("ramza_open_stats_lua", "ramza_go_back_lua", true, true)
+	hCaster:SwapAbilities(hCaster.tNormalMenuState[3], "ramza_bravery", false, true)
+	hCaster:SwapAbilities(hCaster.tNormalMenuState[4], "ramza_speed", false, true)
+	hCaster:SwapAbilities(hCaster.tNormalMenuState[5], "ramza_faith", false, true)
+	hCaster:SwapAbilities("ramza_open_stats_lua", "ramza_go_back_lua", false, true)
 	
-	hCaster:FindAbilityByName(hCaster.tNormalMenuState[3]):SetHidden(true)
-	hCaster:FindAbilityByName(hCaster.tNormalMenuState[4]):SetHidden(true)
-	hCaster:FindAbilityByName(hCaster.tNormalMenuState[5]):SetHidden(true)
-	hCaster:FindAbilityByName("ramza_open_stats_lua"):SetHidden(true)
+--	hCaster:FindAbilityByName(hCaster.tNormalMenuState[3]):SetHidden(true)
+--	hCaster:FindAbilityByName(hCaster.tNormalMenuState[4]):SetHidden(true)
+--	hCaster:FindAbilityByName(hCaster.tNormalMenuState[5]):SetHidden(true)
+--	hCaster:FindAbilityByName("ramza_open_stats_lua"):SetHidden(true)
 	
-	hCaster:FindAbilityByName("ramza_go_back_lua"):SetHidden(false)
+--	hCaster:FindAbilityByName("ramza_go_back_lua"):SetHidden(false)
 end
 
 
@@ -106,31 +108,31 @@ end
 function ramza_go_back_lua:OnSpellStart()	
 	local hCaster = self:GetCaster()
 	local sName
-	CustomGameEventManager:Send_ServerToPlayer( hCaster:GetOwner(), "ramza_close_selection", nil )
+	CustomGameEventManager:Send_ServerToPlayer( hCaster:GetOwner(), "ramza_close_selection", {iHeroEntityIndex=self:GetCaster():entindex()} )
 	
 	if hCaster.iMenuState == RAMZA_MENU_STATE_UPGRADE then
 		hCaster:FindAbilityByName(hCaster.tNormalMenuState[1]):SetHidden(false)	
-		hCaster:SwapAbilities('ramza_select_job_lua', hCaster.tNormalMenuState[1], true, true)
+		hCaster:SwapAbilities('ramza_select_job_lua', hCaster.tNormalMenuState[1], false, true)
 		hCaster:RemoveAbility('ramza_select_job_lua')
 		
 		if hCaster.tNormalMenuState[2] ~= "ramza_select_secondary_skill_lua" then
 			hCaster:FindAbilityByName(hCaster.tNormalMenuState[2]):SetHidden(false)	
-			hCaster:SwapAbilities(hCaster.tNormalMenuState[2], "ramza_select_secondary_skill_lua", true, true)
+			hCaster:SwapAbilities(hCaster.tNormalMenuState[2], "ramza_select_secondary_skill_lua", true, false)
 			hCaster:RemoveAbility('ramza_select_secondary_skill_lua')
 		end
 		
 		
-			hCaster:SwapAbilities("ramza_bravery", hCaster.tNormalMenuState[3], true, true)
+			hCaster:SwapAbilities("ramza_bravery", hCaster.tNormalMenuState[3], false, true)
 			hCaster.iBraveryLevel = hCaster:FindAbilityByName("ramza_bravery"):GetLevel()
 			hCaster:RemoveAbility("ramza_bravery")
 			hCaster:FindAbilityByName(hCaster.tNormalMenuState[3]):SetHidden(false)
 			
-			hCaster:SwapAbilities("ramza_speed", hCaster.tNormalMenuState[4], true, true)
+			hCaster:SwapAbilities("ramza_speed", hCaster.tNormalMenuState[4], false, true)
 			hCaster.iSpeedLevel = hCaster:FindAbilityByName("ramza_speed"):GetLevel()
 			hCaster:RemoveAbility("ramza_speed")
 			hCaster:FindAbilityByName(hCaster.tNormalMenuState[4]):SetHidden(false)
 			
-			hCaster:SwapAbilities("ramza_faith", hCaster.tNormalMenuState[5], true, true)
+			hCaster:SwapAbilities("ramza_faith", hCaster.tNormalMenuState[5], false, true)
 			hCaster.iFaithLevel = hCaster:FindAbilityByName("ramza_faith"):GetLevel()
 			hCaster:RemoveAbility("ramza_faith")
 			hCaster:FindAbilityByName(hCaster.tNormalMenuState[5]):SetHidden(false)
@@ -140,21 +142,21 @@ function ramza_go_back_lua:OnSpellStart()
 		
 		for i = 3, 5 do
 			sName = hCaster:GetAbilityByIndex(i-1):GetName()
-			hCaster:SwapAbilities(sName, hCaster.tNormalMenuState[i], true, true)
-			hCaster:FindAbilityByName(sName):SetHidden(true)
-			hCaster:FindAbilityByName(hCaster.tNormalMenuState[i]):SetHidden(false)
+			hCaster:SwapAbilities(sName, hCaster.tNormalMenuState[i], false, true)
+--			hCaster:FindAbilityByName(sName):SetHidden(true)
+--			hCaster:FindAbilityByName(hCaster.tNormalMenuState[i]):SetHidden(false)
 		end
 		
 		
 		
-		hCaster:SwapAbilities("ramza_go_back_lua", "ramza_open_stats_lua", true, true)
-		hCaster:FindAbilityByName("ramza_open_stats_lua"):SetHidden(false)	
-		hCaster:FindAbilityByName("ramza_go_back_lua"):SetHidden(true)
+		hCaster:SwapAbilities("ramza_go_back_lua", "ramza_open_stats_lua", false, true)
+--		hCaster:FindAbilityByName("ramza_open_stats_lua"):SetHidden(false)	
+--		hCaster:FindAbilityByName("ramza_go_back_lua"):SetHidden(true)
 	else
 		for i = 1, 4 do
 			sName = hCaster:GetAbilityByIndex(i-1):GetName()
-			hCaster:SwapAbilities(sName, hCaster.tNormalMenuState[i], true, true)
-			hCaster:FindAbilityByName(hCaster.tNormalMenuState[i]):SetHidden(false)
+			hCaster:SwapAbilities(sName, hCaster.tNormalMenuState[i], false, true)
+--			hCaster:FindAbilityByName(hCaster.tNormalMenuState[i]):SetHidden(false)
 			if sName == "ramza_squire_fundamental_stone" then
 				hCaster:FindAbilityByName(sName):SetHidden(true)
 			else
@@ -162,13 +164,13 @@ function ramza_go_back_lua:OnSpellStart()
 			end
 		end
 		
-		hCaster:SwapAbilities('ramza_next_page_lua', hCaster.tNormalMenuState[5], true, true)
-		hCaster:FindAbilityByName(hCaster.tNormalMenuState[5]):SetHidden(false)
+		hCaster:SwapAbilities('ramza_next_page_lua', hCaster.tNormalMenuState[5], false, true)
+--		hCaster:FindAbilityByName(hCaster.tNormalMenuState[5]):SetHidden(false)
 		hCaster:RemoveAbility('ramza_next_page_lua')
 		
 		hCaster:AddAbility("ramza_open_stats_lua"):SetLevel(1)	
-		hCaster:SwapAbilities("ramza_go_back_lua", "ramza_open_stats_lua", true, true)
-		hCaster:FindAbilityByName("ramza_go_back_lua"):SetHidden(true)
+		hCaster:SwapAbilities("ramza_go_back_lua", "ramza_open_stats_lua", false, true)
+--		hCaster:FindAbilityByName("ramza_go_back_lua"):SetHidden(true)
 		hCaster.iPrimaryPointer = 0
 		hCaster.iSecondaryPointer = 0
 	end
@@ -181,14 +183,14 @@ ramza_select_job_lua = class({})
 function ramza_select_job_lua:ProcsMagicStick() return false end
 	
 function ramza_select_job_lua:OnSpellStart()
-	CustomGameEventManager:Send_ServerToPlayer( self:GetCaster():GetOwner(), "ramza_select_job", nil )
+	CustomGameEventManager:Send_ServerToPlayer( self:GetCaster():GetOwner(), "ramza_select_job", {iHeroEntityIndex=self:GetCaster():entindex()})
 end
 
 ramza_select_secondary_skill_lua = class({})
 function ramza_select_secondary_skill_lua:ProcsMagicStick() return false end
 
 function ramza_select_secondary_skill_lua:OnSpellStart()
-	CustomGameEventManager:Send_ServerToPlayer( self:GetCaster():GetOwner(), "ramza_select_secondary_skill", nil )
+	CustomGameEventManager:Send_ServerToPlayer( self:GetCaster():GetOwner(), "ramza_select_secondary_skill", {iHeroEntityIndex=self:GetCaster():entindex()})
 end
 
 
@@ -214,11 +216,11 @@ local RamzaFetchAbilities = function(hCaster, bFromMain, tJobCommandBus, tJobCom
 			end
 			iIndex1 = hCaster:FindAbilityByName(sName1):GetAbilityIndex()
 			iIndex2 = hCaster:FindAbilityByName(sName2):GetAbilityIndex()
-			hCaster:SwapAbilities(sName1, sName2, true, true)
+			hCaster:SwapAbilities(sName1, sName2, false, true)
 		else
 			sName2 = 'ramza_empty_'..tostring(i)
 			hCaster:AddAbility(sName2)
-			hCaster:SwapAbilities(sName1, sName2, true, true)
+			hCaster:SwapAbilities(sName1, sName2, false, true)
 		end
 		if bFromMain or sName1 == "ramza_squire_fundamental_stone" then
 			hCaster:FindAbilityByName(sName1):SetHidden(true)
@@ -238,12 +240,12 @@ local RamzaFetchAbilities = function(hCaster, bFromMain, tJobCommandBus, tJobCom
 	if bFromMain then 
 		sName1 = hCaster:GetAbilityByIndex(4):GetName()
 		hCaster:AddAbility('ramza_next_page_lua'):SetLevel(1)
-		hCaster:SwapAbilities(sName1, 'ramza_next_page_lua', true, true)		
-		hCaster:FindAbilityByName(sName1):SetHidden(true)
+		hCaster:SwapAbilities(sName1, 'ramza_next_page_lua', false, true)		
+--		hCaster:FindAbilityByName(sName1):SetHidden(true)
 		
-		hCaster:SwapAbilities('ramza_open_stats_lua', 'ramza_go_back_lua', true, true)		
+		hCaster:SwapAbilities('ramza_open_stats_lua', 'ramza_go_back_lua', false, true)		
 		hCaster:RemoveAbility('ramza_open_stats_lua')
-		hCaster:FindAbilityByName('ramza_go_back_lua'):SetHidden(false)
+--		hCaster:FindAbilityByName('ramza_go_back_lua'):SetHidden(false)
 	end
 end
 
@@ -279,7 +281,7 @@ end
 
 local RamzaJCOnSpellStart = function (self)
 	local hCaster = self:GetCaster()
-	CustomGameEventManager:Send_ServerToPlayer( hCaster:GetOwner(), "ramza_close_selection", nil )
+	CustomGameEventManager:Send_ServerToPlayer( hCaster:GetOwner(), "ramza_close_selection", {iHeroEntityIndex=self:GetCaster():entindex()} )
 	local tJobCommandBus
 	local iPointer
 	local tJobCommandBusRequirement
@@ -302,6 +304,12 @@ local RamzaJCOnSpellStart = function (self)
 		hCaster.tNormalMenuState[i] = hCaster:GetAbilityByIndex(i-1):GetName()
 	end
 	RamzaFetchAbilities(hCaster, true, tJobCommandBus, tJobCommandBusRequirement, iPointer)
+end
+
+RamzaChangeJCSS = function(self)
+end
+
+RamzaChangeJCSSCastFilterResult = function(self)
 end
 
 ramza_job_squire_JC = class({})
@@ -365,3 +373,167 @@ ramza_job_arithmetician_JC.OnSpellStart = RamzaJCOnSpellStart
 ramza_job_mime_JC.OnSpellStart = RamzaJCOnSpellStart
 ramza_job_dark_knight_JC.OnSpellStart = RamzaJCOnSpellStart
 ramza_job_onion_knight_JC.OnSpellStart = RamzaJCOnSpellStart
+
+ramza_job_squire_change_job = class({})
+ramza_job_chemist_change_job = class({})
+ramza_job_knight_change_job = class({})
+ramza_job_archer_change_job = class({})
+ramza_job_white_mage_change_job = class({})
+ramza_job_black_mage_change_job = class({})
+ramza_job_monk_change_job = class({})
+ramza_job_thief_change_job = class({})
+ramza_job_mystic_change_job = class({})
+ramza_job_time_mage_change_job = class({})
+ramza_job_orator_change_job = class({})
+ramza_job_summoner_change_job = class({})
+ramza_job_geomancer_change_job = class({})
+ramza_job_dragoon_change_job = class({})
+ramza_job_samurai_change_job = class({})
+ramza_job_ninja_change_job = class({})
+ramza_job_arithmetician_change_job = class({})
+ramza_job_mime_change_job = class({})
+ramza_job_dark_knight_change_job = class({})
+ramza_job_onion_knight_change_job = class({})
+ramza_job_squire_change_secondary_skill = class({})
+ramza_job_chemist_change_secondary_skill = class({})
+ramza_job_knight_change_secondary_skill = class({})
+ramza_job_archer_change_secondary_skill = class({})
+ramza_job_white_mage_change_secondary_skill = class({})
+ramza_job_black_mage_change_secondary_skill = class({})
+ramza_job_monk_change_secondary_skill = class({})
+ramza_job_thief_change_secondary_skill = class({})
+ramza_job_mystic_change_secondary_skill = class({})
+ramza_job_time_mage_change_secondary_skill = class({})
+ramza_job_orator_change_secondary_skill = class({})
+ramza_job_summoner_change_secondary_skill = class({})
+ramza_job_geomancer_change_secondary_skill = class({})
+ramza_job_dragoon_change_secondary_skill = class({})
+ramza_job_samurai_change_secondary_skill = class({})
+ramza_job_ninja_change_secondary_skill = class({})
+ramza_job_arithmetician_change_secondary_skill = class({})
+ramza_job_mime_change_secondary_skill = class({})
+ramza_job_dark_knight_change_secondary_skill = class({})
+ramza_job_onion_knight_change_secondary_skill = class({})
+
+function ramza_job_squire_change_job:ProcsMagicStick() return false end
+function ramza_job_chemist_change_job:ProcsMagicStick() return false end
+function ramza_job_knight_change_job:ProcsMagicStick() return false end
+function ramza_job_archer_change_job:ProcsMagicStick() return false end
+function ramza_job_white_mage_change_job:ProcsMagicStick() return false end
+function ramza_job_black_mage_change_job:ProcsMagicStick() return false end
+function ramza_job_monk_change_job:ProcsMagicStick() return false end
+function ramza_job_thief_change_job:ProcsMagicStick() return false end
+function ramza_job_mystic_change_job:ProcsMagicStick() return false end
+function ramza_job_time_mage_change_job:ProcsMagicStick() return false end
+function ramza_job_orator_change_job:ProcsMagicStick() return false end
+function ramza_job_summoner_change_job:ProcsMagicStick() return false end
+function ramza_job_geomancer_change_job:ProcsMagicStick() return false end
+function ramza_job_dragoon_change_job:ProcsMagicStick() return false end
+function ramza_job_samurai_change_job:ProcsMagicStick() return false end
+function ramza_job_ninja_change_job:ProcsMagicStick() return false end
+function ramza_job_arithmetician_change_job:ProcsMagicStick() return false end
+function ramza_job_mime_change_job:ProcsMagicStick() return false end
+function ramza_job_dark_knight_change_job:ProcsMagicStick() return false end
+function ramza_job_onion_knight_change_job:ProcsMagicStick() return false end
+function ramza_job_squire_change_secondary_skill:ProcsMagicStick() return false end
+function ramza_job_chemist_change_secondary_skill:ProcsMagicStick() return false end
+function ramza_job_knight_change_secondary_skill:ProcsMagicStick() return false end
+function ramza_job_archer_change_secondary_skill:ProcsMagicStick() return false end
+function ramza_job_white_mage_change_secondary_skill:ProcsMagicStick() return false end
+function ramza_job_black_mage_change_secondary_skill:ProcsMagicStick() return false end
+function ramza_job_monk_change_secondary_skill:ProcsMagicStick() return false end
+function ramza_job_thief_change_secondary_skill:ProcsMagicStick() return false end
+function ramza_job_mystic_change_secondary_skill:ProcsMagicStick() return false end
+function ramza_job_time_mage_change_secondary_skill:ProcsMagicStick() return false end
+function ramza_job_orator_change_secondary_skill:ProcsMagicStick() return false end
+function ramza_job_summoner_change_secondary_skill:ProcsMagicStick() return false end
+function ramza_job_geomancer_change_secondary_skill:ProcsMagicStick() return false end
+function ramza_job_dragoon_change_secondary_skill:ProcsMagicStick() return false end
+function ramza_job_samurai_change_secondary_skill:ProcsMagicStick() return false end
+function ramza_job_ninja_change_secondary_skill:ProcsMagicStick() return false end
+function ramza_job_arithmetician_change_secondary_skill:ProcsMagicStick() return false end
+function ramza_job_mime_change_secondary_skill:ProcsMagicStick() return false end
+function ramza_job_dark_knight_change_secondary_skill:ProcsMagicStick() return false end
+function ramza_job_onion_knight_change_secondary_skill:ProcsMagicStick() return false end
+
+ramza_job_squire_change_job.OnSpellStart = RamzaChangeJCSS
+ramza_job_chemist_change_job.OnSpellStart = RamzaChangeJCSS
+ramza_job_knight_change_job.OnSpellStart = RamzaChangeJCSS
+ramza_job_archer_change_job.OnSpellStart = RamzaChangeJCSS
+ramza_job_white_mage_change_job.OnSpellStart = RamzaChangeJCSS
+ramza_job_black_mage_change_job.OnSpellStart = RamzaChangeJCSS
+ramza_job_monk_change_job.OnSpellStart = RamzaChangeJCSS
+ramza_job_thief_change_job.OnSpellStart = RamzaChangeJCSS
+ramza_job_mystic_change_job.OnSpellStart = RamzaChangeJCSS
+ramza_job_time_mage_change_job.OnSpellStart = RamzaChangeJCSS
+ramza_job_orator_change_job.OnSpellStart = RamzaChangeJCSS
+ramza_job_summoner_change_job.OnSpellStart = RamzaChangeJCSS
+ramza_job_geomancer_change_job.OnSpellStart = RamzaChangeJCSS
+ramza_job_dragoon_change_job.OnSpellStart = RamzaChangeJCSS
+ramza_job_samurai_change_job.OnSpellStart = RamzaChangeJCSS
+ramza_job_ninja_change_job.OnSpellStart = RamzaChangeJCSS
+ramza_job_arithmetician_change_job.OnSpellStart = RamzaChangeJCSS
+ramza_job_mime_change_job.OnSpellStart = RamzaChangeJCSS
+ramza_job_dark_knight_change_job.OnSpellStart = RamzaChangeJCSS
+ramza_job_onion_knight_change_job.OnSpellStart = RamzaChangeJCSS
+ramza_job_squire_change_secondary_skill.OnSpellStart = RamzaChangeJCSS
+ramza_job_chemist_change_secondary_skill.OnSpellStart = RamzaChangeJCSS
+ramza_job_knight_change_secondary_skill.OnSpellStart = RamzaChangeJCSS
+ramza_job_archer_change_secondary_skill.OnSpellStart = RamzaChangeJCSS
+ramza_job_white_mage_change_secondary_skill.OnSpellStart = RamzaChangeJCSS
+ramza_job_black_mage_change_secondary_skill.OnSpellStart = RamzaChangeJCSS
+ramza_job_monk_change_secondary_skill.OnSpellStart = RamzaChangeJCSS
+ramza_job_thief_change_secondary_skill.OnSpellStart = RamzaChangeJCSS
+ramza_job_mystic_change_secondary_skill.OnSpellStart = RamzaChangeJCSS
+ramza_job_time_mage_change_secondary_skill.OnSpellStart = RamzaChangeJCSS
+ramza_job_orator_change_secondary_skill.OnSpellStart = RamzaChangeJCSS
+ramza_job_summoner_change_secondary_skill.OnSpellStart = RamzaChangeJCSS
+ramza_job_geomancer_change_secondary_skill.OnSpellStart = RamzaChangeJCSS
+ramza_job_dragoon_change_secondary_skill.OnSpellStart = RamzaChangeJCSS
+ramza_job_samurai_change_secondary_skill.OnSpellStart = RamzaChangeJCSS
+ramza_job_ninja_change_secondary_skill.OnSpellStart = RamzaChangeJCSS
+ramza_job_arithmetician_change_secondary_skill.OnSpellStart = RamzaChangeJCSS
+ramza_job_mime_change_secondary_skill.OnSpellStart = RamzaChangeJCSS
+ramza_job_dark_knight_change_secondary_skill.OnSpellStart = RamzaChangeJCSS
+ramza_job_onion_knight_change_secondary_skill.OnSpellStart = RamzaChangeJCSS
+
+ramza_job_squire_change_job.CastFilterResult = RamzaChangeJCSSCastFilterResult
+ramza_job_chemist_change_job.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_knight_change_job.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_archer_change_job.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_white_mage_change_job.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_black_mage_change_job.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_monk_change_job.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_thief_change_job.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_mystic_change_job.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_time_mage_change_job.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_orator_change_job.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_summoner_change_job.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_geomancer_change_job.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_dragoon_change_job.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_samurai_change_job.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_ninja_change_job.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_arithmetician_change_job.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_mime_change_job.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_dark_knight_change_job.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_onion_knight_change_job.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_squire_change_secondary_skill.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_chemist_change_secondary_skill.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_knight_change_secondary_skill.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_archer_change_secondary_skill.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_white_mage_change_secondary_skill.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_black_mage_change_secondary_skill.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_monk_change_secondary_skill.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_thief_change_secondary_skill.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_mystic_change_secondary_skill.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_time_mage_change_secondary_skill.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_orator_change_secondary_skill.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_summoner_change_secondary_skill.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_geomancer_change_secondary_skill.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_dragoon_change_secondary_skill.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_samurai_change_secondary_skill.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_ninja_change_secondary_skill.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_arithmetician_change_secondary_skill.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_mime_change_secondary_skill.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_dark_knight_change_secondary_skill.OnSpellStart = RamzaChangeJCSSCastFilterResult
+ramza_job_onion_knight_change_secondary_skill.OnSpellStart = RamzaChangeJCSSCastFilterResult

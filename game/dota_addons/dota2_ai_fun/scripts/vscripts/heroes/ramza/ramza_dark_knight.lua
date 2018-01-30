@@ -2,11 +2,9 @@ LinkLuaModifier("modifier_ramza_dark_knight_hp_boost", "heroes/ramza/ramza_dark_
 LinkLuaModifier("modifier_ramza_dark_knight_vehemence", "heroes/ramza/ramza_dark_knight_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ramza_dark_knight_move3", "heroes/ramza/ramza_dark_knight_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 RamzaDarkKnightHPBoostApply = function(keys)
-	print("hoho")
 	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_dark_knight_hp_boost", {})
 end
 RamzaDarkKnightMove3Apply = function(keys)
-	print("haha")
 	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_dark_knight_move3", {})
 end
 

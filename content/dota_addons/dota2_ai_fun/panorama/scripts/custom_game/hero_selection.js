@@ -18,7 +18,7 @@ var tFunHeroNames = {
 	'wisp': 'formless',
 	'beastmaster': 'fluid_engineer',
 	'enigma': 'telekenetic_blob',
-	'brewmaster': 'ramza',
+	'dragon_knight': 'ramza',
 	'oracle': 'cleric',
 	'windrunner': 'pet_summoner',
 	'sven': 'felguard',
@@ -30,6 +30,7 @@ var tFunHeroNames = {
 	'tusk':'hamsterlord',
 	'juggernaut':'exsoldier',
 	'rubick':'gambler',
+	'life_stealer':'old_lifestealer',
 }
 var tHeroNameCapitals = {
 	"spirit_breaker":"SpiritBreaker",
@@ -43,7 +44,7 @@ var tHeroNameCapitals = {
 	'wisp': 'Wisp',
 	'beastmaster': 'Beastmaster',
 	'enigma': 'Enigma',
-	'brewmaster': 'Brewmaster',
+	'dragon_knight': 'DragonKnight',
 	'oracle': 'Oracle',
 	'windrunner': 'Windrunner',
 	'sven': 'Sven',
@@ -55,13 +56,13 @@ var tHeroNameCapitals = {
 	'tusk':'Tusk',
 	'juggernaut':'Juggernaut',
 	'rubick':'Rubick',
+	'life_stealer':'LifeStealer',
 }
 
 function HeroDescriptionInitAll(keys) {
 	if (keys.PlayerID == Game.GetLocalPlayerID()) {
 		for (var sHeroName in tHeroNameCapitals) {
 			HeroDescriptionInit(tFunHeroNames[sHeroName], sHeroName, tHeroNameCapitals[sHeroName]);
-			$.Msg()
 		}
 	}
 	$("#HeroDescriptionContainer").visible = true;
@@ -71,7 +72,6 @@ function HeroDescriptionInitAll(keys) {
 function HeroDescriptionInit(sFunHeroName, sHeroName, sHeroNameCapital) {
 	var tFunHeroAbilities = CustomNetTables.GetTableValue("fun_hero_abilities", sFunHeroName);
 	var tFunHeroStats = CustomNetTables.GetTableValue("fun_hero_stats", sFunHeroName);
-	$.Msg(sFunHeroName+", ", tFunHeroStats)
 	$("#HeroDescriptionPopPanelContainer").BCreateChildren("<Panel id='HeroDescriptionPopPanel"+sHeroNameCapital+"' class = 'HeroDescriptionPopPanel' hittest='true'/>")
 	var sPanelName = '#HeroDescriptionPopPanel'+sHeroNameCapital
 	$(sPanelName).BCreateChildren('<Panel id="HeroNameLine'+sHeroNameCapital+'" class="HeroNameLine"/>')

@@ -171,11 +171,11 @@ function modifier_magic_hammer_mana_break:DeclareFunctions()
 	return {
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
-		MODIFIER_PROPERTY_CAST_RANGE_BONUS
+--		MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING
 	}
 end
 
-function modifier_magic_hammer_mana_break:GetModifierCastRangeBonus() return self:GetAbility():GetSpecialValueFor("bonus_cast_range") end
+function modifier_magic_hammer_mana_break:GetModifierCastRangeBonusStacking() return self:GetAbility():GetSpecialValueFor("bonus_cast_range") end
 
 function modifier_magic_hammer_mana_break:GetModifierProcAttack_BonusDamage_Physical(keys)
 	if keys.target:IsBuilding() or keys.attacker:GetTeamNumber() == keys.target:GetTeamNumber() or keys.target:GetMaxMana() == 0 or keys.target:IsMagicImmune() then return 0 end

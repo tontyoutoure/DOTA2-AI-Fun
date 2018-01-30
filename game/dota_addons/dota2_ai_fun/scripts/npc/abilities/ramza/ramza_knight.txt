@@ -1,5 +1,29 @@
 "DOTAAbilities"
 {
+	
+	"ramza_job_knight_change_job"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"chaos_knight_phantasm"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+	
+	"ramza_job_knight_change_secondary_skill"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"chaos_knight_phantasm"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
 	"ramza_job_knight_JC"
 	{
 		"BaseClass"	"ability_lua"

@@ -8,7 +8,7 @@ var SELECT_JOB = 0;
 var SELECT_SECONDARY_ABILITY = 1;
 var iPlayerID = Game.GetLocalPlayerID();
 var bInitialized = false;
-
+var tRamzaList = {}
 //Main object
 var RamzaJob = {};
 
@@ -381,30 +381,44 @@ RamzaJob.HideDescription = function(iJob) {
 
 //Listeners
 
-function RamzaSelectJobListener() {
-    var hero = Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer());
-	if (Entities.GetUnitName(hero) == "npc_dota_hero_brewmaster") {
+function RamzaSelectJobListener(keys) {
+	if (keys.iHeroEntityIndex == Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer())) {
 		RamzaJob.SelectJob()
 	};
 }
 
-function RamzaSelectSecondarySkillListener() {
-    var hero = Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer());
-	if (Entities.GetUnitName(hero) == "npc_dota_hero_brewmaster") {
+function RamzaSelectSecondarySkillListener(keys) {
+	if (keys.iHeroEntityIndex == Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer())) {
 		RamzaJob.SelectSecondarySkill()
 	};
 }
 
-function RamzaCloseSelectionListener() {
-    var hero = Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer());
-	if (Entities.GetUnitName(hero) == "npc_dota_hero_brewmaster") {
+function RamzaCloseSelectionListener(keys) {
+	if (keys.iHeroEntityIndex == Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer())) {
 		$("#JobSelectionContainer").style.visibility = "collapse";
 	};	
 }
 
 function RamzaPortraitApply(keys) {
 //		$.Msg(Entities.GetUnitName(Players.GetLocalPlayerPortraitUnit()))
-	if (Entities.GetUnitName(Players.GetLocalPlayerPortraitUnit()) == "npc_dota_hero_brewmaster") {
+	if (tRamzaList["0"] === undefined ) {
+		for (var i = 0; i<20; i++) {
+			if(CustomNetTables.GetTableValue("ramza_job_level", i)) {
+				tRamzaList[i.toString()] = "1"
+			}
+			else {
+				tRamzaList[i.toString()] = "0"
+			}
+		}
+	}
+	var bSelectingRamza = false
+	for (var i = 0; i < 20; i++) {
+		if (Players.GetLocalPlayerPortraitUnit() == Players.GetPlayerHeroEntityIndex( i ) && tRamzaList[i.toString()] == 1) {
+			bSelectingRamza = true;
+			break;
+		}
+	}
+	if (bSelectingRamza) {
 		$('#RamzaPortraitContainer').style.visibility = 'visible';
 		if(Entities.IsAlive(Players.GetLocalPlayerPortraitUnit())) {
 			$("#RamzaPortraitDeath").style.visibility = 'collapse';

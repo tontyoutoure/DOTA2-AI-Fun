@@ -76,7 +76,7 @@ function modifier_capslockftw_sarcasm:OnTakeDamage(keys)
 		local fHeal = keys.damage * self:GetAbility():GetSpecialValueFor("lifesteal_percentage")/100
 		keys.attacker:Heal(fHeal, keys.attacker)
 		ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.attacker)	
-		local iParticle = ParticleManager:CreateParticle("particles/msg_fx/msg_heal.vpcf", PATTACH_POINT_FOLLOW, keys.attacker)
+		local iParticle = ParticleManager:CreateParticleForPlayer("particles/msg_fx/msg_heal.vpcf", PATTACH_POINT_FOLLOW, keys.attacker, keys.attacker:GetPlayerOwner())
 		ParticleManager:SetParticleControl(iParticle, 1, Vector(10, fHeal, 0))
 		ParticleManager:SetParticleControl(iParticle, 2, Vector(1, math.floor(math.log10(fHeal))+2, 0))
 		ParticleManager:SetParticleControl(iParticle, 3, Vector(60, 255, 60))

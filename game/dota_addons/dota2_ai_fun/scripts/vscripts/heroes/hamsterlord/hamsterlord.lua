@@ -14,7 +14,7 @@ function HamsterlordPizzaHouseDeliverBoyGatherTips( keys )
 	if keys.caster:PassivesDisabled() then return end	
 	local iGold = keys.ability:GetSpecialValueFor("tip_per_hit")
 	PlayerResource:ModifyGold(keys.caster:GetOwner():GetPlayerID(), iGold, false, DOTA_ModifyGold_Unspecified)
-	local iParticle1 = ParticleManager:CreateParticle("particles/msg_fx/msg_gold.vpcf", PATTACH_POINT_FOLLOW, keys.caster)
+	local iParticle1 = ParticleManager:CreateParticleForPlayer("particles/msg_fx/msg_gold.vpcf", PATTACH_POINT_FOLLOW, keys.caster, keys.caster:GetPlayerOwner())
 	ParticleManager:SetParticleControl(iParticle1, 1, Vector(0, iGold, 0))
 	ParticleManager:SetParticleControl(iParticle1, 2, Vector(1, math.floor(math.log10(iGold))+2, 100))
 	ParticleManager:SetParticleControl(iParticle1, 3, Vector(255, 230, 0))

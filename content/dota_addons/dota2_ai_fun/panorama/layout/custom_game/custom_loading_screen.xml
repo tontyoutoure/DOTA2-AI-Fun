@@ -227,9 +227,9 @@
 							<Image id="HeroAvatarEnigma" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_enigma.png" />
 							<Panel id="HeroAvatarCoverEnigma" class="HeroAvatarCover"/>
 						</Button>
-						<Button id="HeroAvatarBtnBrewmaster" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelBrewmaster&quot;);">
-							<Image id="HeroAvatarBrewmaster" class="HeroAvatar" src="file://{images}/custom_game/ramza/ramza.png" />
-							<Panel id="HeroAvatarCoverBrewmaster" class="HeroAvatarCover"/>
+						<Button id="HeroAvatarBtnDragonKnight" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelDragonKnight&quot;);">
+							<Image id="HeroAvatarDragonKnight" class="HeroAvatar" src="file://{images}/custom_game/ramza/ramza.png" />
+							<Panel id="HeroAvatarCoverDragonKnight" class="HeroAvatarCover"/>
 						</Button>
 					</Panel>
 					
@@ -281,6 +281,10 @@
 						<Button id="HeroAvatarBtnRubick" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelRubick&quot;);"> 
 							<Image id="HeroAvatarRubick" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_rubick.png" />
 							<Panel id="HeroAvatarCoverRubick" class="HeroAvatarCover"/>
+						</Button>
+						<Button id="HeroAvatarBtnLifeStealer" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelLifeStealer&quot;);"> 
+							<Image id="HeroAvatarLifeStealer" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_life_stealer.png" />
+							<Panel id="HeroAvatarCoverLifeStealer" class="HeroAvatarCover"/>
 						</Button>
 					</Panel>
 					<Button id="JoinUsButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelJoinUs&quot;);">				

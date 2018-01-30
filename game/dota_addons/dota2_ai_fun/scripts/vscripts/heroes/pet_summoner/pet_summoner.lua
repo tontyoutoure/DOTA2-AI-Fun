@@ -46,7 +46,7 @@ function PetSummonerFixBooBoo(keys)
 			v:EmitSound("n_creep_ForestTrollHighPriest.Heal")
 			ParticleManager:CreateParticle("particles/neutral_fx/troll_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, v)
 			if fHealAmount > 0 then
-				iParticle = ParticleManager:CreateParticle("particles/msg_fx/msg_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, v)
+				iParticle = ParticleManager:CreateParticleForPlayer("particles/msg_fx/msg_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, v, v:GetPlayerOwner())
 				ParticleManager:SetParticleControl(iParticle, 1, Vector(10, fHealAmount, 0))
 				ParticleManager:SetParticleControl(iParticle, 2, Vector(1, math.floor(math.log10(fHealAmount))+2,0))
 				ParticleManager:SetParticleControl(iParticle, 3, Vector(60, 255, 60))

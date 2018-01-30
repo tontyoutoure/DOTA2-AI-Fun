@@ -177,7 +177,7 @@ function modifier_hamsterlord_take_nap:OnIntervalThink()
 			fHealAmount = hParent:GetMaxHealth()-hParent:GetHealth()
 	end
 	if fHealAmount > 0 then
-		iParticle = ParticleManager:CreateParticle("particles/msg_fx/msg_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, hParent)
+		iParticle = ParticleManager:CreateParticleForPlayer("particles/msg_fx/msg_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, hParent, hParent:GetPlayerOwner())
 		ParticleManager:SetParticleControl(iParticle, 1, Vector(10, fHealAmount, 0))
 		ParticleManager:SetParticleControl(iParticle, 2, Vector(1, math.floor(math.log10(fHealAmount))+2,0))
 		ParticleManager:SetParticleControl(iParticle, 3, Vector(60, 255, 60))

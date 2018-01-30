@@ -7,8 +7,7 @@
 #TopBarScoreboard
 {
 	margin-top: 1px;
-	margin-left: 212px;
-    horizontal-align: left;
+    horizontal-align: middle;
     vertical-align: top;
 	width: 1495px;
 }
@@ -16,13 +15,11 @@
 .AspectRatio4x3 #TopBarScoreboard,
 .AspectRatio5x4 #TopBarScoreboard
 {
-	margin-left: 200px;
 	width: 1070px;
 }
 
 .AspectRatio16x10 #TopBarScoreboard
 {
-	margin-left: 200px;
 	width: 1335px;
 }
 

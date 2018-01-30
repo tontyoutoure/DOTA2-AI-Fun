@@ -22,6 +22,7 @@ if not IsClient() then
 	require('heroes/hamsterlord/hamsterlord_init')
 	require('heroes/exsoldier/exsoldier_init')
 	require('heroes/gambler/gambler_init')
+	require('heroes/old_lifestealer/old_lifestealer_init')
 			
 	function GameMode:InitializeFunHero(hHero)
 		if hHero:GetName() == "npc_dota_hero_spirit_breaker" then
@@ -68,7 +69,7 @@ if not IsClient() then
 			VoidDemonInit(hHero, self)
 		end
 			
-		if hHero:GetName() == "npc_dota_hero_brewmaster" then
+		if hHero:GetName() == "npc_dota_hero_dragon_knight" then
 			RamzaInit(hHero, self)
 		end
 		
@@ -114,6 +115,10 @@ if not IsClient() then
 		
 		if hHero:GetName() == "npc_dota_hero_rubick" then
 			GamblerInit(hHero, self)
+		end
+		
+		if hHero:GetName() == "npc_dota_hero_life_stealer" then
+			OldLifestealerInit(hHero, self)
 		end
 	end
 

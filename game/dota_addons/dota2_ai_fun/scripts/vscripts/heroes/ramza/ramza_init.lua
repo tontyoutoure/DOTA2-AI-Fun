@@ -51,7 +51,6 @@ function GameMode:RamzaDamageFilter(filterTable)
 end
 
 function RamzaTalentManager(keys)
-	if PlayerResource:GetPlayer(keys.player-1):GetAssignedHero():GetName() ~= "npc_dota_hero_brewmaster" then return end
 	if keys.abilityname == "special_bonus_ramza_2" then
 		PlayerResource:GetPlayer(keys.player-1):GetAssignedHero().hRamzaJob:RamzaLevelMax()
 	end
