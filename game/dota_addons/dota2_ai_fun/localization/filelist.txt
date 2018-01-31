@@ -28,3 +28,4 @@ hamsterlord.txt
 exsoldier.txt
 gambler.txt
 old_lifestealer.txt
+rider.txt

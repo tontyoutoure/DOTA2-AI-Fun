@@ -165,3 +165,28 @@ function modifier_attribute_indicator_exsoldier:IsPurgable() return false end
 function modifier_attribute_indicator_exsoldier:IsHidden() return false end
 function modifier_attribute_indicator_exsoldier:IsDebuff() return false end
 function modifier_attribute_indicator_exsoldier:GetTexture() return "attribute_indicator" end
+
+LinkLuaModifier("modifier_attribute_indicator_gambler", "modifier_attribute_indicators.lua", LUA_MODIFIER_MOTION_NONE)
+modifier_attribute_indicator_gambler = class({})
+function modifier_attribute_indicator_gambler:RemoveOnDeath() return false end
+function modifier_attribute_indicator_gambler:IsPurgable() return false end
+function modifier_attribute_indicator_gambler:IsHidden() return false end
+function modifier_attribute_indicator_gambler:IsDebuff() return false end
+function modifier_attribute_indicator_gambler:GetTexture() return "attribute_indicator" end
+
+LinkLuaModifier("modifier_attribute_indicator_old_lifestealer", "modifier_attribute_indicators.lua", LUA_MODIFIER_MOTION_NONE)
+modifier_attribute_indicator_old_lifestealer = class({})
+function modifier_attribute_indicator_old_lifestealer:RemoveOnDeath() return false end
+function modifier_attribute_indicator_old_lifestealer:IsPurgable() return false end
+function modifier_attribute_indicator_old_lifestealer:IsHidden() return false end
+function modifier_attribute_indicator_old_lifestealer:IsDebuff() return false end
+function modifier_attribute_indicator_old_lifestealer:GetTexture() return "attribute_indicator" end
+
+
+LinkLuaModifier("modifier_attribute_indicator_rider", "modifier_attribute_indicators.lua", LUA_MODIFIER_MOTION_NONE)
+modifier_attribute_indicator_rider = class({})
+function modifier_attribute_indicator_rider:RemoveOnDeath() return false end
+function modifier_attribute_indicator_rider:IsPurgable() return false end
+function modifier_attribute_indicator_rider:IsHidden() return false end
+function modifier_attribute_indicator_rider:IsDebuff() return false end
+function modifier_attribute_indicator_rider:GetTexture() return "attribute_indicator" end

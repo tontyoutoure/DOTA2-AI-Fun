@@ -23,6 +23,7 @@ if not IsClient() then
 	require('heroes/exsoldier/exsoldier_init')
 	require('heroes/gambler/gambler_init')
 	require('heroes/old_lifestealer/old_lifestealer_init')
+	require('heroes/rider/rider_init')
 			
 	function GameMode:InitializeFunHero(hHero)
 		if hHero:GetName() == "npc_dota_hero_spirit_breaker" then
@@ -119,6 +120,10 @@ if not IsClient() then
 		
 		if hHero:GetName() == "npc_dota_hero_life_stealer" then
 			OldLifestealerInit(hHero, self)
+		end
+		
+		if hHero:GetName() == "npc_dota_hero_chaos_knight" then
+			RiderInit(hHero, self)
 		end
 	end
 

@@ -1,3 +1,5 @@
-hHero = PlayerResource:GetPlayer(0):GetAssignedHero()
-hHero:StopSound("Hero_LifeStealer.Foley")
-hHero:StopSound("Hero_LifeStealer.Footsteps")
+hHero1 = PlayerResource:GetPlayer(0):GetAssignedHero()
+hHero = PlayerResource:GetPlayer(1):GetAssignedHero()
+	local vFront = Vector2D(hHero1:GetForwardVector()):Normalized()
+	local vLine = Vector2D(hHero1:GetOrigin()-hHero:GetOrigin()):Normalized()
+	print(Vector(0,0,0).Dot(vFront, vLine), math.cos(105/180*math.pi))

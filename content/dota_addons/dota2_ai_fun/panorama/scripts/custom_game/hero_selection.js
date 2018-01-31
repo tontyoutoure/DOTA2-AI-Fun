@@ -31,6 +31,7 @@ var tFunHeroNames = {
 	'juggernaut':'exsoldier',
 	'rubick':'gambler',
 	'life_stealer':'old_lifestealer',
+	'chaos_knight':'rider',
 }
 var tHeroNameCapitals = {
 	"spirit_breaker":"SpiritBreaker",
@@ -57,6 +58,7 @@ var tHeroNameCapitals = {
 	'juggernaut':'Juggernaut',
 	'rubick':'Rubick',
 	'life_stealer':'LifeStealer',
+	'chaos_knight':'ChaosKnight',
 }
 
 function HeroDescriptionInitAll(keys) {
