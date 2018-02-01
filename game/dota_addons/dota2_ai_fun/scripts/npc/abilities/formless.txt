@@ -7,43 +7,34 @@
 
 	"formless_unus"
 	{
-		"BaseClass"	"ability_datadriven"
+		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"formless_unus"
+		"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"CastFilterRejectCaster"	"1"
 		"AbilityCooldown"	"5"
 		"AbilityCastRange"	"0"
+		"HasScepterUpgrade"  "1"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
 		}
-		"OnSpellStart"
+		"AbilitySpecial"
 		{
-			"RunScript"
+			"01"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
-				"Function"	"formless_unus"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Rubick.SpellSteal.Cast"
-			}
-		}
-		"OnUpgrade"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
-				"Function"	"formless_upgrade"
+				"var_type"	"FIELD_INTEGER"
+				"cooldown_scepter"	"0"
 			}
 		}
 	}
 
 	"formless_duos"
 	{
-		"BaseClass"	"ability_datadriven"
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
 		"AbilityTextureName"	"formless_duos"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
@@ -51,35 +42,25 @@
 		"CastFilterRejectCaster"	"1"
 		"AbilityCooldown"	"5"
 		"AbilityCastRange"	"0"
+		"HasScepterUpgrade"  "1"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
 		}
-		"OnSpellStart"
+		"AbilitySpecial"
 		{
-			"RunScript"
+			"01"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
-				"Function"	"formless_duos"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Rubick.SpellSteal.Cast"
-			}
-		}
-		"OnUpgrade"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
-				"Function"	"formless_upgrade"
+				"var_type"	"FIELD_INTEGER"
+				"cooldown_scepter"	"0"
 			}
 		}
 	}
 
 	"formless_tertius"
 	{
-		"BaseClass"	"ability_datadriven"
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
 		"AbilityTextureName"	"formless_tertius"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
@@ -87,35 +68,25 @@
 		"CastFilterRejectCaster"	"1"
 		"AbilityCooldown"	"5"
 		"AbilityCastRange"	"0"
+		"HasScepterUpgrade"  "1"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
 		}
-		"OnSpellStart"
+		"AbilitySpecial"
 		{
-			"RunScript"
+			"01"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
-				"Function"	"formless_tertius"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Rubick.SpellSteal.Cast"
-			}
-		}
-		"OnUpgrade"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
-				"Function"	"formless_upgrade"
+				"var_type"	"FIELD_INTEGER"
+				"cooldown_scepter"	"0"
 			}
 		}
 	}
 
 	"formless_denique"
 	{
-		"BaseClass"	"ability_datadriven"
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
 		"AbilityTextureName"	"formless_denique"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
@@ -124,28 +95,17 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityCooldown"	"5"
 		"AbilityCastRange"	"0"
+		"HasScepterUpgrade"  "1"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
 		}
-		"OnSpellStart"
+		"AbilitySpecial"
 		{
-			"RunScript"
+			"01"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
-				"Function"	"formless_denique"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Rubick.SpellSteal.Cast"
-			}
-		}
-		"OnUpgrade"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
-				"Function"	"formless_upgrade"
+				"var_type"	"FIELD_INTEGER"
+				"cooldown_scepter"	"0"
 			}
 		}
 	}

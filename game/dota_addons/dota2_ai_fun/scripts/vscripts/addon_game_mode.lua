@@ -6,7 +6,6 @@ require('gamemode')
 
 -- If something was being created via script such as a new npc, it would need to be precached here
 function Precache( context )
-
 	PrecacheModel("models/heroes/invoker/invoker_head.vmdl", context)
 	PrecacheModel("models/items/invoker/magus_apex/magus_apex.vmdl", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_morphling/morphling_base_attack.vpcf", context)

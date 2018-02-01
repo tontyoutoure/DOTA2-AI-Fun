@@ -77,7 +77,8 @@ end
 
 function formless_forget(keys)
 	local sCurrentName = keys.ability:GetAbilityName()
-	if string.sub(sCurrentName, 1, -8) ~= keys.ability.sName then	
+	if string.sub(sCurrentName, 1, -8) ~= keys.ability.sName then
+		local iCurrentLevel = keys.caster:FindAbilityByName(keys.ability.sName):GetLevel()
 		keys.caster:RemoveAbility(keys.ability.sName)
 		local tAllModifiers = keys.caster:FindAllModifiers()
 		for k, v in ipairs(tAllModifiers) do
@@ -86,41 +87,58 @@ function formless_forget(keys)
 			end
 		end	  	
 		keys.ability.sName = string.sub(sCurrentName, 1, -8)
+		keys.caster:FindAbilityByName(keys.ability.sName):SetLevel(iCurrentLevel)
 	end
 	if not keys.bNotToggleBack then 
 		keys.caster:FindAbilityByName("formless_forget_choose"):ToggleAbility()
 	end
 end
 
-function formless_upgrade(keys)
-	keys.caster:FindAbilityByName(keys.ability:GetAbilityName().."_forget"):SetLevel(1)
-	keys.caster:FindAbilityByName("formless_forget_choose"):SetLevel(1)
-	keys.caster:FindAbilityByName("formless_forget_all"):SetLevel(1)
+formless_unus = class({})
+formless_duos = class({})
+formless_tertius = class({})
+formless_denique = class({})
+local function formless_OnSpellStart(self)
+	self:GetCaster():EmitSound("Hero_Rubick.SpellSteal.Cast")
+	if self:GetCaster():GetName() ~= "npc_dota_hero_wisp" then return end
+	local iIndex = self:GetAbilityIndex()
+	if iIndex == 5 then iIndex = 3 end
+	formless_copy_skill({caster = self:GetCaster(), ability = self, abilityIndexToCopy = iIndex, target = self:GetCursorTarget()})
 end
 
-function formless_unus(keys)
-	if keys.caster:GetName() ~= "npc_dota_hero_wisp" then return end
-  keys.abilityIndexToCopy = 0
-  formless_copy_skill(keys)
+formless_unus.OnSpellStart = formless_OnSpellStart
+formless_duos.OnSpellStart = formless_OnSpellStart
+formless_tertius.OnSpellStart = formless_OnSpellStart
+formless_denique.OnSpellStart = formless_OnSpellStart
+
+local function formless_OnUpgrade(self)
+	self:GetCaster():FindAbilityByName(self:GetAbilityName().."_forget"):SetLevel(1)
+	self:GetCaster():FindAbilityByName("formless_forget_choose"):SetLevel(1)
+	self:GetCaster():FindAbilityByName("formless_forget_all"):SetLevel(1)
 end
 
-function formless_duos(keys)
-	if keys.caster:GetName() ~= "npc_dota_hero_wisp" then return end
-  keys.abilityIndexToCopy = 1
-  formless_copy_skill(keys)
-end
+formless_unus.OnUpgrade = formless_OnUpgrade
+formless_duos.OnUpgrade = formless_OnUpgrade
+formless_tertius.OnUpgrade = formless_OnUpgrade
+formless_denique.OnUpgrade = formless_OnUpgrade
 
-function formless_tertius(keys)
-	if keys.caster:GetName() ~= "npc_dota_hero_wisp" then return end
-  keys.abilityIndexToCopy = 2
-  formless_copy_skill(keys)
+local function formless_GetCooldown(self, iLevel)
+	if IsClient() then 
+		if self:GetCaster():HasScepter() then
+			return 0
+		end
+	else
+		if self:GetCaster():HasScepter() then
+			return self:GetLevelSpecialValueFor("cooldown_scepter", iLevel)
+		end
+	end
+	
+	return self.BaseClass.GetCooldown(self, iLevel)
 end
-
-function formless_denique(keys)
-	if keys.caster:GetName() ~= "npc_dota_hero_wisp" then return end
-  keys.abilityIndexToCopy = 3
-  formless_copy_skill(keys)
-end
+formless_unus.GetCooldown = formless_GetCooldown
+formless_duos.GetCooldown = formless_GetCooldown
+formless_tertius.GetCooldown = formless_GetCooldown
+formless_denique.GetCooldown = formless_GetCooldown
 
 tHero = {}
 tHero["npc_dota_hero_abaddon"] = {0, 1, -1, 5}
