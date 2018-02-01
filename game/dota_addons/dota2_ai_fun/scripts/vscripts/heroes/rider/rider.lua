@@ -42,6 +42,7 @@ function rider_run_down:OnSpellStart()
 	local hTarget = self:GetCursorTarget()
 	if hTarget:TriggerSpellAbsorb(self) then return end
 	local hCaster = self:GetCaster()
+	hCaster:EmitSound("Hero_ChaosKnight.RealityRift.Cast")
 	hCaster:AddNewModifier(hCaster, self, "modifier_rider_run_down", {iTargetEntIndex = hTarget:entindex(), iAcceleration = selrider_run_down})
 	hTarget:AddNewModifier(hCaster, self, "modifier_rider_run_down_target", {})
 end

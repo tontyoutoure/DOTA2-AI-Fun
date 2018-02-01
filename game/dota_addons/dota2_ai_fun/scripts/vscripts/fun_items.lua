@@ -8,6 +8,7 @@ LinkLuaModifier("modifier_ragnarok_cleave", "fun_item_modifiers_lua.lua", LUA_MO
 LinkLuaModifier("modifier_angelic_alliance_maximum_speed", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_angelic_alliance_death_drop", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_item_fun_magic_hammer_root", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_item_fun_terra_blade_clean", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 local function CheckStringInTable(s, t)
 	for i = 1, #t do
 		if s == t[i] then return true end
@@ -473,6 +474,13 @@ end
 ListenToGameEvent("dota_item_picked_up", AAChangePurchaser, nil)
 
 function TerraBladeReleaseProjectile(keys)
+	
+	keys.ability.iCounter = keys.ability.iCounter or 0
+	keys.ability.iCounter = keys.ability.iCounter+1
+	if (keys.ability.iCounter == keys.ability:GetSpecialValueFor("projectile_interval")) then
+		keys.ability.iCounter = 0
+		return
+	end
 	local tInfo = 
 	{
 		Ability = keys.ability,
@@ -487,7 +495,7 @@ function TerraBladeReleaseProjectile(keys)
 		iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 		iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
 		iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-        fExpireTime = GameRules:GetGameTime() + 10.0,
+		fExpireTime = GameRules:GetGameTime() + 10.0,
 		bDeleteOnHit = false,
 		vVelocity = keys.caster:GetForwardVector() * keys.ability:GetSpecialValueFor("projectile_speed"),
 		bProvidesVision = true,
@@ -495,8 +503,11 @@ function TerraBladeReleaseProjectile(keys)
 		iVisionTeamNumber = keys.caster:GetTeamNumber()
 	}
 	projectile = ProjectileManager:CreateLinearProjectile(tInfo)
-end
 
+end
+function TerraBladeCleanerApply(keys)
+	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_item_fun_terra_blade_clean", {Duration = 1})
+end
 function TerraBladeProjectileHit(keys)
 	if keys.caster:IsIllusion() then return end
 	ApplyDamage({
@@ -504,7 +515,8 @@ function TerraBladeProjectileHit(keys)
 		damage = keys.caster:GetAverageTrueAttackDamage(keys.caster),
 		attacker = keys.caster,
 		victim = keys.target,
-		ability = keys.ability
+		ability = keys.ability,
+		damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
 	})
 end
 

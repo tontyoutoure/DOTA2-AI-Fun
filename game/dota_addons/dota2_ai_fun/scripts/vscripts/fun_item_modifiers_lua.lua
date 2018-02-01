@@ -354,3 +354,38 @@ function modifier_item_fun_magic_hammer_root:OnDestroy()
 	if IsClient() then return end
 	ParticleManager:DestroyParticle(self.iParticle, true)
 end
+
+modifier_item_fun_terra_blade_clean = class({})
+function modifier_item_fun_terra_blade_clean:IsHidden() return true end
+function modifier_item_fun_terra_blade_clean:IsPurgable() return false end
+function modifier_item_fun_terra_blade_clean:RemoveOnDeath() return false end
+function modifier_item_fun_terra_blade_clean:GetAttributes() return {MODIFIER_ATTRIBUTE_MULTIPLE} end
+function modifier_item_fun_terra_blade_clean:DeclareFunctions() return {MODIFIER_EVENT_ON_ORDER} end
+
+if IsServer() then
+	tValidOrder = {
+		[DOTA_UNIT_ORDER_CONTINUE] = true, 
+		[DOTA_UNIT_ORDER_CAST_TOGGLE] = true, 
+		[DOTA_UNIT_ORDER_PICKUP_ITEM] = true, 
+		[DOTA_UNIT_ORDER_CAST_TARGET] = true, 
+		[DOTA_UNIT_ORDER_PICKUP_RUNE] = true, 
+		[DOTA_UNIT_ORDER_MOVE_TO_TARGET] = true, 
+		[DOTA_UNIT_ORDER_PATROL] = true, 
+		[DOTA_UNIT_ORDER_DROP_ITEM] = true, 
+		[DOTA_UNIT_ORDER_GIVE_ITEM] = true, 
+		[DOTA_UNIT_ORDER_CAST_NO_TARGET] = true, 
+		[DOTA_UNIT_ORDER_CAST_TOGGLE_AUTO] = true,
+		[DOTA_UNIT_ORDER_MOVE_TO_POSITION] = true,
+		[DOTA_UNIT_ORDER_CAST_POSITION] = true,
+		[DOTA_UNIT_ORDER_CAST_TARGET_TREE] = true,
+		[DOTA_UNIT_ORDER_MOVE_TO_DIRECTION] = true,
+	}
+end
+function modifier_item_fun_terra_blade_clean:OnOrder(keys)
+	if self:GetParent() ~= keys.unit then return end
+	local hAbility = self:GetAbility()
+	if tValidOrder[keys.order_type] or (keys.order_type==DOTA_UNIT_ORDER_ATTACK_TARGET and not keys.unit:IsAttackingEntity(keys.target)) then
+		self:GetAbility().iCounter = 0
+	end
+	
+end

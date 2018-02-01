@@ -16,6 +16,15 @@
 		$.GetContextPanel().GetParent().GetParent().FindChildTraverse('EconSetPreview2').visible=false
 		$.GetContextPanel().GetParent().GetParent().FindChildTraverse('SelectedHeroDetails').visible=false
 		$.GetContextPanel().GetParent().GetParent().FindChildTraverse('SelectedHeroPrimaryAttribute').visible=false
+		function LoadingScreenTeamHider() {
+			$.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse('TeamsList').visible = false
+		}
+
+		function LoadingScreenTeamShower() {
+			$.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse('TeamsList').visible = true
+		}
+		GameEvents.Subscribe( "LoadingScreenTeamHide", LoadingScreenTeamHider);
+		GameEvents.Subscribe( "LoadingScreenTeamShow", LoadingScreenTeamShower);
 	</script>
 	<Panel>
 		<CustomUIElement type="HudTopBar"			layoutfile="file://{resources}/layout/custom_game/multiteam_top_scoreboard.xml" />
@@ -28,5 +37,6 @@
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/formless_forget.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/ramza_job.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/donation.xml" />
+		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/team_hide.xml" />
 	</Panel>
 </root>

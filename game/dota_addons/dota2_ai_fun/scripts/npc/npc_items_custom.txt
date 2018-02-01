@@ -2159,12 +2159,28 @@
 					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_health"
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%manaregen"
 				}
+				"ThinkInterval"  "1"
+				"OnIntervalThink"{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/fun_items.lua"
+						"Function"	"TerraBladeCleanerApply"
+					}
+				}
 				"OnAttack"
 				{
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/fun_items.lua"
 						"Function"	"TerraBladeReleaseProjectile"
+					}
+				}
+				"OnOrder"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/fun_items.lua"
+						"Function"	"TerraBladeRefreshInterval"
 					}
 				}
 				"OnAttackLanded"
@@ -2316,6 +2332,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"manaregen"	"7"
+			}
+			"21"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"projectile_interval"	"2"
 			}
 		}
 	}

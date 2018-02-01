@@ -525,22 +525,6 @@
 	sound: "ui_team_select_cancel_and_lock";
 }
 
-#ChatHideButtonContainer
-{
-	height:32px;
-	width: 100px;
-	vertical-align:bottom;
-	margin-bottom:20px;
-	margin-left:720px;
-}
-.ChatHideButton
-{
-	height:100%;
-	width:100%;
-	visibility:collapse;
-}
-
-
 
 #GameOptionShowButton
 {
@@ -570,6 +554,36 @@
 	horizontal-align: center;
 	vertical-align: center;
 	color: #ffffff;
+}
+
+#ChatHideButtonContainer
+{
+	height:32px;
+	width: 200px;
+	vertical-align:bottom;
+	margin-bottom:20px;
+}
+
+.ChatHideButtonContainerPos16_9
+{
+	margin-left:720px;
+}
+
+.ChatHideButtonContainerPos4_3
+{
+	margin-left:600px;
+}
+
+.ChatHideButtonContainerPos16_10
+{
+	margin-left:720px;
+}
+
+.ChatHideButton
+{
+	height:100%;
+	width:100%;
+	visibility:collapse;
 }
 
 

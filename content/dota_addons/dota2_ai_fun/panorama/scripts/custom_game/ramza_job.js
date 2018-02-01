@@ -1,5 +1,5 @@
 "use strict"; 
-
+$.Msg("making ramza")
 //Globals
 
 //var PlayerTables = GameUI.CustomUIConfig().PlayerTables

@@ -310,11 +310,11 @@
 				</Panel>			
 			</Panel>		
 			<Panel id="ChatHideButtonContainer" hittest="false">
-				<Button id="ChatHideButtonHide" class="ChatHideButton" onactivate="HideChatActivate()">
-					<Label id="ChatHideButtonLabelHide" class="ChatHideButtonLabel" text="#hide_chat" />
+				<Button id="ChatHideButtonHide" class="ChatHideButton" onactivate="HideChatTeamActivate()">
+					<Label id="ChatHideButtonLabelHide" class="ChatHideButtonLabel" text="#hide_chat_team" />
 				</Button>
-				<Button id="ChatHideButtonShow" class="ChatHideButton" onactivate="ShowChatActivate()">
-					<Label id="ChatHideButtonLabelShow" class="ChatHideButtonLabel" text="#show_chat" />
+				<Button id="ChatHideButtonShow" class="ChatHideButton" onactivate="ShowChatTeamActivate()">
+					<Label id="ChatHideButtonLabelShow" class="ChatHideButtonLabel" text="#show_chat_team" />
 				</Button>
 			</Panel>
 			<Button id="GameOptionShowButton" onactivate="ShowGameOptions()">

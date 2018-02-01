@@ -26,7 +26,7 @@ function modifier_rider_backstab:OnAttackStart(keys)
 	if keys.attacker ~= self:GetParent() then return end
 	local vFront = Vector2D(keys.target:GetForwardVector()):Normalized()
 	local vLine = Vector2D(keys.target:GetOrigin()-keys.attacker:GetOrigin()):Normalized()
-	if keys.attacker:PassivesDisabled() or keys.target:GetTeam()==keys.attacker:GetTeam() or keys.target:IsBuilding() or (Vector(0,0,0).Dot(vFront, vLine)) < math.cos(self:GetAbility():GetSpecialValueFor("backstab_angle")/180*math.pi) then
+	if keys.attacker:PassivesDisabled() or keys.target:IsBuilding() or (Vector(0,0,0).Dot(vFront, vLine)) < math.cos(self:GetAbility():GetSpecialValueFor("backstab_angle")/180*math.pi) then
 		self.bBackstabbing = false	
 	else
 		StartAnimation(keys.attacker, {duration = 1.1/1.7/keys.attacker:GetAttacksPerSecond(), activity=ACT_DOTA_ATTACK_EVENT, rate=(keys.attacker:GetAttacksPerSecond()*1.7)*1})
@@ -62,7 +62,7 @@ end
 
 function modifier_rider_backstab:GetModifierPreAttack_BonusDamage()
 	if not IsClient() and self.bBackstabbing or self:GetParent():IsIllusion() then
-		return self:GetAbility():GetSpecialValueFor("damage_multiplier")*self:GetParent():GetAgility()
+		return self:GetAbility():GetSpecialValueFor("agility_multiplier")*self:GetParent():GetAgility()
 	else
 		return 0
 	end
@@ -166,6 +166,7 @@ function modifier_rider_drag:UpdateHorizontalMotion(me, dt)
 end
 modifier_rider_run_down = class({})
 function modifier_rider_run_down:IsPurgable() return false end
+function modifier_rider_run_down:CheckState() return {[MODIFIER_STATE_NO_UNIT_COLLISION] = true} end
 function modifier_rider_run_down:DeclareFunctions() return {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, MODIFIER_EVENT_ON_ORDER} end
 function modifier_rider_run_down:GetModifierMoveSpeedBonus_Constant() 
 		if self.iAcceleration then
@@ -202,7 +203,7 @@ end
 function modifier_rider_run_down:OnOrder(keys)
 	if keys.unit ~= self:GetParent() then return end
 	if tSafeOrder[keys.order_type] then return end
-	if keys.order_type ~= DOTA_UNIT_ORDER_ATTACK_TARGET	or (keys.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET and keys.target ~= EntIndexToHScript(self.iTargetEntIndex)) then
+	if (keys.order_type ~= DOTA_UNIT_ORDER_ATTACK_TARGET and not keys.ability ) or (keys.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET and keys.target ~= EntIndexToHScript(self.iTargetEntIndex)) or (keys.ability and bit.band(keys.ability:GetBehavior(), DOTA_ABILITY_BEHAVIOR_IMMEDIATE)==0) then
 		self:Destroy()
 	end
 end
@@ -215,7 +216,9 @@ end
 
 modifier_rider_run_down_target = class({})
 function modifier_rider_run_down_target:IsPurgable() return false end
-
+function modifier_rider_run_down_target:IsHidden()
+	return true
+end
 function modifier_rider_run_down_target:CheckState() return {[MODIFIER_STATE_INVISIBLE]=false} end
 function modifier_rider_run_down_target:DeclareFunctions() return {MODIFIER_PROPERTY_PROVIDES_FOW_POSITION} end
 function modifier_rider_run_down_target:GetModifierProvidesFOWVision() return 1 end

@@ -1,5 +1,3 @@
 hHero1 = PlayerResource:GetPlayer(0):GetAssignedHero()
-hHero = PlayerResource:GetPlayer(1):GetAssignedHero()
-	local vFront = Vector2D(hHero1:GetForwardVector()):Normalized()
-	local vLine = Vector2D(hHero1:GetOrigin()-hHero:GetOrigin()):Normalized()
-	print(Vector(0,0,0).Dot(vFront, vLine), math.cos(105/180*math.pi))
+
+hHero1:EmitSoundParams("Hero_ChaosKnight.ChaosStrike", 0,0.020,0)

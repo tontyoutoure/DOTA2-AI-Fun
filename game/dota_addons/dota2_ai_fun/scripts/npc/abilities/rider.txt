@@ -75,6 +75,7 @@
 		"ScriptFile"  "scripts/vscripts/heroes/rider/rider.lua"
 		"AbilityTextureName"	"ramza_go_back"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
@@ -83,7 +84,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"damage_multiplier"	"1 1.5 2 2.5"
+				"agility_multiplier"	"1 1.5 2 2.5"
 			}
 			"02"
 			{
