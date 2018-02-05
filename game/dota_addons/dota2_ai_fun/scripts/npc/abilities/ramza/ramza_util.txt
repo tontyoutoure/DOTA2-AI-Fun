@@ -116,11 +116,15 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"bonus_strength"	"3 6 9 12 15 18 21"
+				"LinkedSpecialBonus"	"special_bonus_ramza_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"bonus_damage"	"5 10 15 20 25 30 35"
+				"LinkedSpecialBonus"	"special_bonus_ramza_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 		}
 	}
@@ -146,16 +150,22 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"bonus_move"	"2 4 6 8 10 12 14"
+				"LinkedSpecialBonus"	"special_bonus_ramza_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"bonus_attack"	"2 4 6 8 10 12 14"
+				"LinkedSpecialBonus"	"special_bonus_ramza_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"bonus_agility"	"3 6 9 12 15 18 21"
+				"LinkedSpecialBonus"	"special_bonus_ramza_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 		}
 	}
@@ -181,11 +191,15 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"bonus_mana"	"50 100 150 200 250 300 350"
+				"LinkedSpecialBonus"	"special_bonus_ramza_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"bonus_intelligence"	"3 6 9 12 15 18 21"
+				"LinkedSpecialBonus"	"special_bonus_ramza_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 		}
 	}
@@ -234,7 +248,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"value"	"1"
+				"value"	"2"
 			}
 		}
 	}

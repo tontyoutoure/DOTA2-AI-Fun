@@ -292,6 +292,14 @@
 							<Image id="HeroAvatarChaosKnight" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_chaos_knight.png" />
 							<Panel id="HeroAvatarCoverChaosKnight" class="HeroAvatarCover"/>
 						</Button>
+						<Button id="HeroAvatarBtnSkywrathMage" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelSkywrathMage&quot;);"> 
+							<Image id="HeroAvatarSkywrathMage" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_skywrath_mage.png" />
+							<Panel id="HeroAvatarCoverSkywrathMage" class="HeroAvatarCover"/>
+						</Button>
+						<Button id="HeroAvatarBtnWarlock" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelWarlock&quot;);"> 
+							<Image id="HeroAvatarWarlock" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_warlock.png" />
+							<Panel id="HeroAvatarCoverWarlock" class="HeroAvatarCover"/>
+						</Button>
 					</Panel>
 					<Button id="JoinUsButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelJoinUs&quot;);">				
 						<Label id="JoinUsButtonLabel" text="#join_us_title" />

@@ -1,7 +1,7 @@
 "use strict";
 var sActivatingPanel
 var sSelectingPart
-
+$("#HeroAvatarBtnWarlock").visible = false
 var DOTA_ATTRIBUTE_STRENGTH = 0
 var DOTA_ATTRIBUTE_AGILITY = 1
 var DOTA_ATTRIBUTE_INTELLECT = 2
@@ -32,6 +32,8 @@ var tFunHeroNames = {
 	'rubick':'gambler',
 	'life_stealer':'old_lifestealer',
 	'chaos_knight':'rider',
+	'skywrath_mage':'siglos',
+	'warlock':'flame_lord',
 }
 var tHeroNameCapitals = {
 	"spirit_breaker":"SpiritBreaker",
@@ -59,6 +61,8 @@ var tHeroNameCapitals = {
 	'rubick':'Rubick',
 	'life_stealer':'LifeStealer',
 	'chaos_knight':'ChaosKnight',
+	'skywrath_mage':'SkywrathMage',
+	'warlock':'Warlock',
 }
 
 function HeroDescriptionInitAll(keys) {
@@ -185,5 +189,5 @@ function HeroUnselection(sHeroName, sHeroPart) {
 	$("#HeroAvatarCover"+sSelectingPart).style.visibility = 'collapse';
 	sSelectingPart = null;
 }
-HeroDescriptionInitAll({PlayerID:0});
+
 GameEvents.Subscribe( "player_connect_full", HeroDescriptionInitAll);

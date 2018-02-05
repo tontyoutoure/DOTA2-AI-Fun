@@ -8,7 +8,7 @@
 	"rider_run_down"
 	{
 		"BaseClass"	"ability_lua"
-		"ScriptFile"  "scripts/vscripts/heroes/rider/rider.lua"
+		"ScriptFile"  "heroes/rider/rider.lua"
 		"AbilityTextureName"	"chaos_knight_phantasm"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_ALERT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -36,7 +36,7 @@
 	"rider_bloodrage"
 	{
 		"BaseClass"	"ability_lua"
-		"ScriptFile"  "scripts/vscripts/heroes/rider/rider.lua"
+		"ScriptFile"  "heroes/rider/rider.lua"
 		"AbilityTextureName"	"rider_bloodrage"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -72,7 +72,7 @@
 	"rider_backstab"
 	{
 		"BaseClass"	"ability_lua"
-		"ScriptFile"  "scripts/vscripts/heroes/rider/rider.lua"
+		"ScriptFile"  "heroes/rider/rider.lua"
 		"AbilityTextureName"	"ramza_go_back"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
@@ -97,7 +97,7 @@
 	"rider_drag"
 	{
 		"BaseClass"	"ability_lua"
-		"ScriptFile"  "scripts/vscripts/heroes/rider/rider.lua"
+		"ScriptFile"  "heroes/rider/rider.lua"
 		"AbilityTextureName"	"shadow_shaman_shackles"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"

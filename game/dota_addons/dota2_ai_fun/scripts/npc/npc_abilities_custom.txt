@@ -25,3 +25,5 @@
 #base "abilities\gambler.txt"
 #base "abilities\old_lifestealer.txt"
 #base "abilities\rider.txt"
+#base "abilities\siglos.txt"
+#base "abilities\flame_lord.txt"

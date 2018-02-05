@@ -13,7 +13,7 @@ function HurricaneCyclone(keys)
 	ProcsArroundingMagicStick(keys.caster)
 	for i, v in ipairs(keys.target_entities) do
 		if v ~= keys.caster then
-			v:AddNewModifier(keys.caster, keys.ability, "modifier_hurricane_cyclone", {Duration = 1})
+			v:AddNewModifier(keys.caster, keys.ability, "modifier_hurricane_cyclone", {Duration = 1*CalculateStatusResist(v)})
 		end
 	end
 end

@@ -219,8 +219,8 @@ function CalculateStatusResist(hUnit)
 	if hUnit:GetPrimaryAttribute() == DOTA_ATTRIBUTE_STRENGTH then
 		fResist = fResist*(1-hUnit:GetStrength()*0.0015)
 	end
-	if hUnit:HasAbility("tiny_grow") then
-		fResist = fResist*(1-hUnit:FindAbilityByName("tiny_grow"):GetSpecialValueFor("status_resistance")/100)
+	if hUnit:HasModifier("modifier_tiny_grow") then
+		fResist = fResist*(1-hUnit:FindModifierByName("modifier_tiny_grow"):GetAbility():GetSpecialValueFor("status_resistance")/100)
 	end
 	if hUnit:HasItemInInventory("item_aeon_disk") then
 		fResist = fResist*(1-0.25)

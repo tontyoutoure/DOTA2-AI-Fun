@@ -196,14 +196,14 @@ function modifier_intimidator_physical_activity_lua:OnAttackLanded(keys)
 	end
 	local chanceDislocate = ability:GetSpecialValueFor("chance_dislocate")
 	if rn <= chance then
-		if glare:GetLevel() > 0 then 
+		if glare:GetLevel() > 0 and not target:IsMagicImmune() then 
 			local hModifier = target:AddNewModifier(caster, glare, "modifier_intimidator_glare_lua", {Duration = glare:GetSpecialValueFor("duration")*CalculateStatusResist(target)})
 		end
 		caster:EmitSound('Hero_LegionCommander.PressTheAttack')
 		caster:AddNewModifier(caster, ability, "modifier_intimidator_physical_activity_speed_lua", {Duration = ability:GetSpecialValueFor("buff_duration")})
 		
 	elseif rn <= chance*2 then
-		if grill:GetLevel() > 0 then
+		if grill:GetLevel() > 0 and not target:IsMagicImmune()  then
 			local hModifier = target:AddNewModifier(caster, grill, "modifier_intimidator_grill_lua", {Duration = grill:GetSpecialValueFor("duration")*CalculateStatusResist(target)})
 		end
 	elseif rn <= chance*2+chanceDislocate then
@@ -228,29 +228,30 @@ end
 function modifier_intimidator_be_my_friend_lua:IsStunDebuff() return true end
 
 function modifier_intimidator_be_my_friend_lua:OnCreated()
-	self:StartIntervalThink(1)
+	if IsClient() then return end
+	self:StartIntervalThink(CalculateStatusResist(self:GetParent()))
 end
 
 function modifier_intimidator_be_my_friend_lua:OnDestroy()
 	if IsClient() then return end
-	if #(self:GetAbility().tModifiers) < 2 then
-		self:GetCaster():InterruptChannel()
-	else
-		for i, v in pairs(self:GetAbility().tModifiers) do
-			if v == self then
-				ParticleManager:DestroyParticle(self:GetAbility().tParticles[i], false)
-				table.remove(self:GetAbility().tParticles, i)
-				table.remove(self:GetAbility().tModifiers, i)
-			end
+	for i, v in pairs(self:GetAbility().tModifiers) do
+		if v == self then
+			ParticleManager:DestroyParticle(self:GetAbility().tParticles[i], false)
+			print(self:GetAbility().tParticles[i])
+			table.remove(self:GetAbility().tParticles, i)
+			table.remove(self:GetAbility().tModifiers, i)
 		end
+	end
+	if #(self:GetAbility().tModifiers) < 1 then
+		self:GetCaster():Interrupt()
 	end
 end
 
 function modifier_intimidator_be_my_friend_lua:OnIntervalThink()
+	if IsClient() then return end
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
 	local ability = self:GetAbility()
-	if not ApplyDamage then return end -- API is buggy, so...
 	local damageTable = {
 		victim  = parent,
 		attacker = caster,

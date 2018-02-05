@@ -34,6 +34,7 @@ function intimidator_be_my_friend_lua:OnSpellStart()
 			self.tParticles[k] = ParticleManager:CreateParticle("particles/econ/items/razor/razor_punctured_crest_golden/razor_static_link_new_arc_blade_golden.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, v)
 			ParticleManager:SetParticleControlEnt(self.tParticles[k], 0, caster, PATTACH_POINT, "follow_attack1", caster:GetAbsOrigin(), true)
 			ParticleManager:SetParticleControlEnt(self.tParticles[k], 1, v, PATTACH_POINT, "follow_origin", v:GetAbsOrigin(), true)
+				print(self.tParticles[k])
 			
 		end
 	else
@@ -60,12 +61,9 @@ function intimidator_be_my_friend_lua:OnChannelFinish(interrupted)
 	if #self.tModifiers > 0 then
 		local iSize = #self.tModifiers
 		for i = 1, iSize do
-			if self.tModifiers[i] and not self.tModifiers[i]:IsNull() then
-				self.tModifiers[i]:Destroy()
-				self.tModifiers[i] = nil
+			if self.tModifiers[iSize+1-i] and not self.tModifiers[iSize+1-i]:IsNull() then
+				self.tModifiers[iSize+1-i]:Destroy()
 			end
-			ParticleManager:DestroyParticle(self.tParticles[i], false)
-			self.tParticles[i] = nil
 		end
 	end
 

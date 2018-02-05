@@ -16,7 +16,7 @@
 		"ScriptFile"  "scripts/vscripts/heroes/void_demon/void_demon_time_void.lua"
 		"AbilityTextureName"	"void_demon_time_void"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		// Unit Targeting
 		// -------------------------------------------------------------------------------------------------------------
@@ -71,9 +71,9 @@
 		"AbilityTextureName"	"void_demon_regen_aura"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityCastRange"	"%radius"
 		"AbilitySpecial"
 		{
 			"01"
@@ -109,7 +109,6 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"%radius"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"

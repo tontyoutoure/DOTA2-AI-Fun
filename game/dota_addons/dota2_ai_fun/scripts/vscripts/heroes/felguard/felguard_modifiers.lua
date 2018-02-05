@@ -25,6 +25,8 @@ end
 function modifier_felguard_fireblade_strike:UpdateHorizontalMotion(me, dt)	
 	me:SetOrigin(me:GetOrigin()+dt*self.vSpeedHorizontal)
 end
+function modifier_felguard_fireblade_strike:OnHorizontalMotionInterrupted() self:Destroy() end
+function modifier_felguard_fireblade_strike:OnVerticalMotionInterrupted() self:Destroy() end
 
 function modifier_felguard_fireblade_strike:CheckState() return {[MODIFIER_STATE_STUNNED] = true} end
 
@@ -67,7 +69,7 @@ function modifier_felguard_felguard_wrath:UpdateVerticalMotion(me, dt)
 end
 
 function modifier_felguard_felguard_wrath:CheckState()
-	return {[MODIFIER_STATE_ROOTED] = true}
+	return {[MODIFIER_STATE_STUNNED] = true, [MODIFIER_STATE_INVULNERABLE] = true}
 end
 
 function modifier_felguard_felguard_wrath:DeclareFunctions()

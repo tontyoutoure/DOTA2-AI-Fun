@@ -90,7 +90,7 @@ function GameMode:OnGameStateChanged( keys )
         end
         
         self.numPlayers = num
---		if IsInToolsMode() then return end
+		if IsInToolsMode() then return end
 		if IsInToolsMode() and GetMapName() ~= "dota" then return end
         -- Eanble bots and fill empty slots
         if IsServer() == true then

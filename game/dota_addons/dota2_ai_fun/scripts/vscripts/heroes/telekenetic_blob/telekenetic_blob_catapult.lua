@@ -8,6 +8,7 @@ function telekenetic_blob_catapult:CastFilterResultLocation(vLocation)
 	end
 
 	local markedTarget = TelekeneticBlobGetMarkedTarget(self:GetCaster())
+	if markedTarget:IsMagicImmune() and markedTarget:GetTeam() ~= self:GetCaster():GetTeam() then return UF_FAIL_MAGIC_IMMUNE_ENEMY end
 	if markedTarget == nil or (vLocation - markedTarget:GetOrigin()):Length2D() > self:GetSpecialValueFor("distance") then
 		return UF_FAIL_CUSTOM
 	end

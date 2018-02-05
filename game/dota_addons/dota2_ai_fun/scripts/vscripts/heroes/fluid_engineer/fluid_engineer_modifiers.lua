@@ -68,7 +68,7 @@ function modifier_fluid_engineer_bowel_hydraulics:OnIntervalThink()
 	local hCaster = self:GetCaster()
 	if hParent:FindModifierByName("modifier_fountain_aura_buff") then self:Destroy() end
 
-	local tUnits = FindUnitsInRadius(hCaster:GetOwner():GetTeamNumber(), hParent:GetAbsOrigin(), nil, self.iDOTRadius, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+	local tUnits = FindUnitsInRadius(hCaster:GetOwner():GetTeamNumber(), hParent:GetAbsOrigin(), nil, self.iDOTRadius, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 	local damageTable = {
 		attacker = hCaster,
 		damage_type = DAMAGE_TYPE_PURE,
@@ -99,7 +99,7 @@ function modifier_fluid_engineer_bowel_hydraulics:OnDestroy()
 	local hParent = self:GetParent()
 	local hCaster = self:GetCaster()
 	if hParent:FindModifierByName("modifier_fountain_aura_buff") then return end
-	local tUnits = FindUnitsInRadius(hCaster:GetOwner():GetTeamNumber(), hParent:GetAbsOrigin(), nil, self.iExplosionRadius, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+	local tUnits = FindUnitsInRadius(hCaster:GetOwner():GetTeamNumber(), hParent:GetAbsOrigin(), nil, self.iExplosionRadius, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 	local damageTable = {
 		attacker = hCaster,
 		damage_type = DAMAGE_TYPE_PURE,

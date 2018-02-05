@@ -15,6 +15,8 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
 		"HotKeyOverride"	"r"
 		// GUESS VALUE
 		"AbilityCastPoint"	"0.5 0.5 0.5 0.5"
@@ -56,6 +58,8 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
 		"HotKeyOverride"	"e"
 		// GUESS VALUE
 		"AbilityCastPoint"	"0.5 0.5 0.5 0.5"
@@ -100,8 +104,10 @@
 		"AbilityTextureName"	"bastion_mind_flux"
 		"ScriptFile"	"heroes/bastion/bastion_mind_flux.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		// GUESS VALUE
 		"AbilityCastPoint"	"0.5 0.5 0.5 0.5"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
@@ -141,6 +147,7 @@
 		"ScriptFile"	"heroes/bastion/bastion_transference.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"	"3"
@@ -189,6 +196,7 @@
 		"ScriptFile"	"heroes/bastion/bastion_transference.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"	"3"
@@ -234,6 +242,7 @@
 		"ScriptFile"	"heroes/bastion/bastion_transference.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		// GUESS VALUE

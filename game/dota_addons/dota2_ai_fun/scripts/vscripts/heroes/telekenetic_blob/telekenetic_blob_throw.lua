@@ -9,6 +9,7 @@ function telekenetic_blob_throw:CastFilterResultTarget(hTarget)
 	
 	local caster = self:GetCaster()
 	local markedTarget = TelekeneticBlobGetMarkedTarget(caster)
+	if markedTarget:IsMagicImmune() and markedTarget:GetTeam() ~= self:GetCaster():GetTeam() then return UF_FAIL_MAGIC_IMMUNE_ENEMY end
 	if markedTarget == nil or markedTarget:IsAncient() or markedTarget:IsHero() or markedTarget == hTarget or CalcDistanceBetweenEntityOBB(hTarget, markedTarget) > self:GetSpecialValueFor("distance") then
 		return UF_FAIL_CUSTOM 
 	end

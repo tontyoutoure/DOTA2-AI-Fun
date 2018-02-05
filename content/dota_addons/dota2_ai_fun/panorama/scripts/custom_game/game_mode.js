@@ -1,8 +1,31 @@
 "use strict";
 
-(function () {
-	InitializeUI()
 
+function ShowGameOptions() {
+	$("#game_options_container").style.visibility='visible';	
+	$("#GameOptionShowButton").style.visibility='collapse';	
+}
+
+
+function CheckForHostPrivileges() {
+	var player_info = Game.GetLocalPlayerInfo();
+	if ( !player_info ) {
+		return undefined;
+	} else {
+		return player_info.player_has_host_privileges;
+	}
+}
+
+function InitializeUI(keys) {
+	if (keys.PlayerID != Game.GetLocalPlayerID()) {return}
+	$.Msg(CheckForHostPrivileges())
+	var is_host = CheckForHostPrivileges();
+	if (is_host === undefined) {
+		$.Schedule(1, InitializeUI);
+		return;
+	} else if (is_host) {
+		$("#game_options_container").style.visibility='visible';		
+	}
 	// Hides battlecuck crap
 	var hit_test_blocker = $.GetContextPanel().GetParent().FindChild("SidebarAndBattleCupLayoutContainer");
 
@@ -22,22 +45,6 @@
 	else {
 		$("#ChatHideButtonContainer").SetHasClass("ChatHideButtonContainerPos16_9", true)
 	}
-	
-})();
-
-function ShowGameOptions() {
-	$("#game_options_container").style.visibility='visible';	
-	$("#GameOptionShowButton").style.visibility='collapse';	
-}
-
-function InitializeUI() {
-	var is_host = CheckForHostPrivileges();
-	if (is_host === undefined) {
-		$.Schedule(1, InitializeUI);
-		return;
-	} else if (is_host) {
-		$("#game_options_container").style.visibility='visible';		
-	}
 }
 
 function HideChatTeamActivate() {
@@ -54,14 +61,6 @@ function ShowChatTeamActivate() {
 	GameEvents.SendCustomGameEventToClient("LoadingScreenTeamShow", Players.GetLocalPlayer()+1, {})
 }
 
-function CheckForHostPrivileges() {
-	var player_info = Game.GetLocalPlayerInfo();
-	if ( !player_info ) {
-		return undefined;
-	} else {
-		return player_info.player_has_host_privileges;
-	}
-}
 $("#bot_attack_tower_pick_rune").checked=true;
 function set_game_options()
 {
@@ -87,3 +86,6 @@ function set_game_options()
 	$("#game_options_container").style.visibility='collapse';
 	$("#GameOptionShowButton").style.visibility='visible';	
 }
+
+
+GameEvents.Subscribe( "player_connect_full", InitializeUI);

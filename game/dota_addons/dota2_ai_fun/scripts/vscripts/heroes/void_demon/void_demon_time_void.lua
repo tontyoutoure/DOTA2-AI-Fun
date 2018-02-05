@@ -62,7 +62,6 @@ function modifier_void_demon_time_void:GetModifierAttackSpeedBonus_Constant() re
 void_demon_degen_aura = class({})
 function void_demon_degen_aura:GetIntrinsicModifierName() return "modifier_void_demon_degen_aura" end
 
-
 modifier_void_demon_degen_aura = class({})
 
 

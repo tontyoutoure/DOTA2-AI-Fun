@@ -9,6 +9,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"15"
@@ -32,6 +33,7 @@
 			"modifier_terran_marine_heavy_artillery"
 			{
 				"IsBuff"	"1"
+				"IsPurgable"  "1"
 				"OnAttackLanded"
 				{					
 					"RunScript"
@@ -82,6 +84,7 @@
 		"AbilityTextureName"	"tinker_laser"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityCastPoint"	"0.0 0.0 0.0 0.0"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
@@ -165,6 +168,7 @@
 		"AbilityTextureName"	"skywrath_mage_mystic_flare_alt"
 		"ScriptFile"	"/heroes/terran_marine/terran_marine_precision_lua.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilitySpecial"
 		{
 			"01"
@@ -185,6 +189,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilityCastAnimation"	"0"
 		"AbilityCooldown"	"30"
 		"AbilityManaCost"	"100"

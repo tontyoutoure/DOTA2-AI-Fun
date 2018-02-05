@@ -1,3 +1,4 @@
-hHero1 = PlayerResource:GetPlayer(0):GetAssignedHero()
-
-hHero1:EmitSoundParams("Hero_ChaosKnight.ChaosStrike", 0,0.020,0)
+hHero = PlayerResource:GetPlayer(0):GetAssignedHero()
+for k, v in pairs(hHero:FindAllModifiers()) do
+	if v.GetPriority then print(v:GetPriority()) end
+end

@@ -9,6 +9,7 @@ function telekenetic_blob_sling:CastFilterResultLocation(vLocation)
 	end
 
 	local markedTarget = TelekeneticBlobGetMarkedTarget(self:GetCaster())
+	if markedTarget:IsMagicImmune() and markedTarget:GetTeam() ~= self:GetCaster():GetTeam() then return UF_FAIL_MAGIC_IMMUNE_ENEMY end
 	if markedTarget == nil then
 		return UF_FAIL_CUSTOM
 	end

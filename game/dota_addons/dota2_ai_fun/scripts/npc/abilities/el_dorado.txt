@@ -61,6 +61,7 @@
 		"ScriptFile"	"scripts/vscripts/heroes/el_dorado/el_dorado.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilitySpecial"
 		{
 			"01"
@@ -100,6 +101,8 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"120"
 		"AbilityManaCost"	"100"

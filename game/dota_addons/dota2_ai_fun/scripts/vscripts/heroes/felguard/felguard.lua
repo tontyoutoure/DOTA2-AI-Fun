@@ -8,7 +8,7 @@ function FelguardFirebladeStrike(keys)
 	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end	
 	local vSpeedHorizontal = 2500*Vector2D(keys.target:GetOrigin()-keys.caster:GetOrigin()):Normalized()
-	local hModifier = keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_felguard_fireblade_strike", {Duration=keys.ability:GetSpecialValueFor("knock_back")/2500})
+	local hModifier = keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_felguard_fireblade_strike", {Duration=keys.ability:GetSpecialValueFor("knock_back")/2500*CalculateStatusResist(keys.target)})
 	hModifier.vSpeedHorizontal = vSpeedHorizontal
 	ApplyDamage({damage = keys.ability:GetSpecialValueFor("damage"), damage_type = DAMAGE_TYPE_MAGICAL, ability = keys.ability, attacker = keys.caster, victim = keys.target})
 	ParticleManager:CreateParticle("particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.target)

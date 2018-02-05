@@ -27,7 +27,7 @@ end
 
 function modifier_pet_summoner_critters:GetModifierProvidesFOWVision() return 1 end
 
-function modifier_pet_summoner_critters:IsPurgable() return true end
+function modifier_pet_summoner_critters:IsPurgable() return false end
 function modifier_pet_summoner_critters:GetTexture() return "lion_voodoo" end
 
 modifier_pet_summoner_mittens_meow_aura = class({})
