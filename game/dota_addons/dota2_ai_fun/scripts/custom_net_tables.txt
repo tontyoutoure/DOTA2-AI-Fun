@@ -10,6 +10,7 @@
         "ramza_job_abilities",
         "ramza_job_names",
         "ramza_job_stats",
+		"ramza_list",
 		"fun_hero_abilities",
 		"fun_hero_stats",
     ]

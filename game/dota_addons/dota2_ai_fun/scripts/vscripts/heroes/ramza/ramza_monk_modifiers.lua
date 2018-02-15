@@ -40,7 +40,7 @@ function modifier_ramza_monk_critical_recover_hp:IsDebuff() return false end
 function modifier_ramza_monk_critical_recover_hp:RemoveOnDeath() return false end
 
 function modifier_ramza_monk_critical_recover_hp:OnTakeDamage(keys)
-	if keys.unit ~= self:GetParent() then return end
+	if keys.unit ~= self:GetParent() or keys.unit:IsIllusion() then return end
 	local bIsCooldownReady
 	local hParent = self:GetParent()
 	if hParent:PassivesDisabled() then return end

@@ -122,7 +122,6 @@ local tHeroBaseStats = {
 	AttributeIntelligenceGain = 0,
 	ArmorPhysical = 1,
 	bNoAttributeManager = true,
-	PrimaryAttribute = DOTA_ATTRIBUTE_STRENGTH,
 	AttackAnimationPoint = 0.5
 }
 
@@ -132,7 +131,8 @@ CustomNetTables:SetTableValue("fun_hero_stats", "ramza", {})
 
 function RamzaInit(hHero, context)
 	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)	
-	if hHero:IsIllusion() then return end
+	CustomNetTables:SetTableValue("ramza_list", tostring(hHero:entindex()), {})
+--	if hHero:IsIllusion() then return end
 	WearableManager:AddNewWearable(hHero, {ID = "66", style = "0", model = "models/heroes/dragon_knight/weapon.vmdl", particle_systems = {}})
 	WearableManager:AddNewWearable(hHero, {ID = "67", style = "0", model = "models/heroes/dragon_knight/shield.vmdl", particle_systems = {}})
 	hHero:AddNewModifier(hHero, nil, "modifier_wearable_hider_while_model_changes", {}).sOriginalModel = "models/heroes/dragon_knight/dragon_knight.vmdl"
@@ -147,7 +147,36 @@ function RamzaInit(hHero, context)
 	hHero:FindAbilityByName("ramza_select_secondary_skill_lua"):SetLevel(1)
 	hHero:AddAbility("ramza_squire_fundamental_stone")
 	hHero:FindAbilityByName("ramza_squire_fundamental_stone"):SetLevel(1)
-	hHero:FindAbilityByName("ramza_squire_fundamental_stone"):SetHidden(true)
+	hHero:FindAbilityByName("ramza_squire_fundamental_stone"):SetHidden(true)	
+	if hHero.hRamzaJob.tJobLevels[RAMZA_JOB_SQUIRE] >= 3 then hHero:FindAbilityByName("ramza_squire_counter_tackle"):SetLevel(1) end
+	if hHero.hRamzaJob.tJobLevels[RAMZA_JOB_SQUIRE] >= 5 then hHero:FindAbilityByName("ramza_squire_defend"):SetLevel(1) end
+	if hHero.hRamzaJob.tJobLevels[RAMZA_JOB_SQUIRE] >= 7 then hHero:FindAbilityByName("ramza_squire_move1"):SetLevel(1) end
+	if hHero.hRamzaOrigin or hHero:IsIllusion() then
+		local hRamzaOrigin = hHero.hRamzaOrigin or hHero:GetPlayerOwner():GetAssignedHero() -- for siglos replication and illusion
+		for i = 1, 20 do
+			hHero.hRamzaJob.tJobPoints[i] = hRamzaOrigin.hRamzaJob.tJobPoints[i]
+			hHero.hRamzaJob.tJobLevels[i] = hRamzaOrigin.hRamzaJob.tJobLevels[i]
+		end
+		if hRamzaOrigin.hRamzaJob.iCurrentJob > 1 then
+			hHero.hRamzaJob:ChangeJob(hRamzaOrigin.hRamzaJob.iCurrentJob, SELECT_JOB)
+		end
+		if hRamzaOrigin.hRamzaJob.iSecondarySkill > 0 then
+			hHero.hRamzaJob:ChangeJob(hRamzaOrigin.hRamzaJob.iSecondarySkill, SELECT_SECONDARY_SKILL)	
+		end
+		hHero.iBraveryLevel = hRamzaOrigin.iBraveryLevel or 0
+		hHero.iSpeedLevel = hRamzaOrigin.iSpeedLevel or 0
+		hHero.iFaithLevel = hRamzaOrigin.iFaithLevel or 0
+		print(hHero.iBraveryLevel, hHero.iSpeedLevel, hHero.iFaithLevel)
+		hHero:AddAbility("ramza_bravery"):SetLevel(hHero.iBraveryLevel)
+		hHero:RemoveAbility("ramza_bravery")
+		hHero:AddAbility("ramza_speed"):SetLevel(hHero.iSpeedLevel)
+		hHero:RemoveAbility("ramza_speed")
+		hHero:AddAbility("ramza_faith"):SetLevel(hHero.iFaithLevel)
+		hHero:RemoveAbility("ramza_faith")
+		local hHeroEntIndex = hHero:entindex()
+		Timers:CreateTimer(120, function () CustomNetTables:SetTableValue("ramza_list", tostring(hHeroEntIndex), nil) end)
+	end	
+	
 	if not GameMode.bRamzaArchersBaneFileterSet then
 		GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(GameMode, 'RamzaProjecileFilter'), context)
 		GameMode.bRamzaArchersBaneFileterSet = true

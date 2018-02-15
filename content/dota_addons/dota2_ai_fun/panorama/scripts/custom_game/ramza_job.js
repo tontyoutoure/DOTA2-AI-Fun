@@ -1,11 +1,10 @@
 "use strict"; 
-$.Msg("making ramza")
 //Globals
 
 //var PlayerTables = GameUI.CustomUIConfig().PlayerTables
 
 var SELECT_JOB = 0;
-var SELECT_SECONDARY_ABILITY = 1;
+var SELECT_SECONDARY_SKILL = 1;
 var iPlayerID = Game.GetLocalPlayerID();
 var bInitialized = false;
 var tRamzaList = {}
@@ -26,8 +25,6 @@ RamzaJob.FetchNetTableVariables = function() {
 	this.iCurrnetSecondarySkill = CustomNetTables.GetTableValue("ramza_current_secondary_skill", iPlayerID.toString())["1"];
 	this.tJobRequirement = CustomNetTables.GetTableValue("ramza_job_requirement", iPlayerID.toString());
 }
-
-
 
 
 
@@ -89,7 +86,7 @@ RamzaJob.SelectSecondarySkill = function () {
 		$("#ButtonToggleSecondarySkill").style.visibility = "collapse";
 		$("#ButtonToggleJob").style.visibility = "visible";
 		$("#JobContainerExample2").style.visibility = "visible";
-		this.iState = SELECT_SECONDARY_ABILITY;
+		this.iState = SELECT_SECONDARY_SKILL;
 		
 		for (var i = 1; i < 21; i++) {
 			if (this.tJobLevel[i.toString()] > 0)
@@ -100,7 +97,7 @@ RamzaJob.SelectSecondarySkill = function () {
 		this.DisableJob(20);
 		this.DisableJob(this.iCurrnetJob, SELECT_JOB);
 		if (this.iCurrnetSecondarySkill > 0)
-			this.DisableJob(this.iCurrnetSecondarySkill, SELECT_SECONDARY_ABILITY);
+			this.DisableJob(this.iCurrnetSecondarySkill, SELECT_SECONDARY_SKILL);
 	}
 	else
 		$("#JobSelectionContainer").style.visibility = "collapse";
@@ -129,7 +126,7 @@ RamzaJob.DisableJob = function (iJob, iType) {
 	
 	if (iType == SELECT_JOB)
 		$(sJobCoverUp).SetHasClass('JobCoverUpCurrentJob', true);
-	if (iType == SELECT_SECONDARY_ABILITY)
+	if (iType == SELECT_SECONDARY_SKILL)
 		$(sJobCoverUp).SetHasClass('JobCoverUpCurrentSecondarySkill', true);
 	
 	$(sJobCoverUp).style.visibility = 'visible';
@@ -400,25 +397,7 @@ function RamzaCloseSelectionListener(keys) {
 }
 
 function RamzaPortraitApply(keys) {
-//		$.Msg(Entities.GetUnitName(Players.GetLocalPlayerPortraitUnit()))
-	if (tRamzaList["0"] === undefined ) {
-		for (var i = 0; i<20; i++) {
-			if(CustomNetTables.GetTableValue("ramza_job_level", i)) {
-				tRamzaList[i.toString()] = "1"
-			}
-			else {
-				tRamzaList[i.toString()] = "0"
-			}
-		}
-	}
-	var bSelectingRamza = false
-	for (var i = 0; i < 20; i++) {
-		if (Players.GetLocalPlayerPortraitUnit() == Players.GetPlayerHeroEntityIndex( i ) && tRamzaList[i.toString()] == 1) {
-			bSelectingRamza = true;
-			break;
-		}
-	}
-	if (bSelectingRamza) {
+	if (CustomNetTables.GetTableValue("ramza_list", (Players.GetLocalPlayerPortraitUnit()).toString())) {
 		$('#RamzaPortraitContainer').style.visibility = 'visible';
 		if(Entities.IsAlive(Players.GetLocalPlayerPortraitUnit())) {
 			$("#RamzaPortraitDeath").style.visibility = 'collapse';
@@ -450,4 +429,5 @@ GameEvents.Subscribe( "ramza_select_job", RamzaSelectJobListener);
 GameEvents.Subscribe( "ramza_select_secondary_skill", RamzaSelectSecondarySkillListener);
 GameEvents.Subscribe( "ramza_close_selection", RamzaCloseSelectionListener)
 GameEvents.Subscribe( "dota_player_update_selected_unit", RamzaPortraitApply);
+GameEvents.Subscribe( "dota_player_update_query_unit", RamzaPortraitApply);
 GameEvents.Subscribe( "dota_player_update_killcam_unit", UpdateRamzaDeath);

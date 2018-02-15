@@ -175,13 +175,17 @@ if not IsClient() then
 			
 			Timers:CreateTimer(0.5, function() 
 				hHero:SetBaseMoveSpeed(tHeroBaseStats.MovementSpeed)
-				hHero:SetPrimaryAttribute(tHeroBaseStats.PrimaryAttribute)
 			end)
+			if tHeroBaseStats.PrimaryAttribute then
+				Timers:CreateTimer(0.5, function() 
+					hHero:SetPrimaryAttribute(tHeroBaseStats.PrimaryAttribute)
+				end)
+			end
 			
 			Timers:CreateTimer(0.04, function() 
 				if hHero ~= hHero:GetPlayerOwner():GetAssignedHero() then 
 					for i = 0, 23 do
-						if hHero:GetAbilityByIndex(i) then
+						if hHero:GetAbilityByIndex(i) and not hHero:GetName() == "npc_dota_hero_dragon_knight" then
 							hHero:GetAbilityByIndex(i):SetLevel(hHero:GetPlayerOwner():GetAssignedHero():GetAbilityByIndex(i):GetLevel())
 						end
 					end

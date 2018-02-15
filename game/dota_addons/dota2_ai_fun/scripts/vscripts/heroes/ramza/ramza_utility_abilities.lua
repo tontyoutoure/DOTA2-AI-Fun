@@ -32,6 +32,7 @@ end
 function ramza_open_stats_lua:ProcsMagicStick() return false end
 function ramza_open_stats_lua:OnSpellStart()
 	local hCaster = self:GetCaster()
+	if not hCaster.hRamzaJob then return end
 	CustomGameEventManager:Send_ServerToPlayer( hCaster:GetOwner(), "ramza_close_selection", {iHeroEntityIndex=self:GetCaster():entindex()} )
 	hCaster.iBraveryLevel = hCaster.iBraveryLevel or 0
 	hCaster.iSpeedLevel = hCaster.iSpeedLevel or 0
@@ -183,6 +184,7 @@ ramza_select_job_lua = class({})
 function ramza_select_job_lua:ProcsMagicStick() return false end
 	
 function ramza_select_job_lua:OnSpellStart()
+	if not self:GetCaster().hRamzaJob then return end
 	CustomGameEventManager:Send_ServerToPlayer( self:GetCaster():GetOwner(), "ramza_select_job", {iHeroEntityIndex=self:GetCaster():entindex()})
 end
 
@@ -190,6 +192,7 @@ ramza_select_secondary_skill_lua = class({})
 function ramza_select_secondary_skill_lua:ProcsMagicStick() return false end
 
 function ramza_select_secondary_skill_lua:OnSpellStart()
+	if not self:GetCaster().hRamzaJob then return end
 	CustomGameEventManager:Send_ServerToPlayer( self:GetCaster():GetOwner(), "ramza_select_secondary_skill", {iHeroEntityIndex=self:GetCaster():entindex()})
 end
 
@@ -281,6 +284,7 @@ end
 
 local RamzaJCOnSpellStart = function (self)
 	local hCaster = self:GetCaster()
+	if not hCaster.hRamzaJob then return end
 	CustomGameEventManager:Send_ServerToPlayer( hCaster:GetOwner(), "ramza_close_selection", {iHeroEntityIndex=self:GetCaster():entindex()} )
 	local tJobCommandBus
 	local iPointer

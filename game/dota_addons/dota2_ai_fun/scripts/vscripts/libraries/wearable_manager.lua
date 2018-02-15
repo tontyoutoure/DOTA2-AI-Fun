@@ -16,17 +16,38 @@ if IsInToolsMode() then _G.GameItems = LoadKeyValues("scripts/items/items_game.t
 local INDENT = '\t'
 
 LinkLuaModifier("modifier_wearable_hider_while_model_changes", "libraries/wearable_manager.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_wearable_visuals_illusion", "libraries/wearable_manager.lua", LUA_MODIFIER_MOTION_NONE)
+modifier_wearable_visuals_illusion = class({})
+function modifier_wearable_visuals_illusion:GetStatusEffectName() return "particles/status_fx/status_effect_illusion.vpcf" end
+
 modifier_wearable_hider_while_model_changes = class({})
 function modifier_wearable_hider_while_model_changes:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_MODEL_CHANGED}
+	return {MODIFIER_EVENT_ON_MODEL_CHANGED, MODIFIER_EVENT_ON_DEATH}
 end
+
+function modifier_wearable_hider_while_model_changes:OnDeath(keys)
+	local hParent = self:GetParent()
+	if keys.unit ~= self:GetParent() then return end
+	if keys.unit:IsIllusion() then
+		for k, v in pairs(hParent.tWearables) do
+			UTIL_Remove(v.wearable)
+		end
+	end
+end
+
 function modifier_wearable_hider_while_model_changes:OnCreated()
 	if IsClient() then return end
 	self:StartIntervalThink(0.04)
 end
+
 function modifier_wearable_hider_while_model_changes:OnIntervalThink()
 	if IsClient() then return end
 	local hParent = self:GetParent()
+	if hParent:IsIllusion() and hParent:IsAlive() then
+		for k, v in pairs(hParent.tWearables) do
+			v.wearable:AddNewModifier(hParent, nil, "modifier_illusion", {})
+		end
+	end
 	if hParent:IsInvisible() then
 		if not self.bWasInvisible then
 			for k, v in pairs(hParent.tWearables) do

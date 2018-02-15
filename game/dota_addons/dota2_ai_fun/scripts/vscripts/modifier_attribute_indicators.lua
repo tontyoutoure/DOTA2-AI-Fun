@@ -191,6 +191,15 @@ function modifier_attribute_indicator_rider:IsHidden() return false end
 function modifier_attribute_indicator_rider:IsDebuff() return false end
 function modifier_attribute_indicator_rider:GetTexture() return "attribute_indicator" end
 
+
+LinkLuaModifier("modifier_attribute_indicator_siglos", "modifier_attribute_indicators.lua", LUA_MODIFIER_MOTION_NONE)
+modifier_attribute_indicator_siglos = class({})
+function modifier_attribute_indicator_siglos:RemoveOnDeath() return false end
+function modifier_attribute_indicator_siglos:IsPurgable() return false end
+function modifier_attribute_indicator_siglos:IsHidden() return false end
+function modifier_attribute_indicator_siglos:IsDebuff() return false end
+function modifier_attribute_indicator_siglos:GetTexture() return "attribute_indicator" end
+
 LinkLuaModifier("modifier_attribute_indicator_flame_lord", "modifier_attribute_indicators.lua", LUA_MODIFIER_MOTION_NONE)
 modifier_attribute_indicator_flame_lord = class({})
 function modifier_attribute_indicator_flame_lord:RemoveOnDeath() return false end

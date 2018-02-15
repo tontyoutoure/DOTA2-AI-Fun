@@ -18,7 +18,6 @@ function CheckForHostPrivileges() {
 
 function InitializeUI(keys) {
 	if (keys.PlayerID != Game.GetLocalPlayerID()) {return}
-	$.Msg(CheckForHostPrivileges())
 	var is_host = CheckForHostPrivileges();
 	if (is_host === undefined) {
 		$.Schedule(1, InitializeUI);
@@ -48,20 +47,26 @@ function InitializeUI(keys) {
 }
 
 function HideChatTeamActivate() {
-	$.GetContextPanel().GetParent().GetParent().FindChildTraverse("LoadingScreenChat").visible=false;
+	$.GetContextPanel().GetParent().GetParent().FindChildTraverse("LoadingScreenChat").visible=false
+	
 	$("#ChatHideButtonHide").visible=false;
 	$("#ChatHideButtonShow").visible=true;
-	GameEvents.SendCustomGameEventToClient("LoadingScreenTeamHide", Players.GetLocalPlayer()+1, {})
+	GameEvents.SendCustomGameEventToAllClients("LoadingScreenTeamHide", {iPlayerID:Players.GetLocalPlayer()})
 }
 
 function ShowChatTeamActivate() {
-	$.GetContextPanel().GetParent().GetParent().FindChildTraverse("LoadingScreenChat").visible=true;
+	$.GetContextPanel().GetParent().GetParent().FindChildTraverse("LoadingScreenChat").visible=true
 	$("#ChatHideButtonHide").visible=true;
 	$("#ChatHideButtonShow").visible=false;
-	GameEvents.SendCustomGameEventToClient("LoadingScreenTeamShow", Players.GetLocalPlayer()+1, {})
+	GameEvents.SendCustomGameEventToAllClients("LoadingScreenTeamShow", {iPlayerID:Players.GetLocalPlayer()})
 }
 
 $("#bot_attack_tower_pick_rune").checked=true;
+$("#imbalanced_economizer").checked=true;
+$("#bot_has_fun_item").checked=true;
+$("#universal_shop").checked=true;
+$("#radiant_player_number_dropdown").SetSelected("1")
+$("#dire_player_number_dropdown").SetSelected("1")
 function set_game_options()
 {
 	GameEvents.SendCustomGameEventToServer("loading_set_options",{

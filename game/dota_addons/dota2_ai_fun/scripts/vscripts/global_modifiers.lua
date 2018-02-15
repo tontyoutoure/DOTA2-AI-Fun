@@ -365,7 +365,7 @@ function modifier_bot_get_fun_items:OnIntervalThink()
 	if IsClient() then return end
 	local hParent = self:GetParent()
 	local sHeroName = hParent:GetName()
-	if hParent:HasModifier("modifier_fountain_aura_buff") or GameMode.iUniversalShop == 1 then
+	if hParent:HasModifier("modifier_fountain_aura_buff") or GameMode.iUniversalShop == 1 and tBotFunItems[sHeroName] then
 		for i, v in ipairs(tBotFunItems[sHeroName]) do
 			CheckFunItems(hParent, v)
 		end

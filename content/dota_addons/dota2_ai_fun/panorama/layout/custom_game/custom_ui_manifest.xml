@@ -16,12 +16,16 @@
 		$.GetContextPanel().GetParent().GetParent().FindChildTraverse('EconSetPreview2').visible=false
 		$.GetContextPanel().GetParent().GetParent().FindChildTraverse('SelectedHeroDetails').visible=false
 		$.GetContextPanel().GetParent().GetParent().FindChildTraverse('SelectedHeroPrimaryAttribute').visible=false
-		function LoadingScreenTeamHider() {
-			$.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse('TeamsList').visible = false
+		function LoadingScreenTeamHider(keys) {
+			if(keys.iPlayerID == Players.GetLocalPlayer()) {
+				$.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse('TeamsList').visible = false
+			}
 		}
 
-		function LoadingScreenTeamShower() {
-			$.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse('TeamsList').visible = true
+		function LoadingScreenTeamShower(keys) {
+			if(keys.iPlayerID == Players.GetLocalPlayer()) {
+				$.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse('TeamsList').visible = true
+			}
 		}
 		GameEvents.Subscribe( "LoadingScreenTeamHide", LoadingScreenTeamHider);
 		GameEvents.Subscribe( "LoadingScreenTeamShow", LoadingScreenTeamShower);
@@ -34,9 +38,7 @@
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/modmaker/modmaker.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/lua_console.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_attachments.xml" />
-		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/formless_forget.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/ramza_job.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/donation.xml" />
-		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/team_hide.xml" />
 	</Panel>
 </root>

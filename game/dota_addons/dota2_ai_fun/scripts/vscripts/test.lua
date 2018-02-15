@@ -1,4 +1,6 @@
-hHero = PlayerResource:GetPlayer(0):GetAssignedHero()
-for k, v in pairs(hHero:FindAllModifiers()) do
-	if v.GetPriority then print(v:GetPriority()) end
+hHero = PlayerResource:GetPlayer(1):GetAssignedHero()
+for i = 0, 23 do
+	if hHero:GetAbilityByIndex(i) then
+		print(hHero:GetAbilityByIndex(i):GetName(), hHero:GetAbilityByIndex(i):GetLevel())
+	end
 end

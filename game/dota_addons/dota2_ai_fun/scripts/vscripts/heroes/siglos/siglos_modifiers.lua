@@ -102,7 +102,6 @@ modifier_siglos_disruption_aura_target = class({})
 function modifier_siglos_disruption_aura_target:IsHidden() return false end
 function modifier_siglos_disruption_aura_target:DeclareFunctions() return {MODIFIER_PROPERTY_TOOLTIP} end
 function modifier_siglos_disruption_aura_target:OnTooltip() 
-	print(IsClient())
 	if not self.bFoundSpecial then
 		self.hSpecial = Entities:First()	
 		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_unique_siglos_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
@@ -116,34 +115,28 @@ function modifier_siglos_disruption_aura_target:OnTooltip()
 		return self:GetAbility():GetSpecialValueFor("disruption_range")
 	end
 end
+
 modifier_siglos_mind_control = class({})
 function modifier_siglos_mind_control:OnCreated() 
 	if IsClient() then return end 
 	local hParent = self:GetParent()
 	local hCaster = self:GetCaster()
 	self.iOwnerID = hParent:GetPlayerOwnerID()
-	self.iTeam = hParent:GetTeam()
-	hParent:SetControllableByPlayer(self.iOwnerID, false)
-	hParent:SetControllableByPlayer(hCaster:GetPlayerOwnerID(), true)
-	hParent:SetTeam(hCaster:GetTeam())
-	self.iParticle = ParticleManager:CreateParticle("particles/econ/items/razor/razor_punctured_crest_golden/razor_static_link_new_arc_blade_golden.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, hParent)
-	ParticleManager:SetParticleControlEnt(self.iParticle, 0, hCaster, PATTACH_POINT_FOLLOW, "attach_attack1", hCaster:GetAbsOrigin(), true)
-	ParticleManager:SetParticleControlEnt(self.iParticle, 1, hParent, PATTACH_POINT_FOLLOW, "attach_hitloc", hParent:GetAbsOrigin(), true)
+	hParent.iTeam = hParent:GetTeam()
+	hParent:SetOrigin(hParent:GetOrigin()+Vector(0,0,10000))
+--	hParent:AddEffects(EF_NODRAW)
+	
 end
+
+function modifier_siglos_mind_control:CheckState() return {[MODIFIER_STATE_NO_UNIT_COLLISION] = true, [MODIFIER_STATE_INVULNERABLE] = true, [MODIFIER_STATE_OUT_OF_GAME] = true, [MODIFIER_STATE_STUNNED] = true} end
+
 function modifier_siglos_mind_control:OnDestroy()
 	if IsClient() then return end 
 	local hParent = self:GetParent()
 	local hCaster = self:GetCaster()
-	hParent:SetControllableByPlayer(hCaster:GetPlayerOwnerID(), false)
-	hParent:SetControllableByPlayer(self.iOwnerID, true)
-	hParent:SetTeam(self.iTeam)
-	ParticleManager:DestroyParticle(self.iParticle, true)
+--	hParent:RemoveEffects(EF_NODRAW)
+	hParent:SetOrigin(GetGroundPosition(hParent:GetOrigin(), hParent))
 end
-
-function modifier_siglos_mind_control:DeclareFunctions() return {MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL, MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL, MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE} end
-function modifier_siglos_mind_control:GetAbsoluteNoDamagePhysical() return 1 end
-function modifier_siglos_mind_control:GetAbsoluteNoDamageMagical() return 1 end
-function modifier_siglos_mind_control:GetAbsoluteNoDamagePure() return 1 end
 
 
 modifier_siglos_mind_control_magic_immune = class({})

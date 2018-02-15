@@ -91,7 +91,7 @@ function GameMode:OnGameStateChanged( keys )
         
         self.numPlayers = num
 		if IsInToolsMode() then return end
-		if IsInToolsMode() and GetMapName() ~= "dota" then return end
+--		if IsInToolsMode() and GetMapName() ~= "dota" then return end
         -- Eanble bots and fill empty slots
         if IsServer() == true then
             
@@ -197,7 +197,8 @@ end
 function GameMode:_OnNPCSpawned(keys)
 	if GameRules:State_Get() < DOTA_GAMERULES_STATE_PRE_GAME then return end
 	local hHero = EntIndexToHScript(keys.entindex)	
-	if hHero:IsHero() and not hHero.bInitialized and ((hHero:GetPlayerOwner() and hHero:GetPlayerOwner().bIsPlayingFunHero) or hHero.bIsPlayingFunHero ) then self:InitializeFunHero(hHero) end
+--	if hHero:IsHero() and not hHero.bInitialized and (not self.tFunHeroSelection[hHero:GetPlayerOwnerID()] or self.tFunHeroSelection[hHero:GetPlayerOwnerID()]==hHero:GetName()) then self:InitializeFunHero(hHero) end
+	if hHero:IsHero() and not hHero.bInitialized and ((hHero:GetPlayerOwner() and hHero:GetPlayerOwner().bIsPlayingFunHero) or hHero.bIsPlayingFunHero ) and self.tFunHeroSelection[hHero:GetPlayerOwnerID()]==hHero:GetName() then self:InitializeFunHero(hHero) end
 --	if hHero:IsHero() and not hHero.bInitialized then self:InitializeFunHero(hHero) end
 	if hHero:GetName() == "npc_dota_hero_sniper" then
 		require('heroes/sniper/sniper_init')
@@ -217,7 +218,7 @@ function GameMode:_OnNPCSpawned(keys)
 	
 	
 	
-	if IsInToolsMode() then PlayerResource:SetGold(hHero:GetOwner():GetPlayerID(), 99999, true) end
+	if IsInToolsMode() and self.tHumanPlayerList[(hHero:GetPlayerOwnerID())] then PlayerResource:SetGold(hHero:GetOwner():GetPlayerID(), 99999, true) end
 	if not hHero.bInitialized then
 		hHero:AddNewModifier(hHero, nil, "modifier_global_hero_respawn_time", {})
 		if self.iImbalancedEconomizer > 0 then hHero:AddNewModifier(hHero, nil, "modifier_imbalanced_economizer", {}) end

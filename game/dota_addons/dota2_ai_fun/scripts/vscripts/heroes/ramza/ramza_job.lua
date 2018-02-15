@@ -124,7 +124,8 @@ end
 end
 
 function CRamzaJob:InitNetTable()	
-	local iPlayerID = self.hParent:GetOwner():GetPlayerID()	
+	local iPlayerID = self.hParent:GetOwner():GetPlayerID()
+	if self.hParent:IsIllusion() or GameMode.tFunHeroSelection[self.hParent:GetPlayerOwnerID()] ~= self.hParent:GetName() then return end
 	CustomNetTables:SetTableValue("ramza_init_job_requirement", tostring(iPlayerID), self.tRamzaChangeJobRequirements)
 	CustomNetTables:SetTableValue("ramza_job_names", tostring(iPlayerID), self.tJobNames)
 	CustomNetTables:SetTableValue("ramza_job_abilities", tostring(iPlayerID), self.tJobAbilities)
@@ -211,10 +212,10 @@ end
 
 function RamzaJobChangeListener(eventSourceIndex, args)
 	local hRamza = PlayerResource:GetPlayer(tonumber(args.PlayerID)):GetAssignedHero()
-	hRamza.hRamzaJob.iChangeJobState = tonumber(args.iState)
-	hRamza.hRamzaJob.iJobToGo = tonumber(args.iJob)
+	local iChangeJobState = tonumber(args.iState)
+	local iJobToGo = tonumber(args.iJob)
 	if (hRamza:HasScepter() or GameRules:IsCheatMode() or hRamza:GetHealthPercent() == 100 and hRamza:GetManaPercent() == 100) and not hRamza:HasModifier("modifier_ramza_dragoon_jump") then
-		hRamza.hRamzaJob:ChangeJob()
+		hRamza.hRamzaJob:ChangeJob(iJobToGo, iChangeJobState)
 	elseif hRamza:HasModifier("modifier_ramza_dragoon_jump") then
 		if tonumber(args.iState) == SELECT_JOB then
 			Notifications:Bottom(tonumber(args.PlayerID), {text = "#error_ramza_cant_change_job_jump", duration = 2, style = {color = "red"}})
@@ -231,19 +232,19 @@ function RamzaJobChangeListener(eventSourceIndex, args)
 	end
 end
 
-function CRamzaJob:ChangeJob()
+function CRamzaJob:ChangeJob(iJobToGo, iChangeJobState)
 	local iPlayerID = self.hParent:GetOwner():GetPlayerID()	
-	if self.iChangeJobState == SELECT_JOB then
+	if iChangeJobState == SELECT_JOB then
 		
 		if self.hParent:GetAbilityByIndex(5):GetName() == 'ramza_go_back_lua' then
 			self.hParent:FindAbilityByName('ramza_go_back_lua'):CastAbility()
 		end
 		
 		self.hParent:GetAbilityByIndex(1):SetActivated(true)
-		self.hParent:FindModifierByName("modifier_ramza_job_manager"):SetStackCount(self.iJobToGo)
-		self:ChangeStat()
-		self:ChangeModel()		
-		self.iCurrentJob = self.iJobToGo
+		self.hParent:FindModifierByName("modifier_ramza_job_manager"):SetStackCount(iJobToGo)
+		self:ChangeStat(iJobToGo)
+		self:ChangeModel(iJobToGo)		
+		self.iCurrentJob = iJobToGo
 		
 		--remove secondary skill if it's job command of current job or current job can have no secondary skill
 		if self.iCurrentJob == self.iSecondarySkill or self.iCurrentJob == RAMZA_JOB_MIME or self.iCurrentJob == RAMZA_JOB_ONION_KNIGHT then 
@@ -365,7 +366,7 @@ function CRamzaJob:ChangeJob()
 			self.hParent:RemoveModifierByName("modifier_" .. self.tOtherAbilities[self.iSecondarySkill][5][1])
 			self.hParent:RemoveModifierByName("modifier_" .. self.tOtherAbilities[self.iSecondarySkill][7][1])
 		end
-		self.iSecondarySkill = self.iJobToGo
+		self.iSecondarySkill = iJobToGo
 		
 		if self.hParent:FindAbilityByName("special_bonus_ramza_3"):GetLevel() == 1 then
 			if self.tJobLevels[self.iSecondarySkill] >= 3 then
@@ -416,56 +417,56 @@ function CRamzaJob:ChangeJob()
 end
 
 
-function CRamzaJob:ChangeStat()
-	self.hParent:SetBaseMoveSpeed(self.tJobStats[self.iJobToGo].move_speed)
-	self.hParent:SetPrimaryAttribute(self.tJobStats[self.iJobToGo].primary_attribute)
-	self.hParent:SetAttackCapability(self.tJobStats[self.iJobToGo].attack_cap)
-	self.hParent:FindModifierByName("modifier_ramza_job_manager").iBonusAttackRange = self.tJobStats[self.iJobToGo].attack_range-150;
+function CRamzaJob:ChangeStat(iJobToGo)
+	self.hParent:SetBaseMoveSpeed(self.tJobStats[iJobToGo].move_speed)
+	self.hParent:SetPrimaryAttribute(self.tJobStats[iJobToGo].primary_attribute)
+	self.hParent:SetAttackCapability(self.tJobStats[iJobToGo].attack_cap)
+	self.hParent:FindModifierByName("modifier_ramza_job_manager").iBonusAttackRange = self.tJobStats[iJobToGo].attack_range-150;
 	self.hParent:FindModifierByName("modifier_ramza_job_manager"):ForceRefresh()
-	self.hParent:SetAcquisitionRange(self.tJobStats[self.iJobToGo].attack_range+200)
-	self.hParent:SetPhysicalArmorBaseValue(self.tJobStats[self.iJobToGo].armor)
-	local fDiffStr = self.tJobStats[self.iJobToGo].base_str-self.tJobStats[self.iCurrentJob].base_str+(self.hParent:GetLevel()-1)*(self.tJobStats[self.iJobToGo].gain_str-self.tJobStats[self.iCurrentJob].gain_str)
-	local fDiffAgi = self.tJobStats[self.iJobToGo].base_agi-self.tJobStats[self.iCurrentJob].base_agi+(self.hParent:GetLevel()-1)*(self.tJobStats[self.iJobToGo].gain_agi-self.tJobStats[self.iCurrentJob].gain_agi)
-	local fDiffInt = self.tJobStats[self.iJobToGo].base_int-self.tJobStats[self.iCurrentJob].base_int+(self.hParent:GetLevel()-1)*(self.tJobStats[self.iJobToGo].gain_int-self.tJobStats[self.iCurrentJob].gain_int)
+	self.hParent:SetAcquisitionRange(self.tJobStats[iJobToGo].attack_range+200)
+	self.hParent:SetPhysicalArmorBaseValue(self.tJobStats[iJobToGo].armor)
+	local fDiffStr = self.tJobStats[iJobToGo].base_str-self.tJobStats[self.iCurrentJob].base_str+(self.hParent:GetLevel()-1)*(self.tJobStats[iJobToGo].gain_str-self.tJobStats[self.iCurrentJob].gain_str)
+	local fDiffAgi = self.tJobStats[iJobToGo].base_agi-self.tJobStats[self.iCurrentJob].base_agi+(self.hParent:GetLevel()-1)*(self.tJobStats[iJobToGo].gain_agi-self.tJobStats[self.iCurrentJob].gain_agi)
+	local fDiffInt = self.tJobStats[iJobToGo].base_int-self.tJobStats[self.iCurrentJob].base_int+(self.hParent:GetLevel()-1)*(self.tJobStats[iJobToGo].gain_int-self.tJobStats[self.iCurrentJob].gain_int)
 	self.hParent:ModifyStrength(fDiffStr)
 	self.hParent:ModifyAgility(fDiffAgi)
 	self.hParent:ModifyIntellect(fDiffInt)
-	self.hParent:FindModifierByName("modifier_ramza_job_manager").fStrGrowth = self.tJobStats[self.iJobToGo].gain_str
-	self.hParent:FindModifierByName("modifier_ramza_job_manager").fAgiGrowth = self.tJobStats[self.iJobToGo].gain_agi
-	self.hParent:FindModifierByName("modifier_ramza_job_manager").fIntGrowth = self.tJobStats[self.iJobToGo].gain_int
+	self.hParent:FindModifierByName("modifier_ramza_job_manager").fStrGrowth = self.tJobStats[iJobToGo].gain_str
+	self.hParent:FindModifierByName("modifier_ramza_job_manager").fAgiGrowth = self.tJobStats[iJobToGo].gain_agi
+	self.hParent:FindModifierByName("modifier_ramza_job_manager").fIntGrowth = self.tJobStats[iJobToGo].gain_int
 	self.hParent:CalculateStatBonus()
 end
 
 
-function CRamzaJob:ChangeModel()
-	if self.iJobToGo == RAMZA_JOB_SAMURAI then
+function CRamzaJob:ChangeModel(iJobToGo)
+	if iJobToGo == RAMZA_JOB_SAMURAI then
 		Timers:CreateTimer(0.04, function () self.hParent:SetMaterialGroup("1") end)
 	else
 		Timers:CreateTimer(0.04, function () self.hParent:SetMaterialGroup("0") end)
 	end
 	
-	if self.tJobStats[self.iJobToGo].attack_cap == DOTA_UNIT_CAP_RANGED_ATTACK then
-		self.hParent:SetRangedProjectileName(self.tJobModels[self.iJobToGo].attack_projectile)	
+	if self.tJobStats[iJobToGo].attack_cap == DOTA_UNIT_CAP_RANGED_ATTACK then
+		self.hParent:SetRangedProjectileName(self.tJobModels[iJobToGo].attack_projectile)	
 	end
-	self.hParent:SetModel(self.tJobModels[self.iJobToGo].model)
-	self.hParent:SetOriginalModel(self.tJobModels[self.iJobToGo].model)
-	self.hParent:FindModifierByName("modifier_wearable_hider_while_model_changes").sOriginalModel = self.tJobModels[self.iJobToGo].model
-	
-	if self.iJobToGo == RAMZA_JOB_SAMURAI then
+	self.hParent:SetModel(self.tJobModels[iJobToGo].model)
+	self.hParent:SetOriginalModel(self.tJobModels[iJobToGo].model)
+	self.hParent:FindModifierByName("modifier_wearable_hider_while_model_changes").sOriginalModel = self.tJobModels[iJobToGo].model
+	self.hParent:FindModifierByName("modifier_wearable_hider_while_model_changes"):ForceRefresh()
+	if iJobToGo == RAMZA_JOB_SAMURAI then
 		self.hParent:AddNewModifier(self.hParent, nil, "modifier_ramza_samurai_run_animation_manager", {})
 	else
 		self.hParent:RemoveModifierByName("modifier_ramza_samurai_run_animation_manager")
 	end
 	
-	if self.iJobToGo == RAMZA_JOB_WHITE_MAGE then
+	if iJobToGo == RAMZA_JOB_WHITE_MAGE then
 		self.hParent:AddNewModifier(self.hParent, nil, "modifier_ramza_white_mage_animation_manager", {})
 	else
 		self.hParent:RemoveModifierByName("modifier_ramza_white_mage_animation_manager")
 	end
 	
-	self.hParent:SetModelScale(self.tJobModels[self.iJobToGo].model_scale)
+	self.hParent:SetModelScale(self.tJobModels[iJobToGo].model_scale)
 	WearableManager:RemoveAllWearable(self.hParent)
-	for k, v in pairs(self.tJobModels[self.iJobToGo].wearables) do
+	for k, v in pairs(self.tJobModels[iJobToGo].wearables) do
 		WearableManager:AddNewWearable(self.hParent, v)
 	end
 --	WearableManager:PrintAllPrecaches(self.hParent)

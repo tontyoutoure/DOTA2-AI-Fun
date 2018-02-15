@@ -41,8 +41,11 @@ function MagicDragonInit(hHero)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_magic_dragon", {})
 	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)	
 	hHero:SetBaseMagicalResistanceValue(25)
-	if hHero:IsIllusion() then
-		MagicDragonTransform[hHero:GetOwner():GetAssignedHero().iDragonForm](hHero)
+	if hHero:IsIllusion()  then -- for siglos
+	elseif hHero.hFormToGo then
+		require("heroes/magic_dragon/magic_dragon_transform")	
+		MagicDragonTransform[MAGIC_DRAGON_GREEN_DRAGON_FORM](hHero)		
+		MagicDragonTransform[hHero.hFormToGo.iDragonForm](hHero)		
 	elseif not hHero.bSpawned then
 		require("heroes/magic_dragon/magic_dragon_transform")	
 		MagicDragonTransform[MAGIC_DRAGON_GREEN_DRAGON_FORM](hHero)		

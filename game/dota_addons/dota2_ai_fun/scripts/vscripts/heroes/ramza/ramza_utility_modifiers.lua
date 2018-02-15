@@ -459,8 +459,14 @@ end
 function modifier_ramza_bravery:IsPurgable() return false end
 function modifier_ramza_bravery:RemoveOnDeath() return false end	
 function modifier_ramza_bravery:IsHidden() return true end
-
-function modifier_ramza_bravery:OnRefresh()
+function modifier_ramza_bravery:OnCreated() 
+	if not self:GetAbility() then return end
+	self.iBonusDamage = self:GetAbility():GetSpecialValueFor("bonus_damage")
+	self.iBonusStr = self:GetAbility():GetSpecialValueFor("bonus_strength")
+	if IsClient() then return end
+	self:GetParent():CalculateStatBonus()
+end
+function modifier_ramza_bravery:OnRefresh() 
 	if not self:GetAbility() then return end
 	self.iBonusDamage = self:GetAbility():GetSpecialValueFor("bonus_damage")
 	self.iBonusStr = self:GetAbility():GetSpecialValueFor("bonus_strength")

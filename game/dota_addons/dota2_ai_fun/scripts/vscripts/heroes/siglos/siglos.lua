@@ -5,7 +5,6 @@ LinkLuaModifier("modifier_siglos_disruption_aura_target", "heroes/siglos/siglos_
 LinkLuaModifier("modifier_siglos_reflect", "heroes/siglos/siglos_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_siglos_mind_control", "heroes/siglos/siglos_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_siglos_mind_control_magic_immune", "heroes/siglos/siglos_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-
 siglos_disadvantage = class({})
 function siglos_disadvantage:OnSpellStart()
 	local hTarget = self:GetCursorTarget()
@@ -59,36 +58,126 @@ function siglos_mind_control:GetCooldown(iLevel)
 
 end
 
+local tTransformModifierList = {"modifier_dragon_knight_dragon_form", "modifier_lone_druid_true_form", "modifier_terrorblade_metamorphosis"}
+
 function siglos_mind_control:OnSpellStart()
 	local hCaster = self:GetCaster()
-	local hTarget = self:GetCursorTarget()
-	if hTarget:TriggerSpellAbsorb(self) then 
+	self.hTarget = self:GetCursorTarget()
+	if self.hTarget:TriggerSpellAbsorb(self) then 
 		hCaster:Interrupt() return end
 	if not hCaster:HasAbility(self:GetName()) then return end
 	local iChannelTime = self:GetSpecialValueFor("duration")
 	if self:GetCaster():HasAbility("special_bonus_unique_siglos_3") then
 		iChannelTime = iChannelTime+self:GetCaster():FindAbilityByName("special_bonus_unique_siglos_3"):GetSpecialValueFor("value")
 	end
-	if hCaster:GetTeam() == hTarget:GetTeam() then
+	if hCaster:GetTeam() == self.hTarget:GetTeam() then
 		hCaster:Interrupt()
 		self:RefundManaCost()
 		self:EndCooldown()
 		return 
 	end
-	hTarget:AddNewModifier(hCaster, self, "modifier_siglos_mind_control", {Duration = iChannelTime*CalculateStatusResist(hTarget)})
-	hTarget:AddNewModifier(hCaster, self, "modifier_siglos_mind_control_magic_immune", {Duration = iChannelTime*CalculateStatusResist(hTarget)})
+	self.hTarget:AddNewModifier(hCaster, self, "modifier_siglos_mind_control", {Duration = iChannelTime*CalculateStatusResist(self.hTarget)})
 	if hCaster:HasScepter() then
-		hCaster:AddNewModifier(hCaster, self, "modifier_siglos_mind_control_magic_immune", {Duration = iChannelTime*CalculateStatusResist(hTarget)})
+		hCaster:AddNewModifier(hCaster, self, "modifier_siglos_mind_control_magic_immune", {Duration = iChannelTime*CalculateStatusResist(self.hTarget)})
 	end
+	self.hHeroCreated = CreateUnitByName(self.hTarget:GetName(), GetGroundPosition(self.hTarget:GetOrigin(), nil), true, hCaster, hCaster, hCaster:GetTeam())
+	self.hHeroCreated:AddNewModifier(hCaster, self,"modifier_invulnerable", {})
+	self.hHeroCreated:SetControllableByPlayer(hCaster:GetPlayerOwnerID(), true)
+	self.hHeroCreated:SetForwardVector(self.hTarget:GetForwardVector())
+	for i = 0, 8 do
+		local hItem = self.hTarget:GetItemInSlot(i)
+		if hItem then
+			local hItemCreated = self.hHeroCreated:AddItemByName(hItem:GetName())
+			hItemCreated:StartCooldown(hItem:GetCooldownTimeRemaining())
+			hItemCreated:SetCurrentCharges(hItem:GetCurrentCharges())
+		end
+	end
+	
+	if self.hTarget:GetPlayerOwner().bIsPlayingFunHero then
+		if self.hTarget.hRamzaJob then
+			self.hHeroCreated.hRamzaOrigin = self.hTarget
+		end
+		if self.hTarget.iDragonForm then
+			self.hHeroCreated.hFormToGo = self.hTarget
+		end
+		GameMode:InitializeFunHero(self.hHeroCreated) 
+	end
+	
+	local iLevel = self.hTarget:GetLevel()
+	while iLevel > 1 do
+		self.hHeroCreated:HeroLevelUp(false)
+		iLevel = iLevel -1
+	end
+	self.hHeroCreated:SetAbilityPoints(0)
+	
+	for i = 0, 23 do
+		if self.hTarget:GetAbilityByIndex(i) and not self.hTarget.hRamzaJob then
+			self.hHeroCreated:GetAbilityByIndex(i):SetLevel(self.hTarget:GetAbilityByIndex(i):GetLevel())
+			self.hHeroCreated:GetAbilityByIndex(i):StartCooldown(self.hTarget:GetAbilityByIndex(i):GetCooldownTimeRemaining())
+		end
+	end	
+	local tModifiers = self.hTarget:FindAllModifiers()
+	for i, v in ipairs(tModifiers) do
+		if v:GetRemainingTime() < 0 and v:GetStackCount() > 0 and not v:IsHidden() then
+			local sAbilityName
+			if v:GetAbility() then
+				sAbilityName = v:GetAbility():GetName()
+			end
+			local sModifierName = v:GetName()
+			if self.hHeroCreated:HasModifier(sModifierName) then
+				self.hHeroCreated:FindModifierByName(sModifierName):SetStackCount(v:GetStackCount())
+			end
+			if self.hHeroCreated:HasAbility(sAbilityName) then
+				self.hHeroCreated:AddNewModifier(self.hHeroCreated, self.hHeroCreated:FindAbilityByName(sAbilityName), sModifierName, {}):SetStackCount(v:GetStackCount())
+			else
+				self.hHeroCreated:AddNewModifier(v:GetCaster(), v:GetAbility(), sModifierName, {}):SetStackCount(v:GetStackCount())				
+			end
+		end
+	end
+	for i, v in ipairs(tTransformModifierList) do
+		if self.hTarget:HasModifier(v) then
+			local hModifier = self.hTarget:FindModifierByName(v)
+			local sAbilityName = hModifier:GetAbility():GetName()
+			print(v, sAbilityName)
+			if hModifier:GetRemainingTime() > 0 then
+				self.hHeroCreated:AddNewModifier(self.hHeroCreated, self.hHeroCreated:FindAbilityByName(sAbilityName), v, {Duration=hModifier:GetRemainingTime()})
+			else
+				self.hHeroCreated:AddNewModifier(self.hHeroCreated, self.hHeroCreated:FindAbilityByName(sAbilityName), v, {})
+			end
+		end
+	end
+	self.hHeroCreated:SetHealth(self.hTarget:GetHealth())
+	self.hHeroCreated:SetMana(self.hTarget:GetMana())
+	
+	self.iParticle = ParticleManager:CreateParticle("particles/econ/items/razor/razor_punctured_crest_golden/razor_static_link_new_arc_blade_golden.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, hCaster)
+	ParticleManager:SetParticleControlEnt(self.iParticle, 0, hCaster, PATTACH_POINT_FOLLOW, "attach_attack1", hCaster:GetAbsOrigin(), true)
+	ParticleManager:SetParticleControlEnt(self.iParticle, 1, self.hHeroCreated, PATTACH_POINT_FOLLOW, "attach_hitloc", self.hHeroCreated:GetAbsOrigin(), true)
 end
 function siglos_mind_control:OnChannelFinish(bInterrupted)
 	local hCaster = self:GetCaster()
+	if not self.hHeroCreated then return end
+	local vLastLocation = self.hHeroCreated:GetOrigin()
+	local vLastDirection = self.hHeroCreated:GetForwardVector()	
+	self.hHeroCreated:InterruptChannel()
+	for i, v in ipairs(self.hHeroCreated:FindAllModifiers()) do
+		v:Destroy()
+	end	
+	UTIL_Remove(self.hHeroCreated)
 	hCaster:RemoveModifierByName("modifier_siglos_mind_control_magic_immune")
-	local hTarget = self:GetCursorTarget()
-	if not hTarget then return end
-	hTarget:RemoveModifierByName("modifier_siglos_mind_control")
-	hTarget:RemoveModifierByName("modifier_siglos_mind_control_magic_immune")
+	self.hTarget:RemoveModifierByName("modifier_siglos_mind_control")
+	self.hTarget:SetOrigin(vLastLocation)
+	self.hTarget:SetForwardVector(vLastDirection)
+	ParticleManager:DestroyParticle(self.iParticle, true)
 end
+
+function siglos_mind_control:CastFilterResultTarget(hTarget)
+	if hTarget:IsCreep() then return UF_FAIL_CREEP end
+	if hTarget:IsCourier() then return UF_FAIL_COURIER end
+	if hTarget:IsBuilding() then return UF_FAIL_BUILDING end
+	if not hTarget:IsHero() then return UF_FAIL_OTHER end
+	return UF_SUCCESS
+end
+
 function siglos_mind_control:GetChannelAnimation() return ACT_DOTA_GENERIC_CHANNEL_1 end
 function siglos_mind_control:GetChannelTime()
 	local hCaster = self:GetCaster()
