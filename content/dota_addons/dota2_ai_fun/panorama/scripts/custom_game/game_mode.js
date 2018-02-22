@@ -62,11 +62,7 @@ function ShowChatTeamActivate() {
 }
 
 $("#bot_attack_tower_pick_rune").checked=true;
-$("#imbalanced_economizer").checked=true;
 $("#bot_has_fun_item").checked=true;
-$("#universal_shop").checked=true;
-$("#radiant_player_number_dropdown").SetSelected("1")
-$("#dire_player_number_dropdown").SetSelected("1")
 function set_game_options()
 {
 	GameEvents.SendCustomGameEventToServer("loading_set_options",{

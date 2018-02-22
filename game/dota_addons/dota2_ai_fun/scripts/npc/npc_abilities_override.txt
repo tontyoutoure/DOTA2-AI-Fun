@@ -1,0 +1,73 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"vengefulspirit_command_aura"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"vengefulspirit_command_aura"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"1200"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5123"
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"  "heroes/vengeful_spirit/vengeful_spirit.lua"
+				"Function"  "VengefulSpiritCommandAuraApply"
+			}
+		}
+		
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage_pct"	"12 18 24 30"
+				"LinkedSpecialBonus"	"special_bonus_unique_vengeful_spirit_2"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"aura_radius"	"1200"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"images_do_damage_percent"	"0"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"images_do_damage_percent_tooltip"	"100"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"images_take_damage_percent"	"100"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"images_take_damage_percent_tooltip"	"200"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"illusion_duration"	"6"
+			}
+		}
+	}
+}

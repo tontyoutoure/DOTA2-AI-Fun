@@ -338,6 +338,7 @@ function MagicHammerSpellStart(keys)
 	for i = 1, 26 do
 		Timers:CreateTimer(0.1*i, function()
 			local tTargets = FindUnitsInRadius(keys.caster:GetTeam(), keys.caster:GetAbsOrigin(), nil, 35*i, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
+			AddFOWViewer(keys.caster:GetTeam(), keys.caster:GetAbsOrigin(), 900, keys.ability:GetSpecialValueFor("vision_duration"), false)
 			for k, v in ipairs(tTargets) do
 				if not tEffectedTargets[v:entindex()] then
 					tEffectedTargets[v:entindex()] = true

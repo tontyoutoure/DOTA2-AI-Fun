@@ -148,10 +148,11 @@ function siglos_mind_control:OnSpellStart()
 	end
 	self.hHeroCreated:SetHealth(self.hTarget:GetHealth())
 	self.hHeroCreated:SetMana(self.hTarget:GetMana())
-	
+	CustomGameEventManager:Send_ServerToPlayer(self:GetCaster():GetPlayerOwner(), "siglos_select_unit", {iEntIndex = self.hHeroCreated:entindex()} )
 	self.iParticle = ParticleManager:CreateParticle("particles/econ/items/razor/razor_punctured_crest_golden/razor_static_link_new_arc_blade_golden.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, hCaster)
 	ParticleManager:SetParticleControlEnt(self.iParticle, 0, hCaster, PATTACH_POINT_FOLLOW, "attach_attack1", hCaster:GetAbsOrigin(), true)
 	ParticleManager:SetParticleControlEnt(self.iParticle, 1, self.hHeroCreated, PATTACH_POINT_FOLLOW, "attach_hitloc", self.hHeroCreated:GetAbsOrigin(), true)
+	print(hCaster:entindex(), self.hHeroCreated:entindex(), self.hTarget:entindex())
 end
 function siglos_mind_control:OnChannelFinish(bInterrupted)
 	local hCaster = self:GetCaster()
@@ -162,8 +163,11 @@ function siglos_mind_control:OnChannelFinish(bInterrupted)
 	for i, v in ipairs(self.hHeroCreated:FindAllModifiers()) do
 		v:Destroy()
 	end	
-	UTIL_Remove(self.hHeroCreated)
 	hCaster:RemoveModifierByName("modifier_siglos_mind_control_magic_immune")
+	CustomGameEventManager:Send_ServerToPlayer(self:GetCaster():GetPlayerOwner(), "siglos_select_unit", {iEntIndex = hCaster:entindex()} )
+	self.hHeroCreated:AddNewModifier(hCaster, self, "modifier_siglos_mind_control", {Duration = 6})
+	local hHeroCreated = self.hHeroCreated
+	Timers:CreateTimer(5, function () UTIL_Remove(hHeroCreated) end)
 	self.hTarget:RemoveModifierByName("modifier_siglos_mind_control")
 	self.hTarget:SetOrigin(vLastLocation)
 	self.hTarget:SetForwardVector(vLastDirection)

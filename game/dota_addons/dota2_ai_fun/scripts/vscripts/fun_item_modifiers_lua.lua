@@ -76,6 +76,7 @@ function modifier_item_fun_escutcheon_lua:GetAttributes()
 end
 
 function modifier_item_fun_escutcheon_lua:DeclareFunctions()
+print("hoho")
 	return {
 		MODIFIER_PROPERTY_HEALTH_BONUS, 
 		MODIFIER_PROPERTY_MANA_BONUS, 
@@ -83,12 +84,12 @@ function modifier_item_fun_escutcheon_lua:DeclareFunctions()
 		MODIFIER_PROPERTY_REINCARNATION,
 		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
 		MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE,
---		MODIFIER_PROPERTY_STATUS_RESISTANCE
+		MODIFIER_PROPERTY_STATUS_RESISTANCE
 	}
 end
 
 function modifier_item_fun_escutcheon_lua:AllowIllusionDuplicate() return false end
---function modifier_item_fun_escutcheon_lua:GetModifierStatusResistance() return 80 end
+function modifier_item_fun_escutcheon_lua:GetModifierStatusResistance() return 80 end
 function modifier_item_fun_escutcheon_lua:OnTakeDamage(keys)
 	local caster = self:GetCaster()
 	if self:GetParent() ~= keys.unit then return end

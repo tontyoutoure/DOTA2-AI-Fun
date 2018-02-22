@@ -90,8 +90,8 @@ function GameMode:OnGameStateChanged( keys )
         end
         
         self.numPlayers = num
-		if IsInToolsMode() then return end
---		if IsInToolsMode() and GetMapName() ~= "dota" then return end
+--		if IsInToolsMode() then return end
+		if IsInToolsMode() and GetMapName() ~= "dota" then return end
         -- Eanble bots and fill empty slots
         if IsServer() == true then
             
@@ -205,15 +205,26 @@ function GameMode:_OnNPCSpawned(keys)
 		SniperInit(hHero, self)
 	end
 
-	if not hHero:IsHero() or hHero:IsIllusion() then return end	
+	if not hHero:IsHero() then return end	
+	-- laggy vengeful spirit aura
+--	if hHero:IsIllusion() and hHero:GetName() ~= hHero:GetPlayerOwner():GetAssignedHero():GetName() then
+--		Timers:CreateTimer(0.1, function () hHero:ForceKill() end )
+--	end
 	
-	if not self.tHumanPlayerList[hHero:GetPlayerOwnerID()] and self.iBotHasFunItem == 1 then
-		hHero:AddNewModifier(hHero, nil, "modifier_bot_get_fun_items", {})
-		hHero:AddNewModifier(hHero, nil, "modifier_bot_use_fun_items", {})
-	end
 	
-	if not self.tHumanPlayerList[hHero:GetPlayerOwnerID()] and self.iBotAttackTowerPickRune == 1 then
-		hHero:AddNewModifier(hHero, nil, "modifier_bot_attack_tower_pick_rune", {}).tHumanPlayerList = self.tHumanPlayerList
+	
+	if not self.tHumanPlayerList[hHero:GetPlayerOwnerID()] then
+		if self.iBotHasFunItem == 1 then
+			hHero:AddNewModifier(hHero, nil, "modifier_bot_get_fun_items", {})
+			hHero:AddNewModifier(hHero, nil, "modifier_bot_use_fun_items", {})
+		end
+	
+		if self.iBotAttackTowerPickRune == 1 then
+			hHero:AddNewModifier(hHero, nil, "modifier_bot_attack_tower_pick_rune", {}).tHumanPlayerList = self.tHumanPlayerList
+		end
+		if hHero:GetName() == "npc_dota_hero_axe" then
+			hHero:AddNewModifier(hHero, nil, "modifier_axe_thinker", {})
+		end
 	end
 	
 	
