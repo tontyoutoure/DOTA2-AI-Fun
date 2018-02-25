@@ -8,7 +8,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"cleric_prayer",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_cleric_4",
 	"special_bonus_cleric_1",
 	"special_bonus_cleric_2",
@@ -35,6 +35,7 @@ local tHeroBaseStats = {
 }
 CustomNetTables:SetTableValue("fun_hero_abilities", "cleric", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "cleric", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("cleric", tNewAbilities)
 
 function ClericTalentManager(keys)
 	if PlayerResource:GetPlayer(keys.player-1):GetAssignedHero():GetName() ~= "npc_dota_hero_rubick" then return end

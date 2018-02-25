@@ -1,5 +1,4 @@
 "use strict";
-	$.Msg("hoho")
 	function SiglosSelectUnit(keys) {
 		$.Msg(keys)
 			GameUI.SelectUnit(keys.iEntIndex, false)

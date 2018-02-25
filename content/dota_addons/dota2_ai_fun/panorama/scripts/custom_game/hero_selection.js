@@ -1,7 +1,7 @@
 "use strict";
 var sActivatingPanel
 var sSelectingPart
-$("#HeroAvatarBtnWarlock").visible = false
+$("#HeroAvatarBtnWarlock").visible = true
 var DOTA_ATTRIBUTE_STRENGTH = 0
 var DOTA_ATTRIBUTE_AGILITY = 1
 var DOTA_ATTRIBUTE_INTELLECT = 2
@@ -78,6 +78,7 @@ function HeroDescriptionInitAll(keys) {
 function HeroDescriptionInit(sFunHeroName, sHeroName, sHeroNameCapital) {
 	var tFunHeroAbilities = CustomNetTables.GetTableValue("fun_hero_abilities", sFunHeroName);
 	var tFunHeroStats = CustomNetTables.GetTableValue("fun_hero_stats", sFunHeroName);
+	var tFunHeroScepterInfo = CustomNetTables.GetTableValue("fun_hero_scepter_infos", sFunHeroName);
 	$("#HeroDescriptionPopPanelContainer").BCreateChildren("<Panel id='HeroDescriptionPopPanel"+sHeroNameCapital+"' class = 'HeroDescriptionPopPanel' hittest='true'/>")
 	var sPanelName = '#HeroDescriptionPopPanel'+sHeroNameCapital
 	$(sPanelName).BCreateChildren('<Panel id="HeroNameLine'+sHeroNameCapital+'" class="HeroNameLine"/>')
@@ -118,6 +119,21 @@ function HeroDescriptionInit(sFunHeroName, sHeroName, sHeroNameCapital) {
 	} 
 //	$("#HeroAbilityContainer"+sHeroNameCapital).BCreateChildren('<Panel id="Talent'+sHeroNameCapital+'" class="TalentBranch"/>')
 	
+	if (tFunHeroScepterInfo){
+//		$.Msg(tFunHeroScepterInfo)
+		$(sPanelName).BCreateChildren('<Panel class="HeroScepterInfoContainer" id="HeroScepterInfoContainer'+sHeroNameCapital+'"/>')
+		var i = 1
+		while (tFunHeroScepterInfo[i.toString()]) {
+			$("#HeroScepterInfoContainer"+sHeroNameCapital).BCreateChildren('<Panel class="HeroScepterAbilityContainer" id="HeroScepterAbilityContainer'+sHeroNameCapital+i.toString()+'"/>')
+			$("#HeroScepterAbilityContainer"+sHeroNameCapital+i.toString()).BCreateChildren('<Panel class="HeroScepterAbilityTitleContainer" id="HeroScepterAbilityTitleContainer'+sHeroNameCapital+i.toString()+'"/>')
+			
+			var sAbilityName = $.Localize("#DOTA_Tooltip_Ability_"+tFunHeroScepterInfo[i.toString()].sAbilityName).toUpperCase()
+			$("#HeroScepterAbilityTitleContainer"+sHeroNameCapital+i.toString()).BCreateChildren('<Label class="HeroScepterAbilityTitleUpgrade" id="HeroScepterAbilityTitleUpgrade'+sHeroNameCapital+i.toString()+'" text="#scepter_info_title"/>')
+			$("#HeroScepterAbilityTitleContainer"+sHeroNameCapital+i.toString()).BCreateChildren('<Label class="HeroScepterAbilityTitleName" id="HeroScepterAbilityTitleName'+sHeroNameCapital+i.toString()+'" text="'+sAbilityName+'"/>')
+			$("#HeroScepterAbilityContainer"+sHeroNameCapital+i.toString()).BCreateChildren('<Label class="HeroScepterAbilityDescription" id="HeroScepterAbilityDescription'+sHeroNameCapital+i.toString()+'" text="#DOTA_Tooltip_Ability_'+tFunHeroScepterInfo[i.toString()].sAbilityName+'_aghanim_description"/>')
+			i=i+1
+		}
+	}
 	
 	
 	$(sPanelName).BCreateChildren('<Panel class="HeroTalentContainer" id="HeroTalentContainer'+sHeroNameCapital+'"/>')

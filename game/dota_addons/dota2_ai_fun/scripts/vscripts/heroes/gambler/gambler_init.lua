@@ -6,7 +6,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"gambler_all_in",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_cast_range_200",
 	"special_bonus_unique_gambler_1",
 	"special_bonus_unique_gambler_2",
@@ -35,6 +35,7 @@ local tHeroBaseStats = {
 
 CustomNetTables:SetTableValue("fun_hero_abilities", "gambler", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "gambler", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("gambler", tNewAbilities)
 
 function GamblerInit(hHero, context)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_gambler", {})	

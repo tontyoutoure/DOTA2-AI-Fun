@@ -16,7 +16,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"el_dorado_piracy_method",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_intelligence_20",
 	"special_bonus_movement_speed_35",
 	"special_bonus_el_dorado_1",
@@ -46,6 +46,7 @@ local tHeroBaseStats = {
 }
 CustomNetTables:SetTableValue("fun_hero_abilities", "el_dorado", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "el_dorado", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("el_dorado", tNewAbilities)
 
 function ElDoradoInit(hHero, context)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_el_dorado", {})

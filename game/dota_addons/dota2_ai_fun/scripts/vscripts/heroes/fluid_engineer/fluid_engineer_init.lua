@@ -6,7 +6,7 @@ local tNewAbilities = {
 	"fluid_engineer_salad_lunch_lua",
 	"fluid_engineer_bowel_hydraulics_lua",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_spell_lifesteal_10",
 	"special_bonus_spell_amplify_15",
 	"special_bonus_hp_800",
@@ -33,7 +33,7 @@ local tHeroBaseStats = {
 
 CustomNetTables:SetTableValue("fun_hero_abilities", "fluid_engineer", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "fluid_engineer", tHeroBaseStats)
-
+GameMode:FunHeroScepterUpgradeInfo("fluid_engineer", tNewAbilities)
 function FluidEngineerInit (hHero)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_fluid_engineer", {}) 
 	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)	

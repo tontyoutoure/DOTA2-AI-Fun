@@ -6,7 +6,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"magic_dragon_dragon_magic_lua",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_armor_10",
 	"special_bonus_spell_lifesteal_20",
 	"special_bonus_spell_amplify_20",
@@ -36,6 +36,7 @@ local tHeroBaseStats = {
 }
 CustomNetTables:SetTableValue("fun_hero_abilities", "magic_dragon", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "magic_dragon", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("magic_dragon", tNewAbilities)
 
 function MagicDragonInit(hHero)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_magic_dragon", {})

@@ -6,7 +6,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"mana_fiend_abandon",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_armor_10",
 	"special_bonus_spell_lifesteal_20",
 	"special_bonus_spell_amplify_20",
@@ -33,6 +33,7 @@ local tHeroBaseStats = {
 }
 CustomNetTables:SetTableValue("fun_hero_abilities", "mana_fiend", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "mana_fiend", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("mana_fiend", tNewAbilities)
 
 function ManaFiendInit(hHero)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_mana_fiend", {})	

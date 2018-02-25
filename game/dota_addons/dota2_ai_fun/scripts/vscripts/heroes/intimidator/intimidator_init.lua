@@ -6,7 +6,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"intimidator_be_my_friend_lua",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_armor_10",
 	"special_bonus_movement_speed_25",
 	"special_bonus_intimidator_1",
@@ -33,6 +33,7 @@ local tHeroBaseStats = {
 
 CustomNetTables:SetTableValue("fun_hero_abilities", "intimidator", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "intimidator", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("intimidator", tNewAbilities)
 
 
 function IntimidatorInit(hHero)

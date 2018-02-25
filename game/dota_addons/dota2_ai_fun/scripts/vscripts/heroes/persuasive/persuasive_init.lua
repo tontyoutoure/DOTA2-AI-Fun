@@ -7,7 +7,7 @@ local tNewAbilities = {
 	"persuasive_high_stakes",
 	"persuasive_empty_for_reflect",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_attack_speed_30",
 	"special_bonus_persuasive_1",
 	"special_bonus_persuasive_2",
@@ -34,6 +34,7 @@ local tHeroBaseStats = {
 }
 CustomNetTables:SetTableValue("fun_hero_abilities", "persuasive", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "persuasive", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("persuasive", tNewAbilities)
 
 function PersuasiveInit(hHero)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_persuasive", {})	

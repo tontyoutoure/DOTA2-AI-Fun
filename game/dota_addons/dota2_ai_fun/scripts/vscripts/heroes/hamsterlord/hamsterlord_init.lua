@@ -8,7 +8,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"hamsterlord_call_of_hamster",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_hamsterlord_0",
 	"special_bonus_hamsterlord_1",
 	"special_bonus_hamsterlord_2",
@@ -35,6 +35,7 @@ local tHeroBaseStats = {
 
 CustomNetTables:SetTableValue("fun_hero_abilities", "hamsterlord", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "hamsterlord", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("hamsterlord", tNewAbilities)
 local function HamsterlordTalentManager(keys)
 	if keys.abilityname == "special_bonus_hamsterlord_2" then	
 		local hPlayer = PlayerResource:GetPlayer(keys.player-1)

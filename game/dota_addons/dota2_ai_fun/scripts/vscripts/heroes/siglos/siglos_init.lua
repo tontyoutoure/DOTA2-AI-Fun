@@ -33,6 +33,7 @@ local tHeroBaseStats = {
 
 CustomNetTables:SetTableValue("fun_hero_abilities", "siglos", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "siglos", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("siglos", tNewAbilities)
 function GameMode:SiglosOrderFilter(filterTable)
 	if filterTable.order_type ~= DOTA_UNIT_ORDER_CAST_TARGET or not EntIndexToHScript(filterTable.units["0"]):HasModifier("modifier_siglos_disruption_aura_target") then return true end
 	local hModifier = EntIndexToHScript(filterTable.units["0"]):FindModifierByName("modifier_siglos_disruption_aura_target")

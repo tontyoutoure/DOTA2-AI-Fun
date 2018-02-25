@@ -1,4 +1,37 @@
 if not IsClient() then 
+
+	tAbilityKeyValues = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
+	function GameMode:FunHeroScepterUpgradeInfo(sHeroName, tAbilities)
+		local tScepterInfos = {}
+		for i, v in ipairs(tAbilities) do
+			if string.sub(v,1,13) ~= "special_bonus" and v ~= "generic_hidden" and tAbilityKeyValues[v].HasScepterUpgrade == 1 then
+				print(v)
+				local tScepterInfoSingle = {}
+				table.insert(tScepterInfos, tScepterInfoSingle)
+				tScepterInfoSingle.sAbilityName = v
+				if tAbilityKeyValues[v].AbilitySpecial then
+					for k1, v1 in pairs(tAbilityKeyValues[v].AbilitySpecial) do
+						for k2, v2 in pairs(v1) do
+							if string.match(k2, "scepter") then
+								tScepterInfoSingle.tScepterSpecials = tScepterInfoSingle.tScepterSpecials or {}
+								local tScepterSpecialSingle = {}
+								table.insert(tScepterInfoSingle.tScepterSpecials, tScepterSpecialSingle)
+								tScepterSpecialSingle.sSpecialName = k2
+								print(string.gsub(v2, " ", "/"))
+								tScepterSpecialSingle.sSpecialValue = string.gsub(v2, " ", "/")						
+							end
+						end
+					end
+				end
+			end
+		end
+		if #tScepterInfos > 0 then
+--			PrintTable(tScepterInfos)
+			CustomNetTables:SetTableValue("fun_hero_scepter_infos", sHeroName, tScepterInfos)
+		end
+	end
+
+
 	require('heroes/astral_trekker/astral_trekker_init')
 	require('heroes/bastion/bastion_init')
 	require('heroes/fluid_engineer/fluid_engineer_init')
@@ -221,5 +254,26 @@ if not IsClient() then
 			if tHeroBaseStats.DisableWearables then WearableManager:RemoveOriginalWearables(hHero) end
 			if tHeroBaseStats.Model then hHero:SetModel(tHeroBaseStats.Model) hHero:SetOriginalModel(tHeroBaseStats.Model) end
 	end
-
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

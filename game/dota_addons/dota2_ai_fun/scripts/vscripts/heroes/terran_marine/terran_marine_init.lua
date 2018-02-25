@@ -7,7 +7,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"terran_marine_u247_rifle_lua",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_movement_speed_25",
 	"special_bonus_terran_marine_1",
 	"special_bonus_all_stats_12",
@@ -36,6 +36,7 @@ local tHeroBaseStats = {
 
 CustomNetTables:SetTableValue("fun_hero_abilities", "terran_marine", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "terran_marine", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("terran_marine", tNewAbilities)
 
 function TerranMarineInit(hHero)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_terran_marine", {})	

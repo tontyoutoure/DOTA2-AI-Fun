@@ -80,7 +80,7 @@ local tNewAbilities = {
 	"ramza_open_stats_lua",
 	"ramza_go_back_lua",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_armor_10",
 	"special_bonus_spell_lifesteal_20",
 	"special_bonus_spell_amplify_20",
@@ -97,7 +97,7 @@ local tShowedAbilities = {
 	"ramza_faith"	,
 	"ramza_open_stats_lua",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_armor_10",
 	"special_bonus_spell_lifesteal_20",
 	"special_bonus_spell_amplify_20",
@@ -128,6 +128,7 @@ local tHeroBaseStats = {
 
 CustomNetTables:SetTableValue("fun_hero_abilities", "ramza", tShowedAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "ramza", {})
+GameMode:FunHeroScepterUpgradeInfo("ramza", tShowedAbilities)
 
 function RamzaInit(hHero, context)
 	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)	

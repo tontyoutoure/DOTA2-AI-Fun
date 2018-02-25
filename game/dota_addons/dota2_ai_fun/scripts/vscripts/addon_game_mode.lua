@@ -319,6 +319,16 @@ function Precache( context )
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts", context)
 	
 	PrecacheResource("particle", "particles/econ/items/lifestealer/lifestealer_immortal_backbone_gold/status_effect_life_stealer_immortal_rage_gold.vpcf", context)
+	
+	
+	PrecacheResource("particle", "particles/flame_lord/enflame_ring_large.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_ember_spirit/ember_spirit_flameguard.vpcf", context)
+	PrecacheResource("particle", "particles/flame_lord/enflame_ring_small.vpcf", context)
+	PrecacheResource("particle", "particles/flame_lord/flame_lord_firestorm_wave.vpcf", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts", context)
+	PrecacheResource("particle", "particles/econ/items/wraith_king/wraith_king_ti6_bracer/wraith_king_ti6_hellfireblast_debuff.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_explosion.vpcf", context)
 end
 
 

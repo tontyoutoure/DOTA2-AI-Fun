@@ -6,7 +6,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"hurricane_eyes_of_the_storm",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_hurricane_1",
 	"special_bonus_hurricane_2",
 	"special_bonus_hurricane_3",
@@ -36,6 +36,7 @@ local tHeroBaseStats = {
 
 CustomNetTables:SetTableValue("fun_hero_abilities", "hurricane", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "hurricane", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("hurricane", tNewAbilities)
 function HurricaneAddParticle(keys)
 	if IsClient() then return end
 	if EntIndexToHScript(keys.entindex):GetName() == "npc_dota_hero_disruptor" then

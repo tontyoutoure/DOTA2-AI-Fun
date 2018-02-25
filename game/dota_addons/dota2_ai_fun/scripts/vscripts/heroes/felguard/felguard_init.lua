@@ -8,7 +8,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"felguard_overflow",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_armor_10",
 	"special_bonus_cast_range_150",
 	"special_bonus_felguard_1",
@@ -33,6 +33,7 @@ local tHeroBaseStats = {
 }
 CustomNetTables:SetTableValue("fun_hero_abilities", "felguard", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "felguard", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("felguard", tNewAbilities)
 
 function FelguardInit(hHero, context)
 	hHero:AddNewModifier(hHero, nil, "modifier_felguard_color", {})

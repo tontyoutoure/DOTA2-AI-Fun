@@ -34,6 +34,7 @@ local tHeroBaseStats = {
 
 CustomNetTables:SetTableValue("fun_hero_abilities", "rider", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "rider", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("rider", tNewAbilities)
 
 function RiderInit(hHero, context)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_rider", {})	

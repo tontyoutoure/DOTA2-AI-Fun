@@ -124,7 +124,7 @@ function modifier_siglos_mind_control:OnCreated()
 	self.iOwnerID = hParent:GetPlayerOwnerID()
 	hParent.iTeam = hParent:GetTeam()
 	hParent:SetOrigin(hParent:GetOrigin()+Vector(0,0,10000))
---	hParent:AddEffects(EF_NODRAW)
+	hParent:AddEffects(EF_NODRAW)
 	
 end
 
@@ -134,7 +134,7 @@ function modifier_siglos_mind_control:OnDestroy()
 	if IsClient() then return end 
 	local hParent = self:GetParent()
 	local hCaster = self:GetCaster()
---	hParent:RemoveEffects(EF_NODRAW)
+	hParent:RemoveEffects(EF_NODRAW)
 	hParent:SetOrigin(GetGroundPosition(hParent:GetOrigin(), hParent))
 end
 

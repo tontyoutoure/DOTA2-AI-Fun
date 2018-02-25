@@ -13,5 +13,6 @@
 		"ramza_list",
 		"fun_hero_abilities",
 		"fun_hero_stats",
+		"fun_hero_scepter_infos",
     ]
 }

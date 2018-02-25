@@ -6,7 +6,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"astral_trekker_giant_growth",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_armor_10",
 	"special_bonus_attack_speed_30",
 	"special_bonus_astral_trekker_1",
@@ -34,6 +34,7 @@ local tHeroBaseStats = {
 }
 CustomNetTables:SetTableValue("fun_hero_abilities", "astral_trekker", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "astral_trekker", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("astral_trekker", tNewAbilities)
 
 function AstralTrekkerInit(hHero)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_astral_trekker", {})		

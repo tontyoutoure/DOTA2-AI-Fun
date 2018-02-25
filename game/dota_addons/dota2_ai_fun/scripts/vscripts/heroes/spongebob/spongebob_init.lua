@@ -6,7 +6,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"spongebob_krabby_food",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_magic_resistance_20",
 	"special_bonus_spongebob_1",
 	"special_bonus_spongebob_2",
@@ -33,6 +33,7 @@ local tHeroBaseStats = {
 
 CustomNetTables:SetTableValue("fun_hero_abilities", "spongebob", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "spongebob", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("spongebob", tNewAbilities)
 function SpongeBobInit(hHero)		
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_spongebob", {})
 	--[[

@@ -6,7 +6,7 @@ local tNewAbilities = {
 	"bastion_transference_agi",
 	"bastion_transference_int",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_armor_10",
 	"special_bonus_movement_speed_25",
 	"special_bonus_cooldown_reduction_20",
@@ -35,6 +35,7 @@ local tHeroBaseStats = {
 
 CustomNetTables:SetTableValue("fun_hero_abilities", "bastion", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "bastion", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("bastion", tNewAbilities)
 function BastionInit(hHero)	
 	WearableManager:RemoveOriginalWearables(hHero)
 	hHero:SetModel("models/creeps/neutral_creeps/n_creep_thunder_lizard/n_creep_thunder_lizard_big.vmdl")

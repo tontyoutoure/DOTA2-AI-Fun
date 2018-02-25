@@ -7,7 +7,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"capslockftw_ban",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_attack_speed_40",
 	"special_bonus_capslockftw_2",
 	"special_bonus_armor_15",
@@ -34,6 +34,8 @@ local tHeroBaseStats = {
 
 CustomNetTables:SetTableValue("fun_hero_abilities", "capslockftw", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "capslockftw", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("capslockftw", tNewAbilities)
+
 
 
 

@@ -6,7 +6,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"pet_summoner_critters",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_armor_10",
 	"special_bonus_attack_speed_30",
 	"special_bonus_pet_summoner_1",
@@ -34,6 +34,7 @@ local tHeroBaseStats = {
 
 CustomNetTables:SetTableValue("fun_hero_abilities", "pet_summoner", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "pet_summoner", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("pet_summoner", tNewAbilities)
 function PetSummonerInit(hHero)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_pet_summoner", {})	
 	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)	

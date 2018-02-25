@@ -6,7 +6,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"telekenetic_blob_expel",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_armor_10",
 	"special_bonus_spell_lifesteal_20",
 	"special_bonus_spell_amplify_20",
@@ -32,6 +32,7 @@ local tHeroBaseStats = {
 }
 CustomNetTables:SetTableValue("fun_hero_abilities", "telekenetic_blob", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "telekenetic_blob", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("telekenetic_blob", tNewAbilities)
 
 function TelekeneticBlobInit(hHero, context)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_telekenetic_blob", {})	

@@ -6,7 +6,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"exsoldier_omnislash",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_unique_exsoldier_1",
 	"special_bonus_cast_range_250",
 	"special_bonus_unique_exsoldier_2",
@@ -74,6 +74,7 @@ local tJuggernautWeaponModels = {
 
 CustomNetTables:SetTableValue("fun_hero_abilities", "exsoldier", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "exsoldier", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("exsoldier", tNewAbilities)
 LinkLuaModifier("modifier_exsoldier_sword_manager", "heroes/exsoldier/exsoldier_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 
 

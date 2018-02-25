@@ -76,7 +76,6 @@ function modifier_item_fun_escutcheon_lua:GetAttributes()
 end
 
 function modifier_item_fun_escutcheon_lua:DeclareFunctions()
-print("hoho")
 	return {
 		MODIFIER_PROPERTY_HEALTH_BONUS, 
 		MODIFIER_PROPERTY_MANA_BONUS, 
@@ -84,7 +83,7 @@ print("hoho")
 		MODIFIER_PROPERTY_REINCARNATION,
 		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
 		MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE,
-		MODIFIER_PROPERTY_STATUS_RESISTANCE
+--		MODIFIER_PROPERTY_STATUS_RESISTANCE
 	}
 end
 

@@ -7,15 +7,16 @@
 
 	"flame_lord_flameshot"
 	{
-		"BaseClass"	"ability_datadriven"
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"heroes/flame_lord/flame_lord"
 		"AbilityTextureName"	"black_dragon_fireball"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"AbilityCastPoint"	"0.5"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCooldown"	"8.5"
 		"AbilityManaCost"	"100 120 140 160"
 		"AbilityCastRange"	"600"
@@ -31,12 +32,12 @@
 			{
 				"var_type"	"FIELD_FLOAT"
 				"stun_duration"	"1.5"
-				"LinkedSpecialBonus"  "special_bonus_unique_flame_lord_1"
+				"LinkedSpecialBonus"	"special_bonus_unique_flame_lord_1"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"projectile_speed"	"600"
+				"projectile_speed"	"1500"
 			}
 		}
 	}
@@ -44,18 +45,18 @@
 	"flame_lord_fire_storm"
 	{
 		"BaseClass"	"ability_lua"
-		"ScriptFile"  "heroes/flame_lord/flame_lord"
-		"AbilityTextureName"	"abyssal_underlord_firestorm"
+		"AbilityTextureName"	"flame_lord_firestorm"
+		"ScriptFile"	"heroes/flame_lord/flame_lord"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityCastPoint"	"0.5"
-		"AbilityCastAnimation"	"ACT_DOTA_CHANNEL_GENERIC_1"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
 		"AbilityCooldown"	"10"
 		"AbilityManaCost"	"105 115 125 135"
-		"AbilityCastRange"	"600"
+		"AbilityCastRange"	"690"
 		"AbilityCastRangeBuffer"	"0"
 		"AbilityChannelTime"	"%duration"
 		"AOERadius"	"%radius"
@@ -74,7 +75,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"150"
+				"radius"	"185"
 			}
 			"04"
 			{
@@ -84,7 +85,7 @@
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"duration"	"5"
+				"wave_count"	"6"
 			}
 		}
 	}
@@ -92,18 +93,18 @@
 	"flame_lord_fire_storm_talented"
 	{
 		"BaseClass"	"ability_lua"
-		"ScriptFile"  "heroes/flame_lord/flame_lord"
-		"AbilityTextureName"	"abyssal_underlord_firestorm"
+		"AbilityTextureName"	"flame_lord_firestorm"
+		"ScriptFile"	"heroes/flame_lord/flame_lord"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityCastPoint"	"0.5"
-		"AbilityCastAnimation"	"ACT_DOTA_CHANNEL_GENERIC_1"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
 		"AbilityCooldown"	"10"
 		"AbilityManaCost"	"105 115 125 135"
-		"AbilityCastRange"	"600"
+		"AbilityCastRange"	"690"
 		"AbilityCastRangeBuffer"	"0"
 		"AbilityChannelTime"	"%duration"
 		"AOERadius"	"%radius"
@@ -122,7 +123,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"150"
+				"radius"	"185"
 			}
 			"04"
 			{
@@ -132,7 +133,7 @@
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"duration"	"5"
+				"wave_count"	"6"
 			}
 		}
 	}
@@ -144,8 +145,24 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"Modifiers"
+		{
+			"modifier_flame_lord_liquid_fire"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/flame_lord/flame_lord.lua"
+						"Function"	"FlameLordLiquidFireLanded"
+					}
+				}
+			}
+		}
 		"AbilitySpecial"
 		{
 			"01"
@@ -166,7 +183,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"move_slow"	"2 4 6 8"
+				"move_slow"	"-2 -4 -6 -8"
 			}
 		}
 	}
@@ -174,15 +191,14 @@
 	"flame_lord_enflame"
 	{
 		"BaseClass"	"ability_lua"
-		"ScriptFile"  "heroes/flame_lord/flame_lord.lua"
 		"AbilityTextureName"	"nevermore_shadowraze2_demon"
+		"ScriptFile"	"heroes/flame_lord/flame_lord.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"CastFilterRejectCaster"	"1"
-		"HasScepterUpgrade"  "1"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityCastPoint"	"0.5"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
@@ -205,12 +221,12 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage_scepter"	"210 300 430"
+				"radius"	"350"
 			}
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"350"
+				"damage_scepter"	"210 300 430"
 			}
 			"05"
 			{
@@ -218,20 +234,20 @@
 				"radius_scepter"	"650"
 			}
 		}
+		"HasScepterUpgrade"	"1"
 	}
 
 	"flame_lord_enflame_talented"
 	{
 		"BaseClass"	"ability_lua"
-		"ScriptFile"  "heroes/flame_lord/flame_lord.lua"
 		"AbilityTextureName"	"nevermore_shadowraze2_demon"
+		"ScriptFile"	"heroes/flame_lord/flame_lord.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"CastFilterRejectCaster"	"1"
-		"HasScepterUpgrade"  "1"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityCastPoint"	"0.5"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
@@ -254,12 +270,12 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage_scepter"	"210 300 430"
+				"radius"	"350"
 			}
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"350"
+				"damage_scepter"	"210 300 430"
 			}
 			"05"
 			{
@@ -267,6 +283,7 @@
 				"radius_scepter"	"650"
 			}
 		}
+		"HasScepterUpgrade"	"1"
 	}
 
 	"special_bonus_unique_flame_lord_1"

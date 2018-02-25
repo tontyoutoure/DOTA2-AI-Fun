@@ -288,7 +288,7 @@
 .AbilityLine
 {
 	horizontal-align:center;
-	margin-top: 3%;
+	margin-top: 5px;
 	height:90px;
 	max-width:100%;
 	flow-children: right;
@@ -326,7 +326,7 @@
 
 .HeroTalentContainer
 {
-	margin-top:30px;
+	margin-top:10px;
 	width:100%;
 	flow-children:down;
 }
@@ -344,7 +344,7 @@
 
 .HeroTalentContainer .HeroTalentLine
 {
-	margin-top:10px;
+	margin-top:5px;
 	height:50px;
 	width:100%;
 	flow-children:right;
@@ -396,6 +396,68 @@
 	letter-spacing: 2px;
 	margin-top: 4px;
 	margin-right: 1px;
+}
+
+.HeroScepterInfoContainer
+{
+	margin-top:30px;
+	width:100%;
+	flow-children:down;
+}
+
+
+.HeroScepterInfoContainer .HeroScepterInfoTitle
+{
+	font-size: 33px;
+	line-height: 16px;
+	text-align: center;
+	vertical-align: middle;
+	horizontal-align:center;
+	text-shadow: 0px 0px 0.5px 3.7 #000000ff;
+	color: #e1e1e1;
+}
+
+.HeroScepterInfoContainer .HeroScepterAbilityContainer
+{
+	margin-top:10px;
+	width:90%;
+	horizontal-align:middle;
+	flow-children:down;
+	background-color:#292a2b;
+}
+
+
+.HeroScepterInfoContainer .HeroScepterAbilityContainer .HeroScepterAbilityTitleContainer
+{
+	horizontal-align:middle;
+	flow-children:right;
+	height:20px;
+	margin:5px;
+}
+
+.HeroScepterInfoContainer .HeroScepterAbilityContainer .HeroScepterAbilityTitleContainer .HeroScepterAbilityTitleUpgrade
+{
+	font-size: 18px;
+	line-height: 16px;
+	vertical-align: middle;
+	color: #f1f1f1;
+}
+
+.HeroScepterInfoContainer .HeroScepterAbilityContainer .HeroScepterAbilityTitleContainer .HeroScepterAbilityTitleName
+{
+	font-size: 18px;
+	line-height: 16px;
+	vertical-align: middle;
+	color: #b1b1b1;
+}
+
+.HeroScepterInfoContainer .HeroScepterAbilityContainer .HeroScepterAbilityDescription
+{
+	font-size: 18px;
+	line-height: 20px;
+	vertical-align: middle;
+	horizontal-align:middle;
+	color: #b1b1b1;
 }
 
 #JoinUsButton

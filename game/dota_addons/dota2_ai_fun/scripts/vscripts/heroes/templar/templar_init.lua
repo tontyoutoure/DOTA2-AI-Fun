@@ -6,7 +6,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"templar_vengeance",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_templar_1",
 	"special_bonus_templar_2",
 	"special_bonus_templar_3",
@@ -33,6 +33,7 @@ local tHeroBaseStats = {
 
 CustomNetTables:SetTableValue("fun_hero_abilities", "templar", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "templar", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("templar", tNewAbilities)
 function TemplarInit(hHero, context)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_templar", {})	
 	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)

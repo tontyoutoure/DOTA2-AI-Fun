@@ -6,7 +6,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"void_demon_mass_haste",
 	"special_bonus_gold_income_25",
-	"special_bonus_exp_boost_20",
+	"special_bonus_exp_boost_30",
 	"special_bonus_armor_10",
 	"special_bonus_void_demon_1",
 	"special_bonus_cast_range_400",
@@ -34,6 +34,7 @@ local tHeroBaseStats = {
 
 CustomNetTables:SetTableValue("fun_hero_abilities", "void_demon", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "void_demon", tHeroBaseStats)
+GameMode:FunHeroScepterUpgradeInfo("void_demon", tNewAbilities)
 function VoidDemonInit(hHero)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_void_demon", {})	
 	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)
