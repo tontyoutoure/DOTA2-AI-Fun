@@ -1,4 +1,3 @@
-
 #base "abilities\astral_trekker.txt"
 #base "abilities\bastion.txt"
 #base "abilities\fluid_engineer.txt"
@@ -28,3 +27,4 @@
 #base "abilities\rider.txt"
 #base "abilities\siglos.txt"
 #base "abilities\flame_lord.txt"
+#base "abilities\conjurer.txt"

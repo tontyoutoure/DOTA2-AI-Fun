@@ -4,8 +4,7 @@ if not IsClient() then
 	function GameMode:FunHeroScepterUpgradeInfo(sHeroName, tAbilities)
 		local tScepterInfos = {}
 		for i, v in ipairs(tAbilities) do
-			if string.sub(v,1,13) ~= "special_bonus" and v ~= "generic_hidden" and tAbilityKeyValues[v].HasScepterUpgrade == 1 then
-				print(v)
+			if string.sub(v,1,13) ~= "special_bonus" and v ~= "generic_hidden" and tAbilityKeyValues[v].HasScepterUpgrade == 1 then 
 				local tScepterInfoSingle = {}
 				table.insert(tScepterInfos, tScepterInfoSingle)
 				tScepterInfoSingle.sAbilityName = v
@@ -16,8 +15,7 @@ if not IsClient() then
 								tScepterInfoSingle.tScepterSpecials = tScepterInfoSingle.tScepterSpecials or {}
 								local tScepterSpecialSingle = {}
 								table.insert(tScepterInfoSingle.tScepterSpecials, tScepterSpecialSingle)
-								tScepterSpecialSingle.sSpecialName = k2
-								print(string.gsub(v2, " ", "/"))
+								tScepterSpecialSingle.sSpecialName = k2 
 								tScepterSpecialSingle.sSpecialValue = string.gsub(v2, " ", "/")						
 							end
 						end
@@ -59,6 +57,7 @@ if not IsClient() then
 	require('heroes/rider/rider_init')
 	require('heroes/siglos/siglos_init')
 	require('heroes/flame_lord/flame_lord_init')
+	require('heroes/conjurer/conjurer_init')
 			
 	function GameMode:InitializeFunHero(hHero)
 		if hHero:GetName() == "npc_dota_hero_spirit_breaker" then
@@ -168,6 +167,10 @@ if not IsClient() then
 		if hHero:GetName() == "npc_dota_hero_warlock" then
 			FlameLordInit(hHero, self)
 		end
+		
+		if hHero:GetName() == "npc_dota_hero_keeper_of_the_light" then
+			ConjurerInit(hHero, self)
+		end
 	end
 
 	hero_attribute_gain_manager = class({})
@@ -186,8 +189,11 @@ if not IsClient() then
 				if hHero:GetAbilityByIndex(i) then
 					hHero:RemoveAbility(hHero:GetAbilityByIndex(i):GetName())
 				end
-			end	
-			for i, v in ipairs(tNewAbilities) do hHero:AddAbility(v) end
+			end 
+			for i, v in ipairs(tNewAbilities) do 
+				hHero:AddAbility(v) 
+			end
+			
 			local tModifiers = hHero:FindAllModifiers()
 			for i, v in ipairs(tModifiers) do
 				if string.find(v:GetName(), "special_bonus") then

@@ -137,8 +137,7 @@ function siglos_mind_control:OnSpellStart()
 	for i, v in ipairs(tTransformModifierList) do
 		if self.hTarget:HasModifier(v) then
 			local hModifier = self.hTarget:FindModifierByName(v)
-			local sAbilityName = hModifier:GetAbility():GetName()
-			print(v, sAbilityName)
+			local sAbilityName = hModifier:GetAbility():GetName() 
 			if hModifier:GetRemainingTime() > 0 then
 				self.hHeroCreated:AddNewModifier(self.hHeroCreated, self.hHeroCreated:FindAbilityByName(sAbilityName), v, {Duration=hModifier:GetRemainingTime()})
 			else

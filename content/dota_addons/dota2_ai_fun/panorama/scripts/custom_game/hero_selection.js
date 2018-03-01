@@ -34,6 +34,7 @@ var tFunHeroNames = {
 	'chaos_knight':'rider',
 	'skywrath_mage':'siglos',
 	'warlock':'flame_lord',
+	'keeper_of_the_light':'conjurer',
 }
 var tHeroNameCapitals = {
 	"spirit_breaker":"SpiritBreaker",
@@ -63,6 +64,7 @@ var tHeroNameCapitals = {
 	'chaos_knight':'ChaosKnight',
 	'skywrath_mage':'SkywrathMage',
 	'warlock':'Warlock',
+	'keeper_of_the_light':'KeeperOfTheLight',
 }
 
 function HeroDescriptionInitAll(keys) {

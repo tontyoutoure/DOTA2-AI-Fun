@@ -300,6 +300,10 @@
 							<Image id="HeroAvatarWarlock" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_warlock.png" />
 							<Panel id="HeroAvatarCoverWarlock" class="HeroAvatarCover"/>
 						</Button>
+						<Button id="HeroAvatarBtnKeeperOfTheLight" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelKeeperOfTheLight&quot;);"> 
+							<Image id="HeroAvatarKeeperOfTheLight" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_keeper_of_the_light.png" />
+							<Panel id="HeroAvatarCoverKeeperOfTheLight" class="HeroAvatarCover"/>
+						</Button>
 					</Panel>
 					<Button id="JoinUsButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelJoinUs&quot;);">				
 						<Label id="JoinUsButtonLabel" text="#join_us_title" />

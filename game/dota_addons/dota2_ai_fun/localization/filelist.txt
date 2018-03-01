@@ -32,3 +32,4 @@ rider.txt
 siglos.txt
 flame_lord.txt
 vengeful_spirit.txt
+conjurer.txt
