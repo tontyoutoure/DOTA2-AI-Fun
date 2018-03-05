@@ -44,7 +44,7 @@ local tHeroBaseStats = {
 	Model = "models/courier/frog/frog.vmdl",
 	ProjectileModel = "particles/econ/items/puck/puck_alliance_set/puck_base_attack_aproset.vpcf",
 }
-CustomNetTables:SetTableValue("fun_hero_abilities", "el_dorado", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "el_dorado_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "el_dorado", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("el_dorado", tNewAbilities)
 

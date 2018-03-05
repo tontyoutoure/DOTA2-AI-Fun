@@ -1,2 +1,2 @@
 hHero = PlayerResource:GetPlayer(0):GetAssignedHero() 
-ParticleManager:CreateParticle("particles/econ/events/league_teleport_2014/teleport_ring_league_silver_glow.vpcf", PATTACH_ABSORIGIN_FOLLOW, hHero)
+for k, v in ipairs(hHero:FindAllModifiers()) do print(v:GetName()) end

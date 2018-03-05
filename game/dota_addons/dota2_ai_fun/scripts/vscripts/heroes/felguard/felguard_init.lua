@@ -31,7 +31,7 @@ local tHeroBaseStats = {
 	ArmorPhysical = 3,
 	PrimaryAttribute = DOTA_ATTRIBUTE_STRENGTH
 }
-CustomNetTables:SetTableValue("fun_hero_abilities", "felguard", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "felguard_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "felguard", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("felguard", tNewAbilities)
 

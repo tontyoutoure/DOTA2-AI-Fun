@@ -85,6 +85,9 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"ProjectileModel"	"particles/units/heroes/hero_morphling/morphling_base_attack.vpcf"
+		"ProjectileSpeed"	"1300"
 		"SoundSet"	"Hero_Morphling"
 		"AutoAttacksByDefault"	"0"
 	}
@@ -169,6 +172,9 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"ProjectileModel"	"particles/units/heroes/hero_morphling/morphling_base_attack.vpcf"
+		"ProjectileSpeed"	"1300"
 		"SoundSet"	"Hero_Morphling"
 		"AutoAttacksByDefault"	"0"
 	}
@@ -253,6 +259,9 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"ProjectileModel"	"particles/units/heroes/hero_morphling/morphling_base_attack.vpcf"
+		"ProjectileSpeed"	"1300"
 		"SoundSet"	"Hero_Morphling"
 		"AutoAttacksByDefault"	"0"
 	}

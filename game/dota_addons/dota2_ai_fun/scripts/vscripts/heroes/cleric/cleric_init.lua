@@ -33,7 +33,7 @@ local tHeroBaseStats = {
 	PrimaryAttribute = DOTA_ATTRIBUTE_INTELLECT,
 	AttackAnimationPoint = 0.2,
 }
-CustomNetTables:SetTableValue("fun_hero_abilities", "cleric", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "cleric_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "cleric", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("cleric", tNewAbilities)
 

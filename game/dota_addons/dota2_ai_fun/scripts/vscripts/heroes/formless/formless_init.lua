@@ -53,7 +53,7 @@ local tHeroBaseStats = {
 	AttackAnimationPoint = 0.1,
 }
 
-CustomNetTables:SetTableValue("fun_hero_abilities", "formless", tShowAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "formless_abilities", tShowAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "formless", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("formless", tNewAbilities)
 

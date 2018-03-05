@@ -144,6 +144,12 @@ Donation.OnDonationActive = function () {
 	}
 	else {
 		$("#DonationContentContainer").visible = true;
+		if(iCurrentTab == 2) {
+			$("#BottomButtonEmblem").visible = true;
+		}
+		else {
+			$("#BottomButtonEmblem").visible = false;
+		}
 	}
 }
 
@@ -196,9 +202,9 @@ Donation.Initialize = function() {
 
 	$("#BottomContainerHalf2").BCreateChildren("<Button class='BottomButton' id='BottomButtonErase' onactivate='Donation.OnRemoveEffectActive()' onmouseout='UIHideTextTooltip()' onmouseover='UIShowTextTooltip(#remove_effect_tooltip)' />")
 	$("#BottomButtonErase").BCreateChildren("<Label class='BottomButtonLabel' id='BottomButtonLabelErase' text='#remove_effect'/>")
-	$("#BottomContainerHalf2").BCreateChildren("<Button class='BottomButton' id='BottomButtonRelic' onactivate='Donation.OnRelicActive()' onmouseout='UIHideTextTooltip()' onmouseover='UIShowTextTooltip(#relic_tooptip)' />")
-	$("#BottomButtonRelic").BCreateChildren("<Label class='BottomButtonLabel' id='BottomButtonLabelRelic' text='#LoadoutSlot_Relic'/>")
-	$("#BottomButtonRelic").visible=false
+	$("#BottomContainerHalf2").BCreateChildren("<Button class='BottomButton' id='BottomButtonEmblem' onactivate='Donation.OnEmblemActive()' onmouseout='UIHideTextTooltip()' onmouseover='UIShowTextTooltip(#emblem_tooltip)' />")
+	$("#BottomButtonEmblem").BCreateChildren("<Label class='BottomButtonLabel' id='BottomButtonLabelEmblem' text='#LoadoutSlot_Emblem'/>")
+	$("#BottomButtonEmblem").visible=false
 }
 
 Donation.OnDonationTabActive = function (){
@@ -220,7 +226,7 @@ Donation.OnCourierTabActive = function (){
 		$("#GemLabelEthreal"+this.aEyeParticles[i].toString()).visible = true;
 		$("#GemButtonEthereal"+this.aEyeParticles[i].toString()).visible = true;
 	}
-	$("#BottomButtonRelic").visible = false;
+	$("#BottomButtonEmblem").visible = false;
 	Donation.ResetPanel()
 	$("#DonationTabButtonDonation").RemoveClass('HaveShadow')
 	$("#DonationTabButtonCourier").AddClass('HaveShadow')
@@ -237,7 +243,7 @@ Donation.OnHeroTabActive = function (){
 		$("#GemLabelEthreal"+this.aEyeParticles[i].toString()).visible = false;
 		$("#GemButtonEthereal"+this.aEyeParticles[i].toString()).visible = false;
 	}
-	$("#BottomButtonRelic").visible = true;
+	$("#BottomButtonEmblem").visible = true;
 	Donation.ResetPanel()
 	$("#DonationTabButtonDonation").RemoveClass('HaveShadow')
 	$("#DonationTabButtonCourier").RemoveClass('HaveShadow')
@@ -254,7 +260,7 @@ Donation.OnWardTabActive = function (){
 		$("#GemLabelEthreal"+this.aEyeParticles[i].toString()).visible = false;
 		$("#GemButtonEthereal"+this.aEyeParticles[i].toString()).visible = false;
 	}
-	$("#BottomButtonRelic").visible = false;
+	$("#BottomButtonEmblem").visible = false;
 	Donation.ResetPanel()
 	$("#DonationTabButtonDonation").RemoveClass('HaveShadow')
 	$("#DonationTabButtonCourier").RemoveClass('HaveShadow')
@@ -325,11 +331,11 @@ Donation.OnSubmitColorActive = function() {
 	GameEvents.SendCustomGameEventToServer("ChangePrismaticColor", {"tab":iCurrentTab, "r":iR , "g": iG, "b": iB})
 }
 
-Donation.OnRelicActive = function() {
+Donation.OnEmblemActive = function() {
 	var iR = 1
 	var iG = 2
 	var iB = 3
-	GameEvents.SendCustomGameEventToServer("ToggleRelic", {"tab":iCurrentTab, "r":iR , "g": iG, "b": iB})
+	GameEvents.SendCustomGameEventToServer("ToggleEmblem", {"tab":iCurrentTab, "r":iR , "g": iG, "b": iB})
 }
 
 Donation.OnRemoveEffectActive = function(){

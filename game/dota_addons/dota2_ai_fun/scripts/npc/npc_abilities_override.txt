@@ -32,42 +32,232 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"bonus_damage_pct"	"12 18 24 30"
-				"LinkedSpecialBonus"	"special_bonus_unique_vengeful_spirit_2"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"aura_radius"	"1200"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"images_do_damage_percent"	"0"
-			}
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"images_do_damage_percent_tooltip"	"100"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"images_take_damage_percent"	"100"
-			}
-			"06"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"images_take_damage_percent_tooltip"	"200"
+				"value_empty_1"	"100"
 			}
 			"07"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"illusion_duration"	"6"
+				"value_empty_2"	"6"
 			}
 		}
+	}
+	
+	"skeleton_king_mortal_strike"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"skeleton_king_mortal_strike"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityManaCost"  "0"
+		"AbilityCooldown"  "0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"AbilitySpecial"
+		{
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value_empty_1"	"1"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value_empty_2"	"1"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_skeleton_king_mortal_strike_applier"
+			{
+				"Passive"   "1"
+				"IsHidden"  "1"
+				"OnAttackStart"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName" 	"modifier_skeleton_king_mortal_strike_crit"
+						"Target" 		"CASTER"
+					}
+
+					"Random"
+					{
+						"Chance" "%crit_chance"
+						"PseudoRandom" "DOTA_PSEUDO_RANDOM_SKELETONKING_CRIT"
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"ScriptFile"  "heroes/skeleton_king/skeleton_king.lua"
+								"Function"  "SkeletonKingMortalStrikeApply"
+								"ModifierName" 	"modifier_skeleton_king_mortal_strike_crit"								
+							}   
+						}
+					}
+				}
+			}
+
+			"modifier_skeleton_king_mortal_strike_crit"
+			{
+				"IsHidden"  "1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" "%crit_mult"
+				}
+	
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"  "heroes/skeleton_king/skeleton_king.lua"
+						"Function"  "SkeletonKingMortalStrikeInstantKill"
+						"ModifierName" 	"modifier_skeleton_king_mortal_strike_crit"								
+					}   
+				}
+			}
+		}
+	} 
+	
+	"sniper_assassinate_upgrade"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"sniper_assassinate_muh_keen_gun"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"	"2"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"2.0 2.0 2.0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"	"20.0 15.0 10.0"
+		"AbilityManaCost"	"175 275 375"
+		"HasScepterUpgrade"					"1"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"2000 2500 3000"
+		"AbilityCastRangeBuffer"	"600"
+		"AoERadius"	"%scepter_radius"
+		// Data driven
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_sniper/sniper_assassinate.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+		}
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Ability.AssassinateLoad"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"heroes/sniper/sniper.lua"
+				"Function"	"AssassinateAcquireTargets"
+				"Target"
+				{
+					"Center"	"POINT"
+					"Radius"	"%scepter_radius"
+					"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				}
+			}
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Ability.Assassinate"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"heroes/sniper/sniper.lua"
+				"Function"	"AssassinateStart"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_Sniper.AssassinateDamage"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/sniper/sniper.lua"
+				"Function"	"AssassinateHit"
+			}
+			"DeleteOnHit"	"0"
+		}
+		"Modifiers"
+		{
+			"modifier_assassinate_caster_datadriven"
+			{
+				"OnOrder"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_assassinate_caster_datadriven"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/sniper/sniper.lua"
+						"Function"	"AssassinateRemoveTarget"
+					}
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"projectile_speed"	"2500 2500 2500"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"tooltip_range"	"2000 2500 3000"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"total_cast_time_tooltip"	"2"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"scepter_radius"	"400"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"scepter_crit_bonus"	"280"
+			}
+		}
+		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		// Modifier just does damage
+		"AbilityModifierSupportValue"	"0.0"
 	}
 }

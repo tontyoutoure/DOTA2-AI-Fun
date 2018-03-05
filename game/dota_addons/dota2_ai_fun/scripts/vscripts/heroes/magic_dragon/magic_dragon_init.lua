@@ -34,7 +34,7 @@ local tHeroBaseStats = {
 	Model = "models/items/dragon_knight/oblivion_blazer_dragon/oblivion_blazer_dragon.vmdl",
 	ModelScale = 1
 }
-CustomNetTables:SetTableValue("fun_hero_abilities", "magic_dragon", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "magic_dragon_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "magic_dragon", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("magic_dragon", tNewAbilities)
 

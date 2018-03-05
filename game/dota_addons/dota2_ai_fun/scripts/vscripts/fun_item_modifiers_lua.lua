@@ -31,18 +31,32 @@ function modifier_angelic_alliance_maximum_speed:GetModifierMoveSpeedBonus_Const
 end
 
 modifier_item_fun_sprint_shoes_lua = class({})
-
+function modifier_item_fun_sprint_shoes_lua:OnCreated()
+	self:GetAbility().hModifier = self
+	self:StartIntervalThink(FrameTime())
+end
 function modifier_item_fun_sprint_shoes_lua:DeclareFunctions()
 	local funcs = 
 	{
 		MODIFIER_PROPERTY_MOVESPEED_MAX,
 		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE,
+		MODIFIER_EVENT_ON_TAKEDAMAGE
 	}
 
 	return funcs
 end
-
+function modifier_item_fun_sprint_shoes_lua:OnTakeDamage(keys)
+	if keys.unit ~= self:GetParent() or keys.attacker:GetPlayerOwnerID() < 0 or keys.attacker:GetPlayerOwnerID() == keys.unit:GetPlayerOwnerID() then return end
+	self.iLastHitTime = GameRules:GetGameTime()
+	self:SetStackCount(1)
+end
+function modifier_item_fun_sprint_shoes_lua:OnIntervalThink()
+	if IsClient() then return end
+	if self.iLastHitTime and GameRules:GetGameTime()-self.iLastHitTime > self:GetAbility():GetSpecialValueFor("broken_time") then 
+		self:SetStackCount(0) 
+	end
+end
 function modifier_item_fun_sprint_shoes_lua:GetModifierMoveSpeed_Max()
 	return 99999
 end

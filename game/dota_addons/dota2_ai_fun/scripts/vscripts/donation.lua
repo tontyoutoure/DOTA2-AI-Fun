@@ -298,16 +298,16 @@ local function OnEtherealEffectRemove(eventSourceIndex, keys)
 	end
 end
 
-local function OnRelicToggled(eventSourceIndex, keys)
+local function OnEmblemToggled(eventSourceIndex, keys)
 	local hHero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
 	local tAllHeros = Entities:FindAllByName(hHero:GetName())
 	for k, v in ipairs(tAllHeros) do
 		if v:GetPlayerOwner() == hHero:GetPlayerOwner() then
-			if hHero.iRelicParticle then
-				ParticleManager:DestroyParticle(v.iRelicParticle, true)
-				v.iRelicParticle = nil
+			if hHero.iEmblemParticle then
+				ParticleManager:DestroyParticle(v.iEmblemParticle, true)
+				v.iEmblemParticle = nil
 			else				
-				v.iRelicParticle = ParticleManager:CreateParticle("particles/econ/events/ti7/ti7_hero_effect.vpcf", PATTACH_ABSORIGIN_FOLLOW, hHero)
+				v.iEmblemParticle = ParticleManager:CreateParticle("particles/econ/events/ti7/ti7_hero_effect.vpcf", PATTACH_ABSORIGIN_FOLLOW, hHero)
 			end
 		end
 	end
@@ -316,7 +316,7 @@ end
 CustomGameEventManager:RegisterListener( "ChangePrismaticColor", OnPrismaticColorChange )
 CustomGameEventManager:RegisterListener( "ChangeEtherealEffect", OnEtherealEffectChange )
 CustomGameEventManager:RegisterListener( "RemoveEtherealEffect", OnEtherealEffectRemove )
-CustomGameEventManager:RegisterListener( "ToggleRelic", OnRelicToggled )
+CustomGameEventManager:RegisterListener( "ToggleEmblem", OnEmblemToggled )
 local function AddEffectOnSpawn(keys)
 	local hUnit = EntIndexToHScript(keys.entindex)
 	if hUnit:GetName() == "npc_dota_ward_base" or hUnit:GetName() == "npc_dota_ward_base_truesight" then

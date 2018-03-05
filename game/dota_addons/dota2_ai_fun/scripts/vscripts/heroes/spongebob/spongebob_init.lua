@@ -31,7 +31,7 @@ local tHeroBaseStats = {
 	PrimaryAttribute = DOTA_ATTRIBUTE_AGILITY,
 }
 
-CustomNetTables:SetTableValue("fun_hero_abilities", "spongebob", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "spongebob_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "spongebob", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("spongebob", tNewAbilities)
 function SpongeBobInit(hHero)		

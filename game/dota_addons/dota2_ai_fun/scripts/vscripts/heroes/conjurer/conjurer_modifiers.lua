@@ -29,7 +29,7 @@ function modifier_conjurer_phoenix_splash:OnAttackLanded(keys)
 	self.iRadius100 = hAbility:GetSpecialValueFor("splash_radius_100")
 	self.iRadius50 = hAbility:GetSpecialValueFor("splash_radius_50")
 	self.iRadius25 = hAbility:GetSpecialValueFor("splash_radius_25")
-	if keys.attacker and keys.attacker == self:GetParent() and not keys.attacker:PassivesDisabled() then
+	if keys.attacker and keys.attacker == self:GetParent() and not keys.attacker:PassivesDisabled() then 
 		for k, v in ipairs(FindUnitsInRadius(keys.attacker:GetTeamNumber(), keys.target:GetOrigin(), nil, self.iRadius25, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)) do
 			if v ~= keys.target then
 				if (v:GetOrigin()-keys.target:GetOrigin()):Length2D() < self.iRadius100 then
@@ -142,7 +142,7 @@ end
 function modifier_conjurer_phoenix_reincarnation_egg:OnIntervalThink()	
 	if IsClient() then return end
 	local hParent = self:GetParent()
-	hParent:SetOrigin(Vector2D(hParent:GetOrigin())+Vector(0,0,-30+self:GetRemainingTime()*60))
+	hParent:SetOrigin(Vector2D(hParent:GetOrigin())+Vector(0,0,GetGroundHeight(hParent:GetOrigin(), hParent)-156+self:GetRemainingTime()*40))
 	iTheta = self:GetRemainingTime()*1
 	hParent:SetForwardVector(Vector(math.cos(iTheta), math.sin(iTheta),0))
 end

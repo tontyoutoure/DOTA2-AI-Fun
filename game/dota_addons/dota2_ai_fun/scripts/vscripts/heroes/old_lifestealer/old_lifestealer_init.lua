@@ -32,7 +32,7 @@ local tHeroBaseStats = {
 	AttackAnimationPoint = 0.3,
 }
 
-CustomNetTables:SetTableValue("fun_hero_abilities", "old_lifestealer", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "old_lifestealer_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "old_lifestealer", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("old_lifestealer", tNewAbilities)
 

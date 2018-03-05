@@ -1,5 +1,6 @@
 LinkLuaModifier("modifier_sniper_assassinate_target", "heroes/sniper/sniper_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_assassinate_caster_crit", "heroes/sniper/sniper_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+
 function AssassinateAcquireTargets(keys)
 	keys.ability.tTargets = keys.target_entities
 	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_assassinate_caster_datadriven", {})

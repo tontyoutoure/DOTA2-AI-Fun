@@ -31,7 +31,7 @@ local tHeroBaseStats = {
 	PrimaryAttribute = DOTA_ATTRIBUTE_INTELLECT,
 }
 
-CustomNetTables:SetTableValue("fun_hero_abilities", "siglos", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "siglos_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "siglos", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("siglos", tNewAbilities)
 function GameMode:SiglosOrderFilter(filterTable)

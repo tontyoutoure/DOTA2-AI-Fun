@@ -31,7 +31,7 @@ local tHeroBaseStats = {
 	PrimaryAttribute = DOTA_ATTRIBUTE_INTELLECT,
 }
 
-CustomNetTables:SetTableValue("fun_hero_abilities", "flame_lord", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "flame_lord_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "flame_lord", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("flame_lord", tNewAbilities)
 

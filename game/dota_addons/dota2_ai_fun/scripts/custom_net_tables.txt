@@ -2,17 +2,7 @@
  {
     custom_net_tables =
     [
-        "ramza_current_job",
-        "ramza_current_secondary_skill",
-        "ramza_job_level",
-        "ramza_job_requirement",
-        "ramza_init_job_requirement",
-        "ramza_job_abilities",
-        "ramza_job_names",
-        "ramza_job_stats",
-		"ramza_list",
-		"fun_hero_abilities",
+        "ramza",
 		"fun_hero_stats",
-		"fun_hero_scepter_infos",
     ]
 }

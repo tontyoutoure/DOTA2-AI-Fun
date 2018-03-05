@@ -33,7 +33,7 @@ local tHeroBaseStats = {
 	ProjectileModel = "particles/units/heroes/hero_morphling/morphling_base_attack.vpcf"
 }
 
-CustomNetTables:SetTableValue("fun_hero_abilities", "bastion", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "bastion_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "bastion", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("bastion", tNewAbilities)
 function BastionInit(hHero)	

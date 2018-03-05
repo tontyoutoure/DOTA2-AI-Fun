@@ -32,7 +32,7 @@ local tHeroBaseStats = {
 }
 
 
-CustomNetTables:SetTableValue("fun_hero_abilities", "pet_summoner", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "pet_summoner_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "pet_summoner", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("pet_summoner", tNewAbilities)
 function PetSummonerInit(hHero)

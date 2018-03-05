@@ -126,13 +126,13 @@ local tHeroBaseStats = {
 }
 
 
-CustomNetTables:SetTableValue("fun_hero_abilities", "ramza", tShowedAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "ramza_abilities", tShowedAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "ramza", {})
 GameMode:FunHeroScepterUpgradeInfo("ramza", tShowedAbilities)
 
 function RamzaInit(hHero, context)
 	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)	
-	CustomNetTables:SetTableValue("ramza_list", tostring(hHero:entindex()), {})
+	CustomNetTables:SetTableValue("ramza", "list_"..tostring(hHero:entindex()), {})
 --	if hHero:IsIllusion() then return end
 	WearableManager:AddNewWearable(hHero, {ID = "66", style = "0", model = "models/heroes/dragon_knight/weapon.vmdl", particle_systems = {}})
 	WearableManager:AddNewWearable(hHero, {ID = "67", style = "0", model = "models/heroes/dragon_knight/shield.vmdl", particle_systems = {}})
@@ -175,7 +175,7 @@ function RamzaInit(hHero, context)
 		hHero:AddAbility("ramza_faith"):SetLevel(hHero.iFaithLevel)
 		hHero:RemoveAbility("ramza_faith")
 		local hHeroEntIndex = hHero:entindex()
-		Timers:CreateTimer(120, function () CustomNetTables:SetTableValue("ramza_list", tostring(hHeroEntIndex), nil) end)
+		Timers:CreateTimer(120, function () CustomNetTables:SetTableValue("ramza", "list_"..tostring(hHeroEntIndex), nil) end)
 	end	
 	
 	if not GameMode.bRamzaArchersBaneFileterSet then

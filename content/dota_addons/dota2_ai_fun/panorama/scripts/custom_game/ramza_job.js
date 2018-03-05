@@ -12,18 +12,18 @@ var tRamzaList = {}
 var RamzaJob = {};
 
 RamzaJob.FetchNetTableConstants = function () {
-	this.tJobNames = CustomNetTables.GetTableValue("ramza_job_names", iPlayerID.toString());
-	this.tJobAbilities = CustomNetTables.GetTableValue("ramza_job_abilities", iPlayerID.toString());
-	this.tInitJobRequirement = CustomNetTables.GetTableValue("ramza_init_job_requirement", iPlayerID.toString());
-	this.tJobStats = CustomNetTables.GetTableValue("ramza_job_stats", iPlayerID.toString());
+	this.tJobNames = CustomNetTables.GetTableValue("ramza", "job_names");
+	this.tJobAbilities = CustomNetTables.GetTableValue("ramza", "job_abilities");
+	this.tInitJobRequirement = CustomNetTables.GetTableValue("ramza", "init_job_requirement");
+	this.tJobStats = CustomNetTables.GetTableValue("ramza", "job_stats");
 
 }
 
 RamzaJob.FetchNetTableVariables = function() {
-	this.tJobLevel = CustomNetTables.GetTableValue("ramza_job_level", iPlayerID.toString());
-	this.iCurrnetJob = CustomNetTables.GetTableValue("ramza_current_job", iPlayerID.toString())["1"];
-	this.iCurrnetSecondarySkill = CustomNetTables.GetTableValue("ramza_current_secondary_skill", iPlayerID.toString())["1"];
-	this.tJobRequirement = CustomNetTables.GetTableValue("ramza_job_requirement", iPlayerID.toString());
+	this.tJobLevel = CustomNetTables.GetTableValue("ramza", "job_level_"+iPlayerID.toString());
+	this.iCurrnetJob = CustomNetTables.GetTableValue("ramza", "current_job_"+iPlayerID.toString())["1"];
+	this.iCurrnetSecondarySkill = CustomNetTables.GetTableValue("ramza", "current_secondary_skill_"+iPlayerID.toString())["1"];
+	this.tJobRequirement = CustomNetTables.GetTableValue("ramza", "job_requirement_"+iPlayerID.toString());
 }
 
 
@@ -397,7 +397,7 @@ function RamzaCloseSelectionListener(keys) {
 }
 
 function RamzaPortraitApply(keys) {
-	if (CustomNetTables.GetTableValue("ramza_list", (Players.GetLocalPlayerPortraitUnit()).toString())) {
+	if (CustomNetTables.GetTableValue("ramza", "list_"+(Players.GetLocalPlayerPortraitUnit()).toString())) {
 		$('#RamzaPortraitContainer').style.visibility = 'visible';
 		if(Entities.IsAlive(Players.GetLocalPlayerPortraitUnit())) {
 			$("#RamzaPortraitDeath").style.visibility = 'collapse';

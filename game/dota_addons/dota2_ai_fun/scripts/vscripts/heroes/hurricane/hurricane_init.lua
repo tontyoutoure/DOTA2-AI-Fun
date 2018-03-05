@@ -34,7 +34,7 @@ local tHeroBaseStats = {
 	DisableWearables = true
 }
 
-CustomNetTables:SetTableValue("fun_hero_abilities", "hurricane", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "hurricane_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "hurricane", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("hurricane", tNewAbilities)
 function HurricaneAddParticle(keys)

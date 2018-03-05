@@ -32,7 +32,7 @@ local tHeroBaseStats = {
 	ArmorPhysical = 3,
 	PrimaryAttribute = DOTA_ATTRIBUTE_STRENGTH
 }
-CustomNetTables:SetTableValue("fun_hero_abilities", "astral_trekker", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "astral_trekker_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "astral_trekker", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("astral_trekker", tNewAbilities)
 

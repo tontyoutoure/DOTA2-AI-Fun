@@ -19,7 +19,6 @@ ramza.txt
 telekenetic_blob.txt
 terran_marine.txt
 void_demon.txt
-sniper.txt
 hurricane.txt
 capslockftw.txt
 templar.txt
@@ -31,5 +30,5 @@ old_lifestealer.txt
 rider.txt
 siglos.txt
 flame_lord.txt
-vengeful_spirit.txt
+override_abilities.txt
 conjurer.txt

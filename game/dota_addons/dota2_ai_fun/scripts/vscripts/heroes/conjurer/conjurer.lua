@@ -84,7 +84,7 @@ function conjurer_phoenix:OnSpellStart()
 		hUnit:SetBaseDamageMax(iDamage+7)
 		hUnit:SetPhysicalArmorBaseValue(iArmor)
 		hUnit.iDuration = self:GetSpecialValueFor("duration")
-		if hCaster:HasAbility("special_bonus_unique_conjurer_5") and self:GetLevel() > 1 then
+		if hCaster:HasAbility("special_bonus_unique_conjurer_5") and hCaster:FindAbilityByName("special_bonus_unique_conjurer_5"):GetLevel() > 0 then
 			hUnit:AddAbility("conjurer_phoenix_reincarnation"):SetLevel(1)
 		end 
 		ParticleManager:CreateParticle("particles/items_fx/necronomicon_spawn.vpcf", PATTACH_ABSORIGIN_FOLLOW, hUnit)

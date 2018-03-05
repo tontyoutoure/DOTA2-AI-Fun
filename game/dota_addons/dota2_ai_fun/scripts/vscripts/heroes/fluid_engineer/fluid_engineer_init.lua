@@ -31,7 +31,7 @@ local tHeroBaseStats = {
 	AttackAnimationPoint = 0.4,
 }
 
-CustomNetTables:SetTableValue("fun_hero_abilities", "fluid_engineer", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "fluid_engineer_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "fluid_engineer", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("fluid_engineer", tNewAbilities)
 function FluidEngineerInit (hHero)

@@ -78,9 +78,9 @@ function HeroDescriptionInitAll(keys) {
 }
 
 function HeroDescriptionInit(sFunHeroName, sHeroName, sHeroNameCapital) {
-	var tFunHeroAbilities = CustomNetTables.GetTableValue("fun_hero_abilities", sFunHeroName);
+	var tFunHeroAbilities = CustomNetTables.GetTableValue("fun_hero_stats", sFunHeroName+"_abilities");
 	var tFunHeroStats = CustomNetTables.GetTableValue("fun_hero_stats", sFunHeroName);
-	var tFunHeroScepterInfo = CustomNetTables.GetTableValue("fun_hero_scepter_infos", sFunHeroName);
+	var tFunHeroScepterInfo = CustomNetTables.GetTableValue("fun_hero_stats", sFunHeroName+"_scepter_infos");
 	$("#HeroDescriptionPopPanelContainer").BCreateChildren("<Panel id='HeroDescriptionPopPanel"+sHeroNameCapital+"' class = 'HeroDescriptionPopPanel' hittest='true'/>")
 	var sPanelName = '#HeroDescriptionPopPanel'+sHeroNameCapital
 	$(sPanelName).BCreateChildren('<Panel id="HeroNameLine'+sHeroNameCapital+'" class="HeroNameLine"/>')

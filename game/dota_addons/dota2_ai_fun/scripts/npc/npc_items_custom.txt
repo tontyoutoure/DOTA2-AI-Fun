@@ -260,16 +260,16 @@
 		"BaseClass"	"item_lua"
 		"AbilityTextureName"	"item_fun_sprint_shoes"
 		"ScriptFile"	"fun_items_lua.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL|DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityCastPoint"	"0.0"
-		"AbilityCooldown"	"30.0"
+		"AbilityCooldown"	"12.0"
 		"AbilityManaCost"	"0"
 		"AbilityCastRange"	"0"
 		"ID"	"15504"
 		"ItemQuality"	"artifact"
 		"Model"	"models/props_gameplay/red_box.vmdl"
 		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
-		"ItemCost"	"6900"
+		"ItemCost"	"7000"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemPermanent"	"1"
 		"ItemAliases"	"sprint shoes"
@@ -279,6 +279,21 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"speed"	"150"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"broken_time"	"2"
+			}
+			"03"
+			{ 
+				"var_type"	"FIELD_INTEGER"
+				"blink_distance"	"2500"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"channel_time"	"2"
 			}
 		}
 		"ActiveDescriptionLine"	"1"
@@ -487,7 +502,7 @@
 		"ItemQuality"	"artifact"
 		"Model"	"models/items/sven/ice_sword/ice_sword.vmdl"
 		"Effect"	"particles/econ/courier/courier_donkey_ti7/courier_donkey_ti7_ambient.vpcf"
-		"ItemCost"	"40285"
+		"ItemCost"	"40385"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemPermanent"	"1"
 		"ItemAliases"	"angelic alliance"
@@ -1354,7 +1369,7 @@
 		"ItemQuality"	"artifact"
 		"Model"	"models/props_gameplay/red_box.vmdl"
 		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
-		"ItemCost"	"4395"
+		"ItemCost"	"4510"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemPermanent"	"1"
 		"ItemAliases"	"tranquil boots"
@@ -1449,7 +1464,7 @@
 				"States"
 				{
 					"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_FLYING"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"OnAbilityExecuted"

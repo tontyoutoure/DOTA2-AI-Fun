@@ -9,10 +9,10 @@ local tNewAbilities = {
 	"hamsterlord_call_of_hamster",
 	"special_bonus_gold_income_25",
 	"special_bonus_exp_boost_30",
-	"special_bonus_hamsterlord_0",
+	"special_bonus_hamsterlord_3",
 	"special_bonus_hamsterlord_1",
 	"special_bonus_hamsterlord_2",
-	"special_bonus_hamsterlord_3",
+	"special_bonus_hamsterlord_0",
 	"special_bonus_hamsterlord_4",
 	"special_bonus_hamsterlord_5"
 }
@@ -33,7 +33,7 @@ local tHeroBaseStats = {
 	AttackAnimationPoint = 0.36,
 }
 
-CustomNetTables:SetTableValue("fun_hero_abilities", "hamsterlord", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "hamsterlord_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "hamsterlord", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("hamsterlord", tNewAbilities)
 local function HamsterlordTalentManager(keys)

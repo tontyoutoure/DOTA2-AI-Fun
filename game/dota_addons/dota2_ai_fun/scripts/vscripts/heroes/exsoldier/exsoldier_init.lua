@@ -72,7 +72,7 @@ local tJuggernautWeaponModels = {
 	["models/items/juggernaut/armor_for_the_favorite_weapon/armor_for_the_favorite_weapon.vmdl"] = true,
 }
 
-CustomNetTables:SetTableValue("fun_hero_abilities", "exsoldier", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "exsoldier_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "exsoldier", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("exsoldier", tNewAbilities)
 LinkLuaModifier("modifier_exsoldier_sword_manager", "heroes/exsoldier/exsoldier_modifiers.lua", LUA_MODIFIER_MOTION_NONE)

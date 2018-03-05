@@ -25,7 +25,7 @@ if not IsClient() then
 		end
 		if #tScepterInfos > 0 then
 --			PrintTable(tScepterInfos)
-			CustomNetTables:SetTableValue("fun_hero_scepter_infos", sHeroName, tScepterInfos)
+			CustomNetTables:SetTableValue("fun_hero_stats", sHeroName.."_scepter_infos", tScepterInfos)
 		end
 	end
 

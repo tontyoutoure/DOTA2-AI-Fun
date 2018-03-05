@@ -78,6 +78,9 @@ local bannedItems = {
 	"item_necronomicon_3", 
 	"item_pipe", 
 	"item_refresher",
+	"item_refresher_shard"
+	"item_meteor_hammer"
+	"item_aeon_disk"
 	"chen_hand_of_god",
 	"invoker_sun_strike",
 	"spectre_haunt",

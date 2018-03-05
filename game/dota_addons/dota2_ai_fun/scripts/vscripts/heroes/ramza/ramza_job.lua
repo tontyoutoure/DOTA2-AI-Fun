@@ -27,8 +27,8 @@ function CRamzaJob:GainJobPoint(iJobPoint)
 	end
 	if bHasLeveled then		
 		self:LevelUpSkills()
-		CustomNetTables:SetTableValue("ramza_job_requirement", tostring(iPlayerID), self.tChangeJobRequirements)
-		CustomNetTables:SetTableValue("ramza_job_level", tostring(iPlayerID), self.tJobLevels)
+		CustomNetTables:SetTableValue("ramza", "job_requirement_"..tostring(iPlayerID), self.tChangeJobRequirements)
+		CustomNetTables:SetTableValue("ramza", "job_level_"..tostring(iPlayerID), self.tJobLevels)
 		if (self.tJobLevels[self.iCurrentJob] < 9) then
 			self.hParent:FindModifierByName("modifier_ramza_job_level"):SetStackCount(self.tJobLevels[self.iCurrentJob])
 		else
@@ -126,16 +126,19 @@ end
 function CRamzaJob:InitNetTable()	
 	local iPlayerID = self.hParent:GetOwner():GetPlayerID()
 	if self.hParent:IsIllusion() or GameMode.tFunHeroSelection[self.hParent:GetPlayerOwnerID()] ~= self.hParent:GetName() then return end
-	CustomNetTables:SetTableValue("ramza_init_job_requirement", tostring(iPlayerID), self.tRamzaChangeJobRequirements)
-	CustomNetTables:SetTableValue("ramza_job_names", tostring(iPlayerID), self.tJobNames)
-	CustomNetTables:SetTableValue("ramza_job_abilities", tostring(iPlayerID), self.tJobAbilities)
-	CustomNetTables:SetTableValue("ramza_job_stats", tostring(iPlayerID), self.tJobStats)
+	if not GameMode.bRamzaNetTableInitiated then
+		CustomNetTables:SetTableValue("ramza", "init_job_requirement", self.tRamzaChangeJobRequirements)
+		CustomNetTables:SetTableValue("ramza", "job_names", self.tJobNames)
+		CustomNetTables:SetTableValue("ramza", "job_abilities", self.tJobAbilities)
+		CustomNetTables:SetTableValue("ramza", "job_stats", self.tJobStats)
+		GameMode.bRamzaNetTableInitiated = true
+	end
 	
 	
-	CustomNetTables:SetTableValue("ramza_job_level", tostring(iPlayerID), self.tJobLevels)
-	CustomNetTables:SetTableValue("ramza_job_requirement", tostring(iPlayerID), self.tChangeJobRequirements)
-	CustomNetTables:SetTableValue("ramza_current_job", tostring(iPlayerID), {self.iCurrentJob})
-	CustomNetTables:SetTableValue("ramza_current_secondary_skill", tostring(iPlayerID), {self.iSecondarySkill})
+	CustomNetTables:SetTableValue("ramza", "job_level_"..tostring(iPlayerID), self.tJobLevels)
+	CustomNetTables:SetTableValue("ramza", "job_requirement_"..tostring(iPlayerID), self.tChangeJobRequirements)
+	CustomNetTables:SetTableValue("ramza", "current_job_"..tostring(iPlayerID), {self.iCurrentJob})
+	CustomNetTables:SetTableValue("ramza", "current_secondary_skill_"..tostring(iPlayerID), {self.iSecondarySkill})
 end
 
 
@@ -202,10 +205,10 @@ function CRamzaJob:RamzaLevelMax()
 			end
 			self.tAllRamzas[i].hRamzaJob:LevelUpSkills()
 		end
-		CustomNetTables:SetTableValue("ramza_job_level", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), self.tAllRamzas[i].hRamzaJob.tJobLevels)
-		CustomNetTables:SetTableValue("ramza_job_requirement", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), self.tAllRamzas[i].hRamzaJob.tChangeJobRequirements)
-		CustomNetTables:SetTableValue("ramza_current_job", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), {self.tAllRamzas[i].hRamzaJob.iCurrentJob})
-		CustomNetTables:SetTableValue("ramza_current_secondary_skill", tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), {self.tAllRamzas[i].hRamzaJob.iSecondarySkill})
+		CustomNetTables:SetTableValue("ramza", "job_level_"..tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), self.tAllRamzas[i].hRamzaJob.tJobLevels)
+		CustomNetTables:SetTableValue("ramza", "job_requirement_"..tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), self.tAllRamzas[i].hRamzaJob.tChangeJobRequirements)
+		CustomNetTables:SetTableValue("ramza", "current_job_"..tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), {self.tAllRamzas[i].hRamzaJob.iCurrentJob})
+		CustomNetTables:SetTableValue("ramza", "current_secondary_skill_"..tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), {self.tAllRamzas[i].hRamzaJob.iSecondarySkill})
 	end
 end
 
@@ -254,7 +257,7 @@ function CRamzaJob:ChangeJob(iJobToGo, iChangeJobState)
 				self.hParent:RemoveModifierByName("modifier_" .. self.tOtherAbilities[self.iSecondarySkill][7][1])
 			end
 			self.iSecondarySkill = 0
-			CustomNetTables:SetTableValue("ramza_current_secondary_skill", tostring(iPlayerID), {self.iSecondarySkill})
+			CustomNetTables:SetTableValue("ramza", "current_secondary_skill_"..tostring(iPlayerID), {self.iSecondarySkill})
 			local sName = self.hParent:GetAbilityByIndex(1):GetName()
 			local bHasAdded = false
 			if string.sub(sName, 1, 16) == "ramza_archer_aim" or string.sub(sName, 1, 17) == "ramza_ninja_throw" then
@@ -354,7 +357,7 @@ function CRamzaJob:ChangeJob(iJobToGo, iChangeJobState)
 		
 		-- tell panorama
 --		print("job change to", self.tJobNames[self.iCurrentJob])
-		CustomNetTables:SetTableValue("ramza_current_job", tostring(iPlayerID), {self.iCurrentJob})		
+		CustomNetTables:SetTableValue("ramza", "current_job_"..tostring(iPlayerID), {self.iCurrentJob})		
 		CustomGameEventManager:Send_ServerToPlayer( self.hParent:GetOwner(), "ramza_close_selection", {iHeroEntityIndex=self.hParent:entindex()})
 	else	
 		if self.hParent:GetAbilityByIndex(5):GetName() == 'ramza_go_back_lua' then
@@ -411,7 +414,7 @@ function CRamzaJob:ChangeJob(iJobToGo, iChangeJobState)
 			self.hParent:AddAbility(sName1):SetLevel(1)
 		end
 
-		CustomNetTables:SetTableValue("ramza_current_secondary_skill", tostring(iPlayerID), {self.iSecondarySkill})
+		CustomNetTables:SetTableValue("ramza", "current_secondary_skill_"..tostring(iPlayerID), {self.iSecondarySkill})
 		CustomGameEventManager:Send_ServerToPlayer( self.hParent:GetOwner(), "ramza_close_selection", {iHeroEntityIndex=self.hParent:entindex()} )
 	end
 end

@@ -43,7 +43,7 @@ function modifier_sniper_assassinate_target:OnDeath(keys)
 	if keys.target ~= hParent then return end
 	local hAbility = self.GetAbility()
 	if hAbility.tTargets then
-		for i, v in pairs(hAbility.tTargets) do
+		for i, v in ipairs(hAbility.tTargets) do
 			if v == hParent() then 
 				table.remove(hAbility.tTargets, i)
 			end

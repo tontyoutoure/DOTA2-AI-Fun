@@ -31,7 +31,7 @@ local tHeroBaseStats = {
 	AttackCapabilities = DOTA_UNIT_CAP_MELEE_ATTACK
 }
 
-CustomNetTables:SetTableValue("fun_hero_abilities", "templar", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "templar_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "templar", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("templar", tNewAbilities)
 function TemplarInit(hHero, context)

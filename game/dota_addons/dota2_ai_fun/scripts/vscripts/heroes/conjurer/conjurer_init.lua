@@ -30,7 +30,7 @@ local tHeroBaseStats = {
 	ArmorPhysical = -1,
 	PrimaryAttribute = DOTA_ATTRIBUTE_INTELLECT,
 }
-CustomNetTables:SetTableValue("fun_hero_abilities", "conjurer", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "conjurer_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "conjurer", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("conjurer", tNewAbilities)
 

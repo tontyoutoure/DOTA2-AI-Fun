@@ -30,7 +30,7 @@ local tHeroBaseStats = {
 	PrimaryAttribute = DOTA_ATTRIBUTE_INTELLECT,
 	AttackCapabilities = DOTA_UNIT_CAP_NO_ATTACK
 }
-CustomNetTables:SetTableValue("fun_hero_abilities", "telekenetic_blob", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "telekenetic_blob_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "telekenetic_blob", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("telekenetic_blob", tNewAbilities)
 

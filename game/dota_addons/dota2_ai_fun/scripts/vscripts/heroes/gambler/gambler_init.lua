@@ -33,7 +33,7 @@ local tHeroBaseStats = {
 	ProjectileModel="particles/gambler_base_attack.vpcf",
 }
 
-CustomNetTables:SetTableValue("fun_hero_abilities", "gambler", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "gambler_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "gambler", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("gambler", tNewAbilities)
 

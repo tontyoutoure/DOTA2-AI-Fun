@@ -32,7 +32,7 @@ local tHeroBaseStats = {
 	PrimaryAttribute = DOTA_ATTRIBUTE_AGILITY,
 }
 
-CustomNetTables:SetTableValue("fun_hero_abilities", "capslockftw", tNewAbilities)
+CustomNetTables:SetTableValue("fun_hero_stats", "capslockftw_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "capslockftw", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("capslockftw", tNewAbilities)
 

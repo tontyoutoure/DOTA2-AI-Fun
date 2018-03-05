@@ -323,7 +323,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/conjurer/conjurer.lua"
-				"Function"	"x"
+				"Function"	"ConjurerPhoenixSplashApply"
 			}
 		}
 		"AbilitySpecial"
