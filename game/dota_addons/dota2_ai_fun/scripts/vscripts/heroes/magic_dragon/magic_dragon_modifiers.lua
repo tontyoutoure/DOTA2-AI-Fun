@@ -79,16 +79,12 @@ modifier_magic_dragon_green_dragon_breath_slow = class({})
 
 function modifier_magic_dragon_green_dragon_breath_slow:DeclareFunctions() return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE} end
 function modifier_magic_dragon_green_dragon_breath_slow:GetModifierMoveSpeedBonus_Percentage()
-	
-	local fResist
-	if IsClient() then 
-		fResist = -self:GetStackCount()/1000
-	else
-		fResist = CalculateStatusResist(self:GetParent())
-		self:SetStackCount(-fResist*1000)
-	end
+
 	self.fSlow = self.fSlow or self:GetAbility():GetSpecialValueFor("speed_slow")
-	return fResist*self.fSlow
+	return self.fSlow
+end
+function modifier_magic_dragon_green_dragon_breath_slow:OnRefresh()
+	self.fSlow = self:GetAbility():GetSpecialValueFor("speed_slow")
 end
 function modifier_magic_dragon_green_dragon_breath_slow:GetEffectName() return 		
 	"particles/econ/items/viper/viper_ti7_immortal/viper_poison_debuff_ti7.vpcf" 
@@ -198,15 +194,7 @@ function modifier_magic_dragon_blue_dragon_hide_speed_slow:DeclareFunctions() re
 function modifier_magic_dragon_blue_dragon_hide_speed_slow:GetStatusEffectName() return "particles/status_fx/status_effect_frost.vpcf"  end
 function modifier_magic_dragon_blue_dragon_hide_speed_slow:GetModifierMoveSpeedBonus_Percentage()
 	if self:GetCaster():PassivesDisabled() then return 0 end
-	local fResist
-	self.fSlow = self.fSlow or self:GetAbility():GetSpecialValueFor("speed_reduction")
-	if IsClient() then
-		fResist = -self:GetStackCount()/1000
-	else
-		fResist = CalculateStatusResist(self:GetParent())
-		self:SetStackCount(-fResist*1000)
-	end
-	return fResist*self.fSlow
+	return self:GetAbility():GetSpecialValueFor("speed_reduction")
 end
 modifier_magic_dragon_blue_dragon_breath_slow = class({})
 function modifier_magic_dragon_blue_dragon_breath_slow:DeclareFunctions() return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE} end
@@ -214,15 +202,11 @@ function modifier_magic_dragon_blue_dragon_breath_slow:DeclareFunctions() return
 function modifier_magic_dragon_blue_dragon_breath_slow:IsPurgable() return true end
 function modifier_magic_dragon_blue_dragon_breath_slow:GetStatusEffectName() return "particles/status_fx/status_effect_frost.vpcf" end
 function modifier_magic_dragon_blue_dragon_breath_slow:GetModifierMoveSpeedBonus_Percentage()
-	local fResist
-	if IsClient() then 
-		fResist = -self:GetStackCount()/1000
-	else
-		fResist = CalculateStatusResist(self:GetParent())
-		self:SetStackCount(-fResist*1000)
-	end
 	self.fSlow = self.fSlow or self:GetAbility():GetSpecialValueFor("nova_speed_slow")
-	return fResist*self.fSlow
+	return self.fSlow
+end
+function modifier_magic_dragon_blue_dragon_breath_slow:OnRefresh()
+	self.fSlow = self:GetAbility():GetSpecialValueFor("nova_speed_slow")
 end
 function modifier_magic_dragon_blue_dragon_breath_slow:GetModifierAttackSpeedBonus_Constant()
 	self.fAttack = self.fAttack or self:GetAbility():GetSpecialValueFor("attack_slow")

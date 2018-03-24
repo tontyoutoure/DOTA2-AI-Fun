@@ -50,5 +50,10 @@ function telekenetic_blob_throw:OnSpellStart()
 
 	self.throw_target = target	
 
-	markedTarget:AddNewModifier(caster, self, "telekenetic_blob_throw_modifier", {})
+	markedTarget:AddNewModifier(caster, self, "telekenetic_blob_throw_modifier", {Duration = self:GetSpecialValueFor("fly_duration")})
+end
+
+
+function telekenetic_blob_throw:OnHorizontalMotionInterrupted()
+	self:Destroy()
 end

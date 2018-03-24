@@ -5,15 +5,7 @@ function modifier_void_demon_quake_slow_lua:DeclareFunctions()
 end 
 
 function modifier_void_demon_quake_slow_lua:GetModifierMoveSpeedBonus_Percentage()
-	local fResist
-	if IsClient() then 
-		fResist = -self:GetStackCount()/1000
-	else
-		fResist = CalculateStatusResist(self:GetParent())
-		self:SetStackCount(-fResist*1000)
-	end
-	self.fSlow = self.fSlow or self:GetAbility():GetSpecialValueFor("quake_slow_percentage")
-	return fResist*self.fSlow
+	return self:GetAbility():GetSpecialValueFor("quake_slow_percentage")
 end
 
 modifier_void_demon_quake_aura_lua = class({})

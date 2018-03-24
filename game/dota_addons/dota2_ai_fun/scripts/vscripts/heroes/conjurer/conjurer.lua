@@ -186,7 +186,6 @@ function conjurer_summon_golem:OnSpellStart()
 		hUnit:SetForwardVector(vForward)
 		hUnit.iDuration = self:GetSpecialValueFor("duration")
 		hUnit:AddNewModifier(hCaster, self, "modifier_kill", {Duration = hUnit.iDuration}) 
-		print(hCaster:FindAbilityByName("special_bonus_unique_conjurer_3"):GetLevel())
 		if hCaster:HasAbility("special_bonus_unique_conjurer_3") and hCaster:FindAbilityByName("special_bonus_unique_conjurer_3"):GetLevel() > 0 and self:GetLevel() > 1 then
 			hUnit:AddAbility("conjurer_golem_split"):SetLevel(1)
 		end 
@@ -194,7 +193,7 @@ function conjurer_summon_golem:OnSpellStart()
 end
 
 conjurer_conjure_image = class({})
-local tAddModifierList = {"modifier_dragon_knight_dragon_form", "modifier_lone_druid_true_form", "modifier_terrorblade_metamorphosis", "modifier_legion_commander_duel_damage_boost", "modifier_silencer_int_steal", "modifier_pudge_flesh_heap"}
+local tAddModifierList = {"modifier_dragon_knight_dragon_form", "modifier_lone_druid_true_form", "modifier_terrorblade_metamorphosis", "modifier_legion_commander_duel_damage_boost", "modifier_silencer_int_steal", "modifier_pudge_flesh_heap", "modifier_item_armlet_unholy_strength"}
 function conjurer_conjure_image:OnSpellStart()
 	local iCount = self:GetSpecialValueFor("illusion_count")
 	local hCaster = self:GetCaster()
@@ -240,7 +239,7 @@ function conjurer_conjure_image:OnSpellStart()
 			if hTarget:HasModifier(v) then
 				local hModifier = hTarget:FindModifierByName(v) 
 				if hModifier:GetRemainingTime() > 0 then
-					hIllusion:AddNewModifier(hIllusion, hModifier:GetAbility(), v, {Duration=hModifier:GetRemainingTime()})
+					hIllusion:AddNewModifier(hIllusion, hModifier:GetAbility(), v, {Duration=hModifier:GetRemainingTime()}):SetStackCount(hModifier:GetStackCount())
 				else
 					hIllusion:AddNewModifier(hIllusion, hModifier:GetAbility(), v, {}):SetStackCount(hModifier:GetStackCount())
 				end

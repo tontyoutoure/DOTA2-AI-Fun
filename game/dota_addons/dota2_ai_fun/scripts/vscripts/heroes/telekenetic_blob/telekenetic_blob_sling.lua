@@ -29,5 +29,7 @@ end
 function telekenetic_blob_sling:OnSpellStart()
 	local caster = self:GetCaster()
 	local markedTarget = TelekeneticBlobGetMarkedTarget(caster)
-	markedTarget:AddNewModifier(caster, self, "telekenetic_blob_sling_modifier", {})
+	local fDistance = (markedTarget:GetOrigin()-self:GetCursorPosition()):Length2D()
+	if fDistance > self:GetSpecialValueFor("sling_distance") then fDistance = self:GetSpecialValueFor("sling_distance") end
+	markedTarget:AddNewModifier(caster, self, "telekenetic_blob_sling_modifier", {Duration = fDistance/self:GetSpecialValueFor("sling_speed")})
 end

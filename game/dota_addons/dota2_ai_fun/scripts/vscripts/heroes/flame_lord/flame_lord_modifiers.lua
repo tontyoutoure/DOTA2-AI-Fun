@@ -55,17 +55,11 @@ function modifier_flame_lord_liquid_fire_debuff:GetEffectAttachType() return PAT
 function modifier_flame_lord_liquid_fire_debuff:DeclareFunctions() return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_TOOLTIP} end
 function modifier_flame_lord_liquid_fire_debuff:OnTooltip() return self.fDamage end
 function modifier_flame_lord_liquid_fire_debuff:GetModifierMoveSpeedBonus_Percentage()	
-	local fResist
-	if IsClient() then 
-		fResist = -self:GetStackCount()/1000
-	else
-		fResist = CalculateStatusResist(self:GetParent())
-		self:SetStackCount(-fResist*1000)
-	end
-	return fResist*self.fSlow
+	return self.fSlow
 end
-
 function modifier_flame_lord_liquid_fire_debuff:OnRefresh()
+	self.fDamage = self:GetAbility():GetSpecialValueFor("damage")
+	self.fSlow = self:GetAbility():GetSpecialValueFor("move_slow")
 	if IsClient() then return end
 	local hParent = self:GetParent()
 	hParent:EmitSound("Hero_Jakiro.LiquidFire")

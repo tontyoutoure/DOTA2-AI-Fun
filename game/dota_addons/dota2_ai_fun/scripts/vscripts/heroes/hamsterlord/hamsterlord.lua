@@ -124,7 +124,6 @@ function HamsterlordUpgradePassive(keys)
 end
 
 function HamsterlordHamsterFlamingHamsterGrenade(keys)
-	PrintTable(keys)
 	local fDuration = 0.5
 	local fHeight = 300
 	local hModifier = keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_hamsterlord_hamster_flaming_hamster_grenade", {Duration = fDuration})

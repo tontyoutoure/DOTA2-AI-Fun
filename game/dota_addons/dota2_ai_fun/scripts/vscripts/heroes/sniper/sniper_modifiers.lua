@@ -11,6 +11,7 @@ end
 function modifier_sniper_assassinate_thinker:OnIntervalThink()
 	if IsClient() then return end
 	local hParent = self:GetParent()
+	
 	if hParent:HasScepter() and hParent:HasAbility("sniper_assassinate") then
 		local iLevel = hParent:FindAbilityByName("sniper_assassinate"):GetLevel()
 		hParent:RemoveAbility("sniper_assassinate")

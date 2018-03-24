@@ -22,10 +22,7 @@ require('libraries/animations')
 require('modifier_attribute_indicators')
 require('donation')
 
-
--- Heroes need to be stripped
-GameMode.tStripperList = {"npc_dota_hero_shadow_demon"}
-
+ 
 function GameMode:InitGameMode()
 	
 	GameMode:InitGameOptions()
@@ -139,13 +136,14 @@ function GameMode:InitEvents()
 	ListenToGameEvent('npc_spawned', Dynamic_Wrap(GameMode, '_OnNPCSpawned'), self)
 	
 --	ListenToGameEvent('dota_player_pick_hero', Dynamic_Wrap(GameMode, 'OnPlayerPickHero'), self)
-	ListenToGameEvent('entity_killed', Dynamic_Wrap(GameMode, 'OnEntityKilled'), self)
+--	ListenToGameEvent('entity_killed', Dynamic_Wrap(GameMode, 'OnEntityKilled'), self)
 	ListenToGameEvent('dota_player_update_hero_selection',  Dynamic_Wrap(GameMode, 'OnPlayerUpdateSelectUnit1'), self)
 	ListenToGameEvent('dota_player_update_selected_unit',  Dynamic_Wrap(GameMode, 'OnPlayerUpdateSelectUnit2'), self)
 	--JS events
 	CustomGameEventManager:RegisterListener("loading_set_options", function (eventSourceIndex, args) return GameMode:OnGetLoadingSetOptions(eventSourceIndex, args) end)
 	CustomGameEventManager:RegisterListener("fun_hero_selection", function (eventSourceIndex, args) return GameMode:OnFunHeroSelected(eventSourceIndex, args) end)
 	CustomGameEventManager:RegisterListener("fun_hero_unselection", function (eventSourceIndex, args) return GameMode:OnFunHeroUnselected(eventSourceIndex, args) end)
+	CustomGameEventManager:RegisterListener("net_table_change_value", function (eventSourceIndex, args) return GameMode:OnNetTableValueChanged(eventSourceIndex, args) end)
 end
 
 --[==[

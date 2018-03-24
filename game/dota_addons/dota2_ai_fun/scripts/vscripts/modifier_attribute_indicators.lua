@@ -215,3 +215,11 @@ function modifier_attribute_indicator_conjurer:IsPurgable() return false end
 function modifier_attribute_indicator_conjurer:IsHidden() return false end
 function modifier_attribute_indicator_conjurer:IsDebuff() return false end
 function modifier_attribute_indicator_conjurer:GetTexture() return "attribute_indicator" end
+
+LinkLuaModifier("modifier_attribute_indicator_avatar_of_vengeance", "modifier_attribute_indicators.lua", LUA_MODIFIER_MOTION_NONE)
+modifier_attribute_indicator_avatar_of_vengeance = class({})
+function modifier_attribute_indicator_avatar_of_vengeance:RemoveOnDeath() return false end
+function modifier_attribute_indicator_avatar_of_vengeance:IsPurgable() return false end
+function modifier_attribute_indicator_avatar_of_vengeance:IsHidden() return false end
+function modifier_attribute_indicator_avatar_of_vengeance:IsDebuff() return false end
+function modifier_attribute_indicator_avatar_of_vengeance:GetTexture() return "attribute_indicator" end

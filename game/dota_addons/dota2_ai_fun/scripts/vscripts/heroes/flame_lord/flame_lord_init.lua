@@ -36,8 +36,8 @@ CustomNetTables:SetTableValue("fun_hero_stats", "flame_lord", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("flame_lord", tNewAbilities)
 
 function FlameLordTalentManager(keys)
-	if PlayerResource:GetPlayer(keys.player-1):GetAssignedHero():GetName() ~= "npc_dota_hero_warlock" then return end
-	local hHero = PlayerResource:GetPlayer(keys.player-1):GetAssignedHero()
+	if PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero():GetName() ~= "npc_dota_hero_warlock" then return end
+	local hHero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
 	if keys.abilityname == "special_bonus_unique_flame_lord_4" then
 		local iLevel = hHero:FindAbilityByName("flame_lord_enflame"):GetLevel()
 		local fCD = hHero:FindAbilityByName("flame_lord_enflame"):GetCooldownTimeRemaining()

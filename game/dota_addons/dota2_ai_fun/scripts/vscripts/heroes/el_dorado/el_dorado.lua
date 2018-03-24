@@ -263,7 +263,6 @@ ElDoradoArtificialFrogBlink = function (keys)
 		ParticleManager:CreateParticle("particles/units/heroes/hero_lone_druid/lone_druid_bear_blink_start.vpcf", PATTACH_ABSORIGIN, keys.caster)
 		keys.caster:EmitSound("LoneDruid_SpiritBear.Return") 
 	end)
-	keys.caster:SetOrigin(vDestnation)
 	FindClearSpaceForUnit(keys.caster, vDestnation, true)
 end
 el_dorado_refine_weapons = class({})
@@ -300,7 +299,6 @@ function el_dorado_piracy_method:CastFilterResultTarget(hTarget)
 			break
 		end
 	end
-	print(bHasEmptySlot)
 	if bHasEmptySlot then return UF_SUCCESS
 	else return UF_FAIL_CUSTOM
 	end

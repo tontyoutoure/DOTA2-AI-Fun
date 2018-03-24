@@ -4,9 +4,6 @@ intimidator_glare_lua = class({})
 
 function intimidator_glare_lua:OnSpellStart()
 	if self:GetCursorTarget():TriggerSpellAbsorb( self ) then return end
-	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-	local hModifier = target:AddNewModifier(caster, self, "modifier_intimidator_glare_lua", {Duration = self:GetSpecialValueFor("duration")*CalculateStatusResist(target)})
-
-	
+	target:AddNewModifier(self:GetCaster(), self, "modifier_intimidator_glare_lua", {Duration = self:GetSpecialValueFor("duration")*CalculateStatusResist(target)})	
 end

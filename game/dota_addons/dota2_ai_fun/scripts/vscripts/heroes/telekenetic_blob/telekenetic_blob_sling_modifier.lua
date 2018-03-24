@@ -1,5 +1,9 @@
 ﻿telekenetic_blob_sling_modifier = class({})
 
+function telekenetic_blob_sling_modifier:OnHorizontalMotionInterrupted()
+	self:Destroy()
+end
+
 function telekenetic_blob_sling_modifier:IsStunDebuff()
     return true
 end
@@ -94,7 +98,7 @@ function KnockbackCollisionUnits(target, modifier)
 			damageTable.victim = v
 			ApplyDamage(damageTable)
 			local direction = (v:GetOrigin() - target:GetOrigin()):Normalized()
-			v:AddNewModifier(modifier:GetCaster(), modifier:GetAbility(), "telekenetic_blob_sling_knockback_modifier", {directionX = direction.x, directionY = direction.y, directionZ = 0})
+			v:AddNewModifier(modifier:GetCaster(), modifier:GetAbility(), "telekenetic_blob_sling_knockback_modifier", {Duration = modifier:GetAbility():GetSpecialValueFor("sling_knockback_distance")/modifier:GetAbility():GetSpecialValueFor("sling_knockback_speed"), directionX = direction.x, directionY = direction.y, directionZ = 0})
 			damageTable.victim = target
 			ApplyDamage(damageTable)
 		end

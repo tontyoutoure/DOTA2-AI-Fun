@@ -1,5 +1,6 @@
 DOTA2_AI_FUN_SPEW = false
 LinkLuaModifier("modifier_heros_bow_always_allow_attack", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_item_fun_heros_bow_debuff", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_angelic_alliance_spell_lifesteal", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_economizer_spell_lifesteal", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_heros_bow_minus_armor", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
@@ -8,7 +9,8 @@ LinkLuaModifier("modifier_ragnarok_cleave", "fun_item_modifiers_lua.lua", LUA_MO
 LinkLuaModifier("modifier_angelic_alliance_maximum_speed", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_angelic_alliance_death_drop", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_item_fun_magic_hammer_root", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_item_fun_terra_blade_clean", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_heros_bow_active", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_HORIZONTAL)
+
 local function CheckStringInTable(s, t)
 	for i = 1, #t do
 		if s == t[i] then return true end
@@ -78,9 +80,9 @@ local bannedItems = {
 	"item_necronomicon_3", 
 	"item_pipe", 
 	"item_refresher",
-	"item_refresher_shard"
-	"item_meteor_hammer"
-	"item_aeon_disk"
+	"item_refresher_shard",
+	"item_meteor_hammer",
+	"item_aeon_disk",
 	"chen_hand_of_god",
 	"invoker_sun_strike",
 	"spectre_haunt",
@@ -280,7 +282,9 @@ end
 
 function HerosBowOnHit(keys)	
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
-	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_item_fun_heros_bow_debuff", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(keys.target)})
+	keys.target:Purge(true, false, false, false, false)
+	if keys.target:IsInvulnerable() then return end
+	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_item_fun_heros_bow_debuff", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(keys.target)})
 	keys.target:EmitSound("Hero_FacelessVoid.TimeLockImpact")
 	damageTable = {
 		victim = keys.target,
@@ -290,7 +294,39 @@ function HerosBowOnHit(keys)
 		ability = keys.ability
 	}
 	ApplyDamage(damageTable)
-	if keys.caster:IsRangedAttacker() then keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_heros_bow_always_allow_attack", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(keys.target)}) end
+	if keys.caster:IsRangedAttacker() then 
+		keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_heros_bow_always_allow_attack", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(keys.target)}) 
+		ExecuteOrderFromTable({
+			UnitIndex = keys.caster:entindex(),
+			OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+			TargetIndex = keys.target:entindex()})
+	end
+end
+
+function HerosBowOnSpellStart(keys)
+	if keys.caster:GetTeam() == keys.target:GetTeam() then
+		local fSpeed = keys.ability:GetSpecialValueFor("push_speed")
+		keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_heros_bow_active", {Duration = keys.ability:GetSpecialValueFor("push_distance")/fSpeed, fSpeedHorizontal = fSpeed})
+		return 
+	end
+	ProjectileManager:CreateTrackingProjectile({
+		Target = keys.target,
+		Source = keys.caster,
+		Ability = keys.ability,	
+		EffectName = "particles/econ/items/enchantress/enchantress_virgas/ench_impetus_virgas.vpcf",
+		iMoveSpeed = keys.ability:GetSpecialValueFor("projectile_speed"),
+		vSourceLoc= keys.caster:GetAbsOrigin(),                -- Optional (HOW)
+		bDrawsOnMinimap = false,                          -- Optional
+		bDodgeable = false,                                -- Optional
+		bIsAttack = false,                                -- Optional
+		bVisibleToEnemies = true,                         -- Optional
+		bReplaceExisting = false,                         -- Optional
+		flExpireTime = GameRules:GetGameTime() + 20,      -- Optional but recommended
+		bProvidesVision = true,                           -- Optional
+		iVisionRadius = 400,                              -- Optional
+		iVisionTeamNumber = keys.caster:GetTeamNumber()        -- Optional
+	})
+	keys.caster:EmitSound("Hero_Enchantress.Impetus")
 end
 
 function DarksideDamage(keys)
@@ -405,7 +441,7 @@ function BloodSwordExtraCritParticle(keys)
 end
 
 function BloodSwordExtraAttack(keys)
-	if not keys.attacker.IsExtraAttacking and not keys.attacker:IsRangedAttacker() then 		
+	if not keys.attacker.IsExtraAttacking and not keys.attacker:IsRangedAttacker() and not keys.attacker:HasModifier("modifier_phantom_assassin_stiflingdagger_caster") then 		
 		StartAnimation(keys.attacker, {duration = 0.2, activity=ACT_DOTA_ATTACK, rate=7})
 		Timers:CreateTimer(0.04, function () 
 			keys.attacker.IsExtraAttacking = true
@@ -433,7 +469,7 @@ end
 
 function HerosBowReduceArmor(keys)
 	if keys.caster:IsIllusion() then return end
-	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_heros_bow_minus_armor", {Duration = keys.ability:GetSpecialValueFor("armor_reduction_duration")*CalculateStatusResist(keys.target)})
+	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_item_fun_heros_bow_armor_reduction", {Duration = keys.ability:GetSpecialValueFor("armor_reduction_duration")*CalculateStatusResist(keys.target)})
 end
 
 function Economizer2UltimateSpellLifestealApply(keys)
@@ -456,12 +492,6 @@ function RagnarokMaimApply(keys)
 	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_item_fun_ragnarok_2_ultra_maim", {Duration = keys.ability:GetSpecialValueFor("maim_duration")*CalculateStatusResist(keys.target)})
 end
 
-function TerraBladeMaimApply(keys)
-	if keys.target:IsBuilding() or keys.caster:IsIllusion() then return end
-	keys.target:EmitSound("DOTA_Item.Maim")
-	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_item_fun_terra_blade_ultra_maim", {Duration = keys.ability:GetSpecialValueFor("maim_duration")*CalculateStatusResist(keys.target)})
-end
-
 function AAChangePurchaser(keys)
 	if keys.itemname == "item_fun_angelic_alliance" then
 		local hPicker = EntIndexToHScript(keys.HeroEntityIndex)
@@ -477,41 +507,6 @@ end
 
 ListenToGameEvent("dota_item_picked_up", AAChangePurchaser, nil)
 
-function TerraBladeReleaseProjectile(keys)
-	
-	keys.ability.iCounter = keys.ability.iCounter or 0
-	keys.ability.iCounter = keys.ability.iCounter+1
-	if (keys.ability.iCounter == keys.ability:GetSpecialValueFor("projectile_interval")) then
-		keys.ability.iCounter = 0
-		return
-	end
-	local tInfo = 
-	{
-		Ability = keys.ability,
-		EffectName = "particles/windrunner_spell_powershot_rainmaker.vpcf",
-		vSpawnOrigin = keys.caster:GetAbsOrigin(),
-		fDistance = keys.ability:GetSpecialValueFor("projectile_distance"),
-		fStartRadius = keys.ability:GetSpecialValueFor("projectile_start_radius"),
-		fEndRadius = keys.ability:GetSpecialValueFor("projectile_end_radius"),
-		Source = keys.caster,
-		bHasFrontalCone = false,
-		bReplaceExisting = false,
-		iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
-		iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
-		iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		fExpireTime = GameRules:GetGameTime() + 10.0,
-		bDeleteOnHit = false,
-		vVelocity = keys.caster:GetForwardVector() * keys.ability:GetSpecialValueFor("projectile_speed"),
-		bProvidesVision = true,
-		iVisionRadius = 800,
-		iVisionTeamNumber = keys.caster:GetTeamNumber()
-	}
-	projectile = ProjectileManager:CreateLinearProjectile(tInfo)
-
-end
-function TerraBladeCleanerApply(keys)
-	keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_item_fun_terra_blade_clean", {Duration = 1})
-end
 function TerraBladeProjectileHit(keys)
 	if keys.caster:IsIllusion() then return end
 	ApplyDamage({
@@ -522,12 +517,4 @@ function TerraBladeProjectileHit(keys)
 		ability = keys.ability,
 		damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
 	})
-end
-
-function TerraBladeMinibash(keys)
-	if not keys.target:IsBuilding() and not keys.caster:IsIllusion() then
-		keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_bashed", {Duration = keys.ability:GetSpecialValueFor("bash_stun")*CalculateStatusResist(keys.target)})
-		keys.target:EmitSound("DOTA_Item.MKB.Minibash")
-		ParticleManager:CreateParticle("particles/generic_gameplay/generic_minibash.vpcf", PATTACH_OVERHEAD_FOLLOW, keys.target)
-	end
 end

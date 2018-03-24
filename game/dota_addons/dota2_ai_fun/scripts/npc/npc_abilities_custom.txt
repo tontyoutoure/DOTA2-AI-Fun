@@ -28,3 +28,5 @@
 #base "abilities\siglos.txt"
 #base "abilities\flame_lord.txt"
 #base "abilities\conjurer.txt"
+#base "abilities\avatar_of_vengeance.txt"
+#base "abilities\invoker_retro\invoker_retro.txt"

@@ -38,7 +38,7 @@ CustomNetTables:SetTableValue("fun_hero_stats", "hamsterlord", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("hamsterlord", tNewAbilities)
 local function HamsterlordTalentManager(keys)
 	if keys.abilityname == "special_bonus_hamsterlord_2" then	
-		local hPlayer = PlayerResource:GetPlayer(keys.player-1)
+		local hPlayer = PlayerResource:GetPlayer(keys.PlayerID)
 		local hBoy = Entities:First()	
 		while hBoy do
 			if hBoy.GetUnitName and hBoy:GetUnitName() == "hamsterlord_pizza_house_deliver_boy" and keys.player-1 == hBoy:GetOwner():GetPlayerID() then	

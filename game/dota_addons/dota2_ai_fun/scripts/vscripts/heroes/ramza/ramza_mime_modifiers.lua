@@ -65,7 +65,7 @@ RamzaMimicOnAbilityExecuted = function(self, keys)
 	if hParent:IsChanneling() then hParent:GetAbilityByIndex(2):EndChannel(true) end
 	hParent:RemoveAbility(hParent:GetAbilityByIndex(2):GetName())
 	hParent:AddAbility(keys.ability:GetName()):SetLevel(keys.ability:GetLevel())
-	print("Mimic added", keys.ability:GetName())	
+--	print("Mimic added", keys.ability:GetName())	
 end
 
 RamzaMimicIsHidden = function (self) return true end

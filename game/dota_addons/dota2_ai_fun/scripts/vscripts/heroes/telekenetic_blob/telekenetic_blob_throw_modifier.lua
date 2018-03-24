@@ -70,3 +70,8 @@ function telekenetic_blob_throw_modifier:UpdateVerticalMotion(me, dt)
 	end
 	TelekeneticBlobFlyUpdateVertical(me, dt, self, dealDamageOnLanding)
 end
+
+
+function telekenetic_blob_throw_modifier:OnHorizontalMotionInterrupted()
+	self:Destroy()
+end

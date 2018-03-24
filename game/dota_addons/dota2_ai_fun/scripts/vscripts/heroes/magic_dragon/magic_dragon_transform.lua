@@ -277,6 +277,3 @@ MagicDragonTransform[MAGIC_DRAGON_BLACK_DRAGON_FORM] = function(hCaster)
 	hRoarNew:SetLevel(iRoarLevel)
 	hCaster.iDragonForm = MAGIC_DRAGON_BLACK_DRAGON_FORM
 end
-
-
-print("Magic Dragon initialized")

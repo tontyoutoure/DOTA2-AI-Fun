@@ -95,16 +95,12 @@ modifier_capslockftw_flamer_debuff = class({})
 function modifier_capslockftw_flamer_debuff:IsPurgable() return true end
 function modifier_capslockftw_flamer_debuff:IsBuff() return false end
 function modifier_capslockftw_flamer_debuff:DeclareFunctions() return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE} end
+function modifier_capslockftw_flamer_debuff:OnRefresh()
+	self.fSlow = self:GetAbility():GetSpecialValueFor("movement_slow")
+end
 function modifier_capslockftw_flamer_debuff:GetModifierMoveSpeedBonus_Percentage() 
-	local fResist
-	if IsClient() then 
-		fResist = -self:GetStackCount()/1000
-	else
-		fResist = CalculateStatusResist(self:GetParent())
-		self:SetStackCount(-fResist*1000)
-	end
 	self.fSlow = self.fSlow or self:GetAbility():GetSpecialValueFor("movement_slow")
-	return fResist*self.fSlow
+	return self.fSlow
 end
 function modifier_capslockftw_flamer_debuff:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
 function modifier_capslockftw_flamer_debuff:GetEffectName() return "particles/units/heroes/hero_ogre_magi/ogre_magi_ignite_debuff.vpcf" end

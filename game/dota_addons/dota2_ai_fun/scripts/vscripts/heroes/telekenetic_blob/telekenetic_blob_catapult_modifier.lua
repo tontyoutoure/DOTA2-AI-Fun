@@ -66,3 +66,7 @@ end
 function telekenetic_blob_catapult_modifier:UpdateVerticalMotion(me, dt)
 	TelekeneticBlobFlyUpdateVertical(me, dt, self, nil)
 end
+
+function telekenetic_blob_catapult_modifier:OnHorizontalMotionInterrupted()
+	self:Destroy()
+end

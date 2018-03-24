@@ -1,2 +1,2 @@
 hHero = PlayerResource:GetPlayer(0):GetAssignedHero() 
-for k, v in ipairs(hHero:FindAllModifiers()) do print(v:GetName()) end
+FindClearSpaceForUnit(hHero, hHero:GetOrigin()+Vector(1200,0,0),true)

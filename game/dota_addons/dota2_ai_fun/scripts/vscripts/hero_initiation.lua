@@ -1,3 +1,12 @@
+hero_attribute_gain_manager = class({})
+
+function hero_attribute_gain_manager:OnHeroLevelUp()
+	local hCaster = self:GetCaster()
+	hCaster:SetBaseStrength(hCaster:GetBaseStrength()+self.AttributeStrenthGain-hCaster:GetStrengthGain())
+	hCaster:SetBaseAgility(hCaster:GetBaseAgility()+self.AttributeAgilityGain-hCaster:GetAgilityGain())
+	hCaster:SetBaseIntellect(hCaster:GetBaseIntellect()+self.AttributeIntelligenceGain-hCaster:GetIntellectGain())	
+end
+
 if not IsClient() then 
 
 	tAbilityKeyValues = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
@@ -58,6 +67,8 @@ if not IsClient() then
 	require('heroes/siglos/siglos_init')
 	require('heroes/flame_lord/flame_lord_init')
 	require('heroes/conjurer/conjurer_init')
+	require('heroes/avatar_of_vengeance/avatar_of_vengeance_init')
+	require('heroes/hero_invoker/invoker_retro_init')
 			
 	function GameMode:InitializeFunHero(hHero)
 		if hHero:GetName() == "npc_dota_hero_spirit_breaker" then
@@ -171,94 +182,99 @@ if not IsClient() then
 		if hHero:GetName() == "npc_dota_hero_keeper_of_the_light" then
 			ConjurerInit(hHero, self)
 		end
+		
+		if hHero:GetName() == "npc_dota_hero_spectre" then
+			AvatarOfVengeanceInit(hHero, self)
+		end
+		
+		if hHero:GetName() == "npc_dota_hero_invoker" then
+			InvokerRetroInit(hHero, self)
+		end
 	end
 
-	hero_attribute_gain_manager = class({})
-
-	function hero_attribute_gain_manager:OnHeroLevelUp()
-		local hCaster = self:GetCaster()
-		hCaster:SetBaseStrength(hCaster:GetBaseStrength()+self.AttributeStrenthGain-hCaster:GetStrengthGain())
-		hCaster:SetBaseAgility(hCaster:GetBaseAgility()+self.AttributeAgilityGain-hCaster:GetAgilityGain())
-		hCaster:SetBaseIntellect(hCaster:GetBaseIntellect()+self.AttributeIntelligenceGain-hCaster:GetIntellectGain())	
-	end
 
 	function GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)
-			
-			local sName = hHero:GetName()	
-			for i = 0, 23 do
-				if hHero:GetAbilityByIndex(i) then
-					hHero:RemoveAbility(hHero:GetAbilityByIndex(i):GetName())
-				end
-			end 
-			for i, v in ipairs(tNewAbilities) do 
-				hHero:AddAbility(v) 
+		
+		local sName = hHero:GetName()	
+		for i = 0, 23 do
+			if hHero:GetAbilityByIndex(i) then
+				hHero:RemoveAbility(hHero:GetAbilityByIndex(i):GetName())
 			end
-			
-			local tModifiers = hHero:FindAllModifiers()
-			for i, v in ipairs(tModifiers) do
-				if string.find(v:GetName(), "special_bonus") then
-					v:Destroy()
-				end
+		end 
+		for i, v in ipairs(tNewAbilities) do 
+			hHero:AddAbility(v) 
+		end
+		for i = 0, 23 do
+			if hHero:GetAbilityByIndex(i) then
+--				CustomGameEventManager:Send_ServerToPlayer(hHero:GetPlayerOwner(), "panorama_print", {ability_index = i, ability_name=hHero:GetAbilityByIndex(i):GetAbilityName()})
 			end
-			
-			if not tHeroBaseStats.bNoAttributeManager then
-			
-				local hAttributeManager = hHero:AddAbility("hero_attribute_gain_manager")
-				hAttributeManager:SetLevel(1)
-				hAttributeManager.AttributeStrenthGain = tHeroBaseStats.AttributeStrenthGain
-				hAttributeManager.AttributeAgilityGain = tHeroBaseStats.AttributeAgilityGain
-				hAttributeManager.AttributeIntelligenceGain = tHeroBaseStats.AttributeIntelligenceGain
-			
+		end
+		
+		local tModifiers = hHero:FindAllModifiers()
+		for i, v in ipairs(tModifiers) do
+			if string.find(v:GetName(), "special_bonus") then
+				v:Destroy()
 			end
-			
-			
+		end
+		
+		if not tHeroBaseStats.bNoAttributeManager then
+		
+			local hAttributeManager = hHero:AddAbility("hero_attribute_gain_manager")
+			hAttributeManager:SetLevel(1)
+			hAttributeManager.AttributeStrenthGain = tHeroBaseStats.AttributeStrenthGain
+			hAttributeManager.AttributeAgilityGain = tHeroBaseStats.AttributeAgilityGain
+			hAttributeManager.AttributeIntelligenceGain = tHeroBaseStats.AttributeIntelligenceGain
+		
+		end
+		
+		
+		Timers:CreateTimer(0.5, function() 
+			hHero:SetBaseMoveSpeed(tHeroBaseStats.MovementSpeed)
+		end)
+		if tHeroBaseStats.PrimaryAttribute then
 			Timers:CreateTimer(0.5, function() 
-				hHero:SetBaseMoveSpeed(tHeroBaseStats.MovementSpeed)
+				hHero:SetPrimaryAttribute(tHeroBaseStats.PrimaryAttribute)
 			end)
-			if tHeroBaseStats.PrimaryAttribute then
-				Timers:CreateTimer(0.5, function() 
-					hHero:SetPrimaryAttribute(tHeroBaseStats.PrimaryAttribute)
-				end)
-			end
-			
-			Timers:CreateTimer(0.04, function() 
-				if hHero ~= hHero:GetPlayerOwner():GetAssignedHero() then 
-					for i = 0, 23 do
-						if hHero:GetAbilityByIndex(i) and not hHero:GetName() == "npc_dota_hero_dragon_knight" then
-							hHero:GetAbilityByIndex(i):SetLevel(hHero:GetPlayerOwner():GetAssignedHero():GetAbilityByIndex(i):GetLevel())
-						end
+		end
+		
+		Timers:CreateTimer(0.04, function() 
+			if hHero ~= hHero:GetPlayerOwner():GetAssignedHero() then 
+				for i = 0, 23 do
+					if hHero:GetAbilityByIndex(i) and not hHero:GetName() == "npc_dota_hero_dragon_knight" then
+						hHero:GetAbilityByIndex(i):SetLevel(hHero:GetPlayerOwner():GetAssignedHero():GetAbilityByIndex(i):GetLevel())
 					end
-					hHero:SetAbilityPoints(0)
-					hHero:SetHealth(hHero:GetPlayerOwner():GetAssignedHero():GetHealth())
-					hHero:SetMana(hHero:GetPlayerOwner():GetAssignedHero():GetMana())
 				end
-			end)
-			
-			if hHero:IsIllusion() then
-				local iLevel = hHero:GetPlayerOwner():GetAssignedHero():GetLevel()
-				hHero:SetBaseStrength(tHeroBaseStats.AttributeBaseStrength+(iLevel-1)*(tHeroBaseStats.AttributeStrenthGain-hHero:GetPlayerOwner():GetAssignedHero():GetStrengthGain()))
-				hHero:SetBaseAgility(tHeroBaseStats.AttributeBaseAgility+(iLevel-1)*(tHeroBaseStats.AttributeAgilityGain-hHero:GetPlayerOwner():GetAssignedHero():GetAgilityGain()))
-				hHero:SetBaseIntellect(tHeroBaseStats.AttributeBaseIntelligence+(iLevel-1)*(tHeroBaseStats.AttributeIntelligenceGain-hHero:GetPlayerOwner():GetAssignedHero():GetIntellectGain()))
-			else
-				hHero:SetBaseAgility(tHeroBaseStats.AttributeBaseAgility)
-				hHero:SetBaseStrength(tHeroBaseStats.AttributeBaseStrength)
-				hHero:SetBaseIntellect(tHeroBaseStats.AttributeBaseIntelligence)
+				hHero:SetAbilityPoints(0)
+				hHero:SetHealth(hHero:GetPlayerOwner():GetAssignedHero():GetHealth())
+				hHero:SetMana(hHero:GetPlayerOwner():GetAssignedHero():GetMana())
 			end
-			hHero:SetPhysicalArmorBaseValue(tHeroBaseStats.ArmorPhysical)
-			hHero:SetBaseDamageMin(tHeroBaseStats.AttackDamageMin)
-			hHero:SetBaseDamageMax(tHeroBaseStats.AttackDamageMax)
-			hHero:SetBaseAttackTime(tHeroBaseStats.AttackRate)
-			
-			if tHeroBaseStats.AttackCapabilities then hHero:SetAttackCapability(tHeroBaseStats.AttackCapabilities) end
-			if tHeroBaseStats.VisionDaytimeRange then hHero:SetDayTimeVisionRange(tHeroBaseStats.VisionDaytimeRange) end
-			if tHeroBaseStats.VisionNighttimeRange then hHero:SetNightTimeVisionRange(tHeroBaseStats.VisionNighttimeRange) end
-			if tHeroBaseStats.AttackAnimationPoint then hHero:AddNewModifier(hHero, nil, "modifier_attack_point_change", {}):SetStackCount(tHeroBaseStats.AttackAnimationPoint*100)	end
-			if tHeroBaseStats.ProjectileModel then hHero:SetRangedProjectileName(tHeroBaseStats.ProjectileModel) end
-			local iAttackRange = hHero:GetAttackRange()
-			if tHeroBaseStats.AttackRange then	hHero:AddNewModifier(hHero, nil, "modifier_attack_range_change", {}):SetStackCount(tHeroBaseStats.AttackRange - iAttackRange)	end
-			if tHeroBaseStats.ModelScale then hHero:SetModelScale(tHeroBaseStats.ModelScale) end
-			if tHeroBaseStats.DisableWearables then WearableManager:RemoveOriginalWearables(hHero) end
-			if tHeroBaseStats.Model then hHero:SetModel(tHeroBaseStats.Model) hHero:SetOriginalModel(tHeroBaseStats.Model) end
+		end)
+		
+		if hHero:IsIllusion() then
+			local iLevel = hHero:GetPlayerOwner():GetAssignedHero():GetLevel()
+			hHero:SetBaseStrength(tHeroBaseStats.AttributeBaseStrength+(iLevel-1)*(tHeroBaseStats.AttributeStrenthGain-hHero:GetPlayerOwner():GetAssignedHero():GetStrengthGain()))
+			hHero:SetBaseAgility(tHeroBaseStats.AttributeBaseAgility+(iLevel-1)*(tHeroBaseStats.AttributeAgilityGain-hHero:GetPlayerOwner():GetAssignedHero():GetAgilityGain()))
+			hHero:SetBaseIntellect(tHeroBaseStats.AttributeBaseIntelligence+(iLevel-1)*(tHeroBaseStats.AttributeIntelligenceGain-hHero:GetPlayerOwner():GetAssignedHero():GetIntellectGain()))
+		else
+			hHero:SetBaseAgility(tHeroBaseStats.AttributeBaseAgility)
+			hHero:SetBaseStrength(tHeroBaseStats.AttributeBaseStrength)
+			hHero:SetBaseIntellect(tHeroBaseStats.AttributeBaseIntelligence)
+		end
+		hHero:SetPhysicalArmorBaseValue(tHeroBaseStats.ArmorPhysical)
+		hHero:SetBaseDamageMin(tHeroBaseStats.AttackDamageMin)
+		hHero:SetBaseDamageMax(tHeroBaseStats.AttackDamageMax)
+		hHero:SetBaseAttackTime(tHeroBaseStats.AttackRate)
+		
+		if tHeroBaseStats.AttackCapabilities then hHero:SetAttackCapability(tHeroBaseStats.AttackCapabilities) end
+		if tHeroBaseStats.VisionDaytimeRange then hHero:SetDayTimeVisionRange(tHeroBaseStats.VisionDaytimeRange) end
+		if tHeroBaseStats.VisionNighttimeRange then hHero:SetNightTimeVisionRange(tHeroBaseStats.VisionNighttimeRange) end
+		if tHeroBaseStats.AttackAnimationPoint then hHero:AddNewModifier(hHero, nil, "modifier_attack_point_change", {}):SetStackCount(tHeroBaseStats.AttackAnimationPoint*100)	end
+		if tHeroBaseStats.ProjectileModel then hHero:SetRangedProjectileName(tHeroBaseStats.ProjectileModel) end
+		local iAttackRange = hHero:GetAttackRange()
+		if tHeroBaseStats.AttackRange then	hHero:AddNewModifier(hHero, nil, "modifier_attack_range_change", {}):SetStackCount(tHeroBaseStats.AttackRange - iAttackRange)	end
+		if tHeroBaseStats.ModelScale then hHero:SetModelScale(tHeroBaseStats.ModelScale) end
+		if tHeroBaseStats.DisableWearables then WearableManager:RemoveOriginalWearables(hHero) end
+		if tHeroBaseStats.Model then hHero:SetModel(tHeroBaseStats.Model) hHero:SetOriginalModel(tHeroBaseStats.Model) end
 	end
 end
 

@@ -197,23 +197,16 @@ end
 function GameMode:_OnNPCSpawned(keys)
 	if GameRules:State_Get() < DOTA_GAMERULES_STATE_PRE_GAME then return end
 	local hHero = EntIndexToHScript(keys.entindex)	
---	if hHero:IsHero() and not hHero.bInitialized and (not self.tFunHeroSelection[hHero:GetPlayerOwnerID()] or self.tFunHeroSelection[hHero:GetPlayerOwnerID()]==hHero:GetName()) then self:InitializeFunHero(hHero) end
-	if hHero:IsHero() and not hHero.bInitialized and ((hHero:GetPlayerOwner() and hHero:GetPlayerOwner().bIsPlayingFunHero) or hHero.bIsPlayingFunHero ) and self.tFunHeroSelection[hHero:GetPlayerOwnerID()]==hHero:GetName() then self:InitializeFunHero(hHero) end
---	if hHero:IsHero() and not hHero.bInitialized then self:InitializeFunHero(hHero) end
+	if hHero.bInitialized or not hHero:IsHero() then return end	 
+--	if (not self.tFunHeroSelection[hHero:GetPlayerOwnerID()] or self.tFunHeroSelection[hHero:GetPlayerOwnerID()]==hHero:GetName()) then self:InitializeFunHero(hHero) end
+	if ((hHero:GetPlayerOwner() and hHero:GetPlayerOwner().bIsPlayingFunHero) or hHero.bIsPlayingFunHero ) and self.tFunHeroSelection[hHero:GetPlayerOwnerID()]==hHero:GetName() then self:InitializeFunHero(hHero) end
+--	self:InitializeFunHero(hHero)
 	if hHero:GetName() == "npc_dota_hero_sniper" then
 		require('heroes/sniper/sniper_init')
 		SniperInit(hHero, self)
 	end
-
-	if not hHero:IsHero() then return end	
-	-- laggy vengeful spirit aura
---	if hHero:IsIllusion() and hHero:GetName() ~= hHero:GetPlayerOwner():GetAssignedHero():GetName() then
---		Timers:CreateTimer(0.1, function () hHero:ForceKill() end )
---	end
 	
-	
-	
-	if not self.tHumanPlayerList[hHero:GetPlayerOwnerID()] then
+	if not self.tHumanPlayerList[hHero:GetPlayerOwnerID()] and not IsInToolsMode() then
 		if self.iBotHasFunItem == 1 then
 			hHero:AddNewModifier(hHero, nil, "modifier_bot_get_fun_items", {})
 			hHero:AddNewModifier(hHero, nil, "modifier_bot_use_fun_items", {})
@@ -230,26 +223,19 @@ function GameMode:_OnNPCSpawned(keys)
 	
 	
 	if IsInToolsMode() and self.tHumanPlayerList[(hHero:GetPlayerOwnerID())] then PlayerResource:SetGold(hHero:GetOwner():GetPlayerID(), 99999, true) end
-	if not hHero.bInitialized then
-		hHero:AddNewModifier(hHero, nil, "modifier_global_hero_respawn_time", {})
-		if self.iImbalancedEconomizer > 0 then hHero:AddNewModifier(hHero, nil, "modifier_imbalanced_economizer", {}) end
-	end
-
-	Timers:CreateTimer(0.04, function ()  
-		if hHero:IsNull() then return end
-		local hModifierBGP = hHero:FindModifierByName("modifier_buyback_gold_penalty")
-		if hModifierBGP then 
-			hHero.fBuyBackExtraRespawnTime = hModifierBGP:GetDuration()*0.25
+	
+	if self.iImbalancedEconomizer > 0 then hHero:AddNewModifier(hHero, nil, "modifier_imbalanced_economizer", {}) end
+	Timers:CreateTimer(0.04, function ()
+		if hHero:IsRealHero() then
+			hHero:AddNewModifier(hHero, nil, "modifier_global_hero_respawn_time", {}) 
 		end
 	end)
+	
+
 
 	hHero.bInitialized = true;
 end
---[[
-function GameMode:OnPlayerPickHero(keys)	
 
-end
-]]--
 function GameMode:OnPlayerLevelUp(keys)
 	local hHero = PlayerResource:GetPlayer(keys.player-1):GetAssignedHero()
     local level = hHero:GetLevel()
@@ -260,21 +246,23 @@ function GameMode:OnPlayerLevelUp(keys)
 end
 
 function GameMode:OnGetLoadingSetOptions(eventSourceIndex, args)	
-	if tonumber(args.host_privilege) ~= 1 then return end	
-	self.iDesiredRadiant = tonumber(args.game_options.radiant_player_number);
-	self.iDesiredDire = tonumber(args.game_options.dire_player_number);
-	self.fRadiantGoldMultiplier = tonumber(args.game_options.radiant_gold_multiplier);
-	self.fRadiantXPMultiplier = tonumber(args.game_options.radiant_xp_multiplier);
-	self.fDireXPMultiplier = tonumber(args.game_options.dire_xp_multiplier);
-	self.fDireGoldMultiplier = tonumber(args.game_options.dire_gold_multiplier);
-	self.iRespawnTimePercentage = tonumber(args.game_options.respawn_time_percentage)
-	self.iMaxLevel = tonumber(args.game_options.max_level)
-	self.iTowerPower = tonumber(args.game_options.tower_power)
-	self.iTowerEndure = tonumber(args.game_options.tower_endure)
-	self.iImbalancedEconomizer = args.game_options.imbalanced_economizer
-	self.iBotHasFunItem = args.game_options.bot_has_fun_item
-	self.iBotAttackTowerPickRune = args.game_options.bot_attack_tower_pick_rune
-	self.iUniversalShop = args.game_options.universal_shop
+	self.iDesiredRadiant = tonumber(args.radiant_player_number);
+	self.iDesiredDire = tonumber(args.dire_player_number);
+	self.fRadiantGoldMultiplier = tonumber(args.radiant_gold_multiplier);
+	self.fRadiantXPMultiplier = tonumber(args.radiant_xp_multiplier);
+	self.fDireXPMultiplier = tonumber(args.dire_xp_multiplier);
+	self.fDireGoldMultiplier = tonumber(args.dire_gold_multiplier);
+	self.iRespawnTimePercentage = tonumber(args.respawn_time_percentage)
+	self.iMaxLevel = tonumber(args.max_level)
+	self.iTowerPower = tonumber(args.tower_power)
+	self.iTowerEndure = tonumber(args.tower_endure)
+	self.iImbalancedEconomizer = args.imbalanced_economizer
+	self.iBotHasFunItem = args.bot_has_fun_item
+	self.iBotAttackTowerPickRune = args.bot_attack_tower_pick_rune
+	self.iUniversalShop = args.universal_shop
 	self:PreGameOptions()
 end
 
+function GameMode:OnNetTableValueChanged(eventSourceIndex, args)
+	CustomNetTables:SetTableValue(args.table_name, args.table_key, args.table_value)
+end

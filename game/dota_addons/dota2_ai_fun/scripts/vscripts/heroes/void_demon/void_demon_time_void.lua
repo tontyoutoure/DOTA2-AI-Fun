@@ -45,16 +45,13 @@ function modifier_void_demon_time_void:GetEffectName() return "particles/units/h
 
 function modifier_void_demon_time_void:DeclareFunctions() return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT} end
 
+function modifier_void_demon_time_void:OnRefresh()
+	self.fSlow = self:GetAbility():GetSpecialValueFor("movespeed_slow")
+end
+
 function modifier_void_demon_time_void:GetModifierMoveSpeedBonus_Percentage()
-	local fResist
-	if IsClient() then 
-		fResist = -self:GetStackCount()/1000
-	else
-		fResist = CalculateStatusResist(self:GetParent())
-		self:SetStackCount(-fResist*1000)
-	end
 	self.fSlow = self.fSlow or self:GetAbility():GetSpecialValueFor("movespeed_slow")
-	return fResist*self.fSlow
+	return self.fSlow
 end
 
 function modifier_void_demon_time_void:GetModifierAttackSpeedBonus_Constant() return self:GetAbility():GetSpecialValueFor("attackspeed_slow") end
@@ -89,22 +86,14 @@ function modifier_void_demon_degen_aura_slow:GetModifierMoveSpeedBonus_Percentag
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end	
 	end
-	
-	local fResist
-	if IsClient() then 
-		fResist = -self:GetStackCount()/1000
-	else
-		fResist = CalculateStatusResist(self:GetParent())
-		self:SetStackCount(-fResist*1000)
-	end
-	
+
 	if self.hSpecial then
 		self.fSlow = (self.hSpecial:GetSpecialValueFor("value")+1)*self:GetAbility():GetSpecialValueFor("movement")
 	else
 		self.fSlow = self:GetAbility():GetSpecialValueFor("movement")
 	end
 	
-	return fResist*self.fSlow
+	return self.fSlow
 end
 
 function modifier_void_demon_degen_aura_slow:GetModifierAttackSpeedBonus_Constant()

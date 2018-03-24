@@ -35,7 +35,7 @@ function RamzaSummonerOdin(keys)
 	ProcsArroundingMagicStick(keys.caster)
 	local hThinker = CreateUnitByName("npc_dummy_unit", keys.target_points[1], true, keys.caster, keys.caster, keys.caster:GetTeamNumber())
 	hThinker:SetOriginalModel("models/heroes/abaddon/abaddon.vmdl")
-	hThinker:SetThink(function() print("hoho") end, 0.1)
+--	hThinker:SetThink(function() print("hoho") end, 0.1)
 	
 	local tWearables = 
 	{

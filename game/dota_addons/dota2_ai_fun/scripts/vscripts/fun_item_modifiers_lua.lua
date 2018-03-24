@@ -121,20 +121,22 @@ function modifier_item_fun_escutcheon_lua:GetModifierStatusResistance()
 end
 
 function modifier_item_fun_escutcheon_lua:OnCreated()
-	self:GetParent().iEcutcheonCount = self:GetParent().iEcutcheonCount or 0
-	self:GetParent().iEcutcheonCount = self:GetParent().iEcutcheonCount+1
+	self:SetStackCount(1)
+	self:StartIntervalThink(0.04)
 end
 
-function modifier_item_fun_escutcheon_lua:OnDestroy()
-	self:GetParent().iEcutcheonCount = self:GetParent().iEcutcheonCount-1
+function modifier_item_fun_escutcheon_lua:OnIntervalThink()
+	if IsClient() then return end
+	self:SetStackCount(#self:GetParent():FindAllModifiersByName(self:GetName()))
 end
+
 
 function modifier_item_fun_escutcheon_lua:GetModifierHealthRegenPercentage()
-	return self:GetAbility():GetSpecialValueFor("health_regen_percentage")/self:GetParent().iEcutcheonCount
+	return self:GetAbility():GetSpecialValueFor("health_regen_percentage")/self:GetStackCount()
 end
 
 function modifier_item_fun_escutcheon_lua:GetModifierTotalPercentageManaRegen()
-	return self:GetAbility():GetSpecialValueFor("mana_regen_percentage")/self:GetParent().iEcutcheonCount
+	return self:GetAbility():GetSpecialValueFor("mana_regen_percentage")/self:GetStackCount()
 end
 
 
@@ -172,9 +174,42 @@ function modifier_ragnarok_cleave:IsPurgable() return false end
 function modifier_ragnarok_cleave:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
 function modifier_ragnarok_cleave:OnAttackLanded(keys)
+	PrintTable(keys)
 	if keys.attacker ~= self:GetParent() then return end
 	local hAbility = self:GetAbility()
-	DoCleaveAttack(keys.attacker, keys.target, hAbility, hAbility:GetSpecialValueFor("cleave_damage")*keys.original_damage/100, hAbility:GetSpecialValueFor("cleave_start_radius"), hAbility:GetSpecialValueFor("cleave_end_radius"),hAbility:GetSpecialValueFor("cleave_distance"), "particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength.vpcf")	
+	local fCleaveDistance = hAbility:GetSpecialValueFor("cleave_distance")
+	local fCleaveStartRadius = hAbility:GetSpecialValueFor("cleave_start_radius")
+	local fCleaveEndRadius = hAbility:GetSpecialValueFor("cleave_end_radius")
+	if keys.attacker:HasModifier("modifier_phantom_assassin_stiflingdagger_caster") then
+		local tCleavedEntityList = {[keys.target:entindex()]=true}
+		local fLineWidth
+		local iLineNum = 20
+		if fCleaveEndRadius > fCleaveStartRadius then
+			fLineWidth = fCleaveEndRadius/(iLineNum-1)*2
+		else		
+			fLineWidth = fCleaveStartRadius/(iLineNum-1)*2
+		end
+		local vFront=Vector2D(keys.target:GetOrigin()-keys.attacker:GetOrigin()):Normalized()
+		local vLeft = Vector(0,0,0).Cross(Vector(0, 0, 1), vFront)
+		local vRight = Vector(0,0,0).Cross(vFront, Vector(0, 0, 1))
+		local vStartLeft = keys.target:GetOrigin()+vLeft*fCleaveStartRadius
+		local vEndLeft = keys.target:GetOrigin()+vLeft*fCleaveEndRadius+vFront*fCleaveDistance
+		local vStartInterval = fCleaveStartRadius/(iLineNum-1)*2*vRight
+		local vEndInterval = fCleaveEndRadius/(iLineNum-1)*2*vRight
+		for i = 1, iLineNum do
+			
+--			DebugDrawLine(vStartLeft+(i-1)*vStartInterval, vEndLeft+(i-1)*vEndInterval, 255,255,5,false,3)
+			local tTargets = FindUnitsInLine(keys.attacker:GetTeam(), vStartLeft+(i-1)*vStartInterval, vEndLeft+(i-1)*vEndInterval, nil, fLineWidth, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES)
+			for i, v in ipairs(tTargets) do
+				if not tCleavedEntityList[v:entindex()] then
+					tCleavedEntityList[v:entindex()] = true
+					ApplyDamage({damage = hAbility:GetSpecialValueFor("cleave_damage")*keys.original_damage/100, damage_type = DAMAGE_TYPE_PHYSICAL, attacker = keys.attacker, victim = v, ability = hAbility, damage_flag = DOTA_DAMAGE_FLAG_IGNORES_PHYSICAL_ARMOR+DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL})
+				end
+			end
+		end
+		return 
+	end
+	DoCleaveAttack(keys.attacker, keys.target, hAbility, hAbility:GetSpecialValueFor("cleave_damage")*keys.original_damage/100, fCleaveStartRadius, fCleaveEndRadius, fCleaveDistance, "particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength.vpcf")	
 end
 
 modifier_magic_hammer_mana_break = class({})
@@ -219,6 +254,32 @@ end
 
 function modifier_magic_hammer_mana_break:AllowIllusionDuplicate() return true end
 
+modifier_heros_bow_active = class({})
+function modifier_heros_bow_active:IsPurgable() return false end
+function modifier_heros_bow_active:DeclareFunctions() return {MODIFIER_PROPERTY_OVERRIDE_ANIMATION} end 
+function modifier_heros_bow_active:GetOverrideAnimation() return ACT_DOTA_FLAIL end
+function modifier_heros_bow_active:GetEffectName() return "particles/econ/events/ti7/force_staff_ti7.vpcf" end
+function modifier_heros_bow_active:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
+function modifier_heros_bow_active:OnCreated(keys)
+	if IsClient() then return end	
+	self.vSpeedHorizontal = keys.fSpeedHorizontal*self:GetParent():GetForwardVector()
+	self:ApplyHorizontalMotionController()
+	self:GetParent():EmitSound("DOTA_Item.ForceStaff.Activate")
+end
+
+function modifier_heros_bow_active:OnDestroy()
+	if IsClient() then return end	
+	local hParent = self:GetParent()
+	hParent:RemoveHorizontalMotionController(self)
+	FindClearSpaceForUnit(hParent, hParent:GetOrigin(), false)
+end
+
+
+function modifier_heros_bow_active:UpdateHorizontalMotion(me, dt)	
+	GridNav:DestroyTreesAroundPoint(me:GetOrigin(), 150, true)
+	me:SetOrigin(me:GetOrigin()+dt*self.vSpeedHorizontal)
+end
+
 modifier_heros_bow_always_allow_attack = class({})
 
 
@@ -249,6 +310,29 @@ function modifier_heros_bow_always_allow_attack:GetModifierAttackRangeBonus()
 end
 
 function modifier_heros_bow_always_allow_attack:IsPurgable() return false end
+
+modifier_item_fun_heros_bow_debuff = class({})
+function modifier_item_fun_heros_bow_debuff:IsPurgable() return false end
+function modifier_item_fun_heros_bow_debuff:DeclareFunctions() return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE, MODIFIER_PROPERTY_PROVIDES_FOW_POSITION} end
+function modifier_item_fun_heros_bow_debuff:GetModifierIncomingDamage_Percentage() return self:GetAbility():GetSpecialValueFor("damage_amp") end
+function modifier_item_fun_heros_bow_debuff:GetModifierProvidesFOWVision() return 1 end
+function modifier_item_fun_heros_bow_debuff:CheckState() return {[MODIFIER_STATE_MUTED] = true} end
+function modifier_item_fun_heros_bow_debuff:OnCreated() 
+	if IsClient() or not self:GetCaster():IsRangedAttacker() then return end	
+	self.vOriginalPos = self:GetCaster():GetOrigin()
+	self:StartIntervalThink(0.04)
+end
+function modifier_item_fun_heros_bow_debuff:GetEffectAttachType() return PATTACH_OVERHEAD_FOLLOW end
+function modifier_item_fun_heros_bow_debuff:GetEffectName() return "particles/items4_fx/nullifier_mute.vpcf" end
+function modifier_item_fun_heros_bow_debuff:OnIntervalThink()	
+	if IsClient() or not self:GetCaster():IsRangedAttacker() then return end	
+	local hCaster = self:GetCaster()
+	local me = self:GetParent()
+	if (me:GetOrigin()-self.vOriginalPos):Length2D() < self:GetAbility():GetSpecialValueFor("minimum_distance") and not me:IsMagicImmune() and not me:IsInvulnerable() then
+		local vEndLocation = self.vOriginalPos+Vector2D(me:GetOrigin()-self.vOriginalPos):Normalized()*self:GetAbility():GetSpecialValueFor("minimum_distance")
+		FindClearSpaceForUnit(me, vEndLocation, true)
+	end
+end
 
 modifier_angelic_alliance_spell_lifesteal = class({})
 
@@ -369,12 +453,81 @@ function modifier_item_fun_magic_hammer_root:OnDestroy()
 	ParticleManager:DestroyParticle(self.iParticle, true)
 end
 
-modifier_item_fun_terra_blade_clean = class({})
-function modifier_item_fun_terra_blade_clean:IsHidden() return true end
-function modifier_item_fun_terra_blade_clean:IsPurgable() return false end
-function modifier_item_fun_terra_blade_clean:RemoveOnDeath() return false end
-function modifier_item_fun_terra_blade_clean:GetAttributes() return {MODIFIER_ATTRIBUTE_MULTIPLE} end
-function modifier_item_fun_terra_blade_clean:DeclareFunctions() return {MODIFIER_EVENT_ON_ORDER} end
+modifier_item_fun_terra_blade = class({})
+function modifier_item_fun_terra_blade:IsHidden() return true end
+function modifier_item_fun_terra_blade:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
+function modifier_item_fun_terra_blade:DeclareFunctions() 
+	return {
+		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+		MODIFIER_PROPERTY_EVASION_CONSTANT,
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
+		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+		MODIFIER_PROPERTY_HEALTH_BONUS,
+		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
+		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_EVENT_ON_ATTACK,
+		MODIFIER_EVENT_ON_ORDER
+	}
+end
+
+function modifier_item_fun_terra_blade:OnAttackLanded(keys)
+	if keys.attacker ~= self:GetParent() or keys.attacker:GetTeam() == keys.target:GetTeam() or keys.target:IsBuilding() or keys.attacker:IsIllusion() then return end
+	keys.ability = self:GetAbility()
+	keys.target:EmitSound("DOTA_Item.Maim")
+	keys.target:AddNewModifier(keys.attacker, keys.ability, "modifier_item_fun_terra_blade_ultra_maim", {Duration = keys.ability:GetSpecialValueFor("maim_duration")*CalculateStatusResist(keys.target)})
+
+	keys.target:AddNewModifier(keys.attacker, keys.ability, "modifier_bashed", {Duration = keys.ability:GetSpecialValueFor("bash_stun")*CalculateStatusResist(keys.target)})
+	keys.target:EmitSound("DOTA_Item.MKB.Minibash")
+	ParticleManager:CreateParticle("particles/generic_gameplay/generic_minibash.vpcf", PATTACH_OVERHEAD_FOLLOW, keys.target)
+	
+end
+
+function modifier_item_fun_terra_blade:OnAttack(keys)
+	if keys.attacker ~= self:GetParent() or keys.attacker:GetTeam() == keys.target:GetTeam() or keys.target:IsBuilding() or keys.attacker:IsIllusion() then return end
+	keys.ability = self:GetAbility()
+	keys.ability.iCounter = keys.ability.iCounter or 0
+	if (keys.ability.iCounter == keys.ability:GetSpecialValueFor("projectile_interval")) then
+		keys.ability.iCounter = 0
+	end
+	keys.ability.iCounter = keys.ability.iCounter+1
+	if keys.ability.iCounter ~= 1 then return end
+	local tInfo = 
+	{
+		Ability = keys.ability,
+		EffectName = "particles/windrunner_spell_powershot_rainmaker.vpcf",
+		vSpawnOrigin = keys.attacker:GetAbsOrigin(),
+		fDistance = keys.ability:GetSpecialValueFor("projectile_distance"),
+		fStartRadius = keys.ability:GetSpecialValueFor("projectile_start_radius"),
+		fEndRadius = keys.ability:GetSpecialValueFor("projectile_end_radius"),
+		Source = keys.attacker,
+		bHasFrontalCone = false,
+		bReplaceExisting = false,
+		iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+		iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
+		iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		fExpireTime = GameRules:GetGameTime() + 10.0,
+		bDeleteOnHit = false,
+		vVelocity = keys.attacker:GetForwardVector() * keys.ability:GetSpecialValueFor("projectile_speed"),
+		bProvidesVision = true,
+		iVisionRadius = 800,
+		iVisionTeamNumber = keys.attacker:GetTeamNumber(),
+		ExtraData = {TargetEntIndex = keys.target:entindex()}
+	}
+	keys.ability.tProjectiles = keys.ability.tProjectiles or {}
+	local iMax = math.ceil(keys.ability:GetSpecialValueFor("projectile_distance")/keys.ability:GetSpecialValueFor("projectile_speed")/keys.ability:GetSpecialValueFor("minimum_at"))+2
+	for i = 1, iMax-1 do
+		keys.ability.tProjectiles[iMax+1-i] = keys.ability.tProjectiles[iMax-i] 
+	end
+	keys.ability.tProjectiles[1] = {keys.target:entindex(), GameRules:GetGameTime(), tInfo.vSpawnOrigin, tInfo.vVelocity} 
+
+	projectile = ProjectileManager:CreateLinearProjectile(tInfo)
+
+end
 
 if IsServer() then
 	tValidOrder = {
@@ -395,7 +548,7 @@ if IsServer() then
 		[DOTA_UNIT_ORDER_MOVE_TO_DIRECTION] = true,
 	}
 end
-function modifier_item_fun_terra_blade_clean:OnOrder(keys)
+function modifier_item_fun_terra_blade:OnOrder(keys)
 	if self:GetParent() ~= keys.unit then return end
 	local hAbility = self:GetAbility()
 	if tValidOrder[keys.order_type] or (keys.order_type==DOTA_UNIT_ORDER_ATTACK_TARGET and not keys.unit:IsAttackingEntity(keys.target)) then
@@ -403,3 +556,37 @@ function modifier_item_fun_terra_blade_clean:OnOrder(keys)
 	end
 	
 end
+
+function modifier_item_fun_terra_blade:OnCreated()
+	self:SetStackCount(1)
+	self:StartIntervalThink(0.04)
+end
+
+function modifier_item_fun_terra_blade:OnIntervalThink()
+	if IsClient() then return end
+	self:SetStackCount(#self:GetParent():FindAllModifiersByName(self:GetName()))
+end
+
+function modifier_item_fun_terra_blade:GetModifierBonusStats_Agility() return self:GetAbility():GetSpecialValueFor("bonus_agility") end
+function modifier_item_fun_terra_blade:GetModifierEvasion_Constant() return self:GetAbility():GetSpecialValueFor("evasion") end
+function modifier_item_fun_terra_blade:GetModifierPreAttack_BonusDamage() return self:GetAbility():GetSpecialValueFor("bonus_damage") end
+function modifier_item_fun_terra_blade:GetModifierAttackSpeedBonus_Constant() return self:GetAbility():GetSpecialValueFor("bonus_attack_speed") end
+function modifier_item_fun_terra_blade:GetModifierBaseAttackTimeConstant() return self:GetAbility():GetSpecialValueFor("bat") end
+function modifier_item_fun_terra_blade:GetModifierBonusStats_Strength() return self:GetAbility():GetSpecialValueFor("bonus_strength") end
+function modifier_item_fun_terra_blade:GetModifierHealthBonus() return self:GetAbility():GetSpecialValueFor("bonus_health") end
+function modifier_item_fun_terra_blade:GetModifierConstantManaRegen() return self:GetAbility():GetSpecialValueFor("manaregen") end
+function modifier_item_fun_terra_blade:GetModifierMoveSpeedBonus_Percentage() return self:GetAbility():GetSpecialValueFor("movement_speed_percent_bonus")/self:GetStackCount() end
+function modifier_item_fun_terra_blade:GetModifierBaseDamageOutgoing_Percentage() return self:GetAbility():GetSpecialValueFor("bonus_damage_percentage")/self:GetStackCount() end
+function modifier_item_fun_terra_blade:GetModifierHealthRegenPercentage() return self:GetAbility():GetSpecialValueFor("health_regen")/self:GetStackCount() end
+
+modifier_item_fun_terra_blade_ultra_maim = class({})
+function modifier_item_fun_terra_blade_ultra_maim:DeclareFunctions()
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+end
+function modifier_item_fun_terra_blade_ultra_maim:GetModifierMoveSpeedBonus_Percentage() return self:GetAbility():GetSpecialValueFor("maim_movement_percentage") end
+function modifier_item_fun_terra_blade_ultra_maim:GetModifierAttackSpeedBonus_Constant() return self:GetAbility():GetSpecialValueFor("maim_attack") end
+function modifier_item_fun_terra_blade_ultra_maim:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
+function modifier_item_fun_terra_blade_ultra_maim:GetEffectName() return "particles/items2_fx/sange_maim.vpcf" end
+
+
+

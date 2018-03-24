@@ -1,5 +1,6 @@
 LinkLuaModifier("modifier_cleric_berserk", "heroes/cleric/cleric_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_cleric_berserk_target", "heroes/cleric/cleric_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_cleric_berserk_no_order", "heroes/cleric/cleric_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_cleric_prayer", "heroes/cleric/cleric_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 function ClericMeteorShower(keys)
 	ProcsArroundingMagicStick(keys.caster)
@@ -40,7 +41,7 @@ function ClericMeteorShower(keys)
 				StartSoundEventFromPosition("Hero_Invoker.ChaosMeteor.Impact", vTarget+vRelative)
 				hThinker:StopSound("Hero_Invoker.ChaosMeteor.Loop")
 				GridNav:DestroyTreesAroundPoint(vTarget+vRelative, fMeteorRadius, true)
-				local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), vTarget+vRelative, nil, fMeteorRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
+				local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), vTarget+vRelative, nil, fMeteorRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 				local damageTable = {
 					damage = iDamage,
 					attacker = keys.caster,
@@ -58,31 +59,56 @@ function ClericMeteorShower(keys)
 	end	
 end
 
-function ClericBerserkAoE(keys)
-	ProcsArroundingMagicStick(keys.caster)
-	local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.target_points[1], nil, keys.ability:GetSpecialValueFor("aoe_radius"), DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
-	for k, v in ipairs(tTargets) do
-		v:EmitSound("Hero_Axe.Berserkers_Call")
-		v:AddNewModifier(keys.caster, keys.ability, "modifier_cleric_berserk", {Duration = keys.ability:GetSpecialValueFor("duration")*CalculateStatusResist(v)})
+cleric_berserk = class({})
+
+function cleric_berserk:GetBehavior()
+	if not self.bSpecial2 then
+		self.hSpecial2 = Entities:First()		
+		while self.hSpecial2 and (self.hSpecial2:GetName() ~= "special_bonus_cleric_5" or self.hSpecial2:GetCaster() ~= self:GetCaster()) do
+			self.hSpecial2 = Entities:Next(self.hSpecial2)
+		end	
+		self.bSpecial2 = true	
+	end
+	if self.hSpecial2 and self.hSpecial2:GetLevel() > 0 then
+		return DOTA_ABILITY_BEHAVIOR_POINT+DOTA_ABILITY_BEHAVIOR_AOE
+	else
+		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
 	end
 end
 
-cleric_berserk = class({})
+function cleric_berserk:GetAOERadius()
+	if self.hSpecial2 then
+		return self.hSpecial2:GetSpecialValueFor("value")
+	else
+		return 0
+	end
+end
 
 function cleric_berserk:OnSpellStart()
-	local hTarget = self:GetCursorTarget()
-	if hTarget:TriggerSpellAbsorb( self ) then return end
-	hTarget:EmitSound("Hero_Axe.Berserkers_Call")
-	hTarget:AddNewModifier(self:GetCaster(), self, "modifier_cleric_berserk", {Duration = self:GetSpecialValueFor("duration")*CalculateStatusResist(hTarget)})
+	
+	if self.hSpecial2 and self.hSpecial2:GetLevel() > 0 then
+		local hCaster = self:GetCaster()
+		local tTargets = FindUnitsInRadius(hCaster:GetTeamNumber(), self:GetCursorPosition(), nil, self.hSpecial2:GetSpecialValueFor("value"), DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
+		for k, v in ipairs(tTargets) do
+			v:EmitSound("Hero_Axe.Berserkers_Call")
+			v:AddNewModifier(hCaster, self, "modifier_cleric_berserk", {Duration = self:GetSpecialValueFor("duration")*CalculateStatusResist(v)})
+		end
+	else
+		local hTarget = self:GetCursorTarget()
+		if hTarget:TriggerSpellAbsorb( self ) then return end
+		hTarget:EmitSound("Hero_Axe.Berserkers_Call")
+		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_cleric_berserk", {Duration = self:GetSpecialValueFor("duration")*CalculateStatusResist(hTarget)})
+	end
+	
 end
 
 function cleric_berserk:GetCooldown(iLevel)
-	if not self.hSpecial then
-		self.hSpecial = Entities:First()
-		
+	if not self.bSpecial then
+		self.hSpecial = Entities:First()		
 		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_cleric_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 			self.hSpecial = Entities:Next(self.hSpecial)
-		end		
+		end
+		self.bSpecial = true
 	end
 	if self.hSpecial then
 		return self.BaseClass.GetCooldown(self, iLevel)-self.hSpecial:GetSpecialValueFor("value")

@@ -34,7 +34,7 @@ function intimidator_be_my_friend_lua:OnSpellStart()
 			self.tParticles[k] = ParticleManager:CreateParticle("particles/econ/items/razor/razor_punctured_crest_golden/razor_static_link_new_arc_blade_golden.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, v)
 			ParticleManager:SetParticleControlEnt(self.tParticles[k], 0, caster, PATTACH_POINT, "follow_attack1", caster:GetAbsOrigin(), true)
 			ParticleManager:SetParticleControlEnt(self.tParticles[k], 1, v, PATTACH_POINT, "follow_origin", v:GetAbsOrigin(), true)
-				print(self.tParticles[k])
+
 			
 		end
 	else

@@ -26,7 +26,6 @@ function TelekeneticBlobFlySetup(modifier, fixedSpeed)
 		modifier.flHorizontalSpeed = modifier.flDistance / modifier:GetAbility():GetSpecialValueFor("fly_duration")
 		modifier.fDuration = modifier:GetAbility():GetSpecialValueFor("fly_duration")
 	end
-	PrintTable(modifier)
     EmitSoundOnLocationWithCaster(modifier.vStartPosition, "Ability.TossThrow", modifier:GetParent())
 end
 

@@ -169,7 +169,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_attack_speed"	"50"
+				"bonus_attack_speed"	"30"
 			}
 			"04"
 			{
@@ -183,8 +183,8 @@
 			}
 			"06"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"bat"	"1"
+				"var_type"	"FIELD_FLOAT"
+				"bat"	"0.8"
 			}
 		}
 	}
@@ -258,8 +258,8 @@
 	"item_fun_sprint_shoes"
 	{
 		"BaseClass"	"item_lua"
-		"AbilityTextureName"	"item_fun_sprint_shoes"
 		"ScriptFile"	"fun_items_lua.lua"
+		"AbilityTextureName"	"item_fun_sprint_shoes"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL|DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityCastPoint"	"0.0"
 		"AbilityCooldown"	"12.0"
@@ -967,16 +967,17 @@
 		"AbilityTextureName"	"item_fun_heros_bow"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 		"AbilityCastPoint"	"0.0"
-		"AbilityCooldown"	"40.0"
+		"AbilityCooldown"	"18.0"
 		"AbilityManaCost"	"0"
 		"AbilityCastRange"	"%range"
 		"ID"	"15514"
 		"ItemQuality"	"artifact"
 		"Model"	"models/props_gameplay/red_box.vmdl"
 		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
-		"ItemCost"	"14100"
+		"ItemCost"	"14015"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemPermanent"	"1"
 		"ItemAliases"	"heros bow"
@@ -989,19 +990,10 @@
 		}
 		"OnSpellStart"
 		{
-			"TrackingProjectile"
+			"RunScript"
 			{
-				"Target"	"TARGET"
-				"EffectName"	"particles/econ/items/enchantress/enchantress_virgas/ench_impetus_virgas.vpcf"
-				"Dodgeable"	"0"
-				"ProvidesVision"	"1"
-				"VisionRadius"	"300"
-				"MoveSpeed"	"%projectile_speed"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Enchantress.Impetus"
-				"Target"	"CASTER"
+				"ScriptFile"	"scripts/vscripts/fun_items.lua"
+				"Function"	"HerosBowOnSpellStart"
 			}
 		}
 		"OnProjectileHitUnit"
@@ -1022,7 +1014,7 @@
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%bonus_hp_regen"
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_agility"
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_int"
@@ -1034,43 +1026,6 @@
 				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_RANGED_ONLY"
 				"Aura_ApplyToCaster"	"1"
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/fun_items.lua"
-						"Function"	"HerosbowCreated"
-					}
-				}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/fun_items.lua"
-						"Function"	"HerosbowDestroy"
-					}
-				}
-			}
-			"modifier_item_fun_heros_bow_debuff"
-			{
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%damage_amp"
-					"MODIFIER_PROPERTY_PROVIDES_FOW_POSITION"	"1"
-				}
-				"IsDebuff"	"1"
-				"States"	{}
-				"EffectName"	"particles/units/heroes/hero_chen/chen_penitence_debuff.vpcf"
-				"EffectAttachType"	"follow_origin"
-			}
-			"modifier_item_fun_heros_bow_armor_reduction"
-			{
-				"IsDebuff"	"1"
-				"IsPurgable"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_reduction"
-				}
 			}
 			"modifier_item_fun_heros_bow_attack_range"
 			{
@@ -1081,45 +1036,28 @@
 				"IsBuff"	"1"
 				"IsHidden"	"1"
 			}
-			"modifier_item_fun_heros_bow_bonus_night_vision"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"%night_vision"
-				}
-				"OnAttackLanded"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/fun_items.lua"
-						"Function"	"HerosBowReduceArmor"
-					}
-				}
-			}
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_agility"	"75"
+				"bonus_agility"	"85"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_strength"	"30"
+				"bonus_strength"	"35"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_int"	"15"
+				"bonus_int"	"30"
 			}
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_attack_speed"	"150"
+				"bonus_hp_regen"	"15"
 			}
 			"05"
 			{
@@ -1133,8 +1071,8 @@
 			}
 			"07"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"light_arrow_damage_mult"	"2.5"
+				"var_type"	"FIELD_FLOAT"
+				"light_arrow_damage_mult"	"1.5"
 			}
 			"08"
 			{
@@ -1154,27 +1092,22 @@
 			"11"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"duration"	"10"
+				"duration"	"5"
 			}
 			"12"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"armor_reduction"	"-15"
+				"minimum_distance"	"600"
 			}
 			"13"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"night_vision"	"600"
+				"var_type"  "FIELD_INTEGER"
+				"push_distance"  "800"
 			}
 			"14"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"armor_reduction_duration"	"30"
-			}
-			"15"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"armor_percentage"	"-150"
+				"var_type"  "FIELD_INTEGER"
+				"push_speed"  "1600"
 			}
 		}
 		"ActiveDescriptionLine"	"1"
@@ -1640,7 +1573,7 @@
 		"ItemResult"	"item_fun_heros_bow"
 		"ItemRequirements"
 		{
-			"01"	"item_ethereal_blade;item_dragon_lance;item_moon_shard;item_desolator"
+			"01"	"item_ethereal_blade;item_hurricane_pike;item_nullifier"
 		}
 	}
 
@@ -2043,7 +1976,7 @@
 				"IsHidden"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%movement_speed_percent_bonus"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE_UNIQUE"  "%movement_speed_percent_bonus"
 				}
 				"States"
 				{
@@ -2057,20 +1990,6 @@
 						"ScriptFile"	"scripts/vscripts/fun_items.lua"
 						"Function"	"GenjiGloveMinibash"
 					}
-				}
-			}
-			"modifier_item_fun_genji_glove_2_minibash"
-			{
-				"Duration"	"%bash_stun"
-				"Passive"	"0"
-				"IsHidden"	"0"
-				"IsBuff"	"0"
-				"IsDebuff"	"1"
-				"IsPurgable"	"0"
-				"OverrideAnimation"	"ACT_DOTA_DISABLED"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 		}
@@ -2089,7 +2008,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_attack_speed"	"180"
+				"bonus_attack_speed"	"100"
 			}
 			"04"
 			{
@@ -2103,8 +2022,8 @@
 			}
 			"06"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"bat"	"1"
+				"var_type"	"FIELD_FLOAT"
+				"bat"	"0.8"
 			}
 			"07"
 			{
@@ -2135,7 +2054,8 @@
 	
 	"item_fun_terra_blade"
 	{
-		"BaseClass"	"item_datadriven"
+		"BaseClass"	"item_lua"
+		"ScriptFile"	"fun_items_lua.lua"
 		"AbilityTextureName"	"item_fun_terra_blade"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"ID"	"15526"
@@ -2151,106 +2071,7 @@
 			"soundfile"	"soundevents/game_sounds_items.vsndevts"
 			"particle"	"particles/generic_gameplay/generic_minibash.vpcf"
 		}
-		
-		"OnProjectileHitUnit"
-		{
-			"DeleteOnHit" "0" // This will make the projectile continues its trajectory after hitting
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/fun_items.lua"
-				"Function"	"TerraBladeProjectileHit"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_item_fun_terra_blade_attributes"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_agility"
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%evasion"
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed"
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%bat"
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_strength"
-					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_health"
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%manaregen"
-				}
-				"ThinkInterval"  "1"
-				"OnIntervalThink"{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/fun_items.lua"
-						"Function"	"TerraBladeCleanerApply"
-					}
-				}
-				"OnAttack"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/fun_items.lua"
-						"Function"	"TerraBladeReleaseProjectile"
-					}
-				}
-				"OnOrder"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/fun_items.lua"
-						"Function"	"TerraBladeRefreshInterval"
-					}
-				}
-				"OnAttackLanded"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/fun_items.lua"
-						"Function"	"TerraBladeMinibash"
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/fun_items.lua"
-						"Function"	"TerraBladeMaimApply"
-					}
-				}
-			}
-			
-			"modifier_item_fun_terra_blade_ultra_maim"
-			{		
-				"IsHidden"	"0"	
-				"IsDebuff"  "1"
-				"Duration"  "%maim_duration"
-				"IsPurgable"  "1"
-				"EffectName"	"particles/items2_fx/sange_maim.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%maim_movement_percentage"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%maim_attack"
-				}
-			}
-			
-			"modifier_item_fun_terra_blade_single"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%movement_speed_percent_bonus"
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%bonus_damage_percentage"
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"%health_regen"
-				}
-				
-				"States"
-				{
-					"MODIFIER_STATE_CANNOT_MISS"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				// "%attack_damage"is set to the damage value before mitigation
-			}
-		}
+
 		"AbilitySpecial"
 		{
 			"01"
@@ -2266,7 +2087,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_attack_speed"	"180"
+				"bonus_attack_speed"	"120"
 			}
 			"04"
 			{
@@ -2280,8 +2101,8 @@
 			}
 			"06"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"bat"	"1"
+				"var_type"	"FIELD_FLOAT"
+				"bat"	"0.6"
 			}
 			"07"
 			{
@@ -2356,7 +2177,12 @@
 			"21"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"projectile_interval"	"2"
+				"projectile_interval"	"3"
+			}
+			"22"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"minimum_at"	"0.3"
 			}
 		}
 	}

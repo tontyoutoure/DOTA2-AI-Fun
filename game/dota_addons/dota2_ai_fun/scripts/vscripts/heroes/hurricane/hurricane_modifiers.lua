@@ -20,7 +20,8 @@ local function TempestStrike(hAbility, hLastTarget, hUnit, fStunDuration, fDamag
 	end
 	iTargets = #tSurroudingTargets
 	local hTarget = tSurroudingTargets[RandomInt(1, iTargets)]
-	local iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_disruptor/disruptor_thunder_strike_bolt.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget)
+	local iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_disruptor/disruptor_thunder_strike_bolt_child.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget)
+	ParticleManager:SetParticleControl(iParticle, 4, hTarget:GetOrigin())
 	ParticleManager:SetParticleControl(iParticle, 1, Vector(0,0,1000)+hTarget:GetOrigin())
 	hTarget:EmitSound("Hero_Disruptor.ThunderStrike.Target")
 	ApplyDamage({attacker = hUnit, victim = hTarget, damage = fDamage, damage_type = DAMAGE_TYPE_MAGICAL, ability = hAbility})
@@ -257,4 +258,26 @@ end
 function modifier_hurricane_sound_manager:OnDestroy()
 	if IsClient() then return end
 	self:GetParent():StopSound('n_creep_Wildkin.Tornado')
+end
+
+
+modifier_hurricane_model_scale_manager = class({})
+function modifier_hurricane_model_scale_manager:IsPurgable() return false end
+function modifier_hurricane_model_scale_manager:RemoveOnDeath() return false end
+function modifier_hurricane_model_scale_manager:IsHidden() return true end
+function modifier_hurricane_model_scale_manager:DeclareFunctions() return {MODIFIER_EVENT_ON_MODEL_CHANGED} end
+function modifier_hurricane_model_scale_manager:OnModelChanged(keys)
+	if keys.attacker ~= self:GetParent() then return end
+	local hHero = keys.attacker
+	if hHero:GetModelName() == "models/heroes/attachto_ghost/pa_gravestone_ghost.vmdl" then
+		hHero.iParticle1 = ParticleManager:CreateParticle("particles/econ/items/invoker/invoker_ti6/invoker_tornado_ti6_funnel.vpcf", PATTACH_ABSORIGIN_FOLLOW, hHero)	
+		ParticleManager:SetParticleControlEnt(hHero.iParticle1, 3, hHero, PATTACH_POINT_FOLLOW, 'follow_origin' ,hHero:GetAbsOrigin(), true)
+		hHero.iParticle2 = ParticleManager:CreateParticle("particles/econ/items/invoker/invoker_ti6/invoker_tornado_ti6_base.vpcf", PATTACH_ABSORIGIN_FOLLOW, hHero)	
+		ParticleManager:SetParticleControlEnt(hHero.iParticle2, 3, hHero, PATTACH_POINT_FOLLOW, 'follow_origin' ,hHero:GetAbsOrigin(), true)
+		hHero:SetModelScale(15)
+	else
+		ParticleManager:DestroyParticle(hHero.iParticle1 ,true)
+		ParticleManager:DestroyParticle(hHero.iParticle2 ,true)
+		hHero:SetModelScale(1)
+	end
 end

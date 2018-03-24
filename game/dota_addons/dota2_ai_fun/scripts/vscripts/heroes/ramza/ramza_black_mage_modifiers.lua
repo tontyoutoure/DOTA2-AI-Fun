@@ -230,14 +230,8 @@ function modifier_ramza_black_mage_black_magicks_blizzaga_slow:DeclareFunctions(
 end
 
 function modifier_ramza_black_mage_black_magicks_blizzaga_slow:GetModifierMoveSpeedBonus_Percentage()
-	local fResist
-	if IsClient() then 
-		fResist = -self:GetStackCount()/1000
-	else
-		fResist = CalculateStatusResist(self:GetParent())
-		self:SetStackCount(-fResist*1000)
-	end
-	return -30*fResist
+
+	return -30
 end
 
 function modifier_ramza_black_mage_black_magicks_blizzaga_slow:GetTexture()

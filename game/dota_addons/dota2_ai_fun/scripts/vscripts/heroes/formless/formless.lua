@@ -256,8 +256,11 @@ tHero["npc_dota_hero_visage"] = {-1, 1, 2, -1} -- don't transform
 tHero["npc_dota_hero_rubick"] = {0, 1, -1, 5} --cleric, buggy passive
 tHero["npc_dota_hero_pugna"] = {0, -1, 3, 5}  --multiple abilities
 tHero["npc_dota_hero_oracle"] = {0, 1, 2, 5}
-tHero["npc_dota_hero_dragon_knight_fun"] = {-1, -1, -1, -1}
-tHero["npc_dota_hero_tusk_fun"] = {0, -1, 2, 5} --  multiple ability	
+tHero["npc_dota_hero_dragon_knight"] = {1, 2, 3, 4}  --ramza
+tHero["npc_dota_hero_dragon_knight_fun"] = {-1, -1, -1, -1}  --ramza
+tHero["npc_dota_hero_tusk"] = {0, -1, 2, 5} --  multiple ability	
+tHero["npc_dota_hero_tusk_fun"] = {0, 1, 2, 5} --  multiple ability	
+tHero["npc_dota_hero_spectre_fun"] = {0, -1, 3, -1} --  multiple ability	
 
 function formless_get_real_skill_index(keys)
 	local targetName = keys.target:GetName()

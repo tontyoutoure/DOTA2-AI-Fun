@@ -81,12 +81,5 @@ function modifier_ramza_time_mage_time_magicks_slow:GetModifierAttackSpeedBonus_
 end
 
 function modifier_ramza_time_mage_time_magicks_slow:GetModifierMoveSpeedBonus_Percentage()
-	local fResist
-	if IsClient() then 
-		fResist = -self:GetStackCount()/1000
-	else
-		fResist = CalculateStatusResist(self:GetParent())
-		self:SetStackCount(-fResist*1000)
-	end
-	return -50*fResist
+	return -50
 end

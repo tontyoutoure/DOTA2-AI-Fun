@@ -29,8 +29,8 @@ local tHeroBaseStats = {
 	ArmorPhysical = 2,
 	PrimaryAttribute = DOTA_ATTRIBUTE_STRENGTH,
 	AttackAnimationPoint = 0.4,
-	Model = 'models/ghostanim.vmdl',
-	ModelScale = 10,
+	Model = 'models/heroes/attachto_ghost/pa_gravestone_ghost.vmdl',
+	ModelScale = 15,
 	DisableWearables = true
 }
 
@@ -58,8 +58,7 @@ function HurricaneRemoveParticle(keys)
 		ParticleManager:DestroyParticle(hHero.iParticle2 ,false)
 	end
 end
--- LinkLuaModifier("modifier_hurricane_sound_manager", "heroes/hurricane/hurricane_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-
+LinkLuaModifier("modifier_hurricane_model_scale_manager", "heroes/hurricane/hurricane_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 
 HurricaneInit = function (hHero, context)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_hurricane", {})
@@ -69,6 +68,7 @@ HurricaneInit = function (hHero, context)
 		ListenToGameEvent("entity_killed", HurricaneRemoveParticle, nil)
 	end
 	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)
+	hHero:AddNewModifier(hHero, nil, "modifier_hurricane_model_scale_manager", {})
 end
 
 

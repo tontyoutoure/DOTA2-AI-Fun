@@ -37,26 +37,26 @@ CustomNetTables:SetTableValue("fun_hero_stats", "cleric_abilities", tNewAbilitie
 CustomNetTables:SetTableValue("fun_hero_stats", "cleric", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("cleric", tNewAbilities)
 
-function ClericTalentManager(keys)
-	if PlayerResource:GetPlayer(keys.player-1):GetAssignedHero():GetName() ~= "npc_dota_hero_rubick" then return end
-	local hHero = PlayerResource:GetPlayer(keys.player-1):GetAssignedHero()
-	if keys.abilityname == "special_bonus_cleric_5" then
-		local iLevel = hHero:FindAbilityByName("cleric_berserk"):GetLevel()
-		hHero:RemoveAbility("cleric_berserk")
-		hHero:AddAbility("cleric_berserk_aoe"):SetLevel(iLevel)
+function GameMode:ClericOrderFilter(filterTable)
+	for k, v in pairs(filterTable.units) do
+		if EntIndexToHScript(v) and EntIndexToHScript(v):HasModifier("modifier_cleric_berserk_no_order") then 
+			filterTable.units[k] = nil 
+		end
 	end
+	if filterTable.order_type == DOTA_UNIT_ORDER_PURCHASE_ITEM and not filterTable.units["0"] then return false end
+	return true
 end
 
 
 function ClericInit(hHero, context)
 	hHero:AddNewModifier(hHero, nil, "modifier_attribute_indicator_cleric", {})	
 	GameMode:InitiateHeroStats(hHero, tNewAbilities, tHeroBaseStats)	
-	if not GameMode.bClericTalentManagerSet then
-		ListenToGameEvent( "dota_player_learned_ability", ClericTalentManager, nil )
-		GameMode.bClericTalentManagerSet = true
-	end
  	if hHero:IsRealHero() then
  		local hMagicMirror = hHero:FindAbilityByName("cleric_magic_mirror")
  		hHero:AddNewModifier(hHero, hMagicMirror, "modifier_cleric_magic_mirror", {})
  	end	
+	if not GameMode.bClericFilterSet then
+		GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(GameMode, 'ClericOrderFilter'), context)
+		GameMode.bClericFilterSet = true
+	end
 end

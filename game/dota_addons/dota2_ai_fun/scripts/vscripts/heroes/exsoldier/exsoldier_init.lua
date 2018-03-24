@@ -102,8 +102,8 @@ function ExsoldierReplaceSword(hHero)
 end
 
 function ExsoldierTalentManager(keys)
-	if PlayerResource:GetPlayer(keys.player-1):GetAssignedHero():GetName() ~= "npc_dota_hero_juggernaut" then return end
-	local hHero = PlayerResource:GetPlayer(keys.player-1):GetAssignedHero()
+	if PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero():GetName() ~= "npc_dota_hero_juggernaut" then return end
+	local hHero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
 	if keys.abilityname == "special_bonus_unique_exsoldier_2" then
 		local iLevel = hHero:FindAbilityByName("exsoldier_braver"):GetLevel()
 		hHero:RemoveAbility("exsoldier_braver")

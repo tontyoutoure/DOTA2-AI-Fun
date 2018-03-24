@@ -1,5 +1,8 @@
-modifier_cleric_berserk = class({})
+modifier_cleric_berserk_no_order = class({})
+function modifier_cleric_berserk_no_order:IsHidden() return true end
+function modifier_cleric_berserk_no_order:IsPurgable() return false end
 
+modifier_cleric_berserk = class({})
 function modifier_cleric_berserk:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
@@ -19,7 +22,7 @@ function modifier_cleric_berserk:OnCreated()
 	if IsClient() then return end
 	local hParent = self:GetParent()
 	self.iOwner = hParent:GetPlayerOwnerID()
-	hParent:SetControllableByPlayer(-1, false)
+	hParent:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_cleric_berserk_no_order", {})
 	self:StartIntervalThink(0.05)
 end
 
@@ -33,13 +36,14 @@ function modifier_cleric_berserk:OnIntervalThink()
 	if #tTargets == 1 then
 		if self.hTarget then
 			self.hTarget:RemoveModifierByName("modifier_cleric_berserk_target")
-			local tOrder = {
+			self.hTarget = nil
+			hParent:RemoveModifierByName("modifier_cleric_berserk_no_order")
+			ExecuteOrderFromTable({
 				UnitIndex = hParent:entindex(),
 				OrderType = DOTA_UNIT_ORDER_STOP 
-			}
-			ExecuteOrderFromTable(newOrder)
+			})
 			hParent:SetForceAttackTarget(nil)
-			self.hTarget = nil
+			hParent:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_cleric_berserk_no_order", {})
 		end
 	else	
 		local iNum = 1
@@ -52,21 +56,23 @@ function modifier_cleric_berserk:OnIntervalThink()
 		end
 		
 		
-		if tTargets[iNum] ~= self.hTarget then
-			if self.hTarget then 
-				self.hTarget:RemoveModifierByName("modifier_cleric_berserk_target")
+		if not hParent:IsAttackingEntity(tTargets[iNum]) then
+			if self.hTarget ~= tTargets[iNum] then 
+				if self.hTarget then
+					self.hTarget:RemoveModifierByName("modifier_cleric_berserk_target")
+				end
+				self.hTarget = tTargets[iNum]
+				self.hTarget:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_cleric_berserk_target", {})
 			end
-			self.hTarget = tTargets[iNum]
-			self.hTarget:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_cleric_berserk_target", {})
-			local tOrder = 
-			{
+			hParent:RemoveModifierByName("modifier_cleric_berserk_no_order")
+			hParent:SetForceAttackTarget(nil)
+			ExecuteOrderFromTable({
 				UnitIndex = hParent:entindex(),
 				OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
 				TargetIndex = self.hTarget:entindex()
-			}
-			hParent:SetForceAttackTarget(nil)
-			ExecuteOrderFromTable(tOrder)
+			})
 			hParent:SetForceAttackTarget(self.hTarget)
+			hParent:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_cleric_berserk_no_order", {})
 		end
 	end
 end
@@ -74,16 +80,16 @@ end
 function modifier_cleric_berserk:OnDestroy()
 	if IsClient() then return end
 	local hParent = self:GetParent()
+	hParent:RemoveModifierByName("modifier_cleric_berserk_no_order")
 	local tOrder = {
 		UnitIndex = hParent:entindex(),
 		OrderType = DOTA_UNIT_ORDER_STOP 
 	}
 	ExecuteOrderFromTable(newOrder)
 	hParent:SetForceAttackTarget(nil)
-	hParent:SetControllableByPlayer(self.iOwner, false)
 	if self.hTarget then
 		self.hTarget:RemoveModifierByName("modifier_cleric_berserk_target")
-	end
+	end	
 	
 end
 
@@ -128,7 +134,7 @@ function modifier_cleric_magic_mirror:GetAbsorbSpell(keys)
 	local hAbility = self:GetAbility()
 	if not hAbility:IsCooldownReady() or hAbility:GetLevel() == 0 then return false end
 	local hParent = self:GetParent()
-	if hParent == keys.ability:GetCaster() then return false end
+	if hParent:GetTeam() == keys.ability:GetCaster():GetTeam() then return false end
 	
 	self.bIsTriggering = true
 	local hSphere
@@ -156,11 +162,17 @@ function modifier_cleric_magic_mirror:GetAbsorbSpell(keys)
 		hSphere:EndCooldown()
 	else
 		hParent:EmitSound("DOTA_Item.LinkensSphere.Activate")
-		ParticleManager:CreateParticle("particles/items_fx/immunity_sphere.vpcf", PATTACH_POINT_FOLLOW, hParent)
+		local iParticle = ParticleManager:CreateParticle("particles/items_fx/immunity_sphere.vpcf", PATTACH_POINT_FOLLOW, hParent)
+		ParticleManager:SetParticleControlEnt(iParticle, 0, hParent, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
 	end
 	
 	if hParent:HasScepter() then 
-		ParticleManager:CreateParticle("particles/units/heroes/hero_antimage/antimage_spellshield.vpcf" , PATTACH_POINT_FOLLOW, hParent)
+		local iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_antimage/antimage_spellshield.vpcf" , PATTACH_POINT_FOLLOW, hParent)
+		ParticleManager:SetParticleControlEnt(iParticle, 0, hParent, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
+		iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_antimage/antimage_spellshield_reflect.vpcf" , PATTACH_POINT_FOLLOW, hParent)
+		ParticleManager:SetParticleControlEnt(iParticle, 0, hParent, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
+		hParent:EmitSound("Hero_Antimage.SpellShield.Block")
+		hParent:EmitSound("Hero_Antimage.SpellShield.Reflect")
 	end
 		
 	hAbility:UseResources(false, false, true)

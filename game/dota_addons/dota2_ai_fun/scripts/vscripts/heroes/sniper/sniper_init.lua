@@ -1,5 +1,5 @@
 local function SniperScepterThinkerApplier(keys)
-	local hHero = PlayerResource:GetPlayer(keys.player-1):GetAssignedHero()
+	local hHero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
 	if keys.abilityname == "sniper_assassinate" then
 		hHero:AddNewModifier(hHero, nil, "modifier_sniper_assassinate_thinker", {})		
 	end

@@ -33,5 +33,6 @@ end
 function telekenetic_blob_expel:OnSpellStart()
 	local caster = self:GetCaster()
 	local markedTarget = TelekeneticBlobGetMarkedTarget(caster)
-	markedTarget:AddNewModifier(caster, self, "telekenetic_blob_expel_modifier", {})
+	local fDistance = (markedTarget:GetOrigin()-self:GetCursorPosition()):Length2D()
+	markedTarget:AddNewModifier(caster, self, "telekenetic_blob_expel_modifier", {Duration = fDistance/self:GetSpecialValueFor("fly_speed")})
 end

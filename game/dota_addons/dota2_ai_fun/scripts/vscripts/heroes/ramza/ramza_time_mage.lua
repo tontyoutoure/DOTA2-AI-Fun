@@ -120,16 +120,14 @@ function RamzaTimeMageTeleport(keys)
 	local fChance = 20+80*math.exp(-fDistance/3000)
 	
 	keys.caster:EmitSound("Hero_Wisp.TeleportIn.Arc")
-	ParticleManager:CreateParticle("particles/econ/items/wisp/wisp_relocate_teleport_ti7.vpcf", PATTACH_ABSORIGIN, keys.caster)
-	Timers:CreateTimer(0.07, function ()
-		keys.caster:EmitSound("Hero_Wisp.TeleportOut.Arc") 
-		ParticleManager:CreateParticle("particles/econ/items/wisp/wisp_relocate_teleport_ti7_out.vpcf", PATTACH_ABSORIGIN, keys.caster) 
-	end)
+	
+	ParticleManager:SetParticleControl(ParticleManager:CreateParticle("particles/econ/items/wisp/wisp_relocate_teleport_ti7.vpcf", PATTACH_ABSORIGIN, keys.caster), 0, keys.caster:GetOrigin())
+	keys.caster:EmitSound("Hero_Wisp.TeleportOut.Arc") 
+	ParticleManager:CreateParticle("particles/econ/items/wisp/wisp_relocate_teleport_ti7_out.vpcf", PATTACH_ABSORIGIN, keys.caster) 
 	
 	if RandomFloat(0, 100) < fChance then
 		ProjectileManager:ProjectileDodge(keys.caster)
-		keys.caster:SetAbsOrigin(vTarget)
-		FindClearSpaceForUnit(keys.caster, vTarget, false)
+		FindClearSpaceForUnit(keys.caster, vTarget, true)
 	end
 end
 

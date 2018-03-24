@@ -4,5 +4,7 @@
     [
         "ramza",
 		"fun_hero_stats",
+		"game_options",
+		"invoker_retro",
     ]
 }

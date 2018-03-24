@@ -52,10 +52,10 @@ end
 
 function RamzaTalentManager(keys)
 	if keys.abilityname == "special_bonus_ramza_2" then
-		PlayerResource:GetPlayer(keys.player-1):GetAssignedHero().hRamzaJob:RamzaLevelMax()
+		PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero().hRamzaJob:RamzaLevelMax()
 	end
-	if keys.abilityname == "special_bonus_ramza_3" and PlayerResource:GetPlayer(keys.player-1):GetAssignedHero().hRamzaJob.iSecondarySkill > 0 then
-		local self = PlayerResource:GetPlayer(keys.player-1):GetAssignedHero().hRamzaJob
+	if keys.abilityname == "special_bonus_ramza_3" and PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero().hRamzaJob.iSecondarySkill > 0 then
+		local self = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero().hRamzaJob
 		if self.tJobLevels[self.iSecondarySkill] >= 3 then
 			self.hParent:AddAbility(self.tOtherAbilities[self.iSecondarySkill][3][1]):SetLevel(1)
 			self.hParent:RemoveAbility(self.tOtherAbilities[self.iSecondarySkill][3][1])
@@ -167,7 +167,6 @@ function RamzaInit(hHero, context)
 		hHero.iBraveryLevel = hRamzaOrigin.iBraveryLevel or 0
 		hHero.iSpeedLevel = hRamzaOrigin.iSpeedLevel or 0
 		hHero.iFaithLevel = hRamzaOrigin.iFaithLevel or 0
-		print(hHero.iBraveryLevel, hHero.iSpeedLevel, hHero.iFaithLevel)
 		hHero:AddAbility("ramza_bravery"):SetLevel(hHero.iBraveryLevel)
 		hHero:RemoveAbility("ramza_bravery")
 		hHero:AddAbility("ramza_speed"):SetLevel(hHero.iSpeedLevel)

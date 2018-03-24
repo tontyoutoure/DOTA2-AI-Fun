@@ -59,17 +59,14 @@ function modifier_old_lifestealer_poison_sting_slow:OnCreated()
 	if IsClient() then return end
 	self:StartIntervalThink(CalculateStatusResist(self:GetParent()))
 end
+function modifier_old_lifestealer_poison_sting_slow:OnRefresh()
+	self.fSlow = self:GetAbility():GetSpecialValueFor("move_slow")
+
+end
 function modifier_old_lifestealer_poison_sting_slow:DeclareFunctions() return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE} end
 function modifier_old_lifestealer_poison_sting_slow:GetModifierMoveSpeedBonus_Percentage() 
-	local fResist
-	if IsClient() then 
-		fResist = -self:GetStackCount()/1000
-	else
-		fResist = CalculateStatusResist(self:GetParent())
-		self:SetStackCount(-fResist*1000)
-	end
 	self.fSlow = self.fSlow or self:GetAbility():GetSpecialValueFor("move_slow")
-	return fResist*self.fSlow
+	return self.fSlow
 end
 function modifier_old_lifestealer_poison_sting_slow:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
 function modifier_old_lifestealer_poison_sting_slow:GetEffectName() return "particles/units/heroes/hero_venomancer/venomancer_gale_poison_debuff.vpcf" end

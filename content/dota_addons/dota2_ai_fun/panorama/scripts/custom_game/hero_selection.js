@@ -1,80 +1,112 @@
 "use strict";
 var sActivatingPanel
 var sSelectingPart
-$("#HeroAvatarBtnWarlock").visible = true
+
 var DOTA_ATTRIBUTE_STRENGTH = 0
 var DOTA_ATTRIBUTE_AGILITY = 1
 var DOTA_ATTRIBUTE_INTELLECT = 2
-
-var tFunHeroNames = {
-	"spirit_breaker":"astral_trekker",
-	'shadow_demon': 'bastion',
-	'treant': 'intimidator',
-	'techies': 'persuasive',
-	'night_stalker': 'void_demon',
-	'tinker': 'terran_marine',
-	'visage': 'magic_dragon',
-	'arc_warden': 'mana_fiend',
-	'wisp': 'formless',
-	'beastmaster': 'fluid_engineer',
-	'enigma': 'telekenetic_blob',
-	'dragon_knight': 'ramza',
-	'oracle': 'cleric',
-	'windrunner': 'pet_summoner',
-	'sven': 'felguard',
-	'pugna': 'el_dorado',
-	'disruptor': 'hurricane',
-	'nevermore': 'capslockftw',
-	'omniknight':'templar',
-	'meepo':'spongebob',
-	'tusk':'hamsterlord',
-	'juggernaut':'exsoldier',
-	'rubick':'gambler',
-	'life_stealer':'old_lifestealer',
-	'chaos_knight':'rider',
-	'skywrath_mage':'siglos',
-	'warlock':'flame_lord',
-	'keeper_of_the_light':'conjurer',
-}
-var tHeroNameCapitals = {
-	"spirit_breaker":"SpiritBreaker",
-	'shadow_demon': 'ShadowDemon',
-	'treant': 'Treant',
-	'techies': 'Techies',
-	'night_stalker': 'NightStalker',
-	'tinker': 'Tinker',
-	'visage': 'Visage',
-	'arc_warden': 'ArcWarden',
-	'wisp': 'Wisp',
-	'beastmaster': 'Beastmaster',
-	'enigma': 'Enigma',
-	'dragon_knight': 'DragonKnight',
-	'oracle': 'Oracle',
-	'windrunner': 'Windrunner',
-	'sven': 'Sven',
-	'pugna': 'Pugna',
-	'disruptor': 'Disruptor',
-	'nevermore': 'Nevermore',	
-	'omniknight':'Omniknight',
-	'meepo':'Meepo',
-	'tusk':'Tusk',
-	'juggernaut':'Juggernaut',
-	'rubick':'Rubick',
-	'life_stealer':'LifeStealer',
-	'chaos_knight':'ChaosKnight',
-	'skywrath_mage':'SkywrathMage',
-	'warlock':'Warlock',
-	'keeper_of_the_light':'KeeperOfTheLight',
+$("#AllowSelectionDupulicatePanel").visible=false
+var tFunHeroInfo = {
+	'spirit_breaker':{'sName':'astral_trekker', 'sCapitalName':'SpiritBreaker', 'bNewAvatar':false, 'bOld':true, 'bImba':true,},
+	'shadow_demon':{'sName':'bastion', 'sCapitalName':'ShadowDemon', 'bNewAvatar':true, 'bOld':false, 'bImba':true,},
+	'treant':{'sName':'intimidator', 'sCapitalName':'Treant', 'bNewAvatar':false, 'bOld':false, 'bImba':false,},
+	'techies':{'sName':'persuasive', 'sCapitalName':'Techies', 'bNewAvatar':false, 'bOld':false, 'bImba':true,},
+	'night_stalker':{'sName':'void_demon', 'sCapitalName':'NightStalker', 'bNewAvatar':false, 'bOld':true, 'bImba':false,},
+	'tinker':{'sName':'terran_marine', 'sCapitalName':'Tinker', 'bNewAvatar':false, 'bOld':false, 'bImba':false,},
+	'visage':{'sName':'magic_dragon', 'sCapitalName':'Visage', 'bNewAvatar':false, 'bOld':false, 'bImba':true,},
+	'arc_warden':{'sName':'mana_fiend', 'sCapitalName':'ArcWarden', 'bNewAvatar':false, 'bOld':false, 'bImba':false,},
+	'wisp':{'sName':'formless', 'sCapitalName':'Wisp', 'bNewAvatar':false, 'bOld':false, 'bImba':false,},
+	'beastmaster':{'sName':'fluid_engineer', 'sCapitalName':'Beastmaster', 'bNewAvatar':false, 'bOld':false, 'bImba':false,},
+	'enigma':{'sName':'telekenetic_blob', 'sCapitalName':'Enigma', 'bNewAvatar':false, 'bOld':false, 'bImba':true,},
+	'dragon_knight':{'sName':'ramza', 'sCapitalName':'DragonKnight', 'bNewAvatar':true, 'bOld':false, 'bImba':true,},
+	'oracle':{'sName':'cleric', 'sCapitalName':'Oracle', 'bNewAvatar':false, 'bOld':false, 'bImba':false,},
+	'windrunner':{'sName':'pet_summoner', 'sCapitalName':'Windrunner', 'bNewAvatar':false, 'bOld':false, 'bImba':false,},
+	'sven':{'sName':'felguard', 'sCapitalName':'Sven', 'bNewAvatar':false, 'bOld':false, 'bImba':false,},
+	'pugna':{'sName':'el_dorado', 'sCapitalName':'Pugna', 'bNewAvatar':true, 'bOld':false, 'bImba':false,},
+	'disruptor':{'sName':'hurricane', 'sCapitalName':'Disruptor', 'bNewAvatar':true, 'bOld':false, 'bImba':false,},
+	'nevermore':{'sName':'capslockftw', 'sCapitalName':'Nevermore', 'bNewAvatar':false, 'bOld':false, 'bImba':false,},
+	'omniknight':{'sName':'templar', 'sCapitalName':'Omniknight', 'bNewAvatar':false, 'bOld':false, 'bImba':false,},
+	'meepo':{'sName':'spongebob', 'sCapitalName':'Meepo', 'bNewAvatar':true, 'bOld':false, 'bImba':false,},
+	'tusk':{'sName':'hamsterlord', 'sCapitalName':'Tusk', 'bNewAvatar':false, 'bOld':false, 'bImba':false,},
+	'juggernaut':{'sName':'exsoldier', 'sCapitalName':'Juggernaut', 'bNewAvatar':true, 'bOld':false, 'bImba':false,},
+	'rubick':{'sName':'gambler', 'sCapitalName':'Rubick', 'bNewAvatar':false, 'bOld':true, 'bImba':false,},
+	'life_stealer':{'sName':'old_lifestealer', 'sCapitalName':'LifeStealer', 'bNewAvatar':false, 'bOld':true, 'bImba':false,},
+	'chaos_knight':{'sName':'rider', 'sCapitalName':'ChaosKnight', 'bNewAvatar':false, 'bOld':true, 'bImba':false,},
+	'skywrath_mage':{'sName':'siglos', 'sCapitalName':'SkywrathMage', 'bNewAvatar':false, 'bOld':false, 'bImba':false,},
+	'warlock':{'sName':'flame_lord', 'sCapitalName':'Warlock', 'bNewAvatar':false, 'bOld':true, 'bImba':false,},
+	'keeper_of_the_light':{'sName':'conjurer', 'sCapitalName':'KeeperOfTheLight', 'bNewAvatar':false, 'bOld':true, 'bImba':false,},
+	'spectre':{'sName':'avatar_of_vengeance', 'sCapitalName':'Spectre', 'bNewAvatar':false, 'bOld':true, 'bImba':false,},
+//	'invoker':{'sName':'invoker_retro', 'sCapitalName':'Invoker', 'bNewAvatar':false, 'bOld':true, 'bImba':false,},
 }
 
-function HeroDescriptionInitAll(keys) {
-	if (keys.PlayerID == Game.GetLocalPlayerID()) {
-		for (var sHeroName in tHeroNameCapitals) {
-			HeroDescriptionInit(tFunHeroNames[sHeroName], sHeroName, tHeroNameCapitals[sHeroName]);
-		}
+var CurrentOldLine = 1
+var CurrentOldColumn = 1
+var CurrentNewLine = 1
+var CurrentNewColumn = 1
+var bSecondInited = false
+var tHeroSelectionOptions
+function InitUISecond(keys) {
+	$("#bot_attack_tower_pick_rune").checked=true;
+	$("#bot_has_fun_item").checked=true;  
+	if (Game.GetLocalPlayerInfo() === undefined) {
+		$.Schedule(1, InitializeUI);
+		return;
+	} else if (Game.GetLocalPlayerInfo().player_has_host_privileges) {
+		$("#game_options_container").visible=true;
+		$("#GameOptionHider").visible=false;
+		$("#LockOptionsBtn").visible=true;
+		$("#UnlockOptionsBtn").visible=false;
+		$("#ShowGameOptionButton").visible=false;
+		$("#HideGameOptionButton").visible=true;
 	}
-	$("#HeroDescriptionContainer").visible = true;
-	$("#HeroAvatarBtnRubick").visible = true;
+	else
+	{
+		$("#game_options_container").visible=false;
+		$("#GameOptionHider").visible=true;
+		$("#LockOptionsBtn").visible=false;
+		$("#UnlockOptionsBtn").visible=false;
+		$("#ShowGameOptionButton").visible=true;
+		$("#HideGameOptionButton").visible=false;
+	}	
+	tHeroSelectionOptions = keys 
+	var sAvatarDir
+	$("#HeroSelectionPanelOld").BCreateChildren('<Panel id="HeroAvatarButtonLineOld1" class="HeroAvatarButtonLine"/>')
+	$("#HeroSelectionPanelNew").BCreateChildren('<Panel id="HeroAvatarButtonLineNew1" class="HeroAvatarButtonLine"/>')
+	for (var sHeroName in tFunHeroInfo) {
+		if (keys.ban_imba_fun_heroes && tFunHeroInfo[sHeroName].bImba) {continue}
+		if (tFunHeroInfo[sHeroName].bOld) {
+			$("#HeroAvatarButtonLineOld"+CurrentOldLine.toString()).BCreateChildren('<Button id="HeroAvatarBtn'+tFunHeroInfo[sHeroName].sCapitalName+'" class="HeroAvatarButton" onactivate="HeroDescription(&quot;'+tFunHeroInfo[sHeroName].sCapitalName+'&quot;, true);"/>') 
+			CurrentOldColumn = CurrentOldColumn+1;
+			if(CurrentOldColumn>4){
+				CurrentOldColumn=1;
+				CurrentOldLine = CurrentOldLine+1;
+				$("#HeroSelectionPanelOld").BCreateChildren('<Panel id="HeroAvatarButtonLineOld'+CurrentOldLine.toString()+'" class="HeroAvatarButtonLine"/>')
+			}
+		}
+		else{
+			$("#HeroAvatarButtonLineNew"+CurrentNewLine.toString()).BCreateChildren('<Button id="HeroAvatarBtn'+tFunHeroInfo[sHeroName].sCapitalName+'" class="HeroAvatarButton" onactivate="HeroDescription(&quot;'+tFunHeroInfo[sHeroName].sCapitalName+'&quot;, true);"/>')
+			CurrentNewColumn = CurrentNewColumn+1;
+			if(CurrentNewColumn>4){
+				CurrentNewColumn=1;
+				CurrentNewLine = CurrentNewLine+1;
+				$("#HeroSelectionPanelNew").BCreateChildren('<Panel id="HeroAvatarButtonLineNew'+CurrentNewLine.toString()+'" class="HeroAvatarButtonLine"/>')
+			}
+		}
+		
+		if (tFunHeroInfo[sHeroName].bNewAvatar) {
+			sAvatarDir="file://{images}/custom_game/loading_screen/npc_dota_hero_"+sHeroName+".png"
+		}
+		else {
+			sAvatarDir="file://{images}/heroes/npc_dota_hero_"+sHeroName+".png"
+		}
+		$("#HeroAvatarBtn"+tFunHeroInfo[sHeroName].sCapitalName).BCreateChildren('<Image id="HeroAvatar'+tFunHeroInfo[sHeroName].sCapitalName+'" class="HeroAvatar" src="'+sAvatarDir+'"/>')
+		$("#HeroAvatarBtn"+tFunHeroInfo[sHeroName].sCapitalName).BCreateChildren('<Panel id="HeroAvatarCover'+tFunHeroInfo[sHeroName].sCapitalName+'" class="HeroAvatarCover"/>')
+		HeroDescriptionInit(tFunHeroInfo[sHeroName].sName, sHeroName, tFunHeroInfo[sHeroName].sCapitalName);
+	}
+	$("#HeroSelectionContainer").visible = true;
+	$("#HeroSelectionPanelOld").visible = true;
+	SelectOldHeroesActivate();
+	bSecondInited = true;
 }
 
 function HeroDescriptionInit(sFunHeroName, sHeroName, sHeroNameCapital) {
@@ -121,8 +153,7 @@ function HeroDescriptionInit(sFunHeroName, sHeroName, sHeroNameCapital) {
 	} 
 //	$("#HeroAbilityContainer"+sHeroNameCapital).BCreateChildren('<Panel id="Talent'+sHeroNameCapital+'" class="TalentBranch"/>')
 	
-	if (tFunHeroScepterInfo){
-//		$.Msg(tFunHeroScepterInfo)
+	if (tFunHeroScepterInfo){ 
 		$(sPanelName).BCreateChildren('<Panel class="HeroScepterInfoContainer" id="HeroScepterInfoContainer'+sHeroNameCapital+'"/>')
 		var i = 1
 		while (tFunHeroScepterInfo[i.toString()]) {
@@ -161,21 +192,32 @@ function HeroDescriptionInit(sFunHeroName, sHeroName, sHeroNameCapital) {
 	$("#HeroUnselection"+sHeroNameCapital).BCreateChildren('<Label id="HeroUnselectionLabel" text="#unselect_hero" />')
 }
 
-function HeroDescription(sPanelID){
-	var hPanel = $(sPanelID)
+function HeroDescription(sPanelIDSuffix, bEmitSound){ 
+	var hPanel = $("#HeroDescriptionPopPanel"+sPanelIDSuffix) 
 	var hContainer = $("#HeroDescriptionPopPanelContainer")
 	var aCursorPosition = GameUI.GetCursorPosition();
-	if (hPanel.style.visibility == 'visible') {
-		hPanel.style.visibility = 'collapse';
-		hContainer.style.visibility = 'collapse';
+	if (hPanel.visible) {
+		hPanel.visible = false;
+		hContainer.visible = false;
 		sActivatingPanel = null;
+		if(bEmitSound) {
+			Game.EmitSound('ui_team_select_cancel_and_lock')
+		}
+		if ($("#HeroAvatarBtn"+sPanelIDSuffix)) {
+			$("#HeroAvatarBtn"+sPanelIDSuffix).RemoveClass('HeroAvatarButtonActive')
+		}
 	}
-	else {		
+	else {
+		HideGameOption(false);
 		if (sActivatingPanel)
-			HeroDescription(sActivatingPanel);
-		hPanel.style.visibility = 'visible';
-		hContainer.style.visibility = 'visible';
-		sActivatingPanel = sPanelID;
+			HeroDescription(sActivatingPanel, false);
+		hPanel.visible = true;
+		hContainer.visible = true;
+		sActivatingPanel = sPanelIDSuffix;
+		Game.EmitSound('ui_team_select_lock_and_start')
+		if ($("#HeroAvatarBtn"+sPanelIDSuffix)) {
+			$("#HeroAvatarBtn"+sPanelIDSuffix).AddClass('HeroAvatarButtonActive')
+		}
 	}
 }
 
@@ -207,5 +249,71 @@ function HeroUnselection(sHeroName, sHeroPart) {
 	$("#HeroAvatarCover"+sSelectingPart).style.visibility = 'collapse';
 	sSelectingPart = null;
 }
+function SelectOldHeroesActivate(){
+	$("#HeroTypeSelectionBtnOld").hittest=false;
+	$("#HeroTypeSelectionBtnOld").AddClass("HeroTypeSelectionBtnActivated");
+	$("#HeroTypeSelectionBtnLabelOld").AddClass("fontcolorwhite2");
+	$("#HeroSelectionPanelOld").visible=true;
+	$("#HeroTypeSelectionBtnNew").hittest=true;
+	$("#HeroTypeSelectionBtnNew").RemoveClass("HeroTypeSelectionBtnActivated");
+	$("#HeroTypeSelectionBtnLabelNew").RemoveClass("fontcolorwhite2");
+	$("#HeroSelectionPanelNew").visible=false;
+}
+function SelectNewHeroesActivate(){
+	$("#HeroTypeSelectionBtnNew").hittest=false;
+	$("#HeroTypeSelectionBtnNew").AddClass("HeroTypeSelectionBtnActivated");
+	$("#HeroTypeSelectionBtnLabelNew").AddClass("fontcolorwhite2");
+	$("#HeroSelectionPanelNew").visible=true;
+	$("#HeroTypeSelectionBtnOld").hittest=true;
+	$("#HeroTypeSelectionBtnOld").RemoveClass("HeroTypeSelectionBtnActivated");
+	$("#HeroTypeSelectionBtnLabelOld").RemoveClass("fontcolorwhite2");
+	$("#HeroSelectionPanelOld").visible=false;
+}
 
-GameEvents.Subscribe( "player_connect_full", HeroDescriptionInitAll);
+function ShowGameOption() {
+	if (sActivatingPanel)
+		HeroDescription(sActivatingPanel, false);
+	$("#ShowGameOptionButton").visible=false;
+	$("#HideGameOptionButton").visible=true;
+	$("#game_options_container").visible=true;
+	Game.EmitSound('ui_team_select_lock_and_start')
+}
+
+function HideGameOption(bEmitSound) {
+	$("#ShowGameOptionButton").visible=true;
+	$("#HideGameOptionButton").visible=false;
+	$("#game_options_container").visible=false;
+	if(bEmitSound){
+		Game.EmitSound('ui_team_select_cancel_and_lock')
+	}
+}
+
+function OnConnectFull(keys) {
+	if (bSecondInited||keys.PlayerID != Game.GetLocalPlayerID()){return}
+	if (CustomNetTables.GetTableValue("game_options", "selection_options")) {
+		InitUISecond(CustomNetTables.GetTableValue("game_options", "selection_options"))
+		return
+	}
+	$("#HeroSelectionOptionContainer").visible=true;
+	if (Game.GetLocalPlayerInfo().player_has_host_privileges) {
+		$("#HeroSelectionOptionContainerWait").visible=false;
+		$("#HeroSelectionOptionPanel").visible=true;
+	}
+	else {
+		$("#HeroSelectionOptionContainerWait").visible=true;
+		$("#HeroSelectionOptionPanel").visible=false;
+	}
+}
+
+function ConfirmHeroSelectionOptionsActivate() {
+	Game.EmitSound('ui_team_select_lock_and_start')
+	var tFunHeroSelectionOptions = {
+		"allow_selection_replicate":$("#allow_selection_replicate").checked,
+		"ban_imba_fun_heroes":$("#ban_imba_fun_heroes").checked
+	}
+	GameEvents.SendCustomGameEventToServer( "net_table_change_value", { "table_name" : "game_options", "table_key" : "selection_options", "table_value":tFunHeroSelectionOptions } );
+	$("#HeroSelectionOptionContainer").visible=false;
+	GameEvents.SendCustomGameEventToAllClients("host_set_hero_selection_option", tFunHeroSelectionOptions)
+}
+GameEvents.Subscribe( "host_set_hero_selection_option", InitUISecond);
+GameEvents.Subscribe( "player_connect_full", OnConnectFull); 

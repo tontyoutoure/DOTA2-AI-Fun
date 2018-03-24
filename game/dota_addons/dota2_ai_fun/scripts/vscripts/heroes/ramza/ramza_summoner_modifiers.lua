@@ -164,14 +164,7 @@ function modifier_ramza_summoner_shiva_slow:GetModifierAttackSpeedBonus_Constant
 end	
 
 function modifier_ramza_summoner_shiva_slow:GetModifierMoveSpeedBonus_Percentage()
-	local fResist
-	if IsClient() then 
-		fResist = -self:GetStackCount()/1000
-	else
-		fResist = CalculateStatusResist(self:GetParent())
-		self:SetStackCount(-fResist*1000)
-	end
-	return -30*fResist
+	return -30
 end
 
 function modifier_ramza_summoner_shiva_slow:GetTexture() return "crystal_maiden_freezing_field_alt1" end
@@ -192,14 +185,7 @@ function modifier_ramza_summoner_golem_slow:GetModifierAttackSpeedBonus_Constant
 end	
 
 function modifier_ramza_summoner_golem_slow:GetModifierMoveSpeedBonus_Percentage()
-	local fResist
-	if IsClient() then 
-		fResist = -self:GetStackCount()/1000
-	else
-		fResist = CalculateStatusResist(self:GetParent())
-		self:SetStackCount(-fResist*1000)
-	end
-	return -50*fResist
+	return -50
 end
 
 function modifier_ramza_summoner_golem_slow:GetTexture() return "granite_golem_bash" end

@@ -96,14 +96,7 @@ function modifier_ramza_samurai_iaido_chirijiraden:OnCreated()
 end
 function modifier_ramza_samurai_iaido_chirijiraden:DeclareFunctions() return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE} end
 function modifier_ramza_samurai_iaido_chirijiraden:GetModifierMoveSpeedBonus_Percentage()
-	local fResist
-	if IsClient() then 
-		fResist = -self:GetStackCount()/1000
-	else
-		fResist = CalculateStatusResist(self:GetParent())
-		self:SetStackCount(-fResist*1000)
-	end
-	return -50*fResist
+	return -50
 end
 function modifier_ramza_samurai_iaido_chirijiraden:OnIntervalThink()
 	local hParent=self:GetParent()

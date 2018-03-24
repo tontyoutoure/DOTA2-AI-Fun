@@ -1,34 +1,19 @@
 modifier_intimidator_glare_lua = class({})
-
-function modifier_intimidator_glare_lua:IsDebuff()
-	return true
-end
-
 function modifier_intimidator_glare_lua:DeclareFunctions()
-	local func = {
+	return {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, 
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
-	return func
 end
 
 function modifier_intimidator_glare_lua:GetModifierAttackSpeedBonus_Constant()
 	return self:GetAbility():GetSpecialValueFor("attack")
 end
-
-function modifier_intimidator_glare_lua:GetModifierMoveSpeedBonus_Percentage()
-	local fResist
-	if IsClient() then 
-		fResist = -self:GetStackCount()/1000
-	else
-		fResist = CalculateStatusResist(self:GetParent())
-		self:SetStackCount(-fResist*1000)
-	end
-	self.fSlow = self.fSlow or self:GetAbility():GetSpecialValueFor("movement_percentage")
-	return fResist*self.fSlow
+function modifier_intimidator_glare_lua:OnRefresh()
+	self.fSlow = self:GetAbility():GetSpecialValueFor("movement_percentage")
 end
-
-function modifier_intimidator_glare_lua:GetTexture()
-	return "intimidator_glare"
+function modifier_intimidator_glare_lua:GetModifierMoveSpeedBonus_Percentage()
+	self.fSlow = self.fSlow or self:GetAbility():GetSpecialValueFor("movement_percentage")
+	return self.fSlow
 end
 
 function modifier_intimidator_glare_lua:OnCreated()	
@@ -71,8 +56,7 @@ function modifier_intimidator_glare_lua:OnDestroy()
 	if not parent:IsHero() then return end
 	parent:SetBaseStrength(self.originalStr-self.str+parent:GetBaseStrength())
 	parent:SetBaseAgility(self.originalAgi-self.agi+parent:GetBaseAgility())
-	parent:SetBaseIntellect(self.originalInt-self.int+parent:GetBaseIntellect())
-		
+	parent:SetBaseIntellect(self.originalInt-self.int+parent:GetBaseIntellect())		
 end
 
 
@@ -237,7 +221,7 @@ function modifier_intimidator_be_my_friend_lua:OnDestroy()
 	for i, v in pairs(self:GetAbility().tModifiers) do
 		if v == self then
 			ParticleManager:DestroyParticle(self:GetAbility().tParticles[i], false)
-			print(self:GetAbility().tParticles[i])
+
 			table.remove(self:GetAbility().tParticles, i)
 			table.remove(self:GetAbility().tModifiers, i)
 		end

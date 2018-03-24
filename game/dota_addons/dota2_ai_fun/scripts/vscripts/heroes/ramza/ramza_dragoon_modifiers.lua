@@ -142,16 +142,10 @@ function modifier_ramza_dragoon_jump_slow:IsHidden() return false end
 function modifier_ramza_dragoon_jump_slow:IsPurgable() return true end
 function modifier_ramza_dragoon_jump_slow:GetTexture() return "brewmaster_storm_wind_walk" end
 function modifier_ramza_dragoon_jump_slow:GetModifierMoveSpeedBonus_Percentage() 
-	local fResist
-	if IsClient() then 
-		fResist = -self:GetStackCount()/1000
-	else
-		fResist = CalculateStatusResist(self:GetParent())
-		self:SetStackCount(-fResist*1000)
-	end
 	self.fSlow = self.fSlow or self:GetAbility():GetSpecialValueFor("move_slow")
-	return fResist*self.fSlow
+	return self.fSlow
 end
+function modifier_ramza_dragoon_jump_slow:OnRefresh() self.fSlow = self:GetAbility():GetSpecialValueFor("move_slow") end
 function modifier_ramza_dragoon_jump_slow:GetStatusEffectName() return "particles/status_fx/status_effect_brewmaster_thunder_clap.vpcf" end
 
 

@@ -32,5 +32,5 @@ end
 function telekenetic_blob_catapult:OnSpellStart()
 	local caster = self:GetCaster()
 	local markedTarget = TelekeneticBlobGetMarkedTarget(caster)
-	markedTarget:AddNewModifier(caster, self, "telekenetic_blob_catapult_modifier", {})
+	markedTarget:AddNewModifier(caster, self, "telekenetic_blob_catapult_modifier", {Duration = self:GetSpecialValueFor("fly_duration")})
 end

@@ -73,3 +73,6 @@ function telekenetic_blob_sling_knockback_modifier:UpdateHorizontalMotion(me, dt
         end
 	end
 end
+function telekenetic_blob_sling_knockback_modifier:OnHorizontalMotionInterrupted()
+	self:Destroy()
+end

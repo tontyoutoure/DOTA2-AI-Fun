@@ -2,6 +2,7 @@
 	
 	<styles>
 		<include src="file://{resources}/styles/custom_game/custom_loading_screen.css" />
+		<include src="file://{resources}/styles/custom_game/hero_selection.css" />
 	<include src="file://{resources}/styles/dotastyles.css" />
 	</styles>
 	<scripts>
@@ -13,307 +14,221 @@
 			<Panel id="game_options_container" >
 				<Panel id = "GameOptionsPanel">
 					<Label id="GameOptionsPanelTitle" text="#addon_option_title" />
-					<Panel id="RadiantGoldMultiplierPanel"	class="GameOptionsSubPanel">
-						<Label id="RadiantGoldMultiplierTitle" class="GameOptionsLabel" text="#radiant_gold_multiplier" />
-						<DropDown id="radiant_gold_multiplier_dropdown" class="GameOptionsDropdown">
-							<Label text="1" id="1" />
-							<Label text="1.5" id="1.5"/>
-							<Label text="2" id="2"/>
-							<Label text="2.5" id="2.5"	/>
-							<Label text="3" id="3"/>
-							<Label text="3.5" id="3.5"/>
-							<Label text="4" id="4"/>
-							<Label text="4.5" id="4.5"/>
-							<Label text="5" id="5"/>
-						</DropDown>				
+					<Panel id="GameOptionSubpanelContainerOuter">
+						<Panel id="GameOptionSubpanelContainerInner">
+							<Panel id="RadiantGoldMultiplierPanel"	class="GameOptionsSubPanel">
+								<Label id="RadiantGoldMultiplierTitle" class="GameOptionsLabel" text="#radiant_gold_multiplier" />
+								<DropDown id="radiant_gold_multiplier_dropdown" class="GameOptionsDropdown">
+									<Label text="1" id="1" />
+									<Label text="1.5" id="1.5"/>
+									<Label text="2" id="2"/>
+									<Label text="2.5" id="2.5"	/>
+									<Label text="3" id="3"/>
+									<Label text="3.5" id="3.5"/>
+									<Label text="4" id="4"/>
+									<Label text="4.5" id="4.5"/>
+									<Label text="5" id="5"/>
+								</DropDown>				
+							</Panel>
+							<Panel id="DireGoldMultiplierPanel"	class="GameOptionsSubPanel">
+								<Label id="DireGoldMultiplierTitle" class="GameOptionsLabel" text="#dire_gold_multiplier" />
+								<DropDown id="dire_gold_multiplier_dropdown" class="GameOptionsDropdown">
+									<Label text="1" id="1" />
+									<Label text="1.5" id="1.5"/>
+									<Label text="2" id="2"/>
+									<Label text="2.5" id="2.5"	/>
+									<Label text="3" id="3"/>
+									<Label text="3.5" id="3.5"/>
+									<Label text="4" id="4"/>
+									<Label text="4.5" id="4.5"/>
+									<Label text="5" id="5"/>
+								</DropDown>				
+							</Panel>
+							<Panel id="RadiantXPMultiplierPanel"	class="GameOptionsSubPanel">
+								<Label id="RadiantXPMultiplierTitle" class="GameOptionsLabel" text="#radiant_xp_multiplier" />
+								<DropDown id="radiant_xp_multiplier_dropdown" class="GameOptionsDropdown">
+									<Label text="1" id="1" />
+									<Label text="1.5" id="1.5"/>
+									<Label text="2" id="2"/>
+									<Label text="2.5" id="2.5"	/>
+									<Label text="3" id="3"/>
+									<Label text="3.5" id="3.5"/>
+									<Label text="4" id="4"/>
+									<Label text="4.5" id="4.5"/>
+									<Label text="5" id="5"/>
+								</DropDown>				
+							</Panel>
+							<Panel id="DireXPMultiplierPanel"	class="GameOptionsSubPanel">
+								<Label id="DireXPMultiplierTitle" class="GameOptionsLabel" text="#dire_xp_multiplier" />
+								<DropDown id="dire_xp_multiplier_dropdown" class="GameOptionsDropdown">
+									<Label text="1" id="1" />
+									<Label text="1.5" id="1.5"/>
+									<Label text="2" id="2"/>
+									<Label text="2.5" id="2.5"	/>
+									<Label text="3" id="3"/>
+									<Label text="3.5" id="3.5"/>
+									<Label text="4" id="4"/>
+									<Label text="4.5" id="4.5"/>
+									<Label text="5" id="5"/>
+								</DropDown>				
+							</Panel>
+							<Panel id="RadiantPlayerNumberMultiplierPanel"	class="GameOptionsSubPanel">
+								<Label id="RadiantPlayerNumberMultiplierTitle" class="GameOptionsLabel" text="#radiant_player_number" />
+								<DropDown id="radiant_player_number_dropdown" class="GameOptionsDropdown">
+									<Label text="10" id="10" />
+									<Label text="9" id="9"/>
+									<Label text="8" id="8"/>
+									<Label text="7" id="7"	/>
+									<Label text="6" id="6"/>
+									<Label text="5" id="5"/>
+									<Label text="4" id="4"/>
+									<Label text="3" id="3"/>
+									<Label text="2" id="2"/>
+									<Label text="1" id="1"/>
+								</DropDown>				
+							</Panel>
+							<Panel id="DirePlayerNumberMultiplierPanel"	class="GameOptionsSubPanel">
+								<Label id="DirePlayerNumberMultiplierTitle" class="GameOptionsLabel" text="#dire_player_number" />
+								<DropDown id="dire_player_number_dropdown" class="GameOptionsDropdown">
+									<Label text="10" id="10" />
+									<Label text="9" id="9"/>
+									<Label text="8" id="8"/>
+									<Label text="7" id="7"/>
+									<Label text="6" id="6"/>
+									<Label text="5" id="5"/>
+									<Label text="4" id="4"/>
+									<Label text="3" id="3"/>
+									<Label text="2" id="2"/>
+									<Label text="1" id="1"/>
+								</DropDown>				
+							</Panel>
+							<Panel id="RespawnTimePercentagePanel"	class="GameOptionsSubPanel">
+								<Label id="RespawnTimePercentagePanelTitle" class="GameOptionsLabel" text="#respawn_time_percentage" />
+								<DropDown id="respawn_time_percentage_dropdown" class="GameOptionsDropdown">
+									<Label text="100%" id="100" />
+									<Label text="70%" id="70"/>
+									<Label text="40%" id="40"/>
+									<Label text="10%" id="10"/>
+									<Label text="7%" id="7"/>
+									<Label text="4%" id="4"/>
+									<Label text="1%" id="1"/>
+									<Label text="0%" id="0"/>
+								</DropDown>				
+							</Panel>
+							<Panel id="MaxLevelPanel"	class="GameOptionsSubPanel">
+								<Label id="MaxLevelTitle" class="GameOptionsLabel" text="#max_level" />
+								<DropDown id="max_level_dropdown" class="GameOptionsDropdown">
+									<Label text="25" id="25" />
+									<Label text="50" id="50"/>
+									<Label text="100" id="100"/>
+									<Label text="200" id="200"/>
+									<Label text="400" id="400"/>
+									<Label text="800" id="800"/>
+									<Label text="1600" id="1600"/>
+								</DropDown>				
+							</Panel>	
+							<Panel id="TowerPowerPanel"	class="GameOptionsSubPanel">
+								<Label id="TowerPowerTitle" class="GameOptionsLabel" text="#tower_power" />
+								<DropDown id="tower_power_dropdown" class="GameOptionsDropdown">
+									<Label text="1" id="1" />
+									<Label text="2" id="2"/>
+									<Label text="3" id="3"/>
+									<Label text="4" id="4"/>
+									<Label text="5" id="5"/>
+									<Label text="6" id="6"/>
+									<Label text="7" id="7"/>
+									<Label text="8" id="8"/>
+									<Label text="9" id="9"/>
+									<Label text="10" id="10"/>
+								</DropDown>				
+							</Panel>		
+							<Panel id="TowerEndurePanel"	class="GameOptionsSubPanel">
+								<Label id="TowerEndureTitle" class="GameOptionsLabel" text="#tower_endure" />
+								<DropDown id="tower_endure_dropdown" class="GameOptionsDropdown">
+									<Label text="1" id="1" />
+									<Label text="2" id="2"/>
+									<Label text="3" id="3"/>
+									<Label text="4" id="4"/>
+									<Label text="5" id="5"/>
+									<Label text="6" id="6"/>
+									<Label text="7" id="7"/>
+									<Label text="8" id="8"/>
+									<Label text="9" id="9"/>
+									<Label text="10" id="10"/>
+								</DropDown>				
+							</Panel>			
+							<Panel id="ImbalancedEconomizerPanel"	class="GameOptionsSubPanel">
+								<Label id="ImbalancedEconomizerTitle" class="GameOptionsLabel" text="#imbalanced_economizer" />
+								<ToggleButton checked="true" class="GameOptionsToggle" id="imbalanced_economizer"/>		
+							</Panel>
+							<Panel id="BotAttackTowerPickRunePanel"	class="GameOptionsSubPanel">
+								<Label id="BotAttackTowerPickRuneTitle" class="GameOptionsLabel" text="#bot_attack_tower_pick_rune" />
+								<ToggleButton checked="true" class="GameOptionsToggle" id="bot_attack_tower_pick_rune"/>		
+							</Panel>
+							<Panel id="BotHaveFunItemPanel"	class="GameOptionsSubPanel">
+								<Label id="BotHaveFunItemTitle" class="GameOptionsLabel" text="#bot_has_fun_item" />
+								<ToggleButton checked="true" class="GameOptionsToggle" id="bot_has_fun_item"/>		
+							</Panel>
+							<Panel id="UniversalShopPanel"	class="GameOptionsSubPanel">
+								<Label id="UniversalShopTitle" class="GameOptionsLabel" text="#universal_shop" />
+								<ToggleButton checked="true" class="GameOptionsToggle" id="universal_shop"/>		
+							</Panel>
+						</Panel>
+						<Button id="GameOptionHider" />
 					</Panel>
-					<Panel id="DireGoldMultiplierPanel"	class="GameOptionsSubPanel">
-						<Label id="DireGoldMultiplierTitle" class="GameOptionsLabel" text="#dire_gold_multiplier" />
-						<DropDown id="dire_gold_multiplier_dropdown" class="GameOptionsDropdown">
-							<Label text="1" id="1" />
-							<Label text="1.5" id="1.5"/>
-							<Label text="2" id="2"/>
-							<Label text="2.5" id="2.5"	/>
-							<Label text="3" id="3"/>
-							<Label text="3.5" id="3.5"/>
-							<Label text="4" id="4"/>
-							<Label text="4.5" id="4.5"/>
-							<Label text="5" id="5"/>
-						</DropDown>				
-					</Panel>
-					<Panel id="RadiantXPMultiplierPanel"	class="GameOptionsSubPanel">
-						<Label id="RadiantXPMultiplierTitle" class="GameOptionsLabel" text="#radiant_xp_multiplier" />
-						<DropDown id="radiant_xp_multiplier_dropdown" class="GameOptionsDropdown">
-							<Label text="1" id="1" />
-							<Label text="1.5" id="1.5"/>
-							<Label text="2" id="2"/>
-							<Label text="2.5" id="2.5"	/>
-							<Label text="3" id="3"/>
-							<Label text="3.5" id="3.5"/>
-							<Label text="4" id="4"/>
-							<Label text="4.5" id="4.5"/>
-							<Label text="5" id="5"/>
-						</DropDown>				
-					</Panel>
-					<Panel id="DireXPMultiplierPanel"	class="GameOptionsSubPanel">
-						<Label id="DireXPMultiplierTitle" class="GameOptionsLabel" text="#dire_xp_multiplier" />
-						<DropDown id="dire_xp_multiplier_dropdown" class="GameOptionsDropdown">
-							<Label text="1" id="1" />
-							<Label text="1.5" id="1.5"/>
-							<Label text="2" id="2"/>
-							<Label text="2.5" id="2.5"	/>
-							<Label text="3" id="3"/>
-							<Label text="3.5" id="3.5"/>
-							<Label text="4" id="4"/>
-							<Label text="4.5" id="4.5"/>
-							<Label text="5" id="5"/>
-						</DropDown>				
-					</Panel>
-					<Panel id="RadiantPlayerNumberMultiplierPanel"	class="GameOptionsSubPanel">
-						<Label id="RadiantPlayerNumberMultiplierTitle" class="GameOptionsLabel" text="#radiant_player_number" />
-						<DropDown id="radiant_player_number_dropdown" class="GameOptionsDropdown">
-							<Label text="10" id="10" />
-							<Label text="9" id="9"/>
-							<Label text="8" id="8"/>
-							<Label text="7" id="7"	/>
-							<Label text="6" id="6"/>
-							<Label text="5" id="5"/>
-							<Label text="4" id="4"/>
-							<Label text="3" id="3"/>
-							<Label text="2" id="2"/>
-							<Label text="1" id="1"/>
-						</DropDown>				
-					</Panel>
-					<Panel id="DirePlayerNumberMultiplierPanel"	class="GameOptionsSubPanel">
-						<Label id="DirePlayerNumberMultiplierTitle" class="GameOptionsLabel" text="#dire_player_number" />
-						<DropDown id="dire_player_number_dropdown" class="GameOptionsDropdown">
-							<Label text="10" id="10" />
-							<Label text="9" id="9"/>
-							<Label text="8" id="8"/>
-							<Label text="7" id="7"/>
-							<Label text="6" id="6"/>
-							<Label text="5" id="5"/>
-							<Label text="4" id="4"/>
-							<Label text="3" id="3"/>
-							<Label text="2" id="2"/>
-							<Label text="1" id="1"/>
-						</DropDown>				
-					</Panel>
-					<Panel id="RespawnTimePercentagePanel"	class="GameOptionsSubPanel">
-						<Label id="RespawnTimePercentagePanelTitle" class="GameOptionsLabel" text="#respawn_time_percentage" />
-						<DropDown id="respawn_time_percentage_dropdown" class="GameOptionsDropdown">
-							<Label text="100%" id="100" />
-							<Label text="70%" id="70"/>
-							<Label text="40%" id="40"/>
-							<Label text="10%" id="10"/>
-							<Label text="7%" id="7"/>
-							<Label text="4%" id="4"/>
-							<Label text="1%" id="1"/>
-							<Label text="0%" id="0"/>
-						</DropDown>				
-					</Panel>
-					<Panel id="MaxLevelPanel"	class="GameOptionsSubPanel">
-						<Label id="MaxLevelTitle" class="GameOptionsLabel" text="#max_level" />
-						<DropDown id="max_level_dropdown" class="GameOptionsDropdown">
-							<Label text="25" id="25" />
-							<Label text="50" id="50"/>
-							<Label text="100" id="100"/>
-							<Label text="200" id="200"/>
-							<Label text="400" id="400"/>
-							<Label text="800" id="800"/>
-							<Label text="1600" id="1600"/>
-						</DropDown>				
-					</Panel>	
-					<Panel id="TowerPowerPanel"	class="GameOptionsSubPanel">
-						<Label id="TowerPowerTitle" class="GameOptionsLabel" text="#tower_power" />
-						<DropDown id="tower_power_dropdown" class="GameOptionsDropdown">
-							<Label text="1" id="1" />
-							<Label text="2" id="2"/>
-							<Label text="3" id="3"/>
-							<Label text="4" id="4"/>
-							<Label text="5" id="5"/>
-							<Label text="6" id="6"/>
-							<Label text="7" id="7"/>
-							<Label text="8" id="8"/>
-							<Label text="9" id="9"/>
-							<Label text="10" id="10"/>
-						</DropDown>				
-					</Panel>		
-					<Panel id="TowerEndurePanel"	class="GameOptionsSubPanel">
-						<Label id="TowerEndureTitle" class="GameOptionsLabel" text="#tower_endure" />
-						<DropDown id="tower_endure_dropdown" class="GameOptionsDropdown">
-							<Label text="1" id="1" />
-							<Label text="2" id="2"/>
-							<Label text="3" id="3"/>
-							<Label text="4" id="4"/>
-							<Label text="5" id="5"/>
-							<Label text="6" id="6"/>
-							<Label text="7" id="7"/>
-							<Label text="8" id="8"/>
-							<Label text="9" id="9"/>
-							<Label text="10" id="10"/>
-						</DropDown>				
-					</Panel>			
-					<Panel id="ImbalancedEconomizerPanel"	class="GameOptionsSubPanel">
-						<Label id="ImbalancedEconomizerTitle" class="GameOptionsLabel" text="#imbalanced_economizer" />
-						<ToggleButton checked="true" class="GameOptionsToggle" id="imbalanced_economizer"/>		
-					</Panel>
-					<Panel id="BotAttackTowerPickRunePanel"	class="GameOptionsSubPanel">
-						<Label id="BotAttackTowerPickRuneTitle" class="GameOptionsLabel" text="#bot_attack_tower_pick_rune" />
-						<ToggleButton checked="true" class="GameOptionsToggle" id="bot_attack_tower_pick_rune"/>		
-					</Panel>
-					<Panel id="BotHaveFunItemPanel"	class="GameOptionsSubPanel">
-						<Label id="BotHaveFunItemTitle" class="GameOptionsLabel" text="#bot_has_fun_item" />
-						<ToggleButton checked="true" class="GameOptionsToggle" id="bot_has_fun_item"/>		
-					</Panel>
-					<Panel id="UniversalShopPanel"	class="GameOptionsSubPanel">
-						<Label id="UniversalShopTitle" class="GameOptionsLabel" text="#universal_shop" />
-						<ToggleButton checked="true" class="GameOptionsToggle" id="universal_shop"/>		
-					</Panel>
-					<Button id="ConfirmOptionsBtn" onactivate="set_game_options();">
-						<Label id="ConfirmOptionsBtnLabel" text="#confirm_game_options" />
+					<Button id="LockOptionsBtn" class="GameOptionButton" onactivate="LockGameOptions();">
+						<Label id="LockOptionsBtnLabel" text="#lock_game_options" />
+					</Button>
+					<Button id="UnlockOptionsBtn" class="GameOptionButton" onactivate="UnlockGameOptions();">
+						<Label id="UnlockOptionsBtnLabel" text="#unlock_game_options" />
 					</Button>
 				</Panel>
 			</Panel>
-			<Panel id="HeroDescriptionContainer">
-				<Label id="HeroDescriptionTitle" text="#hero_selection_title"/>
-				<Panel id="HeroDescriptionPanel">	
-					<Panel id="HeroAvatarButtonLine1" class="HeroAvatarButtonLine">
-						<Button id="HeroAvatarBtnShadowDemon" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelShadowDemon&quot;);">
-							<Image id="HeroAvatarShadowDemon" class="HeroAvatar" src="file://{images}/custom_game/loading_screen/npc_dota_hero_shadow_demon.png" />
-							<Panel id="HeroAvatarCoverShadowDemon" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnTreant" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelTreant&quot;);"> 
-							<Image id="HeroAvatarTreant" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_treant.png" />
-							<Panel id="HeroAvatarCoverTreant" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnTechies" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelTechies&quot;);"> 
-							<Image id="HeroAvatarTechies" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_techies.png" />
-							<Panel id="HeroAvatarCoverTechies" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnNightStalker" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelNightStalker&quot;);"> 
-							<Image id="HeroAvatarNightStalker" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_night_stalker.png" />
-							<Panel id="HeroAvatarCoverNightStalker" class="HeroAvatarCover"/>
-						</Button>
+			<Panel id="HeroSelectionOptionContainer">
+				<Label id="HeroSelectionOptionContainerTitle" text="#hero_selection_mode_title" />
+				<Label id="HeroSelectionOptionContainerWait" text="#wait_for_host" />
+				<Panel id="HeroSelectionOptionPanel">		
+					<Panel id="AllowSelectionDupulicatePanel"	class="GameOptionsSubPanel">
+						<Label id="AllowSelectionDupulicateTitle" class="HeroSelectionOptionLabel" text="#allow_selection_replicate" />
+						<ToggleButton checked="true" class="HeroSelectionOptionToggle" id="allow_selection_replicate"/>		
 					</Panel>
-					<Panel id="HeroAvatarButtonLine2" class="HeroAvatarButtonLine">
-						<Button id="HeroAvatarBtnSpiritBreaker" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelSpiritBreaker&quot;);"> 
-							<Image id="HeroAvatarSpiritBreaker" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_spirit_breaker.png" />
-							<Panel id="HeroAvatarCoverSpiritBreaker" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnTinker" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelTinker&quot;);"> 
-							<Image id="HeroAvatarTinker" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_tinker.png" />
-							<Panel id="HeroAvatarCoverTinker" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnVisage" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelVisage&quot;);"> 
-							<Image id="HeroAvatarVisage" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_visage.png" />
-							<Panel id="HeroAvatarCoverVisage" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnArcWarden" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelArcWarden&quot;);">
-							<Image id="HeroAvatarArcWarden" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_arc_warden.png" />
-							<Panel id="HeroAvatarCoverArcWarden" class="HeroAvatarCover"/>
-						</Button>
+					<Panel id="BanImbaFunHeroesPanel" class="GameOptionsSubPanel">
+						<Label id="BanImbaFunHeroesTitle" class="HeroSelectionOptionLabel" text="#ban_imba_fun_heroes" />
+						<ToggleButton checked="true" class="HeroSelectionOptionToggle" id="ban_imba_fun_heroes"/>		
 					</Panel>
-					<Panel id="HeroAvatarButtonLine3" class="HeroAvatarButtonLine">
-						<Button id="HeroAvatarBtnWisp" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelWisp&quot;);">
-							<Image id="HeroAvatarWisp" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_wisp.png" />
-							<Panel id="HeroAvatarCoverWisp" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnBeastmaster" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelBeastmaster&quot;);"> 
-							<Image id="HeroAvatarBeastmaster" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_beastmaster.png" />
-							<Panel id="HeroAvatarCoverBeastmaster" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnEnigma" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelEnigma&quot;);">
-							<Image id="HeroAvatarEnigma" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_enigma.png" />
-							<Panel id="HeroAvatarCoverEnigma" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnDragonKnight" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelDragonKnight&quot;);">
-							<Image id="HeroAvatarDragonKnight" class="HeroAvatar" src="file://{images}/custom_game/ramza/ramza.png" />
-							<Panel id="HeroAvatarCoverDragonKnight" class="HeroAvatarCover"/>
-						</Button>
-					</Panel>
-					
-					<Panel id="HeroAvatarButtonLine4" class="HeroAvatarButtonLine">
-						<Button id="HeroAvatarBtnOracle" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelOracle&quot;);"> 
-							<Image id="HeroAvatarOracle" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_oracle.png" />
-							<Panel id="HeroAvatarCoverOracle" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnWindrunner" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelWindrunner&quot;);"> 
-							<Image id="HeroAvatarWindrunner" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_windrunner.png" />
-							<Panel id="HeroAvatarCoverWindrunner" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnSven" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelSven&quot;);"> 
-							<Image id="HeroAvatarSven" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_sven.png" />
-							<Panel id="HeroAvatarCoverSven" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnPugna" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelPugna&quot;);"> 
-							<Image id="HeroAvatarPugna" class="HeroAvatar" src="file://{images}/custom_game/loading_screen/npc_dota_hero_pugna.png" />
-							<Panel id="HeroAvatarCoverPugna" class="HeroAvatarCover"/>
-						</Button>
-					</Panel>
-					<Panel id="HeroAvatarButtonLine5" class="HeroAvatarButtonLine">
-						<Button id="HeroAvatarBtnDisruptor" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelDisruptor&quot;);"> 
-							<Image id="HeroAvatarDisruptor" class="HeroAvatar" src="file://{images}/custom_game/npc_dota_hero_disruptor.png" />
-							<Panel id="HeroAvatarCoverDisruptor" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnNevermore" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelNevermore&quot;);"> 
-							<Image id="HeroAvatarNevermore" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_nevermore.png" />
-							<Panel id="HeroAvatarCoverNevermore" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnOmniknight" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelOmniknight&quot;);"> 
-							<Image id="HeroAvatarOmniknight" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_omniknight.png" />
-							<Panel id="HeroAvatarCoverOmniknight" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnMeepo" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelMeepo&quot;);"> 
-							<Image id="HeroAvatarMeepo" class="HeroAvatar" src="file://{images}/custom_game/npc_dota_hero_meepo.png" />
-							<Panel id="HeroAvatarCoverMeepo" class="HeroAvatarCover"/>
-						</Button>
-					</Panel>
-					<Panel id="HeroAvatarButtonLine6" class="HeroAvatarButtonLine">
-						<Button id="HeroAvatarBtnTusk" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelTusk&quot;);"> 
-							<Image id="HeroAvatarTusk" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_tusk.png" />
-							<Panel id="HeroAvatarCoverTusk" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnJuggernaut" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelJuggernaut&quot;);"> 
-							<Image id="HeroAvatarJuggernaut" class="HeroAvatar" src="file://{images}/custom_game/npc_dota_hero_juggernaut.png" />
-							<Panel id="HeroAvatarCoverJuggernaut" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnRubick" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelRubick&quot;);"> 
-							<Image id="HeroAvatarRubick" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_rubick.png" />
-							<Panel id="HeroAvatarCoverRubick" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnLifeStealer" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelLifeStealer&quot;);"> 
-							<Image id="HeroAvatarLifeStealer" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_life_stealer.png" />
-							<Panel id="HeroAvatarCoverLifeStealer" class="HeroAvatarCover"/>
-						</Button>
-					</Panel>					
-					<Panel id="HeroAvatarButtonLine7" class="HeroAvatarButtonLine">
-						<Button id="HeroAvatarBtnChaosKnight" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelChaosKnight&quot;);"> 
-							<Image id="HeroAvatarChaosKnight" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_chaos_knight.png" />
-							<Panel id="HeroAvatarCoverChaosKnight" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnSkywrathMage" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelSkywrathMage&quot;);"> 
-							<Image id="HeroAvatarSkywrathMage" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_skywrath_mage.png" />
-							<Panel id="HeroAvatarCoverSkywrathMage" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnWarlock" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelWarlock&quot;);"> 
-							<Image id="HeroAvatarWarlock" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_warlock.png" />
-							<Panel id="HeroAvatarCoverWarlock" class="HeroAvatarCover"/>
-						</Button>
-						<Button id="HeroAvatarBtnKeeperOfTheLight" class="HeroAvatarButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelKeeperOfTheLight&quot;);"> 
-							<Image id="HeroAvatarKeeperOfTheLight" class="HeroAvatar" src="file://{images}/heroes/npc_dota_hero_keeper_of_the_light.png" />
-							<Panel id="HeroAvatarCoverKeeperOfTheLight" class="HeroAvatarCover"/>
-						</Button>
-					</Panel>
-					<Button id="JoinUsButton" onactivate="HeroDescription(&quot;#HeroDescriptionPopPanelJoinUs&quot;);">				
-						<Label id="JoinUsButtonLabel" text="#join_us_title" />
+					<Button id="ConfirmHeroSelectionOptionsBtn" class="MiddleLargeButton" onactivate="ConfirmHeroSelectionOptionsActivate();">
+						<Label id="ConfirmHeroSelectionOptionsLabel" text="#hero_selection_option_confim" />
 					</Button>
 				</Panel>
-				
-				
+			</Panel>
+			<Panel id="HeroSelectionContainer">
+				<Label id="HeroSelectionTitle" text="#hero_selection_title"/>
+				<Panel id="HeroTypeSelectionBtnContainer">			
+				<Button class="HeroTypeSelectionBtn" id="HeroTypeSelectionBtnOld" onmouseover="DOTAShowTextTooltip(#select_old_heroes_tooltip); AddStyleToEachChild(fontcolorwhite1)" onmouseout='DOTAHideTextTooltip();RemoveStyleFromEachChild(fontcolorwhite1)' onactivate="SelectOldHeroesActivate()">				
+					<Label class="HeroTypeSelectionBtnLabel" id="HeroTypeSelectionBtnLabelOld" text="#select_old_heroes"/>
+				</Button>			
+				<Button class="HeroTypeSelectionBtn" id="HeroTypeSelectionBtnNew" onmouseover="DOTAShowTextTooltip(#select_new_heroes_tooltip); AddStyleToEachChild(fontcolorwhite1)" onmouseout='DOTAHideTextTooltip();RemoveStyleFromEachChild(fontcolorwhite1)' onactivate="SelectNewHeroesActivate()">				
+					<Label class="HeroTypeSelectionBtnLabel"  id="HeroTypeSelectionBtnLabelNew" text="#select_new_heroes" />
+				</Button>
+				</Panel>				
+				<Panel id="HeroSelectionPanelContainer">
+					<Panel id="HeroSelectionPanelOld" class="HeroSelectionPanel">
+					</Panel>				
+					<Panel id="HeroSelectionPanelNew" class="HeroSelectionPanel">
+					</Panel>				
+				</Panel>		
+				<Button id="ShowGameOptionButton" class="MiddleLargeButton" onactivate="ShowGameOption();">				
+					<Label id="ShowGameOptionButtonLabel" text="#show_game_options" />
+				</Button>
+				<Button id="HideGameOptionButton" class="MiddleLargeButton" onactivate="HideGameOption(true);">				
+					<Label id="HideGameOptionButtonLabel" text="#hide_game_options" />
+				</Button>			
+				<Button id="JoinUsButton" class="MiddleLargeButton" onactivate="HeroDescription(&quot;JoinUs&quot;, true);">				
+					<Label id="JoinUsButtonLabel" text="#join_us_title" />
+				</Button>	
 			</Panel>
 			<Panel id="HeroDescriptionPopPanelContainer">
-				<Panel id="HeroDescriptionPopPanelJoinUs" class = "HeroDescriptionPopPanelTop">
+				<Panel id="HeroDescriptionPopPanelJoinUs" class = "HeroDescriptionPopPanelTop"> 
 					<Label id="HeroNameJoinUs" class="HeroName" text="#join_us_title"/>
 					<Label id="HeroBioJoinUs" class="HeroBio" text="#join_us"/>
 					<Button id="DiscordChannelButton" onactivate="DOTADisplayURL('https://discord.gg/h847NwE');">				
@@ -321,7 +236,7 @@
 					</Button>
 				</Panel>			
 			</Panel>		
-			<Panel id="ChatHideButtonContainer" hittest="false">
+			<Panel id="ChatHideButtonContainer">
 				<Button id="ChatHideButtonHide" class="ChatHideButton" onactivate="HideChatTeamActivate()">
 					<Label id="ChatHideButtonLabelHide" class="ChatHideButtonLabel" text="#hide_chat_team" />
 				</Button>
@@ -329,9 +244,6 @@
 					<Label id="ChatHideButtonLabelShow" class="ChatHideButtonLabel" text="#show_chat_team" />
 				</Button>
 			</Panel>
-			<Button id="GameOptionShowButton" onactivate="ShowGameOptions()">
-				<Label id="GameOptionShowButtonLabel" text="show_game_options" />
-			</Button>
 		</Panel>
 	</Panel>
 </root>
