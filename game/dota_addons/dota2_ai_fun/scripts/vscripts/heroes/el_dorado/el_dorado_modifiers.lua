@@ -1,5 +1,4 @@
 modifier_el_dorado_refine_weapons = class({})
-
 function modifier_el_dorado_refine_weapons:IsHidden() return false end
 function modifier_el_dorado_refine_weapons:IsPurgable() return false end
 function modifier_el_dorado_refine_weapons:RemoveOnDeath() return false end
@@ -15,7 +14,7 @@ function modifier_el_dorado_refine_weapons:OnIntervalThink()
 	local hParent = self:GetParent()
 	if hParent:PassivesDisabled() then return end
 	local hAbility = self:GetAbility()
-	for i = 0, 8 do
+	for i = 0, 5 do
 		if hParent:GetItemInSlot(i) then
 			tItems[hParent:GetItemInSlot(i):GetName()] = true
 		end

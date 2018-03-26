@@ -141,7 +141,7 @@
 		"AbilityCooldown"	"10"
 		"AbilityManaCost"	"0"
 		"AbilityCastRange"	"800"
-		"AbilityCastRangeBuffer"	"100"
+		"AbilityCastRangeBuffer"	"200"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -173,7 +173,7 @@
 		"AbilityCooldown"	"10"
 		"AbilityManaCost"	"0"
 		"AbilityCastRange"	"800"
-		"AbilityCastRangeBuffer"	"100"
+		"AbilityCastRangeBuffer"	"200"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -207,7 +207,7 @@
 		"AbilityCooldown"	"20"
 		"AbilityManaCost"	"0"
 		"AbilityCastRange"	"800"
-		"AbilityCastRangeBuffer"	"100"
+		"AbilityCastRangeBuffer"	"200"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -352,7 +352,7 @@
 		"AbilityCooldown"	"60"
 		"AbilityManaCost"	"0"
 		"AbilityCastRange"	"800"
-		"AbilityCastRangeBuffer"	"100"
+		"AbilityCastRangeBuffer"	"200"
 		"OnSpellStart"
 		{
 			"RunScript"

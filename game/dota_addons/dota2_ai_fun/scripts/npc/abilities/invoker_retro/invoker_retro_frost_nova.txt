@@ -1,0 +1,301 @@
+"DOTAAbilities"
+{
+// Invoker's Frost Nova
+	// Author: Rook
+	// Date: February 19, 2015
+	// Invoke: Quas Quas Exort
+	// Blasts enemy units with a wave of frost that deals up to 300 damage to the target based on Quas level. Deals 112.5 area of effect damage and slows for 3 seconds.
+	// Frost Nova is split up into 8 spells for tooltip purposes.
+	"invoker_retro_frost_nova"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityTextureName" 			"invoker_retro_frost_nova"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_COLD_SNAP"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"15"
+		"AbilityManaCost"				"150"
+		"AbilityCastRange"				"650"
+		"AoERadius"						"200"
+		
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_invoker/invoker_retro_frost_nova.vpcf"
+			"particle"		"particles/units/heroes/hero_lich/lich_slowed_cold.vpcf"
+			"particle"		"particles/status_fx/status_effect_frost_lich.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"area_damage"			"37.5 75 112.5 150 187.5 225 262.5 300"  //Increases with Quas.
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"area_radius"			"200"  //Update AoERadius if this is changed.
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_percent"			"-30"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_duration"			"3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"heroes/hero_invoker/invoker_retro_frost_nova.lua"
+				"Function"				"invoker_retro_frost_nova_on_spell_start"
+				"AreaRadius"			"%area_radius"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_invoker_retro_frost_nova_slow"
+			{
+				"Duration"			"%slow_duration"
+				"Passive"  			"0"
+				"IsHidden" 			"0"
+				"IsBuff"			"0"
+				"IsDebuff"			"1"
+				"IsPurgable"		"1"
+				
+				"EffectName"			"particles/units/heroes/hero_lich/lich_slowed_cold.vpcf"
+				"EffectAttachType"		"follow_origin"
+				
+				"StatusEffectName"		"particles/status_fx/status_effect_frost_lich.vpcf"
+				"StatusEffectPriority"	"10"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%slow_percent"
+				}
+			}
+		}
+	}
+	
+	
+	"invoker_retro_frost_nova_half_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityTextureName" 			"invoker_retro_frost_nova"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_COLD_SNAP"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"15"
+		"AbilityManaCost"				"75"
+		"AbilityCastRange"				"650"
+		"AoERadius"						"200"
+		
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_invoker/invoker_retro_frost_nova.vpcf"
+			"particle"		"particles/units/heroes/hero_lich/lich_slowed_cold.vpcf"
+			"particle"		"particles/status_fx/status_effect_frost_lich.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"area_damage"			"37.5 75 112.5 150 187.5 225 262.5 300"  //Increases with Quas.
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"area_radius"			"200"  //Update AoERadius if this is changed.
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_percent"			"-30"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_duration"			"3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"heroes/hero_invoker/invoker_retro_frost_nova.lua"
+				"Function"				"invoker_retro_frost_nova_on_spell_start"
+				"AreaRadius"			"%area_radius"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_invoker_retro_frost_nova_slow"
+			{
+				"Duration"			"%slow_duration"
+				"Passive"  			"0"
+				"IsHidden" 			"0"
+				"IsBuff"			"0"
+				"IsDebuff"			"1"
+				"IsPurgable"		"1"
+				
+				"EffectName"			"particles/units/heroes/hero_lich/lich_slowed_cold.vpcf"
+				"EffectAttachType"		"follow_origin"
+				
+				"StatusEffectName"		"particles/status_fx/status_effect_frost_lich.vpcf"
+				"StatusEffectPriority"	"10"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%slow_percent"
+				}
+			}
+		}
+	}
+	
+	
+	"invoker_retro_frost_nova_no_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityTextureName" 			"invoker_retro_frost_nova"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_COLD_SNAP"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"15"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"650"
+		"AoERadius"						"200"
+		
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_invoker/invoker_retro_frost_nova.vpcf"
+			"particle"		"particles/units/heroes/hero_lich/lich_slowed_cold.vpcf"
+			"particle"		"particles/status_fx/status_effect_frost_lich.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"area_damage"			"37.5 75 112.5 150 187.5 225 262.5 300"  //Increases with Quas.
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"area_radius"			"200"  //Update AoERadius if this is changed.
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_percent"			"-30"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_duration"			"3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"heroes/hero_invoker/invoker_retro_frost_nova.lua"
+				"Function"				"invoker_retro_frost_nova_on_spell_start"
+				"AreaRadius"			"%area_radius"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_invoker_retro_frost_nova_slow"
+			{
+				"Duration"			"%slow_duration"
+				"Passive"  			"0"
+				"IsHidden" 			"0"
+				"IsBuff"			"0"
+				"IsDebuff"			"1"
+				"IsPurgable"		"1"
+				
+				"EffectName"			"particles/units/heroes/hero_lich/lich_slowed_cold.vpcf"
+				"EffectAttachType"		"follow_origin"
+				
+				"StatusEffectName"		"particles/status_fx/status_effect_frost_lich.vpcf"
+				"StatusEffectPriority"	"10"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%slow_percent"
+				}
+			}
+		}
+	}
+}

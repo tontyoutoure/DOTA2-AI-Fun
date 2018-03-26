@@ -6,8 +6,9 @@
 	<include src="file://{resources}/styles/dotastyles.css" />
 	</styles>
 	<scripts>
-	<include src="file://{resources}/scripts/custom_game/game_mode.js"/>
-	<include src="file://{resources}/scripts/custom_game/hero_selection.js"/>
+		<include src="file://{resources}/scripts/custom_game/fun_hero_info.js" />
+		<include src="file://{resources}/scripts/custom_game/game_mode.js"/>
+		<include src="file://{resources}/scripts/custom_game/hero_selection.js"/>
 	</scripts>
 	<Panel class="AddonLoadingRoot">
 		<Panel id="CustomBg" >
@@ -192,7 +193,7 @@
 						<Label id="AllowSelectionDupulicateTitle" class="HeroSelectionOptionLabel" text="#allow_selection_replicate" />
 						<ToggleButton checked="true" class="HeroSelectionOptionToggle" id="allow_selection_replicate"/>		
 					</Panel>
-					<Panel id="BanImbaFunHeroesPanel" class="GameOptionsSubPanel">
+					<Panel id="BanImbaFunHeroesPanel" class="GameOptionsSubPanel" onmouseover="DOTAShowTextTooltip(#ban_imba_fun_heroes_tooltip)" onmouseout='DOTAHideTextTooltip()'>
 						<Label id="BanImbaFunHeroesTitle" class="HeroSelectionOptionLabel" text="#ban_imba_fun_heroes" />
 						<ToggleButton checked="true" class="HeroSelectionOptionToggle" id="ban_imba_fun_heroes"/>		
 					</Panel>

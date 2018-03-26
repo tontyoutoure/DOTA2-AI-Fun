@@ -37,7 +37,7 @@ function ClericMeteorShower(keys)
 			hThinker:EmitSound("Hero_Invoker.ChaosMeteor.Cast")
 			hThinker:EmitSound("Hero_Invoker.ChaosMeteor.Loop")
 			
-			Timers:CreateTimer(0.7,function () 
+			Timers:CreateTimer(0.6,function () 
 				StartSoundEventFromPosition("Hero_Invoker.ChaosMeteor.Impact", vTarget+vRelative)
 				hThinker:StopSound("Hero_Invoker.ChaosMeteor.Loop")
 				GridNav:DestroyTreesAroundPoint(vTarget+vRelative, fMeteorRadius, true)

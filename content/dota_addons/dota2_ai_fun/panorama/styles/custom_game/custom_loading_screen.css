@@ -70,6 +70,7 @@
     flow-children: right;
 	margin-top: 20px;
 	width: 100%;
+	tooltip-position: left;
 }
 
 .GameOptionsSubPanel Label

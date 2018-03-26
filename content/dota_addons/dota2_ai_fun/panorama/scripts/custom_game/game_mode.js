@@ -108,7 +108,7 @@ function PanoramaPrint(keys) {
 	$.Msg("Print request from sever: ", keys)
 }
 function OnGameStateChange(keys) {
-	$.Msg(Game.GetState())
+//	$.Msg(Game.GetState())
 }
 GameEvents.Subscribe( "game_rules_state_change", OnGameStateChange);
 GameEvents.Subscribe( "player_connect_full", InitializeUI);

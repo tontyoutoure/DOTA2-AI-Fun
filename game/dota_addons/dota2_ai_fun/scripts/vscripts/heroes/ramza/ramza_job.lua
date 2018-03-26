@@ -424,6 +424,7 @@ function CRamzaJob:ChangeStat(iJobToGo)
 	self.hParent:SetBaseMoveSpeed(self.tJobStats[iJobToGo].move_speed)
 	self.hParent:SetPrimaryAttribute(self.tJobStats[iJobToGo].primary_attribute)
 	self.hParent:SetAttackCapability(self.tJobStats[iJobToGo].attack_cap)
+	self.hParent:FindModifierByName("modifier_attack_point_change"):SetStackCount(self.tJobStats[iJobToGo].attack_point*1000)
 	self.hParent:FindModifierByName("modifier_ramza_job_manager").iBonusAttackRange = self.tJobStats[iJobToGo].attack_range-150;
 	self.hParent:FindModifierByName("modifier_ramza_job_manager"):ForceRefresh()
 	self.hParent:SetAcquisitionRange(self.tJobStats[iJobToGo].attack_range+200)

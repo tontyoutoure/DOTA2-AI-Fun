@@ -33,9 +33,9 @@
 		"AttackDamageMax"	"50"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		// Speed of attack.
-		"AttackRate"	"1.7"
+		"AttackRate"	"1.5"
 		// Normalized time in animation cycle to attack.
-		"AttackAnimationPoint"	"0.3"
+		"AttackAnimationPoint"	"0.433"
 		// Range within a target can be acquired.
 		"AttackAcquisitionRange"	"600"
 		// Range within a target can be attacked.
@@ -182,8 +182,8 @@
 		"AttackDamageMin"	"0"
 		"AttackDamageMax"	"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackRate"	"1"
-		"AttackAnimationPoint"	"0.2"
+		"AttackRate"	"1.55"
+		"AttackAnimationPoint"	"0.3"
 		"AttackAcquisitionRange"	"600"
 		"AttackRange"	"150"
 		"AttackRangeBuffer"	"200"

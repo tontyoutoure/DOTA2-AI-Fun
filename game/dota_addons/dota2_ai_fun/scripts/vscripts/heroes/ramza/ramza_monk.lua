@@ -83,7 +83,7 @@ function ramza_monk_martial_arts_shockwave:OnSpellStart()
 	local tInfo = {
 		Ability = self,
 		EffectName = "particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil.vpcf",
-		fDistance = 2000,
+		fDistance = 1900,
 		fStartRadius = 250,
 		fEndRadius = 250,
 		vSpawnOrigin = self:GetCaster():GetOrigin(), 

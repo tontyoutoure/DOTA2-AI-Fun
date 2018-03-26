@@ -25,12 +25,12 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityCastPoint"	"0.6"
+		"AbilityCastPoint"	"0.9"
 		"AbilityCooldown"	"20"
 		"AbilityManaCost"	"85"
 		// Stats
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"550"
+		"AbilityCastRange"	"600"
 		// Precache
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -157,14 +157,14 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"2"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityCastPoint"	"0.3"
+		"AbilityCastPoint"	"0.9"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"20"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"120"
-		"AbilityCastRange"	"550"
+		"AbilityCastRange"	"500"
 		"AbilityChannelTime"	"25"
 		"AOERadius"	"%radius"
 		// Example: Nether ward

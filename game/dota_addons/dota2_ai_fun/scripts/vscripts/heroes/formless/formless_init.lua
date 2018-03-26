@@ -50,7 +50,7 @@ local tHeroBaseStats = {
 	AttributeIntelligenceGain = 3.1,
 	ArmorPhysical = 3,
 	PrimaryAttribute = DOTA_ATTRIBUTE_INTELLECT,
-	AttackAnimationPoint = 0.1,
+	AttackAnimationPoint = 0.433,
 }
 
 CustomNetTables:SetTableValue("fun_hero_stats", "formless_abilities", tShowAbilities)

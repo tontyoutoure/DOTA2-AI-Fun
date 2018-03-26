@@ -1,0 +1,13 @@
+<root>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/invoker_retro.js" />
+	</scripts>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/invoker_retro.css" /> 
+	</styles>
+	<Panel class="InvokerRetroBase" hittest="false">
+		<Button id="AbilityButtonTooltipButton5" class="AbilityButtonTooltipButton" onactivate="AbilityButtonTooltipButton5Activated()">
+			<Label id="AbilityButtonTooltipButton5Label" class="SpellsLabel" text="#CNY2015_Actives"/>
+		</Button>
+	</Panel>
+</root>

@@ -26,7 +26,7 @@ local tHeroBaseStats = {
 	AttributeStrenthGain = 1.3,
 	AttributeAgilityGain = 3.8,
 	AttributeIntelligenceGain = 1,
-	AttackAnimationPoint = 0.3,
+	AttackAnimationPoint = 0.6,
 	ArmorPhysical = -1,
 	PrimaryAttribute = DOTA_ATTRIBUTE_AGILITY,
 }

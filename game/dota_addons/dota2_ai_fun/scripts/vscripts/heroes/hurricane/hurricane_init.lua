@@ -17,7 +17,7 @@ local tNewAbilities = {
 
 local tHeroBaseStats = {
 	MovementSpeed = 310,
-	AttackRate = 1.7,
+	AttackRate = 1.6,
 	AttackDamageMin = 6,
 	AttackDamageMax = 51,
 	AttributeBaseStrength = 26,
@@ -28,7 +28,7 @@ local tHeroBaseStats = {
 	AttributeIntelligenceGain = 1.6,
 	ArmorPhysical = 2,
 	PrimaryAttribute = DOTA_ATTRIBUTE_STRENGTH,
-	AttackAnimationPoint = 0.4,
+	AttackAnimationPoint = 0,
 	Model = 'models/heroes/attachto_ghost/pa_gravestone_ghost.vmdl',
 	ModelScale = 15,
 	DisableWearables = true

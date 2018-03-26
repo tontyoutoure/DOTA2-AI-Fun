@@ -33,7 +33,8 @@ function modifier_ramza_summoner_lich:OnDestroy()
 	local hParent = self:GetParent()
 	hParent:StopSound("Hero_Enigma.Midnight_Pulse")
 	ParticleManager:DestroyParticle(self.iParticle, false)
-	UTIL_Remove(hParent)
+	WearableManager:RemoveAllWearable(hParent)
+	hParent:RemoveSelf()
 end
 
 modifier_ramza_summoner_odin = class({})
@@ -41,7 +42,8 @@ modifier_ramza_summoner_odin = class({})
 function modifier_ramza_summoner_odin:OnDestroy()
 	if IsClient() then return end
 	local hParent = self:GetParent()
-	UTIL_Remove(hParent)
+	WearableManager:RemoveAllWearable(hParent)
+	hParent:RemoveSelf()
 end
 
 

@@ -1,0 +1,379 @@
+"DOTAAbilities"
+{
+// Invoker's Power Word
+	// Author: Rook
+	// Date: February 23, 2015
+	// Invoke: Quas Exort Quas
+	// Applies a magic that weakes or strengthens a unit's resistance to physical attacks. Increases a friendly unit's armor or decreaes an enemy's armor by 3. Lasts 25 seconds
+	// Balance ideas: Make use of Exort's level somehow.
+	"invoker_retro_power_word"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityTextureName" 			"invoker_retro_power_word"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ALACRITY"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"200"
+		"AbilityCastRange"				"650"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_dazzle/dazzle_armor_friend_shield.vpcf"
+			"particle"					"particles/units/heroes/hero_dazzle/dazzle_armor_enemy_shield.vpcf"
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_power_word_ally.vpcf"
+			"particle"                  "particles/units/heroes/hero_invoker/invoker_retro_power_word_enemy.vpcf"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_bonus_ally"		"1 2 3 4 5 6 7 8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction_enemy"	"-1 -2 -3 -4 -5 -6 -7 -8"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"heroes/hero_invoker/invoker_retro_power_word.lua"
+				"Function"				"invoker_retro_power_word_on_spell_start"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_invoker_retro_power_word_armor_debuff_icon"  //When cast on enemies.  This icon will appear on their modifier bar.
+			{
+				"Duration"				"%duration"
+				"Passive"				"0"
+				"IsHidden"				"0"
+				"IsBuff"				"0"
+				"IsDebuff"				"1"
+				"IsPurgable"			"1"
+				"EffectName"			"particles/units/heroes/hero_dazzle/dazzle_armor_enemy_shield.vpcf"
+				"EffectAttachType"		"follow_overhead"
+				"TextureName"			"invoker_retro_power_word"
+			}
+			"modifier_invoker_retro_power_word_armor_debuff"  //When cast on enemies.  
+			{
+				"Duration"				"%duration"
+				"Passive"				"0"
+				"IsHidden"				"1"
+				"IsBuff"				"0"
+				"IsDebuff"				"1"
+				"IsPurgable"			"1"
+				"Attributes" 			"MODIFIER_ATTRIBUTE_MULTIPLE"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"-1"
+				}
+			}
+			"modifier_invoker_retro_power_word_armor_buff_icon"  //When cast on allies.  This icon will appear on their modifier bar.
+			{
+				"Duration"				"%duration"
+				"Passive"				"0"
+				"IsHidden"				"0"
+				"IsBuff"				"1"
+				"IsDebuff"				"0"
+				"IsPurgable"			"1"
+				"EffectName"			"particles/units/heroes/hero_dazzle/dazzle_armor_friend_shield.vpcf"
+				"EffectAttachType"		"follow_overhead"
+				"TextureName"			"invoker_retro_power_word"
+			}
+			"modifier_invoker_retro_power_word_armor_buff"  //When cast on allies.
+			{
+				"Duration"				"%duration"
+				"Passive"				"0"
+				"IsHidden"				"1"
+				"IsBuff"				"1"
+				"IsDebuff"				"0"
+				"IsPurgable"			"1"
+				"Attributes" 			"MODIFIER_ATTRIBUTE_MULTIPLE"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"1"
+				}
+			}
+		}
+	}
+	
+	
+	"invoker_retro_power_word_half_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityTextureName" 			"invoker_retro_power_word"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ALACRITY"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"100"
+		"AbilityCastRange"				"650"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_dazzle/dazzle_armor_friend_shield.vpcf"
+			"particle"					"particles/units/heroes/hero_dazzle/dazzle_armor_enemy_shield.vpcf"
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_power_word_ally.vpcf"
+			"particle"                  "particles/units/heroes/hero_invoker/invoker_retro_power_word_enemy.vpcf"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_bonus_ally"		"1 2 3 4 5 6 7 8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction_enemy"	"-1 -2 -3 -4 -5 -6 -7 -8"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"heroes/hero_invoker/invoker_retro_power_word.lua"
+				"Function"				"invoker_retro_power_word_on_spell_start"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_invoker_retro_power_word_armor_debuff_icon"  //When cast on enemies.  This icon will appear on their modifier bar.
+			{
+				"Duration"				"%duration"
+				"Passive"				"0"
+				"IsHidden"				"0"
+				"IsBuff"				"0"
+				"IsDebuff"				"1"
+				"IsPurgable"			"1"
+				"EffectName"			"particles/units/heroes/hero_dazzle/dazzle_armor_enemy_shield.vpcf"
+				"EffectAttachType"		"follow_overhead"
+				"TextureName"			"invoker_retro_power_word"
+			}
+			"modifier_invoker_retro_power_word_armor_debuff"  //When cast on enemies.  
+			{
+				"Duration"				"%duration"
+				"Passive"				"0"
+				"IsHidden"				"1"
+				"IsBuff"				"0"
+				"IsDebuff"				"1"
+				"IsPurgable"			"1"
+				"Attributes" 			"MODIFIER_ATTRIBUTE_MULTIPLE"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"-1"
+				}
+			}
+			"modifier_invoker_retro_power_word_armor_buff_icon"  //When cast on allies.  This icon will appear on their modifier bar.
+			{
+				"Duration"				"%duration"
+				"Passive"				"0"
+				"IsHidden"				"0"
+				"IsBuff"				"1"
+				"IsDebuff"				"0"
+				"IsPurgable"			"1"
+				"EffectName"			"particles/units/heroes/hero_dazzle/dazzle_armor_friend_shield.vpcf"
+				"EffectAttachType"		"follow_overhead"
+				"TextureName"			"invoker_retro_power_word"
+			}
+			"modifier_invoker_retro_power_word_armor_buff"  //When cast on allies.
+			{
+				"Duration"				"%duration"
+				"Passive"				"0"
+				"IsHidden"				"1"
+				"IsBuff"				"1"
+				"IsDebuff"				"0"
+				"IsPurgable"			"1"
+				"Attributes" 			"MODIFIER_ATTRIBUTE_MULTIPLE"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"1"
+				}
+			}
+		}
+	}
+	
+	
+	"invoker_retro_power_word_no_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityTextureName" 			"invoker_retro_power_word"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ALACRITY"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"650"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_dazzle/dazzle_armor_friend_shield.vpcf"
+			"particle"					"particles/units/heroes/hero_dazzle/dazzle_armor_enemy_shield.vpcf"
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_power_word_ally.vpcf"
+			"particle"                  "particles/units/heroes/hero_invoker/invoker_retro_power_word_enemy.vpcf"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_bonus_ally"		"1 2 3 4 5 6 7 8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction_enemy"	"-1 -2 -3 -4 -5 -6 -7 -8"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"heroes/hero_invoker/invoker_retro_power_word.lua"
+				"Function"				"invoker_retro_power_word_on_spell_start"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_invoker_retro_power_word_armor_debuff_icon"  //When cast on enemies.  This icon will appear on their modifier bar.
+			{
+				"Duration"				"%duration"
+				"Passive"				"0"
+				"IsHidden"				"0"
+				"IsBuff"				"0"
+				"IsDebuff"				"1"
+				"IsPurgable"			"1"
+				"EffectName"			"particles/units/heroes/hero_dazzle/dazzle_armor_enemy_shield.vpcf"
+				"EffectAttachType"		"follow_overhead"
+				"TextureName"			"invoker_retro_power_word"
+			}
+			"modifier_invoker_retro_power_word_armor_debuff"  //When cast on enemies.  
+			{
+				"Duration"				"%duration"
+				"Passive"				"0"
+				"IsHidden"				"1"
+				"IsBuff"				"0"
+				"IsDebuff"				"1"
+				"IsPurgable"			"1"
+				"Attributes" 			"MODIFIER_ATTRIBUTE_MULTIPLE"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"-1"
+				}
+			}
+			"modifier_invoker_retro_power_word_armor_buff_icon"  //When cast on allies.  This icon will appear on their modifier bar.
+			{
+				"Duration"				"%duration"
+				"Passive"				"0"
+				"IsHidden"				"0"
+				"IsBuff"				"1"
+				"IsDebuff"				"0"
+				"IsPurgable"			"1"
+				"EffectName"			"particles/units/heroes/hero_dazzle/dazzle_armor_friend_shield.vpcf"
+				"EffectAttachType"		"follow_overhead"
+				"TextureName"			"invoker_retro_power_word"
+			}
+			"modifier_invoker_retro_power_word_armor_buff"  //When cast on allies.
+			{
+				"Duration"				"%duration"
+				"Passive"				"0"
+				"IsHidden"				"1"
+				"IsBuff"				"1"
+				"IsDebuff"				"0"
+				"IsPurgable"			"1"
+				"Attributes" 			"MODIFIER_ATTRIBUTE_MULTIPLE"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"1"
+				}
+			}
+		}
+	}
+}

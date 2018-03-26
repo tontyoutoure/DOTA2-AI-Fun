@@ -1,9 +1,11 @@
 "use strict"; 
+
+
 var Donation = {};
-var bInitialized = false;
-var iCurrentTab = 0;
-var aCurrentColor = [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1]]
-var aCurrentEffect = [-1, -1, -1, -1]
+Donation.bInitialized = false;
+Donation.iCurrentTab = 0;   
+Donation.aCurrentColor = [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1]]
+Donation.aCurrentEffect = [-1, -1, -1, -1]
 
 Donation.aEyeParticles = [2, 3, 4, 5, 8]
 Donation.tColorIndex = {
@@ -136,15 +138,17 @@ $("#DonationButton").visible=true
 $("#DonationTabEffect").visible=false
 
 Donation.OnDonationActive = function () {
-	if (!bInitialized) {
+	if (!this.bInitialized) {
 		this.Initialize()
+		this.bInitialized = true
 	}
 	if ($("#DonationContentContainer").visible ) {
 		$("#DonationContentContainer").visible = false;
 	}
 	else {
 		$("#DonationContentContainer").visible = true;
-		if(iCurrentTab == 2) {
+		$("#ScepterInfoContainer").visible = false;
+		if(this.iCurrentTab == 2) {
 			$("#BottomButtonEmblem").visible = true;
 		}
 		else {
@@ -210,7 +214,7 @@ Donation.Initialize = function() {
 Donation.OnDonationTabActive = function (){
 	$("#DonationTabDonation").visible = true;
 	$("#DonationTabEffect").visible = false;
-	iCurrentTab = 0;
+	this.iCurrentTab = 0;
 	$("#DonationTabButtonDonation").AddClass('HaveShadow')
 	$("#DonationTabButtonCourier").RemoveClass('HaveShadow')
 	$("#DonationTabButtonHero").RemoveClass('HaveShadow')
@@ -220,7 +224,7 @@ Donation.OnDonationTabActive = function (){
 Donation.OnCourierTabActive = function (){
 	$("#DonationTabDonation").visible = false;
 	$("#DonationTabEffect").visible = true;
-	iCurrentTab = 1;
+	this.iCurrentTab = 1;
 	for (var i = 0; i < 5; i++) {
 		$("#GemImageEthreal"+this.aEyeParticles[i].toString()).visible = true;
 		$("#GemLabelEthreal"+this.aEyeParticles[i].toString()).visible = true;
@@ -237,7 +241,7 @@ Donation.OnCourierTabActive = function (){
 Donation.OnHeroTabActive = function (){
 	$("#DonationTabDonation").visible = false;
 	$("#DonationTabEffect").visible = true;
-	iCurrentTab = 2;
+	this.iCurrentTab = 2;
 	for (var i = 0; i < 5; i++) {
 		$("#GemImageEthreal"+this.aEyeParticles[i].toString()).visible = false;
 		$("#GemLabelEthreal"+this.aEyeParticles[i].toString()).visible = false;
@@ -254,7 +258,7 @@ Donation.OnHeroTabActive = function (){
 Donation.OnWardTabActive = function (){
 	$("#DonationTabDonation").visible = false;
 	$("#DonationTabEffect").visible = true;
-	iCurrentTab = 3;
+	this.iCurrentTab = 3;
 	for (var i = 0; i < 5; i++) {
 		$("#GemImageEthreal"+this.aEyeParticles[i].toString()).visible = false;
 		$("#GemLabelEthreal"+this.aEyeParticles[i].toString()).visible = false;
@@ -295,7 +299,7 @@ Donation.GetColorHex = function(i1, i2, i3) {
 }
 
 Donation.OnEffectChange = function(iEffect) {
-	GameEvents.SendCustomGameEventToServer("ChangeEtherealEffect", {"tab":iCurrentTab, "effect": this.aEtherealParticles[iEffect][0]})
+	GameEvents.SendCustomGameEventToServer("ChangeEtherealEffect", {"tab":this.iCurrentTab, "effect": this.aEtherealParticles[iEffect][0]})
 }
 
 Donation.OnColorChange = function(iColor) {
@@ -328,18 +332,18 @@ Donation.OnSubmitColorActive = function() {
 		return
 	}
 	$("#ColorEntryDesLabel").visible=false
-	GameEvents.SendCustomGameEventToServer("ChangePrismaticColor", {"tab":iCurrentTab, "r":iR , "g": iG, "b": iB})
+	GameEvents.SendCustomGameEventToServer("ChangePrismaticColor", {"tab":this.iCurrentTab, "r":iR , "g": iG, "b": iB})
 }
 
 Donation.OnEmblemActive = function() {
 	var iR = 1
 	var iG = 2
 	var iB = 3
-	GameEvents.SendCustomGameEventToServer("ToggleEmblem", {"tab":iCurrentTab, "r":iR , "g": iG, "b": iB})
+	GameEvents.SendCustomGameEventToServer("ToggleEmblem", {"tab":this.iCurrentTab, "r":iR , "g": iG, "b": iB})
 }
 
 Donation.OnRemoveEffectActive = function(){
-	GameEvents.SendCustomGameEventToServer("RemoveEtherealEffect", {"tab":iCurrentTab})
+	GameEvents.SendCustomGameEventToServer("RemoveEtherealEffect", {"tab":this.iCurrentTab})
 }
 
 Donation.ResetPanel = function() {
@@ -350,13 +354,13 @@ Donation.ResetPanel = function() {
 	for (i = 0; i < 42; i++) {
 		$("#GemButtonPrismatic"+i.toString()).RemoveClass("HaveShadow")
 	}
-	var sColor = this.GetColorHex(aCurrentColor[iCurrentTab][0], aCurrentColor[iCurrentTab][1], aCurrentColor[iCurrentTab][2])
+	var sColor = this.GetColorHex(this.aCurrentColor[this.iCurrentTab][0], this.aCurrentColor[this.iCurrentTab][1], this.aCurrentColor[this.iCurrentTab][2])
 	if (sColor.length == 0) {
 		$("#ColorEntry").text = ""
 		$("#ColorExample").visible = false
 	}
 	else {
-		$("#ColorEntry").text = aCurrentColor[iCurrentTab][0].toString()+","+aCurrentColor[iCurrentTab][1].toString()+","+aCurrentColor[iCurrentTab][2].toString()
+		$("#ColorEntry").text = this.aCurrentColor[this.iCurrentTab][0].toString()+","+this.aCurrentColor[this.iCurrentTab][1].toString()+","+this.aCurrentColor[this.iCurrentTab][2].toString()
 		$("#ColorExample").style.backgroundColor=sColor
 		$("#ColorExample").visible = true
 	}
@@ -365,8 +369,8 @@ Donation.ResetPanel = function() {
 		$("#GemButtonPrismatic"+this.tColorIndex[sColor].toString()).AddClass("HaveShadow")
 	}
 	
-	if (aCurrentEffect[iCurrentTab] >= 0) {
-		$("#GemButtonEthereal"+aCurrentEffect[iCurrentTab].toString()).AddClass("HaveShadow")
+	if (this.aCurrentEffect[this.iCurrentTab] >= 0) {
+		$("#GemButtonEthereal"+this.aCurrentEffect[this.iCurrentTab].toString()).AddClass("HaveShadow")
 	}
 }
 
@@ -374,7 +378,7 @@ function EffectChanged(keys) {
 	var iEffect
 	for (iEffect = 0; iEffect < 34; iEffect++) {
 		if(keys.effect == Donation.aEtherealParticles[iEffect][0]) {
-			aCurrentEffect[keys.tab] = iEffect
+			Donation.aCurrentEffect[keys.tab] = iEffect
 			break
 		}
 	}
@@ -382,17 +386,17 @@ function EffectChanged(keys) {
 }
 
 function ColorChanged(keys) {
-	aCurrentColor[keys.tab][0] = keys.r
-	aCurrentColor[keys.tab][1] = keys.g
-	aCurrentColor[keys.tab][2] = keys.b
+	Donation.aCurrentColor[keys.tab][0] = keys.r
+	Donation.aCurrentColor[keys.tab][1] = keys.g
+	Donation.aCurrentColor[keys.tab][2] = keys.b
 	Donation.ResetPanel()
 }
 
 function EffectRemoved(keys) {
-	aCurrentEffect[keys.tab] = -1
-	aCurrentColor[keys.tab][0] = -1
-	aCurrentColor[keys.tab][1] = -1
-	aCurrentColor[keys.tab][2] = -1
+	Donation.aCurrentEffect[keys.tab] = -1
+	Donation.aCurrentColor[keys.tab][0] = -1
+	Donation.aCurrentColor[keys.tab][1] = -1
+	Donation.aCurrentColor[keys.tab][2] = -1
 	Donation.ResetPanel()
 }
 GameEvents.Subscribe( "effect_changed", EffectChanged);

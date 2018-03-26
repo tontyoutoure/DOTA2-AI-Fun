@@ -30,7 +30,7 @@ local tHeroBaseStats = {
 	ArmorPhysical = 2,
 	PrimaryAttribute = DOTA_ATTRIBUTE_AGILITY,
 	AttackRange = 650,
-	AttackAnimationPoint = 0.15,	
+	AttackAnimationPoint = 0.17,	
 	AttackCapabilities = DOTA_UNIT_CAP_MELEE_ATTACK
 }
 

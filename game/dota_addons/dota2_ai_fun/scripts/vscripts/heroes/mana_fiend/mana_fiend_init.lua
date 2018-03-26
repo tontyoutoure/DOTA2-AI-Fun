@@ -17,7 +17,7 @@ local tNewAbilities = {
 
 local tHeroBaseStats = {
 	MovementSpeed = 310,
-	AttackRate = 1.5,
+	AttackRate = 1.7,
 	AttackDamageMin = 22,
 	AttackDamageMax = 26,
 	AttackRange = 600,
@@ -29,7 +29,7 @@ local tHeroBaseStats = {
 	AttributeIntelligenceGain = 2.8,
 	ArmorPhysical = 1,
 	PrimaryAttribute = DOTA_ATTRIBUTE_INTELLECT,
-	AttackAnimationPoint = 0.4
+	AttackAnimationPoint = 0.33,
 }
 CustomNetTables:SetTableValue("fun_hero_stats", "mana_fiend_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "mana_fiend", tHeroBaseStats)

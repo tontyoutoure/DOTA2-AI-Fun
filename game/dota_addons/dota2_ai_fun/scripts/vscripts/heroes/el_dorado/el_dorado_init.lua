@@ -27,7 +27,7 @@ local tNewAbilities = {
 
 local tHeroBaseStats = {
 	MovementSpeed = 315,
-	AttackRate = 1.7,
+	AttackRate = 1.6,
 	AttackDamageMin = 24,
 	AttackDamageMax = 32,
 	AttackRange = 600,
@@ -40,7 +40,7 @@ local tHeroBaseStats = {
 	AttributeIntelligenceGain = 2.5,
 	ArmorPhysical = 1,
 	PrimaryAttribute = DOTA_ATTRIBUTE_INTELLECT,
-	AttackAnimationPoint = 0.2,
+	AttackAnimationPoint = 0.433,
 	Model = "models/courier/frog/frog.vmdl",
 	ProjectileModel = "particles/econ/items/puck/puck_alliance_set/puck_base_attack_aproset.vpcf",
 }

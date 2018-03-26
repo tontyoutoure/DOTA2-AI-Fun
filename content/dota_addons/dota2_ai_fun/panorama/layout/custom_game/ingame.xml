@@ -1,12 +1,15 @@
 <root>
 	<scripts>
+		<include src="file://{resources}/scripts/custom_game/fun_hero_info.js" />
 		<include src="file://{resources}/scripts/custom_game/donation.js" />
+		<include src="file://{resources}/scripts/custom_game/scepter_info.js" />
 	</scripts>
 	<styles>
 		<include src="file://{resources}/styles/custom_game/donation.css" />
+		<include src="file://{resources}/styles/custom_game/scepter_info.css" />
 		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
 	</styles>
-	<Panel class="DonationBase" hittest="false">
+	<Panel class="IngameBase" hittest="false">
 		<Panel id="DonationContentContainer" hittest="false">
 			<Panel id="TabButtonContainer">
 				<Button id="DonationTabButtonDonation" class="DonationTabButton" onactivate="Donation.OnDonationTabActive()">
@@ -33,10 +36,12 @@
 			<Panel id="DonationTabEffect" class="DonationTab">
 			</Panel>
 		</Panel>
+		<Panel id="ScepterInfoContainer" hittest="false">
+		</Panel>
 		<Panel id="DonationActiveButtonContainer">
 			<Button class="DonationActiveButton"  id="DonationButton" onactivate="Donation.OnDonationActive()">
-				<Label class="DonationActiveButtonLabel" id="DonationButtonLabel" text="#donation" />
 			</Button>
+			<Button class="DonationActiveButton"  id="ScepterInfoButton" onactivate="ScepterInfo.OnScepterInfoActive()"/>
 		</Panel>
 	</Panel>
 </root>

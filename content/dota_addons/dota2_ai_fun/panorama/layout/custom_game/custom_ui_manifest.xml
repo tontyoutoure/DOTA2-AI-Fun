@@ -40,7 +40,7 @@
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/lua_console.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_attachments.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/ramza_job.xml" />
-		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/donation.xml" />
+		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/ingame.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/invoker_retro.xml" />
 	</Panel>
 </root>

@@ -15,7 +15,7 @@
 		"FightRecapLevel"	"1"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0.0"
+		"AbilityCastPoint"	"0.1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"0.0"
@@ -114,6 +114,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilityCooldown"	"1"
 		"AbilityManaCost"	"10"
+		"AbilityCastPoint"	"0.1"
 		"AbilityCastRange"	"700"
 		"AbilitySpecial"
 		{
@@ -150,6 +151,7 @@
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES_STRONG"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"AbilityCooldown"	"13"
+		"AbilityCastPoint"	"0.1"
 		"AbilityManaCost"	"120 140 160 180"
 		"AbilityCastRange"	"1000"
 		"AbilitySpecial"
@@ -198,7 +200,8 @@
 		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
 		"AbilityCooldown"	"20"
 		"AbilityManaCost"	"155"
-		"AbilityCastRange"	"2000"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCastRange"	"1500"
 		"AbilitySpecial"
 		{
 			"01"
@@ -244,6 +247,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
 		"AbilityCooldown"	"120"
+		"AbilityCastPoint"	"0.1"
 		"AbilityManaCost"	"250"
 		"AbilityCastRange"	"0"
 		"AbilitySpecial"

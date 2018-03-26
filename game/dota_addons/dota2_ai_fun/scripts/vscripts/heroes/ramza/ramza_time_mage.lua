@@ -117,7 +117,7 @@ function RamzaTimeMageTeleport(keys)
 	ProcsArroundingMagicStick(keys.caster)
 	local vTarget = keys.target_points[1]
 	local fDistance = (vTarget-keys.caster:GetOrigin()):Length2D()
-	local fChance = 20+80*math.exp(-fDistance/3000)
+	local fChance = 2000/fDistance
 	
 	keys.caster:EmitSound("Hero_Wisp.TeleportIn.Arc")
 	
@@ -125,7 +125,7 @@ function RamzaTimeMageTeleport(keys)
 	keys.caster:EmitSound("Hero_Wisp.TeleportOut.Arc") 
 	ParticleManager:CreateParticle("particles/econ/items/wisp/wisp_relocate_teleport_ti7_out.vpcf", PATTACH_ABSORIGIN, keys.caster) 
 	
-	if RandomFloat(0, 100) < fChance then
+	if RandomFloat(0, 1) < fChance then
 		ProjectileManager:ProjectileDodge(keys.caster)
 		FindClearSpaceForUnit(keys.caster, vTarget, true)
 	end

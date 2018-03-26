@@ -64,7 +64,8 @@ end
 function RamzaSummonerMoogleStop(keys)
 	keys.target:EmitSound("Hero_Juggernaut.FortunesTout.Stop")
 	keys.target:StopSound("Hero_Juggernaut.FortunesTout.Loop")
-	UTIL_Remove(keys.target)
+	WearableManager:RemoveAllWearable(keys.target)
+	keys.target:RemoveSelf()
 end
 
 function RamzaSummonerShiva(keys)
@@ -83,7 +84,7 @@ function RamzaSummonerShiva(keys)
 		WearableManager:AddNewWearable(hThinker, v)
 	end
 	StartAnimation(hThinker, {duration = 7, activity=ACT_DOTA_CAST_ABILITY_4, rate=1, translate = "wardstaff"})
-	Timers:CreateTimer(7, function () UTIL_Remove(hThinker) end)
+	Timers:CreateTimer(7, function () WearableManager:RemoveAllWearable(hThinker) hThinker:RemoveSelf()  end)
 	--WearableManager:PrintAllWearableInfos(hThinker)
 	hThinker:SetForwardVector(keys.caster:GetForwardVector())
 	hThinker:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_summoner_shiva", {Duration = keys.ability:GetSpecialValueFor("duration"), fDamage = keys.ability:GetSpecialValueFor("damage"), fMoveSlow = keys.ability:GetSpecialValueFor("move_slow"), fAttackSlow = keys.ability:GetSpecialValueFor("attack_slow"), fSlowDuration = keys.ability:GetSpecialValueFor("slow_duration"), fRadius = keys.ability:GetSpecialValueFor("radius")})
@@ -112,7 +113,7 @@ function RamzaSummonerIfrit(keys)
 	ParticleManager:CreateParticle("particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_wings.vpcf", PATTACH_ABSORIGIN_FOLLOW, hThinker)
 	hThinker:EmitSound("Hero_Nevermore.ROS.Arcana.Cast")
 	hThinker:EmitSound("Hero_Nevermore.ROS_Cast_Flames")
-	Timers:CreateTimer(2.4, function () UTIL_Remove(hThinker) end)
+	Timers:CreateTimer(2.4, function () WearableManager:RemoveAllWearable(hThinker) hThinker:RemoveSelf()  end)
 	hThinker:SetForwardVector(keys.caster:GetForwardVector())
 	Timers:CreateTimer(fDelay, function ()
 		local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), hThinker:GetAbsOrigin(), none, fRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
@@ -153,7 +154,7 @@ function RamzaSummonerRamuh(keys)
 --	WearableManager:PrintAllWearableInfos(hThinker)
 	StartAnimation(hThinker, {duration = 1.1, activity=ACT_DOTA_CAST_ABILITY_5, rate=1, translate = "lightning"})
 	hThinker:SetForwardVector(keys.caster:GetForwardVector())
-	Timers:CreateTimer(0.93, function () hThinker:RemoveSelf() end)
+	Timers:CreateTimer(0.93, function () WearableManager:RemoveAllWearable(hThinker) hThinker:RemoveSelf()  end)
 	hThinker:EmitSound("Hero_Zuus.GodsWrath.PreCast.Arcana")
 	local iParticle0 = ParticleManager:CreateParticle("particles/econ/items/zeus/arcana_chariot/zeus_arcana_thundergods_wrath_start.vpcf", PATTACH_ABSORIGIN_FOLLOW, hThinker)
 	ParticleManager:SetParticleControlEnt(iParticle0, 0, hThinker, PATTACH_POINT_FOLLOW, "follow_origin", hThinker:GetOrigin(), true)
@@ -208,7 +209,7 @@ function RamzaSummonerGolem(keys)
 			v:AddNewModifier(keys.caster, keys.ability, "modifier_ramza_summoner_golem_slow", {Duration = fDuration*CalculateStatusResist(v)})
 		end
 	end)
-	Timers:CreateTimer(1, function () hThinker:RemoveSelf() end)
+	Timers:CreateTimer(1, function () WearableManager:RemoveAllWearable(hThinker) hThinker:RemoveSelf()  end)
 end
 
 function RamzaSummonerBahamut(keys)
@@ -244,7 +245,7 @@ function RamzaSummonerBahamut(keys)
 			ExtraData = {damage = fDamage, casterIndex = keys.caster:entindex(), abilityIndex = keys.ability:entindex()}
 		})
 	end)
-	Timers:CreateTimer(1.5, function () hThinker:RemoveSelf() end)
+	Timers:CreateTimer(1.5, function () WearableManager:RemoveAllWearable(hThinker) hThinker:RemoveSelf()  end)
 	
 end
 
@@ -307,5 +308,5 @@ function RamzaSummonerZodiark(keys)
 	
 	end)
 	
-	Timers:CreateTimer(1.5, function () hThinker:RemoveSelf() end)
+	Timers:CreateTimer(1.5, function () WearableManager:RemoveAllWearable(hThinker) hThinker:RemoveSelf()  end)
 end

@@ -18,7 +18,8 @@ local tNewAbilities = {
 
 local tHeroBaseStats = {
 	MovementSpeed = 300,
-	AttackRate = 1.7,
+	AttackRate = 1.6,
+	AttackAnimationPoint = 0.5,
 	AttackDamageMin = 19,
 	AttackDamageMax = 28,
 	AttackRange = 550,

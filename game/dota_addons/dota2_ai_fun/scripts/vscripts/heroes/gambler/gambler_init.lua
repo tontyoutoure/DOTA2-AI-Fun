@@ -18,6 +18,7 @@ local tNewAbilities = {
 local tHeroBaseStats = {
 	MovementSpeed = 300,
 	AttackRate = 1.7,
+	AttackAnimationPoint = 0.6,
 	AttackDamageMin = 22,
 	AttackDamageMax = 28,
 	AttackRange = 500,
@@ -29,7 +30,6 @@ local tHeroBaseStats = {
 	AttributeIntelligenceGain = 2.6,
 	ArmorPhysical = -1,
 	PrimaryAttribute = DOTA_ATTRIBUTE_INTELLECT,
-	AttackAnimationPoint = 0.2,
 	ProjectileModel="particles/gambler_base_attack.vpcf",
 }
 

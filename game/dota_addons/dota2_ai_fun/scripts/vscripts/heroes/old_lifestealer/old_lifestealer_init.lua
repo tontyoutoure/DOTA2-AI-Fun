@@ -29,7 +29,7 @@ local tHeroBaseStats = {
 	AttributeIntelligenceGain = 1.5,
 	ArmorPhysical = 2,
 	PrimaryAttribute = DOTA_ATTRIBUTE_STRENGTH,
-	AttackAnimationPoint = 0.3,
+	AttackAnimationPoint = 0.39,
 }
 
 CustomNetTables:SetTableValue("fun_hero_stats", "old_lifestealer_abilities", tNewAbilities)

@@ -1,0 +1,253 @@
+"Hero_Ramza.WhiteMageCuraga1"
+{    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+				{
+					"type" { "value" "dota_update_default" }
+					"vsnd_files" 
+					{ 
+						"value"
+						{
+							"value0" "sounds/weapons/hero/chen/hog_hero01.vsnd"
+						}
+					}
+					"volume" { "value" "1.000000" }
+					"pitch" { "value" "1.000000" }
+					"soundlevel" { "value" "84.000000" }
+					"mixgroup" { "value" "Weapons" }
+					"volume_fade_in" { "value" "0.100000" }
+					"volume_falloff_max" { "value" "12000.000000" }
+					"spread_radius" { "value" "300.000000" }
+					"limiter_on" { "value" "1.000000" }
+					"limiter_event_name" { "value" "Hero_Ramza.WhiteMageCuraga1" }
+					"limiter_max" { "value" "5.000000" }
+					"limiter_match_type" { "value" "0.000000" }
+					"limiter_match_entity" { "value" "0.000000" }
+					"limiter_match_substring" { "value" "0.000000" }
+				}
+			}
+		}
+	}
+}
+
+"Hero_Ramza.WhiteMageCuraga2"
+{    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+				{
+					"type" { "value" "dota_update_default" }
+					"vsnd_files" 
+					{ 
+						"value"
+						{
+							"value0" "sounds/weapons/hero/chen/hog_hero02.vsnd"
+						}
+					}
+					"volume" { "value" "1.000000" }
+					"pitch" { "value" "1.000000" }
+					"soundlevel" { "value" "84.000000" }
+					"mixgroup" { "value" "Weapons" }
+					"volume_fade_in" { "value" "0.100000" }
+					"volume_falloff_max" { "value" "12000.000000" }
+					"spread_radius" { "value" "300.000000" }
+					"limiter_on" { "value" "1.000000" }
+					"limiter_event_name" { "value" "Hero_Ramza.WhiteMageCuraga2" }
+					"limiter_max" { "value" "5.000000" }
+					"limiter_match_type" { "value" "0.000000" }
+					"limiter_match_entity" { "value" "0.000000" }
+					"limiter_match_substring" { "value" "0.000000" }
+				}
+			}
+		}
+	}
+}
+"Hero_Ramza.WhiteMageCuraga3"
+{    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+				{
+					"type" { "value" "dota_update_default" }
+					"vsnd_files" 
+					{ 
+						"value"
+						{
+							"value0" "sounds/weapons/hero/chen/hog_hero03.vsnd"
+						}
+					}
+					"volume" { "value" "1.000000" }
+					"pitch" { "value" "1.000000" }
+					"soundlevel" { "value" "84.000000" }
+					"mixgroup" { "value" "Weapons" }
+					"volume_fade_in" { "value" "0.100000" }
+					"volume_falloff_max" { "value" "12000.000000" }
+					"spread_radius" { "value" "300.000000" }
+					"limiter_on" { "value" "1.000000" }
+					"limiter_event_name" { "value" "Hero_Ramza.WhiteMageCuraga3" }
+					"limiter_max" { "value" "5.000000" }
+					"limiter_match_type" { "value" "0.000000" }
+					"limiter_match_entity" { "value" "0.000000" }
+					"limiter_match_substring" { "value" "0.000000" }
+				}
+			}
+		}
+	}
+}
+"Hero_Ramza.WhiteMageCuraga4"
+{    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+				{
+					"type" { "value" "dota_update_default" }
+					"vsnd_files" 
+					{ 
+						"value"
+						{
+							"value0" "sounds/weapons/hero/chen/hog_hero04.vsnd"
+						}
+					}
+					"volume" { "value" "1.000000" }
+					"pitch" { "value" "1.000000" }
+					"soundlevel" { "value" "84.000000" }
+					"mixgroup" { "value" "Weapons" }
+					"volume_fade_in" { "value" "0.100000" }
+					"volume_falloff_max" { "value" "12000.000000" }
+					"spread_radius" { "value" "300.000000" }
+					"limiter_on" { "value" "1.000000" }
+					"limiter_event_name" { "value" "Hero_Ramza.WhiteMageCuraga4" }
+					"limiter_max" { "value" "5.000000" }
+					"limiter_match_type" { "value" "0.000000" }
+					"limiter_match_entity" { "value" "0.000000" }
+					"limiter_match_substring" { "value" "0.000000" }
+				}
+			}
+		}
+	}
+}
+"Hero_Ramza.WhiteMageCuraga5"
+{    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+				{
+					"type" { "value" "dota_update_default" }
+					"vsnd_files" 
+					{ 
+						"value"
+						{
+							"value0" "sounds/weapons/hero/chen/hog_hero05.vsnd"
+						}
+					}
+					"volume" { "value" "1.000000" }
+					"pitch" { "value" "1.000000" }
+					"soundlevel" { "value" "84.000000" }
+					"mixgroup" { "value" "Weapons" }
+					"volume_fade_in" { "value" "0.100000" }
+					"volume_falloff_max" { "value" "12000.000000" }
+					"spread_radius" { "value" "300.000000" }
+					"limiter_on" { "value" "1.000000" }
+					"limiter_event_name" { "value" "Hero_Ramza.WhiteMageCuraga5" }
+					"limiter_max" { "value" "5.000000" }
+					"limiter_match_type" { "value" "0.000000" }
+					"limiter_match_entity" { "value" "0.000000" }
+					"limiter_match_substring" { "value" "0.000000" }
+				}
+			}
+		}
+	}
+}
+"Hero_Ramza.WhiteMageCuraga6"
+{    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+				{
+					"type" { "value" "dota_update_default" }
+					"vsnd_files" 
+					{ 
+						"value"
+						{
+							"value0" "sounds/weapons/hero/chen/hog_hero06.vsnd"
+						}
+					}
+					"volume" { "value" "1.000000" }
+					"pitch" { "value" "1.000000" }
+					"soundlevel" { "value" "84.000000" }
+					"mixgroup" { "value" "Weapons" }
+					"volume_fade_in" { "value" "0.100000" }
+					"volume_falloff_max" { "value" "12000.000000" }
+					"spread_radius" { "value" "300.000000" }
+					"limiter_on" { "value" "1.000000" }
+					"limiter_event_name" { "value" "Hero_Ramza.WhiteMageCuraga6" }
+					"limiter_max" { "value" "5.000000" }
+					"limiter_match_type" { "value" "0.000000" }
+					"limiter_match_entity" { "value" "0.000000" }
+					"limiter_match_substring" { "value" "0.000000" }
+				}
+			}
+		}
+	}
+}
+
+"Hero_Chen.PenitenceImpact"
+{ "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+				{
+					"type" { "value" "dota_update_default" }
+					"vsnd_files" 
+					{
+						"value"
+						{
+							"value0" "sounds/weapons/hero/chen/penitence_impact.vsnd"
+						}
+					}
+					"volume" { "value" "1.000000" }
+					"pitch" { "value" "1.000000" }
+					"soundlevel" { "value" "81.000000" }
+					"mixgroup" { "value" "Weapons" }
+					"spread_radius" { "value" "450.000000" }
+				}
+			}
+		}
+	}
+}

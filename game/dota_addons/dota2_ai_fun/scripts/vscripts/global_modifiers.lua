@@ -473,7 +473,7 @@ function modifier_attack_point_change:IsHidden() return true end
 function modifier_attack_point_change:RemoveOnDeath() return false end
 function modifier_attack_point_change:DeclareFunctions() return {MODIFIER_PROPERTY_ATTACK_POINT_CONSTANT} end
 function modifier_attack_point_change:GetModifierAttackPointConstant() 
-	return self:GetStackCount()/100
+	return self:GetStackCount()/1000
 end
 
 modifier_attack_time_change = class({})

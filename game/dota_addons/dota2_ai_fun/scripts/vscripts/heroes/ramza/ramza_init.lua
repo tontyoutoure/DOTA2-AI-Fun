@@ -122,7 +122,7 @@ local tHeroBaseStats = {
 	AttributeIntelligenceGain = 0,
 	ArmorPhysical = 1,
 	bNoAttributeManager = true,
-	AttackAnimationPoint = 0.5
+	AttackAnimationPoint = 0.39,
 }
 
 

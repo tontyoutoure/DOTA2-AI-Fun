@@ -1,0 +1,187 @@
+"DOTAAbilities"
+{
+// Invoker's Invoke
+	// Author: tontyoutoure
+	// Date: March, 11, 2018
+	"invoker_retro_invoke"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_invoker/invoker_retro_utils.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName" 			"invoker_retro_invoke"
+		"HasScepterUpgrade"				"1"
+		"MaxLevel"						"1" 
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12"
+		"AbilityManaCost"				"0"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"max_invoked_spells"						"1"
+			}
+			"02"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"max_invoked_spells_scepter"				"2"
+			}
+			"03"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"cooldown_scepter"							"2"
+			}
+		}
+	}	
+	
+	"invoker_retro_empty1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel" "0"
+		"BaseClass" "ability_datadriven"
+		"AbilityTextureName" "invoker_empty1"
+	}		
+	
+	"invoker_retro_empty2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel" "0"
+		"BaseClass" "ability_datadriven"
+		"AbilityTextureName" "invoker_empty2"
+	}
+	
+	// Invoker's Quas
+	// Author: Rook
+	// Date: February 15, 2015
+	// Builds Kael's skills in the arcana magics. These spells, when invoked deal with the power of the mind, wind and water. As a regeant, increases damage by 2% per level, per regeant cast. Increases Intelligence by 1 each time this skill is learned.
+	"invoker_retro_quas"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_invoker/invoker_retro_utils.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" 			"invoker_quas"
+		"MaxLevel"						"7"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"0"
+		"AbilityCastAnimation"			"ACT_INVALID"
+		
+		"precache"
+		{
+			"particle"			"particles/units/heroes/hero_invoker/invoker_quas_orb.vpcf"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"bonus_damage_percent_per_instance"		"2 4 6 8 10 12 14"
+			}
+		}
+	}
+	
+	// Invoker's Wex
+	// Author: Rook
+	// Date: February 15, 2015
+	// Builds Kael's skill in the energy magics. These spells, when invoked, deal with the power of electricity and lightning. As a regeant, increases movement speed by 1% per level, per regeant. Increases Agility by 1 each time this skill is learned.
+	"invoker_retro_wex"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_invoker/invoker_retro_utils.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" 			"invoker_wex"
+		"MaxLevel"						"7"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"0"
+		"AbilityCastAnimation"			"ACT_INVALID"
+		
+		"precache"
+		{
+			"particle"			"particles/units/heroes/hero_invoker/invoker_wex_orb.vpcf"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"move_speed_percent_per_instance"	"1 2 3 4 5 6 7"
+			}
+		}
+	}
+	// Invoker's Exort
+	// Author: Rook
+	// Date: February 15, 2015
+	// Builds Kael's skill in the fire magics. These spells, when invoked, deal with the power of fire, projection and damage. As a reagent, regenerates .5 hitpoints per level, per reagent cast. Increases Strength by 1 each time his skill is learned.
+	"invoker_retro_exort"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_invoker/invoker_retro_utils.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" 			"invoker_exort"
+		"MaxLevel"						"7"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+		"AbilityCastAnimation"			"ACT_INVALID"
+		"AbilityManaCost"				"0"
+		
+		"precache"
+		{
+			"particle"			"particles/units/heroes/hero_invoker/invoker_exort_orb.vpcf"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"bonus_health_regen_per_instance"	".5 1.0 1.5 2.0 2.5 3.0 3.5"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"bonus_strength"					"1 2 3 4 5 6 7"
+			}
+			"03"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"pip_show"								"1"
+			}
+		}
+	}
+}

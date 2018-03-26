@@ -19,6 +19,7 @@ local tNewAbilities = {
 
 local tHeroBaseStats = {
 	MovementSpeed = 295,
+	AttackAnimationPoint = 0.3,
 	AttackRate = 1.7,
 	AttackDamageMin = 29,
 	AttackDamageMax = 35,
@@ -30,7 +31,6 @@ local tHeroBaseStats = {
 	AttributeIntelligenceGain = 1.6,
 	ArmorPhysical = 0,
 	PrimaryAttribute = DOTA_ATTRIBUTE_AGILITY,
-	AttackAnimationPoint = 0.36,
 }
 
 CustomNetTables:SetTableValue("fun_hero_stats", "hamsterlord_abilities", tNewAbilities)

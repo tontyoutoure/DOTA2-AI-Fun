@@ -147,6 +147,15 @@ function el_dorado_change_item_slot_6_lua:IsStealable() return false end
 function el_dorado_change_item_slot_7_lua:IsStealable() return false end
 function el_dorado_change_item_slot_8_lua:IsStealable() return false end
 
+function el_dorado_change_item_slot_0_lua:ProcsMagicStick() return false end
+function el_dorado_change_item_slot_1_lua:ProcsMagicStick() return false end
+function el_dorado_change_item_slot_2_lua:ProcsMagicStick() return false end
+function el_dorado_change_item_slot_3_lua:ProcsMagicStick() return false end
+function el_dorado_change_item_slot_4_lua:ProcsMagicStick() return false end
+function el_dorado_change_item_slot_5_lua:ProcsMagicStick() return false end
+function el_dorado_change_item_slot_6_lua:ProcsMagicStick() return false end
+function el_dorado_change_item_slot_7_lua:ProcsMagicStick() return false end
+function el_dorado_change_item_slot_8_lua:ProcsMagicStick() return false end
 
 function el_dorado_change_item_slot_0_lua:OnUpgrade()
 	self:GetCaster().iItemSlot = 0
@@ -267,7 +276,7 @@ ElDoradoArtificialFrogBlink = function (keys)
 end
 el_dorado_refine_weapons = class({})
 
-function el_dorado_refine_weapons:GetIntrinsicModifierName() return "modifier_el_dorado_refine_weapons" end
+function el_dorado_refine_weapons:OnUpgrade() if self:GetLevel() == 1 then self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_el_dorado_refine_weapons", {}) end end
 
 el_dorado_piracy_method = class({})
 

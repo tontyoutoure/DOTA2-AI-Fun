@@ -1,8 +1,8 @@
-modifier_cleric_berserk_no_order = class({})
-function modifier_cleric_berserk_no_order:IsHidden() return true end
-function modifier_cleric_berserk_no_order:IsPurgable() return false end
 
 modifier_cleric_berserk = class({})
+function modifier_cleric_berserk:CheckState()
+	return {[MODIFIER_STATE_COMMAND_RESTRICTED] = true}
+end
 function modifier_cleric_berserk:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
@@ -22,7 +22,6 @@ function modifier_cleric_berserk:OnCreated()
 	if IsClient() then return end
 	local hParent = self:GetParent()
 	self.iOwner = hParent:GetPlayerOwnerID()
-	hParent:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_cleric_berserk_no_order", {})
 	self:StartIntervalThink(0.05)
 end
 
@@ -37,13 +36,7 @@ function modifier_cleric_berserk:OnIntervalThink()
 		if self.hTarget then
 			self.hTarget:RemoveModifierByName("modifier_cleric_berserk_target")
 			self.hTarget = nil
-			hParent:RemoveModifierByName("modifier_cleric_berserk_no_order")
-			ExecuteOrderFromTable({
-				UnitIndex = hParent:entindex(),
-				OrderType = DOTA_UNIT_ORDER_STOP 
-			})
-			hParent:SetForceAttackTarget(nil)
-			hParent:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_cleric_berserk_no_order", {})
+			hParent:Stop()
 		end
 	else	
 		local iNum = 1
@@ -64,15 +57,7 @@ function modifier_cleric_berserk:OnIntervalThink()
 				self.hTarget = tTargets[iNum]
 				self.hTarget:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_cleric_berserk_target", {})
 			end
-			hParent:RemoveModifierByName("modifier_cleric_berserk_no_order")
-			hParent:SetForceAttackTarget(nil)
-			ExecuteOrderFromTable({
-				UnitIndex = hParent:entindex(),
-				OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-				TargetIndex = self.hTarget:entindex()
-			})
-			hParent:SetForceAttackTarget(self.hTarget)
-			hParent:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_cleric_berserk_no_order", {})
+			hParent:MoveToTargetToAttack(self.hTarget)
 		end
 	end
 end
@@ -81,12 +66,7 @@ function modifier_cleric_berserk:OnDestroy()
 	if IsClient() then return end
 	local hParent = self:GetParent()
 	hParent:RemoveModifierByName("modifier_cleric_berserk_no_order")
-	local tOrder = {
-		UnitIndex = hParent:entindex(),
-		OrderType = DOTA_UNIT_ORDER_STOP 
-	}
-	ExecuteOrderFromTable(newOrder)
-	hParent:SetForceAttackTarget(nil)
+	hParent:Stop()
 	if self.hTarget then
 		self.hTarget:RemoveModifierByName("modifier_cleric_berserk_target")
 	end	

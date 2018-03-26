@@ -4,6 +4,6 @@
 	"IsPlayable"	"1"
 	"dota"
 	{
-					"MaxPlayers"                    "20"
+		"MaxPlayers"                    "20"
 	}
 }

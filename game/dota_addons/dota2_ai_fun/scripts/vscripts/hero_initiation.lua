@@ -268,7 +268,7 @@ if not IsClient() then
 		if tHeroBaseStats.AttackCapabilities then hHero:SetAttackCapability(tHeroBaseStats.AttackCapabilities) end
 		if tHeroBaseStats.VisionDaytimeRange then hHero:SetDayTimeVisionRange(tHeroBaseStats.VisionDaytimeRange) end
 		if tHeroBaseStats.VisionNighttimeRange then hHero:SetNightTimeVisionRange(tHeroBaseStats.VisionNighttimeRange) end
-		if tHeroBaseStats.AttackAnimationPoint then hHero:AddNewModifier(hHero, nil, "modifier_attack_point_change", {}):SetStackCount(tHeroBaseStats.AttackAnimationPoint*100)	end
+		if tHeroBaseStats.AttackAnimationPoint then hHero:AddNewModifier(hHero, nil, "modifier_attack_point_change", {}):SetStackCount(tHeroBaseStats.AttackAnimationPoint*1000)	end
 		if tHeroBaseStats.ProjectileModel then hHero:SetRangedProjectileName(tHeroBaseStats.ProjectileModel) end
 		local iAttackRange = hHero:GetAttackRange()
 		if tHeroBaseStats.AttackRange then	hHero:AddNewModifier(hHero, nil, "modifier_attack_range_change", {}):SetStackCount(tHeroBaseStats.AttackRange - iAttackRange)	end

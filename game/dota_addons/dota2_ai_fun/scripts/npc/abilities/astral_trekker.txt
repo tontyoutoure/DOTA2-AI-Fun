@@ -19,7 +19,7 @@
 		"FightRecapLevel"	"1"
 		// Stats
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"	"0.5 0.5 0.5 0.5"
+		"AbilityCastPoint"	"0.47"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCooldown"	"6"
 		"AbilityManaCost"	"90"
@@ -37,7 +37,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"350"
+				"radius"	"250 300 350 400"
 			}
 			"02"
 			{
@@ -66,7 +66,7 @@
 		"FightRecapLevel"	"1"
 		// Stats
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"	"0.5 0.5 0.5 0.5"
+		"AbilityCastPoint"	"0.47"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCooldown"	"6"
 		"AbilityManaCost"	"90"
@@ -84,7 +84,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"350"
+				"radius"	"250 300 350 400"
 			}
 			"02"
 			{
@@ -113,7 +113,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"	"0.2"
+		"AbilityCastPoint"	"0.47"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
@@ -230,7 +230,7 @@
 		"AoERadius"               "400"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"	"0.4"
+		"AbilityCastPoint"	"0.47"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
@@ -240,7 +240,7 @@
 		"AbilityManaCost"	"75"
 		// Cast Range
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"650"
+		"AbilityCastRange"	"600"
 		// Data driven
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"

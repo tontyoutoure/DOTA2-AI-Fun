@@ -9,9 +9,9 @@ function spongebob_krabby_food:GetBehavior()
 		self.hSpecial = Entities:Next(self.hSpecial)
 	end		
 	if self.hSpecial and self.hSpecial:GetSpecialValueFor("value") > 0 then
-		return DOTA_ABILITY_BEHAVIOR_NO_TARGET+DOTA_ABILITY_BEHAVIOR_CHANNELLED
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
 	else
-		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET+DOTA_ABILITY_BEHAVIOR_CHANNELLED
+		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
 	end
 end
 function spongebob_krabby_food:GetManaCost(iLevel)
@@ -34,22 +34,16 @@ function spongebob_krabby_food:GetManaCost(iLevel)
 	end
 end
 function spongebob_krabby_food:OnSpellStart()
-end
-
-function spongebob_krabby_food:OnChannelFinish(bInterrupted)
-	if not bInterrupted then
-		
 	local hCaster = self:GetCaster()
-		if hCaster:HasAbility("special_bonus_spongebob_3") and hCaster:FindAbilityByName("special_bonus_spongebob_3"):GetSpecialValueFor("value") > 0 then
-			for k, v in pairs(FindUnitsInRadius(hCaster:GetTeamNumber(), hCaster:GetOrigin(), nil, 600, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false))
-			do
-				v:EmitSound("DOTA_Item.HealingSalve.Activate")
-				v:AddNewModifier(hCaster, self, "modifier_spongebob_krabby_food", {Duration = self:GetSpecialValueFor("duration")})
-			end
-		else
-			self:GetCursorTarget():EmitSound("DOTA_Item.HealingSalve.Activate")
-			self:GetCursorTarget():AddNewModifier(hCaster, self, "modifier_spongebob_krabby_food", {Duration = self:GetSpecialValueFor("duration")})
+	if hCaster:HasAbility("special_bonus_spongebob_3") and hCaster:FindAbilityByName("special_bonus_spongebob_3"):GetSpecialValueFor("value") > 0 then
+		for k, v in pairs(FindUnitsInRadius(hCaster:GetTeamNumber(), hCaster:GetOrigin(), nil, 600, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false))
+		do
+			v:EmitSound("DOTA_Item.HealingSalve.Activate")
+			v:AddNewModifier(hCaster, self, "modifier_spongebob_krabby_food", {Duration = self:GetSpecialValueFor("duration")})
 		end
+	else
+		self:GetCursorTarget():EmitSound("DOTA_Item.HealingSalve.Activate")
+		self:GetCursorTarget():AddNewModifier(hCaster, self, "modifier_spongebob_krabby_food", {Duration = self:GetSpecialValueFor("duration")})
 	end
 end
 

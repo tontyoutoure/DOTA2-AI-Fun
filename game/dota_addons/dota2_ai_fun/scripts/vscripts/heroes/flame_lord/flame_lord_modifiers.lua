@@ -13,7 +13,7 @@ function modifier_flame_lord_enflame:OnCreated()
 		self.iParticle = ParticleManager:CreateParticle("particles/flame_lord/ember_spirit_flameguard.vpcf", PATTACH_ABSORIGIN_FOLLOW, hParent)
 		ParticleManager:SetParticleControlEnt(self.iParticle, 1, hParent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", hParent:GetOrigin(), true)
 		ParticleManager:SetParticleControl(self.iParticle, 2, Vector(self.iRadius, 0, 0))
-		ParticleManager:SetParticleControl(self.iParticle, 3, Vector(850, 0, 0))
+		ParticleManager:SetParticleControl(self.iParticle, 3, Vector(700, 0, 0))
 	else
 		self.iRadius = hAbility:GetSpecialValueFor("radius")
 		self.iDamage = hAbility:GetSpecialValueFor("damage")/10
@@ -21,7 +21,7 @@ function modifier_flame_lord_enflame:OnCreated()
 		self.iParticle = ParticleManager:CreateParticle("particles/flame_lord/ember_spirit_flameguard.vpcf", PATTACH_ABSORIGIN_FOLLOW, hParent)
 		ParticleManager:SetParticleControlEnt(self.iParticle, 1, hParent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", hParent:GetOrigin(), true)
 		ParticleManager:SetParticleControl(self.iParticle, 2, Vector(self.iRadius, 0, 0))
-		ParticleManager:SetParticleControl(self.iParticle, 3, Vector(450, 0, 0))
+		ParticleManager:SetParticleControl(self.iParticle, 3, Vector(250, 0, 0))
 	end
 	self.iDamageType = hAbility:GetAbilityDamageType()
 	self:StartIntervalThink(0.1)

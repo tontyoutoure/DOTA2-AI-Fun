@@ -19,7 +19,8 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
 		"HotKeyOverride"	"r"
 		// GUESS VALUE
-		"AbilityCastPoint"	"0.5 0.5 0.5 0.5"
+		"AbilityCastPoint"	"0.75"
+		"AnimationPlayBackRate"  "0.6"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCooldown"	"15 15 15 15"
 		"AbilityManaCost"	"100 110 120 130"
@@ -62,7 +63,8 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
 		"HotKeyOverride"	"e"
 		// GUESS VALUE
-		"AbilityCastPoint"	"0.5 0.5 0.5 0.5"
+		"AbilityCastPoint"	"0.75"
+		"AnimationPlayBackRate"  "0.6"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCooldown"	"15 15 15 15"
 		"AbilityManaCost"	"100 110 120 130"
@@ -109,7 +111,8 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		// GUESS VALUE
-		"AbilityCastPoint"	"0.5 0.5 0.5 0.5"
+		"AbilityCastPoint"	"0.75"
+		"AnimationPlayBackRate"  "0.6"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCooldown"	"15 15 15 15"
 		"AbilityManaCost"	"100 110 120 130"
@@ -152,7 +155,8 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"	"3"
 		// GUESS VALUE
-		"AbilityCastPoint"	"0.5 0.5 0.5"
+		"AbilityCastPoint"	"0.75"
+		"AnimationPlayBackRate"  "0.6"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCooldown"	"135 90 45"
 		"AbilityManaCost"	"0"
@@ -201,7 +205,8 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"	"3"
 		// GUESS VALUE
-		"AbilityCastPoint"	"0.5 0.5 0.5"
+		"AbilityCastPoint"	"0.75"
+		"AnimationPlayBackRate"  "0.6"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCooldown"	"135 90 45"
 		"AbilityManaCost"	"0"
@@ -246,7 +251,8 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		// GUESS VALUE
-		"AbilityCastPoint"	"0.5 0.5 0.5"
+		"AbilityCastPoint"	"0.75"
+		"AnimationPlayBackRate"  "0.6"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCooldown"	"135 90 45"
 		"AbilityManaCost"	"0"

@@ -1,0 +1,3135 @@
+"DOTAAbilities"
+{
+// Invoker's Shroud of Flames
+	// Author: Noya
+	// Date: February 15, 2015
+	// Invoke: Quas Exort Exort
+	// Creates a barrier that reduces spell damage against a friendly unit by 12%. Units that attack that unit get flamed, with damage based on Exort. Lasts 40 seconds.
+	
+	
+	
+	//Dummy for popup
+	"invoker_retro_shroud_of_flames"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	    "AbilityTextureName"            "invoker_retro_shroud_of_flames"
+	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+	    "AbilityCastAnimation"          "ACT_DOTA_CAST_ICE_WALL"
+	    "MaxLevel"                      "1"
+		"AbilityProcsMagicStick" 		"1"
+	    
+	    // Stats
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCooldown"               "30"
+	    "AbilityManaCost"               "250"
+	    "AbilityCastRange"              "500"
+	    "AbilityDuration"               "40" //Tooltip states "Lasts 40 seconds"
+	    
+	    "precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+	    
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "magic_resistance"      "4 8 12 16 20 24 28 32" // Scales with Quas
+	        }
+	        "02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "damage_exort"          "8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+	        }
+	        "03"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "pip_current"           "1"
+	        }
+	    }
+	
+	    "OnSpellStart"
+	    {
+	        // Create a dummy, which will learn this ability and apply the modifier on the target
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames_dummy"
+	        }
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	            "TextureName"   "invoker_retro_shroud_of_flames"
+	            "Duration"      "%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+	                "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	                "LinearProjectile"
+	                {
+	                    "Target"        "ATTACKER"
+	                    "Source"        "TARGET"
+	                    "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	                    "MoveSpeed"     "900"
+	                    "StartRadius"   "100"
+	                    "StartPosition" "attach_origin"
+	                    "EndRadius"     "500"
+	                    "FixedDistance" "600"
+	                    "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	                    "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+	                    "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+	                    "HasFrontalCone" "1"
+	                    "ProvidesVision" "0"
+	                }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"250"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"250"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"250"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"250"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"250"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"250"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"250"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"250"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort1_half_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"125"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort2_half_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"125"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort3_half_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"125"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort4_half_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"125"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort5_half_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"125"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort6_half_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"125"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort7_half_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"125"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort8_half_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"125"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort1_no_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort2_no_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort3_no_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort4_no_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort5_no_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort6_no_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort7_no_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+	
+	
+	"invoker_retro_shroud_of_flames_exort8_no_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"invoker_retro_shroud_of_flames"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"500"
+		"AbilityDuration"				"40" //Tooltip states "Lasts 40 seconds"
+		
+		"precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resistance"		"4 8 12 16 20 24 28 32"	// Scales with Quas
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_exort"			"8 16 24 32 40 48 56 64" // Scales with Exort. Hardcoded tooltip
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+	
+		"OnSpellStart"
+	    {
+	    	// Create a dummy, which will learn this ability and apply the modifier on the target
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    		"Function"		"invoker_retro_shroud_of_flames_dummy"
+	    	}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_EmberSpirit.FlameGuard.Cast"
+	            "Target"        "TARGET"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit" "0"
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	            "Function"      "invoker_retro_shroud_of_flames"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shroud_of_flames"
+	        {
+	        	"TextureName"	"invoker_retro_shroud_of_flames"
+	        	"Duration"		"%AbilityDuration"
+	            "Properties"
+	            {
+	                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
+	            }
+	
+	            "OnCreated"
+	            {
+			        "AttachEffect"
+	                {
+	                    "Target"              "TARGET"
+	                    "EffectName"          "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	                    "EffectAttachType"    "start_at_customorigin"
+	                    "ControlPointEntities"
+	                    {
+	                        "TARGET"     "attach_origin"
+	                        "TARGET"     "attach_origin"
+	                    }
+	                }
+	            }
+	
+	            "OnAttacked"
+	            {
+	            	"LinearProjectile"
+			        {
+		                "Target"        "ATTACKER"
+		                "Source"		"TARGET"
+		                "EffectName"    "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		                "MoveSpeed"     "900"
+		                "StartRadius"   "100"
+		                "StartPosition" "attach_origin"
+		                "EndRadius"     "500"
+		                "FixedDistance" "600"
+		                "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                "TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+		                "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		                "HasFrontalCone" "1"
+		                "ProvidesVision" "0"
+			        }
+	            }
+	        }
+	    }
+	}
+}

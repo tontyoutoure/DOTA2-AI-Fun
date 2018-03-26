@@ -17,12 +17,18 @@ local function FlameLordEnflameGetCustomCastErrorTarget(self, hTarget)
 	return "#dota_hud_error_cant_cast_on_self"
 end
 
+local FlameLordEnflameGetAOERadius = function (self)
+	if self:GetCaster():HasScepter() then return self:GetSpecialValueFor("radius_scepter") else return self:GetSpecialValueFor("radius") end
+end
+
 flame_lord_enflame = class({})
+flame_lord_enflame.GetAOERadius = FlameLordEnflameGetAOERadius
 flame_lord_enflame.OnSpellStart = FlameLordEnflameOnSpellStart
 flame_lord_enflame.CastFilterResultTarget = FlameLordEnflameCastFilterResultTarget
 flame_lord_enflame.GetCustomCastErrorTarget = FlameLordEnflameGetCustomCastErrorTarget
 
 flame_lord_enflame_talented = class({})
+flame_lord_enflame_talented.GetAOERadius = FlameLordEnflameGetAOERadius
 flame_lord_enflame_talented.OnSpellStart = FlameLordEnflameOnSpellStart
 flame_lord_enflame_talented.CastFilterResultTarget = FlameLordEnflameCastFilterResultTarget
 flame_lord_enflame_talented.GetCustomCastErrorTarget = FlameLordEnflameGetCustomCastErrorTarget

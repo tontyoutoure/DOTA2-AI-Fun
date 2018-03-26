@@ -456,6 +456,7 @@ end
 modifier_item_fun_terra_blade = class({})
 function modifier_item_fun_terra_blade:IsHidden() return true end
 function modifier_item_fun_terra_blade:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
+function modifier_item_fun_terra_blade:CheckState() return {[MODIFIER_STATE_CANNOT_MISS] = true} end
 function modifier_item_fun_terra_blade:DeclareFunctions() 
 	return {
 		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,

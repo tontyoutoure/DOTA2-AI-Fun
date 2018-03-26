@@ -31,7 +31,7 @@ local tHeroBaseStats = {
 	AttributeIntelligenceGain = 2.8,
 	ArmorPhysical = 1,
 	PrimaryAttribute = DOTA_ATTRIBUTE_INTELLECT,
-	AttackAnimationPoint = 0.2,
+	AttackAnimationPoint = 0.59,
 }
 CustomNetTables:SetTableValue("fun_hero_stats", "cleric_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "cleric", tHeroBaseStats)
@@ -55,8 +55,10 @@ function ClericInit(hHero, context)
  		local hMagicMirror = hHero:FindAbilityByName("cleric_magic_mirror")
  		hHero:AddNewModifier(hHero, hMagicMirror, "modifier_cleric_magic_mirror", {})
  	end	
+	--[[
 	if not GameMode.bClericFilterSet then
 		GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(GameMode, 'ClericOrderFilter'), context)
 		GameMode.bClericFilterSet = true
 	end
+	]]--
 end

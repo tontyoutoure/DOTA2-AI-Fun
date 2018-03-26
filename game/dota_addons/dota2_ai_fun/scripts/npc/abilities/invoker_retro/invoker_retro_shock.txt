@@ -1,0 +1,198 @@
+"DOTAAbilities"
+{
+// Invoker's Shock
+	// Author: Rook
+	// Date: March 9, 2015
+	// Invoke: Wex Wex Wex
+	// Releases a ring of shocking energy that summons a bolt of energy on each target in its path, removing all buffs. 300 range and 160 damage. Radius and Damage based on Wex
+	"invoker_retro_shock"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName" 			"invoker_retro_shock"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_EMP"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"200"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_shock_ground.vpcf"
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_shock_lightning_bolt.vpcf"
+			"soundfile"					"soundevents/custom_sounds.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"damage"								"40 80 120 160 200 240 280 320"  //Increases with Wex.
+			}
+			"02"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"radius"								"150 200 250 300 350 400 450 500"  //Increases with Wex.
+			}
+			"03"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"delay_before_damage"					".5"
+			}
+			"04"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"pip_current"							"1"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"								"heroes/hero_invoker/invoker_retro_shock.lua"
+				"Function"									"invoker_retro_shock_on_spell_start"
+				"DelayBeforeDamage"							"%delay_before_damage"
+			}
+		}
+	}
+	
+	
+	"invoker_retro_shock_half_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName" 			"invoker_retro_shock"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_EMP"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"100"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_shock_ground.vpcf"
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_shock_lightning_bolt.vpcf"
+			"soundfile"					"soundevents/custom_sounds.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"damage"								"40 80 120 160 200 240 280 320"  //Increases with Wex.
+			}
+			"02"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"radius"								"150 200 250 300 350 400 450 500"  //Increases with Wex.
+			}
+			"03"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"delay_before_damage"					".5"
+			}
+			"04"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"pip_current"							"1"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"								"heroes/hero_invoker/invoker_retro_shock.lua"
+				"Function"									"invoker_retro_shock_on_spell_start"
+				"DelayBeforeDamage"							"%delay_before_damage"
+			}
+		}
+	}
+	
+	
+	"invoker_retro_shock_no_mana_cost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName" 			"invoker_retro_shock"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_EMP"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"0"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_shock_ground.vpcf"
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_shock_lightning_bolt.vpcf"
+			"soundfile"					"soundevents/custom_sounds.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"damage"								"40 80 120 160 200 240 280 320"  //Increases with Wex.
+			}
+			"02"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"radius"								"150 200 250 300 350 400 450 500"  //Increases with Wex.
+			}
+			"03"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"delay_before_damage"					".5"
+			}
+			"04"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"pip_current"							"1"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"								"heroes/hero_invoker/invoker_retro_shock.lua"
+				"Function"									"invoker_retro_shock_on_spell_start"
+				"DelayBeforeDamage"							"%delay_before_damage"
+			}
+		}
+	}
+}

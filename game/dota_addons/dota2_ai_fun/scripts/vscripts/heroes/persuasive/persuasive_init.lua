@@ -18,7 +18,7 @@ local tNewAbilities = {
 
 local tHeroBaseStats = {
 	MovementSpeed = 290,
-	AttackRate = 1.7,
+	AttackRate = 1.9,
 	AttackDamageMin = 16,
 	AttackDamageMax = 22,
 	AttributeBaseStrength = 30,
@@ -30,7 +30,7 @@ local tHeroBaseStats = {
 	ArmorPhysical = -1,
 	PrimaryAttribute = DOTA_ATTRIBUTE_STRENGTH,
 	AttackRange = 625,
-	AttackAnimationPoint = 0.3
+	AttackAnimationPoint = 0.17,
 }
 CustomNetTables:SetTableValue("fun_hero_stats", "persuasive_abilities", tNewAbilities)
 CustomNetTables:SetTableValue("fun_hero_stats", "persuasive", tHeroBaseStats)

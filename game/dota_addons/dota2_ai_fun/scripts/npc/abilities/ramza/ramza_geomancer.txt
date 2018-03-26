@@ -53,8 +53,7 @@
 		"AbilityCastPoint"	"0.5"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCooldown"	"30"
-		"AbilityCastRange"	"250"
-		"AOERadius"	"500"
+		"AbilityCastRange"	"300"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts"
@@ -130,7 +129,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"250"
+				"radius"	"300"
 			}
 		}
 	}
@@ -148,7 +147,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCooldown"	"30"
 		"AbilityCastRange"	"800"
-		"AOERadius"	"250"
+		"AOERadius"	"300"
 		"precache"
 		{
 			"particle"	"particles/units/heroes/hero_leshrac/leshrac_split_earth.vpcf"
@@ -215,7 +214,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"250"
+				"radius"	"300"
 			}
 		}
 	}
@@ -232,7 +231,7 @@
 		"AbilityCastPoint"	"0.5"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCooldown"	"30"
-		"AbilityCastRange"	"1000"
+		"AbilityCastRange"	"800"
 		"AOERadius"	"500"
 		"OnSpellStart"
 		{
@@ -304,7 +303,7 @@
 		"AbilityCastPoint"	"0.5"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCooldown"	"30"
-		"AbilityCastRange"	"2000"
+		"AbilityCastRange"	"1500"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -340,7 +339,7 @@
 		"AbilityCastPoint"	"0.5"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCooldown"	"30"
-		"AbilityCastRange"	"1000"
+		"AbilityCastRange"	"900"
 		"AOERadius"	"600"
 		"precache"
 		{

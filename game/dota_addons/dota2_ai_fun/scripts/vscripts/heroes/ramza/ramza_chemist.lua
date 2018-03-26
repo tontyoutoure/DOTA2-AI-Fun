@@ -18,7 +18,7 @@ ramza_chemist_items_phoenix_down = class({})
 
 local function RamzaItemsGetCastRange(self, vLocation, hTarget)
 	if self:GetCaster():HasModifier("modifier_ramza_chemist_throw_items") and not self:GetCaster():PassivesDisabled() then return 99999
-	else return 1200
+	else return 1000
 	end
 end
 

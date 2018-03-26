@@ -15,11 +15,11 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityCastPoint"	"0.3"
+		"AbilityCastPoint"	"0.6"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCooldown"	"8.5"
 		"AbilityManaCost"	"100 120 140 160"
-		"AbilityCastRange"	"600"
+		"AbilityCastRange"	"550"
 		"AbilityCastRangeBuffer"	"200"
 		"AbilitySpecial"
 		{
@@ -52,7 +52,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityCastPoint"	"0.5"
+		"AbilityCastPoint"	"0.6"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
 		"AbilityCooldown"	"10"
 		"AbilityManaCost"	"105 115 125 135"
@@ -100,7 +100,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityCastPoint"	"0.5"
+		"AbilityCastPoint"	"0.6"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
 		"AbilityCooldown"	"10"
 		"AbilityManaCost"	"105 115 125 135"
@@ -193,14 +193,14 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"nevermore_shadowraze2_demon"
 		"ScriptFile"	"heroes/flame_lord/flame_lord.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE "
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"CastFilterRejectCaster"	"1"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCastPoint"	"0.5"
+		"AbilityCastPoint"	"0.6"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCooldown"	"120"
 		"AbilityManaCost"	"185 270 380"
@@ -221,7 +221,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"350"
+				"radius"	"200"
 			}
 			"04"
 			{
@@ -231,7 +231,7 @@
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius_scepter"	"650"
+				"radius_scepter"	"500"
 			}
 		}
 		"HasScepterUpgrade"	"1"
@@ -242,14 +242,14 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"nevermore_shadowraze2_demon"
 		"ScriptFile"	"heroes/flame_lord/flame_lord.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE "
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"CastFilterRejectCaster"	"1"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCastPoint"	"0.5"
+		"AbilityCastPoint"	"0.6"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCooldown"	"120"
 		"AbilityManaCost"	"185 270 380"
@@ -270,7 +270,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"350"
+				"radius"	"200"
 			}
 			"04"
 			{
@@ -280,7 +280,7 @@
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius_scepter"	"650"
+				"radius_scepter"	"500"
 			}
 		}
 		"HasScepterUpgrade"	"1"

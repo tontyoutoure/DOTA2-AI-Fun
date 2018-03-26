@@ -17,7 +17,7 @@ local tNewAbilities = {
 
 local tHeroBaseStats = {
 	MovementSpeed = 310,
-	AttackRate = 1.7,
+	AttackRate = 1.6,
 	AttackDamageMin = 19,
 	AttackDamageMax = 27,
 	AttackRange = 550,
@@ -29,6 +29,7 @@ local tHeroBaseStats = {
 	AttributeIntelligenceGain = 3.1,
 	ArmorPhysical = 1,
 	PrimaryAttribute = DOTA_ATTRIBUTE_INTELLECT,
+	AttackAnimationPoint = 0.55,
 }
 
 

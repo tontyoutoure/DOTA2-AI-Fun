@@ -1,4 +1,4 @@
-.DonationBase
+.IngameBase
 {
 	width: 100%;
 	height: 100%;
@@ -6,25 +6,33 @@
 
 #DonationActiveButtonContainer
 {
-	width: 80px;
-	height: 30px;
+	width: 240px;
+	height: 40px;
 	vertical-align: bottom;
 	horizontal-align: left;
 	margin-bottom: 243px;
+	flow-children:right;
 }
 
 .DonationActiveButton
 {
-	width: 100%;
-	height: 100%;	
-	background-color: gold;
-	box-shadow: #555555 0px 0px 20px 0px;
+	width: 40px;
+	height: 40px;	
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	wash-color:#CDF;
+	opacity:0.5;
 }
 
 .DonationActiveButton:active
 {	
 	transform: translate3d(1px, 1px, 0px);
 	sound: "ui_settings_multi";
+}
+
+#DonationButton
+{
+	background-image:url("file://{images}/custom_game/chips.png"); 
 }
 
 .DonationActiveButtonLabel
@@ -68,7 +76,7 @@
 	width: 600px;
 	height: 735px;
 	vertical-align: top;
-	margin-top: 60px;
+	margin-top: 50px;
 	horizontal-align: left;
 	background-color: #000000E0;
 	visibility: collapse;

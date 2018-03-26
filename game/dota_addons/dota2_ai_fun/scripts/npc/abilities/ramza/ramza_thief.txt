@@ -126,8 +126,8 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCooldown"	"50"
 		"AbilityManaCost"	"0"
-		"AbilityCastRange"	"150"
-		"AbilityCastRangeBuffer"	"100"
+		"AbilityCastRange"	"100"
+		"AbilityCastRangeBuffer"	"200"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -159,8 +159,8 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCooldown"	"32"
 		"AbilityManaCost"	"0"
-		"AbilityCastRange"	"150"
-		"AbilityCastRangeBuffer"	"100"
+		"AbilityCastRange"	"100"
+		"AbilityCastRangeBuffer"	"200"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -183,8 +183,8 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCooldown"	"77"
 		"AbilityManaCost"	"0"
-		"AbilityCastRange"	"150"
-		"AbilityCastRangeBuffer"	"100"
+		"AbilityCastRange"	"100"
+		"AbilityCastRangeBuffer"	"200"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -215,8 +215,8 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCooldown"	"45"
 		"AbilityManaCost"	"0"
-		"AbilityCastRange"	"150"
-		"AbilityCastRangeBuffer"	"100"
+		"AbilityCastRange"	"100"
+		"AbilityCastRangeBuffer"	"200"
 		"precache"
 		{
 			"particle"	"particles/items2_fx/medallion_of_courage_friend.vpcf"
@@ -290,8 +290,8 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCooldown"	"45"
 		"AbilityManaCost"	"0"
-		"AbilityCastRange"	"150"
-		"AbilityCastRangeBuffer"	"100"
+		"AbilityCastRange"	"100"
+		"AbilityCastRangeBuffer"	"200"
 		"precache"
 		{
 			"particle"	"particles/units/heroes/hero_magnataur/magnataur_empower.vpcf"
@@ -364,7 +364,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCooldown"	"150"
 		"AbilityManaCost"	"0"
-		"AbilityCastRange"	"150"
-		"AbilityCastRangeBuffer"	"100"
+		"AbilityCastRange"	"100"
+		"AbilityCastRangeBuffer"	"200"
 	}
 }

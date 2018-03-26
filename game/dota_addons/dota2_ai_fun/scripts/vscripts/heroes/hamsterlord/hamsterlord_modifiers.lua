@@ -16,7 +16,7 @@ function modifier_hamsterlord_injure_knees:DeclareFunctions() return {MODIFIER_E
 function modifier_hamsterlord_injure_knees:OnAttackStart(keys)
 	local hParent = self:GetParent()
 	if keys.attacker ~= hParent or hParent:PassivesDisabled() then return end
-	StartAnimation(hParent, {duration = 1/(1+hParent:GetIncreasedAttackSpeed()), activity=ACT_DOTA_CAST_ABILITY_5, rate=(1+hParent:GetIncreasedAttackSpeed())*0.2/0.36})
+	StartAnimation(hParent, {duration = 1/(1+hParent:GetIncreasedAttackSpeed()), activity=ACT_DOTA_CAST_ABILITY_5, rate=(1+hParent:GetIncreasedAttackSpeed())*0.2/0.3})
 end
 
 function modifier_hamsterlord_injure_knees:OnAttackFinished(keys)
