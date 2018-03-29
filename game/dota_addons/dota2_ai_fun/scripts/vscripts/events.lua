@@ -114,27 +114,57 @@ function GameMode:OnGameStateChanged( keys )
     elseif state == DOTA_GAMERULES_STATE_PRE_GAME then
 		Tutorial:StartTutorialMode()
 		local tTowers = Entities:FindAllByClassname("npc_dota_tower")
+		local tBarracks = Entities:FindAllByClassname("npc_dota_barracks")
+		local tHealers = Entities:FindAllByClassname("npc_dota_healer")
+		local tForts = Entities:FindAllByClassname("npc_dota_fort")
+		local tFillers = Entities:FindAllByClassname("npc_dota_filler")
+		self.tBackdoorBuildings = {}
+		self.tBackdoorInBaseBuildings = {}
 		local iTowerPower = self.iTowerPower or 1
 		local iTowerEndure = self.iTowerEndure or 1
 		for k, v in pairs(tTowers) do
 			v:AddNewModifier(v, nil, "modifier_tower_power", {}):SetStackCount(iTowerPower)
 			v:AddNewModifier(v, nil, "modifier_tower_endure", {}):SetStackCount(iTowerEndure)
+			v:AddNewModifier(v, nil, "modifier_backdoor_healing", {})
+			if v:HasAbility("backdoor_protection") then table.insert(self.tBackdoorBuildings, v) end
+			if v:HasAbility("backdoor_protection_in_base") then table.insert(self.tBackdoorInBaseBuildings, v) end
 		end
-		local tTowers = Entities:FindAllByClassname("npc_dota_barracks")
-		for k, v in pairs(tTowers) do
+		for k, v in pairs(tBarracks) do
 			v:AddNewModifier(v, nil, "modifier_tower_endure", {}):SetStackCount(iTowerEndure)
+			v:AddNewModifier(v, nil, "modifier_backdoor_healing", {})
+			if v:HasAbility("backdoor_protection") then table.insert(self.tBackdoorBuildings, v) end
+			if v:HasAbility("backdoor_protection_in_base") then table.insert(self.tBackdoorInBaseBuildings, v) end
 		end
-		local tTowers = Entities:FindAllByClassname("npc_dota_healer")
-		for k, v in pairs(tTowers) do
+		for k, v in pairs(tHealers) do
 			v:AddNewModifier(v, nil, "modifier_tower_endure", {}):SetStackCount(iTowerEndure)
+			v:AddNewModifier(v, nil, "modifier_backdoor_healing", {})
+			if v:HasAbility("backdoor_protection") then table.insert(self.tBackdoorBuildings, v) end
+			if v:HasAbility("backdoor_protection_in_base") then table.insert(self.tBackdoorInBaseBuildings, v) end
 		end
-		local tTowers = Entities:FindAllByClassname("npc_dota_fort")
-		for k, v in pairs(tTowers) do
+		for k, v in pairs(tForts) do
 			v:AddNewModifier(v, nil, "modifier_tower_endure", {}):SetStackCount(iTowerEndure)
+			v:AddNewModifier(v, nil, "modifier_backdoor_healing", {})
+			if v:HasAbility("backdoor_protection") then table.insert(self.tBackdoorBuildings, v) end
+			if v:HasAbility("backdoor_protection_in_base") then table.insert(self.tBackdoorInBaseBuildings, v) end
+		end
+		for k, v in pairs(tFillers) do
+			v:AddNewModifier(v, nil, "modifier_tower_endure", {}):SetStackCount(iTowerEndure)
+			v:AddNewModifier(v, nil, "modifier_backdoor_healing", {})
+			if v:HasAbility("backdoor_protection") then table.insert(self.tBackdoorBuildings, v) end
+			if v:HasAbility("backdoor_protection_in_base") then table.insert(self.tBackdoorInBaseBuildings, v) end
 		end
 	elseif state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 		self.fGameStartTime = GameRules:GetGameTime()
-		
+		for k, v in ipairs(self.tBackdoorBuildings) do
+			if not v:HasAbility("backdoor_protection") then
+				v:AddAbility("backdoor_protection"):SetLevel(1)
+			end
+		end
+		for k, v in ipairs(self.tBackdoorInBaseBuildings) do
+			if not v:HasAbility("backdoor_protection_in_base") then
+				v:AddAbility("backdoor_protection_in_base"):SetLevel(1)
+			end
+		end
 --      for i=0, DOTA_MAX_TEAM_PLAYERS do`
 --          print(i)
 --          if PlayerResource:IsFakeClient(i) then

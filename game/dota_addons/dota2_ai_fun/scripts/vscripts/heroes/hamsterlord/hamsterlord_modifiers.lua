@@ -51,17 +51,38 @@ end
 modifier_hamsterlord_injure_knees_stun = class({})
 function modifier_hamsterlord_injure_knees_stun:CheckState() return {[MODIFIER_STATE_STUNNED] = true} end
 function modifier_hamsterlord_injure_knees_stun:IsPurgeException() return true end
+function modifier_hamsterlord_injure_knees_stun:RemoveOnDeath() return false end
 function modifier_hamsterlord_injure_knees_stun:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
-function modifier_hamsterlord_injure_knees_stun:GetEffectName() return "particles/units/heroes/hero_tusk/tusk_walruskick_tgt.vpcf" end
-function modifier_hamsterlord_injure_knees_stun:OnCreated()
+function modifier_hamsterlord_injure_knees_stun:GetEffectName() return "particles/units/heroes/hero_tusk/tusk_walruspunch_tgt.vpcf" end
+function modifier_hamsterlord_injure_knees_stun:DeclareFunctions() return {MODIFIER_EVENT_ON_DEATH} end
+function modifier_hamsterlord_injure_knees_stun:OnDeath(keys)
+	if keys.unit == self:GetParent() then
+		CreateModifierThinker(self:GetCaster(), self:GetAbility(), "modifier_hamsterlord_injure_knees_thinker", {Duration = 2}, self:GetParent():GetOrigin(), self:GetCaster():GetTeamNumber(), false)	
+	end
+end
+function modifier_hamsterlord_injure_knees_stun:OnRefresh()
 	if IsClient() then return end
+	local hParent = self:GetParent()
 	local fDuration = self:GetDuration()
 	self.vVerticalSpeed = Vector(0, 0, self:GetAbility():GetSpecialValueFor("max_height")/fDuration)
 	self.vVerticalAcceleration = self.vVerticalSpeed*(-2)/fDuration
 	self.fAngleSpeed = 360/fDuration
-	self:ApplyVerticalMotionController()
 	self.dt = FrameTime()
 	self:StartIntervalThink(self.dt)
+	FindClearSpaceForUnit(hParent, GetGroundPosition(hParent:GetOrigin(), hParent), true)
+	hParent:SetAngles(0,hParent:GetAnglesAsVector().y,hParent:GetAnglesAsVector().z)
+	ParticleManager:CreateParticle("particles/units/heroes/hero_tusk/tusk_walruspunch_start.vpcf", PATTACH_ABSORIGIN, hParent)
+end
+function modifier_hamsterlord_injure_knees_stun:OnCreated()
+	if IsClient() then return end
+	local fDuration = self:GetDuration()
+	local hParent = self:GetParent()
+	self.vVerticalSpeed = Vector(0, 0, self:GetAbility():GetSpecialValueFor("max_height")/fDuration)
+	self.vVerticalAcceleration = self.vVerticalSpeed*(-2)/fDuration
+	self.fAngleSpeed = 360/fDuration
+	self.dt = FrameTime()
+	self:StartIntervalThink(self.dt)
+	ParticleManager:CreateParticle("particles/units/heroes/hero_tusk/tusk_walruspunch_start.vpcf", PATTACH_ABSORIGIN, hParent)
 end
 
 
@@ -75,19 +96,28 @@ function modifier_hamsterlord_injure_knees_stun:OnIntervalThink()
 	self.vVerticalSpeed = self.vVerticalSpeed+self.dt*self.vVerticalAcceleration
 end
 
-function modifier_hamsterlord_injure_knees_stun:UpdateVerticalMotion(me, dt)
---	print("hoho", self.vVerticalSpeed)
---	me:SetOrigin(me:GetOrigin()+dt*self.vVerticalSpeed+dt*dt*self.vVerticalAcceleration/2)
---	self.vVerticalSpeed = self.vVerticalSpeed+dt*self.vVerticalAcceleration
-end
-
 function modifier_hamsterlord_injure_knees_stun:OnDestroy()
 	if IsClient() then return end
 	local hParent = self:GetParent()
 	hParent:SetOrigin(GetGroundPosition(hParent:GetOrigin(), hParent))
 	hParent:SetAngles(0,hParent:GetAnglesAsVector().y,hParent:GetAnglesAsVector().z)
-	hParent:RemoveVerticalMotionController(self)
+end
+
+modifier_hamsterlord_injure_knees_thinker = class({})
+function modifier_hamsterlord_injure_knees_thinker:OnCreated()
 	if IsClient() then return end
+	self.dt = FrameTime()
+	self:StartIntervalThink(self.dt)
+	self.iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_tusk/tusk_walruspunch_tgt.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
+	ParticleManager:CreateParticle("particles/units/heroes/hero_tusk/tusk_walruspunch_start.vpcf", PATTACH_ABSORIGIN, self:GetParent())
+end
+function modifier_hamsterlord_injure_knees_thinker:OnIntervalThink()
+	if IsClient() then return end
+	self:GetParent():SetOrigin(self:GetParent():GetOrigin()+self.dt*Vector(0,0,4000))
+end
+function modifier_hamsterlord_injure_knees_thinker:OnDestroy()
+	if IsClient() then return end
+	ParticleManager:DestroyParticle(self.iParticle, true)
 end
 
 modifier_hamsterlord_take_nap = class({})

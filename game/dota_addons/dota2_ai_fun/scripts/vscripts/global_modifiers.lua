@@ -549,12 +549,39 @@ function modifier_axe_thinker:OnIntervalThink()
 	ThinkForAxeAbilities(self:GetParent())
 end
 
+modifier_backdoor_healing = class({})
+function modifier_backdoor_healing:IsHidden() return false end
+function modifier_backdoor_healing:IsPurgable() return true end
+function modifier_backdoor_healing:OnCreated()
+	self:StartIntervalThink(FrameTime())
+	self.bWasProtected = false
+	self.fFormerHealth = 0
+end
+function modifier_backdoor_healing:OnIntervalThink()
+	if IsClient() then return end
+	local hParent = self:GetParent()
+	if hParent:HasModifier("modifier_backdoor_protection_active") then
+		if not self.bWasProtected then
+			self.bWasProtected = true
+			self.fFormerHealth = hParent:GetHealth()
+		end
+	else
+		if self.bWasProtected then
+			self.bWasProtected = false
+			self.fFormerHealth = 0
+		end
+	end
+	if hParent:GetHealth() < self.fFormerHealth then
+		self:SetStackCount(hParent:FindModifierByName("modifier_backdoor_protection_active"):GetAbility():GetSpecialValueFor("regen_rate"))
+	else
+		self:SetStackCount(0)
+	end
+end
 
-
-
-
-
-
+function modifier_backdoor_healing:DeclareFunctions() return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT} end
+function modifier_backdoor_healing:GetModifierConstantHealthRegen()
+	return self:GetStackCount()
+end
 
 
 

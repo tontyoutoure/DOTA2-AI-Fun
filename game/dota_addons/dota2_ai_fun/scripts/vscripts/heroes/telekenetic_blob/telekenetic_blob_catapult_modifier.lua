@@ -31,7 +31,7 @@ function telekenetic_blob_catapult_modifier:OnDestroy()
 		ability = modifier:GetAbility()
 	}
 	local stunDuration = modifier:GetAbility():GetSpecialValueFor("stun_duration")
-	local units = FindUnitsInRadius(modifier:GetParent():GetTeamNumber(), modifier:GetParent():GetOrigin(), nil, modifier:GetAbility():GetSpecialValueFor("AOE_radius"), DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+	local units = FindUnitsInRadius(modifier:GetParent():GetTeamNumber(), modifier:GetParent():GetOrigin(), nil, modifier:GetAbility():GetSpecialValueFor("AOE_radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	for i,v in ipairs(units) do
 		if v ~= modifier:GetCaster() then
 			damageTable.victim = v

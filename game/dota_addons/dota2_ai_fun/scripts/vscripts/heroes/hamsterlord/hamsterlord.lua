@@ -8,7 +8,7 @@ LinkLuaModifier("modifier_hamsterlord_hamster_terror_of_the_hamster", "heroes/ha
 LinkLuaModifier("modifier_hamsterlord_hamster_courage_of_the_hamster_buff", "heroes/hamsterlord/hamsterlord_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_hamsterlord_hamster_terror_of_the_hamster_debuff", "heroes/hamsterlord/hamsterlord_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_hamsterlord_hamster_flaming_hamster_grenade", "heroes/hamsterlord/hamsterlord_modifiers.lua", LUA_MODIFIER_MOTION_BOTH)
-
+LinkLuaModifier("modifier_hamsterlord_injure_knees_thinker", "heroes/hamsterlord/hamsterlord_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 
 function HamsterlordPizzaHouseDeliverBoyGatherTips( keys )
 	if keys.caster:PassivesDisabled() then return end	
