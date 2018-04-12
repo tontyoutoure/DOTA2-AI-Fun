@@ -16,7 +16,7 @@ function modifier_ramza_arithmetician_soulbind:GetModifierIncomingDamage_Percent
 end
 
 function modifier_ramza_arithmetician_soulbind:OnTakeDamage(keys)
-	if keys.unit ~= self:GetParent() then return end
+	if keys.unit ~= self:GetParent() or bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) > 0 then return end
 	if keys.unit:PassivesDisabled() then return end
 	damageTable = {
 		victim = keys.attacker,
@@ -24,7 +24,7 @@ function modifier_ramza_arithmetician_soulbind:OnTakeDamage(keys)
 		attacker = keys.unit,
 		ability = self:GetAbility(),
 		damage_type = keys.damage_type,
-		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL
+		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL+DOTA_DAMAGE_FLAG_REFLECTION
 	}
 	ApplyDamage(damageTable)	
 end

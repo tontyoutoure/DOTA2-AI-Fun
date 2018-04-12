@@ -364,6 +364,7 @@ function Precache( context )
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_retro_soul_reaver_msg.vpcf", context)
 	
 	PrecacheResource("model", "models/heroes/attachto_ghost/pa_gravestone_ghost.vmdl", context)
+	PrecacheResource("particle", "particles/old_silencer/old_silencer_healing_wave_chain.vpcf", context)
 end
 
 

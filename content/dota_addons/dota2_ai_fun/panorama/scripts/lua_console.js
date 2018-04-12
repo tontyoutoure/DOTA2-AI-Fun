@@ -111,6 +111,15 @@ LuaConsole.OnAddTinyActive = function () {
 	LuaConsole.OnInputSubmitted();
 	$("#CommandEntry").text = "";
 }
+
+LuaConsole.OnWinGame = function () {
+	 $("#CommandEntry").text = "GameRules:SetGameWinner(2)";
+	 $("#CommandEntry").SetFocus();
+	 $("#CommandEntry").SetCursorOffset(45);
+}
+
+
+
 LuaConsole.GetCurrentObject = function (sName) {
 	
 }

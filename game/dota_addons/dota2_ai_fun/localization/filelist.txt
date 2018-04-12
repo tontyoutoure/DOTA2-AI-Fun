@@ -34,3 +34,4 @@ override_abilities.txt
 conjurer.txt
 avatar_of_vengeance.txt
 invoker_retro.txt
+old_silencer.txt

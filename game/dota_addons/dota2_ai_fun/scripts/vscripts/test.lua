@@ -1,6 +1,6 @@
 hHero = PlayerResource:GetPlayer(0):GetAssignedHero() 
-for k, v in pairs(Entities:FindAllByClassnameWithin("npc_dota_tower",hHero:GetOrigin(), 300)) do
-	for k1, v1 in pairs(v:FindAllModifiers()) do
-		print(v1:GetName())
-	end
-end
+hHero:FindAbilityByName("special_bonus_gold_income_25"):SetLevel(1)
+print(hHero:FindAbilityByName("special_bonus_gold_income_25"):GetLevel())
+hHero:RemoveAbility("special_bonus_exp_boost_30")
+hHero:AddAbility("special_bonus_exp_boost_30")
+print(hHero:FindAbilityByName("special_bonus_exp_boost_30"):GetLevel())

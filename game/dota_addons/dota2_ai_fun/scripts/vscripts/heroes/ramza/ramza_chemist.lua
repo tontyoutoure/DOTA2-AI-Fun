@@ -154,7 +154,6 @@ end
 
 
 RamzaChemistAutoPotionTakePotion = function (keys)
-	PrintTable(keys)
 	if keys.caster:GetGold() < 50 then return end
 	keys.caster:EmitSound("General.Buy")
 	keys.caster:EmitSound("DOTA_Item.FaerieSpark.Activate")

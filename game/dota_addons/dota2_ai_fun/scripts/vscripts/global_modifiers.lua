@@ -2,9 +2,12 @@ modifier_global_hero_respawn_time = class({})
 function modifier_global_hero_respawn_time:OnCreated()
 	self.fBuyBackExtraRespawnTime = 0
 	self:StartIntervalThink(0.04)
+	if IsClient() then return end
+	if self:GetParent():IsIllusion() then self:Destroy() end
 end
 function modifier_global_hero_respawn_time:OnIntervalThink()
 	if IsClient() or self:GetParent():IsAlive() then return end
+	if self:GetParent():IsIllusion() then self:Destroy() end
 	self.fRespawnTime = self:GetParent():GetTimeUntilRespawn()
 end
 function modifier_global_hero_respawn_time:IsPurgable() return false end
@@ -22,7 +25,7 @@ function modifier_global_hero_respawn_time:OnRespawn(keys)
 end
 
 local CalculateLevelRespawnTime = function (iLevel)
-	local tDOTARespawnTime = {5, 7, 9, 13, 16, 26, 28, 30, 32, 34, 36, 48,52,54,56,58,60,70,74,76, 78, 82, 86, 90, 100}
+	local tDOTARespawnTime = {5, 7, 9, 13, 16, 26, 28, 30, 32, 34, 36, 44, 46, 48, 50, 52, 54, 65, 70, 75, 80, 85, 90, 95, 100}
 	if iLevel <= 25 then return tDOTARespawnTime[iLevel] end
 	return iLevel*4
 end
@@ -271,9 +274,12 @@ local tFunItems = {
 	item_fun_escutcheon = {"item_pipe","item_crimson_guard","item_aeon_disk","item_soul_booster"},
 	item_fun_angelic_alliance = {"item_fun_orb_of_omnipotence","item_fun_sprint_shoes","item_fun_economizer","item_rapier"},
 	item_fun_blood_sword = {"item_greater_crit","item_satanic","item_echo_sabre","item_echo_sabre"},
-	item_fun_heros_bow = {"item_ethereal_blade","item_dragon_lance","item_moon_shard","item_desolator"},
-	item_fun_magic_hammer = {"item_rod_of_atos","item_shivas_guard","item_diffusal_blade_2","item_aether_lens"},
+	item_fun_heros_bow = {"item_ethereal_blade","item_hurricane_pike","item_nullifier"},
+	item_fun_magic_hammer = {"item_rod_of_atos","item_shivas_guard","item_diffusal_blade","item_aether_lens"},
 	item_fun_terra_blade = {"item_fun_ragnarok_2","item_fun_genji_gloves_2"},	
+	item_fun_orb_of_omnipotence = {"item_ultimate_orb","item_reaver","item_eagle","item_mystic_staff"},
+	item_fun_sprint_shoes = {"item_blink","item_travel_boots_2","item_wind_lace"},
+	item_fun_wraith_path = {"item_phase_boots","item_gem","item_ghost","item_soul_ring"},
 }
 
 local tBotFunItems = {
@@ -380,6 +386,7 @@ function modifier_bot_get_fun_items:OnIntervalThink()
 	if IsClient() then return end
 	local hParent = self:GetParent()
 	local sHeroName = hParent:GetName()
+	if hParent:HasModifier("modifier_ban_fun_items") then self:Destroy() end
 	if hParent:HasModifier("modifier_fountain_aura_buff") or GameMode.iUniversalShop == 1 and tBotFunItems[sHeroName] then
 		for i, v in ipairs(tBotFunItems[sHeroName]) do
 			CheckFunItems(hParent, v)
@@ -399,6 +406,7 @@ function modifier_bot_use_fun_items:RemoveOnDeath() return false end
 function modifier_bot_use_fun_items:OnIntervalThink()
 	if IsClient() then return end
 	local hParent = self:GetParent()
+	if hParent:HasModifier("modifier_ban_fun_items") then self:Destroy() end
 	
 	for k, v in pairs(Entities:FindAllByClassnameWithin("dota_item_drop", hParent:GetOrigin(), 800)) do
 		if v:GetContainedItem():GetAbilityName() == "item_fun_angelic_alliance" then
@@ -550,7 +558,7 @@ function modifier_axe_thinker:OnIntervalThink()
 end
 
 modifier_backdoor_healing = class({})
-function modifier_backdoor_healing:IsHidden() return false end
+function modifier_backdoor_healing:IsHidden() return true end
 function modifier_backdoor_healing:IsPurgable() return true end
 function modifier_backdoor_healing:OnCreated()
 	self:StartIntervalThink(FrameTime())
@@ -563,6 +571,8 @@ function modifier_backdoor_healing:OnIntervalThink()
 	if hParent:HasModifier("modifier_backdoor_protection_active") then
 		if not self.bWasProtected then
 			self.bWasProtected = true
+		end
+		if hParent:GetHealth() > self.fFormerHealth then
 			self.fFormerHealth = hParent:GetHealth()
 		end
 	else
@@ -578,18 +588,40 @@ function modifier_backdoor_healing:OnIntervalThink()
 	end
 end
 
-function modifier_backdoor_healing:DeclareFunctions() return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT} end
+function modifier_backdoor_healing:DeclareFunctions() return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT, MODIFIER_EVENT_ON_TAKEDAMAGE} end
 function modifier_backdoor_healing:GetModifierConstantHealthRegen()
 	return self:GetStackCount()
 end
 
+function modifier_backdoor_healing:OnTakeDamage(keys)
+	if keys.unit ~= self:GetParent() then return end
+	if keys.attacker:GetTeam() == keys.unit:GetTeam() then 
+		self.fFormerHealth = keys.unit:GetHealth()
+	elseif keys.unit:HasAbility("backdoor_protection") and keys.unit:HasModifier("modifier_backdoor_protection_active") then
+		
+		local iParticle = ParticleManager:CreateParticle("particles/items_fx/backdoor_protection.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.unit)
+		ParticleManager:SetParticleControl(iParticle, 1, Vector(200,0,0))
+	end	
+end
 
+modifier_ban_fun_items = class({})
+function modifier_ban_fun_items:IsPurgable() return false end
+function modifier_ban_fun_items:IsHidden() return true end
+function modifier_ban_fun_items:RemoveOnDeath() return false end
 
+function modifier_ban_fun_items:OnCreated()
+	self:StartIntervalThink(0.1)
+end
 
-
-
-
-
+function modifier_ban_fun_items:OnIntervalThink()
+	if IsClient() then return end
+	local hParent = self:GetParent()
+	for i = 0, 14 do
+		if hParent:GetItemInSlot(i) and tFunItems[hParent:GetItemInSlot(i):GetAbilityName()] then
+			hParent:DisassembleItem(hParent:GetItemInSlot(i))
+		end
+	end
+end
 
 
 

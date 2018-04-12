@@ -223,3 +223,11 @@ function modifier_attribute_indicator_avatar_of_vengeance:IsPurgable() return fa
 function modifier_attribute_indicator_avatar_of_vengeance:IsHidden() return false end
 function modifier_attribute_indicator_avatar_of_vengeance:IsDebuff() return false end
 function modifier_attribute_indicator_avatar_of_vengeance:GetTexture() return "attribute_indicator" end
+
+LinkLuaModifier("modifier_attribute_indicator_old_silencer", "modifier_attribute_indicators.lua", LUA_MODIFIER_MOTION_NONE)
+modifier_attribute_indicator_old_silencer = class({})
+function modifier_attribute_indicator_old_silencer:RemoveOnDeath() return false end
+function modifier_attribute_indicator_old_silencer:IsPurgable() return false end
+function modifier_attribute_indicator_old_silencer:IsHidden() return false end
+function modifier_attribute_indicator_old_silencer:IsDebuff() return false end
+function modifier_attribute_indicator_old_silencer:GetTexture() return "attribute_indicator" end

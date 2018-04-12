@@ -260,4 +260,27 @@
 		// Modifier just does damage
 		"AbilityModifierSupportValue"	"0.0"
 	}
+	"backdoor_protection"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"backdoor_protection"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"modifier_backdoor_protection"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/util_abilities.lua"
+						"Function"	"BackdoorProtectionTest"
+					}
+				}
+				"ThinkInterval"	"0.03"
+			}
+		}
+	}
 }

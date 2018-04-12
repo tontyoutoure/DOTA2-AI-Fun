@@ -216,9 +216,6 @@ end
 function CalculateStatusResist(hUnit)
 	local fResist = 1
 	if not hUnit:IsRealHero() then return fResist end
-	if hUnit:GetPrimaryAttribute() == DOTA_ATTRIBUTE_STRENGTH then
-		fResist = fResist*(1-hUnit:GetStrength()*0.0015)
-	end
 	if hUnit:HasModifier("modifier_tiny_grow") then
 		fResist = fResist*(1-hUnit:FindModifierByName("modifier_tiny_grow"):GetAbility():GetSpecialValueFor("status_resistance")/100)
 	end
@@ -251,6 +248,11 @@ function ProcsArroundingMagicStick(hUnit)
 		end
 	 end
 	end
+end
+
+function CheckTalent(hHero, sTalentName)
+	if hHero:HasAbility(sTalentName) then return hHero:FindAbilityByName(sTalentName):GetSpecialValueFor("value") end
+	return 0
 end
 
 print("Util loaded")

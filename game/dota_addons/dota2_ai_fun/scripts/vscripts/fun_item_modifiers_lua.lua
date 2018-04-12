@@ -174,7 +174,6 @@ function modifier_ragnarok_cleave:IsPurgable() return false end
 function modifier_ragnarok_cleave:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
 function modifier_ragnarok_cleave:OnAttackLanded(keys)
-	PrintTable(keys)
 	if keys.attacker ~= self:GetParent() then return end
 	local hAbility = self:GetAbility()
 	local fCleaveDistance = hAbility:GetSpecialValueFor("cleave_distance")
@@ -334,6 +333,14 @@ function modifier_item_fun_heros_bow_debuff:OnIntervalThink()
 	end
 end
 
+local tCleaveAbilityList = {
+	felguard_overflow = true,
+	item_bfury = true,
+	item_fun_ragnarok_2 = true,
+	kunkka_tidebringer = true,
+	magnataur_empower = true
+}
+
 modifier_angelic_alliance_spell_lifesteal = class({})
 
 function modifier_angelic_alliance_spell_lifesteal:IsHidden() return true end
@@ -347,10 +354,11 @@ end
 
 function modifier_angelic_alliance_spell_lifesteal:OnTakeDamage(keys)
 	if keys.attacker~=self:GetParent() or keys.attacker:IsIllusion() or not keys.inflictor or bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL)>0 then return end
+	local sName = keys.inflictor:GetName()
+	if string.match(sName, "cleave") or tCleaveAbilityList[sName] then return end
 	ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.attacker)
 	keys.attacker:Heal(self:GetAbility():GetSpecialValueFor("spell_lifesteal")/100*keys.damage, keys.attacker)
 end
-
 
 modifier_economizer_spell_lifesteal = class({})
 
@@ -364,7 +372,9 @@ function modifier_economizer_spell_lifesteal:DeclareFunctions()
 end
 
 function modifier_economizer_spell_lifesteal:OnTakeDamage(keys)
-	if keys.attacker~=self:GetParent() or keys.attacker:IsIllusion() or not keys.inflictor or bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL)>0 then return end
+	if keys.attacker~=self:GetParent() or keys.attacker:IsIllusion() or not keys.inflictor or bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL)>0  then return end
+	local sName = keys.inflictor:GetName()
+	if string.match(sName, "cleave") or tCleaveAbilityList[sName] then return end
 	ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.attacker)
 	keys.attacker:Heal(self:GetAbility():GetSpecialValueFor("spell_lifesteal")/100*keys.damage, keys.attacker)
 end
@@ -419,18 +429,13 @@ local function MagicHammerManaBurn(caster, target, ability)
 		target:SetMana(currentMana-mana_burn)
 		damageTable.damage = mana_burn*mana_burn_damage
 		ApplyDamage(damageTable)
-		local iParticle1 = ParticleManager:CreateParticle("particles/msg_fx/msg_mana_loss.vpcf", PATTACH_POINT_FOLLOW, target)
-		ParticleManager:SetParticleControl(iParticle1, 1, Vector(1, math.floor(mana_burn), 0))
-		ParticleManager:SetParticleControl(iParticle1, 2, Vector(1, 2+math.floor(math.log10(mana_burn)), 500))
-		ParticleManager:SetParticleControl(iParticle1, 3, Vector(120, 120, 200))	
+		
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS , target, mana_burn, nil)
 	else
 		target:SetMana(0)
 		damageTable.damage = currentMana*mana_burn_damage
 		ApplyDamage(damageTable)
-		local iParticle1 = ParticleManager:CreateParticle("particles/msg_fx/msg_mana_loss.vpcf", PATTACH_POINT_FOLLOW, target)
-		ParticleManager:SetParticleControl(iParticle1, 1, Vector(1, math.floor(currentMana), 0))
-		ParticleManager:SetParticleControl(iParticle1, 2, Vector(1, 2+math.floor(math.log10(currentMana)), 500))
-		ParticleManager:SetParticleControl(iParticle1, 3, Vector(120, 120, 200))	
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS , target, currentMana, nil)
 	end	
 end
 

@@ -1,5 +1,6 @@
 "use strict";
 $.GetContextPanel().GetParent().GetParent().FindChildTraverse("ChatLinesContainer").hittest=false
+
 var tGameOptionList = {
 	"radiant_gold_multiplier":{"type":"dropdown", "option":[1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]},
 	"dire_gold_multiplier":{"type":"dropdown", "option":[1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]},
@@ -12,10 +13,20 @@ var tGameOptionList = {
 	"tower_endure":{"type":"dropdown", "option":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]},
 	"max_level":{"type":"dropdown", "option":[25, 50, 100, 200, 400, 800, 1600]},
 	"imbalanced_economizer":{"type":"toggle"},
-	"bot_attack_tower_pick_rune":{"type":"toggle"},
 	"bot_has_fun_item":{"type":"toggle"},
 	"universal_shop":{"type":"toggle"},
+	"ban_fun_items":{"type":"toggle"},
+} 
+
+function IsBothTeamHasHuman() {
+	var aTeamIDs = Game.GetAllTeamIDs()
+	var bReturn = true
+	for (var i = 0; i < aTeamIDs.length; i++) {
+		bReturn = bReturn && Game.GetTeamDetails(aTeamIDs[i]).team_num_players > 0
+	}
+	return bReturn
 }
+
 function CheckForHostPrivileges() {
 	var player_info = Game.GetLocalPlayerInfo();
 	if ( !player_info ) {
@@ -71,7 +82,7 @@ function LockGameOptions()
 	for (var sOptionName in tGameOptionList) {
 		if (tGameOptionList[sOptionName].type == "dropdown") {			
 			GameOptions[sOptionName] = $("#"+sOptionName+"_dropdown").GetSelected().id
-			GameOptionsForClient[sOptionName] = $("#"+sOptionName+"_dropdown").tabindex
+			GameOptionsForClient[sOptionName] = $("#"+sOptionName+"_dropdown").GetSelected().id
 		}
 		else if (tGameOptionList[sOptionName].type == "toggle") {
 			GameOptions[sOptionName] = $("#"+sOptionName).checked
@@ -96,7 +107,7 @@ function UnlockGameOptions(){
 function UpdateGameOptions(keys) {
 	for (var sOptionName in tGameOptionList) {
 		if (tGameOptionList[sOptionName].type == "dropdown") {	
-			$("#"+sOptionName+"_dropdown").tabindex = keys[sOptionName]
+			$("#"+sOptionName+"_dropdown").SetSelected(keys[sOptionName])
 		}
 		else if (tGameOptionList[sOptionName].type == "toggle") {
 			$("#"+sOptionName).checked = keys[sOptionName]
@@ -104,13 +115,61 @@ function UpdateGameOptions(keys) {
 	}		
 }
 
+function OnRadiantGoldDropDownChanged() {
+	if (IsBothTeamHasHuman() && $("#dire_gold_multiplier_dropdown").GetSelected().id != $("#radiant_gold_multiplier_dropdown").GetSelected().id) {
+		$("#dire_gold_multiplier_dropdown").SetSelected($("#radiant_gold_multiplier_dropdown").GetSelected().id) 
+	}
+}
+
+function OnDireGoldDropDownChanged() {
+	if (IsBothTeamHasHuman() && $("#radiant_gold_multiplier_dropdown").GetSelected().id != $("#dire_gold_multiplier_dropdown").GetSelected().id) {
+		$("#radiant_gold_multiplier_dropdown").SetSelected($("#dire_gold_multiplier_dropdown").GetSelected().id) 
+	}
+}
+
+function OnRadiantXPDropDownChanged() {
+	if (IsBothTeamHasHuman() && $("#dire_xp_multiplier_dropdown").GetSelected().id != $("#radiant_xp_multiplier_dropdown").GetSelected().id) {
+		$("#dire_xp_multiplier_dropdown").SetSelected($("#radiant_xp_multiplier_dropdown").GetSelected().id) 
+	}
+}
+
+function OnDireXPDropDownChanged() {
+	if (IsBothTeamHasHuman() && $("#radiant_xp_multiplier_dropdown").GetSelected().id != $("#dire_xp_multiplier_dropdown").GetSelected().id) {
+		$("#radiant_xp_multiplier_dropdown").SetSelected($("#dire_xp_multiplier_dropdown").GetSelected().id) 
+	}
+}
+
+function OnRadiantPlayerNumberDropDownChanged() {
+	if (IsBothTeamHasHuman() && $("#dire_player_number_dropdown").GetSelected().id != $("#radiant_player_number_dropdown").GetSelected().id) {
+//		$("#dire_player_number_dropdown").SetSelected($("#radiant_player_number_dropdown").GetSelected().id) 
+	}
+}
+
+function OnDirePlayerNumberDropDownChanged() {
+	if (IsBothTeamHasHuman() && $("#dire_player_number_dropdown").GetSelected().id != $("#radiant_player_number_dropdown").GetSelected().id) {
+//		$("#radiant_player_number_dropdown").SetSelected($("#dire_player_number_dropdown").GetSelected().id) 
+	}
+}
+
+
+
+
 function PanoramaPrint(keys) {
 	$.Msg("Print request from sever: ", keys)
 }
 function OnGameStateChange(keys) {
 //	$.Msg(Game.GetState())
 }
+
+function PlayerChangeTeam(keys) {
+	if (IsBothTeamHasHuman()) {
+		$("#dire_gold_multiplier_dropdown").SetSelected($("#radiant_gold_multiplier_dropdown").GetSelected().id) 
+		$("#dire_xp_multiplier_dropdown").SetSelected($("#radiant_xp_multiplier_dropdown").GetSelected().id) 
+//		$("#dire_player_number_dropdown").SetSelected($("#radiant_player_number_dropdown").GetSelected().id) 		
+	}
+}
 GameEvents.Subscribe( "game_rules_state_change", OnGameStateChange);
 GameEvents.Subscribe( "player_connect_full", InitializeUI);
 GameEvents.Subscribe( "loading_set_options_for_client", UpdateGameOptions);
 GameEvents.Subscribe("panorama_print", PanoramaPrint)
+GameEvents.Subscribe( "player_team", PlayerChangeTeam);

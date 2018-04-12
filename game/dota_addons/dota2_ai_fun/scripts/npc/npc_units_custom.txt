@@ -4,3 +4,4 @@
 #base "units\hamsterlord.txt"
 #base "units\conjurer.txt"
 #base "units\invoker_retro.txt"
+#base "units\old_silencer.txt"

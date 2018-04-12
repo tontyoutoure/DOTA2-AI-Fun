@@ -133,14 +133,17 @@ function _ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContaine
 				if ( itemPanel === null )
 				{
 					itemPanel = $.CreatePanel( "Image", playerItemsContainer, itemPanelName );
-					itemPanel.AddClass( "PlayerItem" );
+					if (i>5) {
+						itemPanel.AddClass( "BackPackImage" );
+					}
 				}
 
 				var itemInfo = playerItems.inventory[i];
 				if ( itemInfo )
 				{
-					var item_image_name = "file://{images}/items/" + itemInfo.item_name.replace( "item_", "" ) + ".png"
-					if ( itemInfo.item_name.indexOf( "recipe" ) >= 0 )
+					var sItemName = itemInfo.item_name
+					var item_image_name = "file://{images}/items/" + sItemName.replace( "item_", "" ) + ".png"
+					if ( sItemName.indexOf( "recipe" ) >= 0 )
 					{
 						item_image_name = "file://{images}/items/recipe.png"
 					}
@@ -149,6 +152,9 @@ function _ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContaine
 				else
 				{
 					itemPanel.SetImage( "" );
+				}
+				if(i == 5) {
+					playerItemsContainer.BCreateChildren("<Panel class='ScoreCol_ItemsSeperation'/>") 
 				}
 			}
 		}

@@ -38,12 +38,14 @@ function modifier_avatar_of_vengeance_dispersion:GetAbsoluteNoDamagePhysical(key
 	local iProcChance = hAbility:GetSpecialValueFor("proc_chance")
 	if keys.target:HasAbility("special_bonus_unique_avatar_of_vengeance_5") then iProcChance = iProcChance+keys.target:FindAbilityByName("special_bonus_unique_avatar_of_vengeance_5"):GetSpecialValueFor("value") end
 	if RandomFloat(0,100)<iProcChance then
-		for i, v in ipairs(FindUnitsInRadius(keys.target:GetTeamNumber(), keys.target:GetOrigin(), nil, hAbility:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)) do
-			ApplyDamage({damage=keys.damage, damage_type=DAMAGE_TYPE_PURE,damage_flag=DOTA_DAMAGE_FLAG_REFLECTION+DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL, ability=hAbility, victim=v,attacker=keys.target})
-			v:AddNewModifier(keys.target, hAbility, "modifier_stunned", {Duration = hAbility:GetSpecialValueFor("stun_duration")*CalculateStatusResist(v)})
-			local iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_spectre/spectre_dispersion.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, keys.target)
-			ParticleManager:SetParticleControlEnt(iParticle, 0, v, PATTACH_POINT_FOLLOW, "attach_hitloc", v:GetOrigin(), true)
-			ParticleManager:SetParticleControlEnt(iParticle, 1, keys.target, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.target:GetOrigin(), true)
+		if bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == 0 then
+			for i, v in ipairs(FindUnitsInRadius(keys.target:GetTeamNumber(), keys.target:GetOrigin(), nil, hAbility:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)) do
+				ApplyDamage({damage=keys.damage, damage_type=DAMAGE_TYPE_PURE,damage_flag=DOTA_DAMAGE_FLAG_REFLECTION+DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL, ability=hAbility, victim=v,attacker=keys.target})
+				v:AddNewModifier(keys.target, hAbility, "modifier_stunned", {Duration = hAbility:GetSpecialValueFor("stun_duration")*CalculateStatusResist(v)})
+				local iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_spectre/spectre_dispersion.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, keys.target)
+				ParticleManager:SetParticleControlEnt(iParticle, 0, v, PATTACH_POINT_FOLLOW, "attach_hitloc", v:GetOrigin(), true)
+				ParticleManager:SetParticleControlEnt(iParticle, 1, keys.target, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.target:GetOrigin(), true)
+			end
 		end
 		return 1
 	end
@@ -55,12 +57,14 @@ function modifier_avatar_of_vengeance_dispersion:GetAbsoluteNoDamageMagical(keys
 	local iProcChance = hAbility:GetSpecialValueFor("proc_chance")
 	if keys.target:HasAbility("special_bonus_unique_avatar_of_vengeance_5") then iProcChance = iProcChance+keys.target:FindAbilityByName("special_bonus_unique_avatar_of_vengeance_5"):GetSpecialValueFor("value") end
 	if RandomFloat(0,100)<iProcChance then
-		for i, v in ipairs(FindUnitsInRadius(keys.target:GetTeamNumber(), keys.target:GetOrigin(), nil, hAbility:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)) do
-			ApplyDamage({damage=keys.damage, damage_type=DAMAGE_TYPE_PURE,damage_flag=DOTA_DAMAGE_FLAG_REFLECTION, ability=hAbility, victim=v,attacker=keys.target})
-			v:AddNewModifier(keys.target, hAbility, "modifier_stunned", {Duration = hAbility:GetSpecialValueFor("stun_duration")*CalculateStatusResist(v)})
-			local iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_spectre/spectre_dispersion.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, keys.target)
-			ParticleManager:SetParticleControlEnt(iParticle, 0, v, PATTACH_POINT_FOLLOW, "attach_hitloc", v:GetOrigin(), true)
-			ParticleManager:SetParticleControlEnt(iParticle, 1, keys.target, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.target:GetOrigin(), true)
+		if bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == 0 then
+			for i, v in ipairs(FindUnitsInRadius(keys.target:GetTeamNumber(), keys.target:GetOrigin(), nil, hAbility:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)) do
+				ApplyDamage({damage=keys.damage, damage_type=DAMAGE_TYPE_PURE,damage_flag=DOTA_DAMAGE_FLAG_REFLECTION, ability=hAbility, victim=v,attacker=keys.target})
+				v:AddNewModifier(keys.target, hAbility, "modifier_stunned", {Duration = hAbility:GetSpecialValueFor("stun_duration")*CalculateStatusResist(v)})
+				local iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_spectre/spectre_dispersion.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, keys.target)
+				ParticleManager:SetParticleControlEnt(iParticle, 0, v, PATTACH_POINT_FOLLOW, "attach_hitloc", v:GetOrigin(), true)
+				ParticleManager:SetParticleControlEnt(iParticle, 1, keys.target, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.target:GetOrigin(), true)
+			end
 		end
 		return 1
 	end
@@ -72,12 +76,14 @@ function modifier_avatar_of_vengeance_dispersion:GetAbsoluteNoDamagePure(keys)
 	local iProcChance = hAbility:GetSpecialValueFor("proc_chance")
 	if keys.target:HasAbility("special_bonus_unique_avatar_of_vengeance_5") then iProcChance = iProcChance+keys.target:FindAbilityByName("special_bonus_unique_avatar_of_vengeance_5"):GetSpecialValueFor("value") end
 	if RandomFloat(0,100)<iProcChance then
-		for i, v in ipairs(FindUnitsInRadius(keys.target:GetTeamNumber(), keys.target:GetOrigin(), nil, hAbility:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)) do
-			ApplyDamage({damage=keys.damage, damage_type=DAMAGE_TYPE_PURE,damage_flag=DOTA_DAMAGE_FLAG_REFLECTION, ability=hAbility, victim=v,attacker=keys.target})
-			v:AddNewModifier(keys.target, hAbility, "modifier_stunned", {Duration = hAbility:GetSpecialValueFor("stun_duration")*CalculateStatusResist(v)})
-			local iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_spectre/spectre_dispersion.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, keys.target)
-			ParticleManager:SetParticleControlEnt(iParticle, 0, v, PATTACH_POINT_FOLLOW, "attach_hitloc", v:GetOrigin(), true)
-			ParticleManager:SetParticleControlEnt(iParticle, 1, keys.target, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.target:GetOrigin(), true)
+		if bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == 0 then
+			for i, v in ipairs(FindUnitsInRadius(keys.target:GetTeamNumber(), keys.target:GetOrigin(), nil, hAbility:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)) do
+				ApplyDamage({damage=keys.damage, damage_type=DAMAGE_TYPE_PURE,damage_flag=DOTA_DAMAGE_FLAG_REFLECTION, ability=hAbility, victim=v,attacker=keys.target})
+				v:AddNewModifier(keys.target, hAbility, "modifier_stunned", {Duration = hAbility:GetSpecialValueFor("stun_duration")*CalculateStatusResist(v)})
+				local iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_spectre/spectre_dispersion.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, keys.target)
+				ParticleManager:SetParticleControlEnt(iParticle, 0, v, PATTACH_POINT_FOLLOW, "attach_hitloc", v:GetOrigin(), true)
+				ParticleManager:SetParticleControlEnt(iParticle, 1, keys.target, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.target:GetOrigin(), true)
+			end
 		end
 		return 1
 	end

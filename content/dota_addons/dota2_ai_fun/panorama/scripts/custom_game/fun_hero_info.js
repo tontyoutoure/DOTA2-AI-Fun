@@ -29,5 +29,6 @@ var tFunHeroInfo = {
 	'warlock':{'sName':'flame_lord', 'sCapitalName':'Warlock', 'bNewAvatar':false, 'bOld':true, 'bImba':false,},
 	'keeper_of_the_light':{'sName':'conjurer', 'sCapitalName':'KeeperOfTheLight', 'bNewAvatar':false, 'bOld':true, 'bImba':false,},
 	'spectre':{'sName':'avatar_of_vengeance', 'sCapitalName':'Spectre', 'bNewAvatar':false, 'bOld':true, 'bImba':false,},
+	'silencer':{'sName':'old_silencer', 'sCapitalName':'Silencer', 'bNewAvatar':false, 'bOld':true, 'bImba':false,},
 //	'invoker':{'sName':'invoker_retro', 'sCapitalName':'Invoker', 'bNewAvatar':false, 'bOld':true, 'bImba':false,},
 }

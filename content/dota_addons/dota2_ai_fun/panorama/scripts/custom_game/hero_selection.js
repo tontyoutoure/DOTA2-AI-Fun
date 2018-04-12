@@ -14,7 +14,6 @@ var CurrentNewColumn = 1
 var bSecondInited = false
 var tHeroSelectionOptions
 function InitUISecond(keys) {
-	$("#bot_attack_tower_pick_rune").checked=true;
 	$("#bot_has_fun_item").checked=true;  
 	if (Game.GetLocalPlayerInfo() === undefined) {
 		$.Schedule(1, InitializeUI);

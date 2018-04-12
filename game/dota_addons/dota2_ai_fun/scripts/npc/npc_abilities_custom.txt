@@ -1,3 +1,4 @@
+
 #base "abilities\astral_trekker.txt"
 #base "abilities\bastion.txt"
 #base "abilities\fluid_engineer.txt"
@@ -30,3 +31,4 @@
 #base "abilities\conjurer.txt"
 #base "abilities\avatar_of_vengeance.txt"
 #base "abilities\invoker_retro\invoker_retro.txt"
+#base "abilities\old_silencer.txt"

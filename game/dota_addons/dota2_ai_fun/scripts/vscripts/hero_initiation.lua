@@ -69,6 +69,7 @@ if not IsClient() then
 	require('heroes/conjurer/conjurer_init')
 	require('heroes/avatar_of_vengeance/avatar_of_vengeance_init')
 	require('heroes/hero_invoker/invoker_retro_init')
+	require('heroes/old_silencer/old_silencer_init')
 			
 	function GameMode:InitializeFunHero(hHero)
 		if hHero:GetName() == "npc_dota_hero_spirit_breaker" then
@@ -190,6 +191,10 @@ if not IsClient() then
 		if hHero:GetName() == "npc_dota_hero_invoker" then
 			InvokerRetroInit(hHero, self)
 		end
+		
+		if hHero:GetName() == "npc_dota_hero_silencer" then
+			OldSilencerInit(hHero, self)
+		end
 	end
 
 
@@ -203,6 +208,11 @@ if not IsClient() then
 		end 
 		for i, v in ipairs(tNewAbilities) do 
 			hHero:AddAbility(v) 
+			for _, v1 in ipairs(hHero:FindAllModifiers()) do
+				if string.match(v1:GetName(), v) then
+					v1:Destroy()
+				end
+			end
 		end
 		for i = 0, 23 do
 			if hHero:GetAbilityByIndex(i) then

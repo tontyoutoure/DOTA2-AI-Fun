@@ -110,7 +110,6 @@ function RamzaTimeMageShieldToggle(keys)
 end
 
 function RamzaTimeMageShield(keys)
-	PrintTable(keys)
 end
 
 function RamzaTimeMageTeleport(keys)

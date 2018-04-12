@@ -1625,7 +1625,7 @@
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
-		"AbilityTextureName"	"item_fun_economizer"
+		"AbilityTextureName"	"item_fun_economizer_2"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"ID"	"15520"
 		"ItemQuality"	"artifact"
@@ -1778,7 +1778,7 @@
 	"item_fun_ragnarok_2"
 	{
 		"BaseClass"	"item_datadriven"
-		"AbilityTextureName"	"item_fun_ragnarok"
+		"AbilityTextureName"	"item_fun_ragnarok_2"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"ID"	"15522"
 		"ItemQuality"	"artifact"
@@ -1938,7 +1938,7 @@
 	"item_fun_genji_gloves_2"
 	{
 		"BaseClass"	"item_datadriven"
-		"AbilityTextureName"	"item_fun_genji_gloves"
+		"AbilityTextureName"	"item_fun_genji_gloves_2"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"ID"	"15524"
 		"ItemQuality"	"artifact"

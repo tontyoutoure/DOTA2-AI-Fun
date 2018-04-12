@@ -16,7 +16,7 @@
 	transition-property: opacity, transform;
     transition-duration: 1s;
 	opacity: 0;
-	transform: scaleX(0) scaleY(0) translatey(-50px);
+	transform: scaleX(0) scaleY(0) translatey(-50px); 
 }
 
 .Legend
@@ -376,6 +376,22 @@
 	margin: 1px;
 	width: 41px;
 	height: 30px;
+	box-shadow: gold 0px 0px 1px 0px;
+	background-color: #000000;
+}
+
+
+#PlayerItemsContainerBackPack
+{
+	flow-children: right;
+}
+
+.BackPackImage
+{
+	margin: 1px;
+	width: 33px;
+	height: 24px;
+	box-shadow: gold 0px 0px 1px 0px;
 	background-color: #000000;
 }
 
@@ -404,7 +420,7 @@
 {
 	width: 80px;
 	text-align: center;
-}
+} 
 
 .ScoreCol_Hero
 {
@@ -427,11 +443,23 @@
 
 .ScoreCol_Items
 {
-	width: 258px;
+	width: 410px;
 	text-align: center;
+}
+.ScoreCol_ItemsSeperation
+{
+	width: 23px;
+	background-color:blue;
 }
 
 .ScoreCol_Gold
+{
+	width: 70px;
+	text-align: center;
+}
+
+
+.ScoreCol_Damage
 {
 	width: 70px;
 	text-align: center;

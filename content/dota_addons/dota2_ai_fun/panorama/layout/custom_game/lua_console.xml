@@ -52,7 +52,9 @@
 			<Button id="AddTiny" class="RightButton" onactivate="LuaConsole.OnAddTinyActive();">
 				<Label text="Add Tiny" id="AddtinyLabel" class="ButtonLabel"/>
 			</Button>
-			
+			<Button id="WinGame" class="RightButton" onactivate="LuaConsole.OnWinGame();">
+				<Label text="Win Game" id="WinGameLabel" class="ButtonLabel"/>
+			</Button>
 		</Panel>
 	</Panel>
 </root>
