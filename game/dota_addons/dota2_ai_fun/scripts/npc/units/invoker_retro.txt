@@ -1,0 +1,327 @@
+"DOTAUnits"
+{
+	//A dummy unit that follows the path of the meteor, providing flying vision, sound, damage calculations, etc.
+	"npc_dota_invoker_retro_chaos_meteor_unit"
+	{
+			// General
+			//----------------------------------------------------------------
+				"BaseClass"                 "npc_dota_creature"
+				"AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+				"VisionDaytimeRange"        "0"
+				"VisionNighttimeRange"      "0"
+				"UnitRelationshipClass" 	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+				"MovementCapabilities"  	"DOTA_UNIT_CAP_MOVE_FLY"
+				"WakesNeutrals"				"0"
+				"AbilityLayout"             "4"
+				"Ability1"                  "dummy_unit"
+	}//A dummy unit that follows the path of the EMP.
+	"npc_dota_invoker_retro_emp_unit"
+	{
+			// General
+			//----------------------------------------------------------------
+				"BaseClass"                 "npc_dota_creature"
+				"AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+				"VisionDaytimeRange"        "0"
+				"VisionNighttimeRange"      "0"
+				"UnitRelationshipClass" 	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+				"MovementCapabilities"  	"DOTA_UNIT_CAP_MOVE_FLY"
+				"WakesNeutrals"				"0"
+				"AbilityLayout"             "4"
+				"Ability1"                  "dummy_unit"
+	}
+	//A dummy unit that follows the path of the Energy Ball.
+	"npc_dota_invoker_retro_energy_ball_unit"
+	{
+			// General
+			//----------------------------------------------------------------
+				"BaseClass"                 "npc_dota_creature"
+				"AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+				"VisionDaytimeRange"        "0"
+				"VisionNighttimeRange"      "0"
+				"UnitRelationshipClass" 	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+				"MovementCapabilities"  	"DOTA_UNIT_CAP_MOVE_GROUND"
+				"WakesNeutrals"				"0"
+				"AbilityLayout"             "4"
+				"Ability1"                  "dummy_unit"
+	}
+	//One of the fireballs that Firestorm summons.
+	"npc_dota_invoker_retro_firestorm_unit"
+	{
+			// General
+			//----------------------------------------------------------------
+				"BaseClass"                 "npc_dota_creature"
+				"AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+				"VisionDaytimeRange"        "0"
+				"VisionNighttimeRange"      "0"
+				"UnitRelationshipClass" 	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+				"MovementCapabilities"  	"DOTA_UNIT_CAP_MOVE_GROUND"
+				"WakesNeutrals"				"0"
+				"AbilityLayout"             "4"
+				"Ability1"                  "invoker_retro_firestorm_fireball"
+				"Ability2"					"invoker_retro_firestorm"
+	}
+
+	//A dummy unit used to fire an explosion effect after a npc_dota_invoker_retro_firestorm_unit is destroyed.
+	"npc_dota_invoker_retro_firestorm_fireball_explosion_unit"
+	{
+			// General
+			//----------------------------------------------------------------
+				"BaseClass"                 "npc_dota_creature"
+				"AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+				"VisionDaytimeRange"        "0"
+				"VisionNighttimeRange"      "0"
+				"UnitRelationshipClass" 	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+				"MovementCapabilities"  	"DOTA_UNIT_CAP_MOVE_GROUND"
+				"WakesNeutrals"				"0"
+				"AbilityLayout"             "4"
+				"Ability1"                  "dummy_unit"
+	}"npc_dota_invoker_retro_icy_path_unit"
+	{
+			// General
+			//----------------------------------------------------------------
+				"BaseClass"                 "npc_dota_creature"
+				"AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+				"VisionDaytimeRange"        "0"
+				"VisionNighttimeRange"      "0"
+				"UnitRelationshipClass" 	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+				"MovementCapabilities"  	"DOTA_UNIT_CAP_MOVE_NONE"
+				"AbilityLayout"             "4"
+				"Ability1"                  "invoker_retro_icy_path_unit_ability"
+	}
+	//A dummy unit used to fire a wave of Incinerate.
+	"npc_dota_invoker_retro_incinerate_unit"
+	{
+			// General
+			//----------------------------------------------------------------
+				"BaseClass"                 "npc_dota_creature"
+				"AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+				"VisionDaytimeRange"        "0"
+				"VisionNighttimeRange"      "0"
+				"UnitRelationshipClass" 	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+				"MovementCapabilities"  	"DOTA_UNIT_CAP_MOVE_GROUND"
+				"WakesNeutrals"				"0"
+				"AbilityLayout"             "4"
+				"Ability1"                  "dummy_unit_with_fly_vision"
+	}//A dummy unit used to fire an Inferno.
+	"npc_dota_invoker_retro_inferno_unit"
+	{
+			// General
+			//----------------------------------------------------------------
+				"BaseClass"                 "npc_dota_creature"
+				"AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+				"VisionDaytimeRange"        "0"
+				"VisionNighttimeRange"      "0"
+				"UnitRelationshipClass" 	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+				"MovementCapabilities"  	"DOTA_UNIT_CAP_MOVE_GROUND"
+				"WakesNeutrals"				"0"
+				"AbilityLayout"             "4"
+				"Ability1"                  "dummy_unit_with_fly_vision"
+	}//A dummy unit that keeps the level of Lightning Shield.
+	"npc_dota_invoker_retro_lightning_shield_unit"
+	{
+			// General
+			//----------------------------------------------------------------
+				"BaseClass"                 "npc_dota_creature"
+				"Level"						"1"
+				"AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+				"VisionDaytimeRange"        "0"
+				"VisionNighttimeRange"      "0"
+				"UnitRelationshipClass" 	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+				"MovementCapabilities"  	"DOTA_UNIT_CAP_MOVE_FLY"
+				"WakesNeutrals"				"0"
+				"AbilityLayout"             "4"
+				"Ability1"                  "dummy_unit"
+	}
+	"npc_dota_invoker_retro_precache_unit_1"
+	{
+			// General
+			//----------------------------------------------------------------
+				"BaseClass"                 "npc_dota_creature"
+				"AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+				"VisionDaytimeRange"        "0"
+				"VisionNighttimeRange"      "0"
+				"UnitRelationshipClass" 	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+				"MovementCapabilities"  	"DOTA_UNIT_CAP_MOVE_NONE"
+				"AbilityLayout"             "4"
+				"Ability1"                  "dummy_unit"
+				"Ability2"                  "invoker_retro_icy_path_level_1_quas"
+				"Ability3"                  "invoker_retro_portal_level_1_quas"
+				"Ability4"                  "invoker_retro_frost_nova"
+				"Ability5"                  "invoker_retro_betrayal"
+				"Ability6"                  "invoker_retro_tornado_blast_level_1_quas"
+				"Ability7"                  "invoker_retro_levitation"
+				"Ability8"                  "invoker_retro_power_word"
+				"Ability9"                  "invoker_retro_invisibility_aura"
+				"Ability10"                 "invoker_retro_shroud_of_flames_exort1"
+				"Ability11"                 "invoker_retro_mana_burn"
+				"Ability12"                 "invoker_retro_emp"
+				"Ability13"                 "invoker_retro_soul_blast_level_1_wex"
+				"Ability14"                 "invoker_retro_telelightning_level_1_wex"
+				"Ability15"                 "invoker_retro_shock"
+				"Ability16"                 "invoker_retro_arcane_arts"
+	}
+
+	"npc_dota_invoker_retro_precache_unit_2"
+	{
+			// General
+			//----------------------------------------------------------------
+				"BaseClass"                 "npc_dota_creature"
+				"AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+				"VisionDaytimeRange"        "0"
+				"VisionNighttimeRange"      "0"
+				"UnitRelationshipClass" 	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+				"MovementCapabilities"  	"DOTA_UNIT_CAP_MOVE_NONE"
+				"AbilityLayout"             "4"
+				"Ability1"                  "dummy_unit"
+				"Ability2"                  "invoker_retro_scout"
+				"Ability3"                  "invoker_retro_energy_ball"
+				"Ability4"                  "invoker_retro_lightning_shield"
+				"Ability5"                  "invoker_retro_chaos_meteor"
+				"Ability6"                  "invoker_retro_confuse_level_1_exort"
+				"Ability7"                  "invoker_retro_disarm"
+				"Ability8"                  "invoker_retro_soul_reaver"
+				"Ability9"                  "invoker_retro_firestorm"
+				"Ability10"                 "invoker_retro_incinerate_level_1_exort"
+				"Ability11"                 "invoker_retro_deafening_blast"
+				"Ability12"                 "invoker_retro_inferno_level_1_wex"
+				"Ability13"                 "invoker_retro_firebolt"
+				"Ability14"                 ""
+				"Ability15"                 ""
+				"Ability16"                 ""
+	}
+	"npc_dota_invoker_retro_scout_unit"
+	{										
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/items/courier/snowl/snowl_flying.vmdl"	// Model.
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"0"			// Name of sound set.
+		"Level"						"1"
+		"ModelScale"				"1.0"
+		"IsSummoned"				"1"
+		"UnitLabel"					"Owl Scout"
+
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					"invoker_retro_scout_unit_ability"	// Ability 1
+		"Ability2"					""				// Ability 2
+		"Ability3"					""				// Ability 3
+		"Ability4"					""				// Ability 4
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"0"			// Physical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+
+		// Bounds
+		//----------------------------------------------------------------
+		"HealthBarOffset"			"165"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"20"		// Experience earn.
+		"BountyGoldMin"				"30"		// Gold earned min.
+		"BountyGoldMax"				"30"		// Gold earned max.
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
+		"MovementSpeed"				"160"		// Speed.
+		"MovementTurnRate"			"0.6"		// Turning rate.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"40"		// Base health.
+		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"100"		// Range of vision during day light.
+		"VisionNighttimeRange"		"100"		// Range of vision at night time.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_WEAK"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		"WakesNeutrals"				"0"
+	}//A dummy unit that keeps the level of shroud of flames
+	"npc_dota_invoker_retro_shroud_of_flames_unit"
+	{
+			// General
+			//----------------------------------------------------------------
+				"BaseClass"                 "npc_dota_creature"
+				"Level"						"1"
+				"AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+				"VisionDaytimeRange"        "0"
+				"VisionNighttimeRange"      "0"
+				"UnitRelationshipClass" 	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+				"MovementCapabilities"  	"DOTA_UNIT_CAP_MOVE_FLY"
+				"WakesNeutrals"				"0"
+				"AbilityLayout"             "4"
+				"Ability1"                  "dummy_unit"
+	}
+	//A dummy unit that follows the path of the tornado, providing flying vision and sound.
+	"npc_dota_invoker_retro_tornado_blast_unit"
+	{
+			// General
+			//----------------------------------------------------------------
+				"BaseClass"                 "npc_dota_creature"
+				"AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+				"VisionDaytimeRange"        "0"
+				"VisionNighttimeRange"      "0"
+				"UnitRelationshipClass" 	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+				"MovementCapabilities"  	"DOTA_UNIT_CAP_MOVE_FLY"
+				"WakesNeutrals"				"0"
+				"AbilityLayout"             "4"
+				"Ability1"                  "dummy_unit"
+	}	
+	"npc_multicast"
+	{
+		// General
+		//----------------------------------------------------------------
+		//"Model"						"models/creeps/neutral_creeps/n_creep_golem_a/neutral_creep_golem_a.mdl"	// Model.
+		"BaseClass"					"npc_dota_creep_neutral"
+		"SoundSet"					"n_creep_Melee"
+		"Level"						"5"
+		"IsAncient"					"1"
+		"ModelScale" 					"1"
+		"IsNeutralUnitType"			"1"
+
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					"lod_dummy_unit"
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
+		"MovementSpeed"				"500"
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"800"		// Base health.
+		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+		"StatusMana"				"5000"		// Base mana.
+		"StatusManaRegen"			"50"		// Mana regeneration rate.
+
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"0"		// Range of vision during day light.
+		"VisionNighttimeRange"		"0"		// Range of vision at night time.
+
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
+		"RingRadius"				"0"
+		"HealthBarOffset"			"0"
+	}
+}

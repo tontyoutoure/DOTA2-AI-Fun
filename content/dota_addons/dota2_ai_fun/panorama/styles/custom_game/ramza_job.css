@@ -1,0 +1,373 @@
+.RamzaJobBase
+{
+	width: 100%;
+	height: 100%;
+}
+
+#JobSelectionContainer
+{
+	width: 848px;
+	height: 700px;
+	vertical-align: top;
+	margin-top: 60px;
+	horizontal-align: middle;
+	background-color: #000000A0;
+	visibility: collapse;
+	flow-children: right;
+}
+
+.JobSelectionColumn
+{
+	width: 50%;
+	height: 100%;
+//	background-color: #FF000020;
+	flow-children: down;
+}
+
+.JobSelectionRowLeft
+{
+	width: 100%;
+	height: 108px;
+	margin-top: 8px;
+//	background-color: #00FF0020;
+	flow-children: left;
+}
+
+
+.JobSelectionRowRight
+{
+	width: 100%;
+	height: 108px;
+	margin-top: 8px;
+//	background-color: #00FF0020;
+	flow-children: right;
+}
+
+
+.JobContainer
+{
+	width: 192px;
+	height: 100%;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+.JobContainer .JobContainerButton
+{
+	width: 100%;
+	height: 100%;
+	background-color: #0000FF20;
+}
+
+.JobContainerButtonLabel
+{
+	font-size: 30px;
+	vertical-align:center;
+	horizontal-align:middle;
+	text-shadow: 1px 1px 1px 2.0 black;
+	text-align: center;
+}
+
+#ButtonToggleSecondarySkill
+{
+	visibility: visible;
+}
+#ButtonToggleJob
+{
+	visibility: collapse;
+}
+
+.JobContainer .SelectJobButton
+{
+	width: 100%;
+	height: 100%;
+	visibility: collapse;
+}
+
+.JobContainer .WhiteSpace
+{
+	width: 100%;
+	height: 100%;
+	background-color:white;
+}
+.JobContainer .JobCoverUp
+{
+	width: 100%;
+	height: 100%;
+	background-color: #000000E0;
+	visibility: visible;
+}
+
+.JobContainer .JobCoverUpCurrentJob
+{
+	width: 100%;
+	height: 100%;
+	background-color: #FF0000A0;
+	visibility: visible;
+}
+
+.JobContainer .JobCoverUpCurrentSecondarySkill
+{
+	width: 100%;
+	height: 100%;
+	background-color: #00FF00A0;
+	visibility: visible;
+}
+
+
+.JobContainer .JobLabelContainer
+{
+	width:100%;
+	height: 100%;
+	flow-children:down;
+	background-color:#FF000020;
+}
+
+
+.JobContainer .JobLabelContainer .JobNameLabelUnavailable
+{
+	color:gray;
+	text-shadow: 1px 1px 1px 1.0 black;
+	font-size:20px;
+	horizontal-align:left;
+	margin:2px;
+}
+
+.JobContainer .JobLabelContainer .JobLevelLabelUnavailable
+{
+	color:gray;
+	text-shadow: 1px 1px 1px 2.0 black;
+	font-size:20px;
+	horizontal-align:right;
+	vertical-align:bottom;
+	margin:2px;
+}
+
+.JobContainer .JobLabelContainer .JobNameLabelMastered
+{
+	color:gold;
+	text-shadow: 1px 1px 1px 1.0 red;
+	font-size:20px;
+	horizontal-align:left;
+	margin:2px;
+}
+
+.JobContainer .JobLabelContainer .JobLevelLabelMastered
+{
+	color:gold;
+	text-shadow: 1px 1px 1px 2.0 red;
+	font-size:20px;
+	horizontal-align:right;
+	vertical-align:bottom;
+	margin:2px;
+}
+
+.JobContainer .JobLabelContainer .JobLevelLabelAvailable
+{
+	color:blue;
+	text-shadow: 1px 1px 1px 1.0 red;
+	font-size:20px;
+	horizontal-align:right;
+	vertical-align:bottom;
+	margin:2px;
+}
+
+
+.JobContainer .JobLabelContainer .JobNameLabelAvailable
+{
+	color:blue;
+	text-shadow: 1px 1px 1px 1.0 red;
+	font-size:20px;
+	horizontal-align:left;
+	margin:2px;
+}
+
+#JobDescriptionContainer
+{
+	width: 1100px;
+	height: 780px;
+	vertical-align: top;
+	margin-top: 60px;
+	horizontal-align: middle;
+	visibility: collapse;
+	flow-children: right;
+}
+
+.JobDescriptionFlyoutLeft
+{
+	visibility:collapse;
+	width:50%;
+	height:100%;
+	background-color: #202020FE;
+	flow-children:down;
+}
+
+.JobDescriptionFlyoutRight
+{
+	visibility:collapse;
+	width:50%;
+	height:100%;
+	margin-left:50%;
+	background-color: #202020FE;
+	flow-children:down;
+}
+
+.JobDescriptionTitle
+{
+	font-size:40px;
+	horizontal-align:middle;
+}
+
+.JobDescription
+{	
+	font-size:25px;
+	horizontal-align:middle;
+	margin-left:5px;
+	margin-right:5px;
+	text-align:left;
+}
+
+.JobDescriptionEnglish
+{	
+	line-height:20px;
+}
+
+.JobDescriptionLevelLabel0
+{
+	color:gray;
+	text-shadow: 1px 1px 1px 2.0 black;
+	font-size:30px;
+	horizontal-align:middle;
+	margin-top:10px;
+}
+
+.JobDescriptionLevelLabel9
+{
+	color:gold;
+	font-size:30px;
+	horizontal-align:middle;
+	margin-top:10px;
+}
+
+.JobDescriptionLevelLabel18
+{
+	color:blue;
+	text-shadow: 1px 1px 1px 2.0 green;
+	font-size:30px;
+	horizontal-align:middle;
+	margin-top:10px;
+}
+
+.JobStatRow
+{
+	flow-children:right;
+	horizontal-align:middle;
+	width:100%; 
+}
+
+.JobStatRow .JobStatColumn
+{
+	flow-children:down;
+	min-width:50%; 
+	
+}
+
+.JobStatRow .JobStatColumn .JobStatColumnRow
+{
+	width:100%;
+	height:20px;
+}
+
+.JobStatKey
+{
+	font-size:20px;
+	margin-right:5px;
+	horizontal-align:right;
+}
+
+.JobStatValue
+{
+	font-size:20px;
+	margin-left:5px;
+	horizontal-align:left;
+}
+
+.RedFont
+{
+	color:red;
+}
+
+.BlueFont
+{
+	color:#7777DD;
+}
+
+.BluerFont
+{
+	color:#5555DD;
+}
+
+.GreenFont
+{
+	color:green;
+}
+
+.LightGreenFont
+{
+	color:#44FF44;
+}
+
+.GrayFont
+{
+	color:#777777;
+}
+
+.JobAbilityTitle{
+	horizontal-align:middle;
+	font-size:30px;
+	margin-top:10px;
+}
+
+.JobAbilityWarning{
+	font-size:20px;
+	text-align:center;
+	horizontal-align:middle;
+	color:red;
+}
+
+
+.JobRequirementTitle {
+	horizontal-align:middle;
+	font-size:30px;
+	margin-top:10px;
+}
+
+#RamzaPortraitContainer
+{
+	visibility:collapse;
+	height:144px;	
+	width:100px;
+	vertical-align:bottom;
+	horizontal-align:center;
+	margin-right:700px;
+}
+
+#RamzaPortrait
+{
+	max-height:100%;
+	width:100%;
+}
+
+#RamzaPortraitDeath
+{
+	height:100%;
+	width:100%;
+	visibility:visible;
+	background-color:#000000DD;
+	margin-bottom:50px;
+}
+
+.BottomMargin50px
+{	
+	margin-bottom:50px;
+}

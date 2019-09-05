@@ -1,0 +1,139 @@
+"DOTAAbilities"
+{
+// Invoker's Incinerate
+	// Author: Rook
+	// Revised: tontyoutoure
+	// Date: March 8, 2015
+	// Invoke: Exort Wex Exort
+	// Does heavy damage to enemy units caught in the area. Range and number of flames increase per level exort. Channeling.
+	// This ability is split up into 8 versions since cast range, AoE radius, and channel time scale with Exort.
+	
+	
+	
+	//Dummy for popup
+	"invoker_retro_incinerate"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"			"heroes/hero_invoker/invoker_retro_incinerate.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName" 			"invoker_retro_incinerate"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ICE_WALL"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"200"
+		"AoERadius"						"%wave_radius"
+		"AbilityChannelTime"			"1.65"  //Update num_waves and delay_between_waves if this is.  An extra .05 channel time is added as a hack to get the last wave to deal damage.
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_incinerate.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"cast_range_level_exort"						"40"  //Increases with Exort.  These values are currently hardcoded into AbilityCastRange because it cannot take in AbilitySpecial variables.
+			}
+			"02"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"num_waves_level_exort"							"2"  //Increases with Exort.  Update AbilityChannelTime or delay_between_waves if this is.
+			}
+			"03"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"wave_radius_level_exort"						"50"  //Increases with Exort.
+			}
+			"04"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"damage_per_wave"					"75"
+			}
+			"05"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"delay_between_waves"				".8"  //The first wave occurs this long after the channeling starts, and subsequent waves have this long of a delay between them, too.  Update AbilityChannelTime or num_waves if this is.
+			}
+			"06"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"channel_time_level_exort"						"1.6"  //These values are currently hardcoded into AbilityChannelTime because it cannot take in AbilitySpecial variables.
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"heroes/hero_invoker/invoker_retro_incinerate.lua"
+				"Function"				"invoker_retro_incinerate_on_spell_start"
+				"Target"				"POINT"
+			}
+			
+			"ApplyModifier"
+	        {
+	            "ModifierName"			"modifier_invoker_retro_incinerate_channeling_animation"
+	            "Target"				"CASTER"
+	        }
+		}
+		
+		"OnChannelFinish"
+	    {
+	        "RemoveModifier"
+	        {
+	            "ModifierName"			"modifier_invoker_retro_incinerate_channeling_animation"
+	            "Target"				"CASTER"
+	        }
+			
+			"RemoveModifier"
+	        {
+	            "ModifierName"			"modifier_invoker_retro_incinerate_channeling_animation_override"
+	            "Target"				"CASTER"
+	        }
+			
+			"RunScript"
+			{
+				"ScriptFile"			"heroes/hero_invoker/invoker_retro_incinerate.lua"
+				"Function"				"invoker_retro_incinerate_on_channel_finish"
+			}
+	    }
+		
+		
+		"Modifiers"
+	    {
+			"modifier_invoker_retro_incinerate_channeling"  //Applied to the dummy unit when Invoker begins channeling, and is removed when he stops.
+	        {
+				"Passive"			"0"
+				"IsHidden" 			"1"
+				"IsBuff"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				
+	            "OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"heroes/hero_invoker/invoker_retro_incinerate.lua"
+						"Function"				"modifier_invoker_retro_incinerate_channeling_on_created"
+						"DelayBetweenWaves"		"%delay_between_waves"
+						"DamagePerWave"			"%damage_per_wave"
+					}
+				}
+	        }
+		}
+	}
+}

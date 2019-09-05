@@ -1,0 +1,48 @@
+<root>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/fun_hero_info.js" />
+		<include src="s2r://panorama/scripts/custom_game/hero_selection.js" />
+	</scripts>
+	<styles>
+		<include src="s2r://panorama/styles/custom_game/hero_selection.css" /> 
+		<include src="file://{resources}/styles/dotastyles.css" />
+	</styles>
+	<Panel class="HeroSelectionBase" hittest="false">
+		<Button id="HeroSelectionBlocker"/>
+		<Panel id="FunHeroSelectButtonContainer">
+			<Button id="FunHeroSelectButton" onactivate="OnFunHeroSelectButtonActivated();">
+				<Label text="#select_fun_hero" id="FunHeroSelectButtonLabel"/>
+			</Button>
+			<Button id="FunHeroRandomButton" onactivate="OnFunHeroRandomButtonActivated();">
+				<Panel id="FunHeroRandomButtonIcon"/>
+				<Label text="#random_fun_hero"/>
+			</Button>
+		</Panel>
+		<Panel id="HeroSelectionContainer">
+			<Panel id="HeroTypeSelectionBtnContainer">			
+				<Panel class="HeroTypeSelectionBtn" id="HeroTypeSelectionBtnOld" onmouseover="DOTAShowTextTooltip(#select_old_heroes_tooltip);" onmouseout='DOTAHideTextTooltip();' >				
+					<Label class="HeroTypeSelectionBtnLabel" id="HeroTypeSelectionBtnLabelOld" text="#select_old_heroes"/>
+				</Panel>			
+				<Panel class="HeroTypeSelectionBtn" id="HeroTypeSelectionBtnNew" onmouseover="DOTAShowTextTooltip(#select_new_heroes_tooltip);" onmouseout='DOTAHideTextTooltip();' >				
+					<Label class="HeroTypeSelectionBtnLabel"  id="HeroTypeSelectionBtnLabelNew" text="#select_new_heroes" />
+				</Panel>
+			</Panel>
+			<Panel id="HeroSelectionPanelContainer">
+				<Panel id="HeroSelectionPanelOld" class="HeroSelectionPanel">
+				</Panel>				
+				<Panel id="HeroSelectionPanelNew" class="HeroSelectionPanel">
+				</Panel>				
+			</Panel>		
+		 
+		</Panel>
+		<Panel id="HeroDescriptionPopPanelContainer">
+			<Panel id="HeroDescriptionPopPanelJoinUs" class = "HeroDescriptionPopPanelTop"> 
+				<Label id="HeroNameJoinUs" class="HeroName" text="#join_us_title"/>
+				<Label id="HeroBioJoinUs" class="HeroBio" text="#join_us"/>
+				<Button id="DiscordChannelButton" onactivate="DOTADisplayURL('https://discord.gg/h847NwE');">				
+					<Label id="DiscordChannelLabel" text="#join_discord" />
+				</Button>
+			</Panel>			
+		</Panel>		
+	</Panel>
+</root>

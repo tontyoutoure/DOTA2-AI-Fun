@@ -1,0 +1,363 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAAbilities"
+{
+	
+	"ramza_job_chemist_change_job"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"elder_titan_natural_order_spirit"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+	
+	"ramza_job_chemist_change_secondary_skill"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"elder_titan_natural_order_spirit"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+	"Version"		"1"
+
+	"ramza_job_mystic_JC"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"elder_titan_natural_order_spirit"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"ramza_mystic_mystic_arts_umbra"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"troll_warlord_fervor"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"14"
+		"AbilityManaCost"	"80"
+		"AbilityCastRange"	"800"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_brewmaster/brewmaster_drunken_haze_debuff.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_mystic.lua"
+				"Function"	"RamzaMysticUmbra"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_mystic_mystic_arts_umbra"
+			{
+				"TextureName" 	"troll_warlord_fervor"
+				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MISS_PERCENTAGE"	"%miss_chance"
+				}
+				"EffectName"	"particles/units/heroes/hero_brewmaster/brewmaster_drunken_haze_debuff.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"miss_chance"	"50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"25"
+			}
+		}
+	}
+
+	"ramza_mystic_mystic_arts_empowerment"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"lion_mana_drain"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"40"
+		"AbilityManaCost"	"100"
+		"AbilityCastRange"	"800"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_mystic.lua"
+				"Function"	"RamzaMysticEmpowerment"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana"	"300"
+			}
+		}
+	}
+
+	"ramza_mystic_mystic_arts_disbelief"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"elder_titan_natural_order"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"25"
+		"AbilityManaCost"	"125"
+		"AbilityCastRange"	"800"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_mystic.lua"
+				"Function"	"RamzaMysticDisbelief"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"20"
+			}
+		}
+	}
+
+	"ramza_mystic_mystic_arts_hesitation"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"earth_spirit_petrify"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"35"
+		"AbilityManaCost"	"170"
+		"AbilityCastRange"	"800"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_oracle/oracle_fatesedict_disarm.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_mystic.lua"
+				"Function"	"RamzaMysticHesitation"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_mystic_mystic_arts_hesitation"
+			{
+				"IsDebuff"	"1"
+				"IsPurgable"	"0"
+				"TextureName"	"earth_spirit_petrify"
+				"EffectName"	"particles/units/heroes/hero_oracle/oracle_fatesedict_disarm.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"States"
+				{
+					"MODIFIER_STATE_DISARMED"  "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"12"
+			}
+		}
+	}
+
+	"ramza_mystic_mystic_arts_quiescence"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"death_prophet_silence"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCooldown"	"45"
+		"AbilityManaCost"	"170"
+		"AbilityCastRange"	"800"
+		"precache"
+		{
+			"particle"	"particles/econ/items/silencer/silencer_ti6/silencer_last_word_ti6_silence.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Function"	"RamzaMysticQuiescence"
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_mystic.lua"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_mystic_mystic_arts_quiescence"
+			{
+				"EffectName"	"particles/econ/items/silencer/silencer_ti6/silencer_last_word_ti6_silence.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsPurgable"	"1"
+				"IsDebuff"	"1"
+				"States"
+				{					
+					"MODIFIER_STATE_SILENCED"  "MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"TextureName"	"death_prophet_silence"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"22"
+			}
+		}
+	}
+
+	"ramza_mystic_mystic_arts_invigoration"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"death_prophet_spirit_siphon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"	"40"
+		"AbilityManaCost"	"340"
+		"AbilityCastRange"	"800"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_mystic.lua"
+				"Function"	"RamzaMysticInvigoration"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"750"
+			}
+		}
+	}
+
+	"ramza_mystic_defense_boost"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ramza_mystic_defense_boost"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_mystic.lua"
+				"Function"	"RamzaMysticDefenseBoostApply"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_armor"	"20"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"20"
+			}
+		}
+	}
+
+	"ramza_mystic_manafont"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ramza_mystic_manafont"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_mystic.lua"
+				"Function"	"RamzaMysticManafontApply"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"percentage_distance_mp"	"5"
+			}
+		}
+	}
+
+	"ramza_mystic_absorb_mp"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"greevil_laguna_blade"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_mystic.lua"
+				"Function"	"RamzaMysticAbsorbMPApply"
+			}
+		}
+	}
+}

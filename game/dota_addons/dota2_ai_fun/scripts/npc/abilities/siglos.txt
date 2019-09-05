@@ -1,0 +1,205 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"siglos_disadvantage"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile"  "heroes/siglos/siglos.lua"
+		"AbilityTextureName"	"siglos_disadvantage"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"100 120 140 160"
+		"AbilityCastRange"	"600"
+		"AbilityCastRangeBuffer"	"200"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"strength_diff_damage"	"5 10 15 20"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"1.5 3 4.5 6"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"ministun_duration"	"0.01"
+			}
+		}
+		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
+	}
+
+	"siglos_reflect"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile"  "heroes/siglos/siglos.lua"
+		"AbilityTextureName"	"spectre_dispersion"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"30"
+		"AbilityManaCost"	"65 75 85 95"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"percentage_damage"	"100"
+				"LinkedSpecialBonus"  "special_bonus_unique_siglos_4"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"2.5 5 7.5 10"
+			}
+		}
+		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
+	}
+
+	"siglos_disruption_aura"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile"  "heroes/siglos/siglos.lua"
+		"AbilityTextureName"	"siglos_disruption_aura"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange"	"%aura_radius"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"aura_radius"	"1000"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"disruption_range"	"150 300 450 600"
+				"LinkedSpecialBonus"  "special_bonus_unique_siglos_1"
+			}
+		}
+	}
+
+	"siglos_mind_control"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile"  "heroes/siglos/siglos.lua"
+		"AbilityTextureName"	"mind_control"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"HasScepterUpgrade"  "1"
+		"AbilityCooldown"	"80 70 60"
+		"AbilityManaCost"	"100"
+		"AbilityCastRange"	"%range"
+		"AbilityCastRangeBuffer"	"200"
+		"AbilityChannelTime"	"%duration"
+		"CastFilterRejectCaster"  "1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"2 4 6"
+				"LinkedSpecialBonus"  "special_bonus_unique_siglos_3"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"	"1000 1500 2000"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cooldown_scepter"	"20"
+				"RequiresScepter"			"1"
+			}
+		}
+		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
+	}
+
+	"special_bonus_unique_siglos_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"150"
+			}
+		}
+	}
+
+	"special_bonus_unique_siglos_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1"
+			}
+		}
+	}
+
+	"special_bonus_unique_siglos_3"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"3"
+			}
+		}
+	}
+
+	"special_bonus_unique_siglos_4"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"100"
+			}
+		}
+	}
+}

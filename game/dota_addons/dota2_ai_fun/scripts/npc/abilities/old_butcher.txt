@@ -1,0 +1,687 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"old_butcher_stitch"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"life_stealer_assimilate_eject"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_ROT"
+		"AbilityCooldown"	"25 20 15 10"
+		"AbilityManaCost"	"80 95 110 130"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"  "900"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"count"	"2 3 4 5"
+				"LinkedSpecialBonus"  "special_bonus_unique_old_butcher_5"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"30"
+			}
+		}
+	}
+
+	"old_butcher_carrion_beetle"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"nyx_assassin_vendetta"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_ROT"
+		"AbilityCooldown"	"6"
+		"AbilityManaCost"	"30"
+		"AbilityCastRange"	"%radius"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"900"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"summon_count"	"1"
+				"LinkedSpecialBonus"  "special_bonus_unique_old_butcher_5"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"max_count"	"5 6 7 8"
+				"LinkedSpecialBonus"  "special_bonus_unique_old_butcher_5"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"health"	"150 425 600 775"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_min"	"8 15 22 29"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_max"	"9 18 27 36"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"armor"	"2"
+			}
+			"08"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"count"	"1"
+				"LinkedSpecialBonus"  "special_bonus_unique_old_butcher_5"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+		}
+	}
+
+	"old_butcher_necrogenesis"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"life_stealer_infest"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCooldown"	"10"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"max_count"	"8"
+				"LinkedSpecialBonus"  "special_bonus_unique_old_butcher_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+		}
+	}
+
+	"old_butcher_select_corpse"
+	{
+		"BaseClass"	"ability_lua"
+		"MaxLevel"	"1"
+		"AbilityTextureName"	"old_butcher_select_corpse"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE  | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	}
+
+	"old_butcher_drop_corpse"
+	{
+		"BaseClass"	"ability_lua"
+		"MaxLevel"	"1"
+		"AbilityTextureName"	"old_butcher_drop_corpse"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	}
+
+
+	"old_butcher_drop_all_corpse"
+	{
+		"BaseClass"	"ability_lua"
+		"MaxLevel"	"1"
+		"AbilityTextureName"	"old_butcher_drop_all_corpse"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	}
+
+	"old_butcher_carrion_flies"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_ROT"
+		"AbilityTextureName"	"weaver_the_swarm"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"HasScepterUpgrade"  "1"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCooldown"	"8 4 2"
+		"AbilityManaCost"	"50"
+		"AbilityCastRange"	"%radius"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"900"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"health"	"15"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"evasion"	"88"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_min"	"8 11 14"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_max"	"9 12 15"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"60"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"mana_regen"	"2.5"
+			}
+			"08"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_min_scepter"	"13 16 19"
+				"RequiresScepter"			"1"
+			}
+			"09"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_max_scepter"	"14 17 20"
+				"RequiresScepter"			"1"
+			}
+			"10"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration_scepter"	"180"
+				"RequiresScepter"			"1"
+			}
+			"12"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"mana_regen_scepter"  "3.5"
+				"RequiresScepter"			"1"
+			}
+			"13"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"count"	"1"
+				"LinkedSpecialBonus"  "special_bonus_unique_old_butcher_5"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"14"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_cost_fly"  "25"
+			}
+		}
+	}
+
+	"old_butcher_select_ghoul"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"old_butcher_ghoul"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE |  DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+	}
+
+	"old_butcher_select_rifleman"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"old_butcher_rifleman"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE |  DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+	}
+
+	"old_butcher_select_tauren"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"old_butcher_tauren"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE |  DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+	}
+
+	"old_butcher_select_huntress"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"old_butcher_huntress"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE |  DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+	}
+	
+	"old_butcher_drop_ghoul"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"old_butcher_ghoul"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+	}
+
+	"old_butcher_drop_rifleman"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"old_butcher_rifleman"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+	}
+
+	"old_butcher_drop_tauren"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"old_butcher_tauren"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+	}
+
+	"old_butcher_drop_huntress"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"old_butcher_huntress"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+	}
+
+	"old_butcher_go_back"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"old_butcher_go_back"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE |  DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+	}
+	
+	"old_butcher_empty1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel" "0"
+		"BaseClass" "ability_datadriven"
+		"AbilityTextureName" "ability_empty"
+	}	
+	
+	"old_butcher_empty2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel" "0"
+		"BaseClass" "ability_datadriven"
+		"AbilityTextureName" "ability_empty"
+	}		
+	
+	
+	"old_butcher_empty3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel" "0"
+		"BaseClass" "ability_datadriven"
+		"AbilityTextureName" "ability_empty"
+	}	
+	
+	
+	"old_butcher_empty4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel" "0"
+		"BaseClass" "ability_datadriven"
+		"AbilityTextureName" "ability_empty"
+	}	
+	
+	
+	"old_butcher_empty5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel" "0"
+		"BaseClass" "ability_datadriven"
+		"AbilityTextureName" "ability_empty"
+	}	
+	"old_butcher_huntress_moon_glaive"
+	{
+		"BaseClass"  "luna_moon_glaive"		
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"range"						"500"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bounces"					"1"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_reduction_percent"	"50"
+			}
+		}
+	}
+	"old_butcher_huntress_moon_glaive2"
+	{
+		"BaseClass"  "luna_moon_glaive"		
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"range"						"500"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bounces"					"2"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_reduction_percent"	"50"
+			}
+		}
+	}
+	
+	"old_butcher_rifleman_long_rifles"
+	{
+		"BaseClass"  "ability_lua"	
+		"AbilityTextureName"	"sniper_assassinate"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_attack_range"						"200"
+			}
+		}		
+	}
+	
+	"old_butcher_ghoul_ghoul_frenzy"
+	{
+		"BaseClass"  "ability_lua"	
+		"AbilityTextureName"	"life_stealer_rage_immortal_gold"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_move_speed"						"80"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_attack_speed"						"25"
+			}
+		}		
+	}
+	"old_butcher_tauren_pulverize"
+	{
+		"BaseClass"  "ability_lua"	
+		"AbilityTextureName"	"earthshaker_fissure_alt_gold"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"			
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"chance"						"25"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"full_damage"						"60"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"full_damage_radius"						"250"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"half_damage"						"30"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"half_damage_radius"						"350"
+			}
+		}		
+	}
+	
+	 
+	
+	"old_butcher_carrion_beetle_burrow"
+	{
+		"BaseClass"  "ability_lua"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityTextureName" "nyx_assassin_burrow"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"LinkedAbility"					"old_butcher_carrion_beetle_unburrow"		
+		"AbilityCastPoint"				"0.3"
+	}
+	"old_butcher_carrion_beetle_unburrow"
+	{		
+		"BaseClass"  "ability_lua"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityTextureName" "nyx_assassin_unburrow"
+		"LinkedAbility"					"old_butcher_carrion_beetle_burrow"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityCastPoint"				"0"
+	}	
+	"old_butcher_carrion_beetle_burrow_attack"
+	{		
+		"BaseClass"  "ability_lua"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCooldown"		"1.4"
+		"AbilityCastRange"  "%range"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"	"450"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"attack_time"	"1.4"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"125"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"speed"	"1500"
+			}
+		}
+	}	
+	
+	"old_butcher_carrion_fly_evade"
+	{
+		"BaseClass"  "ability_lua"	
+		"AbilityTextureName"	"blue_dragonspawn_overseer_evasion"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"88"
+			}
+		}	
+	}
+	
+	"old_butcher_carrion_fly_errosion"
+	{
+		"BaseClass"  "ability_lua"	
+		"AbilityTextureName"	"weaver/immortal/weaver_geminate_attack"
+		"ScriptFile"	"heroes/old_butcher/old_butcher.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_percentage"						"2"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"						"10"
+			}
+		}	
+	}
+	
+	"special_bonus_unique_old_butcher_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1"
+			}
+		}
+	}
+	
+	"special_bonus_unique_old_butcher_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"2"
+			}
+		}
+	}
+	
+	"special_bonus_unique_old_butcher_3"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1"
+			}
+		}
+	}
+	
+	"special_bonus_unique_old_butcher_4"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1"
+			}
+		}
+	}
+	
+	"special_bonus_unique_old_butcher_5"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"2"
+			}
+		}
+	}
+	
+	"special_bonus_unique_old_butcher_6"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1"
+			}
+		}
+	}
+}

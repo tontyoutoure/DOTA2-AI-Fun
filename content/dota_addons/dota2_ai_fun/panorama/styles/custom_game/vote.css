@@ -1,0 +1,193 @@
+#VoteContainer
+{
+	background-color:#33333390;
+	width: 1000px;
+	height: 90%;
+	margin-left:50px;
+	flow-children:down;
+	visibility:collapse;
+}
+#VoteContentContainer
+{
+	width: 1000px;
+	height: 85%;
+}
+#VoteListContainer
+{
+	width: 100%;
+	height: 100%;
+	flow-children:down;
+}
+#VoteBlocker
+{
+	width: 100%;
+	height: 100%;
+	visibility:collapse;
+}
+
+#VoteTitleContainer
+{
+	width: 1000px;
+	height: 15%;
+	flow-children:left;
+}
+
+#VoteConfirmButtonContainer
+{
+	width:45%;
+	height:100%;
+}
+#VoteConfirmButton
+{
+	vertical-align:middle;
+	height:40%;
+	width:400px;
+	background-color:#008888dd;
+	background-image:url("s2r://panorama/images/backgrounds/background_play_button_large_2x_png.vtex");
+	margin:20px;
+	border-left:1px solid #007777dd;
+	border-top:1px solid #007777dd;
+	border-right:1px solid #009999dd;
+	border-bottom:1px solid #009999dd;
+}
+#VoteConfirmButton Label
+{
+	color:white;
+	font-size:40px;
+	vertical-align:middle;
+	text-align: center;
+	horizontal-align:middle;
+}
+#VoteConfirmButton:active
+{
+	transform: translate3d(1px, 1px, 0px);
+	sound: "ui_team_select_lock_and_start";
+}
+
+#VoteConfirmCount
+{
+	width:100%;
+	height:100%;
+	visibility:collapse;
+}
+#VoteConfirmCount Label
+{
+	font-size:30px;
+	color:silver;
+	vertical-align:middle;
+	horizontal-align:middle;
+	text-align: center;
+}
+
+#VoteTimeLeft
+{
+	width:55%;
+	height:100%;
+}
+#VoteTimeLeft Label
+{
+	font-size:30px;
+	color:silver;
+	vertical-align:middle;
+	horizontal-align:middle;
+	text-align: center;
+}
+
+
+
+.SingleVoteContainer
+{
+	background-color:#11111199;
+	width:980px;
+	margin-left:10px;
+	margin-right:10px;
+	margin-top:10px;
+	flow-children:right;
+
+}
+
+.SingleVoteContainer .SingleVoteTitleContainer
+{
+	width:190px;
+	margin-top:5px;
+	margin-bottom:5px;
+	margin-left:5px;
+	vertical-align:middle;
+	background-color:#00000000;
+}
+
+.SingleVoteContainer .SingleVoteTitleContainer Label
+{
+	font-size:25px;
+	color:silver;
+	vertical-align:middle;
+	horizontal-align:middle;
+	text-align: center;
+}
+
+.SingleVoteContainer .VoteOptionContainer
+{
+	width:190px;
+	margin-top:5px;
+	margin-bottom:5px;
+	margin-left:5px;
+	background-color:#33334444;
+	flow-children:up;
+}
+.SingleVoteContainer .VoteOptionContainer .VoteOptionTitleContainer
+{
+	width:190px;
+	height:30px;
+}
+
+.SingleVoteContainer .VoteOptionContainer .VoteOptionTitleContainer Label
+{
+	color:silver;
+	font-size:25px;
+	vertical-align:middle;
+	text-align: center;
+	horizontal-align:middle;
+}
+
+.SingleVoteContainer .VoteOptionContainer .VoteOptionTitleContainer .InfoButton
+{
+	background-image: url("s2r://panorama/images/status_icons/information_psd.vtex");
+	background-size:contain;
+	background-repeat:no-repeat;
+	wash-color:gold;
+	width:20px;
+	height:20px;
+	vertical-align:bottom;
+	horizontal-align:right;
+}
+
+.SingleVoteContainer .VoteOptionContainer .VoteOptionChoiceContainer
+{
+	width:190px;
+	height:20px;
+}
+
+.SingleVoteContainer .VoteOptionContainer .VoteOptionChoiceContainer Label
+{
+	color:gold;
+	font-size:20px;
+	vertical-align:middle;
+	text-align: center;
+	horizontal-align:middle;
+}
+
+.SingleVoteContainer .VoteOptionContainer .VoteOptionCounterContainer
+{
+	width:190px;
+	height:90px;
+	flow-children:down;
+}
+
+.SingleVoteContainer .VoteOptionContainer .VoteOptionCounterContainer Label
+{
+	color:silver;
+	font-size:80px;
+	vertical-align:middle;
+	text-align: center;
+	horizontal-align:middle;
+}

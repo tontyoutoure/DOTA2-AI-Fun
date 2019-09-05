@@ -1,0 +1,84 @@
+"DOTAAbilities"
+{
+// Invoker's Shroud of Flames
+	// Author: Noya
+	// Revised: tontyoutoure
+	// Date: February 15, 2015
+	// Invoke: Quas Exort Exort
+	// Creates a barrier that reduces spell damage against a friendly unit by 12%. Units that attack that unit get flamed, with damage based on Exort. Lasts 40 seconds.
+	
+	
+	
+	//Dummy for popup
+	"invoker_retro_shroud_of_flames"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"    "heroes/hero_invoker/invoker_retro_shroud_of_flames.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	    "AbilityTextureName"            "invoker_retro_shroud_of_flames"
+	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+	    "AbilityCastAnimation"          "ACT_DOTA_CAST_ICE_WALL"
+	    "MaxLevel"                      "1"
+		"AbilityProcsMagicStick" 		"1"
+	    
+	    // Stats
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCooldown"               "30"
+	    "AbilityManaCost"               "250"
+	    "AbilityCastRange"              "500"
+	    "AbilityDuration"               "40" //Tooltip states "Lasts 40 seconds"
+	    
+	    "precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+	        "particle"  "particles/units/heroes/hero_invoker/invoker_retro_shroud_of_flames.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+	    }
+	    
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "magic_resistance_level_quas"      "4" // Scales with Quas
+	        }
+	        "02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "damage_level_exort"          "8" // Scales with Exort. Hardcoded tooltip
+	        }
+	        "03"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "duration"           "40"
+	        }
+			"04"
+			{
+	            "var_type"              "FIELD_INTEGER"
+	            "fire_distance"           "600"
+			}
+			"05"
+			{
+	            "var_type"              "FIELD_INTEGER"
+	            "fire_start_radius"           "100"
+			}
+			"06"
+			{
+	            "var_type"              "FIELD_INTEGER"
+	            "fire_end_radius"           "500"
+			}
+			"07"
+			{
+	            "var_type"              "FIELD_INTEGER"
+	            "fire_speed"           "900"
+			}
+	    }
+	}
+}

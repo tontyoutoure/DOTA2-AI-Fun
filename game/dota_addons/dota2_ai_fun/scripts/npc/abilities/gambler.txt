@@ -1,0 +1,236 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"gambler_ante_up"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile"  "scripts/vscripts/heroes/gambler/gambler.lua"
+		"AbilityTextureName"	"alchemist_goblins_greed"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"CastFilterRejectCaster"	"1"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"60"
+		"AbilityManaCost"	"100"
+		"AbilityGoldCost"	"100"
+		"AbilityCastRange"	"600"
+		"AbilityCastRangeBuffer"	"200"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cash_in_kill"	"300 400 500 600"
+				"LinkedSpecialBonus"	"special_bonus_unique_gambler_1"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"50 100 150 200"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"heal"	"50 100 150 200"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"buff_duration"	"60"
+			}
+		}
+	}
+
+	"gambler_chip_stack"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile"  "scripts/vscripts/heroes/gambler/gambler.lua"
+		"AbilityTextureName"	"buyback"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCooldown"	"7.5"
+		"AbilityManaCost"	"100 105 110 115"
+		"AbilityCastRange"	"600"
+		"AbilityCastRangeBuffer"	"200"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gold_percentage_damage"	"15 20 25 30"
+			}
+		}
+	}
+
+	"gambler_lucky_stars"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile"  "scripts/vscripts/heroes/gambler/gambler.lua"
+		"AbilityTextureName"	"gambler_lucky_stars"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chance"	"5 6 7 8"
+				"LinkedSpecialBonus"	"special_bonus_unique_gambler_2"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"salvage_cost_ratio"	"0.01 0.02 0.03 0.04"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"proc"	"200"
+			}
+		}
+	}
+
+	"gambler_all_in"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile"  "scripts/vscripts/heroes/gambler/gambler.lua"
+		"AbilityTextureName"	"persuasive_kill_still"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.3"
+		"HasScepterUpgrade"  "1"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"	"35"
+		"AbilityManaCost"	"150 200 250"
+		"AbilityCastRange"	"500"
+		"AbilityCastRangeBuffer"	"200"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_cap"	"1500 2000 2500"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"fail_chance"	"30 25 20"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"fail_chance_scepter"	"15 10 5"
+				"RequiresScepter"			"1"
+			}
+		}
+	}
+
+	"special_bonus_unique_gambler_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"200"
+			}
+		}
+	}
+
+	"special_bonus_unique_gambler_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"17"
+			}
+		}
+	}
+
+	"special_bonus_unique_gambler_3"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1"
+			}
+		}
+	}
+
+	"special_bonus_unique_gambler_4"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"6"
+			}
+		}
+	}
+
+	"special_bonus_unique_gambler_5"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"300"
+			}
+		}
+	}
+}
+

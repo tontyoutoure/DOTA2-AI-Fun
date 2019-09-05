@@ -1,0 +1,181 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"old_lifestealer_feast"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"life_stealer_feast"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"ScriptFile"	"scripts/vscripts/heroes/old_lifestealer/old_lifestealer.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"lifesteal"	"10 20 30 40"
+				"LinkedSpecialBonus"	"special_bonus_unique_old_lifestealer_2"
+			}
+		}
+	}
+
+	"old_lifestealer_anabolic_frenzy"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"life_stealer_open_wounds"
+		"ScriptFile"	"scripts/vscripts/heroes/old_lifestealer/old_lifestealer.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_bonus"	"3 5 7 9"
+				"LinkedSpecialBonus"	"special_bonus_unique_old_lifestealer_1"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_bonus"	"10 20 30 40"
+			}
+		}
+	}
+
+	"old_lifestealer_poison_sting"
+	{
+		"BaseClass"	"ability_lua"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityTextureName"	"venomancer_poison_sting"
+		"ScriptFile"	"scripts/vscripts/heroes/old_lifestealer/old_lifestealer.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"2"
+				"LinkedSpecialBonus"	"special_bonus_unique_old_lifestealer_4"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"2 4 7 10"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_slow"	"-10 -20 -30 -40"
+			}
+		}
+	}
+
+	"old_lifestealer_rage"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"life_stealer_rage_immortal_gold"
+		"ScriptFile"	"scripts/vscripts/heroes/old_lifestealer/old_lifestealer.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_LIFESTEALER_RAGE"
+		"AbilityCooldown"	"90"
+		"AbilityManaCost"	"150 200 250"
+		"HasScepterUpgrade"  "1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage_applied"	"10 15 20"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"10 15 20"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius_scepter"	"300"
+				"RequiresScepter"			"1"
+			}
+		}
+	}
+
+	"special_bonus_unique_old_lifestealer_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"11"
+			}
+		}
+	}
+
+	"special_bonus_unique_old_lifestealer_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"30"
+			}
+		}
+	}
+
+	"special_bonus_unique_old_lifestealer_3"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1"
+			}
+		}
+	}
+
+	"special_bonus_unique_old_lifestealer_4"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"8"
+			}
+		}
+	}
+}

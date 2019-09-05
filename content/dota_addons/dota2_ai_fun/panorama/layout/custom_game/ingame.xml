@@ -1,0 +1,55 @@
+<root>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/fun_hero_info.js" />
+		<include src="file://{resources}/scripts/custom_game/game_mode_data.js" />
+		<include src="file://{resources}/scripts/custom_game/donation.js" />
+		<include src="file://{resources}/scripts/custom_game/scepter_info.js" />
+		<include src="file://{resources}/scripts/custom_game/ingame.js" />
+	</scripts>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/donation.css" />
+		<include src="file://{resources}/styles/custom_game/scepter_info.css" />
+		<include src="file://{resources}/styles/custom_game/game_option_ingame.css" /> 
+		<include src="file://{resources}/styles/dotastyles.vcss_c" />
+	</styles>
+	<Panel class="IngameBase" hittest="false">
+		<Panel id="DonationContentContainer" hittest="false">
+			<Panel id="TabButtonContainer">
+				<Button id="DonationTabButtonDonation" class="DonationTabButton" onactivate="Donation.OnDonationTabActive()">
+					<Label class="DonationTabButtonLabel" text="#donation"/>
+				</Button>
+				<Button id="DonationTabButtonCourier" class="DonationTabButton" onactivate="Donation.OnCourierTabActive()">
+					<Label class="DonationTabButtonLabel" text="#FilterType_Courier"/>
+				</Button>
+				<Button id="DonationTabButtonHero" class="DonationTabButton" onactivate="Donation.OnHeroTabActive()">
+					<Label class="DonationTabButtonLabel" text="#DOTA_Tag_Category_Hero"/>
+				</Button>
+				<Button id="DonationTabButtonWard" class="DonationTabButton" onactivate="Donation.OnWardTabActive()">
+					<Label class="DonationTabButtonLabel" text="#FilterType_Ward"/>
+				</Button>
+			</Panel>
+			<Panel id="DonationTabDonation" class="DonationTab">
+				<Label id="DonationTitle" text="#donation" />
+				<Label id="DonationDes" text="#donation_des"/>
+				<Label id="DonationTitleAlipay" text="#donation_alipay" />
+				<Image id="AlipayQRCode" src="file://{resources}/images/custom_game/alipay.png" />
+				<Label id="DonationTitlePayPal" text="#donation_paypal" />
+				<Button id="DonationButtonPaypal" onactivate="DOTADisplayURL(paypal.me/tontyoutoure)"/>
+			</Panel>
+			<Panel id="DonationTabEffect" class="DonationTab">
+			</Panel>
+		</Panel>
+		<Panel id="ScepterInfoContainer" hittest="false">
+		</Panel>
+		<Panel id="GameOptionIngameContainer" hittest="false">
+			<Panel id="LoadingGameOptionContainer" class="GameOptionSectionContainer" hittest="false" />
+			<Panel id="VoteOptionContainer" class="GameOptionSectionContainer" hittest="false" />
+		</Panel>
+		<Panel id="DonationActiveButtonContainer">
+			<Button class="DonationActiveButton"  id="DonationButton" oncancel="Ingame.ChangeTabState(null, false);" onactivate="Donation.OnDonationActive()" onmouseover="DOTAShowTextTooltip(#donation_button_tooltip)" onmouseout="DOTAHideTextTooltip()"/>
+			<Button class="DonationActiveButton"  id="ShowGameOptionButton" onactivate="Ingame.OnShowGameOptionActivate()" onmouseover="DOTAShowTextTooltip(#show_game_option_button_tooltip)" onmouseout="DOTAHideTextTooltip()" />
+			
+			<Button class="DonationActiveButton"  id="ScepterInfoButton" onactivate="ScepterInfo.OnScepterInfoActive()" onmouseover="DOTAShowTextTooltip(#scepter_info_button_tooltip)" onmouseout="DOTAHideTextTooltip()"/>
+		</Panel>
+	</Panel>
+</root>

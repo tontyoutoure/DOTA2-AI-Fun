@@ -1,0 +1,8 @@
+<root>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/mutation.js" />
+	</scripts>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/mutation.css" />
+	</styles>
+</root>

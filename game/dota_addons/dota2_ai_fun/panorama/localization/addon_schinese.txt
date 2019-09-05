@@ -1,0 +1,78 @@
+"addon"
+{	
+	//////////////////////////////////////////////////////////////////////////
+	//
+	//					Maji the Persuasive
+	//
+	//////////////////////////////////////////////////////////////////////////
+
+	"persuasive_raise_gold"  "金"
+	"persuasive_raise1"  "要用"
+	"persuasive_raise2"  "交换"
+	"persuasive_raise3"  "的"
+	"persuasive_raise4"  "，需要消耗"
+	"persuasive_raise5"  "点血量"
+	"persuasive_raise6"  "，不需要消耗血量"
+
+
+
+	// ////////////////////////////////////////////////////////////////////////
+	//
+	// 							Ramza Beoulve
+	//
+	// ////////////////////////////////////////////////////////////////////////
+
+	"error_ramza_cant_change_job_full"  "只能在满血满蓝时更改职业。"
+	"error_ramza_cant_change_secondary_skill_full"  "只能在满血满蓝时更改次要技能。"
+	
+	"error_ramza_cant_change_job_jump"  "跳跃时无法更改职业。"
+	"error_ramza_cant_change_secondary_skill_jump"  "跳跃时无法更改次要技能。""ramza_squire_fundamental_ultima_quote" "抹去虚幻，展现现实吧！终极！"
+	"ramza_white_mage_white_magicks_cura_quote" "净化生命的清风啊，在空中飞舞，治愈邪恶之伤吧！中级回复！"
+	"ramza_white_mage_white_magicks_wall_quote" "长眠于大地的古代之光啊，请将沉睡的力量赐予众生吧！防御壁！"
+	"ramza_white_mage_white_magicks_curaga_quote" "将祝福之风的恩惠赐予天空之下我的手中吧！高级回复！"
+	"ramza_white_mage_reraise_quote" "弥漫于空气，拂动森林的波动，铭记下生命的跃动！自动复活！"
+	"ramza_white_mage_white_magicks_holy_quote" "圣洁的天堂之光啊，照耀被血沾染的污秽！神圣！"
+	"ramza_black_mage_black_magicks_firaga_quote" "沉睡在地底里的星星之火啊，从长眠中苏醒，举起裁决之手吧！高级火焰！"
+	"ramza_black_mage_black_magicks_blizzaga_quote" "万念俱灰的回响，凝结叹息的风，述说忘却的真实… 高级暴雪！"
+	"ramza_black_mage_black_magicks_thundaga_quote" "弥漫在天空中的光芒，化聚为一线长虹，加诸神的制裁！高级雷电！"
+	"ramza_black_mage_death_quote" "渴望灵魂的死神们啊，将此人的生命交付予你吧！即死！"
+	"ramza_black_mage_black_magicks_flare_quote" "在毁灭的肉体上刻下暗黑之神的名字，燃起上古的烈焰！骤热！"
+	"ramza_monk_martial_arts_shockwave_quote" "大地之愤怒凝聚在这手腕上！防御不能！疾风、地烈斩！"
+	"ramza_monk_martial_arts_doom_fist_quote" "由这全身心注入之手指，指引去往地狱的道路！秘孔拳！"
+	"ramza_mystic_mystic_arts_disbelief_quote" "用音律之意化作为所求之意、我为了它而… 信仰疑祷！"
+	"ramza_mystic_mystic_arts_hesitation_quote" "明镜止水，行踪不定的风的真相，聆听不变的旋律… 不变不动！"
+	"ramza_mystic_mystic_arts_quiescence_quote" "编织语言的人们，在静寂中寻求真实，一瞬忘却了言语… 沉默唱！"
+	"ramza_mystic_mystic_arts_invigoration_quote" "遵从魔之法则、将这部分脉动融进我的身体之中… 命吸唱！"
+	"ramza_time_mage_time_magicks_gravity_quote" "在无辜的逝去中抱憾终生的大地啊，化作黑色的咒缚吧… 重力！"
+	"ramza_time_mage_time_magicks_quick_quote" "心灵颤动着、在螺旋的时空中拾起失落的时间之辉石！立即行动！"
+	"ramza_time_mage_time_magicks_stop_quote" "通晓时空的精灵啊，借助掌司因果之神的手，赐予我无形吧！停止！"
+	"ramza_time_mage_time_magicks_meteor_quote" "时刻降临，让星星的碎片降到不可饶恕者们的头上吧！陨石！"
+	"ramza_summoner_summon_shiva_quote" "当风和光的波动都消逝的时候，赐予我力量吧… 希瓦！"
+	"ramza_summoner_summon_ifrit_quote" "胸中燃烧着创世之火的灼热之王啊，将你的脚下化为尘土吧！伊弗里特！"
+	"ramza_summoner_summon_ramuh_quote" "俯瞰世态炎凉的老者，期待着你的裁决！拉姆！"
+	"ramza_summoner_lich_quote" "歌颂伟大的死亡，叩开恐怖的大门，渡过悠悠的冥府之河.. 巫妖！"
+	"ramza_summoner_summon_golem_quote" "以大地铸成肉体的坚固生命啊，守护我们吧！哥雷姆！"
+	"ramza_summoner_odin_quote" "漆黑的闪光啊，化作震动大气的斩鉄剑吧！奥丁！"
+	"ramza_summoner_summon_bahamut_quote" "暗夜的翼龙啊，与愤怒的我共同点燃沉眠于胸中的星星之火吧！巴哈姆特！"
+	"ramza_summoner_summon_zodiark_quote" "请赐予我绝对的真理吧，伟大的戒律之主… 黄道之光！"
+	"ramza_samurai_iaido_ashura_quote" "举起自由杀戮的古今无双之剑，放出刀气！阿修罗！"
+	"ramza_samurai_iaido_osafune_quote" "虚无的时空中斩断记忆的丝线，忘却一切世间的回忆… 备前长船！"
+	"ramza_samurai_iaido_murasame_quote" "没有风的时候，只能听见剑划过的波动，散落为风化作新的生命！村雨！"
+	"ramza_samurai_iaido_kikuichimonji_quote" "横贯寰宇的秘剑，为慈悲的佛法所不容，一同化作地狱的烈火！菊一文字！"
+	"ramza_samurai_iaido_masamune_quote" "愤怒之剑啊，以我的身躯化为厉鬼，制造人间的地狱吧！正宗！"
+	"ramza_samurai_iaido_chirijiraden_quote" "火红色的五月雨浸染了大地，食火之刃！尘地螺钿饰剑！"
+	"ramza_dark_knight_darkness_sanguine_sword_quote" "涂满血的剑啊、解放来自黑暗的波动吧，血之兵器！"
+	"ramza_dark_knight_darkness_crushing_blow_quote" "把光明变成黑暗、让绝望尽覆希望，怒之兵器！"
+	"ramza_dark_knight_darkness_abyssal_blade_quote" "我的魔道就是恶魔的斗气、我所挥舞的就是恶魔的利刃，恶魔之刃！"
+	"ramza_dark_knight_darkness_unholy_sacrifice_quote" "邪恶的波动啊、以我的生命作为粮食、展现你的力量吧，恶魔之死！"
+	"ramza_dark_knight_darkness_shadowblade_quote" "染尽业障的剑啊、解放来自黑暗的波动吧，暗之兵器！"
+	// ////////////////////////////////////////////////////////////////////////
+	//
+	// 							El Dorado, the item master
+	//
+	// ////////////////////////////////////////////////////////////////////////
+	"item_forge1" "制作了"
+	"item_forge2" "×2"
+	"item_forge3" "！"
+	"item_forge4" "！"
+}

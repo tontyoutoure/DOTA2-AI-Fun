@@ -1,0 +1,289 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	// //////////////////////////////////////////////////////////////////////////////
+	//
+	// 						  Ramza
+	//
+	// //////////////////////////////////////////////////////////////////////////////
+	"ramza_empty_1"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"OnSpellStart"	{}
+	}
+
+	"ramza_empty_2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"neutral_spell_immunity"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"0"
+	}
+
+	"ramza_empty_3"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"neutral_spell_immunity"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"0"
+	}
+
+	"ramza_empty_4"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"neutral_spell_immunity"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"0"
+	}
+
+	"ramza_empty_5"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"neutral_spell_immunity"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"0"
+	}
+
+	"ramza_open_stats_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"brewmaster_primal_split"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"HotKeyOverride"	"R"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CHANNEL_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"ramza_next_page_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"ramza_go_back"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"HotKeyOverride"	"F"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CHANNEL_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"ramza_go_back_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"omniknight_degen_aura"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"HotKeyOverride"	"R"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CHANNEL_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"ramza_bravery"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"legion_commander_duel_alt1"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"7"
+		"OnUpgrade"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_ramza_bravery"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_strength"	"3 6 9 12 15 18 21"
+				"LinkedSpecialBonus"	"special_bonus_ramza_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage"	"5 10 15 20 25 30 35"
+				"LinkedSpecialBonus"	"special_bonus_ramza_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+		}
+	}
+
+	"ramza_speed"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"rubick_telekinesis"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"7"
+		"OnUpgrade"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_ramza_speed"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_move"	"2 4 6 8 10 12 14"
+				"LinkedSpecialBonus"	"special_bonus_ramza_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_attack"	"2 4 6 8 10 12 14"
+				"LinkedSpecialBonus"	"special_bonus_ramza_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_agility"	"3 6 9 12 15 18 21"
+				"LinkedSpecialBonus"	"special_bonus_ramza_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+		}
+	}
+
+	"ramza_faith"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"crystal_maiden_crystal_nova_icecowl"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"7"
+		"OnUpgrade"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_ramza_faith"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_mana"	"50 100 150 200 250 300 350"
+				"LinkedSpecialBonus"	"special_bonus_ramza_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_intelligence"	"3 6 9 12 15 18 21"
+				"LinkedSpecialBonus"	"special_bonus_ramza_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+		}
+	}
+
+	"ramza_select_job_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"persuasive_change_item_slot_6"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"HotKeyOverride"	"Q"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"0"
+		"HasScepterUpgrade"	"1"
+	}
+
+	"ramza_select_secondary_skill_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"persuasive_change_item_slot_1"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"HotKeyOverride"	"W"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"0"
+		"HasScepterUpgrade"	"1"
+	}
+
+	"special_bonus_ramza_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"2"
+			}
+		}
+	}
+
+	"special_bonus_ramza_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1"
+			}
+		}
+	}
+
+	"special_bonus_ramza_3"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1"
+			}
+		}
+	}
+}

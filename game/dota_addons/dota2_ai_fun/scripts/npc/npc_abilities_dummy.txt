@@ -1,0 +1,262 @@
+	
+"DOTAAbilities"
+{	
+	"dummy_unit"
+	{
+		"AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"           "ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+		"MaxLevel"                      "1"
+		
+		"Modifiers"
+		{
+			"dummy_unit"
+			{
+				"Passive"                        "1"
+				"IsHidden"                        "1"    
+				"States"
+				{
+					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"  "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"  "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_STUNNED"  "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_BLIND"  "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY"  "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_COMMAND_RESTRICTED"  "MODIFIER_STATE_VALUE_ENABLED"		
+					"MODIFIER_STATE_NO_TEAM_MOVE_TO"    	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_TEAM_SELECT" 		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ATTACK_IMMUNE"  		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MAGIC_IMMUNE"       	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_OUT_OF_GAME"    		"MODIFIER_STATE_VALUE_ENABLED"				
+				}
+			}
+		}
+	}
+	"dummy_unit_with_vision"
+	{
+		"AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"           "ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+		"MaxLevel"                      "1"
+		
+		"Modifiers"
+		{
+			"dummy_unit"
+			{
+				"Passive"                        "1"
+				"IsHidden"                        "1"    
+				"States"
+				{
+					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"  "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"  "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_STUNNED"  "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY"  "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_COMMAND_RESTRICTED"  "MODIFIER_STATE_VALUE_ENABLED"		
+					"MODIFIER_STATE_NO_TEAM_MOVE_TO"    	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_TEAM_SELECT" 		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ATTACK_IMMUNE"  		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MAGIC_IMMUNE"       	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_OUT_OF_GAME"    		"MODIFIER_STATE_VALUE_ENABLED"				
+				}
+			}
+		}
+	}
+	"dummy_unit_with_fly_vision"
+	{
+		"AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"           "ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+		"MaxLevel"                      "1"
+		
+		"Modifiers"
+		{
+			"dummy_unit"
+			{
+				"Passive"                        "1"
+				"IsHidden"                        "1"    
+				"States"
+				{
+					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"  "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"  "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_STUNNED"  "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FLYING"  "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_COMMAND_RESTRICTED"  "MODIFIER_STATE_VALUE_ENABLED"		
+					"MODIFIER_STATE_NO_TEAM_MOVE_TO"    	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_TEAM_SELECT" 		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ATTACK_IMMUNE"  		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MAGIC_IMMUNE"       	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_OUT_OF_GAME"    		"MODIFIER_STATE_VALUE_ENABLED"				
+				}
+			}
+		}
+	}
+
+	"hero_attribute_gain_manager"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"hero_initiation.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"1"
+	}
+	
+	"lod_dummy_unit" {
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass" "ability_datadriven"
+		"AbilityTextureName" "rubick_empty1"
+		"MaxLevel" "1"
+
+		"Modifiers" {
+			"dummy_unit" {
+				"Passive" "1"
+				"IsHidden" "1"
+
+				"States" {
+					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	special_bonus_empty_1 
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1"
+			}
+		}
+	}
+	special_bonus_empty_2 
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1"
+			}
+		}
+	}
+	special_bonus_empty_3 
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1"
+			}
+		}
+	}
+	special_bonus_empty_4 
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1"
+			}
+		}
+	}
+	special_bonus_empty_5 
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1"
+			}
+		}
+	}
+	special_bonus_empty_6 
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1"
+			}
+		}
+	}
+	special_bonus_empty_7 
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1"
+			}
+		}
+	}
+	special_bonus_empty_8
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1"
+			}
+		}
+	}
+
+}

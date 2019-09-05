@@ -1,0 +1,9 @@
+<root>
+  <styles>
+  </styles>
+  <scripts>
+    <include src="file://{resources}/scripts/custom_game/formless_forget.js" />
+  </scripts>
+  <Panel hittest="false">
+  </Panel>
+</root>
