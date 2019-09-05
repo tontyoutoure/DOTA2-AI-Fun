@@ -1,0 +1,432 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"pet_summoner_pets"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"beastmaster_call_of_the_wild_boar"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"30"
+		"AbilityManaCost"	"65 75 85 95"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/pet_summoner/pet_summoner.lua"
+				"Function"	"PetSummonerPets"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_min"	"14 19 24 29"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_max"	"20 25 30 35"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"health"	"200 300 400 500"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"45"
+			}
+		}
+	}
+
+	"pet_summoner_fix_boo_boo"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"modifier_cny_beast_aura_heal"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"15"
+		"AbilityManaCost"	"200"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Function"	"PetSummonerFixBooBoo"
+				"ScriptFile"	"scripts/vscripts/heroes/pet_summoner/pet_summoner.lua"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"heal"	"100 200 300 400"
+			}
+		}
+	}
+
+	"pet_summoner_mittens_meow"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"lone_druid_true_form_battle_cry"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/pet_summoner/pet_summoner.lua"
+				"Function"	"PetSummonerMittensMeowApply"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage"	"12 35 37 50"
+			}
+		}
+	}
+
+	"pet_summoner_critters"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"beastmaster_greater_boar_poison"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"70"
+		"AbilityManaCost"	"125 150 175"
+		"AbilityCastRange"	"99999"
+        "HasScepterUpgrade"             "1"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/pet_summoner/pet_summoner.lua"
+				"Function"	"PetSummonerCritters"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"3 5 7"
+			}
+		}
+	}
+
+	"pet_summoner_pet_permanent_invisibility"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"beastmaster_hawk_invisibility"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCooldown"	"3"
+		"Modifiers"
+		{
+			"modifier_pet_summoner_pet_permanent_invisibility"
+			{
+				"Passive"	"1"
+				"IsBuff"	"1"
+				"IsHidden"	"1"
+				"OnAttack"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/pet_summoner/pet_summoner.lua"
+						"Function"	"PetSummonerPetRemoveInvisible"
+					}
+				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"Function"	"PetSummonerPetRemoveInvisible"
+						"ScriptFile"	"scripts/vscripts/heroes/pet_summoner/pet_summoner.lua"
+					}
+				}
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/pet_summoner/pet_summoner.lua"
+						"Function"	"PetSummonerPetInvisibleCheck"
+					}
+				}
+				"ThinkInterval"	"0.1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"fade_time"	"3"
+			}
+		}
+	}
+
+	"pet_summoner_mou_mou_bash"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"slardar_bash"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"OnUpgrade"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_slardar_bash"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chance"	"15"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"1.0"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage"	"80"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration_creep"	"2.0"
+			}
+		}
+	}
+
+	"pet_summoner_mou_mou_bite"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"lycan_summon_wolves_critical_strike"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_items.vsndevts"
+			"particle"	"particles/items2_fx/sange_maim.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_pet_summoner_mou_mou_bite_owner"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"OnAttackLanded"
+				{					
+					"RunScript"
+					{
+						"Target"  "TARGET"
+						"ScriptFile"	"scripts/vscripts/heroes/pet_summoner/pet_summoner.lua"
+						"Function"	"PetSummonerMoumouBiteTargetCheck"
+					}
+				}
+			}
+			"modifier_pet_summoner_mou_mou_bite"
+			{
+				"IsPurgable"	"1"
+				"IsDebuff"	"1"
+				"Duration"	"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed"
+				}
+				"EffectName"	"particles/items2_fx/sange_maim.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_speed"	"-50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"4"
+			}
+		}
+	}
+
+	"pet_summoner_pet_snowball_critical_strike"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"alpha_wolf_critical_strike"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"OnUpgrade"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_alpha_wolf_critical_strike"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"crit_chance"	"15"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"crit_mult"	"200"
+			}
+		}
+	}
+
+	"pet_summoner_pet_snowball_feedback"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"nyx_assassin_mana_burn"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"OnUpgrade"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_antimage_mana_break"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_per_hit"	"30"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_per_burn"	"1"
+			}
+		}
+	}
+
+	"pet_summoner_tequila_true_sight"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"beastmaster_call_of_the_wild_hawk"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange"	"900"
+		"OnUpgrade"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_necronomicon_warrior_sight"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"900"
+			}
+		}
+	}
+
+	"pet_summoner_tequila_frost_attack"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ghost_frost_attack"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"modifier_pet_summoner_tequila_frost_attack"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"Target"  "TARGET"
+						"ScriptFile"	"scripts/vscripts/heroes/pet_summoner/pet_summoner.lua"
+						"Function"	"PetSummonerTequilaFrostAttackTargetCheck"
+					}
+				}
+			}
+			"modifier_pet_summoner_tequila_frost_attack_slow"
+			{
+				"States"	{}
+				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+				"StatusEffectName"	"particles/status_fx/status_effect_frost.vpcf"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_slow"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_slow"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_slow"	"-30"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_slow"	"-30"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"2"
+			}
+		}
+	}
+
+	"special_bonus_pet_summoner_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	}
+	"special_bonus_pet_summoner_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	}
+}
+

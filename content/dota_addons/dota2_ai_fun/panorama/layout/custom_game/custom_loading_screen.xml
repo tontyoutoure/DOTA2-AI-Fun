@@ -1,0 +1,94 @@
+<root> 
+	
+	<styles>
+		<include src="file://{resources}/styles/custom_game/custom_loading_screen.css" />
+		<include src="file://{resources}/styles/custom_game/vote.css" />
+	<include src="file://{resources}/styles/dotastyles.css" />
+	</styles>
+	<scripts>
+	<include src="file://{resources}/scripts/custom_game/game_mode.js"/>
+	<include src="file://{resources}/scripts/custom_game/game_mode_data.js"/>
+	<include src="file://{resources}/scripts/custom_game/vote.js" /> 
+
+	</scripts>
+	<Panel class="AddonLoadingRoot">
+		<Panel id="CustomBg" >
+			<Panel id="game_options_container" >
+				<Panel id = "GameOptionsPanel">
+					<Label id="GameOptionsPanelTitle" text="#addon_option_title" />
+					<Panel id="GameOptionSubpanelContainerOuter">
+						<Panel id="GameOptionSubpanelContainerInner">
+						</Panel>
+						<Button id="GameOptionHider" />
+					</Panel>
+					<Button id="LockOptionsBtn" class="GameOptionButton" onactivate="LockGameOptions();">
+						<Label id="LockOptionsBtnLabel" text="#lock_game_options" />
+					</Button>
+					<Panel id="GameOptionVoteContainer" class="GameOptionBottomContainer">
+						<Panel id="GameOptionVoteOptionContainerYay" class="GameOptionVoteOptionContainer">
+							<Label id="GameOptionVoteLabelYay" text="#confirm_game_options" />
+							<Button id="GameOptionVoteButtonYay" onactivate="OnGameOptionVoteButtonYayActivated();"/>
+						</Panel>
+						<Panel id="GameOptionVoteOptionContainerNay" class="GameOptionVoteOptionContainer">
+							<Label id="GameOptionVoteLabelNay"  text="#deny_game_options" />
+							<Button id="GameOptionVoteButtonNay" onactivate="OnGameOptionVoteButtonNayActivated();"/>
+						</Panel>
+						<Panel id="GameOptionVoteTimer">
+							<Label id="GameOptionVoteTimerLabel" text="60"/>
+						</Panel>
+					</Panel>
+					<Panel id="HostSettingGameOptions" class="GameOptionButton"> 
+						<Label id="HostSettingGameOptionsLabel" text="#host_setting_game_options"/>
+					</Panel>
+					
+				</Panel>
+			</Panel>
+			<Panel id="VoteContainer">
+				<Panel id="VoteContentContainer">
+					<Panel id="VoteListContainer"/>
+					<Button id="VoteBlocker"/>
+				</Panel>
+				<Panel id="VoteTitleContainer">
+					<Panel id="VoteTimeLeft">
+						<Label id="VoteTimeLeftLabel"/>
+					</Panel>
+					<Panel id="VoteConfirmButtonContainer">
+						<Button id="VoteConfirmButton" onactivate="OnVoteConfirm()">
+							<Label text="#confirm_vote"/>
+						</Button>
+					</Panel>
+					<Panel id="VoteConfirmCount">
+						<Label id="VoteConfirmCountLabel" text="haha"/>
+					</Panel>
+				</Panel>
+			</Panel>
+    <!--
+			<Panel id="HeroSelectionOptionContainer">
+				<Label id="HeroSelectionOptionContainerTitle" text="#hero_selection_mode_title" />
+				<Label id="HeroSelectionOptionContainerWait" text="#wait_for_host" />
+				<Panel id="HeroSelectionOptionPanel">		
+					<Panel id="AllowSelectionDupulicatePanel"	class="GameOptionsSubPanel">
+						<Label id="AllowSelectionDupulicateTitle" class="HeroSelectionOptionLabel" text="#allow_selection_replicate" />
+						<ToggleButton class="HeroSelectionOptionToggle" id="allow_selection_replicate"/>		
+					</Panel>
+					<Panel id="BanImbaFunHeroesPanel" class="GameOptionsSubPanel" onmouseover="DOTAShowTextTooltip(#ban_imba_fun_heroes_tooltip)" onmouseout='DOTAHideTextTooltip()'>
+						<Label id="BanImbaFunHeroesTitle" class="HeroSelectionOptionLabel" text="#ban_imba_fun_heroes" />
+						<ToggleButton class="HeroSelectionOptionToggle" id="ban_imba_fun_heroes"/>		
+					</Panel>
+					<Button id="ConfirmHeroSelectionOptionsBtn" class="MiddleLargeButton" onactivate="ConfirmHeroSelectionOptionsActivate();">
+						<Label id="ConfirmHeroSelectionOptionsLabel" text="#hero_selection_option_confim" />
+					</Button>
+					<Button id="ConfirmHeroSelectionOptionsBtn" class="MiddleLargeButton" onactivate="ConfirmHeroSelectionOptionsActivate();">
+						<Label id="ConfirmHeroSelectionOptionsLabel" text="#hero_selection_option_confim" />
+					</Button>
+					
+					<Button id="BestWorstStatsSelectionOptionsBtn" class="MiddleLargeButton" onactivate="BestWorstStatsSelectionOptionsBtnActivate();" onmouseover="DOTAShowTextTooltip(#choose_best_worst_stats_tooltip)" onmouseout='DOTAHideTextTooltip();' >
+						<Label id="BestWorstStatsSelectionOptionsLabel" text="#choose_best_worst_stats" />
+					</Button>
+				</Panel>
+			</Panel>
+	
+	-->
+		</Panel>
+	</Panel>
+</root>

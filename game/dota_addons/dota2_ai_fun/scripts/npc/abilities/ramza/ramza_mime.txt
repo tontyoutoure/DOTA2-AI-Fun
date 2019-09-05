@@ -1,0 +1,179 @@
+"DOTAAbilities"
+{
+	
+	"ramza_job_mime_change_job"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"ramza_mimi_mimic"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+	
+	"ramza_job_mime_change_secondary_skill"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"ramza_mimi_mimic"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+	"ramza_mime_mimic_100_mana_cost"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"ramza_mimi_mimic"
+		"ScriptFile"	"heroes/ramza/ramza_mime.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_cost"	"100"
+			}
+		}
+	}
+
+	"ramza_mime_mimic_90_mana_cost"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"ramza_mimi_mimic"
+		"ScriptFile"	"heroes/ramza/ramza_mime.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_cost"	"90"
+			}
+		}
+	}
+
+	"ramza_mime_mimic_80_mana_cost"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"ramza_mimi_mimic"
+		"ScriptFile"	"heroes/ramza/ramza_mime.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_cost"	"80"
+			}
+		}
+	}
+
+	"ramza_mime_mimic_70_mana_cost"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"ramza_mimi_mimic"
+		"ScriptFile"	"heroes/ramza/ramza_mime.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_cost"	"70"
+			}
+		}
+	}
+
+	"ramza_mime_mimic_60_mana_cost"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"ramza_mimi_mimic"
+		"ScriptFile"	"heroes/ramza/ramza_mime.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_cost"	"60"
+			}
+		}
+	}
+
+	"ramza_mime_mimic_50_mana_cost"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"ramza_mimi_mimic"
+		"ScriptFile"	"heroes/ramza/ramza_mime.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_cost"	"50"
+			}
+		}
+	}
+
+	"ramza_mime_mimic_40_mana_cost"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"ramza_mimi_mimic"
+		"ScriptFile"	"heroes/ramza/ramza_mime.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_cost"	"40"
+			}
+		}
+	}
+
+	"ramza_mime_mimic_20_mana_cost"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"ramza_mimi_mimic"
+		"ScriptFile"	"heroes/ramza/ramza_mime.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_cost"	"20"
+			}
+		}
+	}
+
+	"ramza_mime_mimic_0_mana_cost"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"ramza_mimi_mimic"
+		"ScriptFile"	"heroes/ramza/ramza_mime.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_cost"	"0"
+			}
+		}
+	}
+}

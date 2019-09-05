@@ -1,0 +1,84 @@
+#ScepterInfoButton{
+	background-image:url("s2r://panorama/images/spellicons/aghsicon_psd.vtex");
+}
+
+
+#ScepterInfoContainer
+{
+	vertical-align: bottom;
+	margin-bottom: 300px;
+	horizontal-align: left;
+	background-color: #000000E0;
+	visibility: collapse;
+}
+
+.ScepterInfoHeroContainer
+{
+	margin-bottom:10px;
+	margin-left:10px;
+	margin-right:10px;
+	flow-children:down;
+	visibility:collapse;
+}
+
+.ScepterInfoHeroContainer .HeroScepterInfoTitle
+{
+	font-size: 33px;
+	line-height: 16px;
+	text-align: center;
+	vertical-align: middle;
+	horizontal-align:center;
+	text-shadow: 0px 0px 0.5px 3.7 #000000ff;
+	color: #e1e1e1;
+}
+
+.ScepterInfoHeroContainer .HeroScepterAbilityContainer
+{
+	margin-top:10px;
+	width:500px;
+	horizontal-align:middle;
+	flow-children:down;
+	background-color:#292a2b;
+}
+
+
+.ScepterInfoHeroContainer .HeroScepterAbilityContainer .HeroScepterAbilityLine
+{
+	horizontal-align:left;
+	margin:5px;
+	flow-children:right;
+	height:20px;
+}
+
+.ScepterInfoHeroContainer .HeroScepterAbilityContainer .HeroScepterAbilityLine .HeroScepterAbilityTitleUpgrade
+{
+	font-size: 18px;
+	line-height: 16px;
+	vertical-align: middle;
+	color: #f1f1f1;
+}
+
+.ScepterInfoHeroContainer .HeroScepterAbilityContainer .HeroScepterAbilityLine .HeroScepterAbilityTitleName
+{
+	font-size: 18px;
+	line-height: 16px;
+	vertical-align: middle;
+	color: #b1b1b1;
+}
+
+.ScepterInfoHeroContainer .HeroScepterAbilityContainer .HeroScepterAbilityLine .HeroScepterAbilitySpecialValue
+{
+	font-size: 18px;
+	line-height: 16px;
+	vertical-align: middle;
+	color: #818181;
+}
+.ScepterInfoHeroContainer .HeroScepterAbilityContainer .HeroScepterAbilityDescription
+{
+	font-size: 18px;
+	line-height: 20px;
+	vertical-align: middle;
+	horizontal-align:left;
+	color: #b1b1b1;
+	margin:5px;
+}

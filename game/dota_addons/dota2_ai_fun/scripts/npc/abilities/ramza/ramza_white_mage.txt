@@ -1,0 +1,496 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"ramza_job_white_mage_JC"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"keeper_of_the_light_illuminate_end"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"ramza_job_white_mage_change_secondary_skill"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"keeper_of_the_light_illuminate_end"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"ramza_job_white_mage_change_job"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"keeper_of_the_light_illuminate_end"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"ramza_white_mage_white_magicks_cure"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"forest_troll_high_priest_heal"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_EMP"
+		"AbilityCooldown"	"6"
+		"AbilityManaCost"	"75"
+		"AbilityCastRange"	"800"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
+			"particle"	"particles/neutral_fx/troll_heal.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"n_creep_ForestTrollHighPriest.Heal"
+			}
+			"FireEffect"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/neutral_fx/troll_heal.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+			"Heal"
+			{
+				"Target"	"TARGET"
+				"HealAmount"	"%heal"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_white_mage.lua"
+				"Function"	"RamzaWhiteCureProc"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"heal"	"200"
+			}
+		}
+	}
+
+	"ramza_white_mage_white_magicks_regen"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"huskar_inner_vitality"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_EMP"
+		"AbilityCooldown"	"10"
+		"AbilityManaCost"	"60"
+		"AbilityCastRange"	"800"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_huskar.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Huskar.Inner_Vitality"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_white_mage.lua"
+				"Function"	"RamzaWhiteMageRegenApply"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"regen"	"10"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"30"
+			}
+		}
+	}
+
+	"ramza_white_mage_regenerate"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"greevil_natures_attendants"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_white_mage.lua"
+				"Function"	"RamzaWhiteMageRegenerateApply"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"regen"	"10"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"30"
+			}
+		}
+	}
+
+	"ramza_white_mage_arcane_defense"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"antimage_spell_shield"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_white_mage.lua"
+				"Function"	"RamzaWhiteMageArcaneDefenseApply"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"magic_resist"	"50"
+			}
+		}
+	}
+
+	"ramza_white_mage_reraise"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"omniknight_guardian_angel"
+		"ScriptFile"	"heroes/ramza/ramza_white_mage.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_SUN_STRIKE"
+		"AbilityCooldown"	"60"
+		"AbilityManaCost"	"250"
+		"AbilityCastRange"	"800"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"reincarnate_time"	"3"
+			}
+		}
+	}
+
+	"ramza_white_mage_white_magicks_shell"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"arc_warden_magnetic_field"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_EMP"
+		"AbilityCooldown"	"15"
+		"AbilityManaCost"	"85"
+		"AbilityCastRange"	"800"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_white_mage.lua"
+				"Function"	"RamzaWhiteMageShellApply"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damga_absorb"	"500"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"30"
+			}
+		}
+	}
+
+	"ramza_white_mage_white_magicks_protect"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"omniknight_repel"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_EMP"
+		"AbilityCooldown"	"15"
+		"AbilityManaCost"	"85"
+		"AbilityCastRange"	"800"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_white_mage.lua"
+				"Function"	"RamzaWhiteMageProtectApply"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_armor"	"25"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"30"
+			}
+		}
+	}
+
+	"ramza_white_mage_white_magicks_cura"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"modifier_cny_beast_aura_heal"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_EMP"
+		"AbilityCooldown"	"14"
+		"AbilityManaCost"	"110"
+		"AbilityCastRange"	"800"
+		"AOERadius"	"400"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"CreateThinker"
+			{
+				"Target"	"POINT"
+				"ModifierName"	"modifier_ramza_white_mage_white_magicks_cura"
+			}
+			"FireSound"
+			{
+				"Target"	"POINT"
+				"EffectName"	"Hero_Omniknight.Purification"
+			}
+			"RunScript"
+			{
+				"Target"	"POINT"
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_white_mage.lua"
+				"Function"	"RamzaWhiteMageCura"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_white_mage_white_magicks_cura"
+			{
+				"OnCreated"
+				{
+					"FireEffect"
+					{
+						"Target"	"TARGET"
+						"ControlPoints"
+						{
+							"1"	"%radius %radius %radius"
+						}
+						"EffectName"	"particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
+						"EffectAttachType"	"attach_origin"
+					}
+				}
+				"Duration"	"4"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"400"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"heal"	"500"
+			}
+		}
+	}
+
+	"ramza_white_mage_white_magicks_wall"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"tower_armor_aura"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_EMP"
+		"AbilityCooldown"	"15"
+		"AbilityManaCost"	"125"
+		"AbilityCastRange"	"800"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Function"	"RamzaWhiteMageWallApply"
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_white_mage.lua"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"30"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_armor"	"25"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damga_absorb"	"500"
+			}
+		}
+	}
+
+	"ramza_white_mage_white_magicks_curaga"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ramza_white_mage_white_magicks_curaga"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_SUN_STRIKE"
+		"AbilityCooldown"	"22"
+		"AbilityManaCost"	"165"
+		"AbilityCastRange"	"800"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_white_mage.lua"
+				"Function"	"RamzaWhiteMageCuraga"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"heal"	"1250"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bounces"	"5"
+			}
+		}
+	}
+
+	"ramza_white_mage_white_magicks_holy"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"chen_test_of_faith_teleport"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_SUN_STRIKE"
+		"AbilityCooldown"	"55"
+		"AbilityManaCost"	"350"
+		"AbilityCastRange"	"800"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Function"	"RamzaWhiteMageHoly"
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_white_mage.lua"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_white_mage_white_magicks_holy"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MISS_PERCENTAGE"	"%blind_miss_rate"
+				}
+				"States"	{}
+				"IsDebuff"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"TextureName"	"chen_test_of_faith_teleport"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"blind_miss_rate"	"100"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"750"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"blind_duration"	"15"
+			}
+		}
+	}
+}

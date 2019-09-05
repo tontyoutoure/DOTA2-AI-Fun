@@ -1,0 +1,31 @@
+		
+		// /////////////////////////////////////////////////////////////////////////
+		//
+		// 			Old Holy Knight
+		//
+		// /////////////////////////////////////////////////////////////////////////
+		
+		"DOTA_Tooltip_modifier_old_holy_knight_purge_slow"  "Purge"
+		"DOTA_Tooltip_modifier_old_holy_knight_purge_slow_Description"  "Move speed is slowed by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."	
+		"DOTA_Tooltip_ability_old_holy_knight_purge"	"Purge"
+		"DOTA_Tooltip_ability_old_holy_knight_purge_Description"	"Removes all buffs from a target unit. Enemy units are also immobilized for a short time and their speed is reduced by a factor of %slow_factor%; they will slowly regain their speed over %slow_duration% seconds.\n\nDestroys summoned units."
+		"DOTA_Tooltip_ability_old_holy_knight_purge_slow_duration"	"SLOW DURATION:"
+		"DOTA_Tooltip_ability_old_holy_knight_purge_slow_multiplier"	"SLOW"
+		"DOTA_Tooltip_ability_old_holy_knight_purge_slow_factor"	"SLOW FACTOR:"
+		"DOTA_Tooltip_ability_old_holy_knight_holy_light_Description"	"A holy light that can heal a friendly unit or damage an enemy unit. Heals a friendly unit for %heal% health or damages an enemy unit for %damage% damage."
+		"DOTA_Tooltip_ability_old_holy_knight_holy_light"	"Holy Light"
+		"DOTA_Tooltip_ability_old_holy_knight_holy_light_heal"	"HEAL:"
+		"DOTA_Tooltip_ability_old_holy_knight_holy_light_damage"	"DAMAGE:"
+		"DOTA_Tooltip_ability_old_holy_knight_critical_strike"	"Critical Strike"
+		"DOTA_Tooltip_ability_old_holy_knight_critical_strike_Description"	"Gives a %crit_chance%%% chance to do %crit_multiplier%%% of normal damage on an attack."
+		"DOTA_Tooltip_ability_old_holy_knight_holy_persuation"	"Holy Persuasion"
+		"DOTA_Tooltip_ability_old_holy_knight_holy_persuation_aghanim_description"	"Allows Holy Persuasion to target ancients."
+		"DOTA_Tooltip_ability_old_holy_knight_holy_persuation_Description"	"Chen immediately persuades %count% enemy units within a range of %range% to join his army."
+		"DOTA_Tooltip_ability_old_holy_knight_holy_persuation_range"	"PERSUADE RANGE:"
+		"DOTA_Tooltip_ability_old_holy_knight_holy_persuation_count"	"PERSUADE COUNT:"
+		"DOTA_Tooltip_ability_special_bonus_unique_old_holy_knight_0"	"+100 Holy Light Damage/Heal"
+		"DOTA_Tooltip_ability_special_bonus_unique_old_holy_knight_1"	"+50% Crit Multiplier"
+		"DOTA_Tooltip_ability_special_bonus_unique_old_holy_knight_2"	"+250 AOE Purge"
+		"DOTA_Tooltip_ability_special_bonus_unique_old_holy_knight_3"	"+1500 Persuaded Unit Health"
+		"DOTA_Tooltip_ability_special_bonus_unique_old_holy_knight_4"	"Persuade Unit when Critital Strike Procs on it"
+		"DOTA_Tooltip_ability_special_bonus_unique_old_holy_knight_4_Description"	"Meanwhile Get Gold/EXP Bonus of the unit"

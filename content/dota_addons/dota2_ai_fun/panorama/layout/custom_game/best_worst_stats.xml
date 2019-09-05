@@ -1,0 +1,62 @@
+<root>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/fun_hero_info.js" />
+		<include src="s2r://panorama/scripts/custom_game/best_worst_stats.js" />
+	</scripts>
+	<styles>
+		<include src="s2r://panorama/styles/custom_game/best_worst_stats.css" /> 
+		<include src="file://{resources}/styles/dotastyles.css" />
+	</styles>
+	<Panel class="BestWorstStatsBase" hittest="false">
+		<Panel id="AbilityChooseBase" hittest="false">
+			<Panel id="AbilityChooseBottomContainer" hittest="false">
+				<Panel id="AbilityChooseBottomStatusDisplay" hittest="false">
+					<Label id="AbilityChooseBottomStatus" text=""/> 
+				</Panel>
+				<Button class="AbilityChooseBottomBtn" id="AbilityChooseConfirmBtn" onactivate="ChooseAbilityActivated()">
+					<Label id="AbilityChooseConfirmBtnLabel" text=""/> 
+				</Button>
+				<Button class="AbilityChooseBottomBtn" id="AbilityChooseConfirmAllBtn" onactivate="AbilityChooseConfirmAllBtnActivated()">
+					<Label id="AbilityChooseConfirmAllLabel" text="best_worst_stats_confirm_all"/> 
+				</Button>
+				<Button class="PrimaryAttributeSelectBtn" id="PrimaryAttributeSelectBtnStr" onactivate="StrActivated()">
+					<Label text="DOTA_Hero_Selection_PipTooltip_Str"/> 
+				</Button>
+				<Button class="PrimaryAttributeSelectBtn" id="PrimaryAttributeSelectBtnAgi" onactivate="AgiActivated()">
+					<Label text="DOTA_Hero_Selection_PipTooltip_Agi"/> 
+				</Button>
+				<Button class="PrimaryAttributeSelectBtn" id="PrimaryAttributeSelectBtnInt" onactivate="IntActivated()">
+					<Label text="DOTA_Hero_Selection_PipTooltip_Int"/> 
+				</Button>
+			</Panel>
+			<Panel id="AbilityChooseTopContainer" hittest="false">
+				<Panel id="AbilityChoosePanel" class="AbilityChoosePanelContainer" hittest="false">
+					<Panel id="Ability1Panel" class="SingleAbilityPanel" hittest="false">
+					</Panel>
+					<Panel id="Ability2Panel" class="SingleAbilityPanel" hittest="false">
+					</Panel>
+					<Panel id="Ability3Panel" class="SingleAbilityPanel" hittest="false">
+					</Panel>
+					<Panel id="Ability4Panel" class="SingleAbilityPanel" hittest="false">
+					</Panel>
+				</Panel>
+				<Panel id="TalentChoosePanel" class="AbilityChoosePanelContainer" hittest="false">
+					<Panel id="Talent1Panel" class="SingleAbilityPanel" hittest="false">
+					</Panel>
+					<Panel id="Talent2Panel" class="SingleAbilityPanel" hittest="false">
+					</Panel>
+					<Panel id="Talent3Panel" class="SingleAbilityPanel" hittest="false">
+					</Panel>
+					<Panel id="Talent4Panel" class="SingleAbilityPanel" hittest="false">
+					</Panel>
+				</Panel>
+				<Panel id="AbilityShowCaseContainer">
+					<Panel id="AbilityShowCase1" class="AbilityShowCase"/>
+					<Panel id="AbilityShowCase2" class="AbilityShowCase"/>
+					<Panel id="AbilityShowCase3" class="AbilityShowCase"/>
+					<Panel id="AbilityShowCase4" class="AbilityShowCase"/>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

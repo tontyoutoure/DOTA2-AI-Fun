@@ -1,0 +1,218 @@
+.BestWorstStatsBase
+{
+	width:100%;
+	height:100%;
+}
+
+#AbilityChooseBase
+{
+	width:1400px;
+	height:800px;
+	horizontal-align:middle;
+	vertical-align:top;
+	margin-top:50px;
+	background-color:#000000DD;
+	flow-children:up;
+	visibility:collapse;
+}
+
+#AbilityChooseBottomContainer
+{
+	width:100%;
+	height:80px;
+	flow-children:right;
+}
+
+
+#AbilityChooseBottomContainer #AbilityChooseBottomStatusDisplay
+{
+	height:80px;
+	width:350px;
+	margin:5px;
+}
+
+#AbilityChooseBottomContainer #AbilityChooseBottomStatusDisplay Label
+{
+	color:white;
+	font-size:35px;
+	vertical-align:middle;
+	horizontal-align:middle;
+	text-align: center;
+	font-family:RadianceM,Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+}
+.PrimaryAttributeSelectBtn 
+{
+	width:200px;
+	height:70px;
+	margin:5px;
+	visibility:collapse;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_large_2x_png.vtex");
+}
+
+.PrimaryAttributeSelectBtn:active
+{
+	transform: translate3d(1px, 1px, 0px);
+	sound: "ui_team_select_lock_and_start";
+}
+.PrimaryAttributeSelectBtn Label
+{
+	color:white;
+	font-size:25px;
+	vertical-align:middle;
+	horizontal-align:middle;
+	text-align: center;
+	font-family:RadianceM,Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+}
+.PrimaryAttributeSelectBtnActivated
+{
+	box-shadow: gold 0px 0px 10px 2px;
+}
+
+#PrimaryAttributeSelectBtnStr
+{
+	background-color:red;
+}
+
+#PrimaryAttributeSelectBtnAgi
+{
+	background-color:green;	
+}
+#PrimaryAttributeSelectBtnInt
+{
+	background-color:blue;
+}
+
+.AbilityChooseBottomBtn
+{
+	width:380px;
+	height:70px;
+	margin:5px;
+	background-color:gradient( linear, 0% 0%, 0% 100%, from( #4040e0FF ), to( #5555D0FF ) );
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_large_2x_png.vtex");
+	box-shadow: silver 0px 0px 2px 0px;
+}
+
+.AbilityChooseBottomBtn:active
+{
+	transform: translate3d(1px, 1px, 0px);
+	sound: "ui_team_select_lock_and_start";
+}
+.AbilityChooseBottomBtn Label
+{
+	color:white;
+	font-size:35px;
+	vertical-align:middle;
+	horizontal-align:middle;
+	text-align: center;
+	font-family:RadianceM,Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+}
+
+#AbilityChooseTopContainer
+{
+	width:100%;
+	height:720px;
+	flow-children:right;
+}
+
+.AbilityChoosePanelContainer
+{
+	width:75%;
+	height:100%;	
+	flow-children:down;
+}
+
+.AbilityChoosePanelContainer .SingleAbilityPanel
+{
+	width:100%;
+	height:170px;
+	margin-bottom:10px;	
+	background-color:#44444499;
+	flow-children:right;
+}
+.AbilityChoosePanelContainer .SingleAbilityPanel .TitlePanel
+{
+	width:300px;
+	height:100%;	
+}
+.AbilityChoosePanelContainer .SingleAbilityPanel .TitlePanel Label
+{
+	color:white;
+	font-size:35px;
+	vertical-align:middle;
+	horizontal-align:middle;
+	text-align: center;
+	font-family:RadianceM,Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+}
+
+
+.AbilityChoosePanelContainer .SingleAbilityPanel .DropDownContainer
+{
+	width:800px;
+	height:100%;	
+	flow-children:right;
+}
+.AbilityChoosePanelContainer .SingleAbilityPanel .DropDownContainer .SingleDropDownContainer
+{
+	width:400px;
+	height:100%;	
+	flow-children:down;
+}
+
+.AbilityChoosePanelContainer .SingleAbilityPanel .DropDownContainer .SingleDropDownContainer .SingleDropDownElement
+{
+	width:400px;
+	height:50%;	
+}
+
+.AbilityChoosePanelContainer .SingleAbilityPanel .DropDownContainer .SingleDropDownContainer .SingleDropDownElement .LargeLabel
+{
+	color:white;
+	font-size:35px;
+	vertical-align:middle;
+	horizontal-align:middle;
+	text-align: center;
+	font-family:RadianceM,Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+}
+.AbilityChoosePanelContainer .SingleAbilityPanel .DropDownContainer .SingleDropDownContainer .SingleDropDownElement DropDown
+{
+	width: 300px;
+	horizontal-align:middle;
+	vertical-align:center;
+	flow-children:down;
+}
+
+.AbilityChoosePanelContainer .SingleAbilityPanel .DropDownContainerLarge {
+	width:800px;
+	height:100%;	
+}
+
+.AbilityChoosePanelContainer .SingleAbilityPanel .DropDownContainerLarge DropDown
+{
+	width: 700px;
+	horizontal-align:middle;
+	vertical-align:center;
+	flow-children:down;
+}
+
+
+#AbilityShowCaseContainer {
+	width:15%;
+	height:100%;	
+	flow-children:down;
+	margin-left:50px;
+}
+.AbilityShowCase {
+	horizontal-align:center;
+	width:128px;
+	height:128px;
+	margin-top:20px;
+	margin-bottom:32px;
+}
+.AbilityShowCase DOTAAbilityImage{
+	width:128px;
+	height:128px;
+}
+
+#TalentChoosePanel{
+	visibility:collapse;
+}

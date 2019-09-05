@@ -1,0 +1,249 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"kahmeka_ignite"
+	{
+		"BaseClass"	"ability_lua"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityTextureName"	"batrider_flamebreak"
+		"ScriptFile"	"heroes/kahmeka/kahmeka.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.6"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate"	"0.33"
+		"AbilityCooldown"	"12"
+		"AbilityManaCost"	"95 105 115 125"
+		"AbilityCastRange"	"700"
+		"AbilityCastRangeBuffer"	"200"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"7.5"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"slow"	"10 15 20 25"
+				"LinkedSpecialBonus"  "special_bonus_unique_kahmeka_1"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"5 15 25 35"
+				"LinkedSpecialBonus"  "special_bonus_unique_kahmeka_5"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"projectile_speed"	"700"
+			}
+		}
+	}
+
+	"kahmeka_fly"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"phoenix_icarus_dive"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"ScriptFile"	"heroes/kahmeka/kahmeka.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate"	"1"
+		"AbilityCooldown"	"10"
+		"AbilityManaCost"	"75"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"movespeed_bonus"	"30 60 90 120"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"divebomb_damage"	"60 120 180 240"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"divebomb_radius"	"325"
+			}
+		}
+	}
+
+	"kahmeka_fly_down_divebomb"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"phoenix_launch_fire_spirit"
+		"ScriptFile"	"heroes/kahmeka/kahmeka.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"MaxLevel"	"1"
+		"AbilityCastRange"	"325"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"10"
+		"AbilityManaCost"	"75"
+	}
+
+	"kahmeka_wounding_spear"
+	{
+		"BaseClass"	"ability_lua"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"HasScepterUpgrade"	"1"
+		"AbilityTextureName"	"huskar_burning_spear"
+		"ScriptFile"	"heroes/kahmeka/kahmeka.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"8"
+				"LinkedSpecialBonus"  "special_bonus_unique_kahmeka_3"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"str_loss"	"1 2 3 4"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"str_loss_scepter"	"3 4 5 6"
+				"RequiresScepter"			"1"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"str_loss_cap_increase_per_kill_scepter"	"4"
+				"RequiresScepter"			"1"
+			}
+		}
+	}
+
+	"kahmeka_fungwarb"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"heroes/kahmeka/kahmeka.lua"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityTextureName"	"ember_spirit_flame_guard"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastPoint"	"0.6"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AnimationPlaybackRate"	"0.33"
+		"AbilityCooldown"	"25"
+		"AbilityManaCost"	"100 130 160"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"3.5"
+				"LinkedSpecialBonus"  "special_bonus_unique_kahmeka_4"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"reverse"	"100 150 200"
+			}
+		}
+	}
+
+	"special_bonus_unique_kahmeka_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"15"
+			}
+		}
+	}
+
+	"special_bonus_unique_kahmeka_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"7"
+			}
+		}
+	}
+
+	"special_bonus_unique_kahmeka_3"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"12"
+			}
+		}
+	}
+
+	"special_bonus_unique_kahmeka_4"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"3"
+			}
+		}
+	}
+
+	"special_bonus_unique_kahmeka_5"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"150"
+			}
+		}
+	}
+}

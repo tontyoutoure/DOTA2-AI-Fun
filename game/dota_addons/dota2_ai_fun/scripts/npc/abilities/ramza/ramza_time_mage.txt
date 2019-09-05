@@ -1,0 +1,542 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"ramza_job_time_mage_JC"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"abyssal_underlord_dark_rift"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"ramza_job_time_mage_change_job"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"abyssal_underlord_dark_rift"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"ramza_job_time_mage_change_secondary_skill"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"abyssal_underlord_dark_rift"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"ramza_time_mage_time_magicks_haste"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"greevil_bloodlust"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"MaxLevel"	"2"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"10 5"
+		"AbilityManaCost"	"90"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"800"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts"
+			"particle"	"particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_ramza_time_mage_time_magicks_haste"
+				"Duration"	"%duration"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_OgreMagi.Bloodlust.Cast"
+			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_OgreMagi.Bloodlust.Target"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_time_mage.lua"
+				"Function"	"RamzaTimeMageHaste"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_time_mage_time_magicks_haste"
+			{
+				"IsBuff"	"1"
+				"IsPurgable"	"1"
+				"EffectName"	"particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus_speed"
+				}
+				"TextureName"	"greevil_bloodlust"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"20"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"bonus_speed"	"50"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_attack"	"50"
+			}
+		}
+	}
+
+	"ramza_time_mage_time_magicks_slow"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"skywrath_mage_concussive_shot"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"2"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"10 5"
+		"AbilityManaCost"	"90"
+		"AbilityCastRange"	"800"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_slow_debuff.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_time_mage.lua"
+				"Function"	"RamzaTimeMageSlow"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_time_mage_time_magicks_slow"
+			{
+				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+				"EffectName"	"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_slow_debuff.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_slow"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_slow"
+				}
+				"TextureName"	"skywrath_mage_concussive_shot"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"20"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_slow"	"-50"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_slow"	"-50"
+			}
+		}
+	}
+
+	"ramza_time_mage_time_magicks_immobilize"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"spawnlord_master_freeze"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"2"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"26 13"
+		"AbilityManaCost"	"115"
+		"AbilityCastRange"	"800"
+		"precache"
+		{
+			"particle"	"particles/neutral_fx/prowler_shaman_shamanistic_ward.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_time_mage.lua"
+				"Function"	"RamzaTimeMageImmobilize"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_time_mage_time_magicks_immobilize"
+			{
+				"IsPurgable"	"1"
+				"IsDebuff"	"1"
+				"TextureName"	"spawnlord_freeze"
+				"Properties"	{}
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/neutral_fx/prowler_shaman_shamanistic_ward.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"10"
+			}
+		}
+	}
+
+	"ramza_time_mage_time_magicks_gravity"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ramza_time_mage_gravity"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"MaxLevel"	"2"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCooldown"	"40 20"
+		"AbilityManaCost"	"150"
+		"AbilityCastRange"	"800"
+		"AOERadius"	"400"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"	"POINT"
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_time_mage.lua"
+				"Function"	"RamzaTimeMageGravity"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"health_percentage"	"50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"drag_time"	"1.2"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"400"
+			}
+		}
+	}
+
+	"ramza_time_mage_time_magicks_quick"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"clinkz_strafe"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"MaxLevel"	"2"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCooldown"	"34 17"
+		"AbilityManaCost"	"120"
+		"AbilityCastRange"	"800"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+			"particle"	"particles/units/heroes/hero_clinkz/clinkz_strafe.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_time_mage.lua"
+				"Function"	"RamzaTimeMageProc"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_ramza_time_mage_time_magicks_quick"
+				"Duration"	"%duration"
+			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_Clinkz.Strafe"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_time_mage_time_magicks_quick"
+			{
+				"IsBuff"	"1"
+				"IsPurgable"	"1"
+				"TextureName"	"clinkz_strafe"
+				"EffectName"	"particles/units/heroes/hero_clinkz/clinkz_strafe.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"10"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_attack"	"1000"
+			}
+		}
+	}
+
+	"ramza_time_mage_time_magicks_stop"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"faceless_void_time_lock"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"	"2"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"	"28 14"
+		"AbilityManaCost"	"170"
+		"AbilityCastRange"	"800"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_faceless_void.vsndevts"
+			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_FacelessVoid.TimeLockImpact"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_time_mage.lua"
+				"Function"	"RamzaTimeMageStop"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_time_mage_time_magicks_stop"
+			{
+				"IsDebuff"	"1"
+				"IsPurgable" "1"
+				"IsStunDebuff" "1"
+				"States"
+				{
+					"MODIFIER_STATE_FROZEN"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"StatusEffectName"	"particles/status_fx/status_effect_faceless_chronosphere.vpcf"
+				"TextureName"	"faceless_void_time_lock"
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"5"
+			}
+		}
+	}
+
+	"ramza_time_mage_time_magicks_meteor"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"invoker_chaos_meteor"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"	"2"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"	"100 50"
+		"AbilityManaCost"	"250"
+		"AbilityCastRange"	"1500"
+		"AOERadius"	"400"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"	"POINT"
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_time_mage.lua"
+				"Function"	"RamzaTimeMageMeteor"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"850"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"stun_duration"	"6"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"400"
+			}
+		}
+	}
+
+	"ramza_time_mage_mana_shield"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"medusa_mana_shield"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityCastRange"	"0"
+		"OnToggleOn"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_time_mage.lua"
+				"Function"	"RamzaTimeMageShieldToggle"
+			}
+		}
+		"OnToggleOff"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_time_mage.lua"
+				"Function"	"RamzaTimeMageShieldToggle"
+			}
+		}
+	}
+
+	"ramza_time_mage_teleport"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ramza_time_mage_teleport"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"2"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"30 15"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"99999"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"	"POINT"
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_time_mage.lua"
+				"Function"	"RamzaTimeMageTeleport"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"minimum_chance"	"20"
+			}
+		}
+	}
+
+	"ramza_time_mage_swiftness"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"greevil_time_lock"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_time_mage.lua"
+				"Function"	"RamzaTimeMageUpgradeTeleport"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_time_mage_swiftness"
+			{
+				"Passive"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
+				"IsBuff"	"1"
+				"IsHidden"	"1"
+			}
+		}
+	}
+}

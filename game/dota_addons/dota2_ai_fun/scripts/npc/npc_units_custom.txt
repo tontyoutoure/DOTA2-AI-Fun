@@ -1,0 +1,10 @@
+
+#base "npc_units_dummy.txt"
+#base "units\pet_summoner.txt"
+#base "units\el_dorado.txt"
+#base "units\hamsterlord.txt"
+#base "units\old_butcher.txt"
+#base "units\old_silencer.txt"
+#base "units\old_stealth_assassin.txt"
+#base "units\invoker_retro.txt"
+#base "units\conjurer.txt"

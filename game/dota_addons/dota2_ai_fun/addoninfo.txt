@@ -1,0 +1,9 @@
+"AddonInfo"
+{	
+	maps			"dota"
+	"IsPlayable"	"1"
+	"dota"
+	{
+		"MaxPlayers"		"24"
+	}
+}

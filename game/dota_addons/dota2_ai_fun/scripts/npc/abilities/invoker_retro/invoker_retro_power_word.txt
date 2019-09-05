@@ -1,0 +1,75 @@
+"DOTAAbilities"
+{
+// Invoker's Power Word
+	// Author: Rook
+	// Revised: tontyoutoure
+	// Date: February 23, 2015
+	// Invoke: Quas Exort Quas
+	// Applies a magic that weakes or strengthens a unit's resistance to physical attacks. Increases a friendly unit's armor or decreaes an enemy's armor by 3. Lasts 25 seconds
+	// Balance ideas: Make use of Exort's level somehow.
+	"invoker_retro_power_word"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_invoker/invoker_retro_power_word.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityTextureName" 			"invoker_retro_power_word"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ALACRITY"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+		"AbilityProcsMagicStick" 		"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"200"
+		"AbilityCastRange"				"650"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_dazzle/dazzle_armor_friend_shield.vpcf"
+			"particle"					"particles/units/heroes/hero_dazzle/dazzle_armor_enemy_shield.vpcf"
+			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_power_word_ally.vpcf"
+			"particle"                  "particles/units/heroes/hero_invoker/invoker_retro_power_word_enemy.vpcf"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_bonus_ally_level_quas"		"1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction_enemy_level_quas"	"-1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pip_current"			"1"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"heroes/hero_invoker/invoker_retro_power_word.lua"
+				"Function"				"invoker_retro_power_word_on_spell_start"
+			}
+		}
+	}
+}

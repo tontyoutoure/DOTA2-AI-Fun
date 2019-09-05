@@ -1,0 +1,49 @@
+"DOTAAbilities"
+{
+// Invoker's Invisibility Aura
+	// Author: Rook and wFX
+	// Revised: tontyoutoure
+	// Date: February 24, 2015
+	// Invoke: Quas Exort Wex
+	// Units within 190 range of Kael become Invisible. Range based on Quas level
+	"invoker_retro_invisibility_aura"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"						"heroes/hero_invoker/invoker_retro_invisibility_aura.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName" 			"invoker_retro_invisibility_aura"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+		
+		"precache"
+		{
+			"particle"			"particles/units/heroes/hero_invoker/invoker_retro_invisibility_aura.vpcf"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius_base"			"130"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius_level_quas"				"20"  //Increases with Quas.
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fade_time"				".7"
+			}
+		}
+		
+		
+	}
+}

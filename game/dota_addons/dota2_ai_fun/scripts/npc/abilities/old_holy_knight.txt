@@ -1,0 +1,212 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"old_holy_knight_purge"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"satyr_trickster_purge"
+		"ScriptFile"	"heroes/old_holy_knight/old_holy_knight.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_NO"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"12"
+		"AbilityManaCost"	"85"
+		"AbilityCastRange"	"600"
+		"AbilityCastRangeBuffer"	"200"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"slow_factor"	"2 3 4 7"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"slow_duration"	"6"
+			}
+		}
+	}
+
+	"old_holy_knight_holy_light"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"chen_test_of_faith"
+		"ScriptFile"	"heroes/old_holy_knight/old_holy_knight.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_NO"
+		"CastFilterRejectCaster"	"1"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"10"
+		"AbilityManaCost"	"105 120 135 150"
+		"AbilityCastRange"	"600"
+		"AbilityCastRangeBuffer"	"200"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"heal"	"150 300 450 600"
+				"LinkedSpecialBonus"  "special_bonus_unique_old_holy_knight_0"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"75 150 225 300"
+				"LinkedSpecialBonus"  "special_bonus_unique_old_holy_knight_0"
+			}
+		}
+	}
+
+	"old_holy_knight_critical_strike"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"alpha_wolf_critical_strike"
+		"ScriptFile"	"heroes/old_holy_knight/old_holy_knight.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"crit_chance"	"15"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"crit_multiplier"	"150 200 250 300"
+				"LinkedSpecialBonus"  "special_bonus_unique_old_holy_knight_1"
+			}
+		}
+	}
+
+	"old_holy_knight_holy_persuation"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"chen_holy_persuasion"
+		"ScriptFile"	"heroes/old_holy_knight/old_holy_knight.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"	"120"
+		"AbilityManaCost"	"250"
+		"AbilityCastRange"	"750"
+		"AbilityCastRangeBuffer"	"200"
+		"HasScepterUpgrade"  "1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"	"1500"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"count"	"4 8 12"
+			}
+		}
+	}
+
+	"special_bonus_unique_old_holy_knight_0"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"100"
+			}
+		}
+	}
+
+	"special_bonus_unique_old_holy_knight_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"50"
+			}
+		}
+	}
+
+	"special_bonus_unique_old_holy_knight_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"250"
+			}
+		}
+	}
+
+	"special_bonus_unique_old_holy_knight_3"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1500"
+			}
+		}
+	}
+
+	"special_bonus_unique_old_holy_knight_4"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1"
+			}
+		}
+	}
+}
+

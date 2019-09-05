@@ -1,0 +1,351 @@
+.IngameBase
+{
+	width: 100%;
+	height: 100%;
+}
+
+#DonationActiveButtonContainer
+{
+	width: 240px;
+	height: 40px;
+	vertical-align: bottom;
+	horizontal-align: left;
+	margin-bottom: 263px;
+	flow-children:right;
+}
+
+.DonationActiveButton
+{
+	width: 40px;
+	height: 40px;	
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	wash-color:#CDF;
+	opacity:0.5;
+}
+#ScepterInfoButton
+{
+	visibility:collapse;
+}
+.DonationActiveButton:active
+{	
+	transform: translate3d(1px, 1px, 0px);
+	sound: "ui_settings_multi";
+}
+
+#DonationButton
+{
+	background-image:url("file://{images}/custom_game/chips.png"); 
+}
+
+#ShowGameOptionButton
+{
+	background-image:url("s2r://panorama/images/control_icons/gear_png.vtex");
+}
+
+.DonationActiveButtonLabel
+{
+	font-size:20px;
+	vertical-align:middle;
+	horizontal-align:middle;
+	color: red;
+}
+
+#TabButtonContainer
+{
+	width:100%;
+	height:5%;
+	flow-children:right;
+}
+
+.DonationTabButtonLabel
+{
+	font-size:20px;
+	vertical-align:middle;
+	color: red;	
+	horizontal-align:middle;
+}
+
+#TabButtonContainer .DonationTabButton
+{
+	width:15%;
+	margin-left:5%;
+	margin-right:5%;
+	height:100%;
+	background-color: blue;
+}
+#TabButtonContainer .DonationTabButton:active
+{	
+	transform: translate3d(1px, 1px, 0px);
+	sound: "ui_settings_multi";
+}
+#DonationContentContainer
+{
+	width: 600px;
+	height: 735px;
+	vertical-align: top;
+	margin-top: 50px;
+	horizontal-align: left;
+	background-color: #000000E0;
+	visibility: collapse;
+}
+.DonationTab
+{
+	width: 100%;
+	height: 95%;
+	vertical-align: bottom;
+	flow-children: down;
+}
+.DonationTab .DonationTabRow
+{
+	width: 600px;
+	height: 40px;
+	margin-top: 3px;
+	flow-children:right;
+}
+.GemButton
+{
+	width:90px;
+	height:40px;
+	margin-left:9px;
+	overflow:clip clip;
+}
+.GemImage
+{
+	width: 100%;
+	height:60px;
+	vertical-align:middle;
+	horizontal-align:middle;
+	overflow:squish squish ;
+}
+
+.GemLabel
+{
+	color:gold;
+	font-size:25px;
+	vertical-align:middle;
+	horizontal-align:middle;
+	text-shadow: 1px 1px 1px 2.0 red;
+}
+
+.PrismaticMask
+{
+	width:100%;
+	height:60px;
+	background-color:#FFC1DC;
+	vertical-align:middle;
+	opacity-mask: url("file://{images}/econ/sockets/gem_color_mask.png") ;
+}
+.PrismaticMaskImage
+{
+	width:100%;
+	height:60px;
+	wash-color:#FFC1DC;
+	vertical-align:middle;
+}
+
+.GemContainer
+{
+	width:15%;
+	height:100%;
+	margin-left:9px;
+	overflow:clip clip;
+}
+
+
+.GemButton:active
+{	
+	transform: translate3d(1px, 1px, 0px);
+	sound: "ui_settings_multi";
+}
+
+
+.HaveShadow
+{	
+	box-shadow: gold 0px 0px 10px 0px;
+}
+
+.TitleContainer
+{
+	width:100%;
+	height:25px;
+}
+.TitleContainer #EtherealTitle
+{	
+	color:#20FFFF;
+	font-size:25px;
+	vertical-align:middle;
+	horizontal-align:middle;
+}
+
+
+.TitleContainer #PrismaticTitle
+{	
+	color:gold;
+	font-size:25px;
+	vertical-align:middle;
+	horizontal-align:middle;
+}
+
+#BottomContainer
+{
+	margin-top:8px;
+	margin-bottom:5px;
+	width:100%;
+	height:100%;
+	flow-children:down;
+}
+.BottomContainerHalf
+{
+	width:100%;
+	height:50%;
+	flow-children:right;
+}
+.ColorEntryContainer
+{
+	height:100%;
+	width:30%;	
+}
+
+#ColorExample
+{
+	height:100%;
+	width:100%;	
+	visibility:collapse;
+}
+
+#ColorEntry
+{
+	height:100%;
+	width:100%;	
+	font-size: 25px;
+	font-family: Courier;
+}
+
+.BottomButton
+{	
+	margin-left:2%;
+	width: 29%;	
+	height:90%;
+	background-color:brown;
+	background-image:url("file://{resources}/images/backgrounds/background_play_button_large_2x_png.vtex");
+}
+
+.BottomButton:active
+{	
+	transform: translate3d(1px, 1px, 0px);
+	sound: "ui_settings_multi";
+}
+
+.BottomButton .BottomButtonLabel
+{
+	color:gray;
+	font-size:20px;
+	vertical-align:middle;
+	horizontal-align:middle;
+}
+
+.BottomButtonHalfContainer
+{
+	margin-left:2%;
+	width: 38%;	
+	height:100%;
+	flow-children:right;
+}
+
+
+.BottomButtonHalf
+{	
+	margin-right:2%;
+	height:90%;
+	background-color:brown;
+	background-image:url("file://{resources}/images/backgrounds/background_play_button_large_2x_png.vtex");
+}
+
+#BottomButtonEmblem{
+	width: 38%;	
+}
+#BottomButtonProjectile {
+	width: 58%;	
+}
+#BottomButtonRandom {
+	width: 37%;	
+}
+.BottomButtonHalf:active
+{	
+	transform: translate3d(1px, 1px, 0px);
+	sound: "ui_settings_multi";
+}
+
+.BottomButtonHalf .BottomButtonLabel
+{
+	color:gray;
+	font-size:20px;
+	vertical-align:middle;
+	horizontal-align:middle;
+}
+
+
+#ColorEntryDesLabel
+{
+	color:red;
+	font-size:20px;
+	vertical-align:middle;
+	horizontal-align:middle;
+	visibility:collapse;
+}
+
+#DonationTitle
+{
+	color:gold;
+	font-size:40px;
+	horizontal-align:middle;
+	margin-top:10px;	
+}
+
+#DonationDes
+{
+	color:white;
+	font-size:20px;
+	horizontal-align:middle;
+	margin:10px;
+	
+}
+
+#DonationTitleAlipay
+{
+	color:#9999ff;
+	font-size:30px;
+	horizontal-align:middle;
+	margin-top:10px;	
+}
+
+#DonationTitlePayPal
+{
+	color:#9999ff;
+	font-size:30px;
+	horizontal-align:middle;
+	margin-top:10px;	
+}
+#AlipayQRCode
+{
+	horizontal-align:middle;
+	margin-top:20px;
+	height:200px;
+	width:200px;
+}
+#DonationButtonPaypal
+{
+	width:300px;
+	height:80px;
+	horizontal-align:middle;
+	margin-top:20px;
+	background-image:url("file://{images}/custom_game/paypal.png");
+	box-shadow: #555555 0px 0px 20px 0px;
+}
+
+#DonationButtonPaypal:active
+{	
+	transform: translate3d(1px, 1px, 0px);
+	sound: "ui_settings_multi";
+}

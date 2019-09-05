@@ -1,0 +1,471 @@
+"DOTAAbilities"
+{
+	
+	"ramza_job_knight_change_job"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"chaos_knight_phantasm"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+	
+	"ramza_job_knight_change_secondary_skill"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"chaos_knight_phantasm"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+	"ramza_job_knight_JC"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"chaos_knight_phantasm"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+	
+	"ramza_knight_heavy_armor"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ramza_knight_heavy_armor"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_ramza_knight_heavy_armor"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%bonus_armor"
+				}
+				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_armor"	"15"
+			}
+		}
+	}
+
+	"ramza_knight_knight_sword"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"bounty_hunter_twinblade_jinada"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_ramza_knight_knight_sword"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage"	"60"
+			}
+		}
+	}
+
+	"ramza_knight_parry"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ramza_knight_parry"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_ramza_knight_parry"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%evasion"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"evasion"	"25"
+			}
+		}
+	}
+
+	"ramza_knight_aow_rend_speed"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ancient_apparition_cold_feet"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"18"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"100"
+		"AbilityCastRangeBuffer"	"200"
+		"precache"
+		{
+			"particle"	"particles/items2_fx/rod_of_atos.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"	"TARGET"
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_knight.lua"
+				"Function"	"RamzaKnightRendSpeed"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_knight_aow_rend_speed"
+			{
+				"EffectName"	"particles/items2_fx/rod_of_atos.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%speed_slow"
+				}
+				"IsBuff"	"0"
+				"IsPurgable"	"1"
+				"IsDebuff"	"1"
+				"Duration"	"%duration"
+				"TextureName"	"ancient_apparition_cold_feet"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"6"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"speed_slow"	"-40"
+			}
+		}
+	}
+
+	"ramza_knight_aow_rend_magick"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"silencer_last_word"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"25"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"100"
+		"AbilityCastRangeBuffer"	"200"
+		"precache"
+		{
+			"particle"	"particles/econ/items/storm_spirit/storm_spirit_orchid_hat/storm_orchid_silenced.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_knight.lua"
+				"Function"	"RamzaKnightRendMagick"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_knight_aow_rend_magick"
+			{
+				"Properties"	{}
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/econ/items/storm_spirit/storm_spirit_orchid_hat/storm_orchid_silenced.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+				"Duration"	"%duration"
+				"TextureName"	"silencer_last_word"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"5"
+			}
+		}
+	}
+
+	"ramza_knight_aow_rend_power"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"abaddon_death_coil_alliance"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"45"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"100"
+		"AbilityCastRangeBuffer"	"200"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Function"	"RanzaKnightRendPower"
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_knight.lua"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_knight_aow_rend_power"
+			{
+				"EffectAttachType"	"follow_overhead"
+				"EffectName"	"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
+				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%damage_reduce"
+				}
+				"Duration"	"%duration"
+				"TextureName"	"abaddon_death_coil_alliance"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_reduce"	"-50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"15"
+			}
+		}
+	}
+
+	"ramza_knight_aow_rend_mp"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"nyx_assassin_mana_burn"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"15"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"100"
+		"AbilityCastRangeBuffer"	"200"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_knight.lua"
+				"Function"	"RamzaKnightRendMP"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_reduction"	"175"
+			}
+		}
+	}
+
+	"ramza_knight_aow_rend_armor"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"slardar_amplify_damage"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"50"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"100"
+		"AbilityCastRangeBuffer"	"200"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_slardar/slardar_amp_damage.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_knight.lua"
+				"Function"	"RamzaKnightRendArmor"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_knight_aow_rend_armor"
+			{
+				"EffectName"	"particles/units/heroes/hero_slardar/slardar_amp_damage.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_deduction"
+				}
+				"Duration"	"%duration"
+				"TextureName"	"slardar_amplify_damage"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"armor_deduction"	"-20"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"20"
+			}
+		}
+	}
+
+	"ramza_knight_aow_rend_weapon"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"juggernaut_blade_dance_arcana"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"32"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"100"
+		"AbilityCastRangeBuffer"	"200"
+		"precache"
+		{
+			"particle"	"particles/items2_fx/heavens_halberd.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_knight.lua"
+				"Function"	"RamzaKnightRendWeapon"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_knight_aow_rend_weapon"
+			{
+				"IsDebuff"	"1"
+				"EffectAttachType"	"follow_overhead"
+				"EffectName"	"particles/items2_fx/heavens_halberd.vpcf"
+				"States"
+				{
+					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"	"%duration"
+				"TextureName"	"juggernaut_blade_dance_arcana"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"10"
+			}
+		}
+	}
+
+	"ramza_knight_aow_rend_helm"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"dragon_knight_dragon_blood"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"100"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"100"
+		"AbilityCastRangeBuffer"	"200"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_knight.lua"
+				"Function"	"RamzaKnightRendHelm"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chance"	"50"
+			}
+		}
+	}
+}

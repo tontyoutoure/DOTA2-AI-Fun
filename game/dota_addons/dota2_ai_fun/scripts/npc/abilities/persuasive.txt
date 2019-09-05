@@ -1,0 +1,354 @@
+"DOTAAbilities"
+{
+	"persuasive_kill_steal"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"heroes/persuasive/persuasive_lagmonster_lua.lua"
+		"AbilityTextureName"	"persuasive_kill_still"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"5"
+		"AbilityManaCost"	"50"
+		"AbilityCastRange"	"700"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"2 4 6 8"
+			}
+		}
+	}
+
+	"persuasive_lagmonster_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"persuasive_lagmonster"
+		"ScriptFile"	"heroes/persuasive/persuasive_lagmonster_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"70 85 100 115"
+		"AbilityCastRange"	"600"
+		"precache"
+		{
+			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"2.0 3.0 4.0 5.0"
+			}
+		}
+	}
+
+	"persuasive_swindle_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"persuasive_swindle"
+		"ScriptFile"	"heroes/persuasive/persuasive_swindle_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"HasScepterUpgrade"  "1"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"	"30"
+		"AbilityManaCost"	"90 105 120 135"
+		"AbilityCastRange"	"600"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"900"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"multiplier"	"1 1.5 2 2.5"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"cooldown_scepter"	"5"
+				"RequiresScepter"			"1"
+			}
+		}
+	}
+
+	"persuasive_raise_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"persuasive_raise"
+		"ScriptFile"	"heroes/persuasive/persuasive_swindle_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"99999"
+	}
+
+	"persuasive_change_item_slot_0_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"persuasive_change_item_slot_0"
+		"ScriptFile"	"heroes/persuasive/persuasive_swindle_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"persuasive_change_item_slot_1_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"persuasive_change_item_slot_1"
+		"ScriptFile"	"heroes/persuasive/persuasive_swindle_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"persuasive_change_item_slot_2_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"persuasive_change_item_slot_2"
+		"ScriptFile"	"heroes/persuasive/persuasive_swindle_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"persuasive_change_item_slot_3_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"persuasive_change_item_slot_3"
+		"ScriptFile"	"heroes/persuasive/persuasive_swindle_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"persuasive_change_item_slot_4_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"persuasive_change_item_slot_4"
+		"ScriptFile"	"heroes/persuasive/persuasive_swindle_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"persuasive_change_item_slot_5_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"persuasive_change_item_slot_5"
+		"ScriptFile"	"heroes/persuasive/persuasive_swindle_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"persuasive_change_item_slot_6_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"persuasive_change_item_slot_6"
+		"ScriptFile"	"heroes/persuasive/persuasive_swindle_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"persuasive_change_item_slot_7_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"persuasive_change_item_slot_7"
+		"ScriptFile"	"heroes/persuasive/persuasive_swindle_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"persuasive_change_item_slot_8_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"persuasive_change_item_slot_8"
+		"ScriptFile"	"heroes/persuasive/persuasive_swindle_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"persuasive_high_stakes"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"heroes/persuasive/persuasive_lagmonster_lua.lua"
+		"AbilityTextureName"	"persuasive_high_stakes"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_items.vsndevts"
+		}
+		"Modifiers"
+		{
+			"modifier_persuasive_high_stakes"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor"
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%crit"
+				}
+				// "%attack_damage" is set to the damage value before mitigation
+				"OnAttackLanded"
+				{
+					"FireSound"
+					{
+						"EffectName"	"DOTA_Item.Daedelus.Crit"
+						"Target"	"CASTER"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"crit"	"150 225 300"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"armor"	"-5 -10 -15"
+			}
+		}
+	}
+
+	"persuasive_empty_for_reflect"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN|DOTA_ABILITY_BEHAVIOR_UNIT_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"99999"
+		"OnSpellStart"	{}
+	}
+	"special_bonus_persuasive_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"30"
+			}
+		}
+	}
+	"special_bonus_persuasive_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"5"
+			}
+		}
+	}
+	"special_bonus_persuasive_3"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1"
+			}
+		}
+	}
+}

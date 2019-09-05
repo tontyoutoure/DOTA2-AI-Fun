@@ -1,0 +1,56 @@
+
+"DOTAAbilities"
+{
+	"item_tree_planting_suite"
+	{
+		"BaseClass"	"item_lua"
+		"ScriptFile"	"fun_items_lua.lua"
+		"AbilityTextureName"	"item_tree_planting_suite"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityCastPoint"	"0.0"
+		"AbilityCooldown"	"0.0"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"200"
+		"ID"	"15532"
+		"ItemQuality"	"artifact"
+		"Model"	"models/props_gameplay/red_box.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		"ItemCost"	"2500"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemPermanent"					"1"
+		"ItemDisplayCharges"			"1"
+		"ItemInitialCharges"			"0"
+		"ItemRequiresCharges"			"1"
+		"SideShop"						"0"
+		"IsTempestDoubleClonable"		"0"
+		"ItemAliases"	"tree planting suite"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all_stats"		"10"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tree_duration"		"20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range_tooltip"	"200"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"count_tree_plant"	"5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"count_tree_plant_fun"	"10"
+			}
+		}
+	}
+}

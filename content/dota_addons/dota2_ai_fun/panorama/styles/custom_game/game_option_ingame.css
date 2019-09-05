@@ -1,0 +1,52 @@
+#GameOptionIngameContainer
+{
+	vertical-align: bottom;
+	margin-bottom: 300px;
+	horizontal-align: left;
+	background-color: #000000E0;
+	visibility: collapse;
+	flow-children:down;
+}
+
+.GameOptionSectionContainer
+{
+	margin-top:10px;
+	margin-right:10px;
+	margin-left:10px;
+	
+	width:500px;
+	horizontal-align:middle;
+	flow-children:down;
+	background-color:#292a2b;
+}
+
+
+#VoteOptionContainer
+{
+	margin-bottom:10px;
+}
+
+.GameOptionLabelContainer
+{
+	width:480px;
+	horizontal-align:middle;
+	flow-children:right;
+}
+.GameOptionKeyLabel
+{
+	font-size: 18px;
+	line-height: 20px;
+	vertical-align: middle;
+	horizontal-align:left;
+	color: #b1b1b1;
+	margin:2px;
+}
+.GameOptionValueLabel
+{
+	font-size: 18px;
+	line-height: 20px;
+	vertical-align: middle;
+	horizontal-align:left;
+	color: white;
+	margin:2px;
+}

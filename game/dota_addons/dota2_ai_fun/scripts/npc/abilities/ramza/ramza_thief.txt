@@ -1,0 +1,370 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"ramza_job_thief_JC"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"riki_permanent_invisibility"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"ramza_job_thief_change_secondary_skill"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"riki_permanent_invisibility"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"ramza_job_thief_change_job"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"riki_permanent_invisibility"
+		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
+	"ramza_thief_move2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"bounty_hunter_track"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"		
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+					"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_thief.lua"
+					"Function"	"RamzaThiefMove2Apply"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_percentage"	"20"
+			}
+		}
+	}
+
+	"ramza_thief_vigilance"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ramza_thief_vigilance"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"1"
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+					"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_thief.lua"
+					"Function"	"RamzaThiefVigilanceApply"
+			}
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"evasion"	"30"
+			}
+		}
+	}
+
+	"ramza_thief_gil_snapper"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"persuasive_high_stakes"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_thief.lua"
+				"Function"	"RamzaThiefGilSnapperApply"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_as_gold"	"10"
+			}
+		}
+	}
+
+	"ramza_thief_steal_gil"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"alchemist_goblins_greed"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"50"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"100"
+		"AbilityCastRangeBuffer"	"200"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Function"	"RamzaThiefStealGil"
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_thief.lua"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"level_gold"	"10"
+			}
+		}
+	}
+
+	"ramza_thief_steal_heart"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"lycan_feral_impulse"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"		
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"32"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"100"
+		"AbilityCastRangeBuffer"	"200"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_thief.lua"
+				"Function"	"RamzaThiefStealHeart"
+			}
+		}
+	}
+
+	"ramza_thief_steal_exp"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"oracle_fates_edict"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"77"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"100"
+		"AbilityCastRangeBuffer"	"200"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_thief.lua"
+				"Function"	"RamzaThiefStealEXP"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"level_xp"	"100"
+			}
+		}
+	}
+
+	"ramza_thief_steal_armor"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"dazzle_weave"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"45"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"100"
+		"AbilityCastRangeBuffer"	"200"
+		"precache"
+		{
+			"particle"	"particles/items2_fx/medallion_of_courage_friend.vpcf"
+			"particle"	"particles/items2_fx/medallion_of_courage.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_thief.lua"
+				"Function"	"RamzaThiefStealArmor"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_thief_steal_armor_bonus"
+			{
+				"IsBuff"	"1"
+				"Duration"	"%duration"
+				"IsPurgable"	"1"
+				"EffectName"	"particles/items2_fx/medallion_of_courage_friend.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"TextureName"	"dazzle_weave"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_steal"
+				}
+			}
+			"modifier_ramza_thief_steal_armor_reduction"
+			{
+				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+				"TextureName"	"dazzle_weave"
+				"EffectName"	"particles/items2_fx/medallion_of_courage.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_reduction"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"45"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"armor_steal"	"15"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"armor_reduction"	"-15"
+			}
+		}
+	}
+
+	"ramza_thief_steal_weapon"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ramza_thief_steal_weapon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"45"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"100"
+		"AbilityCastRangeBuffer"	"200"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_magnataur/magnataur_empower.vpcf"
+			"particle"	"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_thief.lua"
+				"Function"	"RamzaThiefStealWeapon"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ramza_thief_steal_weapon_damage_bonus"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%damage_steal"
+				}
+				"Duration"	"%duration"
+				"IsBuff"	"1"
+				"EffectName"	"particles/units/heroes/hero_magnataur/magnataur_empower.vpcf"
+				"EffectAttachType"	"attach_attack1"
+				"TextureName"	"ramza_thief_steal_weapon"
+			}
+			"modifier_ramza_thief_steal_weapon_damage_reduction"
+			{
+				"IsDebuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%damage_reduction"
+				}
+				"EffectName"	"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"TextureName"	"ramza_thief_steal_weapon"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"45"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_steal"	"60"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_reduction"	"-60"
+			}
+		}
+	}
+
+	"ramza_thief_steal_accessory"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"furion_sprout"
+		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_thief.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"150"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"100"
+		"AbilityCastRangeBuffer"	"200"
+	}
+}

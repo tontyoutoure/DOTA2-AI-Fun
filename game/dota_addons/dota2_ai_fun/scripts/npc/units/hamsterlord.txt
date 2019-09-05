@@ -1,0 +1,197 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAUnits"
+{
+	"Version"		"1"
+	"hamsterlord_pizza_house_deliver_boy"
+	{
+		// General
+		//
+		// Class of entity of link to.
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/heroes/meepo/meepo.vmdl"
+		// Name of sound set.
+		"SoundSet"	"Hero_Meepo"
+		"Level"	"1"
+		"UnitLabel"	"healing_ward"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Armor
+		// ----------------------------------------------------------------
+		// Physical protection.
+		"ArmorPhysical"	"0"
+		// Magical protection.
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		// Type of attack - melee, ranged, etc.
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		// Damage range min.
+		"AttackDamageMin"	"45"
+		// Damage range max.
+		"AttackDamageMax"	"50"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		// Speed of attack.
+		"AttackRate"	"1.5"
+		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"	"0.433"
+		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"600"
+		// Range within a target can be attacked.
+		"AttackRange"	"150"
+		//   "ProjectileModel"     "" // Particle system model for projectile.
+		//    "ProjectileSpeed"     "900"   // Speed of projectile.
+		// Attributes
+		// ----------------------------------------------------------------
+		//    "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+		//   "AttributeBaseStrength"   "0"     // Base strength
+		//    "AttributeStrengthGain"   "0"     // Strength bonus per level.
+		//    "AttributeBaseIntelligence" "0"     // Base intelligence
+		//   "AttributeIntelligenceGain" "0"     // Intelligence bonus per level.
+		//    "AttributeBaseAgility"    "0"     // Base agility
+		//    "AttributeAgilityGain"    "0"     // Agility bonus per level.
+		// Bounty
+		// ----------------------------------------------------------------
+		// Experience earn.
+		"BountyXP"	"12"
+		// Gold earned min.
+		"BountyGoldMin"	"23"
+		// Gold earned max.
+		"BountyGoldMax"	"29"
+		// Bounds
+		// ----------------------------------------------------------------
+		// Hull type used for navigation/locomotion.
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		// Movement
+		// ----------------------------------------------------------------
+		// Type of locomotion - ground, air
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		// Speed
+		"MovementSpeed"	"315"
+		// Turning rate.
+		"MovementTurnRate"	"1.0"
+		// Distance to keep when following
+		"FollowRange"	"250"
+		// Status
+		// ----------------------------------------------------------------
+		// Base health.
+		"StatusHealth"	"500"
+		// Health regeneration rate.
+		"StatusHealthRegen"	"0.5"
+		// Base mana.
+		"StatusMana"	"0"
+		// Mana regeneration rate.
+		"StatusManaRegen"	"0"
+		// Team
+		// ----------------------------------------------------------------
+		// Team name.
+		"TeamName"	"DOTA_TEAM_GOODGUYS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		// Vision
+		// ----------------------------------------------------------------
+		// Range of vision during day light.
+		"VisionDaytimeRange"	"800"
+		// Range of vision at night time.
+		"VisionNighttimeRange"	"800"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"	"6342"
+				}
+				"Wearable2"
+				{
+					"ItemDef"	"6563"
+				}
+				"Wearable3"
+				{
+					"ItemDef"	"6564"
+				}
+				"Wearable4"
+				{
+					"ItemDef"	"6565"
+				}
+				"Wearable5"
+				{
+					"ItemDef"	"9075"
+				}
+			}
+		}
+		"ModelScale"	"0.75"
+		"AttackRangeBuffer"	"200"
+	}
+
+	"hamsterlord_hamster"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	"hamsterlord_hamster_courage_of_the_hamster"
+		"Ability2"	"hamsterlord_hamster_terror_of_the_hamster"
+		"Ability3"	"hamsterlord_hamster_flaming_hamster_grenade"
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/items/lone_druid/viciouskraitpanda/viciouskrait_panda.vmdl"
+		"ModelScale"	"0.3"
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"SoundSet"	"LoneDruid_SpiritBear"
+		"BountyXP"	"12"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		"StatusHealth"	"100"
+		"StatusHealthRegen"	"1.5"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0"
+		"VisionDaytimeRange"	"1800"
+		"VisionNighttimeRange"	"800"
+		"IsAncient"	"1"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"TeamName"	"DOTA_TEAM_GOODGUYS"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackRate"	"1.55"
+		"AttackAnimationPoint"	"0.3"
+		"AttackAcquisitionRange"	"600"
+		"AttackRange"	"150"
+		"AttackRangeBuffer"	"200"
+		"MagicalResistance"	"80"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"320"
+		"MovementTurnRate"	"1.0"
+		"FollowRange"	"250"
+		"ArmorPhysical"	"0"
+	}
+}
