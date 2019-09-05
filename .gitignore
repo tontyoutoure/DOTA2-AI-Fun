@@ -1,0 +1,6 @@
+
+# Except thse files with "dota2_ai_fun" in path
+**/*.vcss_c
+**/*.vjs_c
+**/*.vxml_c
+**/*.bin
