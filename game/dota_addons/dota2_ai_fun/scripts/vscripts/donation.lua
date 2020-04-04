@@ -153,7 +153,7 @@ local function OnEtherealEffectChange(eventSourceIndex, keys)
 	local hHero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
 	if keys.tab == 1 then
 		local iTeam = PlayerResource:GetTeam(keys.PlayerID)
-		local hCourier = PlayerResource:GetNthCourierForTeam(0, iTeam)
+		local hCourier = PlayerResource:GetPlayer(keys.PlayerID).hCourier
 		if not hCourier then return end
 		RemoveEthereal(hCourier)
 		local sDefaultPrismatic = AddEtherealForCourier(hCourier, keys.effect)
@@ -231,7 +231,7 @@ local function OnPrismaticColorChange(eventSourceIndex, keys)
 	local hHero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
 	if keys.tab == 1 then
 		local iTeam = PlayerResource:GetTeam(keys.PlayerID)
-		local hCourier = PlayerResource:GetNthCourierForTeam(0, iTeam)
+		local hCourier = PlayerResource:GetPlayer(keys.PlayerID).hCourier
 		if not hCourier or not hCourier.iEtherealParticle then return end
 		ChangePrismaticColor(hCourier, Vector(keys.r, keys.g, keys.b))
 		CustomGameEventManager:Send_ServerToTeam(iTeam, "color_changed", {tab=1, r=keys.r, g=keys.g, b=keys.b})		
@@ -268,7 +268,7 @@ local function OnEtherealEffectRemove(eventSourceIndex, keys)
 	local hHero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
 	if keys.tab == 1 then
 		local iTeam = PlayerResource:GetTeam(keys.PlayerID)
-		local hCourier = PlayerResource:GetNthCourierForTeam(0, iTeam)
+		local hCourier = PlayerResource:GetPlayer(keys.PlayerID).hCourier
 		RemoveEthereal(hCourier)
 		CustomGameEventManager:Send_ServerToTeam(iTeam, "effect_removed", {tab=1})		
 	elseif keys.tab == 2 then

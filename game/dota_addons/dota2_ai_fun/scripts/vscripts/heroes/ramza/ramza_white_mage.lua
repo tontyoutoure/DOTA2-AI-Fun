@@ -1,4 +1,4 @@
-LinkLuaModifier("modifier_ramza_white_mage_reraise", "heroes/ramza/ramza_white_mage_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ramza_white_mage_reraise_buff", "heroes/ramza/ramza_white_mage_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ramza_white_mage_regenerate", "heroes/ramza/ramza_white_mage_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ramza_white_mage_white_magicks_regen", "heroes/ramza/ramza_white_mage_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ramza_white_mage_white_magicks_shell", "heroes/ramza/ramza_white_mage_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
@@ -11,19 +11,19 @@ ramza_white_mage_reraise = class({})
 
 function ramza_white_mage_reraise:CastFilterResultTarget(hTarget)
 	if IsClient() then return UF_SUCCESS end
-	if hTarget:HasModifier("modifier_ramza_white_mage_reraise") then return UF_FAIL_CUSTOM end
+	if hTarget:HasModifier("modifier_ramza_white_mage_reraise_buff") then return UF_FAIL_CUSTOM end
 	if hTarget:GetTeam() ~= self:GetCaster():GetTeam() then return UF_FAIL_ENEMY end
 	return UF_SUCCESS
 end
 
 function ramza_white_mage_reraise:GetCustomCastErrorTarget(hTarget)	
 	if IsClient() then return end
-	if hTarget:HasModifier("modifier_ramza_white_mage_reraise") then return "error_already_has_reraise" end
+	if hTarget:HasModifier("modifier_ramza_white_mage_reraise_buff") then return "error_already_has_reraise" end
 end
 
 
 function ramza_white_mage_reraise:OnSpellStart()
-	self:GetCursorTarget():AddNewModifier(self:GetCaster(), self, "modifier_ramza_white_mage_reraise", {})
+	self:GetCursorTarget():AddNewModifier(self:GetCaster(), self, "modifier_ramza_white_mage_reraise_buff", {})
 	self:GetCaster():EmitSound("Hero_Omniknight.GuardianAngel.Cast")
 end
 

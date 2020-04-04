@@ -5,7 +5,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"generic_hidden",
 	"hurricane_eyes_of_the_storm",
-	"special_bonus_gold_income_25",
+	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
 	"special_bonus_hurricane_1",
 	"special_bonus_hurricane_2",

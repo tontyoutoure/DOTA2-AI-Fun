@@ -77,6 +77,8 @@ if not IsClient() then
 	require('heroes/old_butcher/old_butcher_init')
 	require('heroes/kahmeka/kahmeka_init')
 	require('heroes/old_storm_spirit/old_storm_spirit_init')
+	require('heroes/old_gorgon/old_gorgon_init')
+	require('heroes/god_of_wind/god_of_wind_init')
 			
 	function GameMode:InitializeFunHero(hHero)
 		if hHero:GetPlayerOwner().bRandom then
@@ -233,6 +235,14 @@ if not IsClient() then
 		
 		if hHero:GetName() == "npc_dota_hero_storm_spirit" then
 			OldStormSpiritInit(hHero, self)
+		end
+		
+		if hHero:GetName() == "npc_dota_hero_medusa" then
+			OldGorgonInit(hHero, self)
+		end
+		
+		if hHero:GetName() == "npc_dota_hero_furion" then
+			GodOfWindInit(hHero, self)
 		end
 	end
 

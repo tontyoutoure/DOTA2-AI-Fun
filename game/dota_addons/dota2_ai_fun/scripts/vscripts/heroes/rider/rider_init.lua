@@ -5,7 +5,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"generic_hidden",
 	"rider_drag",
-	"special_bonus_gold_income_25",
+	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
 	"special_bonus_lifesteal_20",
 	"special_bonus_all_stats_8",

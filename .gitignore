@@ -3,4 +3,5 @@
 **/*.vcss_c
 **/*.vjs_c
 **/*.vxml_c
+**/*.vpcf_c
 **/*.bin

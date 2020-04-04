@@ -4,7 +4,7 @@
 	width: 1000px;
 	height: 90%;
 	margin-left:50px;
-	flow-children:down;
+	flow-children:up;
 	visibility:collapse;
 }
 #VoteContentContainer

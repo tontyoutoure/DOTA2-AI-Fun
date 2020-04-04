@@ -207,6 +207,29 @@ function conjurer_conjure_image:OnSpellStart()
 	if self:GetCaster():HasAbility("special_bonus_unique_conjurer_4") then
 		iCount = iCount+hCaster:FindAbilityByName("special_bonus_unique_conjurer_4"):GetSpecialValueFor("value")
 	end 
-	local tIllusions = CreateIllusions(hCaster, hTarget, {outgoing_damage = iOutgoingDamage-100, incoming_damage=iIncomingDamage-100, duration = iDuration, bounty_base = 0, bounty_growth=2}, iCount, 1, true, true);
-
+	if hTarget:IsHero() then
+		local tIllusions = CreateIllusions(hCaster, hTarget, {outgoing_damage = iOutgoingDamage-100, incoming_damage=iIncomingDamage-100, duration = iDuration, bounty_base = 0, bounty_growth=2}, iCount, 1, true, true);
+	else
+		for i = 1, iCount do	
+			local vSummonSpot = vSummonerPostion+vForward:Normalized()*150
+			
+			local hIllusion = CreateUnitByName(sName, vSummonSpot, true, hCaster, hTarget, hCaster:GetTeamNumber())
+			hIllusion:SetControllableByPlayer(hCaster:GetPlayerOwnerID(), true)
+			hIllusion:SetMaxHealth(hTarget:GetMaxHealth())
+			hIllusion:SetMaxMana(hTarget:GetMaxMana())
+			hIllusion:SetMaximumGoldBounty(0)
+			hIllusion:SetMinimumGoldBounty(0)
+			hIllusion:SetBaseDamageMax(hTarget:GetBaseDamageMax())
+			hIllusion:SetBaseDamageMin(hTarget:GetBaseDamageMin())
+			hIllusion:SetHealth(hTarget:GetHealth())
+			hIllusion:SetMana(hTarget:GetHealth())
+			hIllusion:AddNewModifier(hCaster, self, "modifier_illusion", { duration = iDuration, outgoing_damage = iOutgoingDamage-100, incoming_damage = iIncomingDamage-100 })
+			hIllusion:MakeIllusion()
+		end
+	end
 end
+
+
+
+
+ 

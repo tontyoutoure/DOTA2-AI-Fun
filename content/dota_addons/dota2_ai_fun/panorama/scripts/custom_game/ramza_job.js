@@ -56,7 +56,7 @@ RamzaJob.SelectJob = function () {
 				this.EnableJob(i);
 		}
 		this.DisableJob(this.iCurrnetJob, SELECT_JOB);
-		if(this.iCurrnetJob == 18 || this.iCurrnetJob == 20) {
+		if(this.iCurrnetJob == 18 || (this.iCurrnetJob == 20 && !this.bTalentedOnion)) {
 			$("#ToggleButtonContainer").style.visibility = 'collapse';
 		}
 		else {
@@ -272,8 +272,9 @@ RamzaJob.InitializeDescription = function() {
 				}
 		$("#JobDescriptionFlyout"+i.toString()).BCreateChildren("<Label id='JobAbilityTitle"+i.toString()+"' class='JobAbilityTitle BlueFont'/>")
 		$("#JobAbilityTitle"+i.toString()).text=$.Localize('#ramza_job_primary_ability')+$.Localize('#DOTA_Tooltip_ability_'+this.tJobNames[i.toString()]+'_JC');
-		if( i == 18 || i == 20)
+		if( i == 18|| i == 20) {
 			$("#JobDescriptionFlyout"+i.toString()).BCreateChildren("<Label id='JobAbilityWarning"+i.toString()+"' class='JobAbilityWarning' text='#ramza_job_ability_warning'/>");
+		}
 		$("#JobDescriptionFlyout"+i.toString()).BCreateChildren("<Panel id='JobAbilityRow"+i.toString()+"' class='JobStatRow' />")
 			$("#JobAbilityRow"+i.toString()).BCreateChildren("<Panel id='JobAbilityKeyColumn"+i.toString()+"' class='JobStatColumn' />")
 			$("#JobAbilityRow"+i.toString()).BCreateChildren("<Panel id='JobAbilityValueColumn"+i.toString()+"' class='JobStatColumn' />")		
@@ -397,7 +398,13 @@ function RamzaCloseSelectionListener(keys) {
 
 function UpdateRamzaDeath(keys) {	
 }
-
+function RamzaAbilityLearnedListener(keys) {
+	if (keys.PlayerID == Players.GetLocalPlayer()&&keys.abilityname=='special_bonus_ramza_4') {
+		RamzaJob.bTalentedOnion = true;
+		$.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse('JobAbilityWarning20').text=$.Localize('#ramza_job_ability_warning2');
+	}
+}
+GameEvents.Subscribe( "dota_player_learned_ability", RamzaAbilityLearnedListener);
 GameEvents.Subscribe( "ramza_select_job", RamzaSelectJobListener);
 GameEvents.Subscribe( "ramza_select_secondary_skill", RamzaSelectSecondarySkillListener);
 GameEvents.Subscribe( "ramza_close_selection", RamzaCloseSelectionListener)

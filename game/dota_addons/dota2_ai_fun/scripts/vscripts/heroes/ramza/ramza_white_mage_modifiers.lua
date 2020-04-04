@@ -1,23 +1,23 @@
-modifier_ramza_white_mage_reraise = class({})
-function modifier_ramza_white_mage_reraise:IsPurgable() return false end
-function modifier_ramza_white_mage_reraise:GetTexture() return "omniknight_guardian_angel" end
-function modifier_ramza_white_mage_reraise:IsBuff() return true end
+modifier_ramza_white_mage_reraise_buff = class({})
+function modifier_ramza_white_mage_reraise_buff:IsPurgable() return false end
+function modifier_ramza_white_mage_reraise_buff:GetTexture() return "omniknight_guardian_angel" end
+function modifier_ramza_white_mage_reraise_buff:IsBuff() return true end
 
-function modifier_ramza_white_mage_reraise:GetEffectName() return "particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf" end
-function modifier_ramza_white_mage_reraise:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
+function modifier_ramza_white_mage_reraise_buff:GetEffectName() return "particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf" end
+function modifier_ramza_white_mage_reraise_buff:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
 
-function modifier_ramza_white_mage_reraise:DeclareFunctions() return 
+function modifier_ramza_white_mage_reraise_buff:DeclareFunctions() return 
 	{
 		MODIFIER_PROPERTY_REINCARNATION
 	}
 end
 
-function modifier_ramza_white_mage_reraise:OnCreated()
+function modifier_ramza_white_mage_reraise_buff:OnCreated()
 	if IsClient() then return end
 	self.fReincarnateTime = self:GetAbility():GetSpecialValueFor("reincarnate_time")
 end
 
-function modifier_ramza_white_mage_reraise:ReincarnateTime()
+function modifier_ramza_white_mage_reraise_buff:ReincarnateTime()
 	self:GetParent().fReincarnateTime = self.fReincarnateTime
 	return self.fReincarnateTime
 end

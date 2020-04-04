@@ -6,7 +6,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"generic_hidden",
 	"terran_marine_u247_rifle_lua",
-	"special_bonus_gold_income_25",
+	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
 	"special_bonus_movement_speed_25",
 	"special_bonus_terran_marine_1",

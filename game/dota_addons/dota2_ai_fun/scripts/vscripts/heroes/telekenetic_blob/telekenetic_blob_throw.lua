@@ -21,18 +21,16 @@ function telekenetic_blob_throw:GetCustomCastErrorTarget(hTarget)
 end
 
 function telekenetic_blob_throw:OnSpellStart()
-    if target:TriggerSpellAbsorb(self) then
+    if self:GetCursorTarget():TriggerSpellAbsorb(self) then
 		return
 	end
 	local caster = self:GetCaster()
 	local hTarget = self:GetCursorTarget()
-	
-	
-	self.throw_target = target	
+	 
 	local hCaster = self:GetCaster()
 	local hMarkedAbility = hCaster:FindAbilityByName('telekenetic_blob_mark_target')
 	for _, markedTarget in pairs(hMarkedAbility.tMarkedTargets) do
-		if (not markedTarget:IsMagicImmune() or markedTarget:GetTeam() == self:GetCaster():GetTeam()) and not markedTarget:IsAncient() and not markedTarget:IsHero() and markedTarget ~= hTarget and not CalcDistanceBetweenEntityOBB(hTarget, markedTarget) > self:GetSpecialValueFor("distance") and	not (markedTarget:HasModifier("telekenetic_blob_throw_modifier") or markedTarget:HasModifier("telekenetic_blob_sling_modifier") or markedTarget:HasModifier("telekenetic_blob_expel_modifier") or markedTarget:HasModifier("telekenetic_blob_catapult_modifier")) then 
+		if CalcDistanceBetweenEntityOBB(hTarget, markedTarget) <= self:GetSpecialValueFor("distance") and (not markedTarget:IsMagicImmune() or markedTarget:GetTeam() == self:GetCaster():GetTeam()) and not markedTarget:IsAncient() and not markedTarget:IsHero() and markedTarget ~= hTarget  and	not (markedTarget:HasModifier("telekenetic_blob_throw_modifier") or markedTarget:HasModifier("telekenetic_blob_sling_modifier") or markedTarget:HasModifier("telekenetic_blob_expel_modifier") or markedTarget:HasModifier("telekenetic_blob_catapult_modifier")) then 
 			markedTarget:AddNewModifier(hCaster, self, "telekenetic_blob_throw_modifier", {Duration = self:GetSpecialValueFor("fly_duration")}) 
 		end		
 	end

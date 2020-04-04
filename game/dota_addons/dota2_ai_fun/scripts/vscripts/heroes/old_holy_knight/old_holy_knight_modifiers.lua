@@ -4,7 +4,6 @@ function modifier_old_holy_knight_purge_slow:IsPurgable() return true end
 function modifier_old_holy_knight_purge_slow:OnRefresh(keys)
 	if IsClient() then return end
 	local iSlowFactor = self:GetAbility():GetSpecialValueFor("slow_factor")
-	print(iSlowFactor,self:GetAbility():GetSpecialValueFor("slow_factor"))
 	self:StartIntervalThink(self:GetAbility():GetSpecialValueFor("slow_duration")/iSlowFactor*(1-self:GetParent():GetStatusResistance()))
 	self:SetStackCount(-iSlowFactor) 
 	

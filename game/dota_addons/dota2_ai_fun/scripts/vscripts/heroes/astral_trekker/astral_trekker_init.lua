@@ -5,7 +5,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"generic_hidden",
 	"astral_trekker_giant_growth",
-	"special_bonus_gold_income_25",
+	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
 	"special_bonus_armor_10",
 	"special_bonus_attack_speed_40",

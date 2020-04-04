@@ -4,6 +4,7 @@ LinkLuaModifier("modifier_item_fun_escutcheon_lua", "fun_item_modifiers_lua.lua"
 LinkLuaModifier("modifier_item_fun_escutcheon_reincarnate_protection_hooker", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_item_fun_escutcheon_reincarnate_protection", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_item_fun_ragnarok_lua", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_item_fun_ban_regen", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_item_fun_ragnarok_2_lua", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_item_fun_ragnarok_ultra_maim", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_item_fun_terra_blade", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
@@ -17,7 +18,6 @@ LinkLuaModifier("modifier_item_fun_papyrus_scarab_aura_2", "fun_item_modifiers_l
 LinkLuaModifier("modifier_item_fun_papyrus_scarab_aura_3", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_item_fun_bs", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_item_tree_planting_suite", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_plant_tree", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE);
 
 local tClassFunItems = {}
 item_fun_sprint_shoes = class(tClassFunItems)
@@ -237,7 +237,7 @@ function item_fun_papyrus_scarab:OnSpellStart()
 	local fRange = self:GetSpecialValueFor('transform_range')
 	local fHealRatio = self:GetSpecialValueFor('transform_regenerate_percentage')/100
 	if #(hCaster.tPapyrusScarabMinions) > 0 then
-		CustomGameEventManager:Send_ServerToAllClients("panorama_print", {count=#(hCaster.tPapyrusScarabMinions)})
+--		CustomGameEventManager:Send_ServerToAllClients("panorama_print", {count=#(hCaster.tPapyrusScarabMinions)})
 		hCaster:EmitSound('Item.GuardianGreaves.Activate')
 		ParticleManager:CreateParticle('particles/warmage.vpcf',PATTACH_ABSORIGIN_FOLLOW,hCaster)
 		local tAllNearbyAllies = FindUnitsInRadius(hCaster:GetTeamNumber(), hCaster:GetOrigin(), nil, fRange, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
@@ -256,13 +256,13 @@ function item_fun_papyrus_scarab:OnSpellStart()
 					v1:SetMana(v1:GetMana()+fHeal)
 					SendOverheadEventMessage(v1:GetPlayerOwner(), OVERHEAD_ALERT_MANA_ADD, v1, fHeal, nil)
 				end			
-				CustomGameEventManager:Send_ServerToAllClients("panorama_print", {num_middle=i})
+--				CustomGameEventManager:Send_ServerToAllClients("panorama_print", {num_middle=i})
 				local iParticle = ParticleManager:CreateParticle('particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_necro_souls_hero.vpcf', PATTACH_ABSORIGIN_FOLLOW, v)
 				ParticleManager:SetParticleControlEnt(iParticle, 1, hCaster, PATTACH_POINT_FOLLOW, 'attach_hitloc', Vector(0,0,0),true)
 				v:EmitSoundParams('Hero_Nevermore.RequiemOfSouls',1,0.2,1)
 				hCaster.tPapyrusScarabMinions[i]:Kill(self,hCaster)
 				hCaster.tPapyrusScarabMinions[i] = nil
-				CustomGameEventManager:Send_ServerToAllClients("panorama_print", {num_destroyed=i})
+--				CustomGameEventManager:Send_ServerToAllClients("panorama_print", {num_destroyed=i})
 			end
 		end
 	end
@@ -306,7 +306,7 @@ function item_fun_papyrus_scarab:OnSpellStart()
 			local iGold = hNewUnit:GetGoldBounty()*self:GetSpecialValueFor('transform_bonus_percentage')/100
 			PlayerResource:ModifyGold(hCaster:GetPlayerOwnerID(), iGold, false, DOTA_ModifyGold_CreepKill)
 			SendOverheadEventMessage(hNewUnit:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hNewUnit, iGold, nil)
-			CustomGameEventManager:Send_ServerToAllClients("panorama_print", {exper=hNewUnit:GetDeathXP()*self:GetSpecialValueFor('transform_bonus_percentage')/100})
+--			CustomGameEventManager:Send_ServerToAllClients("panorama_print", {exper=hNewUnit:GetDeathXP()*self:GetSpecialValueFor('transform_bonus_percentage')/100})
 			hCaster:GetPlayerOwner():GetAssignedHero():AddExperience(hNewUnit:GetDeathXP()*self:GetSpecialValueFor('transform_bonus_percentage')/100, DOTA_ModifyXP_CreepKill, true, true)
 			table.insert(hCaster.tPapyrusScarabMinions, hNewUnit);
 			i = i+1;
@@ -344,7 +344,7 @@ function item_fun_papyrus_scarab:OnSpellStart()
 			local iGold = hNewUnit:GetGoldBounty()*self:GetSpecialValueFor('transform_bonus_percentage')/100
 			PlayerResource:ModifyGold(hCaster:GetPlayerOwnerID(), iGold, false, DOTA_ModifyGold_CreepKill)
 			SendOverheadEventMessage(hNewUnit:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hNewUnit, iGold, nil)
-			CustomGameEventManager:Send_ServerToAllClients("panorama_print", {exper=hNewUnit:GetDeathXP()*self:GetSpecialValueFor('transform_bonus_percentage')/100})
+--			CustomGameEventManager:Send_ServerToAllClients("panorama_print", {exper=hNewUnit:GetDeathXP()*self:GetSpecialValueFor('transform_bonus_percentage')/100})
 			hCaster:GetPlayerOwner():GetAssignedHero():AddExperience(hNewUnit:GetDeathXP()*self:GetSpecialValueFor('transform_bonus_percentage')/100, DOTA_ModifyXP_CreepKill, true, true)
 			table.insert(hCaster.tPapyrusScarabMinions, hNewUnit);
 			i = i+1;
@@ -451,9 +451,6 @@ function item_tree_planting_suite:OnSpellStart()
 	tTrees[1]:SetForwardVector(Vector(1,0,0))
 	tTrees[1].bPlanted = true
 end
-
-
-
 
 
 

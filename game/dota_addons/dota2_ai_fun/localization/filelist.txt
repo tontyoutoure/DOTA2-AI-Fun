@@ -44,3 +44,5 @@ old_butcher.txt
 best_worst_stats.txt
 kahmeka.txt
 old_storm_spirit.txt
+old_gorgon.txt
+god_of_wind.txt

@@ -5,7 +5,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"generic_hidden",
 	"old_holy_knight_holy_persuation",
-	"special_bonus_gold_income_25",
+	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
 	"special_bonus_unique_old_holy_knight_0",
 	"special_bonus_unique_old_holy_knight_1",

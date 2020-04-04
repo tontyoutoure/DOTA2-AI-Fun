@@ -240,6 +240,20 @@
 		"AbilityManaCost"	"0"
 	}
 
+	"persuasive_change_item_slot_9_lua"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"persuasive_change_item_slot_9"
+		"ScriptFile"	"heroes/persuasive/persuasive_swindle_lua.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+	}
+
 	"persuasive_high_stakes"
 	{
 		"BaseClass"	"ability_lua"

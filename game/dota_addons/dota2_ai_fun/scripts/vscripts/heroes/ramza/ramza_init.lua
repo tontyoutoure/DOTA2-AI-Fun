@@ -72,6 +72,12 @@ function RamzaTalentManager(keys)
 			self.hParent:RemoveAbility(self.tOtherAbilities[self.iSecondarySkill][7][1])
 		end
 	end
+	if keys.abilityname == "special_bonus_ramza_4" then
+		PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero().hRamzaJob.bOnionTalent = true
+		if PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero().hRamzaJob.iCurrentJob == RAMZA_JOB_ONION_KNIGHT then
+			PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero():FindAbilityByName('ramza_select_secondary_skill_lua'):SetActivated(true)
+		end
+	end
 end
 ListenToGameEvent( "dota_player_learned_ability", RamzaTalentManager, nil )
 local tNewAbilities = {
@@ -82,14 +88,14 @@ local tNewAbilities = {
 	"ramza_squire_move1"	,
 	"ramza_open_stats_lua",
 	"ramza_go_back_lua",
-	"special_bonus_gold_income_25",
+	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
-	"special_bonus_armor_10",
-	"special_bonus_spell_lifesteal_20",
-	"special_bonus_spell_amplify_20",
+	"special_bonus_armor_15",
+	"special_bonus_spell_lifesteal_15",
 	"special_bonus_ramza_1",
-	"special_bonus_ramza_2",
 	"special_bonus_ramza_3",
+	"special_bonus_ramza_2",
+	"special_bonus_ramza_4",
 }
 
 local tShowedAbilities = {
@@ -99,14 +105,14 @@ local tShowedAbilities = {
 	"ramza_speed",
 	"ramza_faith"	,
 	"ramza_open_stats_lua",
-	"special_bonus_gold_income_25",
+	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
-	"special_bonus_armor_10",
-	"special_bonus_spell_lifesteal_20",
-	"special_bonus_spell_amplify_20",
+	"special_bonus_armor_15",
+	"special_bonus_spell_lifesteal_15",
 	"special_bonus_ramza_1",
-	"special_bonus_ramza_2",
 	"special_bonus_ramza_3",
+	"special_bonus_ramza_2",
+	"special_bonus_ramza_4",
 }
 
 local tHeroBaseStats = {

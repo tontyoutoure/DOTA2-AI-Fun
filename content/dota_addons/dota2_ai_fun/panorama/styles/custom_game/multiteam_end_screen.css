@@ -405,6 +405,10 @@
 	background-color: #000000;
 }
 
+.NeutralItemHole
+{
+	opacity-mask: url( "file://{images}/upper_row_mask.tga" );
+}
 
 #PlayerItemsContainerBackPack
 {
@@ -470,7 +474,7 @@
 
 .ScoreCol_Items
 {
-	width: 410px;
+	width: 477px;
 	text-align: center;
 	vertical-align:middle;
 }
@@ -480,6 +484,7 @@
 	background-color:blue;
 	vertical-align:middle;
 }
+
 
 #PlayerGoldAmount
 {

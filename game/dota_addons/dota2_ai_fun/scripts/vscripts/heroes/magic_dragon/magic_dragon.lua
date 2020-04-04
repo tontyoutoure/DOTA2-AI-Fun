@@ -91,15 +91,15 @@ function ChainLightningBounce(hCaster, hSource, iRadius, fDamage, iBounce, tTarg
 	if iBounce == 0 then return end
 	tAvailable = FindUnitsInRadius(hCaster:GetTeamNumber(), hSource:GetAbsOrigin(), nil, iRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	math.randomseed(GameRules:GetGameTime())
-	local tShouldRemove = {}
 	for i = 1, #tTargets do
+		local iRemove
 		for j = 1, #tAvailable do
-			if tTargets[i] == tAvailable[j] then table.insert(tShouldRemove,1, j) end
+			if tTargets[i] == tAvailable[j] then iRemove = j end
+		end
+		if iRemove then
+			table.remove(tAvailable, iRemove)
 		end
 	end	
-	
-	for i = 1, #tShouldRemove do table.remove(tAvailable, tShouldRemove[i]) end
-	
 	if #tAvailable == 0 then return end
 	
 	local hTarget = tAvailable[math.random(#tAvailable)]
@@ -180,7 +180,7 @@ function BlueDragonRoarFreeze(keys)
 	
 	MagicDragonTransform[RandomInt(1,6)](keys.caster)
 	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
-		for j,i in ipairs(tItemTable) do
+		for j,i in ipairs(tItemInventorySlotTable) do
 			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() end
 		end		
 		keys.caster:EmitSound("DOTA_Item.Refresher.Activate")
@@ -217,7 +217,7 @@ function GhostDragonRoarLifeDrain(keys)
 	
 	MagicDragonTransform[RandomInt(1,6)](keys.caster)
 	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
-		for j,i in ipairs(tItemTable) do
+		for j,i in ipairs(tItemInventorySlotTable) do
 			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() end
 		end		
 		keys.caster:EmitSound("DOTA_Item.Refresher.Activate")
@@ -247,7 +247,7 @@ function RedDragonRoarDamage(keys)
 	
 	MagicDragonTransform[RandomInt(1,6)](keys.caster)
 	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
-		for j,i in ipairs(tItemTable) do
+		for j,i in ipairs(tItemInventorySlotTable) do
 			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() end
 		end		
 		keys.caster:EmitSound("DOTA_Item.Refresher.Activate")
@@ -267,7 +267,7 @@ function GreenDragonRoarAccelerate(keys)
 	
 	MagicDragonTransform[RandomInt(1,6)](keys.caster)
 	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
-		for j,i in ipairs(tItemTable) do
+		for j,i in ipairs(tItemInventorySlotTable) do
 			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() end
 		end		
 		keys.caster:EmitSound("DOTA_Item.Refresher.Activate")
@@ -309,7 +309,7 @@ function BlackDragonRoarManaBurn(keys)
 	
 	MagicDragonTransform[RandomInt(1,6)](keys.caster)
 	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
-		for j,i in ipairs(tItemTable) do
+		for j,i in ipairs(tItemInventorySlotTable) do
 			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() end
 		end		
 		keys.caster:EmitSound("DOTA_Item.Refresher.Activate")
@@ -342,7 +342,7 @@ function GoldDragonRoarLightningChain(keys)
 	
 	MagicDragonTransform[RandomInt(1,6)](keys.caster)
 	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
-		for j,i in ipairs(tItemTable) do
+		for j,i in ipairs(tItemInventorySlotTable) do
 			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() end
 		end		
 		keys.caster:EmitSound("DOTA_Item.Refresher.Activate")

@@ -5,7 +5,7 @@ local tNewAbilities = {
 	"fluid_engineer_malicious_tampering_lua",
 	"fluid_engineer_salad_lunch_lua",
 	"fluid_engineer_bowel_hydraulics_lua",
-	"special_bonus_gold_income_25",
+	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
 	"special_bonus_spell_lifesteal_10",
 	"special_bonus_spell_amplify_15",

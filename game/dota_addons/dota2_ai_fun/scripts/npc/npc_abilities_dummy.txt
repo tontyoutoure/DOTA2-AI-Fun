@@ -258,5 +258,27 @@
 			}
 		}
 	}
-
+	"sell_neutral_items"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"sell_neutral_items"
+		"ScriptFile"	"lottery.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}
+	"retrieve_neutral_items"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"retrieve_neutral_items"
+		"ScriptFile"	"lottery.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastRange"  "400"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"	"400"
+			}
+		}
+	}
 }

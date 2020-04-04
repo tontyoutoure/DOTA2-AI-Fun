@@ -5,7 +5,7 @@ local tNewAbilities = {
 	"bastion_transference_str",
 	"bastion_transference_agi",
 	"bastion_transference_int",
-	"special_bonus_gold_income_25",
+	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
 	"special_bonus_armor_10",
 	"special_bonus_movement_speed_25",

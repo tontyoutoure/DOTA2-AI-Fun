@@ -28,37 +28,7 @@
 		"ScriptFile"	"fun_items_lua.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 	}
-	"item_branches"
-	{	
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_all_stats"		"1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"tree_duration"		"2000"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"range_tooltip"	"200"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"count_tree_plant"	"5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"count_tree_plant_fun"	"10"
-			}
-		}
-	}
+
 	"item_fun_economizer"
 	{
 		// General
@@ -288,6 +258,21 @@
 				"var_type"	"FIELD_INTEGER"
 				"hp_regen_amp"	"100"
 			}
+			"06"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"ban_regen_time_ranged"	"4.5"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"ban_regen_time_meele"	"3.5"
+			}
+			"08"
+			{	
+				"var_type"	"FIELD_INTEGER"
+				"health_regen"	"12"
+			}
 		}
 	}
 
@@ -442,23 +427,10 @@
 				}
 				"Duration"	"%stop_time"
 			}
-			"FireSound"
+			"RunScript"
 			{
-				"EffectName"	"Hero_ObsidianDestroyer.AstralImprisonment.Cast"
-				"Target"	"CASTER"
-			}
-			"FireEffect"
-			{
-				"EffectName"	"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_area.vpcf"
-				"EffectAttachType"	"attach_origin"
-				"Target"	"CASTER"
-				"ControlPoints"
-				{
-					"00"	"POINT"
-					"01"	"%stop_aoe 0 0"
-					"02"	"%stop_aoe 0 0"
-					"03"	"%stop_aoe 0 0"
-				}
+				"ScriptFile"	"fun_items.lua"
+				"Function"	"OrbOfOmnipotenceStart"
 			}
 		}
 		"Modifiers"
@@ -590,9 +562,9 @@
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_all"
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_all"
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_all"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_str"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus_agi"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_int"
 					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_health"
 					"MODIFIER_PROPERTY_MANA_BONUS"	"%bonus_mana"
 					"MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE"	"%spell_amp"
@@ -608,6 +580,10 @@
 				"EffectName"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_halo_buff.vpcf"
 				"EffectAttachType"	"follow_overhead"
 				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
+				"States" 
+				{ 
+					"MODIFIER_STATE_CANNOT_MISS" "MODIFIER_STATE_VALUE_ENABLED"
+				}
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MANACOST_PERCENTAGE"	"%mana_reduction_percentage"
@@ -695,7 +671,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_all"	"150"
+				"bonus_int"	"150"
 			}
 			"02"
 			{
@@ -742,6 +718,16 @@
 				"var_type"	"FIELD_FLOAT"
 				"invulnerable_time"	"2.5"
 			}
+			"11"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_str"	"20"
+			}
+			"12"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_agi"	"20"
+			}
 		}
 		"ActiveDescriptionLine"	"1"
 	}
@@ -773,16 +759,10 @@
 		}
 		"OnSpellStart"
 		{
-			"ApplyModifier"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_item_fun_blood_sword_extra_attack"
-				"Duration"	"%duration"
-			}
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"DOTA_Item.Satanic.Activate"
+				"ScriptFile" "fun_items.lua"
+				"Function" "BloodSwordActivated"
 			}
 		}
 		"Modifiers"
@@ -1159,7 +1139,7 @@
 	"item_fun_magic_hammer"
 	{
 		"BaseClass"	"item_datadriven"
-		"AbilityTextureName"	"item_fun_hammer"
+		"AbilityTextureName"	"item_fun_magic_hammer"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1211,17 +1191,10 @@
 				}
 				"OnIntervalThink"
 				{
-					"ApplyModifier"
+					"RunScript"
 					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_magic_hammer_mana_break"
-						"Duration"	"1"
-					}
-					"ApplyModifier"
-					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_special_bonus_cast_range"
-						"Duration"	"1"
+						"ScriptFile"	"scripts/vscripts/fun_items.lua"
+						"Function"	"MagicHammerManaBreakCastRangeApply"
 					}
 				}
 				"ThinkInterval"	"1"
@@ -1709,17 +1682,17 @@
 			"08"
 			{	
 				"var_type"	"FIELD_INTEGER"
-				"health_regen"	"6"
+				"health_regen"	"20"
 			}
 			"09"
 			{	
 				"var_type"	"FIELD_INTEGER"
-				"hp_regen_amp"	"100"
+				"hp_regen_amp"	"25"
 			}
 			"10"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_damage"	"50"					
+				"bonus_damage"	"60"					
 			}
 			"11"
 			{
@@ -1729,7 +1702,27 @@
 			"12"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"status_resistance" "25"
+				"status_resistance" "30"
+			}
+			"13"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"ban_regen_time_ranged"	"3.5"
+			}
+			"14"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"ban_regen_time_meele"	"2.5"
+			}
+			"15"
+			{	
+				"var_type"	"FIELD_INTEGER"
+				"hp_regen_amp_tooltip"	"125"
+			}
+			"16"
+			{	
+				"var_type"	"FIELD_INTEGER"
+				"hp_regen_amp_tooltip"	"100"
 			}
 		}
 	}
@@ -1911,7 +1904,7 @@
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_damage"	"150"
+				"bonus_damage"	"160"
 			}
 			"06"
 			{
@@ -1946,17 +1939,17 @@
 			"12"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"projectile_start_radius"	"200"
+				"projectile_start_radius"	"125"
 			}
 			"13"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"projectile_end_radius"	"200"
+				"projectile_end_radius"	"125"
 			}
 			"14"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"projectile_distance"	"4000"
+				"projectile_distance"	"1200"
 			}
 			"15"
 			{
@@ -1966,12 +1959,12 @@
 			"16"
 			{	
 				"var_type"	"FIELD_INTEGER"
-				"health_regen"	"6"
+				"health_regen"	"35"
 			}
 			"17"
 			{	
 				"var_type"	"FIELD_INTEGER"
-				"hp_regen_amp"	"100"
+				"hp_regen_amp"	"50"
 			}
 			"18"
 			{
@@ -1991,8 +1984,29 @@
 			"21"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"status_resistance"	"50"
+				"status_resistance"	"60"
 			}
+			"22"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"ban_regen_time_ranged"	"2.5"
+			}
+			"23"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"ban_regen_time_meele"	"1.5"
+			}
+			"24"
+			{	
+				"var_type"	"FIELD_INTEGER"
+				"hp_regen_amp_tooltip"	"150"
+			}
+			"25"
+			{	
+				"var_type"	"FIELD_INTEGER"
+				"hp_regen_amp_base"	"100"
+			}
+			
 		}
 	}
 	"item_recipe_fun_papyrus_scarab"
@@ -2059,7 +2073,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_all_stats"		"20"
+				"bonus_all_stats"		"30"
 			}
 			"06"
 			{
@@ -2069,12 +2083,12 @@
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"aura_attack_speed"		"60"
+				"aura_attack_speed"		"40"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"aura_positive_armor"	"20"
+				"aura_positive_armor"	"10"
 			}
 			"09"
 			{
@@ -2084,7 +2098,7 @@
 			"10"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"aura_health_regen"		"40"
+				"aura_health_regen"		"15"
 			}	
 			"11"
 			{
@@ -2094,12 +2108,12 @@
 			"12"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"aura_lifesteal"			"25"
+				"aura_lifesteal"			"30"
 			}
 			"13"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"aura_damage"			"25"
+				"aura_damage"			"30"
 			}
 			"14"
 			{
@@ -2133,139 +2147,176 @@
 			}
 		}
 	}		
-	
-	"item_fun_bs"
-	{		
+	"item_sell_neutral_items"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_sell_neutral_items"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ID"	"15532"
+		"ItemQuality"	"artifact"
+		"ItemCost"	"0"		"ItemPermanent"	"0"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemStackable"					"0"
+		"ItemPermanent"					"0"
+		"IsTempestDoubleClonable"		"0"
+	}
+	"item_lottery"
+	{
 		"BaseClass"	"item_lua"
 		"ScriptFile"	"fun_items_lua.lua"
-		"AbilityTextureName"	"item_fun_bs"
+		"AbilityTextureName"	"item_lottery"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastPoint"	"0.0"
+		"AbilityCooldown"	"0.0"
+		"AbilityManaCost"	"0"
 		"ID"	"15530"
 		"ItemQuality"	"artifact"
-		"Model"	"models/props_gameplay/red_box.vmdl"
+		"Model"	"models/props_gameplay/recipe.vmdl"
 		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
-		"ItemCost"	"15300"
+		"ItemCost"	"250"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemPermanent"	"1"
-		"ItemAliases"	"blood scepter"
-		"ActiveDescriptionLine"	"1"
-		"AbilityCastRange"	"800"
-		"AbilityCooldown"  "15"
-		"AbilityManaCost"	"300"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"ItemPermanent"	"0"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemAliases"	"lottery"
+		"ItemStackable"					"1"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"IsTempestDoubleClonable"		"0"
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_int"				"40"
+				"var_type"	"FIELD_FLOAT"
+				"chance_lv1"	"10"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_all"				"10"
+				"var_type"	"FIELD_FLOAT"
+				"chance_lv2"	"5"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health"				"800"
+				"var_type"	"FIELD_FLOAT"
+				"chance_lv3"	"2.5"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana"				"800"
+				"var_type"	"FIELD_FLOAT"
+				"chance_lv4"	"1.25"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"hp_regen"				"15"
+				"var_type"	"FIELD_FLOAT"
+				"chance_lv5"	"0.625"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_regen"				"5"
+				"var_type"	"FIELD_INTEGER"
+				"return_lv1"	"1"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_regen_percentage"		"400"
+				"var_type"	"FIELD_INTEGER"
+				"return_lv2"	"2"
 			}
 			"08"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"heal_increase"		"100"
+				"var_type"	"FIELD_INTEGER"
+				"return_lv3"	"4"
 			}
 			"09"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"magic_resist"		"30"
+				"var_type"	"FIELD_INTEGER"
+				"return_lv4"	"8"
 			}
 			"10"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_base"		"800"
-			}
-			"11"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_per_charge"		"25"
-			}
-			"12"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown_base"		"15"
-			}
-			"13"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown_reduction_per_charge"		"0.1"
-			}
-			"14"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown_min"		"5"
-			}
-			"15"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aoe_min_need"		"20"
-			}
-			"16"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aoe_per_charge"		"2"
-			}
-			"17"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"kill_charge"		"1"
-			}
-			"18"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"death_charge_loss"		"1"
-			}
-			"18"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"regen_per_charge"		"1.5"
+				"var_type"	"FIELD_FLOAT"
+				"return_lv5"	"16"
 			}
 		}
+		"ActiveDescriptionLine"	"1"
+		"AbilityUnitTargetFlag"	"DOTA_UNIT_TARGET_FLAG_MANA_ONLY"
 	}
-	
-	"item_recipe_fun_bs"
-	{		
-
-		// General
-		"BaseClass"	"item_datadriven"
+	"item_lottery_10"
+	{
+		"BaseClass"	"item_lua"
+		"ScriptFile"	"fun_items_lua.lua"
+		"AbilityTextureName"	"item_lottery_10"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastPoint"	"0.0"
+		"AbilityCooldown"	"0.0"
+		"AbilityManaCost"	"0"
 		"ID"	"15531"
-		"Model"	"models/props_gameplay/recipe.mdl"
-		"ItemCost"	"0"
-		"ItemRecipe"	"1"
-		"ItemResult"	"item_fun_bs"
-		"ItemRequirements"
+		"ItemQuality"	"artifact"
+		"Model"	"models/props_gameplay/recipe.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		"ItemCost"	"2250"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemPermanent"	"0"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemAliases"	"lottery"
+		"ItemStackable"					"1"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"IsTempestDoubleClonable"		"0"
+		"AbilitySpecial"
 		{
-			"01"	"item_dagon_5;item_bloodstone;item_holy_locket;"
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"chance_lv1"	"10"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"chance_lv2"	"5"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"chance_lv3"	"2.5"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"chance_lv4"	"1.25"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"chance_lv5"	"0.625"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"return_lv1"	"1"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"return_lv2"	"2"
+			}
+			"08"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"return_lv3"	"4"
+			}
+			"09"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"return_lv4"	"8"
+			}
+			"10"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"return_lv5"	"16"
+			}
 		}
+		"ActiveDescriptionLine"	"1"
+		"AbilityUnitTargetFlag"	"DOTA_UNIT_TARGET_FLAG_MANA_ONLY"
 	}
 }

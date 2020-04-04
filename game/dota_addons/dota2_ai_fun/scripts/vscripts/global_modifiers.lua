@@ -7,6 +7,11 @@ local tClassFTF = {
 	IsHidden = function(self) return true end,
 	RemoveOnDeath = function(self) return false end,
 }
+local tClassFFF = {
+	IsPurgable = function(self) return false end,
+	IsHidden = function(self) return false end,
+	RemoveOnDeath = function(self) return false end,
+}
 
 modifier_global_hero_respawn_time = class(tClassFTF)
 function modifier_global_hero_respawn_time:OnCreated()
@@ -16,9 +21,15 @@ function modifier_global_hero_respawn_time:OnCreated()
 	if self:GetParent():IsIllusion() then self:Destroy() end
 end
 function modifier_global_hero_respawn_time:OnIntervalThink()
-	if IsClient() or self:GetParent():IsAlive() then return end
 	if self:GetParent():IsIllusion() then self:Destroy() end
+	if IsClient() then return end
+	if self.bBB then
+		self.bBB = false
+		self:GetParent():SetBuybackCooldownTime(GameMode.iBuybackCooldown)
+	end
+	if self:GetParent():IsAlive() then return end
 	self.fRespawnTime = self:GetParent():GetTimeUntilRespawn()
+
 end
 
 function modifier_global_hero_respawn_time:DeclareFunctions()
@@ -29,25 +40,27 @@ function modifier_global_hero_respawn_time:OnRespawn(keys)
 	if keys.unit ~= self:GetParent() then return end 
 	if self.fRespawnTime > 0.04 then
 		self.fBuyBackExtraRespawnTime = 25
+		self.bBB = true
 	end
---	print(self.fBuyBackExtraRespawnTime)
+	self.bRespawnTimeReset = false
 end
 
 local CalculateLevelRespawnTime = function (iLevel)
-	local tDOTARespawnTime = {5, 7, 9, 13, 16, 26, 28, 30, 32, 34, 36, 44, 46, 48, 50, 52, 54, 65, 70, 75, 80, 85, 90, 95, 100}
+	local tDOTARespawnTime = {12, 15, 18, 21, 24, 26, 28, 30, 32, 34, 36, 44, 46, 48, 50, 52, 54, 65, 70, 75, 80, 85, 90, 95, 100}
 	if iLevel <= 25 then return tDOTARespawnTime[iLevel] end
 	return iLevel*4
 end
 
 function modifier_global_hero_respawn_time:OnDeath(keys)
-	if keys.unit ~= self:GetParent() or keys.reincarnate then return end
-	local iRespawnTime = CalculateLevelRespawnTime(keys.unit:GetLevel())
+	if (keys.unit ~= self:GetParent() and keys.unit:GetCloneSource() ~= self:GetParent()) or keys.reincarnate then return end
+
+	local iRespawnTime = CalculateLevelRespawnTime(self:GetParent():GetLevel())
 	
 	if keys.unit:FindModifierByName('modifier_necrolyte_reapers_scythe') then
 		iRespawnTime = iRespawnTime+keys.unit:FindModifierByName('modifier_necrolyte_reapers_scythe'):GetAbility():GetSpecialValueFor("respawn_constant")
 	end
 	
-	keys.unit:SetTimeUntilRespawn(GameMode.iRespawnTimePercentage/100*(iRespawnTime+self.fBuyBackExtraRespawnTime))
+	self:GetParent():SetTimeUntilRespawn(GameMode.iRespawnTimePercentage/100*(iRespawnTime+self.fBuyBackExtraRespawnTime))
 end
 
 modifier_imbalanced_economizer = class(tClassFTF)
@@ -63,20 +76,33 @@ function modifier_bot_attack_tower_pick_rune:OnIntervalThink()
 	if IsClient() then return end
 	local hParent = self:GetParent()
 	local tTowers = FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
-	
-	if hParent:GetHealth()/hParent:GetMaxHealth() > 0.2 and tTowers[1] and tTowers[1]:GetClassname() ~= "npc_dota_healer" and FindUnitsInRadius(tTowers[1]:GetTeam(), tTowers[1]:GetAbsOrigin(), nil, 750, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_NOT_SUMMONED, FIND_CLOSEST, false)[1] and not FindUnitsInRadius(tTowers[1]:GetTeam(), tTowers[1]:GetAbsOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)[1] and not FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)[1] then
+
+-- has enough health and has tower/watch tower nearby and no enemy nearby
+	if hParent:GetHealth()/hParent:GetMaxHealth() > 0.3 and tTowers[1] and not FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)[1] then
 		if self.hTarget == tTowers[1] or hParent:IsCommandRestricted() then return end
-		self.bSentCommand = true
 		self.hTarget = tTowers[1]
-		local tOrder = 
-			{
-				UnitIndex = hParent:entindex(),
-				OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-				TargetIndex = self.hTarget:entindex()
-			}
-		hParent:SetForceAttackTarget(nil)
-		ExecuteOrderFromTable(tOrder)
-		hParent:SetForceAttackTarget(self.hTarget)
+		if string.find(self.hTarget:GetName(), 'watch_tower') then
+			local tOrder = 
+				{
+					UnitIndex = hParent:entindex(),
+					OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+					AbilityIndex = hParent:FindAbilityByName('ability_capture'):entindex(),
+					TargetIndex = self.hTarget:entindex()
+				}
+			ExecuteOrderFromTable(tOrder)
+			self.bSentCommand = true
+		elseif FindUnitsInRadius(tTowers[1]:GetTeam(), tTowers[1]:GetAbsOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)[1]  then
+			local tOrder = 
+				{
+					UnitIndex = hParent:entindex(),
+					OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+					TargetIndex = self.hTarget:entindex()
+				}
+			hParent:SetForceAttackTarget(nil)
+			ExecuteOrderFromTable(tOrder)
+			self.bSentCommand = true
+			hParent:SetForceAttackTarget(self.hTarget)
+		end
 	elseif Entities:FindAllByClassnameWithin("dota_item_rune", hParent:GetOrigin(), 500)[1] then
 		local hRune = Entities:FindAllByClassnameWithin("dota_item_rune", hParent:GetOrigin(), 500)[1]
 		local tOrder = 
@@ -92,7 +118,9 @@ function modifier_bot_attack_tower_pick_rune:OnIntervalThink()
 		self.hTarget = nil
 	end
 end
-
+function modifier_bot_attack_tower_pick_rune:CheckState()
+	return {[MODIFIER_STATE_COMMAND_RESTRICTED] = self.bSentCommand}
+end
 modifier_tower_endure = class({})
 
 function modifier_tower_endure:IsPurgable() return false end
@@ -112,13 +140,13 @@ end
 function modifier_tower_endure:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
+		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_TOOLTIP
 	}
 end
 
-function modifier_tower_endure:GetModifierHealthRegenPercentage()
-	return 1*(self:GetStackCount()-1)/2
+function modifier_tower_endure:GetModifierConstantHealthRegen()
+	return 10*(self:GetStackCount()-1)
 end
 
 function modifier_tower_endure:GetModifierPhysicalArmorBonus()	
@@ -135,7 +163,7 @@ function modifier_tower_endure:GetModifierPhysicalArmorBonus()
 	elseif string.match(sName, "1") then 
 		return 12*(self:GetStackCount()-1)/2
 	elseif string.match(sName, "2") then		
-		return 15*(self:GetStackCount()-1)/2
+		return 16*(self:GetStackCount()-1)/2
 	elseif string.match(sName, "3") then		
 		return 16*(self:GetStackCount()-1)/2
 	elseif string.match(sName, "4") then		
@@ -191,6 +219,12 @@ function modifier_tower_power:GetModifierBaseDamageOutgoing_Percentage()
 end
 
 
+local function FindItemByNameNotIncludeBackpack(hHero, sName)
+	for i = 0, 5 do
+		if hHero:GetItemInSlot(i) and hHero:GetItemInSlot(i):GetName() == sName then return hHero:GetItemInSlot(i) end
+	end
+	return nil
+end
 
 
 local function FindItemByName(hHero, sName)
@@ -208,13 +242,11 @@ local function FindItemByNameIncludeStash(hHero, sName)
 end
 
 local function CheckFunItems(hHero, sFunItem)
+	hHero.tFunItemList = hHero.tFunItemList or {}
 --	print("checking", sFunItem, 'for', hHero:GetName())
-	if FindItemByName(hHero, sFunItem) then return end
-	if tBotItemData.tItemUpgrades[sFunItem] then 
-		for i, v in ipairs(tBotItemData.tItemUpgrades[sFunItem]) do
-			if FindItemByName(hHero, v) then return end
-		end
-	end
+	if hHero.tFunItemList[sFunItem] then return end
+	
+	print(sFunItem)
 	local tHasComponent = {}
 	local tLackComponent = {}
 	for j = 1, #tBotItemData.tFunItems[sFunItem] do
@@ -238,19 +270,20 @@ local function CheckFunItems(hHero, sFunItem)
 			hHero:RemoveItem(v)
 		end
 		hHero:AddItemByName(sFunItem)
+		hHero.tFunItemList[sFunItem] = true
 		PlayerResource:SpendGold(hHero:GetPlayerOwnerID(), iGoldRemaining, DOTA_ModifyGold_PurchaseItem)
 	end
 end
 
 
-modifier_bot_use_fun_items = class(tClassFTF)
-function modifier_bot_use_fun_items:OnCreated()
+modifier_bot_use_items = class(tClassFTF)
+function modifier_bot_use_items:OnCreated()
 	self:StartIntervalThink(0.04)
 end
-function modifier_bot_use_fun_items:DeclareFunctions()
+function modifier_bot_use_items:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ORDER}
 end
-function modifier_bot_use_fun_items:OnOrder(keys)
+function modifier_bot_use_items:OnOrder(keys)
 	if keys.unit~= self:GetParent() then return end
 	--[[
 	if keys.order_type == DOTA_UNIT_ORDER_MOVE_TO_POSITION  then
@@ -274,11 +307,14 @@ function modifier_bot_use_fun_items:OnOrder(keys)
 	end
 end
 
-function modifier_bot_use_fun_items:OnIntervalThink()
+function modifier_bot_use_items:OnIntervalThink()
 	if IsClient() then return end
+	
 	local hParent = self:GetParent()
 	if hParent:IsIllusion() or hParent:HasModifier("modifier_ban_fun_items") then self:Destroy() end
 	if hParent:IsStunned() or hParent:IsMuted() or hParent:IsCommandRestricted() then return end
+	
+	--Pick up AA
 	for k, v in pairs(Entities:FindAllByClassnameWithin("dota_item_drop", hParent:GetOrigin(), 800)) do
 		if v:GetContainedItem():GetAbilityName() == "item_fun_angelic_alliance" then
 			if (hParent:GetOrigin()-v:GetOrigin()):Length2D() < 140 then
@@ -308,58 +344,114 @@ function modifier_bot_use_fun_items:OnIntervalThink()
 			end
 		end
 	end
+	if GameMode.iBotHasFunItem == 1 then
 	
-	local hItem = FindItemByName(hParent, "item_fun_blood_sword")
-	if hItem and hItem:IsCooldownReady() then
-		local tTargets = FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
-		if #tTargets > 0 then
-			hParent:CastAbilityNoTarget(hItem, hParent:GetPlayerOwnerID())
+		local hItem = FindItemByNameNotIncludeBackpack(hParent, "item_fun_blood_sword")
+		if hItem and hItem:IsCooldownReady() then
+			local tTargets = FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
+			if #tTargets > 0 then
+				hParent:CastAbilityNoTarget(hItem, hParent:GetPlayerOwnerID())
+			end
+		end
+		
+		hItem = FindItemByNameNotIncludeBackpack(hParent, "item_fun_magic_hammer")
+		if hItem and hItem:IsCooldownReady() then
+			local tTargets = FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
+			if #tTargets > 0 then
+				hParent:CastAbilityNoTarget(hItem, hParent:GetPlayerOwnerID())
+			end
+		end
+		
+		hItem = FindItemByNameNotIncludeBackpack(hParent, "item_fun_heros_bow")
+		if hItem and hItem:IsCooldownReady() then
+			local tTargets = FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
+			if #tTargets > 0 then
+				hParent:CastAbilityOnTarget(tTargets[1], hItem, hParent:GetPlayerOwnerID())
+			end
+		end
+		hItem = FindItemByNameNotIncludeBackpack(hParent, "item_fun_papyrus_scarab")
+		if hItem and hItem:IsCooldownReady() then
+			local tTargets = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetOrigin(), nil, hItem:GetSpecialValueFor("transform_range"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE+DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS, FIND_ANY_ORDER, false)
+			local tAllyHeroes = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetOrigin(), nil, hItem:GetSpecialValueFor("transform_range"), DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,  DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS, FIND_ANY_ORDER, false)
+			local bAllyHurt = false
+			for i, v in pairs(tAllyHeroes) do
+				if v:GetHealth()/v:GetMaxHealth() < 0.5 then bAllyHurt = true end
+			end
+			if (bAllyHurt and hParent.tPapyrusScarabMinions and #hParent.tPapyrusScarabMinions > 0) or #tTargets > 1 then
+				hParent:CastAbilityNoTarget(hItem, hParent:GetPlayerOwnerID())
+			end
+		end
+		-- use AA to escape
+		hItem = FindItemByNameNotIncludeBackpack(hParent, "item_fun_angelic_alliance")
+		if hItem and hItem:IsFullyCastable() and hParent:GetHealth()/hParent:GetMaxHealth() < 0.15 then
+			local hFountain
+			if hParent:GetTeam() == DOTA_TEAM_GOODGUYS then
+				hFountain = Entities:FindByName(nil, "ent_dota_fountain_good")
+			else
+				hFountain = Entities:FindByName(nil, "ent_dota_fountain_bad")
+			end
+			hParent:CastAbilityOnPosition(hFountain:GetOrigin(), hItem, hParent:GetPlayerOwnerID()) 
+		end
+		hItem = FindItemByNameNotIncludeBackpack(hParent, "item_fun_bs")
+		if hItem and hItem:IsCooldownReady() then
+			local tTargets = FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
+			for i, v in pairs(tTargets) do
+				if v:GetHealthPercent() < 50 then
+					hParent:CastAbilityOnTarget(v, hItem, hParent:GetPlayerOwnerID())
+					break
+				end
+			end
 		end
 	end
 	
-	hItem = FindItemByName(hParent, "item_fun_magic_hammer")
-	if hItem and hItem:IsCooldownReady() then
-		local tTargets = FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
-		if #tTargets > 0 then
-			hParent:CastAbilityNoTarget(hItem, hParent:GetPlayerOwnerID())
-		end
-	end
-	
-	hItem = FindItemByName(hParent, "item_fun_heros_bow")
-	if hItem and hItem:IsCooldownReady() then
-		local tTargets = FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
-		if #tTargets > 0 then
-			hParent:CastAbilityOnTarget(tTargets[1], hItem, hParent:GetPlayerOwnerID())
-		end
-	end
-	hItem = FindItemByName(hParent, "item_fun_papyrus_scarab")
-	if hItem and hItem:IsCooldownReady() then
-		local tTargets = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetOrigin(), nil, hItem:GetSpecialValueFor("transform_range"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE+DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS, FIND_ANY_ORDER, false)
-		local tAllyHeroes = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetOrigin(), nil, hItem:GetSpecialValueFor("transform_range"), DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,  DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS, FIND_ANY_ORDER, false)
+	-- Normal Items
+
+	local hItem = FindItemByNameNotIncludeBackpack(hParent, "item_guardian_greaves")
+	if hItem and hItem:IsFullyCastable() then
 		local bAllyHurt = false
+		local tAllyHeroes = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetOrigin(), nil, hItem:GetSpecialValueFor("transform_range"), DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,  DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS, FIND_ANY_ORDER, false)
 		for i, v in pairs(tAllyHeroes) do
 			if v:GetHealth()/v:GetMaxHealth() < 0.5 then bAllyHurt = true end
 		end
-		if (bAllyHurt and hParent.tPapyrusScarabMinions and #hParent.tPapyrusScarabMinions > 0) or #tTargets > 1 then
+		if bAllyHurt then
 			hParent:CastAbilityNoTarget(hItem, hParent:GetPlayerOwnerID())
 		end
 	end
-	-- use AA to escape
-	hItem = FindItemByName(hParent, "item_fun_angelic_alliance")
-	if hItem and hItem:IsFullyCastable() and hParent:GetHealth()/hParent:GetMaxHealth() < 0.15 then
-		local hFountain
-		if hParent:GetTeam() == DOTA_TEAM_GOODGUYS then
-			hFountain = Entities:FindByName(nil, "ent_dota_fountain_good")
-		else
-			hFountain = Entities:FindByName(nil, "ent_dota_fountain_bad")
+	
+	hItem = FindItemByNameNotIncludeBackpack(hParent, "item_bloodthorn")
+	if hItem and hItem:IsFullyCastable() and not hParent:IsInvisible() then
+		local tTargets = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetOrigin(), nil, hItem:GetCastRange(), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
+		for i, v in ipairs(tTargets) do
+			if not v:IsSilenced() then
+				hParent:CastAbilityOnTarget(v, hItem, hParent:GetPlayerOwnerID())
+				break
+			end
 		end
-		hParent:CastAbilityOnPosition(hFountain:GetOrigin(), hItem, hParent:GetPlayerOwnerID()) 
 	end
-	hItem = FindItemByName(hParent, "item_fun_bs")
-	if hItem and hItem:IsCooldownReady() then
-		local tTargets = FindUnitsInRadius(hParent:GetTeam(), hParent:GetAbsOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
-		for i, v in pairs(tTargets) do
-			if v:GetHealthPercent() < 50 then
+	
+	hItem = FindItemByNameNotIncludeBackpack(hParent, "item_refresher")
+	if hItem and hItem:IsFullyCastable() then
+		local fFullCooldown = 0
+		local iMaxCooldownAbility
+		for i = 0, 23 do
+			if hParent:GetAbilityByIndex(i) then
+				local fCooldown = hParent:GetAbilityByIndex(i):GetCooldown(hParent:GetAbilityByIndex(i):GetLevel())
+				if fFullCooldown < fCooldown then
+					fFullCooldown = fCooldown
+					iMaxCooldownAbility = i
+				end
+			end
+		end
+		if hParent:GetAbilityByIndex(iMaxCooldownAbility):GetCooldownTimeRemaining() > 0 then
+			hParent:CastAbilityNoTarget(hItem, hParent:GetPlayerOwnerID())
+		end
+	end
+	
+	hItem = FindItemByNameNotIncludeBackpack(hParent, "item_solar_crest")
+	if hItem and not hItem:IsInBackpack() and hItem:IsFullyCastable() and not hParent:IsInvisible() then
+		local tTargets = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetOrigin(), nil, hItem:GetCastRange(), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
+		for i, v in ipairs(tTargets) do
+			if not v:HasModifier('modifier_item_solar_crest_armor_reduction') then
 				hParent:CastAbilityOnTarget(v, hItem, hParent:GetPlayerOwnerID())
 				break
 			end
@@ -541,6 +633,7 @@ end
 local function CheckItemAfter(hHero, sItemBefore, sItemAfter)
 	if FindItemByNameIncludeStash(hHero, sItemBefore) and (not hHero.tItemHistory or not hHero.tItemHistory[sItemAfter] ) then
 		if tBotItemData.tItemParts[sItemAfter] then
+			print(sItemAfter)
 			local iComponentsCost = 0
 			for i, v in pairs(tBotItemData.tItemParts[sItemAfter]) do
 				iComponentsCost = iComponentsCost + GetItemCost(v)
@@ -570,7 +663,7 @@ end
 
 local function CheckAllFunItem(hParent)
 	local sHeroName = hParent:GetName()
-	if (hParent:HasModifier("modifier_fountain_aura_buff") or GameMode.iUniversalShop == 1) and tBotItemData.tBotBuildFunItems[sHeroName] and (hParent:HasItemInInventory(tBotItemData.tBotBuildFunItems[sHeroName].sEndItem) or hParent.bHasEndItem) then
+	if (hParent:HasModifier("modifier_fountain_aura_buff") or GameMode.iUniversalShop == 1) and tBotItemData.tBotBuildFunItems[sHeroName] and (hParent:HasItemInInventory(tBotItemData.tLuxuryItemList[sHeroName][#tBotItemData.tLuxuryItemList[sHeroName]-1]) or hParent.bHasEndItem) then
 		hParent.bHasEndItem = true
 		for i, v in ipairs(tBotItemData.tBotBuildFunItems[sHeroName].tWantedFunItems) do
 			CheckFunItems(hParent, v)
@@ -579,10 +672,25 @@ local function CheckAllFunItem(hParent)
 end
 
 
+local function CheckHasEconomizer2ToBuilt(hHero)
+	for i, v in ipairs(tBotItemData.tBotBuildFunItems[hHero:GetName()].tWantedFunItems) do
+		if v == "item_fun_economizer_2" then
+			return true
+		end
+	end
+	return false
+end
+
 local function CheckLuxuryItem(hHero)
 	local tHeroLuxuryItemList = tBotItemData.tLuxuryItemList[hHero:GetName()]
+	local iOmit = 0
+	
+	if CheckHasEconomizer2ToBuilt(hHero) and GameMode.iBotHasFunItem == 1 and GameMode.iBanFunItems == 0 then
+		iOmit = 1
+	end
+	
 	if tHeroLuxuryItemList and (hHero:HasModifier('modifier_fountain_aura_buff') or GameMode.iUniversalShop == 1) then
-		for i = 1, (#tHeroLuxuryItemList-1) do
+		for i = 1, (#tHeroLuxuryItemList-1-iOmit) do
 			CheckItemAfter(hHero, tHeroLuxuryItemList[i], tHeroLuxuryItemList[i+1])
 		end
 	end
@@ -607,6 +715,7 @@ local function SellLowCostItems(hHero)
 end
 
 local function FixBotTalent(iLevel, iEntIndex)
+--[[
 	local hHero = EntIndexToHScript(iEntIndex)
 	local j = 0
 	local tTalents = {}
@@ -619,6 +728,7 @@ local function FixBotTalent(iLevel, iEntIndex)
 	if tTalents[(iLevel/5-1)*2-1]:GetLevel() == 0 and tTalents[(iLevel/5-1)*2]:GetLevel() == 0 then
 		tTalents[RandomInt((iLevel/5-1)*2-1, (iLevel/5-1)*2)]:SetLevel(1)
 	end
+	]]
 end
 
 function modifier_item_assemble_fix:OnIntervalThink()
@@ -844,5 +954,80 @@ function modifier_ti9_attack_modifier:OnAttack(keys)
 	end
 end
 
+modifier_dynamic_exp_gold = class(tClassFFF)
+modifier_anti_diving=class({})
+function modifier_anti_diving:IsPurgable() return false end
+function modifier_anti_diving:RemoveOnDeath() return false end
+function modifier_anti_diving:IsHidden() 
+	if self:GetStackCount() <= 0 then return true else return false end
+end
+function modifier_anti_diving:DeclareFunctions()
+	return {MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE, MODIFIER_EVENT_ON_TAKEDAMAGE}
+end
+function modifier_anti_diving:GetModifierTotalDamageOutgoing_Percentage()
+	return -10*self:GetStackCount()
+end
 
- 
+function modifier_anti_diving:OnCreated()
+	self:StartIntervalThink(0.1)
+	self.fTime = 0
+end
+function modifier_anti_diving:GetTexture()
+	return "anti_diving"
+end
+function modifier_anti_diving:OnIntervalThink()
+	if IsClient() or not Entities:FindByName(nil, "ent_dota_fountain_bad") then return end
+	local fDistance
+	if self:GetParent():GetTeam() == DOTA_TEAM_BADGUYS then
+		fDistance = CalcDistanceBetweenEntityOBB(self:GetParent(), Entities:FindByName(nil, "ent_dota_fountain_good"))
+	else
+		fDistance = CalcDistanceBetweenEntityOBB(self:GetParent(), Entities:FindByName(nil, "ent_dota_fountain_bad"))
+	
+	end
+	if fDistance < 1200 then
+		self.fTime = self.fTime + 0.1
+	else
+		self.fTime = self.fTime - 0.05
+	end
+	if self.fTime < 0 then self.fTime = 0 end
+	if self.fTime  > 15 then self.fTime  = 15 end
+	local iStackCount = math.floor(self.fTime)-5
+	if iStackCount < 0 then
+		iStackCount = 0
+	end
+	self:SetStackCount(iStackCount)
+end
+
+modifier_bot_protection = class({})
+function modifier_bot_protection:IsPurgable() return false end
+function modifier_bot_protection:RemoveOnDeath() return false end
+function modifier_bot_protection:DeclareFunctions()
+	return {MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE, MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE, MODIFIER_EVENT_ON_DEATH}
+end
+function modifier_bot_protection:GetTexture() return "Bot_hard_icon" end
+function modifier_bot_protection:OnDeath(keys)
+	if keys.unit:IsRealHero() then
+		local iPlayerID = self:GetParent():GetPlayerOwnerID()
+		self:SetStackCount(PlayerResource:GetDeaths(iPlayerID)-PlayerResource:GetKills(iPlayerID)-5)
+	end
+end
+
+function modifier_bot_protection:IsHidden()
+	if self:GetStackCount() <= 0 then return true else return false end
+end
+
+function modifier_bot_protection:GetModifierIncomingDamage_Percentage()
+	local iPercentage = -self:GetStackCount()*5
+	if iPercentage < -50 then iPercentage = -50 end
+	return iPercentage
+end
+
+function modifier_bot_protection:GetModifierTotalDamageOutgoing_Percentage()
+	local iPercentage = self:GetStackCount()*10
+	if iPercentage > 100 then iPercentage = 100 end
+	return iPercentage
+end
+
+
+
+

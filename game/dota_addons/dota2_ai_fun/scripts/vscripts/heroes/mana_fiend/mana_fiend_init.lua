@@ -7,7 +7,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"generic_hidden",
 	"mana_fiend_abandon",
-	"special_bonus_gold_income_25",
+	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
 	"special_bonus_unique_mana_fiend_1",
 	"special_bonus_spell_lifesteal_20",

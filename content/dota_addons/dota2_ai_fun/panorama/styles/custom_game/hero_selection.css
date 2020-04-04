@@ -32,9 +32,12 @@
 #FunHeroSelectButton Label
 {
 	font-size: 30px;
+	line-height:30px;
 	horizontal-align: middle;
 	vertical-align:center ;
 	color: silver;	
+	margin-left:10px;
+	margin-right:10px;
 }
 
 #FunHeroSelectButton:hover

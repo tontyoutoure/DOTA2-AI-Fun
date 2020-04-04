@@ -133,4 +133,10 @@ modifier_attribute_indicator_kahmeka = class(tClassModifierAttributeIndicator)
 LinkLuaModifier("modifier_attribute_indicator_old_storm_spirit", "modifier_attribute_indicators.lua", LUA_MODIFIER_MOTION_NONE)
 modifier_attribute_indicator_old_storm_spirit = class(tClassModifierAttributeIndicator)
 
+LinkLuaModifier("modifier_attribute_indicator_old_gorgon", "modifier_attribute_indicators.lua", LUA_MODIFIER_MOTION_NONE)
+modifier_attribute_indicator_old_gorgon = class(tClassModifierAttributeIndicator)
+
+LinkLuaModifier("modifier_attribute_indicator_god_of_wind", "modifier_attribute_indicators.lua", LUA_MODIFIER_MOTION_NONE)
+modifier_attribute_indicator_god_of_wind = class(tClassModifierAttributeIndicator)
+
 

@@ -304,10 +304,18 @@ modifier_ramza_job_point = class({})
 function modifier_ramza_job_point:IsPurgable() return false end
 function modifier_ramza_job_point:RemoveOnDeath() return false end	
 function modifier_ramza_job_point:GetTexture() return "ramza_job_info" end
-function modifier_ramza_job_point:DeclareFunctions() return {MODIFIER_PROPERTY_TOOLTIP} end
+function modifier_ramza_job_point:DeclareFunctions() return {MODIFIER_PROPERTY_TOOLTIP, MODIFIER_PROPERTY_TOOLTIP2} end
 
 function modifier_ramza_job_point:OnTooltip()
 	return self:GetStackCount()
+end
+
+function modifier_ramza_job_point:OnTooltip2()
+	for i = 1, 8 do
+		if self:GetStackCount() < tJobRequirements[i] then
+			return tJobRequirements[i]
+		end
+	end
 end
 
 
@@ -564,7 +572,7 @@ end
 
 modifier_ramza_faith = class({})
 function modifier_ramza_faith:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MANA_BONUS, MODIFIER_PROPERTY_STATS_INTELLECT_BONUS}
+	return {MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, MODIFIER_PROPERTY_STATS_INTELLECT_BONUS, MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE_SOURCE}
 end
 
 function modifier_ramza_faith:IsPurgable() return false end
@@ -573,13 +581,14 @@ function modifier_ramza_faith:IsHidden() return true end
 
 function modifier_ramza_faith:OnRefresh()
 	if not self:GetAbility() then return end
-	self.iMana = self:GetAbility():GetSpecialValueFor("bonus_mana")
+	self.iSpellAmp = self:GetAbility():GetSpecialValueFor("bonus_spell_amp")
+	self.iHealAmp = self:GetAbility():GetSpecialValueFor("bonus_heal_amp")
 	self.iInt = self:GetAbility():GetSpecialValueFor("bonus_intelligence")
 	if IsClient() then return end
 	self:GetParent():CalculateStatBonus()
 end
 
-function modifier_ramza_faith:GetModifierManaBonus()
+function modifier_ramza_faith:GetModifierHPRegenAmplify_PercentageSource()
 	if not self.hSpecial then
 		self.hSpecial = Entities:First()		
 		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_ramza_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
@@ -587,9 +596,22 @@ function modifier_ramza_faith:GetModifierManaBonus()
 		end
 	end
 	if not self.hSpecial:IsNull() then
-		return (self.iMana or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+		return (self.iHealAmp or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
 	else
-		return (self.iMana or 0)
+		return (self.iHealAmp or 0)
+	end
+end
+function modifier_ramza_faith:GetModifierSpellAmplify_Percentage()
+	if not self.hSpecial then
+		self.hSpecial = Entities:First()		
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_ramza_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+			self.hSpecial = Entities:Next(self.hSpecial)
+		end
+	end
+	if not self.hSpecial:IsNull() then
+		return (self.iSpellAmp or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
+	else
+		return (self.iSpellAmp or 0)
 	end
 end
 

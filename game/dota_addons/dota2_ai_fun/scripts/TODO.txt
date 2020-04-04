@@ -1,7 +1,2 @@
-cloud lose animation translation of odachi
-in-game option checker
-fun hero selection move to hero selection screen
-mutant mode
-axe invisible
-arc warden illusion respawn
-respawn time for hero > lv 25
+多人不在同一便无法选项
+200级成了205

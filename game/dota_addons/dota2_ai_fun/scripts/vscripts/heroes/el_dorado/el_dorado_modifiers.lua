@@ -14,7 +14,11 @@ function modifier_el_dorado_refine_weapons:OnIntervalThink()
 	local hParent = self:GetParent()
 	if hParent:PassivesDisabled() then return end
 	local hAbility = self:GetAbility()
-	for i = 0, 5 do
+	local iSlot = 5
+	if CheckTalent(hParent, 'special_bonus_el_dorado_3') > 0 then
+		iSlot = 9
+	end
+	for i = 0, iSlot do
 		if hParent:GetItemInSlot(i) then
 			tItems[hParent:GetItemInSlot(i):GetName()] = true
 		end

@@ -130,11 +130,30 @@ function HeroDescriptionInit(sFunHeroName, sHeroName, sHeroNameCapital) {
 			$("#HeroTalentContainer"+sHeroNameCapital).BCreateChildren('<Panel class="HeroTalentLine" id="HeroTalentLine'+sHeroNameCapital+iLevel.toString()+'"/>')
 			
 			$("#HeroTalentLine"+sHeroNameCapital+iLevel.toString()).BCreateChildren('<Panel class="HeroTalentLeft" id="HeroTalentLeft'+sHeroNameCapital+iLevel.toString()+'"/>')
-			$("#HeroTalentLeft"+sHeroNameCapital+iLevel.toString()).BCreateChildren('<Label class="HeroTalentContentLabel" text="#DOTA_Tooltip_ability_'+aTalents[iTalent++]+'"/>')		
+			$("#HeroTalentLeft"+sHeroNameCapital+iLevel.toString()).BCreateChildren('<Label id="HeroTalentLableLeft'+sHeroNameCapital+iLevel.toString()+'" class="HeroTalentContentLabel" text="#DOTA_Tooltip_ability_'+aTalents[iTalent]+'"/>')
+			if ($('#HeroTalentLableLeft'+sHeroNameCapital+iLevel.toString()).text.match('[!s:value]')) {
+				var iValue = 0
+				var aTalentValue=aTalents[iTalent].match(/[0-9]/g)
+				for (var i in aTalentValue)
+					iValue = iValue*10+parseInt(aTalentValue[i]);
+				
+				$('#HeroTalentLableLeft'+sHeroNameCapital+iLevel.toString()).text=$('#HeroTalentLableLeft'+sHeroNameCapital+iLevel.toString()).text.replace('[!s:value]',iValue.toString())
+				
+			}
+			iTalent++;			
 			$("#HeroTalentLine"+sHeroNameCapital+iLevel.toString()).BCreateChildren('<Panel class="HeroTalentMiddle" id="HeroTalentMiddle'+sHeroNameCapital+iLevel.toString()+'"/>')
 			$("#HeroTalentMiddle"+sHeroNameCapital+iLevel.toString()).BCreateChildren('<Label class="HeroTalentReqLabel" text="'+iLevel.toString()+'"/>')
-			$("#HeroTalentLine"+sHeroNameCapital+iLevel.toString()).BCreateChildren('<Panel class="HeroTalentRight" id="HeroTalentRight'+sHeroNameCapital+iLevel.toString()+'"/>')
-			$("#HeroTalentRight"+sHeroNameCapital+iLevel.toString()).BCreateChildren('<Label class="HeroTalentContentLabel" text="#DOTA_Tooltip_ability_'+aTalents[iTalent++]+'"/>')		
+			var test=$("#HeroTalentLine"+sHeroNameCapital+iLevel.toString()).BCreateChildren('<Panel class="HeroTalentRight" id="HeroTalentRight'+sHeroNameCapital+iLevel.toString()+'"/>')
+			
+			$("#HeroTalentRight"+sHeroNameCapital+iLevel.toString()).BCreateChildren('<Label class="HeroTalentContentLabel" id="HeroTalentLableRight'+sHeroNameCapital+iLevel.toString()+'" text="#DOTA_Tooltip_ability_'+aTalents[iTalent]+'"/>')		
+			if ($('#HeroTalentLableRight'+sHeroNameCapital+iLevel.toString()).text.match('[!s:value]')) {
+				var iValue = 0
+				var aTalentValue=aTalents[iTalent].match(/[0-9]/g)
+				for (var i in aTalentValue)
+					iValue = iValue*10+parseInt(aTalentValue[i]);
+				$('#HeroTalentLableRight'+sHeroNameCapital+iLevel.toString()).text=$('#HeroTalentLableRight'+sHeroNameCapital+iLevel.toString()).text.replace('[!s:value]',iValue.toString())
+			}
+			iTalent++;
 		}	
 	}
 	$(sPanelName).BCreateChildren('<Button id="HeroSelection'+sHeroNameCapital+'" class="HeroSelectionButton" onactivate="HeroSelection(&quot;npc_dota_hero_'+sHeroName+'&quot;, &quot;'+sHeroNameCapital+'&quot;);"/>')

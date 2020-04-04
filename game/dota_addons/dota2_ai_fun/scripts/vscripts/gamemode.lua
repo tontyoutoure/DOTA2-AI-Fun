@@ -11,6 +11,7 @@ require('libraries/notifications')
 require('libraries/Playertables')
 require('libraries/lua_console')
 require('libraries/attachments')
+require('libraries/json')
 if IsInToolsMode() then
 	require('libraries/modmaker')
 end
@@ -22,7 +23,8 @@ require('libraries/wearable_manager')
 require('libraries/animations')
 require('modifier_attribute_indicators')
 require('donation')
-
+require('lottery')
+require('server')
  
 function GameMode:InitGameMode()
 	
@@ -32,6 +34,7 @@ function GameMode:InitGameMode()
 	GameMode:LinkLuaModifiers()
 	print("DOTA 2 AI Fun initialized!")
 end
+
 
 function GameMode:LinkLuaModifiers()
 	LinkLuaModifier("modifier_item_fun_sprint_shoes_lua", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
@@ -45,7 +48,7 @@ function GameMode:LinkLuaModifiers()
 	LinkLuaModifier("modifier_tower_power", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_tower_endure", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_bot_get_fun_items", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-	LinkLuaModifier("modifier_bot_use_fun_items", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("modifier_bot_use_items", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_attack_point_change", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_attack_time_change", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_attack_range_change", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
@@ -62,10 +65,19 @@ function GameMode:LinkLuaModifiers()
 	LinkLuaModifier("modifier_ability_layout_change", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE);
 	LinkLuaModifier("modifier_attack_speed_change", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE);
 	LinkLuaModifier("modifier_ti9_attack_modifier", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE);
+	LinkLuaModifier("modifier_dynamic_exp_gold", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE);
+	LinkLuaModifier("modifier_anti_diving", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE);
+	LinkLuaModifier("modifier_bot_protection", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE);
+	LinkLuaModifier("modifier_lottery_manager", "lottery.lua", LUA_MODIFIER_MOTION_NONE);
 	
 	
 	
 	
+end
+
+function GameMode:TestFilter(filterTable)
+			PrintTable(filterTable)
+	return true
 end
 
 function GameMode:InitGameOptions()
@@ -77,13 +89,16 @@ function GameMode:InitGameOptions()
 	GameRules:SetPreGameTime( PRE_GAME_TIME )
 	GameRules:SetPostGameTime( POST_GAME_TIME )
 	if IsInToolsMode() then 
-		GameRules:SetPreGameTime( 0 )
+--		GameRules:SetPreGameTime( 0 )
 	end
 	GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS, RADIANT_MAX_PLAYER_COUNT)
 	GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS, DIRE_MAX_PLAYER_COUNT)
 	GameRules:SetSameHeroSelectionEnabled(true)
 	GameRules:SetStrategyTime(STRATEGY_TIME)
 	GameRules:SetShowcaseTime(0)
+    GameRules:GetGameModeEntity():SetFreeCourierModeEnabled(true)
+--	GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(GameMode, 'TestFilter'), self)
+--	GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(GameMode, 'LotteryExecuteOrderFilter'), self)
 end
 
 
@@ -103,12 +118,15 @@ function GameMode:PreGameOptions()
 	self.iBotHasFunItem = self.iBotHasFunItem or 1
 	self.iFastCourier = self.iFastCourier or 1
 	self.iBanFunItems = self.iBanFunItems or 0
+	self.iEnableLottery = self.iEnableLottery or 1
 	self.fGameStartTime = 0
 	GameRules:SetGoldPerTick(self.iGoldPerTick)
 	GameRules:SetGoldTickTime(self.iGoldTickTime)
     GameRules:GetGameModeEntity():SetModifyGoldFilter( Dynamic_Wrap( GameMode, "FilterGold" ), self )	
     GameRules:GetGameModeEntity():SetModifyExperienceFilter( Dynamic_Wrap( GameMode, "FilterXP" ), self )
     GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter( Dynamic_Wrap( GameMode, "FilterInventory" ), self )	
+	
+--	GameRules:GetGameModeEntity():SetCustomBuybackCooldownEnabled(true)
 	GameRules:GetGameModeEntity():SetUseDefaultDOTARuneSpawnLogic(true)
 --	GameRules:GetGameModeEntity():SetMaximumAttackSpeed(2000)
 --	GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
@@ -123,59 +141,69 @@ function GameMode:PreGameOptions()
 	GameRules:GetGameModeEntity():SetRuneSpawnFilter( Dynamic_Wrap( GameMode, "FilterRune" ), self )
 	--]]
 	GameRules:GetGameModeEntity():SetBountyRunePickupFilter( Dynamic_Wrap( GameMode, "FilterBounty" ), self )
-	if IsInToolsMode() or self.iUniversalShop == 1 then		
---	if self.iUniversalShop == 1 then		
+--	if IsInToolsMode() or self.iUniversalShop == 1 then		
+	if self.iUniversalShop == 1 then		
 		GameRules:SetUseUniversalShopMode(true)
 	end
-	if self.iMaxLevel ~= 25 then
+	if self.iMaxLevel ~= 30 then
 		local tLevelRequire = {
-								0,
-								230,
-								600,
-								1080,
-								1660,
-								2260,
-								2980,
-								3730,
-								4510,
-								5320,
-								6160,
-								7030,
-								7930,
-								9155,
-								10405,
-								11680,
-								12980,
-								14305,
-								15805,
-								17395,
-								18995,
-								20845,
-								22945,
-								25295,
-								27895
-		} -- value in 7.22
+							0,
+							230,
+							600,
+							1080,
+							1660,
+							2260,
+							2980,
+							3730,
+							4510,
+							5320,
+							6160,
+							7030,
+							7930,
+							9155,
+							10405,
+							11680,
+							12980,
+							14305,
+							15805,
+							17395,
+							18995,
+							20845,
+							22945,
+							25295,
+							27895,
+							31395,
+							35895,
+							41395,
+							47895,
+							55395,
+
+		} -- value in 7.23
 		local iRequireLevel = tLevelRequire[25]
-		for i = 26, self.iMaxLevel do
-			iRequireLevel = iRequireLevel+i*250
+		for i = 26, self.iMaxLevel-5 do
+			iRequireLevel = iRequireLevel+i*1000
 			table.insert(tLevelRequire, iRequireLevel)
 		end
 		GameRules:GetGameModeEntity():SetUseCustomHeroLevels ( true )
 		GameRules:SetUseCustomHeroXPValues( true )
-		GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(self.iMaxLevel) 		
+		print(self.iMaxLevel)
+		GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(self.iMaxLevel-5) 		
 		GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(tLevelRequire)
 	end
 	self.PreGameOptionsSet = true
 end
 
 function GameMode:InitEvents()	
-	ListenToGameEvent( "game_rules_state_change", Dynamic_Wrap( GameMode, 'OnGameStateChanged' ), self )
+	ListenToGameEvent("game_rules_state_change", Dynamic_Wrap( GameMode, 'OnGameStateChanged' ), self )
 	ListenToGameEvent('dota_player_gained_level', Dynamic_Wrap(GameMode, 'OnPlayerLevelUp'), self)	
 	ListenToGameEvent('npc_spawned', Dynamic_Wrap(GameMode, '_OnNPCSpawned'), self)
 	
 
 	ListenToGameEvent('dota_item_purchased', Dynamic_Wrap(GameMode, 'OnDOTAItemPurchased'), self)
+	ListenToGameEvent('item_purchased', Dynamic_Wrap(GameMode, 'OnItemPurchased'), self)
+	
 	ListenToGameEvent('dota_item_picked_up', Dynamic_Wrap(GameMode, 'OnItemPickUp'), self)
+	ListenToGameEvent('dota_inventory_item_changed', Dynamic_Wrap(GameMode, 'LotteryOnItemGifted'), self)	
 	
 
 	ListenToGameEvent('dota_player_update_hero_selection',  Dynamic_Wrap(GameMode, 'OnPlayerUpdateSelectUnit1'), self)
@@ -329,7 +357,6 @@ function GameMode:FilterXP(tXPFilter)
 		tXPFilter["experience"] = math.floor(iXP*self.fRadiantXPMultiplier)
 	else
 		tXPFilter["experience"] = math.floor(iXP*self.fDireXPMultiplier)
---		print("Dire XP", tXPFilter["experience"], iXP)
 	end
 	return true
 end
@@ -348,7 +375,6 @@ local tPossibleRunes = {
 local tLastRunes = {}
 
 function GameMode:FilterRune(tRuneFilter)
-PrintTable(tRuneFilter)
 	if true then return true end
 	if GameRules:GetGameTime() > 2395+self.fGameStartTime then
 		tRuneFilter.rune_type = tPossibleRunes[RandomInt(1, 6)]

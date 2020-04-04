@@ -1,11 +1,6 @@
 "use strict"; 
 
-var aSelfVote = [
-	{self_vote:1},
-	{self_vote:1},
-//	{self_vote:3},
-	{self_vote:0},	
-]
+var aSelfVote = [1,1,0]
 var iPlayerCount
 var bLockHided
 function InitializeVote () {
@@ -40,21 +35,26 @@ function InitializeVote () {
 		}		
 	}
 	for (var i=0;i < aVoteOptions.length;i++) {
-		MakeVote(i, aSelfVote[i].self_vote, true)
+		MakeVote(i, aSelfVote[i], true)
+	}
+	if (Players.GetLocalPlayer() > 0) {
+		$('#VoteContentContainer').visible = false
+		$('#VoteConfirmButtonContainer').visible = false
+		
 	}
 	$('#VoteContainer').visible = true;
+	GameEvents.SendCustomGameEventToAllClients("loading_vote_full", {})
 }
 
 function OnVoteActivated(hPanel, fCallback) {
 	MakeVote(hPanel.vote_index, hPanel.choice_index)
 }
+
 function MakeVote(vote_index, choice_index, bSilent) {
-	GameEvents.SendCustomGameEventToServer("vote_make_choice", {vote_index:vote_index, choice_index:choice_index})
 	if (!bSilent)
 		Game.EmitSound('ui_team_select_lock_and_start');
 	if (aSelfVote[vote_index] >= 0) {
 		$('#VoteOptionChoice'+vote_index.toString()+'_'+aSelfVote[vote_index].toString()).text = '';
-		$.Msg(vote_index,choice_index)
 		$('#VoteOptionChoice'+vote_index.toString()+'_'+choice_index.toString()).text = $.Localize('#your_choice');
 		aSelfVote[vote_index] = choice_index;		
 	}
@@ -66,22 +66,21 @@ function MakeVote(vote_index, choice_index, bSilent) {
 
 function UpdateVoteResult(tVoteResult) {
 	for (var i = 0; i < aVoteOptions.length; i++) {
-		if (tVoteResult[i.toString()]) {
+		if (tVoteResult[(i+1).toString()]) {
 			for (var j = 0; j < aVoteOptions[i].options.length; j++) {
-				if (tVoteResult[i.toString()][j.toString()] || tVoteResult[i.toString()][j.toString()]===0) {
-					$('#VoteCounter'+i.toString()+'_'+j.toString()).text = tVoteResult[i.toString()][j.toString()];
+				if (tVoteResult[(i+1).toString()][j.toString()] || tVoteResult[(i+1).toString()][j.toString()]===0) {
+					$('#VoteCounter'+i.toString()+'_'+j.toString()).text = tVoteResult[(i+1).toString()][j.toString()];
 				}
 			}
 		}
 	}
-	GameEvents.SendCustomGameEventToAllClients("loading_vote_full", {})
 }
 
 function OnVoteConfirm() {
 	iPlayerCount = GetPlayerCount()
 	$('#VoteBlocker').visible = true
 	$('#VoteConfirmButtonContainer').visible = false
-	GameEvents.SendCustomGameEventToServer("vote_confirm", {iPlayerCount:iPlayerCount})
+	GameEvents.SendCustomGameEventToServer("vote_confirm", {iPlayerCount:iPlayerCount,aVoteResult:aSelfVote})
 }
 
 
@@ -136,7 +135,7 @@ function VoteEnd(keys) {
 		return;
 	} else if (Game.GetLocalPlayerInfo().player_has_host_privileges) {
 		$("#game_options_container").visible=true;
-		$("#GameOptionHider").visible=false;
+//		$("#GameOptionHider").visible=false;
 		$("#LockOptionsBtn").visible=true;
 		$("#HostSettingGameOptions").visible=false;
 	}
@@ -149,7 +148,7 @@ function VoteEnd(keys) {
 		
 	}	
 	$.GetContextPanel().GetParent().GetParent().FindChildTraverse("LoadingScreenChat").style.horizontalAlign='right'
-	Game.SetRemainingSetupTime( 120 )
+	Game.SetRemainingSetupTime( 120)
 }
 
 //InitializeVote ()

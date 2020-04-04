@@ -73,6 +73,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityCastRange"	"%radius"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilitySpecial"
 		{
@@ -85,11 +86,15 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"attack"	"-3 -6 -9 -12"
+				"LinkedSpecialBonus"  "special_bonus_void_demon_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"movement"	"-6  -12 -18 -24"
+				"LinkedSpecialBonus"  "special_bonus_void_demon_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 		}
 	}
@@ -107,6 +112,7 @@
 		"AbilityTextureName"	"void_demon_mass_haste"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastRange"	"%radius"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"				"0.3"
 		"HasScepterUpgrade"	"1"
@@ -246,7 +252,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"1"
+				"value"				"2"
 			}
 		}
 	}

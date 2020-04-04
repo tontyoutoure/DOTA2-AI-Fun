@@ -6,7 +6,7 @@ local tNewAbilities = {
 	"old_butcher_select_corpse",
 	"old_butcher_drop_corpse",
 	"old_butcher_carrion_flies",
-	"special_bonus_gold_income_25",
+	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
 	"special_bonus_unique_old_butcher_1",
 	"special_bonus_unique_old_butcher_2",
@@ -48,7 +48,7 @@ local function OldButcherCorpseManager(keys)
 	hThinker.iMaxHealth = hUnit:GetMaxHealth()
 	hThinker.iBaseDamageMax = hUnit:GetBaseDamageMax()
 	hThinker.iBaseDamageMin = hUnit:GetBaseDamageMin()
-	hThinker.iArmor = hUnit:GetPhysicalArmorValue()
+	hThinker.iArmor = hUnit:GetPhysicalArmorValue(false)
 	hThinker.iMaximumGoldBounty = hUnit:GetMaximumGoldBounty()
 	hThinker.iMinimumGoldBounty = hUnit:GetMinimumGoldBounty()
 	hThinker.hOriginalUnit = hUnit
@@ -110,6 +110,7 @@ function OldButcherFlyToggleListener(eventSourceIndex, keys)
 end
 
 function GameMode:OldButcherOrderFilter(filterTable)
+PrintTable(filterTable)
 	if filterTable.issuer_player_id_const<0 then return true end
 	if filterTable.order_type == DOTA_UNIT_ORDER_CAST_TOGGLE_AUTO and EntIndexToHScript(filterTable.entindex_ability):GetName() == 'old_butcher_carrion_flies' and EntIndexToHScript(filterTable.units['0']):GetUnitName() == 'npc_dota_old_butcher_carrion_fly' then
 		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(filterTable.issuer_player_id_const), "old_butcher_carrion_fly_toggle", {iEntIndex = filterTable.units['0'], bAutoCast = EntIndexToHScript(filterTable.entindex_ability):GetAutoCastState(), iPlayerID = filterTable.issuer_player_id_const} )

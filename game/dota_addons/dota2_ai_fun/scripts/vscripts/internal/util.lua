@@ -354,7 +354,8 @@ function ApplyDamageTestDummy(keys)
 	end
 end
 
-tItemTable = {0, 1, 2, 3, 4, 5, 6, 7, 8, 15}
-print("Util loaded")
+tItemInventorySlotTable = {0, 1, 2, 3, 4, 5, 6, 7, 8, 15, 16}
 
- 
+
+
+--print("Util loaded")

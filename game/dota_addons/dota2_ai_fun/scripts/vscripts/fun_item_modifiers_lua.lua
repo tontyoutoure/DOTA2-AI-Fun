@@ -70,7 +70,7 @@ function modifier_item_fun_sprint_shoes_lua:OnStateChanged(params)
 	end
 end
 function modifier_item_fun_sprint_shoes_lua:OnTakeDamage(keys)
-	if keys.unit ~= self:GetParent() or keys.attacker:GetPlayerOwnerID() < 0 or keys.attacker:GetPlayerOwnerID() == keys.unit:GetPlayerOwnerID() or keys.damage == 0 then return end
+	if keys.unit ~= self:GetParent() or keys.attacker:GetPlayerOwnerID() < 0 or keys.attacker:GetTeam() == keys.unit:GetTeam() or keys.damage == 0 then return end
 	self.iLastHitTime = GameRules:GetGameTime()
 	self:SetStackCount(1)
 end
@@ -289,7 +289,7 @@ end
 
 
 modifier_heros_bow_active = class({})
-function modifier_heros_bow_active:IsPurgable() return false end
+function modifier_heros_bow_active:IsPurgable() return true end
 function modifier_heros_bow_active:DeclareFunctions() return {MODIFIER_PROPERTY_OVERRIDE_ANIMATION} end 
 function modifier_heros_bow_active:GetOverrideAnimation() return ACT_DOTA_FLAIL end
 function modifier_heros_bow_active:GetEffectName() return "particles/econ/events/ti7/force_staff_ti7.vpcf" end
@@ -351,7 +351,7 @@ function modifier_item_fun_heros_bow_debuff:DeclareFunctions() return {MODIFIER_
 function modifier_item_fun_heros_bow_debuff:GetModifierIncomingDamage_Percentage() return self:GetAbility():GetSpecialValueFor("damage_amp") end
 function modifier_item_fun_heros_bow_debuff:GetModifierProvidesFOWVision() return 1 end
 function modifier_item_fun_heros_bow_debuff:GetDisableHealing() return 1 end
-function modifier_item_fun_heros_bow_debuff:CheckState() return {[MODIFIER_STATE_MUTED] = true} end
+--function modifier_item_fun_heros_bow_debuff:CheckState() return {[MODIFIER_STATE_MUTED] = true} end
 function modifier_item_fun_heros_bow_debuff:OnCreated() 
 	if IsClient() or not self:GetCaster():IsRangedAttacker() then return end	
 	self.vOriginalPos = self:GetCaster():GetOrigin()
@@ -367,6 +367,7 @@ function modifier_item_fun_heros_bow_debuff:OnIntervalThink()
 		local vEndLocation = self.vOriginalPos+Vector2D(me:GetOrigin()-self.vOriginalPos):Normalized()*self:GetAbility():GetSpecialValueFor("minimum_distance")
 		FindClearSpaceForUnit(me, vEndLocation, true)
 	end
+	self:GetParent():Purge(true, false, false, false, false)
 end
 
 local tCleaveAbilityList = {
@@ -484,6 +485,42 @@ function modifier_item_fun_magic_hammer_root:OnDestroy()
 	ParticleManager:DestroyParticle(self.iParticle, true)
 end
 
+modifier_item_fun_ban_regen = class({})
+function modifier_item_fun_ban_regen:IsPurgable() return false end
+function modifier_item_fun_ban_regen:OnDestroy() if IsServer() then self.hParent.hModifier = nil end end
+function modifier_item_fun_ban_regen:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
+local function OnTakeDamageTBR(self, keys)
+	if keys.unit ~= self:GetParent() or keys.attacker:GetPlayerOwnerID() < 0 or keys.attacker:GetTeam() == keys.unit:GetTeam() or keys.damage == 0 then return end
+	
+	local fTime
+	if self:GetParent():IsRangedAttacker() then
+		fTime = self:GetAbility():GetSpecialValueFor('ban_regen_time_ranged')
+	else
+		fTime = self:GetAbility():GetSpecialValueFor('ban_regen_time_meele')
+	end
+	if self.hModifier then
+		self.hModifier:SetDuration(fTime, true)
+	else
+		self.hModifier = self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), 'modifier_item_fun_ban_regen',{Duration = fTime})
+		self.hModifier.hParent = self
+	end
+	
+end
+
+local GetHealthRegenTBR = function(self)
+	if self:GetStackCount()%2 > 0 then
+		return 0
+	else
+		return self:GetAbility():GetSpecialValueFor("health_regen")/math.floor(self:GetStackCount()/2)
+	end
+end
+local OnIntervalThinkTBR = function(self)
+	if IsClient() then return end
+	local iCount = 2*#self:GetParent():FindAllModifiersByName(self:GetName())
+	if self.hModifier then iCount = iCount+1 end
+	self:SetStackCount(iCount)
+end
+
 modifier_item_fun_terra_blade = class(tClassHiddenNotPurgableNotRemoveOnDeath)
 function modifier_item_fun_terra_blade:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 function modifier_item_fun_terra_blade:CheckState() return {[MODIFIER_STATE_CANNOT_MISS] = true} end
@@ -505,9 +542,12 @@ function modifier_item_fun_terra_blade:DeclareFunctions()
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ORDER,
+		MODIFIER_EVENT_ON_TAKEDAMAGE,
 	}
 end
-
+modifier_item_fun_terra_blade.OnTakeDamage = OnTakeDamageTBR
+modifier_item_fun_terra_blade.OnIntervalThink = OnIntervalThinkTBR
+modifier_item_fun_terra_blade.GetModifierHealthRegenPercentage = GetHealthRegenTBR
 function modifier_item_fun_terra_blade:OnAttackLanded(keys)
 	if keys.attacker ~= self:GetParent() or keys.attacker:GetTeam() == keys.target:GetTeam() or keys.target:IsBuilding() or keys.attacker:IsIllusion() then return end
 	keys.ability = self:GetAbility()
@@ -591,7 +631,7 @@ function modifier_item_fun_terra_blade:OnOrder(keys)
 end
 
 function modifier_item_fun_terra_blade:OnCreated()
-	self:SetStackCount(1)
+	self:SetStackCount(2)
 	self:StartIntervalThink(0.04)
 	-- use sange to add status resistance, strength and damage
 	if IsClient() then return end
@@ -603,11 +643,7 @@ function modifier_item_fun_terra_blade:OnDestroy()
 	self.hSangeModifier:Destroy()
 end
 
-function modifier_item_fun_terra_blade:OnIntervalThink()
-	if IsClient() then return end
-	self:SetStackCount(#self:GetParent():FindAllModifiersByName(self:GetName()))
-end
-function modifier_item_fun_terra_blade:GetModifierHPRegenAmplify_Percentage() return self:GetAbility():GetSpecialValueFor("hp_regen_amp") end
+function modifier_item_fun_terra_blade:GetModifierHPRegenAmplify_Percentage() return self:GetAbility():GetSpecialValueFor("hp_regen_amp_base")/math.floor(self:GetStackCount()/2) end
 function modifier_item_fun_terra_blade:GetModifierBonusStats_Agility() return self:GetAbility():GetSpecialValueFor("bonus_agility") end
 function modifier_item_fun_terra_blade:GetModifierEvasion_Constant() return self:GetAbility():GetSpecialValueFor("evasion") end
 function modifier_item_fun_terra_blade:GetModifierPreAttack_BonusDamage() return self:GetAbility():GetSpecialValueFor("bonus_damage") end
@@ -616,9 +652,13 @@ function modifier_item_fun_terra_blade:GetModifierAttackSpeedBonus_Constant() re
 function modifier_item_fun_terra_blade:GetModifierBaseAttackTimeConstant() return self:GetAbility():GetSpecialValueFor("bat") end
 function modifier_item_fun_terra_blade:GetModifierBonusStats_Strength() return self:GetAbility():GetSpecialValueFor("bonus_strength") end
 function modifier_item_fun_terra_blade:GetModifierHealthBonus() return self:GetAbility():GetSpecialValueFor("bonus_health") end
-function modifier_item_fun_terra_blade:GetModifierMoveSpeedBonus_Constant() return self:GetAbility():GetSpecialValueFor("movement_speed_bonus_constant")/self:GetStackCount() end
-function modifier_item_fun_terra_blade:GetModifierBaseDamageOutgoing_Percentage() return self:GetAbility():GetSpecialValueFor("bonus_damage_percentage")/self:GetStackCount() end
-function modifier_item_fun_terra_blade:GetModifierHealthRegenPercentage() return self:GetAbility():GetSpecialValueFor("health_regen")/self:GetStackCount() end
+function modifier_item_fun_terra_blade:GetModifierMoveSpeedBonus_Constant() return self:GetAbility():GetSpecialValueFor("movement_speed_bonus_constant")/math.floor(self:GetStackCount()/2) end
+function modifier_item_fun_terra_blade:GetModifierBaseDamageOutgoing_Percentage() return self:GetAbility():GetSpecialValueFor("bonus_damage_percentage")/math.floor(self:GetStackCount()/2) end
+
+
+
+modifier_item_fun_terra_blade.GetModifierHealthRegenPercentage = GetHealthRegenTBR
+
 function modifier_item_fun_terra_blade:GetModifierStatusResistance() return self:GetAbility():GetSpecialValueFor("status_resistance") end
 modifier_item_fun_terra_blade_ultra_maim = class({})
 function modifier_item_fun_terra_blade_ultra_maim:DeclareFunctions()
@@ -633,37 +673,37 @@ modifier_item_fun_ragnarok_lua = class(tClassHiddenNotPurgableNotRemoveOnDeath)
 function modifier_item_fun_ragnarok_lua:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end 
 
 function modifier_item_fun_ragnarok_lua:OnCreated()
-	self:SetStackCount(1)
+	self:SetStackCount(2)
 	self:StartIntervalThink(0.04)
-end
-
-function modifier_item_fun_ragnarok_lua:OnIntervalThink()
-	if IsClient() then return end
-	self:SetStackCount(#self:GetParent():FindAllModifiersByName(self:GetName()))
 end
 
 function modifier_item_fun_ragnarok_lua:DeclareFunctions() 
 	return {
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
+		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 		MODIFIER_PROPERTY_HEALTH_BONUS,
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
+		MODIFIER_EVENT_ON_TAKEDAMAGE,
 	}
 end
-function modifier_item_fun_ragnarok_lua:GetModifierHPRegenAmplify_Percentage() return self:GetAbility():GetSpecialValueFor("hp_regen_amp") end
+function modifier_item_fun_ragnarok_lua:GetModifierConstantHealthRegen() return self:GetAbility():GetSpecialValueFor("health_regen") end
+function modifier_item_fun_ragnarok_lua:GetModifierHPRegenAmplify_Percentage() return self:GetAbility():GetSpecialValueFor("hp_regen_amp")/math.floor(self:GetStackCount()/2) end
 function modifier_item_fun_ragnarok_lua:GetModifierBonusStats_Strength() return self:GetAbility():GetSpecialValueFor("bonus_strength") end
 function modifier_item_fun_ragnarok_lua:GetModifierHealthBonus() return self:GetAbility():GetSpecialValueFor("bonus_health") end
-function modifier_item_fun_ragnarok_lua:GetModifierBaseDamageOutgoing_Percentage() return self:GetAbility():GetSpecialValueFor("bonus_damage_percentage")/self:GetStackCount() end
-function modifier_item_fun_ragnarok_lua:GetModifierHealthRegenPercentage() return self:GetAbility():GetSpecialValueFor("health_regen")/self:GetStackCount() end
+function modifier_item_fun_ragnarok_lua:GetModifierBaseDamageOutgoing_Percentage() return self:GetAbility():GetSpecialValueFor("bonus_damage_percentage")/math.floor(self:GetStackCount()/2) end
 
+modifier_item_fun_ragnarok_lua.OnTakeDamage = OnTakeDamageTBR
+modifier_item_fun_ragnarok_lua.OnIntervalThink = OnIntervalThinkTBR
+modifier_item_fun_ragnarok_lua.GetModifierHealthRegenPercentage = GetHealthRegenTBR
 
 
 modifier_item_fun_ragnarok_2_lua = class(tClassHiddenNotPurgableNotRemoveOnDeath)
 function modifier_item_fun_ragnarok_2_lua:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 -- Use sange to add strength, damage and status resist
 function modifier_item_fun_ragnarok_2_lua:OnCreated()
-	self:SetStackCount(1)
+	self:SetStackCount(2)
 	self:StartIntervalThink(0.04)
 	if IsClient() then return end
 	self.hSangeModifier = self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_item_sange", {})
@@ -674,10 +714,6 @@ function modifier_item_fun_ragnarok_2_lua:OnDestroy()
 	self.hSangeModifier:Destroy()
 end
 
-function modifier_item_fun_ragnarok_2_lua:OnIntervalThink()
-	if IsClient() then return end
-	self:SetStackCount(#self:GetParent():FindAllModifiersByName(self:GetName()))
-end
 
 function modifier_item_fun_ragnarok_2_lua:DeclareFunctions() 
 	return {
@@ -689,14 +725,18 @@ function modifier_item_fun_ragnarok_2_lua:DeclareFunctions()
 		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
 --		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-		MODIFIER_EVENT_ON_ATTACK_LANDED
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_EVENT_ON_TAKEDAMAGE,
 	}
 end
-function modifier_item_fun_ragnarok_2_lua:GetModifierHPRegenAmplify_Percentage() return self:GetAbility():GetSpecialValueFor("hp_regen_amp") end
+function modifier_item_fun_ragnarok_2_lua:GetModifierHPRegenAmplify_Percentage() return self:GetAbility():GetSpecialValueFor("hp_regen_amp_base")/math.floor(self:GetStackCount()/2) end
 function modifier_item_fun_ragnarok_2_lua:GetModifierBonusStats_Strength() return self:GetAbility():GetSpecialValueFor("bonus_strength") end
 function modifier_item_fun_ragnarok_2_lua:GetModifierHealthBonus() return self:GetAbility():GetSpecialValueFor("bonus_health") end
-function modifier_item_fun_ragnarok_2_lua:GetModifierBaseDamageOutgoing_Percentage() return self:GetAbility():GetSpecialValueFor("bonus_damage_percentage")/self:GetStackCount() end
-function modifier_item_fun_ragnarok_2_lua:GetModifierHealthRegenPercentage() return self:GetAbility():GetSpecialValueFor("health_regen")/self:GetStackCount() end
+function modifier_item_fun_ragnarok_2_lua:GetModifierBaseDamageOutgoing_Percentage() return self:GetAbility():GetSpecialValueFor("bonus_damage_percentage")/math.floor(self:GetStackCount()/2) end
+
+modifier_item_fun_ragnarok_2_lua.OnTakeDamage = OnTakeDamageTBR
+modifier_item_fun_ragnarok_2_lua.OnIntervalThink = OnIntervalThinkTBR
+modifier_item_fun_ragnarok_2_lua.GetModifierHealthRegenPercentage = GetHealthRegenTBR
 function modifier_item_fun_ragnarok_2_lua:GetModifierStatusResistance() return self:GetAbility():GetSpecialValueFor("status_resistance") end
 function modifier_item_fun_ragnarok_2_lua:GetModifierPreAttack_BonusDamage() return self:GetAbility():GetSpecialValueFor("bonus_damage") end
 function modifier_item_fun_ragnarok_2_lua:GetModifierConstantManaRegen() return self:GetAbility():GetSpecialValueFor("manaregen") end
@@ -837,13 +877,13 @@ function modifier_item_fun_papyrus_scarab_aura_1:OnTooltip() return self:GetAbil
 function modifier_item_fun_papyrus_scarab_aura_1:OnTakeDamage(keys)
 	if keys.attacker ~= self:GetParent() or keys.unit:IsBuilding() or keys.unit:GetTeam() == keys.attacker:GetTeam() then return end
 	if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
-		local fHeal = keys.damage*self:GetAbility():GetSpecialValueFor('aura_lifesteal')
+		local fHeal = keys.damage*self:GetAbility():GetSpecialValueFor('aura_lifesteal')/100
 		if keys.unit:IsIllusion() then fHeal = fHeal/3 end
 		keys.attacker:Heal(fHeal, self:GetAbility())
 		ParticleManager:CreateParticle('particles/generic_gameplay/generic_lifesteal.vpcf', PATTACH_ABSORIGIN_FOLLOW, keys.attacker)
 	else
 		if bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL) == 0 then
-			local fHeal = keys.damage*self:GetAbility():GetSpecialValueFor('aura_lifesteal')
+			local fHeal = keys.damage*self:GetAbility():GetSpecialValueFor('aura_lifesteal')/100
 			if keys.unit:IsIllusion() then fHeal = fHeal/3 end
 			keys.attacker:Heal(fHeal, self:GetAbility())
 			ParticleManager:CreateParticle('particles/items3_fx/octarine_core_lifesteal.vpcf', PATTACH_ABSORIGIN_FOLLOW, keys.attacker)
@@ -867,6 +907,7 @@ function modifier_item_fun_papyrus_scarab_aura_emitter_1:IsAura() return true en
 function modifier_item_fun_papyrus_scarab_aura_emitter_1:GetModifierAura() return "modifier_item_fun_papyrus_scarab_aura_1" end
 function modifier_item_fun_papyrus_scarab_aura_emitter_1:GetAuraRadius() return self:GetAbility():GetSpecialValueFor('aura_radius') end
 function modifier_item_fun_papyrus_scarab_aura_emitter_1:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_FRIENDLY end
+function modifier_item_fun_papyrus_scarab_aura_emitter_1:GetAuraSearchFlags() return DOTA_UNIT_TARGET_FLAG_INVULNERABLE end
 function modifier_item_fun_papyrus_scarab_aura_emitter_1:GetAuraSearchType() return DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC end
 function modifier_item_fun_papyrus_scarab_aura_emitter_1:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
@@ -891,10 +932,10 @@ end
 function modifier_item_fun_papyrus_scarab_aura_emitter_3:GetModifierAura() return "modifier_item_fun_papyrus_scarab_aura_3" end
 function modifier_item_fun_papyrus_scarab_aura_emitter_3:GetAuraRadius() return self:GetAbility():GetSpecialValueFor('aura_radius_2') end
 function modifier_item_fun_papyrus_scarab_aura_emitter_3:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_FRIENDLY end
-function modifier_item_fun_papyrus_scarab_aura_emitter_3:GetAuraSearchType() return DOTA_UNIT_TARGET_BASIC end
+function modifier_item_fun_papyrus_scarab_aura_emitter_3:GetAuraSearchType() return DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO end
 function modifier_item_fun_papyrus_scarab_aura_emitter_3:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 function modifier_item_fun_papyrus_scarab_aura_emitter_3:GetAuraEntityReject(hTarget)
-	if hTarget:GetPlayerOwnerID() == self:GetParent():GetPlayerOwnerID() then return false else return true end
+	if (not string.find(hTarget:GetUnitName(), 'hero')) and hTarget:GetPlayerOwnerID() == self:GetParent():GetPlayerOwnerID() then return false else return true end
 end
 
 function modifier_item_fun_papyrus_scarab_aura_emitter_3:OnCreated()

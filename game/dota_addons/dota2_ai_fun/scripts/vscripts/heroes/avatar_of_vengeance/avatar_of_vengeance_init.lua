@@ -5,7 +5,7 @@ local tNewAbilities = {
 	"avatar_of_vengeance_dispersion",
 	"avatar_of_vengeance_direct_vengeance",
 	"avatar_of_vengeance_vengeance",
-	"special_bonus_gold_income_25",
+	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
 	"special_bonus_unique_avatar_of_vengeance_1",
 	"special_bonus_unique_avatar_of_vengeance_2",

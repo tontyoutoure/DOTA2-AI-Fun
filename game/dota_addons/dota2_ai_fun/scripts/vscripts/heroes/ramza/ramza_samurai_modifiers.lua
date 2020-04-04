@@ -65,7 +65,7 @@ function modifier_ramza_samurai_doublehand:IsHidden() return true end
 function modifier_ramza_samurai_doublehand:RemoveOnDeath() return false end
 function modifier_ramza_samurai_doublehand:IsPurgable() return false end
 function modifier_ramza_samurai_doublehand:DeclareFunctions() return {MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE} end
-function modifier_ramza_samurai_doublehand:OnCreated() self:SetStackCount(self:GetAbility():GetSpecialValueFor("damage_bonus")) end
+function modifier_ramza_samurai_doublehand:OnCreated() if IsClient() then return end self:SetStackCount(self:GetAbility():GetSpecialValueFor("damage_bonus")) end
 function modifier_ramza_samurai_doublehand:GetModifierBaseDamageOutgoing_Percentage()
 	if self:GetParent():PassivesDisabled() then 
 		return 0 

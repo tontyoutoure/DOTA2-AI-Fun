@@ -1,39 +1,64 @@
 "use strict"; 
 var Ingame={};
-Ingame.bInitialized = false;
+Ingame.bInitialized = false; 
 
 Ingame.Initialize = function() {
-	var aItems = $.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse('GridUpgradesCategory').FindChildrenWithClassTraverse('MainShopItem');
-	for (i in aItems) {
-		aItems[i].style.marginBottom='0px';
-		aItems[i].style.marginTop='0px';
-	}
 	Ingame.tLoadingGameOption = CustomNetTables.GetTableValue( 'game_options', 'loading_game_options' );
 	Ingame.tVoteOptionsResult = CustomNetTables.GetTableValue( 'game_options', 'vote_options_result' );
+//	$.Msg(Ingame.tLoadingGameOption)
+	
+	if (!(Ingame.tLoadingGameOption.enable_lottery)) {
+		var aMainShopItems = $.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse('GridBasicItemsCategory').FindChildrenWithClassTraverse('MainShopItem');
+		for (i in aMainShopItems) {
+			if (aMainShopItems[i].FindChild('ItemImage').itemname.search('lottery') >= 0)
+				aMainShopItems[i].visible=false
+		}
+	}
+	if (this.tVoteOptionsResult.iBanFunItems == 1) {
+		var aMainShopItems = $.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse('GridUpgradesCategory').FindChildrenWithClassTraverse('MainShopItem');
+		for (i in aMainShopItems) {
+			if (aMainShopItems[i].FindChild('ItemImage').itemname.search('_fun_') >= 0)
+				aMainShopItems[i].visible=false
+		}
+	}
+	else {
+		var aUpgradeItems = $.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse('GridUpgradesCategory').FindChildrenWithClassTraverse('MainShopItem');
+		for (i in aUpgradeItems) {
+			aUpgradeItems[i].style.marginBottom='0px';
+			aUpgradeItems[i].style.marginTop='0px';
+		}
+	}
+
+
+
+
+
 	Ingame.tInfomationTabs = {'#GameOptionIngameContainer' : true}
 	for (var i in aGameOptionList) {
-		if (aGameOptionList[i].type == 'dropdown') {
-			$("#LoadingGameOptionContainer").BCreateChildren('<Panel id="game_option_label_container_'+aGameOptionList[i].id+'" class="GameOptionLabelContainer"/>')
-			$("#game_option_label_container_"+aGameOptionList[i].id).BCreateChildren('<Label class="GameOptionKeyLabel" id="game_option_key_label_'+aGameOptionList[i].id+'"/>')
-			$("#game_option_key_label_"+aGameOptionList[i].id).text=$.Localize(aGameOptionList[i].id)+$.Localize("GameOptionColon")
-			$("#game_option_label_container_"+aGameOptionList[i].id).BCreateChildren('<Label class="GameOptionValueLabel" id="game_option_value_label_'+aGameOptionList[i].id+'"/>')
-			if (aGameOptionList[i].id.indexOf('percentage') > 0) {
-				$("#game_option_value_label_"+aGameOptionList[i].id).text=Ingame.tLoadingGameOption[aGameOptionList[i].id]+"%"
+		for (var j in aGameOptionList[i]) {
+			if (aGameOptionList[i][j].type == 'dropdown') {
+				$("#LoadingGameOptionContainer").BCreateChildren('<Panel id="game_option_label_container_'+aGameOptionList[i][j].id+'" class="GameOptionLabelContainer"/>')
+				$("#game_option_label_container_"+aGameOptionList[i][j].id).BCreateChildren('<Label class="GameOptionKeyLabel" id="game_option_key_label_'+aGameOptionList[i][j].id+'"/>')
+				$("#game_option_key_label_"+aGameOptionList[i][j].id).text=$.Localize(aGameOptionList[i][j].id)+$.Localize("GameOptionColon")
+				$("#game_option_label_container_"+aGameOptionList[i][j].id).BCreateChildren('<Label class="GameOptionValueLabel" id="game_option_value_label_'+aGameOptionList[i][j].id+'"/>')
+				if (aGameOptionList[i][j].id.indexOf('percentage') > 0) {
+					$("#game_option_value_label_"+aGameOptionList[i][j].id).text=Ingame.tLoadingGameOption[aGameOptionList[i][j].id]+"%"
+				}
+				else {
+					$("#game_option_value_label_"+aGameOptionList[i][j].id).text=Ingame.tLoadingGameOption[aGameOptionList[i][j].id]
+				}
 			}
-			else {
-				$("#game_option_value_label_"+aGameOptionList[i].id).text=Ingame.tLoadingGameOption[aGameOptionList[i].id]
-			}
-		}
-		else if (aGameOptionList[i].type == 'toggle') {
-			$("#LoadingGameOptionContainer").BCreateChildren('<Panel id="game_option_label_container_'+aGameOptionList[i].id+'" class="GameOptionLabelContainer"/>')
-			$("#game_option_label_container_"+aGameOptionList[i].id).BCreateChildren('<Label class="GameOptionKeyLabel" id="game_option_key_label_'+aGameOptionList[i].id+'"/>')
-			$("#game_option_key_label_"+aGameOptionList[i].id).text=$.Localize(aGameOptionList[i].id)+$.Localize("GameOptionColon")
-			$("#game_option_label_container_"+aGameOptionList[i].id).BCreateChildren('<Label class="GameOptionValueLabel" id="game_option_value_label_'+aGameOptionList[i].id+'"/>')
-			if (Ingame.tLoadingGameOption[aGameOptionList[i].id] == "1") {
-				$("#game_option_value_label_"+aGameOptionList[i].id).text=$.Localize('GameUI_Yes')
-			}
-			else {
-				$("#game_option_value_label_"+aGameOptionList[i].id).text=$.Localize('GameUI_No')
+			else if (aGameOptionList[i][j].type == 'toggle') {
+				$("#LoadingGameOptionContainer").BCreateChildren('<Panel id="game_option_label_container_'+aGameOptionList[i][j].id+'" class="GameOptionLabelContainer"/>')
+				$("#game_option_label_container_"+aGameOptionList[i][j].id).BCreateChildren('<Label class="GameOptionKeyLabel" id="game_option_key_label_'+aGameOptionList[i][j].id+'"/>')
+				$("#game_option_key_label_"+aGameOptionList[i][j].id).text=$.Localize(aGameOptionList[i][j].id)+$.Localize("GameOptionColon")
+				$("#game_option_label_container_"+aGameOptionList[i][j].id).BCreateChildren('<Label class="GameOptionValueLabel" id="game_option_value_label_'+aGameOptionList[i][j].id+'"/>')
+				if (Ingame.tLoadingGameOption[aGameOptionList[i][j].id] == "1") {
+					$("#game_option_value_label_"+aGameOptionList[i][j].id).text=$.Localize('GameUI_Yes')
+				}
+				else {
+					$("#game_option_value_label_"+aGameOptionList[i][j].id).text=$.Localize('GameUI_No')
+				}
 			}
 		}
 	}
@@ -71,5 +96,10 @@ Ingame.ChangeTabState = function (sSelectedTabName, bOpen) {
 			$(sTabName).visible = false;
 	}
 }
+function Testf(keys) {
+	$.Msg(keys)
+}
+//		GameEvents.Subscribe( "item_preview_closed", Testf);
 
-Ingame.Initialize(); 
+Ingame.Initialize();
+var t=Game.GetLocalPlayerInfo()

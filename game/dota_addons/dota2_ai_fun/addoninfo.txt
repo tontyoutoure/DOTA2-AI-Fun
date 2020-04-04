@@ -6,4 +6,8 @@
 	{
 		"MaxPlayers"		"24"
 	}
+	"without_vote"
+	{
+		"MaxPlayers"		"24"
+	}
 }

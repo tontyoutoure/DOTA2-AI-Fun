@@ -10,6 +10,7 @@ persuasive_change_item_slot_5_lua =class({})
 persuasive_change_item_slot_6_lua =class({})
 persuasive_change_item_slot_7_lua =class({})
 persuasive_change_item_slot_8_lua =class({})
+persuasive_change_item_slot_9_lua =class({})
 persuasive_raise_lua = class({})
 
 function persuasive_swindle_lua:IsStealable() return false end
@@ -23,6 +24,7 @@ function persuasive_change_item_slot_5_lua:IsStealable() return false end
 function persuasive_change_item_slot_6_lua:IsStealable() return false end
 function persuasive_change_item_slot_7_lua:IsStealable() return false end
 function persuasive_change_item_slot_8_lua:IsStealable() return false end
+function persuasive_change_item_slot_9_lua:IsStealable() return false end
 
 function persuasive_swindle_lua:OnUpgrade()
 	if self:GetLevel() ~= 1 then return end
@@ -229,13 +231,24 @@ end
 
 function persuasive_change_item_slot_8_lua:OnSpellStart()
 	local hCaster = self:GetCaster()
-	hCaster:AddAbility("persuasive_change_item_slot_0_lua")
-	hCaster:UpgradeAbility(hCaster:FindAbilityByName("persuasive_change_item_slot_0_lua"))
-	hCaster:SwapAbilities("persuasive_change_item_slot_8_lua", "persuasive_change_item_slot_0_lua", true, true)
-	hCaster.iItemSlot = 0
+	hCaster:AddAbility("persuasive_change_item_slot_9_lua")
+	hCaster:UpgradeAbility(hCaster:FindAbilityByName("persuasive_change_item_slot_9_lua"))
+	hCaster:SwapAbilities("persuasive_change_item_slot_8_lua", "persuasive_change_item_slot_9_lua", true, true)
+	hCaster.iItemSlot = 9
 	iAbilityPoints = hCaster:GetAbilityPoints()
 	hCaster:SetAbilityPoints(iAbilityPoints+1)
 	hCaster:RemoveAbility("persuasive_change_item_slot_8_lua")
+end
+
+function persuasive_change_item_slot_9_lua:OnSpellStart()
+	local hCaster = self:GetCaster()
+	hCaster:AddAbility("persuasive_change_item_slot_0_lua")
+	hCaster:UpgradeAbility(hCaster:FindAbilityByName("persuasive_change_item_slot_0_lua"))
+	hCaster:SwapAbilities("persuasive_change_item_slot_9_lua", "persuasive_change_item_slot_0_lua", true, true)
+	hCaster.iItemSlot = 0
+	iAbilityPoints = hCaster:GetAbilityPoints()
+	hCaster:SetAbilityPoints(iAbilityPoints+1)
+	hCaster:RemoveAbility("persuasive_change_item_slot_9_lua")
 end
 
 function persuasive_raise_lua.Raise(hCaster, hTarget)

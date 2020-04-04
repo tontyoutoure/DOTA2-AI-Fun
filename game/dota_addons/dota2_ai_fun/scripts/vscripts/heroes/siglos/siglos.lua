@@ -84,7 +84,7 @@ function siglos_mind_control:OnSpellStart()
 	self.hHeroCreated:AddNewModifier(hCaster, self,"modifier_invulnerable", {})
 	self.hHeroCreated:SetControllableByPlayer(hCaster:GetPlayerOwnerID(), true)
 	self.hHeroCreated:SetForwardVector(self.hTarget:GetForwardVector())
-	for j,i in ipairs(tItemTable) do
+	for j,i in ipairs(tItemInventorySlotTable) do
 		local hItem = self.hTarget:GetItemInSlot(i)
 		if hItem then
 			local hItemCreated = self.hHeroCreated:AddItemByName(hItem:GetName())

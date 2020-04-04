@@ -28,7 +28,7 @@ function intimidator_be_my_friend_lua:OnSpellStart()
 	if self.hSpecial and self.hSpecial:GetLevel() > 0 then
 		local caster = self:GetCaster()
 		local duration = self:GetChannelTime()
-		local tTargets = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetOrigin(), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS+DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
+		local tTargets = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetOrigin(), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS+DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 		for k, v in ipairs(tTargets) do
 			self.tModifiers[k] = v:AddNewModifier(caster, self, "modifier_intimidator_be_my_friend_lua", {Duration = duration*CalculateStatusResist(v)})
 			self.tParticles[k] = ParticleManager:CreateParticle("particles/econ/items/razor/razor_punctured_crest_golden/razor_static_link_new_arc_blade_golden.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, v)

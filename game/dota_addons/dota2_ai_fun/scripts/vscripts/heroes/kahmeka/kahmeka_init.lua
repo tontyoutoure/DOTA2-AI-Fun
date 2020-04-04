@@ -5,7 +5,7 @@ local tNewAbilities = {
 	"kahmeka_wounding_spear",
 	"generic_hidden",
 	"kahmeka_fungwarb",
-	"special_bonus_gold_income_25",
+	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
 	"special_bonus_unique_kahmeka_1",
 	"special_bonus_hp_250",

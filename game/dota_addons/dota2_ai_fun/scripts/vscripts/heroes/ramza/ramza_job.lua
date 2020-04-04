@@ -2,6 +2,10 @@ CRamzaJob = {}
 
 require("heroes/ramza/ramza_job_data")
 
+function CRamzaJob:CheckOnionTalent()
+	if self.hParent:FindAbilityByName('special_bonus_ramza_4'):GetLevel() > 0 then return true else return false end
+end
+
 function CRamzaJob:GainJobPoint(iJobPoint)
 	local iPlayerID = self.hParent:GetOwner():GetPlayerID()
 	self.tJobPoints[self.iCurrentJob] = self.tJobPoints[self.iCurrentJob] + iJobPoint
@@ -67,7 +71,6 @@ function CRamzaJob:LevelUpSkills()
 			end
 		end		
 	end
-	
 	--Level up job command for archer, dragoon, ninja, arithmetician, mime, onion knight
 	for i = 1, 9 do
 		if (
@@ -237,12 +240,10 @@ end
 
 function CRamzaJob:ChangeJob(iJobToGo, iChangeJobState)
 	local iPlayerID = self.hParent:GetOwner():GetPlayerID()	
+	if self.hParent:GetAbilityByIndex(5):GetName() == 'ramza_go_back_lua' then
+		self.hParent:FindAbilityByName('ramza_go_back_lua'):CastAbility()
+	end
 	if iChangeJobState == SELECT_JOB then
-		
-		if self.hParent:GetAbilityByIndex(5):GetName() == 'ramza_go_back_lua' then
-			self.hParent:FindAbilityByName('ramza_go_back_lua'):CastAbility()
-		end
-		
 		self.hParent:GetAbilityByIndex(1):SetActivated(true)
 		self.hParent:FindModifierByName("modifier_ramza_job_manager"):SetStackCount(iJobToGo)
 		self:ChangeStat(iJobToGo)
@@ -250,7 +251,7 @@ function CRamzaJob:ChangeJob(iJobToGo, iChangeJobState)
 		self.iCurrentJob = iJobToGo
 		
 		--remove secondary skill if it's job command of current job or current job can have no secondary skill
-		if self.iCurrentJob == self.iSecondarySkill or self.iCurrentJob == RAMZA_JOB_MIME or self.iCurrentJob == RAMZA_JOB_ONION_KNIGHT then 
+		if self.iCurrentJob == self.iSecondarySkill or self.iCurrentJob == RAMZA_JOB_MIME or (self.iCurrentJob == RAMZA_JOB_ONION_KNIGHT and not self.bOnionTalent) then 
 			if self.hParent:FindAbilityByName("special_bonus_ramza_3"):GetLevel() == 1 and self.iSecondarySkill > 0 then
 				self.hParent:RemoveModifierByName("modifier_" .. self.tOtherAbilities[self.iSecondarySkill][3][1])
 				self.hParent:RemoveModifierByName("modifier_" .. self.tOtherAbilities[self.iSecondarySkill][5][1])
@@ -273,7 +274,7 @@ function CRamzaJob:ChangeJob(iJobToGo, iChangeJobState)
 				self.hParent:AddAbility("ramza_select_secondary_skill_lua"):SetLevel(1)
 			end
 			
-			if self.iCurrentJob == RAMZA_JOB_MIME or self.iCurrentJob == RAMZA_JOB_ONION_KNIGHT then
+			if self.iCurrentJob == RAMZA_JOB_MIME or (self.iCurrentJob == RAMZA_JOB_ONION_KNIGHT and not self.bOnionTalent) then
 				self.hParent:FindAbilityByName("ramza_select_secondary_skill_lua"):SetActivated(false)
 			end
 		end
@@ -360,9 +361,6 @@ function CRamzaJob:ChangeJob(iJobToGo, iChangeJobState)
 		CustomNetTables:SetTableValue("ramza", "current_job_"..tostring(iPlayerID), {self.iCurrentJob})		
 		CustomGameEventManager:Send_ServerToPlayer( self.hParent:GetOwner(), "ramza_close_selection", {iHeroEntityIndex=self.hParent:entindex()})
 	else	
-		if self.hParent:GetAbilityByIndex(5):GetName() == 'ramza_go_back_lua' then
-			self.hParent:FindAbilityByName('ramza_go_back_lua'):CastAbility()
-		end
 		
 		if self.hParent:FindAbilityByName("special_bonus_ramza_3"):GetLevel() == 1 and self.iSecondarySkill > 0 then
 			self.hParent:RemoveModifierByName("modifier_" .. self.tOtherAbilities[self.iSecondarySkill][3][1])
@@ -416,6 +414,34 @@ function CRamzaJob:ChangeJob(iJobToGo, iChangeJobState)
 
 		CustomNetTables:SetTableValue("ramza", "current_secondary_skill_"..tostring(iPlayerID), {self.iSecondarySkill})
 		CustomGameEventManager:Send_ServerToPlayer( self.hParent:GetOwner(), "ramza_close_selection", {iHeroEntityIndex=self.hParent:entindex()} )
+	end
+	if self.iCurrentJob == RAMZA_JOB_ONION_KNIGHT and self.iSecondarySkill > 0 then
+		for i = 1, 3 do
+			local sName = self.hParent:GetAbilityByIndex(i+1):GetName()
+			-- keep cooldown state
+			if sName == "ramza_dragoon_dragonheart" or sName == "ramza_monk_critical_recover_hp" or sName == "ramza_summoner_critical_recover_mp" then
+				if self.hParent:FindAbilityByName(sName):IsCooldownReady() then
+					self.tPassiveCooldownReadyTime[sName] = Time()
+				else
+					self.tPassiveCooldownReadyTime[sName] = Time()+self.hParent:FindAbilityByName(sName):GetCooldownTimeRemaining()
+				end
+			end
+			self.hParent:RemoveAbility(sName)			
+			self.hParent:RemoveModifierByName('modifier_'..sName)	
+			local sName1 = self.tJobAbilityBuses.tOtherAbilityBuses[self.iSecondarySkill][i]
+			self.hParent:AddAbility(sName1)			
+			if (sName1 == "ramza_dragoon_dragonheart" or sName1 == "ramza_monk_critical_recover_hp" or sName1 == "ramza_summoner_critical_recover_mp") and self.tPassiveCooldownReadyTime[sName1] and self.tPassiveCooldownReadyTime[sName1] > Time() then
+				self.hParent:FindAbilityByName(sName1):StartCooldown(self.tPassiveCooldownReadyTime[sName1] - Time())
+			end
+		end
+		for i = 1, 3 do
+			if self.tJobLevels[self.iSecondarySkill] >= self.tJobAbilityBuses.tOtherAbilityBusRequirements[self.iSecondarySkill][i] then
+				self.hParent:FindAbilityByName(self.tJobAbilityBuses.tOtherAbilityBuses[self.iSecondarySkill][i]):SetLevel(1)
+				if self.hParent:HasModifier("modifier_ramza_time_mage_swiftness") and self.tTimeMageAbilities[self.tJobAbilityBuses.tOtherAbilityBuses[self.iSecondarySkill][i]] then
+					self.hParent:FindAbilityByName(self.tJobAbilityBuses.tOtherAbilityBuses[self.iSecondarySkill][i]):SetLevel(2)
+				end
+			end
+		end
 	end
 end
 

@@ -95,5 +95,12 @@
     // Bots
     //----------------------------------------------------------------
     "AttackDesire"        "1.5"   // How much bots want to attack them vs other non-hero things
-  } 
+  } 	
+  "npc_dota_courier10"
+	{
+		// General
+		//----------------------------------------------------------------
+		"BaseClass"					"npc_dota_courier"	// Class of entity of link to.
+		"Level"						"10"
+	}
 }

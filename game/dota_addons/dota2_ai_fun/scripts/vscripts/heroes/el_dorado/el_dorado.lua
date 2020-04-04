@@ -15,7 +15,7 @@ local tItemList = {
 	"item_blade_of_alacrity",
 	"item_staff_of_wizardry",
 	"item_ring_of_protection",
-	"item_stout_shield",
+--	"item_stout_shield",
 	"item_quelling_blade",
 	"item_infused_raindrop",
 	"item_blight_stone",
@@ -134,6 +134,7 @@ el_dorado_change_item_slot_5_lua =class({})
 el_dorado_change_item_slot_6_lua =class({})
 el_dorado_change_item_slot_7_lua =class({})
 el_dorado_change_item_slot_8_lua =class({})
+el_dorado_change_item_slot_9_lua =class({})
 
 
 function el_dorado_change_item_slot_0_lua:IsStealable() return false end
@@ -145,6 +146,7 @@ function el_dorado_change_item_slot_5_lua:IsStealable() return false end
 function el_dorado_change_item_slot_6_lua:IsStealable() return false end
 function el_dorado_change_item_slot_7_lua:IsStealable() return false end
 function el_dorado_change_item_slot_8_lua:IsStealable() return false end
+function el_dorado_change_item_slot_9_lua:IsStealable() return false end
 
 function el_dorado_change_item_slot_0_lua:ProcsMagicStick() return false end
 function el_dorado_change_item_slot_1_lua:ProcsMagicStick() return false end
@@ -155,6 +157,7 @@ function el_dorado_change_item_slot_5_lua:ProcsMagicStick() return false end
 function el_dorado_change_item_slot_6_lua:ProcsMagicStick() return false end
 function el_dorado_change_item_slot_7_lua:ProcsMagicStick() return false end
 function el_dorado_change_item_slot_8_lua:ProcsMagicStick() return false end
+function el_dorado_change_item_slot_9_lua:ProcsMagicStick() return false end
 
 function el_dorado_change_item_slot_0_lua:OnUpgrade()
 	self:GetCaster().iItemSlot = 0
@@ -164,7 +167,7 @@ local function EldoradoChangeItemSlot(self)
 	local sName = self:GetName()
 	local iSlot = tonumber(string.match(sName, "%d"))
 	local hCaster = self:GetCaster()
-	if iSlot < 8 then
+	if iSlot < 9 then
 		hCaster:AddAbility("el_dorado_change_item_slot_"..tostring(iSlot+1).."_lua"):SetLevel(1)
 		hCaster:SwapAbilities(sName, "el_dorado_change_item_slot_"..tostring(iSlot+1).."_lua", true, true)
 		hCaster.iItemSlot = iSlot+1
@@ -187,6 +190,7 @@ el_dorado_change_item_slot_5_lua.OnSpellStart = EldoradoChangeItemSlot
 el_dorado_change_item_slot_6_lua.OnSpellStart = EldoradoChangeItemSlot
 el_dorado_change_item_slot_7_lua.OnSpellStart = EldoradoChangeItemSlot
 el_dorado_change_item_slot_8_lua.OnSpellStart = EldoradoChangeItemSlot
+el_dorado_change_item_slot_9_lua.OnSpellStart = EldoradoChangeItemSlot
 
 el_dorado_artificial_frog = class({})
 

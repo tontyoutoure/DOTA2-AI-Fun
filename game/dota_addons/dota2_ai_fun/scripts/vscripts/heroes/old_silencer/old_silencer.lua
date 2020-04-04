@@ -176,6 +176,7 @@ function old_silencer_rain_of_chaos:OnSpellStart()
 					end
 				end
 				local hInfernal = CreateUnitByName("old_silencer_infernal", vTarget+vRelative, true, hCaster, hCaster, hCaster:GetTeamNumber())
+				print(hInfernal:GetPlayerOwnerID())
 				hInfernal:SetControllableByPlayer(hCaster:GetPlayerOwnerID(), true)	
 				FindClearSpaceForUnit(hInfernal, hInfernal:GetOrigin(), true)	
 				hInfernal:SetForwardVector(hCaster:GetForwardVector())

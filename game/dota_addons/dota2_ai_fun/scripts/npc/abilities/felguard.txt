@@ -185,7 +185,7 @@
 			"08"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"lifedrain_percentage_scepter"	"15"
+				"lifedrain_percentage_scepter"	"5"
 				"RequiresScepter"			"1"
 			}
 		}

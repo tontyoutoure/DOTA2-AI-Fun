@@ -130,25 +130,29 @@ function _ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContaine
 	if ( playerItemsContainer )
 	{
 		var playerItems = Game.GetPlayerItems( playerId );
+		var iHeroIndex = Players.GetPlayerHeroEntityIndex(playerId)
 		if ( playerItems )
 		{
 //			$.Msg( "playerItems = ", playerItems );
-			for ( var i = playerItems.inventory_slot_min; i < playerItems.inventory_slot_max; ++i )
+
+			var aItemSlots = [0,1,2,3,4,5,6,7,8,16]
+			for ( var i in aItemSlots )
 			{
-				var itemPanelName = "_dynamic_item_" + i;
+				var itemPanelName = "_dynamic_item_" + aItemSlots[i];
 				var itemPanel = playerItemsContainer.FindChild( itemPanelName );
 				if ( itemPanel === null )
 				{
 					itemPanel = $.CreatePanel( "Image", playerItemsContainer, itemPanelName );
-					if (i>5) {
+					if (aItemSlots[i]>5) {
 						itemPanel.AddClass( "BackPackImage" );
 					}
 				}
 
-				var itemInfo = playerItems.inventory[i];
-				if ( itemInfo )
+				var itemInfo = playerItems.inventory[aItemSlots[i]];
+				var iItemIndex = Entities.GetItemInSlot(iHeroIndex, aItemSlots[i])
+				if ( iItemIndex )
 				{
-					var sItemName = itemInfo.item_name
+					sItemName = Abilities.GetAbilityName(iItemIndex)
 					var item_image_name = "file://{images}/items/" + sItemName.replace( "item_", "" ) + ".png"
 					if ( sItemName.indexOf( "recipe" ) >= 0 )
 					{
@@ -161,13 +165,16 @@ function _ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContaine
 					}
 					else
 						itemPanel.SetImage( item_image_name );
-					SetItemPanel(itemPanel, Players.GetPlayerHeroEntityIndex(playerId), i);
+					SetItemPanel(itemPanel, Players.GetPlayerHeroEntityIndex(playerId), aItemSlots[i]);
 				}
 				else
 				{
 					itemPanel.SetImage( "" );
 				}
-				if(i == 5) {
+				if(aItemSlots[i] == 5) {
+					playerItemsContainer.BCreateChildren("<Panel class='ScoreCol_ItemsSeperation'/>") 
+				}
+				if(aItemSlots[i] == 8) {
 					playerItemsContainer.BCreateChildren("<Panel class='ScoreCol_ItemsSeperation'/>") 
 				}
 			}
@@ -375,4 +382,4 @@ function ScoreboardUpdater_GetSortedTeamInfoList( scoreboardHandle )
 	}
 
 	return teamsList;
-}
+} 

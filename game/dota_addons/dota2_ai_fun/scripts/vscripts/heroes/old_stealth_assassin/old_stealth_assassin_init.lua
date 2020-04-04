@@ -5,7 +5,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"generic_hidden",
 	"old_stealth_assassin_death_ward",
-	"special_bonus_gold_income_25",
+	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
 	"special_bonus_unique_old_stealth_assassin_1",
 	"special_bonus_unique_old_stealth_assassin_2",
@@ -17,7 +17,7 @@ local tNewAbilities = {
 
 local tHeroBaseStats = {
 	MovementSpeed = 295,
-	AttackRate = 17,
+	AttackRate = 1.7,
 	AttackDamageMin = 24,
 	AttackDamageMax = 28,
 	AttackRange = 150,

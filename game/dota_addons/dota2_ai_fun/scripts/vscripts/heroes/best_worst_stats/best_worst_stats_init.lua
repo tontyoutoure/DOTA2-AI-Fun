@@ -10,7 +10,7 @@ function modifier_frozen_heroes:GetEffectAttachType() return PATTACH_ABSORIGIN_F
 if IsServer() then
 	tHeroInfos = LoadKeyValues('scripts/npc/npc_heroes.txt')
 	tAbilityInfos = LoadKeyValues('scripts/npc/npc_abilities.txt')
-	tStats = {'AttackDamageMin', 'AttackDamageMax', 'AttackRate', 'AttackAnimationPoint', 'AttackRange', 'MovementSpeed', 'MovementTurnRate', 'AttributeBaseStrength', 'AttributeStrengthGain', 'AttributeBaseIntelligence', 'AttributeIntelligenceGain', 'AttributeBaseAgility', 'AttributeAgilityGain', 'StatusHealthRegen', 'ArmorPhysical', 'MagicalResistance', 'VisionNighttimeRange', 'VisionDaytimeRange'}
+	tStats = {'AttackDamageMin', 'AttackDamageMax', 'AttackRate', 'AttackAnimationPoint', 'AttackRange', 'MovementSpeed', 'MovementTurnRate', 'AttributeBaseStrength', 'AttributeStrengthGain', 'AttributeBaseIntelligence', 'AttributeIntelligenceGain', 'AttributeBaseAgility', 'AttributeAgilityGain', 'StatusHealthRegen', 'ArmorPhysical', 'VisionNighttimeRange', 'VisionDaytimeRange'}
 
 
 
@@ -177,7 +177,6 @@ if IsServer() then
 		ArmorPhysical = tMaxMinStats.ArmorPhysical[2],
 		AttackRange = tMaxMinStats.AttackRange[2],
 		StatusHealthRegen = tMaxMinStats.StatusHealthRegen[2],
-		MagicalResistance = tMaxMinStats.MagicalResistance[2],
 		ProjectileSpeed = ProjectileSpeed[2],
 		MovementTurnRate = tMaxMinStats.MovementTurnRate[2],
 		VisionDaytimeRange = tMaxMinStats.VisionDaytimeRange[2],
@@ -199,7 +198,6 @@ if IsServer() then
 		ArmorPhysical = tMaxMinStats.ArmorPhysical[1],
 		AttackRange = tMaxMinStats.AttackRange[1],
 		StatusHealthRegen = tMaxMinStats.StatusHealthRegen[1],
-		MagicalResistance = tMaxMinStats.MagicalResistance[1],
 		ProjectileSpeed = ProjectileSpeed[1],
 		MovementTurnRate = tMaxMinStats.MovementTurnRate[1],
 		PrimaryAttribute = DOTA_ATTRIBUTE_AGILITY,

@@ -1,7 +1,7 @@
 -- d:/desktop/2.lua
-fConstant = io.open("D:/desktop/CONSTANT.txt", "w")
-fFunction = io.open("D:/desktop/Function.txt", "w")
-fTable = io.open("D:/desktop/table.txt", "w")
+fConstant = io.open("C:/Users/LI Kun/Desktop/CONSTANT.txt", "w")
+fFunction = io.open("C:/Users/LI Kun/Desktop/Function.txt", "w")
+fTable = io.open("C:/Users/LI Kun/Desktop/table.txt", "w")
 
 tTable = {}
 tConstant = {}

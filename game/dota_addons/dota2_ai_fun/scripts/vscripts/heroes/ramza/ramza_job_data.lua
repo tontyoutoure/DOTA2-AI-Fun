@@ -50,6 +50,10 @@ CRamzaJob.tJobNames = {
 	"ramza_job_onion_knight"
 }
 
+CRamzaJob.tModifierJobKeep = {
+	["ramza_white_mage_reraise"] = true;
+}
+
 CRamzaJob.tTimeMageAbilities = {
 	ramza_time_mage_time_magicks_haste = true,
 	ramza_time_mage_time_magicks_slow = true,

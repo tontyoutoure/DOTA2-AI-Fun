@@ -29,7 +29,7 @@ DIRE_XP_MULTIPLIER = 1
 DIRE_GOLD_MULTIPLIER = 1
 RESPAWN_TIME_PERCENTAGE = 100
 MAX_LEVEL = 25                         -- What level should we let heroes get to?
-POST_GAME_TIME = 60.0                   -- How long should we let people look at the scoreboard before closing the server automatically?
+POST_GAME_TIME = 600.0                   -- How long should we let people look at the scoreboard before closing the server automatically?
 
 -- The above are enabled ones
 --[[

@@ -7,7 +7,7 @@ local tNewAbilities = {
 	"generic_hidden",
 	"generic_hidden",
 	"hamsterlord_call_of_hamster",
-	"special_bonus_gold_income_25",
+	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
 	"special_bonus_hamsterlord_3",
 	"special_bonus_hamsterlord_1",

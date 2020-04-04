@@ -77,8 +77,9 @@ function GameMode:OnGameStateChanged( keys )
         self.numPlayers = num
 --		if IsInToolsMode() then return end
 
+--		if IsInToolsMode() and GetMapName() ~= "dota" then return end
        GameRules:GetGameModeEntity():SetBotThinkingEnabled(true)
-		if IsInToolsMode() and GetMapName() ~= "dota" then return end
+	   
         -- Eanble bots and fill empty slots
         if IsServer() == true then
             
@@ -95,23 +96,16 @@ function GameMode:OnGameStateChanged( keys )
             end
             GameRules:GetGameModeEntity():SetBotThinkingEnabled(true)
             --SendToServerConsole("dota_bot_set_difficulty 2")
-            --SendToServerConsole("dota_bot_populate")
             --SendToServerConsole("dota_bot_set_difficulty 2")
         end
     elseif state == DOTA_GAMERULES_STATE_PRE_GAME then
 		Tutorial:StartTutorialMode()
 		local tTowers = Entities:FindAllByClassname("npc_dota_tower")
 		local tBarracks = Entities:FindAllByClassname("npc_dota_barracks")
-		local tHealers = Entities:FindAllByClassname("npc_dota_healer")
+--		local tHealers = Entities:FindAllByClassname("npc_dota_healer")
 		local tForts = Entities:FindAllByClassname("npc_dota_fort")
 		local tFillers = Entities:FindAllByClassname("npc_dota_filler")
-		local tCouriers = Entities:FindAllByClassname("npc_dota_courier")
-		for hCourier in pairs(tCouriers) do
-			print(hCourier:GetModelName())
-			if self.iFastCourier then
-				hCourier:AddNewModifier(hCourier, nil, 'modifier_fast_courier', nil)
-			end
-		end
+
 		self.tBackdoorBuildings = {}
 		self.tBackdoorInBaseBuildings = {}
 		local iTowerPower = self.iTowerPower or 1
@@ -129,12 +123,14 @@ function GameMode:OnGameStateChanged( keys )
 			if v:HasAbility("backdoor_protection") then table.insert(self.tBackdoorBuildings, v) end
 			if v:HasAbility("backdoor_protection_in_base") then table.insert(self.tBackdoorInBaseBuildings, v) end
 		end
+		--[[
 		for k, v in pairs(tHealers) do
 			v:AddNewModifier(v, nil, "modifier_tower_endure", {}):SetStackCount(iTowerEndure)
 			v:AddNewModifier(v, nil, "modifier_backdoor_healing", {})
 			if v:HasAbility("backdoor_protection") then table.insert(self.tBackdoorBuildings, v) end
 			if v:HasAbility("backdoor_protection_in_base") then table.insert(self.tBackdoorInBaseBuildings, v) end
 		end
+		]]
 		for k, v in pairs(tForts) do
 			v:AddNewModifier(v, nil, "modifier_tower_endure", {}):SetStackCount(iTowerEndure)
 			v:AddNewModifier(v, nil, "modifier_backdoor_healing", {})
@@ -186,12 +182,22 @@ end
 bAllFunHeroes = false
 function GameMode:_OnNPCSpawned(keys)
 	if GameRules:State_Get() < DOTA_GAMERULES_STATE_PRE_GAME then return end
-	if EntIndexToHScript(keys.entindex):IsCourier() and self.iFastCourier > 0 then
-		CustomGameEventManager:Send_ServerToAllClients("panorama_print", {courier_model_name = EntIndexToHScript(keys.entindex):GetModelName()})
-		EntIndexToHScript(keys.entindex):AddNewModifier(EntIndexToHScript(keys.entindex), nil, 'modifier_fast_courier', nil)
+	if EntIndexToHScript(keys.entindex):IsCourier() then
+		local hCourier = EntIndexToHScript(keys.entindex)
+		if self.iFastCourier > 0 then
+			CustomGameEventManager:Send_ServerToAllClients("panorama_print", {courier_fast_player = hCourier:GetPlayerOwnerID()})
+			hCourier:AddNewModifier(hCourier, nil, 'modifier_fast_courier', nil)
+		end
+		if self.iEnableLottery > 0 then
+--			hCourier:AddAbility('sell_neutral_items'):SetLevel(1)
+--			hCourier:AddAbility('retrieve_neutral_items'):SetLevel(1)
+		end
+		hCourier:GetOwner().hCourier = hCourier
 	end
 	local hHero = EntIndexToHScript(keys.entindex)	
 	if hHero.bInitialized or not hHero:IsHero() then return end	 
+	
+-- Init heroes
 --	if (not self.tFunHeroSelection[hHero:GetPlayerOwnerID()] or self.tFunHeroSelection[hHero:GetPlayerOwnerID()]==hHero:GetName()) then self:InitializeFunHero(hHero) end
 	if (((hHero:GetPlayerOwner() and hHero:GetPlayerOwner().bIsPlayingFunHero) or hHero.bIsPlayingFunHero ) and self.tFunHeroSelection[hHero:GetPlayerOwnerID()]==hHero:GetName()) or (IsInToolsMode() and bAllFunHeroes) then self:InitializeFunHero(hHero) end
 --	self:InitializeFunHero(hHero)
@@ -203,10 +209,11 @@ function GameMode:_OnNPCSpawned(keys)
 -- bot initiation	
 	if not self.tHumanPlayerList[hHero:GetPlayerOwnerID()] then
 --	if not self.tHumanPlayerList[hHero:GetPlayerOwnerID()] and not IsInToolsMode() then
-		if self.iBotHasFunItem == 1 then
-			hHero:AddNewModifier(hHero, nil, "modifier_bot_use_fun_items", {})
-		end
+		hHero:AddNewModifier(hHero, nil, "modifier_bot_use_items", {})
 		hHero:AddNewModifier(hHero, nil, 'modifier_item_assemble_fix', {})
+		if self.iBotProtection > 0 then
+			hHero:AddNewModifier(hHero, nil, 'modifier_bot_protection', {})
+		end
 		hHero:AddNewModifier(hHero, nil, "modifier_bot_attack_tower_pick_rune", {}).tHumanPlayerList = self.tHumanPlayerList
 		if hHero:GetName() == "npc_dota_hero_axe" and not hHero:IsIllusion() then
 			hHero:AddNewModifier(hHero, nil, "modifier_axe_thinker", {})
@@ -217,30 +224,40 @@ function GameMode:_OnNPCSpawned(keys)
 	
 	if self.iImbalancedEconomizer == 1 then hHero:AddNewModifier(hHero, nil, "modifier_imbalanced_economizer", {}) end
 	if self.iBanFunItems == 1 then hHero:AddNewModifier(hHero, nil, "modifier_ban_fun_items", {}) end
+	if self.iAntiDiving == 1 then hHero:AddNewModifier(hHero, nil, "modifier_anti_diving", {}) end
+	hHero:AddNewModifier(hHero, nil, "modifier_lottery_manager", {})
+	
 	
 	Timers:CreateTimer(0.1, function ()
-		if hHero:IsRealHero() then
+		if hHero:IsRealHero() and not hHero:IsTempestDouble() and not hHero:IsClone() then
 			hHero:AddNewModifier(hHero, nil, "modifier_global_hero_respawn_time", {}) 
+			
+
+
 --			hHero:AddNewModifier(hHero, nil, "modifier_plant_tree", {}) 
 		end
 	end)
+	
+	--[[
 	if hHero:IsIllusion() then
 		hHero:AddNewModifier(hHero, nil, "modifier_plant_tree", {}):SetStackCount(hHero:GetPlayerOwner():GetAssignedHero():FindModifierByName('modifier_plant_tree'):GetStackCount())
 	
 	end
+	]]
 	
 	hHero.bInitialized = true;
 end
 
 function GameMode:OnPlayerLevelUp(keys)
-	local iEntIndex=PlayerResource:GetPlayer(keys.player-1):GetAssignedHero():entindex()
+	local iEntIndex=PlayerResource:GetPlayer(keys.player_id):GetAssignedHero():entindex()
 	Timers:CreateTimer(0.5, function () 
-		EntIndexToHScript(iEntIndex):SetCustomDeathXP(40 + EntIndexToHScript(iEntIndex):GetCurrentXP()*0.14)
+		EntIndexToHScript(iEntIndex):SetCustomDeathXP(40 + EntIndexToHScript(iEntIndex):GetCurrentXP()*0.13)
 	end)
 end
 
 -- Start Voting For Game Option
 function GameMode:OnGetLoadingGameOptions(eventSourceIndex, args)
+	print('get loading options')
 	if not args.bFromServer then
 		GameMode.tGameOption = args
 		GameMode.tGameOption .PlayerID = nil
@@ -250,6 +267,8 @@ function GameMode:OnGetLoadingGameOptions(eventSourceIndex, args)
 		GameMode.tGameOption.btoVote = nil
 	end
 	CustomNetTables:SetTableValue('game_options', 'loading_game_options', GameMode.tGameOption)
+--	PrintTable(GameMode.tGameOption)
+--	print('get loading options')
 end
 
 
@@ -280,6 +299,7 @@ function GameMode:OnConfirmGameOptions(eventSourceIndex, args)
 	self.fDireXPMultiplier = tonumber(GameMode.tGameOption.dire_xp_multiplier);
 	self.fDireGoldMultiplier = tonumber(GameMode.tGameOption.dire_gold_multiplier);
 	self.iRespawnTimePercentage = tonumber(GameMode.tGameOption.respawn_time_percentage)
+	self.iBuybackCooldown = tonumber(GameMode.tGameOption.buyback_cooldown)
 	self.iMaxLevel = tonumber(GameMode.tGameOption.max_level)
 	self.iTowerPower = tonumber(GameMode.tGameOption.tower_power)
 	self.iTowerEndure = tonumber(GameMode.tGameOption.tower_endure)
@@ -287,8 +307,16 @@ function GameMode:OnConfirmGameOptions(eventSourceIndex, args)
 	self.iBotHasFunItem = GameMode.tGameOption.bot_has_fun_item
 	self.iUniversalShop = GameMode.tGameOption.universal_shop
 	self.iFastCourier = GameMode.tGameOption.fast_courier
+	self.iDynamicExpGold = GameMode.tGameOption.dynamic_exp_gold
+	self.iBotProtection = GameMode.tGameOption.bot_protection
+	self.iAntiDiving = GameMode.tGameOption.anti_diving
+	self.iEnableLottery = GameMode.tGameOption.enable_lottery
 	
+	PrintTable(GameMode.tGameOption)
 	self:PreGameOptions()
+	
+	
+	
 end
 
 function GameMode:OnNetTableValueChanged(eventSourceIndex, args)
@@ -313,6 +341,7 @@ local function FindFirstBranch(hHero)
 end
 
 function GameMode:OnDOTAItemPurchased(keys)
+--[[
 	if keys.itemname == 'item_branches' then
 		local hPlayer = PlayerResource:GetPlayer(keys.PlayerID)
 		local hHero = hPlayer:GetAssignedHero()
@@ -325,32 +354,70 @@ function GameMode:OnDOTAItemPurchased(keys)
 			end
 		end
 	end
+	]]
 	if string.find(keys.itemname, 'item_fun') then
 		PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero():FindModifierByName('modifier_plant_tree').bHasFunItem = true
 	end
 end
+function GameMode:OnItemPurchased(keys)
+	PrintTable(keys)
 
+end
 function GameMode:OnItemPickUp(keys)
 	--PrintTable(keys)
 end
 
-function GameMode:OnVoteMakeChoice(eventSourceIndex, args)
-	self.tVoteResultIndi = self.tVoteResultIndi or {}
+function GameMode:OnVoteConfirm(eventSourceIndex, args)
 	self.tVoteResult = self.tVoteResult or {}
 	self.tVoteContent = self.tVoteContent or {"iActivateFunHeroes", "iActivateImbaFunHeroes", "iBanFunItems"}
-	self.tVoteResultIndi[args.vote_index] = self.tVoteResultIndi[args.vote_index] or {}
-	self.tVoteResult[args.vote_index] = self.tVoteResult[args.vote_index] or {}
-	
-	if self.tVoteResultIndi[args.vote_index][args.PlayerID] then
-		self.tVoteResult[args.vote_index][self.tVoteResultIndi[args.vote_index][args.PlayerID]] = self.tVoteResult[args.vote_index][self.tVoteResultIndi[args.vote_index][args.PlayerID]]-1; -- if player has already made a choice but change it
+	self.tVotedPlayers = self.tVotedPlayers or {}
+	if self.tVotedPlayers[args.PlayerID] then return end
+	self.tVotedPlayers[args.PlayerID] = true
+	for k, v in pairs(args.aVoteResult) do
+		self.tVoteResult[tostring(k)+1] = self.tVoteResult[tostring(k)+1] or {}
+		self.tVoteResult[tostring(k)+1][v] = self.tVoteResult[tostring(k)+1][v] or 0
+		self.tVoteResult[tostring(k)+1][v] = self.tVoteResult[tostring(k)+1][v]+1
 	end
-	if self.tVoteResult[args.vote_index][args.choice_index] then
-		self.tVoteResult[args.vote_index][args.choice_index] = self.tVoteResult[args.vote_index][args.choice_index]+1
-	else
-		self.tVoteResult[args.vote_index][args.choice_index] = 1
-	end
-	self.tVoteResultIndi[args.vote_index][args.PlayerID]=args.choice_index
+	GameMode.iVotePlayerCount=args.iPlayerCount
+	GameMode.iConfirmedVotePlayerCount = GameMode.iConfirmedVotePlayerCount or 0
+	GameMode.iConfirmedVotePlayerCount = GameMode.iConfirmedVotePlayerCount+1
+	CustomGameEventManager:Send_ServerToAllClients("update_vote_confirmed_players", {iConfirmedPlayerCount=GameMode.iConfirmedVotePlayerCount, iPlayerCount=GameMode.iVotePlayerCount})
 	CustomGameEventManager:Send_ServerToAllClients("update_vote_result", self.tVoteResult)
+--	if GameMode.iConfirmedVotePlayerCount >= GameMode.iVotePlayerCount then
+	if GameMode.iConfirmedVotePlayerCount >= 1 then
+		GameMode:OnVoteEnd()
+	end
+end
+
+function GameMode:OnVoteEnd()
+	if self.bVoteEnded then return end
+	self.bVoteEnded = true
+	CustomGameEventManager:Send_ServerToAllClients("vote_end", {})
+	local tSend = {}
+--	GameMode.iBanFunItems = 1
+	if not self.tVoteResult then
+		self.iActivateFunHeroes = 1
+		self.iActivateImbaFunHeroes = 1
+		self.iBanFunItems = 0
+		CustomNetTables:SetTableValue('game_options', 'vote_options_result', {iActivateFunHeroes = 1, iActivateImbaFunHeroes = 1, iBanFunItems = 0})
+		return
+	end
+	for k, v in pairs(self.tVoteResult) do
+		local mOption = 0
+		local nOption
+		for k1, v1 in pairs(v) do
+			if v1 > mOption then
+				nOption = k1
+				mOption = v1
+			end
+		end
+		tSend[GameMode.tVoteContent[k]] = nOption
+		GameMode[GameMode.tVoteContent[k]] = nOption
+	end
+	CustomNetTables:SetTableValue('game_options', 'vote_options_result', tSend)
+--	GameMode.iGameOptionSetTime = GAME_OPTION_SET_TIME
+--	CustomGameEventManager:Send_ServerToAllClients("update_game_option_set_time", {iTime=GameMode.iGameOptionSetTime})
+--	GameRules:GetGameModeEntity():SetContextThink('GameOptionSetTimer', OnGameOptionSetTimerChange, 1)
 end
 
 local function OnVoteTimerChange()
@@ -370,50 +437,14 @@ function GameMode:OnPlayerConnectFull(keys)
 	GameRules:GetGameModeEntity():SetContextThink('VoteTimer', OnVoteTimerChange, 1)
 end
 
-function GameMode:OnVoteConfirm(eventSourceIndex, args)
-	GameMode.iVotePlayerCount=args.iPlayerCount
-	GameMode.iConfirmedVotePlayerCount = GameMode.iConfirmedVotePlayerCount or 0
-	GameMode.iConfirmedVotePlayerCount = GameMode.iConfirmedVotePlayerCount+1
-	CustomGameEventManager:Send_ServerToAllClients("update_vote_confirmed_players", {iConfirmedPlayerCount=GameMode.iConfirmedVotePlayerCount, iPlayerCount=GameMode.iVotePlayerCount})
-	if GameMode.iConfirmedVotePlayerCount >= GameMode.iVotePlayerCount then
-
-		GameMode:OnVoteEnd()
-	end
-end
 
 local function OnGameOptionSetTimerChange()
 	if GameMode.bGameOptionsConfirmed then return end
 	GameMode.iGameOptionSetTime = GameMode.iGameOptionSetTime-1
-	print(GameMode.iGameOptionSetTime)
 	CustomGameEventManager:Send_ServerToAllClients("update_game_option_set_time", {iTime=GameMode.iGameOptionSetTime})
 	if GameMode.iGameOptionSetTime > 0 then
 		return 1
 	else
 		GameMode:OnGetLoadingGameOptions(-1, {bFromServer = true, btoVote = true})
 	end
-end
-
-function GameMode:OnVoteEnd()
-	if self.bVoteEnded then return end
-	self.bVoteEnded = true
-	CustomGameEventManager:Send_ServerToAllClients("vote_end", {})
-	local tSend = {}
---	GameMode.iBanFunItems = 1
-	for k, v in pairs(self.tVoteResult) do
-		local mOption = 0
-		local nOption
-		for k1, v1 in pairs(v) do
-			if v1 > mOption then
-				nOption = k1
-				mOption = v1
-			end
-		end
-		tSend[GameMode.tVoteContent[k+1]] = nOption
-		GameMode[GameMode.tVoteContent[k+1]] = nOption
-	end
-	CustomNetTables:SetTableValue('game_options', 'vote_options_result', tSend)
-	
---	GameMode.iGameOptionSetTime = GAME_OPTION_SET_TIME
---	CustomGameEventManager:Send_ServerToAllClients("update_game_option_set_time", {iTime=GameMode.iGameOptionSetTime})
---	GameRules:GetGameModeEntity():SetContextThink('GameOptionSetTimer', OnGameOptionSetTimerChange, 1)
 end

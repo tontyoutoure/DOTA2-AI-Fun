@@ -138,7 +138,7 @@ function ResetCooldown(keys)
 	end	
 	
 	-- reset item cooldowns
-	for j,i in ipairs(tItemTable) do
+	for j,i in ipairs(tItemInventorySlotTable) do
 		local item = caster:GetItemInSlot(i)
 		if item then
 			local name = item:GetAbilityName()
@@ -248,7 +248,7 @@ function EAARestoreManaRefresh(keys)
 	end
 	
 	-- reset item cooldowns
-	for j,i in ipairs(tItemTable) do
+	for j,i in ipairs(tItemInventorySlotTable) do
 		local item = caster:GetItemInSlot(i)
 		if item and (bIsAA or not CheckStringInTable(item, bannedItems)) and not item:IsCooldownReady() then 
 			item:EndCooldown()
@@ -531,3 +531,35 @@ function GetFunItems(keys)
 	print('has fun item!')
 	keys.caster:FindModifierByName('modifier_plant_tree').bHasFunItem = true
 end
+
+function BloodSwordActivated(keys)
+	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, 'modifier_item_fun_blood_sword_extra_attack', {Duration = keys.ability:GetSpecialValueFor('duration')})
+	keys.caster:EmitSound('DOTA_Item.Satanic.Activate')
+end
+
+function OrbOfOmnipotenceStart(keys)
+	keys.caster:EmitSound('Hero_ObsidianDestroyer.AstralImprisonment.Cast')
+	local iParticle = ParticleManager:CreateParticle('particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_area.vpcf', PATTACH_ABSORIGIN, keys.caster)
+	local iRadius = keys.ability:GetSpecialValueFor('stop_aoe')
+	ParticleManager:SetParticleControl(iParticle, 1, Vector(iRadius, 0, 0))
+	ParticleManager:SetParticleControl(iParticle, 2, Vector(iRadius, 0, 0))
+	ParticleManager:SetParticleControl(iParticle, 3, Vector(iRadius, 0, 0))
+end
+
+
+function MagicHammerManaBreakCastRangeApply(keys)
+	keys.caster:AddNewModifier(keys.caster, keys.ability, 'modifier_magic_hammer_mana_break',{Duration = 1})
+	keys.caster:AddNewModifier(keys.caster, keys.ability, 'modifier_special_bonus_cast_range',{Duration = 1})
+end
+
+
+
+
+
+
+
+
+
+
+
+

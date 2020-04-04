@@ -25,7 +25,7 @@
 		"DOTA_Tooltip_ability_old_holy_knight_holy_persuation_count"	"劝化数目："
 		"DOTA_Tooltip_ability_special_bonus_unique_old_holy_knight_0"	"+100圣光伤害/治疗"
 		"DOTA_Tooltip_ability_special_bonus_unique_old_holy_knight_1"	"+50%致命一击倍率"
-		"DOTA_Tooltip_ability_special_bonus_unique_old_holy_knight_2"	"+250净化范围"
+		"DOTA_Tooltip_ability_special_bonus_unique_old_holy_knight_2"	"+250范围净化"
 		"DOTA_Tooltip_ability_special_bonus_unique_old_holy_knight_3"	"+1500 劝化单位血量"
 		"DOTA_Tooltip_ability_special_bonus_unique_old_holy_knight_4"	"致命一击对普通单位触发时，会将其劝化"
 		"DOTA_Tooltip_ability_special_bonus_unique_old_holy_knight_4_Description"	"此时获得该单位的金钱及经验奖励"

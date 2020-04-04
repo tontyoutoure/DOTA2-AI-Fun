@@ -120,14 +120,16 @@ function InitAbilitySelection() {
 	
 	
 }
-
 function AddTalentForDropDown(i, bBest) {
 	var dropdown = $('#TalentDropDown'+i.toString())
 	if (bBest) {
 		for (var iIndex in aTalents[i-1]) {
 			var sTalent = aTalents[i-1][iIndex]
 			var dropdownlabel = $.CreatePanel('Label', dropdown, sTalent)
-			dropdownlabel.text=$.Localize('DOTA_Tooltip_ability_'+sTalent)
+			if ($.Localize('DOTA_Tooltip_ability_'+sTalent).length > 0)
+				dropdownlabel.text=$.Localize('DOTA_Tooltip_ability_'+sTalent);
+			else
+				dropdownlabel.text=sTalent;
 			dropdown.AddOption(dropdownlabel)
 			dropdown.SetSelected(sTalent)
 		}
@@ -135,13 +137,16 @@ function AddTalentForDropDown(i, bBest) {
 	else{
 		for (var sTalent in aPossibleTalents[i-1]) {
 			var dropdownlabel = $.CreatePanel('Label', dropdown, sTalent)
-			dropdownlabel.text=$.Localize('DOTA_Tooltip_ability_'+sTalent)
+			if ($.Localize('DOTA_Tooltip_ability_'+sTalent).length > 0)
+				dropdownlabel.text=$.Localize('DOTA_Tooltip_ability_'+sTalent);
+			else
+				dropdownlabel.text=sTalent;
 			dropdown.AddOption(dropdownlabel)
 			dropdown.SetSelected(sTalent)
 		}
 	}
 }
-
+//$.Msg($.Localize('DOTA_Tooltip_ability_special_bonus_30_crit_2')) 
 function StrActivated(){
 	iPrimaryAttribute = 1
 	$("#PrimaryAttributeSelectBtnStr").SetHasClass('PrimaryAttributeSelectBtnActivated', true)

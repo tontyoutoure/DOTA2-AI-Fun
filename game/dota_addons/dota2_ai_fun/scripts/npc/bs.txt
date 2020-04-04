@@ -1,6 +1,171 @@
 
 "DOTAAbilities"
-{
+{	
+	"item_fun_bs"
+	{		
+		"BaseClass"	"item_lua"
+		"ScriptFile"	"fun_items_lua.lua"
+		"AbilityTextureName"	"item_fun_bs"
+		"ID"	"15530"
+		"ItemQuality"	"artifact"
+		"Model"	"models/props_gameplay/red_box.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		"ItemCost"	"15300"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemPermanent"	"1"
+		"ItemAliases"	"blood scepter"
+		"ActiveDescriptionLine"	"1"
+		"AbilityCastRange"	"800"
+		"AbilityCooldown"  "15"
+		"AbilityManaCost"	"300"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_int"				"40"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all"				"10"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health"				"800"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"				"800"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"hp_regen"				"15"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_regen"				"5"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_regen_percentage"		"400"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_increase"		"100"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"magic_resist"		"30"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_base"		"800"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_per_charge"		"25"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown_base"		"15"
+			}
+			"13"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown_reduction_per_charge"		"0.1"
+			}
+			"14"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown_min"		"5"
+			}
+			"15"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aoe_min_need"		"20"
+			}
+			"16"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aoe_per_charge"		"2"
+			}
+			"17"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"kill_charge"		"1"
+			}
+			"18"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"death_charge_loss"		"1"
+			}
+			"18"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"regen_per_charge"		"1.5"
+			}
+		}
+	}
+	
+	"item_recipe_fun_bs"
+	{		
+
+		// General
+		"BaseClass"	"item_datadriven"
+		"ID"	"15531"
+		"Model"	"models/props_gameplay/recipe.mdl"
+		"ItemCost"	"0"
+		"ItemRecipe"	"1"
+		"ItemResult"	"item_fun_bs"
+		"ItemRequirements"
+		{
+			"01"	"item_dagon_5;item_bloodstone;item_holy_locket;"
+		}
+	}
+	"item_branches"
+	{	
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all_stats"		"1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tree_duration"		"2000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range_tooltip"	"200"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"count_tree_plant"	"5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"count_tree_plant_fun"	"10"
+			}
+		}
+	}
 	"item_tree_planting_suite"
 	{
 		"BaseClass"	"item_lua"

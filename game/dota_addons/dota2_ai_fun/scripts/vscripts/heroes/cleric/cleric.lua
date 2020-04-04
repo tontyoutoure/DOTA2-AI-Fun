@@ -137,7 +137,7 @@ function ClericPrayer(keys)
 				if v:GetAbilityByIndex(i) then v:GetAbilityByIndex(i):EndCooldown() end
 			end
 			
-			for j,i in ipairs(tItemTable) do
+			for j,i in ipairs(tItemInventorySlotTable) do
 				if v:GetItemInSlot(i) then v:GetItemInSlot(i):EndCooldown() end
 			end
 		elseif hSpecial and hModifier:GetStackCount() < hSpecial:GetSpecialValueFor("value") then
@@ -151,7 +151,7 @@ function ClericPrayer(keys)
 				if v:GetAbilityByIndex(i) then v:GetAbilityByIndex(i):EndCooldown() end
 			end
 			
-			for j,i in ipairs(tItemTable) do
+			for j,i in ipairs(tItemInventorySlotTable) do
 				if v:GetItemInSlot(i) then v:GetItemInSlot(i):EndCooldown() end
 			end			
 		end

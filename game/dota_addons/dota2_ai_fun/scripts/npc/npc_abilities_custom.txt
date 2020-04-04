@@ -36,3 +36,5 @@
 #base "abilities\old_butcher.txt"
 #base "abilities\old_storm_spirit.txt"
 #base "abilities\kahmeka.txt"
+#base "abilities\old_gorgon.txt"
+#base "abilities\god_of_wind.txt"

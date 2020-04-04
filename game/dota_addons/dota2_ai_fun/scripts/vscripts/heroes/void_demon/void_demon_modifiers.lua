@@ -160,8 +160,8 @@ function modifier_void_demon_degen_aura_slow:GetModifierMoveSpeedBonus_Percentag
 		end	
 	end
 
-	if self.hSpecial then
-		self.fSlow = (self.hSpecial:GetSpecialValueFor("value")+1)*self:GetAbility():GetSpecialValueFor("movement")
+	if self.hSpecial and self.hSpecial:GetLevel() > 0 then
+		self.fSlow = self.hSpecial:GetSpecialValueFor("value")*self:GetAbility():GetSpecialValueFor("movement")
 	else
 		self.fSlow = self:GetAbility():GetSpecialValueFor("movement")
 	end
@@ -177,8 +177,8 @@ function modifier_void_demon_degen_aura_slow:GetModifierAttackSpeedBonus_Constan
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end	
 	end
-	if self.hSpecial then
-		return (self.hSpecial:GetSpecialValueFor("value")+1)*self:GetAbility():GetSpecialValueFor("attack")
+	if self.hSpecial and self.hSpecial:GetLevel() > 0  then
+		return self.hSpecial:GetSpecialValueFor("value")*self:GetAbility():GetSpecialValueFor("attack")
 	else
 		return self:GetAbility():GetSpecialValueFor("attack")
 	end

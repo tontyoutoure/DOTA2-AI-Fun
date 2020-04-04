@@ -15,13 +15,13 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"1"
-		"OnSpellStart"	{}
+		"AbilityTextureName"	"invoker_empty1"
 	}
 
 	"ramza_empty_2"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"neutral_spell_immunity"
+		"AbilityTextureName"	"invoker_empty1"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"0"
 	}
@@ -29,7 +29,7 @@
 	"ramza_empty_3"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"neutral_spell_immunity"
+		"AbilityTextureName"	"invoker_empty1"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"0"
 	}
@@ -37,7 +37,7 @@
 	"ramza_empty_4"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"neutral_spell_immunity"
+		"AbilityTextureName"	"invoker_empty1"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"0"
 	}
@@ -45,7 +45,21 @@
 	"ramza_empty_5"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"neutral_spell_immunity"
+		"AbilityTextureName"	"invoker_empty1"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"0"
+	}
+	"ramza_empty_6"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"invoker_empty1"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"0"
+	}
+	"ramza_empty_7"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"invoker_empty1"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"MaxLevel"	"0"
 	}
@@ -190,11 +204,18 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_mana"	"50 100 150 200 250 300 350"
+				"bonus_spell_amp"	"3 6 9 12 15 18 21"
 				"LinkedSpecialBonus"	"special_bonus_ramza_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_heal_amp"	"6 12 18 24 30 36 42"
+				"LinkedSpecialBonus"	"special_bonus_ramza_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"bonus_intelligence"	"3 6 9 12 15 18 21"
@@ -271,6 +292,23 @@
 	}
 
 	"special_bonus_ramza_3"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_unique_centaur_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1"
+			}
+		}
+	}
+
+	"special_bonus_ramza_4"
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
