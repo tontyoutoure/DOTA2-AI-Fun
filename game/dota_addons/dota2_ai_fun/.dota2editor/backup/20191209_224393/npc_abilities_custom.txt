@@ -1,0 +1,15 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"sell_neutral_items"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"sell_neutral_items"
+		"ScriptFile"	"lottery.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}
+}

@@ -1,0 +1,137 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"kahmeka_ignite"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"batrider_flamebreak"
+		"ScriptFile"	"heroes/kahmeka/kahmeka.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.6"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate"	"0.33"
+		"AbilityCooldown"	"12"
+		"AbilityManaCost"	"95 105 115 125"
+		"AbilityCastRange"	"700"
+		"AbilityCastRangeBuffer"	"200"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"7.5"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"slow"	"10 15 20 25"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"5 15 25 35"
+			}
+		}
+	}
+
+	"kahmeka_fly"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"phoenix_icarus_dive"
+		"ScriptFile"	"heroes/kahmeka/kahmeka.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastPoint"	"0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate"	"1"
+		"AbilityCooldown"	"10"
+		"AbilityManaCost"	"75"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"movespeed_bonus"	"30 60 90 120"
+			}
+		}
+	}
+
+	"kahmeka_fly_down_divebomb"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"phoenix_launch_fire_spirit"
+		"ScriptFile"	"heroes/kahmeka/kahmeka.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"10"
+		"AbilityManaCost"	"75"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"60 120 180 240"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"325"
+			}
+		}
+	}
+
+	"kahmeka_wounding_spear"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"huskar_burning_spear"
+		"ScriptFile"	"heroes/kahmeka/kahmeka.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"8"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"str_loss"	"1 2 3 4"
+			}
+		}
+	}
+
+	"kahmeka_fungwarb"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ember_spirit_flame_guard"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastPoint"	"0.6"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AnimationPlaybackRate"	"0.33"
+		"AbilityCooldown"	"25"
+		"AbilityManaCost"	"100 130 160"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"3.5"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"reverse"	"100 150 200"
+			}
+		}
+	}
+}

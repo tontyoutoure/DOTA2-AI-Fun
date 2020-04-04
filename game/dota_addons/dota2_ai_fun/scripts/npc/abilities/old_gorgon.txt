@@ -1,0 +1,201 @@
+"DOTAAbilities"
+{	
+	"old_gorgon_purge"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"satyr_trickster_purge"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"ScriptFile"	"heroes/old_gorgon/old_gorgon.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_NO"
+		"AbilityCastPoint"	"0.4"
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"12"
+		"AbilityManaCost"	"85"
+		"AbilityCastRange"	"600"
+		"AbilityCastRangeBuffer"	"200"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"slow_factor"	"2 3 4 7"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"slow_duration"	"6"
+			}
+		}
+	}
+
+	"old_gorgon_chain_lightning"
+	{		
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"scripts/vscripts/heroes/old_gorgon/old_gorgon.lua"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.4"
+		"AbilityCooldown"				"11"
+		"AbilityManaCost"				"90 105 120 135"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityTextureName"	"zuus_arc_lightning"			
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"initial_damage"		"75 150 225 300"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"jump_range"			"500"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"jump_delay"			"0.25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_percent_loss"	"15.0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bounce"			"3 5 7 9"
+			}
+		}	
+	}
+
+	
+	
+	"old_gorgon_split_shot"
+	{
+		"BaseClass"	"medusa_split_shot"
+		"AbilityTextureName"	"medusa_split_shot"		
+		"MaxLevel"	"4"
+		"RequiredLevel"	"5"
+		"LevelsBetweenUpgrades"	"4"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_modifier"		"0 0 0 0"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage_modifier_tooltip"		"100 100 100 100"
+			}
+			"03"
+			{	
+				"var_type"					"FIELD_INTEGER"
+				"arrow_count"				"3 4 5 6"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"split_shot_bonus_range"		"100"
+			}
+		}
+	}
+	"old_gorgon_mana_shield"
+	{			
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"scripts/vscripts/heroes/old_gorgon/old_gorgon.lua"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"		
+		"AbilitySound"					"Hero_Medusa.ManaShield.On"
+		"AbilityTextureName"	"medusa_mana_shield"	
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"	
+		"HasScepterUpgrade"	"1"
+		"AbilityCooldown"  "10"
+		"AbilityManaCost"	"0"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_per_mana"		"1 1.5 2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"absorption_tooltip"		"100"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_per_mana_scepter"		"1.5 2 2.5"
+				"RequiresScepter"			"1"
+			}
+		
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
+	
+	
+	"special_bonus_unique_old_gorgon_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"5"
+			}
+		}
+	}
+	
+	"special_bonus_unique_old_gorgon_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"value"	"1.5"
+			}
+		}
+	}
+	
+	"special_bonus_unique_old_gorgon_3"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"50"
+			}
+		}
+	}
+}

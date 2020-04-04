@@ -1,0 +1,157 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"old_storm_spirit_electric_rave"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"storm_spirit_static_remnant"
+		"ScriptFile"	"heroes/old_storm_spirit/old_storm_spirit.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate"	"3.3"
+		"AbilityCooldown"	"2.5"
+		"AbilityManaCost"	"3 6 9 12"
+		"Modifiers"
+		{
+			"modifier_old_storm_spirit_electric_rave"	{}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"manacost_per_second"	"6 9 12 15"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_attack_speed"	"20 40 60 80"
+			}
+		}
+	}
+
+	"old_storm_spirit_barrier"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"abaddon_aphotic_shield"
+		"ScriptFile"	"heroes/old_storm_spirit/old_storm_spirit.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"75"
+		"AbilityCastRange"	"500"
+		"AbilityCastRangeBuffer"	"200"
+		"Modifiers"
+		{
+			"modifier_old_storm_spirit_barrier"	{}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_absorption"	"150 300 450 600"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"20"
+			}
+		}
+	}
+
+	"old_storm_spirit_overload"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"storm_spirit_overload"
+		"ScriptFile"	"heroes/old_storm_spirit/old_storm_spirit.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"Modifiers"
+		{
+			"modifier_old_storm_spirit_overload_counter"	{}
+			"modifier_old_storm_spirit_overload_slow"	{}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_needed"	"8 7 6 5"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"300"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage"	"30 45 60 75"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_speed_slow_pct"	"-80"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_speed_slow"	"-50"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"slow_duration"	"0.6"
+			}
+		}
+	}
+
+	"old_storm_spirit_lightning_grapple"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"storm_spirit_ball_lightning"
+		"ScriptFile"	"heroes/old_storm_spirit/old_storm_spirit.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_CHECK_DISABLE_HELP"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"	"35"
+		"AbilityManaCost"	"100"
+		"AbilityCastRange"	"%range"
+		"Modifiers"
+		{
+			"modifier_old_storm_spirit_lightning_grapple"	{}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"	"700 1050 1400"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"200"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"speed"	"1200"
+			}
+		}
+	}
+}
