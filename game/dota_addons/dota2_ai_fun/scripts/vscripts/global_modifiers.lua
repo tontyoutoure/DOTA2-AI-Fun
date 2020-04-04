@@ -246,7 +246,6 @@ local function CheckFunItems(hHero, sFunItem)
 --	print("checking", sFunItem, 'for', hHero:GetName())
 	if hHero.tFunItemList[sFunItem] then return end
 	
-	print(sFunItem)
 	local tHasComponent = {}
 	local tLackComponent = {}
 	for j = 1, #tBotItemData.tFunItems[sFunItem] do
@@ -626,14 +625,14 @@ end
 modifier_item_assemble_fix = class(tClassFTF)
 function modifier_item_assemble_fix:OnCreated() 
 	if IsClient() then return end
-	self:StartIntervalThink(0.04)
+	self:StartIntervalThink(0.5)
 end
 
 
 local function CheckItemAfter(hHero, sItemBefore, sItemAfter)
 	if FindItemByNameIncludeStash(hHero, sItemBefore) and (not hHero.tItemHistory or not hHero.tItemHistory[sItemAfter] ) then
 		if tBotItemData.tItemParts[sItemAfter] then
-			print(sItemAfter)
+		
 			local iComponentsCost = 0
 			for i, v in pairs(tBotItemData.tItemParts[sItemAfter]) do
 				iComponentsCost = iComponentsCost + GetItemCost(v)
@@ -661,40 +660,10 @@ local function CheckItemAfter(hHero, sItemBefore, sItemAfter)
 	end
 end
 
-local function CheckAllFunItem(hParent)
-	local sHeroName = hParent:GetName()
-	if (hParent:HasModifier("modifier_fountain_aura_buff") or GameMode.iUniversalShop == 1) and tBotItemData.tBotBuildFunItems[sHeroName] and (hParent:HasItemInInventory(tBotItemData.tLuxuryItemList[sHeroName][#tBotItemData.tLuxuryItemList[sHeroName]-1]) or hParent.bHasEndItem) then
-		hParent.bHasEndItem = true
-		for i, v in ipairs(tBotItemData.tBotBuildFunItems[sHeroName].tWantedFunItems) do
-			CheckFunItems(hParent, v)
-		end
-	end
-end
 
 
-local function CheckHasEconomizer2ToBuilt(hHero)
-	for i, v in ipairs(tBotItemData.tBotBuildFunItems[hHero:GetName()].tWantedFunItems) do
-		if v == "item_fun_economizer_2" then
-			return true
-		end
-	end
-	return false
-end
 
-local function CheckLuxuryItem(hHero)
-	local tHeroLuxuryItemList = tBotItemData.tLuxuryItemList[hHero:GetName()]
-	local iOmit = 0
-	
-	if CheckHasEconomizer2ToBuilt(hHero) and GameMode.iBotHasFunItem == 1 and GameMode.iBanFunItems == 0 then
-		iOmit = 1
-	end
-	
-	if tHeroLuxuryItemList and (hHero:HasModifier('modifier_fountain_aura_buff') or GameMode.iUniversalShop == 1) then
-		for i = 1, (#tHeroLuxuryItemList-1-iOmit) do
-			CheckItemAfter(hHero, tHeroLuxuryItemList[i], tHeroLuxuryItemList[i+1])
-		end
-	end
-end
+
 
 local function SellLowCostItems(hHero)
 	if (hHero:HasModifier('modifier_fountain_aura_buff') or GameMode.iUniversalShop == 1) then
@@ -714,44 +683,14 @@ local function SellLowCostItems(hHero)
 	end
 end
 
-local function FixBotTalent(iLevel, iEntIndex)
---[[
-	local hHero = EntIndexToHScript(iEntIndex)
-	local j = 0
-	local tTalents = {}
-	for i = 0, 23 do
-		if hHero:GetAbilityByIndex(i) and hHero:GetAbilityByIndex(i):IsAttributeBonus() then
-			j = j+1
-			tTalents[j] = hHero:GetAbilityByIndex(i)
-		end
-	end
-	if tTalents[(iLevel/5-1)*2-1]:GetLevel() == 0 and tTalents[(iLevel/5-1)*2]:GetLevel() == 0 then
-		tTalents[RandomInt((iLevel/5-1)*2-1, (iLevel/5-1)*2)]:SetLevel(1)
-	end
-	]]
-end
+
 
 function modifier_item_assemble_fix:OnIntervalThink()
 	if IsClient() then return end
 	local hParent = self:GetParent()
+	if not IsInToolsMode() and not hParent:HasModifier('modifier_fountain_aura_buff') then return end
 	iEntIndex = hParent:entindex()
-	if hParent:GetLevel() >= 10 and not self.bT10Fixed then
-		self.bT10Fixed = true
-		Timers:CreateTimer(1, function () FixBotTalent(10, iEntIndex) end)
-	end
-	if hParent:GetLevel() >= 15 and not self.bT15Fixed then
-		self.bT15Fixed = true
-		Timers:CreateTimer(1, function () FixBotTalent(15, iEntIndex) end)
-	end
-	if hParent:GetLevel() >= 20 and not self.bT20Fixed then
-		self.bT20Fixed = true
-		Timers:CreateTimer(1, function () FixBotTalent(20, iEntIndex) end)
-	end
-	if hParent:GetLevel() >= 25 and not self.bT25Fixed then
-		self.bT25Fixed = true
-		Timers:CreateTimer(1, function () FixBotTalent(25, iEntIndex) end)
-	end
-	
+
 	if self:GetStackCount() > 0 and hParent:GetGold() > 0 then
 		if hParent:GetGold() > self:GetStackCount() then
 			hParent:SpendGold(self:GetStackCount(), DOTA_ModifyGold_PurchaseItem)
@@ -785,23 +724,36 @@ function modifier_item_assemble_fix:OnIntervalThink()
 			end
 		end
 	end
-	CheckLuxuryItem(hParent)
-	SellLowCostItems(hParent)
-
-	if hParent:GetName() == 'npc_dota_hero_sniper' and hParent:HasModifier('modifier_fountain_aura_buff') then
-		CheckItemAfter(hParent, 'item_maelstrom', 'item_manta')
-		CheckItemAfter(hParent, 'item_manta', 'item_black_king_bar')
-		if hParent:HasItemInInventory('item_black_king_bar') then
-			if not hParent:HasItemInInventory('item_mjollnir') and hParent:GetGold() > GetItemCost('item_mjollnir')-GetItemCost('item_maelstrom') then
-				hParent:SpendGold(GetItemCost('item_mjollnir')-GetItemCost('item_maelstrom'), DOTA_ModifyGold_PurchaseItem)
-				hParent:AddItemByName('item_mjollnir')
-				hParent:RemoveItem(FindItemByName(hParent, 'item_maelstrom'))
+	if not hParent.bHasEndItem then
+		local tHeroLuxuryItemList = tBotItemData.tLuxuryItemList[hParent:GetName()]
+		local iOmit = 0
+		local bHasE2toBuild = false
+		for i, v in ipairs(tBotItemData.tBotBuildFunItems[hParent:GetName()].tWantedFunItems) do
+			if v == "item_fun_economizer_2" then
+				bHasE2toBuild = true
 			end
 		end
-		CheckItemAfter(hParent, 'item_mjollnir', 'item_greater_crit')
+		
+		if bHasE2toBuild and GameMode.iBotHasFunItem == 1 and GameMode.iBanFunItems == 0 then
+			iOmit = 1
+		end
+		for i = 1, (#tHeroLuxuryItemList-1-iOmit) do
+			CheckItemAfter(hParent, tHeroLuxuryItemList[i], tHeroLuxuryItemList[i+1])
+		end
+		if (iOmit == 1 and hParent:HasItemInInventory(tBotItemData.tLuxuryItemList[hParent:GetName()][#tBotItemData.tLuxuryItemList[hParent:GetName()]-1])) or hParent:HasModifier('modifier_item_ultimate_scepter_consumed') then
+			hParent.bHasEndItem = true
+		end
 	end
-	if GameMode.iBotHasFunItem > 0 and not hParent:HasModifier('modifier_ban_fun_items') then
-		CheckAllFunItem(hParent)
+--	SellLowCostItems(hParent)
+	
+	if not hParent.bHasEndFunItem and GameMode.iBotHasFunItem > 0 and not hParent:HasModifier('modifier_ban_fun_items') and hParent.bHasEndItem then
+		for i, v in ipairs(tBotItemData.tBotBuildFunItems[hParent:GetName()].tWantedFunItems) do
+	
+			CheckFunItems(hParent, v)
+		end
+		if hParent:HasItemInInventory(tBotItemData.tBotBuildFunItems[hParent:GetName()].tWantedFunItems[#tBotItemData.tBotBuildFunItems[hParent:GetName()].tWantedFunItems]) then 
+			hParent.bHasEndFunItem = true
+		end
 	end
 end
 

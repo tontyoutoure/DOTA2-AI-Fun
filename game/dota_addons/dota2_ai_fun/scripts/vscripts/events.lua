@@ -209,8 +209,10 @@ function GameMode:_OnNPCSpawned(keys)
 -- bot initiation	
 	if not self.tHumanPlayerList[hHero:GetPlayerOwnerID()] then
 --	if not self.tHumanPlayerList[hHero:GetPlayerOwnerID()] and not IsInToolsMode() then
-		hHero:AddNewModifier(hHero, nil, "modifier_bot_use_items", {})
-		hHero:AddNewModifier(hHero, nil, 'modifier_item_assemble_fix', {})
+		if hHero:IsRealHero() and not hHero:IsTempestDouble() and not hHero:IsClone() then
+			hHero:AddNewModifier(hHero, nil, "modifier_bot_use_items", {})
+			hHero:AddNewModifier(hHero, nil, 'modifier_item_assemble_fix', {})
+		end
 		if self.iBotProtection > 0 then
 			hHero:AddNewModifier(hHero, nil, 'modifier_bot_protection', {})
 		end

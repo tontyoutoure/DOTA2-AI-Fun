@@ -5,3 +5,5 @@
 **/*.vxml_c
 **/*.vpcf_c
 **/*.bin
+**/*.bak
+**/*.dat
