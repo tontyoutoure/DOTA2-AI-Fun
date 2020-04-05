@@ -40,18 +40,18 @@ function GameMode:OnDownloadGameOptions(eventSourceIndex, args)
 	req:SetHTTPRequestGetOrPostParameter('get_or_put', 'get')
 	
 	req:Send(function (res)
-		PrintTable(res)
+		
 		if res.StatusCode ~= 200 then
 			CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(args.PlayerID), 'game_option_download_fail', {})
 		end
 		local tDownloadOption = JSON:decode(res.Body)
-		PrintTable(tDownloadOption)
+		
 		local tOptionToClient = {}
 		for i, v in pairs(tGameOptionLists) do
 			GameMode.tGameOption[tGameOptionLists[i]] = tonumber(tDownloadOption['data_'..tostring(i)])/100
 			CustomNetTables:SetTableValue('game_options', 'loading_game_options', GameMode.tGameOption)
 		end
-		PrintTable (CustomNetTables:GetTableValue('game_options', 'loading_game_options'))
+		
 		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(args.PlayerID), 'game_option_downloaded', GameMode.tGameOption)
 	end)
 end

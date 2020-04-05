@@ -259,7 +259,6 @@ end
 
 -- Start Voting For Game Option
 function GameMode:OnGetLoadingGameOptions(eventSourceIndex, args)
-	print('get loading options')
 	if not args.bFromServer then
 		GameMode.tGameOption = args
 		GameMode.tGameOption .PlayerID = nil
@@ -269,8 +268,6 @@ function GameMode:OnGetLoadingGameOptions(eventSourceIndex, args)
 		GameMode.tGameOption.btoVote = nil
 	end
 	CustomNetTables:SetTableValue('game_options', 'loading_game_options', GameMode.tGameOption)
---	PrintTable(GameMode.tGameOption)
---	print('get loading options')
 end
 
 
