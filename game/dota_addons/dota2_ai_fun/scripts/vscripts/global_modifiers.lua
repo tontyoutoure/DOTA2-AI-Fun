@@ -740,7 +740,7 @@ function modifier_item_assemble_fix:OnIntervalThink()
 		for i = 1, (#tHeroLuxuryItemList-1-iOmit) do
 			CheckItemAfter(hParent, tHeroLuxuryItemList[i], tHeroLuxuryItemList[i+1])
 		end
-		if (iOmit == 1 and hParent:HasItemInInventory(tBotItemData.tLuxuryItemList[hParent:GetName()][#tBotItemData.tLuxuryItemList[hParent:GetName()]-1])) or hParent:HasModifier('modifier_item_ultimate_scepter_consumed') then
+		if (hParent:GetName() == 'npc_dota_hero_chaos_knight' and hParent:HasItemInInventory(tBotItemData.tLuxuryItemList[hParent:GetName()][#tBotItemData.tLuxuryItemList[hParent:GetName()]])) or (iOmit == 1 and hParent:HasItemInInventory(tBotItemData.tLuxuryItemList[hParent:GetName()][#tBotItemData.tLuxuryItemList[hParent:GetName()]-1])) or hParent:HasModifier('modifier_item_ultimate_scepter_consumed') then
 			hParent.bHasEndItem = true
 		end
 	end

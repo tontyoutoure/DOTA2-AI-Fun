@@ -141,7 +141,7 @@ tBotItemData.tLuxuryItemList = {
 	npc_dota_hero_skeleton_king = {'item_assault', 'item_ultimate_scepter_2'},
 	npc_dota_hero_phantom_assassin = {'item_vanguard', 'item_abyssal_blade', 'item_satanic', 'item_assault' , 'item_monkey_king_bar','item_ultimate_scepter_2'},
 	npc_dota_hero_dragon_knight = {'item_assault', 'item_ultimate_scepter_2'},
-	npc_dota_hero_chaos_knight = {'item_assault', 'item_ultimate_scepter_2'},
+	npc_dota_hero_chaos_knight = {'item_assault'},
 	npc_dota_hero_skywrath_mage = {'item_sheepstick', 'item_octarine_core', 'item_recipe_ultimate_scepter_2'},
 	npc_dota_hero_bristleback = {'item_vanguard', 'item_blade_mail', 'item_heart', 'item_assault', 'item_shivas_guard', 'item_radiance', 'item_ultimate_scepter_2'}, -- ability ok?
 }
@@ -182,7 +182,7 @@ tBotItemData.tBotBuildFunItems = {
 	npc_dota_hero_dragon_knight = {tWantedFunItems = {"item_fun_papyrus_scarab","item_fun_blood_sword","item_fun_economizer","item_fun_economizer_2"}, sEndItem = "item_greater_crit"},
 	npc_dota_hero_omniknight = {tWantedFunItems = {"item_fun_papyrus_scarab","item_fun_economizer","item_fun_economizer_2","item_fun_ragnarok","item_fun_ragnarok_2", "item_fun_escutcheon"}, sEndItem = "item_heart"},
 	npc_dota_hero_jakiro = {tWantedFunItems = {"item_fun_papyrus_scarab","item_fun_economizer","item_fun_economizer_2","item_fun_magic_hammer"}, sEndItem = "item_ultimate_scepter"},
-	npc_dota_hero_chaos_knight = {tWantedFunItems = {"item_fun_ragnarok","item_fun_ragnarok_2","item_fun_genji_gloves","item_fun_genji_gloves_2","item_fun_economizer","item_fun_economizer_2"}, sEndItem = "item_assault"},
+	npc_dota_hero_chaos_knight = {tWantedFunItems = {"item_fun_ragnarok","item_fun_ragnarok_2","item_fun_genji_gloves","item_fun_genji_gloves_2","item_fun_papyrus_scarab", "item_fun_economizer"}, sEndItem = "item_assault"},
 	npc_dota_hero_bristleback = {tWantedFunItems = {"item_fun_papyrus_scarab", "item_fun_ragnarok","item_fun_ragnarok_2", "item_fun_economizer", "item_fun_economizer_2","item_fun_magic_hammer"}, sEndItem = "item_radiance"},
 	npc_dota_hero_skywrath_mage = {tWantedFunItems = {"item_fun_economizer","item_fun_economizer_2","item_fun_magic_hammer","item_fun_escutcheon"}, sEndItem = "item_sheepstick"},
 	npc_dota_hero_oracle = {tWantedFunItems = {"item_fun_papyrus_scarab","item_fun_economizer","item_fun_economizer_2","item_fun_magic_hammer"}, sEndItem = "item_orchid"},

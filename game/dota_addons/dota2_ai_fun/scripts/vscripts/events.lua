@@ -201,11 +201,12 @@ function GameMode:_OnNPCSpawned(keys)
 --	if (not self.tFunHeroSelection[hHero:GetPlayerOwnerID()] or self.tFunHeroSelection[hHero:GetPlayerOwnerID()]==hHero:GetName()) then self:InitializeFunHero(hHero) end
 	if (((hHero:GetPlayerOwner() and hHero:GetPlayerOwner().bIsPlayingFunHero) or hHero.bIsPlayingFunHero ) and self.tFunHeroSelection[hHero:GetPlayerOwnerID()]==hHero:GetName()) or (IsInToolsMode() and bAllFunHeroes) then self:InitializeFunHero(hHero) end
 --	self:InitializeFunHero(hHero)
+--[[
 	if hHero:GetName() == "npc_dota_hero_sniper" then
 		require('heroes/sniper/sniper_init')
 		SniperInit(hHero, self)
 	end
-	
+]]	
 -- bot initiation	
 	if not self.tHumanPlayerList[hHero:GetPlayerOwnerID()] then
 --	if not self.tHumanPlayerList[hHero:GetPlayerOwnerID()] and not IsInToolsMode() then
