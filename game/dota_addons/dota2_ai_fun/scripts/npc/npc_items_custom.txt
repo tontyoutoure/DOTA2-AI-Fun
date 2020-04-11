@@ -863,6 +863,14 @@
 						"Function"	"BloodSwordExtraAttack"
 					}
 				}
+				"OnDestroy"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_item_fun_blood_sword_extra_crit"
+					}
+				}
 				"Passive"	"0"
 				"IsHidden"	"0"
 				"IsPurgable" "1"

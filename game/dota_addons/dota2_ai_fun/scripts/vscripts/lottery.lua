@@ -179,7 +179,7 @@ end
 
 local function LotteryOnSpellStart(self)
 	local hCaster = self:GetCaster()
-	hCaster:EmitSound('Item.TomeOfKnowledge')
+	EmitSoundOnClient('Item.TomeOfKnowledge', hCaster:GetPlayerOwner())
 	local fRoll = RandomFloat(0,100)
 	local tAccumulatedChance = {}
 	tAccumulatedChance[1] = self:GetSpecialValueFor('chance_lv1')
