@@ -299,7 +299,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"movespeed_percentage"	"50"
+				"movespeed_bonus"	"150"
 			}
 			"02"
 			{
@@ -681,7 +681,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"movespeed_percentage"	"75"
+				"movespeed_bonus"	"230"
 			}
 			"04"
 			{
@@ -1791,7 +1791,7 @@
 				"IsHidden"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"  "%movement_speed_bonus_constant"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%movespeed_bonus"
 				}
 				"States"
 				{
@@ -1848,7 +1848,7 @@
 			"08"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"movement_speed_bonus_constant"	"150"
+				"movespeed_bonus"	"50"
 			}
 		}
 	}
@@ -1927,7 +1927,7 @@
 			"08"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"movement_speed_bonus_constant"	"200"
+				"movespeed_bonus"	"70"
 			}
 			"9"
 			{
@@ -2071,7 +2071,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_movement"		"25"
+				"movespeed_bonus"		"75"
 			}
 			"04"
 			{

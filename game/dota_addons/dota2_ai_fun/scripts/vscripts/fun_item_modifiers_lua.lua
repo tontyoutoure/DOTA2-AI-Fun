@@ -21,7 +21,7 @@ function modifier_angelic_alliance_maximum_speed:DeclareFunctions()
 	local funcs = 
 	{
 		MODIFIER_PROPERTY_IGNORE_MOVESPEED_LIMIT,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT
 	}
 	return funcs
 end
@@ -31,9 +31,9 @@ function modifier_angelic_alliance_maximum_speed:GetModifierIgnoreMovespeedLimit
 end
 
 
-function modifier_angelic_alliance_maximum_speed:GetModifierMoveSpeedBonus_Percentage()
+function modifier_angelic_alliance_maximum_speed:GetModifierMoveSpeedBonus_Constant()
 	if self:GetAbility() then  
-		return self:GetAbility():GetSpecialValueFor("movespeed_percentage")
+		return self:GetAbility():GetSpecialValueFor("movespeed_bonus")
 	else
 		return 0
 	end
@@ -55,7 +55,7 @@ function modifier_item_fun_sprint_shoes_lua:DeclareFunctions()
 	local funcs = 
 	{
 		MODIFIER_PROPERTY_IGNORE_MOVESPEED_LIMIT,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE_UNIQUE,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
 		MODIFIER_EVENT_ON_STATE_CHANGED
 	}
@@ -85,9 +85,9 @@ function modifier_item_fun_sprint_shoes_lua:GetModifierIgnoreMovespeedLimit()
 	return 1
 end
 
-function modifier_item_fun_sprint_shoes_lua:GetModifierMoveSpeedBonus_Percentage_Unique()
+function modifier_item_fun_sprint_shoes_lua:GetModifierMoveSpeedBonus_Constant()
 	if self:GetAbility() then  
-		return self:GetAbility():GetSpecialValueFor("movespeed_percentage")
+		return self:GetAbility():GetSpecialValueFor("movespeed_bonus")
 	else
 		return 0
 	end
@@ -536,7 +536,7 @@ function modifier_item_fun_terra_blade:DeclareFunctions()
 		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
 --		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 		MODIFIER_PROPERTY_HEALTH_BONUS,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
@@ -652,7 +652,7 @@ function modifier_item_fun_terra_blade:GetModifierAttackSpeedBonus_Constant() re
 function modifier_item_fun_terra_blade:GetModifierBaseAttackTimeConstant() return self:GetAbility():GetSpecialValueFor("bat") end
 function modifier_item_fun_terra_blade:GetModifierBonusStats_Strength() return self:GetAbility():GetSpecialValueFor("bonus_strength") end
 function modifier_item_fun_terra_blade:GetModifierHealthBonus() return self:GetAbility():GetSpecialValueFor("bonus_health") end
-function modifier_item_fun_terra_blade:GetModifierMoveSpeedBonus_Constant() return self:GetAbility():GetSpecialValueFor("movement_speed_bonus_constant")/math.floor(self:GetStackCount()/2) end
+function modifier_item_fun_terra_blade:GetModifierMoveSpeedBonus_Percentage() return self:GetAbility():GetSpecialValueFor("movespeed_bonus")/math.floor(self:GetStackCount()/2) end
 function modifier_item_fun_terra_blade:GetModifierBaseDamageOutgoing_Percentage() return self:GetAbility():GetSpecialValueFor("bonus_damage_percentage")/math.floor(self:GetStackCount()/2) end
 
 
@@ -815,7 +815,7 @@ end
 
 modifier_item_fun_papyrus_scarab = class(tClassHiddenNotPurgableNotRemoveOnDeath)
 function modifier_item_fun_papyrus_scarab:DeclareFunctions() return {
-	MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 	MODIFIER_PROPERTY_MANA_BONUS,
 	MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 	MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
@@ -825,7 +825,7 @@ function modifier_item_fun_papyrus_scarab:DeclareFunctions() return {
 }
 end
 
-function modifier_item_fun_papyrus_scarab:GetModifierMoveSpeedBonus_Percentage() return self:GetAbility():GetSpecialValueFor('bonus_movement') end
+function modifier_item_fun_papyrus_scarab:GetModifierMoveSpeedBonus_Constant() return self:GetAbility():GetSpecialValueFor('movespeed_bonus') end
 function modifier_item_fun_papyrus_scarab:GetModifierManaBonus() return self:GetAbility():GetSpecialValueFor('bonus_mana') end
 function modifier_item_fun_papyrus_scarab:GetModifierPhysicalArmorBonus() return self:GetAbility():GetSpecialValueFor('bonus_armor') end
 function modifier_item_fun_papyrus_scarab:GetModifierAttackSpeedBonus_Constant() return self:GetAbility():GetSpecialValueFor('bonus_attack_speed') end
@@ -946,13 +946,10 @@ end
 local PAPYRUS_SCARAB_DAMAGE = 1
 local PAPYRUS_SCARAB_ARMOR = 2
 local PAPYRUS_SCARAB_ATTACK_SPPED = 3
-local PAPYRUS_SCARAB_MOVEMENT_SPEED = 4
-local PAPYRUS_SCARAB_MANA = 5
-local PAPYRUS_SCARAB_MANA_REGEN = 6
-local PAPYRUS_SCARAB_SPELL_AMP = 7
-local PAPYRUS_SCARAB_HEALTH = 8
-local PAPYRUS_SCARAB_HEALTH_REGEN = 9
-local PAPYRUS_SCARAB_MAGIC_RESIST = 10
+local PAPYRUS_SCARAB_MANA = 4
+local PAPYRUS_SCARAB_MANA_REGEN = 5
+local PAPYRUS_SCARAB_HEALTH = 6
+local PAPYRUS_SCARAB_HEALTH_REGEN = 7
 
 function modifier_item_fun_papyrus_scarab_aura_emitter_3:OnIntervalThink()
 	if IsServer() then 
@@ -964,7 +961,7 @@ function modifier_item_fun_papyrus_scarab_aura_emitter_3:OnIntervalThink()
 		local fRatio = self:GetAbility():GetSpecialValueFor("aura_stat_bonus")/100
 		self.iCount = self.iCount or 0
 		self.iCount = self.iCount+1
-		if self.iCount > PAPYRUS_SCARAB_MAGIC_RESIST then
+		if self.iCount > PAPYRUS_SCARAB_HEALTH_REGEN then
 			self.bAuraActivated = true
 			self.iCount = PAPYRUS_SCARAB_DAMAGE
 		end
@@ -979,40 +976,41 @@ function modifier_item_fun_papyrus_scarab_aura_emitter_3:OnIntervalThink()
 			self:SetStackCount(PAPYRUS_SCARAB_ARMOR+16*math.ceil(fRatio*hGameMode:GetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_ARMOR, hCaster)*fAgility*10))
 		elseif self.iCount == PAPYRUS_SCARAB_ATTACK_SPPED then
 			self:SetStackCount(PAPYRUS_SCARAB_ATTACK_SPPED+16*math.ceil(fRatio*hGameMode:GetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_ATTACK_SPEED, hCaster)*fAgility))
-		elseif self.iCount == PAPYRUS_SCARAB_MOVEMENT_SPEED then
-			self:SetStackCount(PAPYRUS_SCARAB_MOVEMENT_SPEED+16*math.ceil(fRatio*hGameMode:GetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_MOVE_SPEED_PERCENT, hCaster)*fAgility*1000))
+--		elseif self.iCount == PAPYRUS_SCARAB_MOVEMENT_SPEED then
+--			self:SetStackCount(PAPYRUS_SCARAB_MOVEMENT_SPEED+16*math.ceil(fRatio*hGameMode:GetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_MOVE_SPEED_PERCENT, hCaster)*fAgility*1000))
 		elseif self.iCount == PAPYRUS_SCARAB_HEALTH then
 			self:SetStackCount(PAPYRUS_SCARAB_HEALTH+16*math.ceil(fRatio*hGameMode:GetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP, hCaster)*fStrength))
 		elseif self.iCount == PAPYRUS_SCARAB_HEALTH_REGEN then
 			self:SetStackCount(PAPYRUS_SCARAB_HEALTH_REGEN+16*math.ceil(fRatio*hGameMode:GetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP_REGEN, hCaster)*fStrength*10))
 		elseif self.iCount == PAPYRUS_SCARAB_MAGIC_RESIST then
 			self:SetStackCount(PAPYRUS_SCARAB_MAGIC_RESIST+16*math.ceil(fRatio*hGameMode:GetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_MAGIC_RESISTANCE_PERCENT, hCaster)*fStrength*1000))
-		elseif self.iCount == PAPYRUS_SCARAB_MANA_REGEN then
-			self:SetStackCount(PAPYRUS_SCARAB_MANA_REGEN+16*math.ceil(fRatio*hGameMode:GetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN, hCaster)*fIntellect*10))
-		elseif self.iCount == PAPYRUS_SCARAB_SPELL_AMP then
-			self:SetStackCount(PAPYRUS_SCARAB_SPELL_AMP+16*math.ceil(fRatio*hGameMode:GetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_SPELL_AMP_PERCENT, hCaster)*fIntellect*10))
+--		elseif self.iCount == PAPYRUS_SCARAB_MANA_REGEN then
+--			self:SetStackCount(PAPYRUS_SCARAB_MANA_REGEN+16*math.ceil(fRatio*hGameMode:GetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN, hCaster)*fIntellect*10))
+--		elseif self.iCount == PAPYRUS_SCARAB_SPELL_AMP then
+--			self:SetStackCount(PAPYRUS_SCARAB_SPELL_AMP+16*math.ceil(fRatio*hGameMode:GetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_SPELL_AMP_PERCENT, hCaster)*fIntellect*10))
 		elseif self.iCount == PAPYRUS_SCARAB_MANA then
 			self:SetStackCount(PAPYRUS_SCARAB_MANA+16*math.ceil(fRatio*hGameMode:GetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA, hCaster)*fIntellect))
 		end
 	end
+	
 	if self:GetStackCount()%16 == PAPYRUS_SCARAB_DAMAGE then
 		self.iDamage = math.floor(self:GetStackCount()/16)
 	elseif  self:GetStackCount()%16 == PAPYRUS_SCARAB_ARMOR then
 		self.fArmor = math.floor(self:GetStackCount()/16)/10
 	elseif  self:GetStackCount()%16 == PAPYRUS_SCARAB_ATTACK_SPPED then
 		self.iAttackSpeed = math.floor(self:GetStackCount()/16)
-	elseif  self:GetStackCount()%16 == PAPYRUS_SCARAB_MOVEMENT_SPEED then
-		self.fMoveSpeed = math.floor(self:GetStackCount()/16)/10
+--	elseif  self:GetStackCount()%16 == PAPYRUS_SCARAB_MOVEMENT_SPEED then
+--		self.fMoveSpeed = math.floor(self:GetStackCount()/16)/10
 	elseif  self:GetStackCount()%16 == PAPYRUS_SCARAB_HEALTH then
 		self.iHealth = math.floor(self:GetStackCount()/16)
 	elseif  self:GetStackCount()%16 == PAPYRUS_SCARAB_HEALTH_REGEN then
 		self.fHealthRegen = math.floor(self:GetStackCount()/16)/10
-	elseif  self:GetStackCount()%16 == PAPYRUS_SCARAB_MAGIC_RESIST then
-		self.fMagicalResistance = math.floor(self:GetStackCount()/16)/10
+--	elseif  self:GetStackCount()%16 == PAPYRUS_SCARAB_MAGIC_RESIST then
+--		self.fMagicalResistance = math.floor(self:GetStackCount()/16)/10
 	elseif  self:GetStackCount()%16 == PAPYRUS_SCARAB_MANA_REGEN then
 		self.fManaRegen = math.floor(self:GetStackCount()/16)/10
-	elseif  self:GetStackCount()%16 == PAPYRUS_SCARAB_SPELL_AMP then
-		self.fSpellAmp = math.floor(self:GetStackCount()/16)/10
+--	elseif  self:GetStackCount()%16 == PAPYRUS_SCARAB_SPELL_AMP then
+--		self.fSpellAmp = math.floor(self:GetStackCount()/16)/10
 	elseif  self:GetStackCount()%16 == PAPYRUS_SCARAB_MANA then
 		self.iMana = math.floor(self:GetStackCount()/16)
 	end
@@ -1026,14 +1024,14 @@ function modifier_item_fun_papyrus_scarab_aura_3:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+--		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 --		MODIFIER_PROPERTY_MANA_BONUS,
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+--		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_TOOLTIP,
 		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS
+--		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS
 	}
 end
 

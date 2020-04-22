@@ -582,10 +582,25 @@ function modifier_backdoor_healing:OnTakeDamage(keys)
 	end	
 end
 
+tFunExpensiveMode = {
+	item_fun_economizer = {'item_apex', 'item_spell_prism'},
+	item_fun_genji_gloves = {'item_apex', 'item_pirate_hat'},
+	item_fun_ragnarok = {'item_apex', 'item_witless_shako'},
+	item_fun_escutcheon = {'item_mirror_shield','item_panic_button'},
+	item_fun_blood_sword = {'item_desolator_2','item_havoc_hammer'},
+	item_fun_heros_bow = {'item_ballista','item_force_boots'},
+	item_fun_magic_hammer = {'item_seer_stone','item_woodland_striders'},
+	item_fun_papyrus_scarab = {'item_demonicon','item_illusionsts_cape'},
+	item_fun_orb_of_omnipotence = {'item_apex','item_princes_knife'},
+	item_fun_sprint_shoes = {'item_fallen_sky', 'item_flicker'},
+	item_fun_terra_blade = {'item_apex', 'item_trident'},
+	item_fun_angelic_alliance = {'item_apex', 'item_titan_sliver','item_timeless_relic'},
+	
+}
 modifier_ban_fun_items = class(tClassFTF)
 
 function modifier_ban_fun_items:OnCreated()
-	self:StartIntervalThink(0.1)
+	self:StartIntervalThink(1)
 end
 
 function modifier_ban_fun_items:OnIntervalThink()
