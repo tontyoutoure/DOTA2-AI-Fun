@@ -346,7 +346,7 @@ end
 function modifier_heros_bow_always_allow_attack:IsPurgable() return false end
 
 modifier_item_fun_heros_bow_debuff = class({})
-function modifier_item_fun_heros_bow_debuff:IsPurgable() return true end
+function modifier_item_fun_heros_bow_debuff:IsPurgable() return false end
 function modifier_item_fun_heros_bow_debuff:DeclareFunctions() return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE, MODIFIER_PROPERTY_PROVIDES_FOW_POSITION, MODIFIER_PROPERTY_DISABLE_HEALING} end
 function modifier_item_fun_heros_bow_debuff:GetModifierIncomingDamage_Percentage() return self:GetAbility():GetSpecialValueFor("damage_amp") end
 function modifier_item_fun_heros_bow_debuff:GetModifierProvidesFOWVision() return 1 end

@@ -176,7 +176,7 @@ tBotItemData.tBotBuildFunItems = {
 	npc_dota_hero_warlock = {tWantedFunItems = {"item_fun_economizer","item_fun_economizer_2","item_fun_magic_hammer","item_fun_escutcheon"}, sEndItem = "item_shivas_guard"},
 	npc_dota_hero_skeleton_king  = {tWantedFunItems = {"item_fun_papyrus_scarab","item_fun_blood_sword","item_fun_genji_gloves","item_fun_genji_gloves_2"}, sEndItem = "item_assault"},
 	npc_dota_hero_death_prophet = {tWantedFunItems = {"item_fun_economizer","item_fun_economizer_2","item_fun_magic_hammer","item_fun_escutcheon"}, sEndItem = "item_shivas_guard"},
-	npc_dota_hero_phantom_assassin = {tWantedFunItems = {"item_fun_blood_sword","item_fun_escutcheon","item_fun_genji_gloves","item_fun_genji_gloves_2"}, sEndItem = "item_monkey_king_bar"},
+	npc_dota_hero_phantom_assassin = {tWantedFunItems = {"item_fun_blood_sword", 'item_fun_papyrus_scarab',"item_fun_genji_gloves","item_fun_genji_gloves_2"}, sEndItem = "item_monkey_king_bar"},
 	npc_dota_hero_viper = {tWantedFunItems = {"item_fun_papyrus_scarab","item_fun_heros_bow","item_fun_economizer","item_fun_economizer_2","item_fun_genji_gloves","item_fun_genji_gloves_2"}, sEndItem = "item_monkey_king_bar"},
 	npc_dota_hero_luna = {tWantedFunItems = { "item_fun_papyrus_scarab", "item_fun_blood_sword","item_fun_genji_gloves","item_fun_genji_gloves_2"}, sEndItem = "item_assault"},
 	npc_dota_hero_dragon_knight = {tWantedFunItems = {"item_fun_papyrus_scarab","item_fun_blood_sword","item_fun_economizer","item_fun_economizer_2"}, sEndItem = "item_greater_crit"},
@@ -196,6 +196,7 @@ end
 tBotItemData.tWrongItems = {
 	{tRightItems = {'item_butterfly', 'item_satanic'}, components = {item_mask_of_madness = 1,item_eagle = 1, item_reaver =1, item_talisman_of_evasion = 1, item_claymore= 1}, deficit = 0},
 	{tRightItems = {'item_black_king_bar'}, components = {item_javelin = 1, item_ogre_axe = 1, item_recipe_black_king_bar = 1}, deficit = 500},
+	{tRightItems = {'item_black_king_bar', 'item_oblivion_staff'}, components = {item_mithril_hammer = 1, item_echo_sabre = 1, item_recipe_black_king_bar = 1}, deficit = 0},
 }
 tBotItemData.tLowCostItems = {
 	item_flask = true;

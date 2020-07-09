@@ -313,37 +313,39 @@ function modifier_bot_use_items:OnIntervalThink()
 	if hParent:IsIllusion() or hParent:HasModifier("modifier_ban_fun_items") then self:Destroy() end
 	if hParent:IsStunned() or hParent:IsMuted() or hParent:IsCommandRestricted() then return end
 	
-	--Pick up AA
-	for k, v in pairs(Entities:FindAllByClassnameWithin("dota_item_drop", hParent:GetOrigin(), 800)) do
-		if v:GetContainedItem():GetAbilityName() == "item_fun_angelic_alliance" then
-			if (hParent:GetOrigin()-v:GetOrigin()):Length2D() < 140 then
-				local iMinimumCost = 99999
-				local hMinimumCostItem
-				local bHasEmpty = false
-				for i = 0, 8 do
-					if not hParent:GetItemInSlot(i) then
-						bHasEmpty = true
-						break
-					else						
-						if iMinimumCost > hParent:GetItemInSlot(i):GetCost() then
-							iMinimumCost = hParent:GetItemInSlot(i):GetCost()
-							hMinimumCostItem = hParent:GetItemInSlot(i)
+
+	if GameMode.iBotHasFunItem == 1 then
+	
+		--Pick up AA
+		for k, v in pairs(Entities:FindAllByClassnameWithin("dota_item_drop", hParent:GetOrigin(), 800)) do
+			if v:GetContainedItem():GetAbilityName() == "item_fun_angelic_alliance" then
+				if (hParent:GetOrigin()-v:GetOrigin()):Length2D() < 140 then
+					local iMinimumCost = 99999
+					local hMinimumCostItem
+					local bHasEmpty = false
+					for i = 0, 8 do
+						if not hParent:GetItemInSlot(i) then
+							bHasEmpty = true
+							break
+						else						
+							if iMinimumCost > hParent:GetItemInSlot(i):GetCost() then
+								iMinimumCost = hParent:GetItemInSlot(i):GetCost()
+								hMinimumCostItem = hParent:GetItemInSlot(i)
+							end
 						end
 					end
-				end
---				print(bHasEmpty, iMinimumCost, hMinimumCostItem:GetName())
-				if bHasEmpty then
-					hParent:PickupDroppedItem(v)
+	--				print(bHasEmpty, iMinimumCost, hMinimumCostItem:GetName())
+					if bHasEmpty then
+						hParent:PickupDroppedItem(v)
+					else
+						hParent:DropItemAtPositionImmediate(hMinimumCostItem, hParent:GetOrigin())
+						hParent:PickupDroppedItem(v)
+					end
 				else
-					hParent:DropItemAtPositionImmediate(hMinimumCostItem, hParent:GetOrigin())
-					hParent:PickupDroppedItem(v)
+					hParent:MoveToPosition(v:GetOrigin())
 				end
-			else
-				hParent:MoveToPosition(v:GetOrigin())
 			end
 		end
-	end
-	if GameMode.iBotHasFunItem == 1 then
 	
 		local hItem = FindItemByNameNotIncludeBackpack(hParent, "item_fun_blood_sword")
 		if hItem and hItem:IsCooldownReady() then
@@ -758,7 +760,7 @@ function modifier_item_assemble_fix:OnIntervalThink()
 		if (hParent:GetName() == 'npc_dota_hero_chaos_knight' and hParent:HasItemInInventory(tBotItemData.tLuxuryItemList[hParent:GetName()][#tBotItemData.tLuxuryItemList[hParent:GetName()]])) or (iOmit == 1 and hParent:HasItemInInventory(tBotItemData.tLuxuryItemList[hParent:GetName()][#tBotItemData.tLuxuryItemList[hParent:GetName()]-1])) or hParent:HasModifier('modifier_item_ultimate_scepter_consumed') then
 			hParent.bHasEndItem = true
 		end
-	end
+	end 
 --	SellLowCostItems(hParent)
 	
 	if not hParent.bHasEndFunItem and GameMode.iBotHasFunItem > 0 and not hParent:HasModifier('modifier_ban_fun_items') and hParent.bHasEndItem then
