@@ -201,7 +201,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"health_percent"	"-4"
+				"health_percent"	"4"
 			}
 			"04"
 			{

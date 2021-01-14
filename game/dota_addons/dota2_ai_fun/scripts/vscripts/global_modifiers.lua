@@ -763,7 +763,7 @@ function modifier_item_assemble_fix:OnIntervalThink()
 	end 
 --	SellLowCostItems(hParent)
 	
-	if not hParent.bHasEndFunItem and GameMode.iBotHasFunItem > 0 and not hParent:HasModifier('modifier_ban_fun_items') and hParent.bHasEndItem then
+	if not hParent.bHasEndFunItem and GameMode.iBotHasFunItem > 0 and hParent.bHasEndItem then
 		for i, v in ipairs(tBotItemData.tBotBuildFunItems[hParent:GetName()].tWantedFunItems) do
 	
 			CheckFunItems(hParent, v)

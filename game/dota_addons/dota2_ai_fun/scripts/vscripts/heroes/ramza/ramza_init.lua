@@ -94,7 +94,7 @@ local tNewAbilities = {
 	"special_bonus_spell_lifesteal_15",
 	"special_bonus_ramza_1",
 	"special_bonus_ramza_3",
-	"special_bonus_ramza_2",
+	"special_bonus_cooldown_reduction_65",
 	"special_bonus_ramza_4",
 }
 

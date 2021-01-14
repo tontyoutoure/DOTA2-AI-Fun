@@ -198,6 +198,28 @@ function CRamzaJob:Initialize()
 	Convars:RegisterCommand( "ramza_max_level", Dynamic_Wrap(CRamzaJob, 'RamzaLevelMax'), "Give Ramza all job and levels", FCVAR_CHEAT )
 end
 
+function CRamzaJob:LevelOwnedJobMax()
+	for i = 1, #self.tAllRamzas do	
+		local tCurrentJobs = {}
+		for j = 1, 20 do
+			if self.tAllRamzas[i].hRamzaJob.tJobLevels[j] > 0 then
+				table.insert(tCurrentJobs, j)
+			end
+		end
+		for k, v in pairs(tCurrentJobs) do
+			self.tAllRamzas[i].hRamzaJob.tJobPoints[v] = 4000
+			self.tAllRamzas[i].hRamzaJob.tJobLevels[v] = 9	
+			for k1, v1 in pairs(self.tRamzaChangeJobRequirements[v]) do
+				self.tAllRamzas[i].hRamzaJob.tChangeJobRequirements[v][k1] = true
+			end
+			self.tAllRamzas[i].hRamzaJob:LevelUpSkills()
+		end
+		CustomNetTables:SetTableValue("ramza", "job_level_"..tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), self.tAllRamzas[i].hRamzaJob.tJobLevels)
+		CustomNetTables:SetTableValue("ramza", "job_requirement_"..tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), self.tAllRamzas[i].hRamzaJob.tChangeJobRequirements)
+		CustomNetTables:SetTableValue("ramza", "current_job_"..tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), {self.tAllRamzas[i].hRamzaJob.iCurrentJob})
+		CustomNetTables:SetTableValue("ramza", "current_secondary_skill_"..tostring(self.tAllRamzas[i]:GetOwner():GetPlayerID()), {self.tAllRamzas[i].hRamzaJob.iSecondarySkill})
+	end
+end
 function CRamzaJob:RamzaLevelMax()
 	for i = 1, #self.tAllRamzas do		
 		for j = 1, 20 do
@@ -464,7 +486,7 @@ function CRamzaJob:ChangeStat(iJobToGo)
 	self.hParent:FindModifierByName("modifier_ramza_job_manager").fStrGrowth = self.tJobStats[iJobToGo].gain_str
 	self.hParent:FindModifierByName("modifier_ramza_job_manager").fAgiGrowth = self.tJobStats[iJobToGo].gain_agi
 	self.hParent:FindModifierByName("modifier_ramza_job_manager").fIntGrowth = self.tJobStats[iJobToGo].gain_int
-	self.hParent:CalculateStatBonus()
+	self.hParent:CalculateStatBonus(true)
 end
 
 

@@ -59,15 +59,17 @@ function modifier_old_holy_knight_critical_strike:DeclareFunctions()
 end 
 function modifier_old_holy_knight_critical_strike:OnCreated()
 	if IsClient() then return end
-	CheckForCritChance(self)
-	self.tCritRecords = {}
+	self.iPRG = self:GetParent():RegisterPRG(self)
+end
+
+function modifier_old_holy_knight_critical_strike:OnDestroy()
+	self:GetParent():UnRegisterPRG(self.iPRG)
 end
 
 function modifier_old_holy_knight_critical_strike:OnAttackStart(keys)
 	if self:GetParent() ~= keys.attacker then return end
-	if not CheckForCritChance(self) then return end
 	self.bCrit = false
-	if keys.target:GetTeam()~=keys.attacker:GetTeam() and not keys.target:IsBuilding() and self.hRNG:Next() then
+	if keys.target:GetTeam()~=keys.attacker:GetTeam() and not keys.target:IsBuilding() and RollPseudoRandomPercentage(self:GetAbility:GetSpecialValueFor("crit_chance"), self.iPRG, keys.attacker) then
 		self.bCrit = true
 	end
 end

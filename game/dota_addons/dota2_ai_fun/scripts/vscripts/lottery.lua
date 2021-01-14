@@ -5,31 +5,35 @@ local tNeutralItems = {
 --		"item_elixer",
 		"item_ironwood_tree",
 		"item_royal_jelly",
-		"item_mango_tree",
+--		"item_mango_tree",
 		"item_ocean_heart",
 		"item_broom_handle",
 		"item_trusty_shovel",
+		"item_possessed_mask",
+		"item_chipped_vest",
 	}, 
 
 	{
 		"item_grove_bow",
 		"item_philosophers_stone",
-		"item_vampire_fangs",
+--		"item_vampire_fangs",
 		"item_pupils_gift",
 		"item_vambrace",
 		"item_imp_claw",
 		"item_nether_shawl",
 		"item_dragon_scale",
 		"item_essence_ring",
-		"item_clumsy_net",
+--		"item_clumsy_net",
 --		"item_tome_of_aghanim",
+		"item_quicksilver_amulet",
+		"item_bullwhip"
 	},
 
 	{
 		"item_quickening_charm",
-		"item_craggy_coat",
-		"item_greater_faerie_fire",
-		"item_repair_kit",
+--		"item_craggy_coat",
+--		"item_greater_faerie_fire",
+--		"item_repair_kit",
 		"item_mind_breaker",
 --		"item_third_eye",
 		"item_spider_legs",
@@ -39,20 +43,27 @@ local tNeutralItems = {
 		"item_orb_of_destruction",
 		"item_titan_sliver",
 		"item_spy_gadget",
+		"item_elven_tunic",
+		"item_cloak_of_flames",
+		"item_ceremonial_robe",
+		"item_psychic_headband",
 	},
 
 	{
 		"item_timeless_relic",
 		"item_spell_prism",
-		"item_princes_knife",
-		"item_witless_shako",
-		"item_flicker",
+	--	"item_princes_knife",
+	--	"item_witless_shako",
+	--	"item_flicker",
 		"item_ninja_gear",
 		"item_illusionsts_cape",
-		"item_havoc_hammer",
-		"item_panic_button",
+	--	"item_havoc_hammer",
+	--	"item_panic_button",
 		"item_minotaur_horn",
 		"item_the_leveller",
+		"item_penta_edged_sword",
+		"item_stormcrafter",
+		"item_trickster_cloak",
 --		"item_horizon",
 --		"item_greater_mango",
 	},
@@ -66,12 +77,14 @@ local tNeutralItems = {
 --		"item_fusion_rune",
 		"item_apex",
 		"item_ballista",
-		"item_woodland_striders",
+--		"item_woodland_striders",
 		"item_demonicon",
 		"item_fallen_sky",
-		"item_recipe_trident",
+--		"item_recipe_trident",
 		"item_pirate_hat",
 		"item_ex_machina",
+		"item_book_of_shadows",
+		"item_giants_ring",
 --		"item_dimensional_doorway",
 	},
 }
@@ -186,6 +199,8 @@ local function LotteryOnSpellStart(self)
 	for i = 2, 5 do
 		tAccumulatedChance[i] = self:GetSpecialValueFor('chance_lv'..tostring(i))+tAccumulatedChance[i-1]
 	end
+	print(fRoll)
+	_DeepPrintTable(tAccumulatedChance)
 	local sName
 	if fRoll < tAccumulatedChance[1] then
 		sName = tNeutralItems[1][RandomInt(1,#tNeutralItems[1])]

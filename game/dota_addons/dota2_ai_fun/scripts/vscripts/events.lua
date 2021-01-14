@@ -181,19 +181,14 @@ function GameMode:OnGameStateChanged( keys )
 end
 bAllFunHeroes = false
 function GameMode:_OnNPCSpawned(keys)
-	if GameRules:State_Get() < DOTA_GAMERULES_STATE_PRE_GAME then return end
 	if EntIndexToHScript(keys.entindex):IsCourier() then
 		local hCourier = EntIndexToHScript(keys.entindex)
 		if self.iFastCourier > 0 then
-			CustomGameEventManager:Send_ServerToAllClients("panorama_print", {courier_fast_player = hCourier:GetPlayerOwnerID()})
 			hCourier:AddNewModifier(hCourier, nil, 'modifier_fast_courier', nil)
-		end
-		if self.iEnableLottery > 0 then
---			hCourier:AddAbility('sell_neutral_items'):SetLevel(1)
---			hCourier:AddAbility('retrieve_neutral_items'):SetLevel(1)
 		end
 		hCourier:GetOwner().hCourier = hCourier
 	end
+	if GameRules:State_Get() < DOTA_GAMERULES_STATE_PRE_GAME then return end
 	local hHero = EntIndexToHScript(keys.entindex)	
 	if hHero.bInitialized or not hHero:IsHero() then return end	 
 	
@@ -226,7 +221,7 @@ function GameMode:_OnNPCSpawned(keys)
 	if IsInToolsMode() and self.tHumanPlayerList[(hHero:GetPlayerOwnerID())] then PlayerResource:SetGold(hHero:GetOwner():GetPlayerID(), 99999, true) end
 	
 	if self.iImbalancedEconomizer == 1 then hHero:AddNewModifier(hHero, nil, "modifier_imbalanced_economizer", {}) end
-	if self.iBanFunItems == 1 then hHero:AddNewModifier(hHero, nil, "modifier_ban_fun_items", {}) end
+	if self.iBanFunItems == 1 and self.tHumanPlayerList[hHero:GetPlayerOwnerID()] then hHero:AddNewModifier(hHero, nil, "modifier_ban_fun_items", {}) end
 	if self.iAntiDiving == 1 then hHero:AddNewModifier(hHero, nil, "modifier_anti_diving", {}) end
 	hHero:AddNewModifier(hHero, nil, "modifier_lottery_manager", {})
 	
@@ -312,7 +307,7 @@ function GameMode:OnConfirmGameOptions(eventSourceIndex, args)
 	self.iAntiDiving = GameMode.tGameOption.anti_diving
 	self.iEnableLottery = GameMode.tGameOption.enable_lottery
 	
-	PrintTable(GameMode.tGameOption)
+	_DeepPrintTable(GameMode.tGameOption)
 	self:PreGameOptions()
 	
 	
@@ -360,7 +355,7 @@ function GameMode:OnDOTAItemPurchased(keys)
 	end
 end
 function GameMode:OnItemPurchased(keys)
-	PrintTable(keys)
+	_DeepPrintTable(keys)
 
 end
 function GameMode:OnItemPickUp(keys)

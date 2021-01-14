@@ -88,6 +88,7 @@ function GameMode:InitGameOptions()
 	GameRules:SetHeroSelectionTime( HERO_SELECTION_TIME )
 	GameRules:SetPreGameTime( PRE_GAME_TIME )
 	GameRules:SetPostGameTime( POST_GAME_TIME )
+	GameRules:GetGameModeEntity():SetDraftingBanningTimeOverride(20)
 	if IsInToolsMode() then 
 --		GameRules:SetPreGameTime( 0 )
 	end

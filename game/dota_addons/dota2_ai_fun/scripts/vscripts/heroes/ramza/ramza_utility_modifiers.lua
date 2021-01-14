@@ -472,14 +472,14 @@ function modifier_ramza_bravery:OnCreated()
 	self.iBonusDamage = self:GetAbility():GetSpecialValueFor("bonus_damage")
 	self.iBonusStr = self:GetAbility():GetSpecialValueFor("bonus_strength")
 	if IsClient() then return end
-	self:GetParent():CalculateStatBonus()
+	self:GetParent():CalculateStatBonus(true)
 end
 function modifier_ramza_bravery:OnRefresh() 
 	if not self:GetAbility() then return end
 	self.iBonusDamage = self:GetAbility():GetSpecialValueFor("bonus_damage")
 	self.iBonusStr = self:GetAbility():GetSpecialValueFor("bonus_strength")
 	if IsClient() then return end
-	self:GetParent():CalculateStatBonus()
+	self:GetParent():CalculateStatBonus(true)
 end
 
 function modifier_ramza_bravery:GetModifierPreAttack_BonusDamage()
@@ -525,7 +525,7 @@ function modifier_ramza_speed:OnRefresh()
 	self.iAttack = self:GetAbility():GetSpecialValueFor("bonus_attack")
 	self.iAgi = self:GetAbility():GetSpecialValueFor("bonus_agility")
 	if IsClient() then return end
-	self:GetParent():CalculateStatBonus()
+	self:GetParent():CalculateStatBonus(true)
 end
 
 function modifier_ramza_speed:GetModifierBonusStats_Agility()
@@ -585,7 +585,7 @@ function modifier_ramza_faith:OnRefresh()
 	self.iHealAmp = self:GetAbility():GetSpecialValueFor("bonus_heal_amp")
 	self.iInt = self:GetAbility():GetSpecialValueFor("bonus_intelligence")
 	if IsClient() then return end
-	self:GetParent():CalculateStatBonus()
+	self:GetParent():CalculateStatBonus(true)
 end
 
 function modifier_ramza_faith:GetModifierHPRegenAmplify_PercentageSource()

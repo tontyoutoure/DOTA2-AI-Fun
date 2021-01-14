@@ -158,10 +158,8 @@ modifier_fluid_engineer_malicious_tampering = class({})
 
 function modifier_fluid_engineer_malicious_tampering:DeclareFunctions()
 	return {
-		MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE,
-		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
-		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT
+		MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE, 
+		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT, 
 	}
 end
 
@@ -171,9 +169,17 @@ end
 
 function modifier_fluid_engineer_malicious_tampering:OnIntervalThink()
 	if IsClient() then return end
-	if self:GetParent():GetHealth() <= 1 and self:GetAbility():GetCaster():FindAbilityByName("special_bonus_fluid_engineer_3"):GetLevel() > 0 then
-		self:GetParent():Kill(self:GetAbility(), self:GetAbility():GetCaster())
-	end
+	local hCaster = self:GetAbility():GetCaster()
+	local hParent = self:GetParent()
+	ApplyDamage({
+		victim = hParent,
+		attacker = hCaster,
+		damage = 0.1*(hParent:GetMaxHealth()*self:GetAbility():GetSpecialValueFor('health_percent')/100+hCaster:GetIntellect()),
+		damage_type = DAMAGE_TYPE_PURE,
+		ability = self:GetAbility(),
+		damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS + 	DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + 
+		DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL+(1-CheckTalent(hCaster, 'special_bonus_fluid_engineer_3'))*DOTA_DAMAGE_FLAG_NON_LETHAL;
+	})
 end
 
 function modifier_fluid_engineer_malicious_tampering:GetModifierConstantManaRegen() return self:GetAbility():GetSpecialValueFor("mana_constant")-self:GetAbility():GetCaster():GetIntellect() end

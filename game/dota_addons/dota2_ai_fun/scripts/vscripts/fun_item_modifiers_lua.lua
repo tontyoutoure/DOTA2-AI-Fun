@@ -543,6 +543,7 @@ function modifier_item_fun_terra_blade:DeclareFunctions()
 		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ORDER,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
+--		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT_ADJUST,
 	}
 end
 modifier_item_fun_terra_blade.OnTakeDamage = OnTakeDamageTBR
@@ -654,7 +655,7 @@ function modifier_item_fun_terra_blade:GetModifierBonusStats_Strength() return s
 function modifier_item_fun_terra_blade:GetModifierHealthBonus() return self:GetAbility():GetSpecialValueFor("bonus_health") end
 function modifier_item_fun_terra_blade:GetModifierMoveSpeedBonus_Percentage() return self:GetAbility():GetSpecialValueFor("movespeed_bonus")/math.floor(self:GetStackCount()/2) end
 function modifier_item_fun_terra_blade:GetModifierBaseDamageOutgoing_Percentage() return self:GetAbility():GetSpecialValueFor("bonus_damage_percentage")/math.floor(self:GetStackCount()/2) end
-
+function modifier_item_fun_terra_blade:GetModifierBaseAttackTimeConstant_Adjust() return 1 end
 
 
 modifier_item_fun_terra_blade.GetModifierHealthRegenPercentage = GetHealthRegenTBR

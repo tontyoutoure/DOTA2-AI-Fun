@@ -43,7 +43,7 @@ function modifier_terran_marine_precision:OnAttackLanded(keys)
 	if self.iShotCount >= iShotToGo then
 		self.iShotCount = 0;
 		hParent:SetBaseAgility(hParent:GetBaseAgility()+1)
-		hParent:CalculateStatBonus()
+		hParent:CalculateStatBonus(true)
 		self:IncrementStackCount()
 	end
 end

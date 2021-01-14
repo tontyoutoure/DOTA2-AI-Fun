@@ -85,7 +85,7 @@ function modifier_kahmeka_wounding_spear_debuff:OnCreated()
 	if self:GetStackCount() > iCap then
 		self:SetStackCount(iCap)
 	end
-	self:GetParent():CalculateStatBonus()
+	self:GetParent():CalculateStatBonus(true)
 end
 function modifier_kahmeka_wounding_spear_debuff:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
 function modifier_kahmeka_wounding_spear_debuff:GetEffectName() return "particles/units/heroes/hero_bloodseeker/bloodseeker_rupture_constant.vpcf" end

@@ -31,99 +31,11 @@ function DebugPrintTable(...)
 	end
 
 	if spew == 1 then
-		PrintTable(...)
+		_DeepPrintTable(...)
 	end
 end
 
-if IsInToolsMode() then
-	function PrintTable(t, indent, fileHandle, done)
-		--print ( string.format ('PrintTable type %s', type(keys)) )
-		if type(t) ~= "table" then return end
 
-		done = done or {}
-		done[t] = true
-		indent = indent or 0
-		fileHandle = fileHandle or io.stdout
-		local l = {}
-		for k, v in pairs(t) do
-			table.insert(l, k)
-		end
-
-		table.sort(l)
-		for k, v in ipairs(l) do
-			-- Ignore FDesc
-			if v ~= 'FDesc' then
-				local value = t[v]
-
-				if type(value) == "table" and not done[value] then
-					done [value] = true
-					if fileHandle == io.stdout then 
-						print(string.rep ("\t", indent)..tostring(v)..":")
-					end
-					fileHandle:write(string.rep ("\t", indent)..tostring(v)..":".."\n")
-					PrintTable (value, indent + 2, fileHandle, done)
-				elseif type(value) == "userdata" and not done[value] then
-					done [value] = true
-					if fileHandle == io.stdout then
-						print(string.rep ("\t", indent)..tostring(v)..": "..tostring(value))
-					end
-					fileHandle:write(string.rep ("\t", indent)..tostring(v)..": "..tostring(value).."\n")
-					PrintTable ((getmetatable(value) and getmetatable(value).__index) or getmetatable(value), indent + 2, fileHandle, done)
-				else
-					if t.FDesc and t.FDesc[v] then
-						if fileHandle == io.stdout then
-							print(string.rep ("\t", indent)..tostring(t.FDesc[v]))
-						end
-						fileHandle:write(string.rep ("\t", indent)..tostring(t.FDesc[v]).."\n")
-					else
-						if fileHandle == io.stdout then
-							print(string.rep ("\t", indent)..tostring(v)..": "..tostring(value))
-						end
-						fileHandle:write(string.rep ("\t", indent)..tostring(v)..": "..tostring(value).."\n")
-					end
-				end
-			end
-		end
-	end
-else
-	function PrintTable(t, indent, done)
-	  --print ( string.format ('PrintTable type %s', type(keys)) )
-	  if type(t) ~= "table" then return end
-
-	  done = done or {}
-	  done[t] = true
-	  indent = indent or 0
-
-	  local l = {}
-	  for k, v in pairs(t) do
-		table.insert(l, k)
-	  end
-
-	  table.sort(l)
-	  for k, v in ipairs(l) do
-		-- Ignore FDesc
-		if v ~= 'FDesc' then
-		  local value = t[v]
-
-		  if type(value) == "table" and not done[value] then
-			done [value] = true
-			print(string.rep ("\t", indent)..tostring(v)..":")
-			PrintTable (value, indent + 2, done)
-		  elseif type(value) == "userdata" and not done[value] then
-			done [value] = true
-			print(string.rep ("\t", indent)..tostring(v)..": "..tostring(value))
-			PrintTable ((getmetatable(value) and getmetatable(value).__index) or getmetatable(value), indent + 2, done)
-		  else
-			if t.FDesc and t.FDesc[v] then
-			  print(string.rep ("\t", indent)..tostring(t.FDesc[v]))
-			else
-			  print(string.rep ("\t", indent)..tostring(v)..": "..tostring(value))
-			end
-		  end
-		end
-	  end
-	end
-end
 -- Colors
 COLOR_NONE = '\x06'
 COLOR_GRAY = '\x06'
@@ -356,6 +268,34 @@ end
 
 tItemInventorySlotTable = {0, 1, 2, 3, 4, 5, 6, 7, 8, 15, 16}
 
+function CDOTA_BaseNPC.RegisterPRG(hObj)
+	self.tPRG = self.tPRG or {}
+	local i = 1
+	while true do
+		if not self.tPRG[i] then break end
+		i = i+1
+	end
+	return i
+end
 
+function CDOTA_BaseNPC.UnRegisterPRG(i)
+	self.tPRG[i] = nil
+end
+
+function CDOTA_BaseNPC.UnRegisterPRGWithHandle(hObj)
+	for k, v in pairs(self.tPRG) do
+		if hObj == v then
+			self.tPRG[k] = nil
+		end
+	end
+end
 
 --print("Util loaded")
+
+
+
+
+
+
+
+

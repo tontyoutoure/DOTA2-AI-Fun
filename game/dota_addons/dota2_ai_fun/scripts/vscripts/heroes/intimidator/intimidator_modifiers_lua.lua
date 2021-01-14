@@ -101,7 +101,7 @@ function modifier_intimidator_glare_lua_buff:OnCreated()
 	parent:SetBaseStrength(self.tNewStat[1])
 	parent:SetBaseAgility(self.tNewStat[2])
 	parent:SetBaseIntellect(self.tNewStat[3])
-	parent:CalculateStatBonus()
+	parent:CalculateStatBonus(true)
 	self:StartIntervalThink(0.04)
 end
 
@@ -132,7 +132,7 @@ function modifier_intimidator_glare_lua_buff:OnIntervalThink()
 	hParent:SetBaseStrength(self.tNewStat[1])
 	hParent:SetBaseAgility(self.tNewStat[2])
 	hParent:SetBaseIntellect(self.tNewStat[3])
-	hParent:CalculateStatBonus()
+	hParent:CalculateStatBonus(true)
 	
 	hParent:SetModelScale(self.originalModelScale*(1+self:GetStackCount()*ability:GetSpecialValueFor("primary_attribute_percentage")/100))
 end
@@ -145,7 +145,7 @@ function modifier_intimidator_glare_lua_buff:OnDestroy()
 	parent:SetBaseStrength(self.tOriginalStat[1]-self.tNewStat[1]+parent:GetBaseStrength())
 	parent:SetBaseAgility(self.tOriginalStat[2]-self.tNewStat[2]+parent:GetBaseAgility())
 	parent:SetBaseIntellect(self.tOriginalStat[3]-self.tNewStat[3]+parent:GetBaseIntellect())	
-	parent:CalculateStatBonus()	
+	parent:CalculateStatBonus(true)	
 end
 
 

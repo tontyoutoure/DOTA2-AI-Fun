@@ -28,7 +28,7 @@ function modifier_el_dorado_refine_weapons:OnIntervalThink()
 		iTypes = iTypes+1
 	end
 	self:SetStackCount(iTypes)
-	hParent:CalculateStatBonus()
+	hParent:CalculateStatBonus(true)
 	if not hParent.tSummons then return end
 	
 	hParent.iLastFrog = hParent.iLastFrog or 0

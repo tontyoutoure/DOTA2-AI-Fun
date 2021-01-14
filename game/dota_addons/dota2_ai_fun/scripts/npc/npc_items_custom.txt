@@ -2276,27 +2276,27 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"chance_lv1"	"10"
+				"chance_lv1"	"0"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"chance_lv2"	"5"
+				"chance_lv2"	"0"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"chance_lv3"	"2.5"
+				"chance_lv3"	"0"
 			}
 			"04"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"chance_lv4"	"1.25"
+				"chance_lv4"	"3.125"
 			}
 			"05"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"chance_lv5"	"0.625"
+				"chance_lv5"	"1.5625"
 			}
 			"06"
 			{
