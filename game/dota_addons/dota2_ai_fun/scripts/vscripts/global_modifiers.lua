@@ -241,10 +241,29 @@ local function FindItemByNameIncludeStash(hHero, sName)
 	return nil
 end
 
+local function GetFunItemCost(hHero)
+	local cost = 0
+	if not hHero.tFunItemList then
+		return cost
+	else
+		for k, v in pairs(hHero.tFunItemList) do
+			cost= cost+GetItemCost(k)
+		end
+	end
+	return cost
+end
+
 local function CheckFunItems(hHero, sFunItem)
 	hHero.tFunItemList = hHero.tFunItemList or {}
 --	print("checking", sFunItem, 'for', hHero:GetName())
 	if hHero.tFunItemList[sFunItem] then return end
+	local threshold
+	if hHero:GetTeam() == DOTA_TEAM_GOODGUYS then 
+		threshold = GameMode.iRadiantFunItemTotalPriceThreshold
+	else
+		threshold = GameMode.iDireFunItemTotalPriceThreshold
+	end
+	if GetFunItemCost(hHero) + GetItemCost(sFunItem) > threshold then return end
 	
 	local tHasComponent = {}
 	local tLackComponent = {}
@@ -599,6 +618,8 @@ tFunExpensiveMode = {
 	item_fun_angelic_alliance = {'item_apex', 'item_titan_sliver','item_timeless_relic'},
 	
 }
+
+-- control price now
 modifier_ban_fun_items = class(tClassFTF)
 
 function modifier_ban_fun_items:OnCreated()
@@ -608,10 +629,67 @@ end
 function modifier_ban_fun_items:OnIntervalThink()
 	if IsClient() then return end
 	local hParent = self:GetParent()
+	self.tPreviousFunItems = self.tPreviousFunItems or {} 
+	local cost = 0
+	local bRecheck = false
 	for i = 0, 14 do
-		if hParent:GetItemInSlot(i) and tBotItemData.tFunItems[hParent:GetItemInSlot(i):GetAbilityName()] then
-			hParent:DisassembleItem(hParent:GetItemInSlot(i))
+		if hParent:GetItemInSlot(i) and tBotItemData.tFunItems[hParent:GetItemInSlot(i):GetAbilityName()] and not hParent:GetItemInSlot(i).bDropped then
+			
+			cost = cost+hParent:GetItemInSlot(i):GetCost()
 		end
+	end
+	local threshold
+	if hParent:GetTeam() == DOTA_TEAM_GOODGUYS then 
+		threshold = GameMode.iRadiantFunItemTotalPriceThreshold
+	else
+		threshold = GameMode.iDireFunItemTotalPriceThreshold
+	end
+	if cost < threshold then
+		for k,v in pairs(self.tPreviousFunItems) do
+			self.tPreviousFunItems[k] = 0
+		end
+		for i = 0, 14 do
+			if hParent:GetItemInSlot(i) and tBotItemData.tFunItems[hParent:GetItemInSlot(i):GetAbilityName()] and not hParent:GetItemInSlot(i).bDropped  then
+				local sItemName = hParent:GetItemInSlot(i):GetAbilityName()
+				self.tPreviousFunItems[sItemName] = self.tPreviousFunItems[sItemName] or 0
+				self.tPreviousFunItems[sItemName] = self.tPreviousFunItems[sItemName]+1
+			end
+		end
+	else
+		local tCurrentFunItems = {}
+		for i = 0, 14 do
+			if hParent:GetItemInSlot(i) and tBotItemData.tFunItems[hParent:GetItemInSlot(i):GetAbilityName()] and not hParent:GetItemInSlot(i).bDropped  then
+				local sItemName = hParent:GetItemInSlot(i):GetAbilityName()
+				if not self.tPreviousFunItems[sItemName] then
+					hParent:DisassembleItem(hParent:GetItemInSlot(i))
+					bRecheck = true
+					break
+				end
+				tCurrentFunItems[sItemName] = tCurrentFunItems[sItemName] or 0
+				tCurrentFunItems[sItemName] = tCurrentFunItems[sItemName]+1
+			end
+		end
+		
+		for k,v in pairs(tCurrentFunItems) do
+			if tCurrentFunItems[k] > self.tPreviousFunItems[k] then
+				local hItem = hParent:FindItemInInventory(k)
+				if hItem.bDropped then
+					for i = 0,14 do
+						hItem = hParent:GetItemInSlot(i)
+						if hItem and hItem:GetName() == "item_fun_angelic_alliance" and not hItem.bDropped then
+							hParent:DisassembleItem(hItem)
+						end
+					end
+				else
+					hParent:DisassembleItem(hItem)
+				end
+				bRecheck = true
+				break
+			end
+		end
+	end
+	if bRecheck then
+		self:OnIntervalThink()
 	end
 end
 
@@ -757,7 +835,7 @@ function modifier_item_assemble_fix:OnIntervalThink()
 		for i = 1, (#tHeroLuxuryItemList-1-iOmit) do
 			CheckItemAfter(hParent, tHeroLuxuryItemList[i], tHeroLuxuryItemList[i+1])
 		end
-		if (hParent:GetName() == 'npc_dota_hero_chaos_knight' and hParent:HasItemInInventory(tBotItemData.tLuxuryItemList[hParent:GetName()][#tBotItemData.tLuxuryItemList[hParent:GetName()]])) or (iOmit == 1 and hParent:HasItemInInventory(tBotItemData.tLuxuryItemList[hParent:GetName()][#tBotItemData.tLuxuryItemList[hParent:GetName()]-1])) or hParent:HasModifier('modifier_item_ultimate_scepter_consumed') then
+		if ((hParent:GetName() == 'npc_dota_hero_chaos_knight' or hParent:GetName() == 'npc_dota_hero_bloodseeker' or hParent:GetName() == 'npc_dota_hero_skeleton_king') and hParent:HasItemInInventory(tBotItemData.tLuxuryItemList[hParent:GetName()][#tBotItemData.tLuxuryItemList[hParent:GetName()]])) or (iOmit == 1 and hParent:HasItemInInventory(tBotItemData.tLuxuryItemList[hParent:GetName()][#tBotItemData.tLuxuryItemList[hParent:GetName()]-1])) or hParent:HasModifier('modifier_item_ultimate_scepter_consumed') then
 			hParent.bHasEndItem = true
 		end
 	end 
@@ -765,7 +843,6 @@ function modifier_item_assemble_fix:OnIntervalThink()
 	
 	if not hParent.bHasEndFunItem and GameMode.iBotHasFunItem > 0 and hParent.bHasEndItem then
 		for i, v in ipairs(tBotItemData.tBotBuildFunItems[hParent:GetName()].tWantedFunItems) do
-	
 			CheckFunItems(hParent, v)
 		end
 		if hParent:HasItemInInventory(tBotItemData.tBotBuildFunItems[hParent:GetName()].tWantedFunItems[#tBotItemData.tBotBuildFunItems[hParent:GetName()].tWantedFunItems]) then 

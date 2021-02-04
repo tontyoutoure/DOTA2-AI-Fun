@@ -128,8 +128,6 @@ function VoteEnd(keys) {
 	$('#VoteContainer').visible = false	
 	GameEvents.SendCustomGameEventToAllClients("LoadingScreenTeamHide", {iPlayerID:Players.GetLocalPlayer()})
 	
-	$("#bot_has_fun_item").checked=true;  
-	$("#fast_courier").checked=true;  
 	if (Game.GetLocalPlayerInfo() === undefined) {
 		$.Schedule(1, InitializeUI);
 		return;

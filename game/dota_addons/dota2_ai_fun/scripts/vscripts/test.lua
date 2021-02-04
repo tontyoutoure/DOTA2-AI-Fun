@@ -1,3 +1,3 @@
 
 local hHero = PlayerResource:GetPlayer(0):GetAssignedHero()
-GameRules:SpawnNeutralCreeps()
+print(hHero:FindItemInInventory("item_fun_angelic_alliance"))

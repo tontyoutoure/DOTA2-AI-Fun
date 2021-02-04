@@ -435,6 +435,7 @@ function modifier_angelic_alliance_death_drop:OnDeath(keys)
 	if keys.unit ~= self:GetParent() or keys.reincarnate or keys.unit:IsIllusion() then return end
 	for i = 0, 8 do
 		if keys.unit:GetItemInSlot(i) and keys.unit:GetItemInSlot(i):GetName() == "item_fun_angelic_alliance" then
+			keys.unit:GetItemInSlot(i).bDropped = true
 			keys.unit:DropItemAtPositionImmediate(keys.unit:GetItemInSlot(i), keys.unit:GetOrigin())
 		end
 	end

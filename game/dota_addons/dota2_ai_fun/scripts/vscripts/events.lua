@@ -221,7 +221,7 @@ function GameMode:_OnNPCSpawned(keys)
 	if IsInToolsMode() and self.tHumanPlayerList[(hHero:GetPlayerOwnerID())] then PlayerResource:SetGold(hHero:GetOwner():GetPlayerID(), 99999, true) end
 	
 	if self.iImbalancedEconomizer == 1 then hHero:AddNewModifier(hHero, nil, "modifier_imbalanced_economizer", {}) end
-	if self.iBanFunItems == 1 and self.tHumanPlayerList[hHero:GetPlayerOwnerID()] then hHero:AddNewModifier(hHero, nil, "modifier_ban_fun_items", {}) end
+	hHero:AddNewModifier(hHero, nil, "modifier_ban_fun_items", {})
 	if self.iAntiDiving == 1 then hHero:AddNewModifier(hHero, nil, "modifier_anti_diving", {}) end
 	hHero:AddNewModifier(hHero, nil, "modifier_lottery_manager", {})
 	
@@ -306,8 +306,10 @@ function GameMode:OnConfirmGameOptions(eventSourceIndex, args)
 	self.iBotProtection = GameMode.tGameOption.bot_protection
 	self.iAntiDiving = GameMode.tGameOption.anti_diving
 	self.iEnableLottery = GameMode.tGameOption.enable_lottery
+	self.iRadiantFunItemTotalPriceThreshold = tonumber(GameMode.tGameOption.radiant_fun_item_total_price_thresold)
+	self.iDireFunItemTotalPriceThreshold = tonumber(GameMode.tGameOption.dire_fun_item_total_price_thresold)
 	
-	_DeepPrintTable(GameMode.tGameOption)
+	--_DeepPrintTable(GameMode.tGameOption)
 	self:PreGameOptions()
 	
 	
@@ -354,12 +356,14 @@ function GameMode:OnDOTAItemPurchased(keys)
 		PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero():FindModifierByName('modifier_plant_tree').bHasFunItem = true
 	end
 end
-function GameMode:OnItemPurchased(keys)
-	_DeepPrintTable(keys)
+function GameMode:OnHeroInventoryItemChange(keys)
+	-- print('OnHeroInventoryItemChange:')
+	-- _DeepPrintTable(keys)
+	-- print(EntIndexToHScript(keys.item_entindex):GetName())
 
 end
 function GameMode:OnItemPickUp(keys)
-	--PrintTable(keys)
+	-- print('OnItemPickUp')
 end
 
 function GameMode:OnVoteConfirm(eventSourceIndex, args)

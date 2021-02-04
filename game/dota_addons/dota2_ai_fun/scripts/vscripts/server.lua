@@ -7,10 +7,30 @@ local version = '1'
 CustomGameEventManager:RegisterListener("load_game_options", function (eventSourceIndex, args) return GameMode:OnDownloadGameOptions(eventSourceIndex, args) end)
 CustomGameEventManager:RegisterListener("save_game_options", function (eventSourceIndex, args) return GameMode:OnUploadGameOptions(eventSourceIndex, args) end)
 
-local tGameOptionLists = {'radiant_gold_multiplier','dire_gold_multiplier','radiant_xp_multiplier','dire_xp_multiplier','radiant_player_number','dire_player_number','respawn_time_percentage','buyback_cooldown','tower_power','tower_endure','max_level','imbalanced_economizer','bot_has_fun_item','universal_shop','fast_courier','bot_protection','anti_diving','enable_lottery'}
+local tGameOptionLists = {
+'radiant_gold_multiplier',
+'dire_gold_multiplier',
+'radiant_xp_multiplier',
+'dire_xp_multiplier',
+'radiant_player_number',
+'dire_player_number',
+'respawn_time_percentage',
+'buyback_cooldown',
+'tower_power',
+'tower_endure',
+'max_level',
+'imbalanced_economizer'
+,'bot_has_fun_item',
+'universal_shop',
+'fast_courier',
+'bot_protection',
+'anti_diving',
+'enable_lottery',
+'radiant_fun_item_total_price_thresold',
+'dire_fun_item_total_price_thresold'}
 
 function GameMode:OnUploadGameOptions(eventSourceIndex, args)
-	local req=CreateHTTPRequestScriptVM('GET', 'http://167.99.164.76:8000/d2aifun_configs/')
+	local req=CreateHTTPRequestScriptVM('GET', 'http://do.tuidao.me:8000/d2aifun_configs/')
 	req:SetHTTPRequestGetOrPostParameter('steamid', args.steamid)
 	req:SetHTTPRequestGetOrPostParameter('api_key', GetDedicatedServerKeyV2(version))
 	req:SetHTTPRequestGetOrPostParameter('version', version)
@@ -33,7 +53,7 @@ end
 
 
 function GameMode:OnDownloadGameOptions(eventSourceIndex, args)
-	local req=CreateHTTPRequestScriptVM('GET', 'http://167.99.164.76:8000/d2aifun_configs/')
+	local req=CreateHTTPRequestScriptVM('GET', 'http://do.tuidao.me:8000/d2aifun_configs/')
 	req:SetHTTPRequestGetOrPostParameter('steamid', args.steamid)
 	req:SetHTTPRequestGetOrPostParameter('api_key', GetDedicatedServerKeyV2(version))
 	req:SetHTTPRequestGetOrPostParameter('version', version)

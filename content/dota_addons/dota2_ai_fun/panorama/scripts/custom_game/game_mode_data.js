@@ -12,6 +12,8 @@ var aGameOptionList = [
 		{"id":"tower_power", "type":"dropdown", "options":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "default_value":1},
 		{"id":"tower_endure", "type":"dropdown", "options":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "default_value": 1},
 		{"id":"max_level", "type":"dropdown", "options":[30, 50, 100, 200, 400, 800, 1600], "default_value" : 30},
+		{"id":"radiant_fun_item_total_price_thresold", "linked_equal_player_id":"dire_fun_item_total_price_thresold", "type":"dropdown", "options":[0, 10000, 15000, 30000, 45000, 60000, 75000, 90000, 150000, 200000, 1000000], "default_value" : 1000000},
+		{"id":"dire_fun_item_total_price_thresold", "linked_equal_player_id":"radiant_fun_item_total_price_thresold", "type":"dropdown", "options":[0, 10000, 15000, 30000, 45000, 60000, 75000, 90000, 150000, 200000, 1000000], "default_value" : 1000000},
 	],
 	[
 		{"id":"imbalanced_economizer", "type":"toggle", "default_value":false},
@@ -29,7 +31,7 @@ var aGameOptionList = [
 var aVoteOptions = [
 	{name:'#wheter_activate_fun_heroes',options:['#aifun_vote_no', '#aifun_vote_yes'], lua_name:'iActivateFunHeroes'}, 
 	{name:'#wheter_activate_imba_fun_heroes',options:['#aifun_vote_no', '#aifun_vote_yes'], tooltip:"#imba_fun_heroes_tooltip", lua_name:'iActivateImbaFunHeroes'},
-	{name:'#wheter_ban_fun_items',options:['#aifun_vote_no', '#aifun_vote_yes'], lua_name:'iBanFunItems'},					
+//	{name:'#wheter_ban_fun_items',options:['#aifun_vote_no', '#aifun_vote_yes'], lua_name:'iBanFunItems'},					
 ] 
 
 

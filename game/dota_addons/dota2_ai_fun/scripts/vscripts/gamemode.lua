@@ -121,6 +121,8 @@ function GameMode:PreGameOptions()
 	self.iBanFunItems = self.iBanFunItems or 0
 	self.iEnableLottery = self.iEnableLottery or 1
 	self.fGameStartTime = 0
+	self.iRadiantFunItemTotalPriceThreshold = self.iRadiantFunItemTotalPriceThreshold or 1000000
+	self.iDireFunItemTotalPriceThreshold = self.iDireFunItemTotalPriceThreshold or 1000000
 	GameRules:SetGoldPerTick(self.iGoldPerTick)
 	GameRules:SetGoldTickTime(self.iGoldTickTime)
     GameRules:GetGameModeEntity():SetModifyGoldFilter( Dynamic_Wrap( GameMode, "FilterGold" ), self )	
@@ -210,6 +212,7 @@ function GameMode:InitEvents()
 	ListenToGameEvent('dota_player_update_hero_selection',  Dynamic_Wrap(GameMode, 'OnPlayerUpdateSelectUnit1'), self)
 	ListenToGameEvent('dota_player_update_selected_unit',  Dynamic_Wrap(GameMode, 'OnPlayerUpdateSelectUnit2'), self)
 	ListenToGameEvent('player_connect_full',  Dynamic_Wrap(GameMode, 'OnPlayerConnectFull'), self)
+	ListenToGameEvent('dota_hero_inventory_item_change', Dynamic_Wrap(GameMode, 'OnHeroInventoryItemChange'), self)
 	--JS events
 	
 	CustomGameEventManager:RegisterListener("confirm_game_options", function (eventSourceIndex, args) return GameMode:OnConfirmGameOptions(eventSourceIndex, args) end)
