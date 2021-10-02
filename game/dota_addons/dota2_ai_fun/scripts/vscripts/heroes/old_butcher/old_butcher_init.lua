@@ -110,7 +110,7 @@ function OldButcherFlyToggleListener(eventSourceIndex, keys)
 end
 
 function GameMode:OldButcherOrderFilter(filterTable)
-PrintTable(filterTable)
+-- PrintTable(filterTable)
 	if filterTable.issuer_player_id_const<0 then return true end
 	if filterTable.order_type == DOTA_UNIT_ORDER_CAST_TOGGLE_AUTO and EntIndexToHScript(filterTable.entindex_ability):GetName() == 'old_butcher_carrion_flies' and EntIndexToHScript(filterTable.units['0']):GetUnitName() == 'npc_dota_old_butcher_carrion_fly' then
 		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(filterTable.issuer_player_id_const), "old_butcher_carrion_fly_toggle", {iEntIndex = filterTable.units['0'], bAutoCast = EntIndexToHScript(filterTable.entindex_ability):GetAutoCastState(), iPlayerID = filterTable.issuer_player_id_const} )

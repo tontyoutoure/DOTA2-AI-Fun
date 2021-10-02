@@ -4,7 +4,7 @@ function modifier_old_lifestealer_feast:RemoveOnDeath() return false end
 function modifier_old_lifestealer_feast:IsPurgable() return false end
 function modifier_old_lifestealer_feast:DeclareFunctions() return {MODIFIER_EVENT_ON_TAKEDAMAGE} end
 function modifier_old_lifestealer_feast:OnTakeDamage(keys)
-	PrintTable(keys)
+	-- PrintTable(keys)
 	if keys.attacker ~= self:GetParent() then return end
 	if keys.damage_category == DOTA_DAMAGE_CATEGORY_SPELL or keys.attacker:PassivesDisabled() or keys.attacker:GetTeam() == keys.unit:GetTeam() or keys.unit:IsBuilding() then return end
 	ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.attacker)

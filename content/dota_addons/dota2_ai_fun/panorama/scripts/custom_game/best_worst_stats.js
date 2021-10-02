@@ -239,7 +239,7 @@ function AbilityChooseConfirmAllBtnActivated() {
 			if (label) aSelectedTalents[i] = label.id
 		}
 	}
-	GameEvents.SendCustomGameEventToServer( "best_worst_stats_selected_abilities", { "talents" : aSelectedTalents, "abilities" : aSelectedAbilities, "primary_attribute" : iPrimaryAttribute.toString()} );
+	//GameEvents.SendCustomGameEventToServer( "best_worst_stats_selected_abilities", { "talents" : aSelectedTalents, "abilities" : aSelectedAbilities, "primary_attribute" : iPrimaryAttribute.toString()} );
 
 	bHeroInitialized = true
 	$('#AbilityChooseBase').visible = false

@@ -197,6 +197,7 @@ tBotItemData.tWrongItems = {
 	{tRightItems = {'item_butterfly', 'item_satanic'}, components = {item_mask_of_madness = 1,item_eagle = 1, item_reaver =1, item_talisman_of_evasion = 1, item_claymore= 1}, deficit = 0},
 	{tRightItems = {'item_black_king_bar'}, components = {item_javelin = 1, item_ogre_axe = 1, item_recipe_black_king_bar = 1}, deficit = 500},
 	{tRightItems = {'item_black_king_bar', 'item_oblivion_staff'}, components = {item_mithril_hammer = 1, item_echo_sabre = 1, item_recipe_black_king_bar = 1}, deficit = 0},
+	{tRightItems = {'item_mithril_hammer', 'item_monkey_king_bar'}, components = {item_maelstrom = 1, item_demon_edge = 1, item_blitz_knuckles = 1, item_recipe_monkey_king_bar = 1}, deficit = 0}
 }
 tBotItemData.tLowCostItems = {
 	item_flask = true;

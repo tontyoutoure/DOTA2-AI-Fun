@@ -1,3 +1,5 @@
 
 local hHero = PlayerResource:GetPlayer(0):GetAssignedHero()
-print(hHero:FindItemInInventory("item_fun_angelic_alliance"))
+
+
+Tutorial:AddBot("npc_dota_hero_razor", "test_think.lua", "test_think.lua", true)
