@@ -37,10 +37,10 @@ Ingame.Initialize = function() {
 	for (var i in aGameOptionList) {
 		for (var j in aGameOptionList[i]) {
 			if (aGameOptionList[i][j].type == 'dropdown') {
-				$("#LoadingGameOptionContainer").BCreateChildren('<Panel id="game_option_label_container_'+aGameOptionList[i][j].id+'" class="GameOptionLabelContainer"/>')
-				$("#game_option_label_container_"+aGameOptionList[i][j].id).BCreateChildren('<Label class="GameOptionKeyLabel" id="game_option_key_label_'+aGameOptionList[i][j].id+'"/>')
+				$.CreatePanelWithProperties('Panel', $("#LoadingGameOptionContainer"), "game_option_label_container_"+aGameOptionList[i][j].id,{id:"game_option_label_container_"+aGameOptionList[i][j].id, class:"GameOptionLabelContainer"})
+				$.CreatePanelWithProperties('Label', $("#game_option_label_container_"+aGameOptionList[i][j].id), "game_option_key_label_"+aGameOptionList[i][j].id,{class:"GameOptionKeyLabel", id:"game_option_key_label_"+aGameOptionList[i][j].id})
 				$("#game_option_key_label_"+aGameOptionList[i][j].id).text=$.Localize(aGameOptionList[i][j].id)+$.Localize("GameOptionColon")
-				$("#game_option_label_container_"+aGameOptionList[i][j].id).BCreateChildren('<Label class="GameOptionValueLabel" id="game_option_value_label_'+aGameOptionList[i][j].id+'"/>')
+				$.CreatePanelWithProperties('Label', $("#game_option_label_container_"+aGameOptionList[i][j].id), "game_option_value_label_"+aGameOptionList[i][j].id,{class:"GameOptionValueLabel", id:"game_option_value_label_"+aGameOptionList[i][j].id})
 				if (aGameOptionList[i][j].id.indexOf('percentage') > 0) {
 					$("#game_option_value_label_"+aGameOptionList[i][j].id).text=Ingame.tLoadingGameOption[aGameOptionList[i][j].id]+"%"
 				}
@@ -49,10 +49,10 @@ Ingame.Initialize = function() {
 				}
 			}
 			else if (aGameOptionList[i][j].type == 'toggle') {
-				$("#LoadingGameOptionContainer").BCreateChildren('<Panel id="game_option_label_container_'+aGameOptionList[i][j].id+'" class="GameOptionLabelContainer"/>')
-				$("#game_option_label_container_"+aGameOptionList[i][j].id).BCreateChildren('<Label class="GameOptionKeyLabel" id="game_option_key_label_'+aGameOptionList[i][j].id+'"/>')
+				$.CreatePanelWithProperties('Panel', $("#LoadingGameOptionContainer"), "game_option_label_container_"+aGameOptionList[i][j].id,{id:"game_option_label_container_"+aGameOptionList[i][j].id, class:"GameOptionLabelContainer"})
+				$.CreatePanelWithProperties('Label', $("#game_option_label_container_"+aGameOptionList[i][j].id), "game_option_key_label_"+aGameOptionList[i][j].id,{class:"GameOptionKeyLabel", id:"game_option_key_label_"+aGameOptionList[i][j].id})
 				$("#game_option_key_label_"+aGameOptionList[i][j].id).text=$.Localize(aGameOptionList[i][j].id)+$.Localize("GameOptionColon")
-				$("#game_option_label_container_"+aGameOptionList[i][j].id).BCreateChildren('<Label class="GameOptionValueLabel" id="game_option_value_label_'+aGameOptionList[i][j].id+'"/>')
+				$.CreatePanelWithProperties('Label', $("#game_option_label_container_"+aGameOptionList[i][j].id), "game_option_value_label_"+aGameOptionList[i][j].id,{class:"GameOptionValueLabel", id:"game_option_value_label_"+aGameOptionList[i][j].id})
 				if (Ingame.tLoadingGameOption[aGameOptionList[i][j].id] == "1") {
 					$("#game_option_value_label_"+aGameOptionList[i][j].id).text=$.Localize('GameUI_Yes')
 				}
@@ -63,10 +63,10 @@ Ingame.Initialize = function() {
 		}
 	}
 	for (var i in aVoteOptions) {
-			$("#VoteOptionContainer").BCreateChildren('<Panel id="game_option_label_container_vote_'+i.toString()+'" class="GameOptionLabelContainer"/>')
-			$("#game_option_label_container_vote_"+i.toString()).BCreateChildren('<Label class="GameOptionKeyLabel" id="game_option_vote_key_label_'+i.toString()+'"/>')
+			$.CreatePanelWithProperties('Panel', $("#VoteOptionContainer"), "game_option_label_container_vote_"+i.toString(),{id:"game_option_label_container_vote_"+i.toString(), class:"GameOptionLabelContainer"})
+			$.CreatePanelWithProperties('Label', $("#game_option_label_container_vote_"+i.toString()), "game_option_vote_key_label_"+i.toString(),{class:"GameOptionKeyLabel", id:"game_option_vote_key_label_"+i.toString()})
 			$("#game_option_vote_key_label_"+i.toString()).text=$.Localize(aVoteOptions[i].name)+$.Localize("GameOptionColon")		
-			$("#game_option_label_container_vote_"+i.toString()).BCreateChildren('<Label class="GameOptionValueLabel" id="game_option_vote_value_label_'+i.toString()+'"/>')
+			$.CreatePanelWithProperties('Label', $("#game_option_label_container_vote_"+i.toString()), "game_option_vote_value_label_"+i.toString(),{class:"GameOptionValueLabel", id:"game_option_vote_value_label_"+i.toString()})
 			$("#game_option_vote_value_label_"+i.toString()).text=$.Localize(aVoteOptions[i].options[this.tVoteOptionsResult[aVoteOptions[i].lua_name]])
 	}
 	   

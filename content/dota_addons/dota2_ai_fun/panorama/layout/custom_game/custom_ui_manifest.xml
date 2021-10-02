@@ -17,7 +17,7 @@
 		$.GetContextPanel().GetParent().GetParent().FindChildTraverse('EconSetPreview1').visible=false
 		$.GetContextPanel().GetParent().GetParent().FindChildTraverse('EconSetPreview2').visible=false
 		$.GetContextPanel().GetParent().GetParent().FindChildTraverse('SelectedHeroDetails').visible=false
-		$.GetContextPanel().GetParent().GetParent().FindChildTraverse('SelectedHeroPrimaryAttribute').visible=false
+		//$.GetContextPanel().GetParent().GetParent().FindChildTraverse('SelectedHeroPrimaryAttribute').visible=false
 		$.GetContextPanel().GetParent().GetParent().FindChildTraverse('HUDSkinTopBarBG').visible = false
 		function LoadingScreenTeamHider(keys) {
 			if(keys.iPlayerID == Players.GetLocalPlayer()) { 

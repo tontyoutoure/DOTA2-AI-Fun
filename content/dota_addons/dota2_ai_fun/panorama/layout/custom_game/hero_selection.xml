@@ -5,7 +5,7 @@
 	</scripts>
 	<styles>
 		<include src="s2r://panorama/styles/custom_game/hero_selection.css" /> 
-		<include src="file://{resources}/styles/dotastyles.css" />
+		<include src="file://{resources}/styles/dotastyles.vcss_c" />
 	</styles>
 	<Panel class="HeroSelectionBase" hittest="false">
 		<Button id="HeroSelectionBlocker"/>

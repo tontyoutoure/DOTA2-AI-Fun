@@ -5,7 +5,7 @@
 	</scripts>
 	<styles>
 		<include src="s2r://panorama/styles/custom_game/best_worst_stats.css" /> 
-		<include src="file://{resources}/styles/dotastyles.css" />
+		<include src="file://{resources}/styles/dotastyles.vcss_c" />
 	</styles>
 	<Panel class="BestWorstStatsBase" hittest="false">
 		<Panel id="AbilityChooseBase" hittest="false">

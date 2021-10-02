@@ -161,7 +161,7 @@ function _ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContaine
 						itemRecipeContainer = $.CreatePanel('Panel', itemPanel, undefined)
 						itemRecipeContainer.AddClass("RecipeContainer")
 						
-						itemRecipeContainer.BCreateChildren('<Image src="'+"file://{images}/items/" + sItemName.replace( "item_recipe_", "" ) + ".png"+'"/>')
+						$.CreatePanelWithProperties('Image', itemRecipeContainer, '',{src:"file://{images}/items/" + sItemName.replace( "item_recipe_", "" ) + ".png"})
 					}
 					else
 						itemPanel.SetImage( item_image_name );
@@ -172,10 +172,10 @@ function _ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContaine
 					itemPanel.SetImage( "" );
 				}
 				if(aItemSlots[i] == 5) {
-					playerItemsContainer.BCreateChildren("<Panel class='ScoreCol_ItemsSeperation'/>") 
+					$.CreatePanelWithProperties('Panel', playerItemsContainer, '',{class:'ScoreCol_ItemsSeperation'})
 				}
 				if(aItemSlots[i] == 8) {
-					playerItemsContainer.BCreateChildren("<Panel class='ScoreCol_ItemsSeperation'/>") 
+					$.CreatePanelWithProperties('Panel', playerItemsContainer, '',{class:'ScoreCol_ItemsSeperation'})
 				}
 			}
 		}

@@ -165,58 +165,58 @@ Donation.Initialize = function() {
 		Ingame.tInfomationTabs['#DonationContentContainer'] = true;
 	}
 	
-	$("#DonationTabEffect").BCreateChildren("<Panel class='TitleContainer' id='TitleContainerEthereal' />")
-	$("#TitleContainerEthereal").BCreateChildren("<Label id='EtherealTitle' text='#Econ_Socket_Empty_Effect'/>")
+	$.CreatePanelWithProperties('Panel', $("#DonationTabEffect"), 'TitleContainerEthereal' ,{class:'TitleContainer', id:'TitleContainerEthereal' })
+	$.CreatePanelWithProperties('Label', $("#TitleContainerEthereal"), 'EtherealTitle',{id:'EtherealTitle', text:'#Econ_Socket_Empty_Effect'})
 	for (var i = 0; i < 6; i++) {
-		$("#DonationTabEffect").BCreateChildren("<Panel class='DonationTabRow' id='DonationTabRowEthereal"+(i).toString()+"' />")
+		$.CreatePanelWithProperties('Panel', $("#DonationTabEffect"), "DonationTabRowEthereal"+(i).toString() ,{class:'DonationTabRow', id:"DonationTabRowEthereal"+(i).toString() })
 		for (var j = 0; j < 6; j++) {
 			if ((i*6+j) < this.aEtherealParticles.length) {
-				$("#DonationTabRowEthereal"+(i).toString()).BCreateChildren("<Label class='GemButton' id='GemButtonEthereal"+(i*6+j).toString()+"' onactivate='Donation.OnEffectChange("+(i*6+j).toString()+")' onmouseout='UIHideTextTooltip()' onmouseover='UIShowTextTooltip(#Attrib_Particle"+this.aEtherealParticles[i*6+j][0].toString()+")'/>")
-				$("#GemButtonEthereal"+(i*6+j).toString()).BCreateChildren("<Image class='GemImage' id='GemImageEthreal"+(i*6+j).toString()+"' src='file://{images}/econ/sockets/gem_effect.png' />")
-				$("#GemButtonEthereal"+(i*6+j).toString()).BCreateChildren("<Label class='GemLabel' id='GemLabelEthreal"+(i*6+j).toString()+"' text='"+this.aEtherealParticles[i*6+j][1]+"' />")
+				$.CreatePanelWithProperties('Label', $("#DonationTabRowEthereal"+(i).toString()), "GemButtonEthereal"+(i*6+j).toString(),{class:'GemButton', id:"GemButtonEthereal"+(i*6+j).toString(), onactivate:"Donation.OnEffectChange("+(i*6+j).toString()+")", onmouseout:'UIHideTextTooltip()', onmouseover:"UIShowTextTooltip(#Attrib_Particle"+this.aEtherealParticles[i*6+j][0].toString()+")"})
+				$.CreatePanelWithProperties('Image', $("#GemButtonEthereal"+(i*6+j).toString()), "GemImageEthreal"+(i*6+j).toString(),{class:'GemImage', id:"GemImageEthreal"+(i*6+j).toString(), src:'file://{images}/econ/sockets/gem_effect.png' })
+				$.CreatePanelWithProperties('Label', $("#GemButtonEthereal"+(i*6+j).toString()), "GemLabelEthreal"+(i*6+j).toString(),{class:'GemLabel', id:"GemLabelEthreal"+(i*6+j).toString(), text:this.aEtherealParticles[i*6+j][1] })
 			}
 		}
 	}
 	
-	$("#DonationTabEffect").BCreateChildren("<Panel class='TitleContainer' id='TitleContainerPrismatic' />")
-	$("#TitleContainerPrismatic").BCreateChildren("<Label id='PrismaticTitle' text='#Econ_Socket_Empty_Color'/>")
+	$.CreatePanelWithProperties('Panel', $("#DonationTabEffect"), 'TitleContainerPrismatic' ,{class:'TitleContainer', id:'TitleContainerPrismatic' })
+	$.CreatePanelWithProperties('Label', $("#TitleContainerPrismatic"), 'PrismaticTitle',{id:'PrismaticTitle', text:'#Econ_Socket_Empty_Color'})
 	for (var i = 0; i < 7; i++) {
 		var sColor
-		$("#DonationTabEffect").BCreateChildren("<Panel class='DonationTabRow' id='DonationTabRowPrismatic"+(i).toString()+"' />")
+		$.CreatePanelWithProperties('Panel', $("#DonationTabEffect"), "DonationTabRowPrismatic"+(i).toString() ,{class:'DonationTabRow', id:"DonationTabRowPrismatic"+(i).toString() })
 		for (var j = 0; j < 6; j++) {
-			$("#DonationTabRowPrismatic"+(i).toString()).BCreateChildren("<Label class='GemButton' id='GemButtonPrismatic"+(i*6+j).toString()+"' onactivate='Donation.OnColorChange("+(i*6+j).toString()+")' onmouseout='UIHideTextTooltip()' onmouseover='UIShowTextTooltip(#"+this.aPrismaticColors[i*6+j][0]+")'/>")
-			$("#GemButtonPrismatic"+(i*6+j).toString()).BCreateChildren("<Image class='GemImage' id='GemImageEthreal"+(i*6+j).toString()+"' src='file://{images}/econ/sockets/gem_color.png' />")
-			$("#GemButtonPrismatic"+(i*6+j).toString()).BCreateChildren("<Panel class='PrismaticMask' id='PrismaticMask"+(i*6+j).toString()+"'/>")
+			$.CreatePanelWithProperties('Label', $("#DonationTabRowPrismatic"+(i).toString()), "GemButtonPrismatic"+(i*6+j).toString(),{class:'GemButton', id:"GemButtonPrismatic"+(i*6+j).toString(), onactivate:"Donation.OnColorChange("+(i*6+j).toString()+")", onmouseout:'UIHideTextTooltip()', onmouseover:"UIShowTextTooltip(#"+this.aPrismaticColors[i*6+j][0]+")"})
+			$.CreatePanelWithProperties('Image', $("#GemButtonPrismatic"+(i*6+j).toString()), "GemImageEthreal"+(i*6+j).toString(),{class:'GemImage', id:"GemImageEthreal"+(i*6+j).toString(), src:'file://{images}/econ/sockets/gem_color.png' })
+			$.CreatePanelWithProperties('Panel', $("#GemButtonPrismatic"+(i*6+j).toString()), "PrismaticMask"+(i*6+j).toString(),{class:'PrismaticMask', id:"PrismaticMask"+(i*6+j).toString()})
 			
 			sColor = this.GetColorHex(this.aPrismaticColors[i*6+j][1], this.aPrismaticColors[i*6+j][2], this.aPrismaticColors[i*6+j][3])
 			$("#PrismaticMask"+(i*6+j).toString()).style.backgroundColor=sColor;
-			$("#GemButtonPrismatic"+(i*6+j).toString()).BCreateChildren("<Image class='PrismaticMaskImage' id = 'PrismaticMaskImage" +(i*6+j).toString()+"' src='file://{images}/econ/sockets/gem_color_mask.png' />")
+			$.CreatePanelWithProperties('Image', $("#GemButtonPrismatic"+(i*6+j).toString()), "PrismaticMaskImage" +(i*6+j).toString(),{class:'PrismaticMaskImage', id:"PrismaticMaskImage" +(i*6+j).toString(), src:'file://{images}/econ/sockets/gem_color_mask.png' })
 			$("#PrismaticMaskImage"+(i*6+j).toString()).style.washColor=sColor;
 		}
 	}
-	$("#DonationTabEffect").BCreateChildren("<Panel id='BottomContainer' />")
-	$("#BottomContainer").BCreateChildren("<Panel id='BottomContainerHalf1' class='BottomContainerHalf' />")
-	$("#BottomContainer").BCreateChildren("<Panel id='BottomContainerHalf2' class='BottomContainerHalf' />")
-	$("#BottomContainerHalf1").BCreateChildren("<Panel id='ColorEntryContainerEntry' class='ColorEntryContainer' />")
+	$.CreatePanelWithProperties('Panel', $("#DonationTabEffect"), 'BottomContainer' ,{id:'BottomContainer' })
+	$.CreatePanelWithProperties('Panel', $("#BottomContainer"), 'BottomContainerHalf1',{id:'BottomContainerHalf1', class:'BottomContainerHalf' })
+	$.CreatePanelWithProperties('Panel', $("#BottomContainer"), 'BottomContainerHalf2',{id:'BottomContainerHalf2', class:'BottomContainerHalf' })
+	$.CreatePanelWithProperties('Panel', $("#BottomContainerHalf1"), 'ColorEntryContainerEntry',{id:'ColorEntryContainerEntry', class:'ColorEntryContainer' })
 	
-	$("#ColorEntryContainerEntry").BCreateChildren("<TextEntry id='ColorEntry' maxchars='10000' placeholder='#Econ_Socket_Empty_Color' oninputsubmit='Donation.OnSubmitColorActive();' />")
-	$("#BottomContainerHalf1").BCreateChildren("<Button class='BottomButton' id='BottomButtonSubmit' onactivate='Donation.OnSubmitColorActive()' onmouseout='UIHideTextTooltip()' onmouseover='UIShowTextTooltip(#submit_color_tooltip)' />")
-	$("#BottomButtonSubmit").BCreateChildren("<Label class='BottomButtonLabel' id='BottomButtonLabelSubmit' text='#submit_color'/>")
-	$("#BottomContainerHalf1").BCreateChildren("<Button class='BottomButton' id='BottomButtonRandom' onactivate='Donation.OnRandomColorActive()' onmouseout='UIHideTextTooltip()' onmouseover='UIShowTextTooltip(#random_color_tooltip)' />")
-	$("#BottomButtonRandom").BCreateChildren("<Label class='BottomButtonLabel' id='BottomButtonLabelRandom' text='#random_color'/>")
+	$.CreatePanelWithProperties('TextEntry', $("#ColorEntryContainerEntry"), 'ColorEntry',{id:'ColorEntry', maxchars:'10000', placeholder:'#Econ_Socket_Empty_Color', oninputsubmit:'Donation.OnSubmitColorActive();' });
+	$.CreatePanelWithProperties('Button', $("#BottomContainerHalf1"), 'BottomButtonSubmit',{class:'BottomButton', id:'BottomButtonSubmit', onactivate:'Donation.OnSubmitColorActive()', onmouseout:'UIHideTextTooltip()', onmouseover:'UIShowTextTooltip(#submit_color_tooltip)' })
+	$.CreatePanelWithProperties('Label', $("#BottomButtonSubmit"), 'BottomButtonLabelSubmit',{class:'BottomButtonLabel', id:'BottomButtonLabelSubmit', text:'#submit_color'})
+	$.CreatePanelWithProperties('Button', $("#BottomContainerHalf1"), 'BottomButtonRandom',{class:'BottomButton', id:'BottomButtonRandom', onactivate:'Donation.OnRandomColorActive()', onmouseout:'UIHideTextTooltip()', onmouseover:'UIShowTextTooltip(#random_color_tooltip)' })
+	$.CreatePanelWithProperties('Label', $("#BottomButtonRandom"), 'BottomButtonLabelRandom',{class:'BottomButtonLabel', id:'BottomButtonLabelRandom', text:'#random_color'})
 	
-	$("#BottomContainerHalf2").BCreateChildren("<Panel id='ColorEntryContainerDes' class='ColorEntryContainer' />")
-	$("#ColorEntryContainerDes").BCreateChildren("<Label id='ColorEntryDesLabel' text='#color_entry_des' />")
-	$("#ColorEntryContainerDes").BCreateChildren("<Panel id='ColorExample'/>")
+	$.CreatePanelWithProperties('Panel', $("#BottomContainerHalf2"), 'ColorEntryContainerDes',{id:'ColorEntryContainerDes', class:'ColorEntryContainer' })
+	$.CreatePanelWithProperties('Label', $("#ColorEntryContainerDes"), 'ColorEntryDesLabel',{id:'ColorEntryDesLabel', text:'#color_entry_des' })
+	$.CreatePanelWithProperties('Panel', $("#ColorEntryContainerDes"), 'ColorExample',{id:'ColorExample'})
 
-	$("#BottomContainerHalf2").BCreateChildren("<Button class='BottomButton' id='BottomButtonErase' onactivate='Donation.OnRemoveEffectActive()' onmouseout='UIHideTextTooltip()' onmouseover='UIShowTextTooltip(#remove_effect_tooltip)' />")
-	$("#BottomButtonErase").BCreateChildren("<Label class='BottomButtonLabel' id='BottomButtonLabelErase' text='#remove_effect'/>")
+	$.CreatePanelWithProperties('Button', $("#BottomContainerHalf2"), 'BottomButtonErase',{class:'BottomButton', id:'BottomButtonErase', onactivate:'Donation.OnRemoveEffectActive()', onmouseout:'UIHideTextTooltip()', onmouseover:'UIShowTextTooltip(#remove_effect_tooltip)' })
+	$.CreatePanelWithProperties('Label', $("#BottomButtonErase"), 'BottomButtonLabelErase',{class:'BottomButtonLabel', id:'BottomButtonLabelErase', text:'#remove_effect'})
 	
-	$("#BottomContainerHalf2").BCreateChildren("<Panel class='BottomButtonHalfContainer' id='BottomButtonHalfContainerLine2'/>")
-	$("#BottomButtonHalfContainerLine2").BCreateChildren("<Button class='BottomButtonHalf' id='BottomButtonEmblem' onactivate='Donation.OnEmblemActive()' onmouseout='UIHideTextTooltip()' onmouseover='UIShowTextTooltip(#emblem_tooltip)' />")
-	$("#BottomButtonEmblem").BCreateChildren("<Label class='BottomButtonLabel' id='BottomButtonLabelEmblem' text='#LoadoutSlot_Emblem'/>")
-	$("#BottomButtonHalfContainerLine2").BCreateChildren("<Button class='BottomButtonHalf' id='BottomButtonProjectile' onactivate='Donation.OnProjectileActive()'/>")
-	$("#BottomButtonProjectile").BCreateChildren("<Label class='BottomButtonLabel' text='#DOTA_TI2019_Reward_Attack_Effect'/>")
+	$.CreatePanelWithProperties('Panel', $("#BottomContainerHalf2"), 'BottomButtonHalfContainerLine2',{class:'BottomButtonHalfContainer', id:'BottomButtonHalfContainerLine2'})
+	$.CreatePanelWithProperties('Button', $("#BottomButtonHalfContainerLine2"), 'BottomButtonEmblem',{class:'BottomButtonHalf', id:'BottomButtonEmblem', onactivate:'Donation.OnEmblemActive()', onmouseout:'UIHideTextTooltip()', onmouseover:'UIShowTextTooltip(#emblem_tooltip)' })
+	$.CreatePanelWithProperties('Label', $("#BottomButtonEmblem"), 'BottomButtonLabelEmblem',{class:'BottomButtonLabel', id:'BottomButtonLabelEmblem', text:'#LoadoutSlot_Emblem'})
+	$.CreatePanelWithProperties('Button', $("#BottomButtonHalfContainerLine2"), 'BottomButtonProjectile',{class:'BottomButtonHalf', id:'BottomButtonProjectile', onactivate:'Donation.OnProjectileActive()'})
+	$.CreatePanelWithProperties('Label', $("#BottomButtonProjectile"), '',{class:'BottomButtonLabel', text:'#DOTA_TI2019_Reward_Attack_Effect'})
 	$("#BottomButtonEmblem").visible=false
 }
 
