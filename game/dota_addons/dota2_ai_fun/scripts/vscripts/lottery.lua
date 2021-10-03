@@ -1,16 +1,18 @@
 local tNeutralItems = {
 	{
 		"item_keen_optic",
-		"item_faded_broach",
+		-- "item_faded_broach",
 --		"item_elixer",
-		"item_ironwood_tree",
+		-- "item_ironwood_tree",
 		"item_royal_jelly",
---		"item_mango_tree",
+		-- "item_mango_tree",
 		"item_ocean_heart",
 		"item_broom_handle",
 		"item_trusty_shovel",
 		"item_possessed_mask",
 		"item_chipped_vest",
+		"item_unstable_wand",
+		"item_pogo_stick"
 	}, 
 
 	{
@@ -19,14 +21,16 @@ local tNeutralItems = {
 --		"item_vampire_fangs",
 		"item_pupils_gift",
 		"item_vambrace",
-		"item_imp_claw",
+		-- "item_imp_claw",
 		"item_nether_shawl",
 		"item_dragon_scale",
 		"item_essence_ring",
 --		"item_clumsy_net",
 --		"item_tome_of_aghanim",
 		"item_quicksilver_amulet",
-		"item_bullwhip"
+		"item_bullwhip",
+		"item_paintball",
+		"item_misericorde"
 	},
 
 	{
@@ -40,13 +44,14 @@ local tNeutralItems = {
 --		"item_helm_of_the_undying",
 		"item_enchanted_quiver",
 		"item_paladin_sword",
-		"item_orb_of_destruction",
+		-- "item_orb_of_destruction",
 		"item_titan_sliver",
 		"item_spy_gadget",
 		"item_elven_tunic",
 		"item_cloak_of_flames",
 		"item_ceremonial_robe",
 		"item_psychic_headband",
+		"item_black_powder_bag"
 	},
 
 	{
@@ -56,16 +61,18 @@ local tNeutralItems = {
 	--	"item_witless_shako",
 	--	"item_flicker",
 		"item_ninja_gear",
-		"item_illusionsts_cape",
+		-- "item_illusionsts_cape",
 	--	"item_havoc_hammer",
 	--	"item_panic_button",
-		"item_minotaur_horn",
+		-- "item_minotaur_horn",
 		"item_the_leveller",
 		"item_penta_edged_sword",
 		"item_stormcrafter",
 		"item_trickster_cloak",
 --		"item_horizon",
 --		"item_greater_mango",
+		"item_ascetic_cap",
+		"item_heavy_blade"
 	},
 
 	{
@@ -76,7 +83,7 @@ local tNeutralItems = {
 		"item_mirror_shield",
 --		"item_fusion_rune",
 		"item_apex",
-		"item_ballista",
+		-- "item_ballista",
 --		"item_woodland_striders",
 		"item_demonicon",
 		"item_fallen_sky",
@@ -86,6 +93,7 @@ local tNeutralItems = {
 		"item_book_of_shadows",
 		"item_giants_ring",
 --		"item_dimensional_doorway",
+		"item_force_field"
 	},
 }
 local tNeutralItemsReverse = {}

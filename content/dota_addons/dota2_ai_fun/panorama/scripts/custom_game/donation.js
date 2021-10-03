@@ -241,7 +241,6 @@ Donation.OnCourierTabActive = function (){
 	$("#BottomButtonProjectile").visible = false;
 	
 	Donation.ResetPanel()
-	$("#DonationTabButtonDonation").RemoveClass('HaveShadow')
 	$("#DonationTabButtonCourier").AddClass('HaveShadow')
 	$("#DonationTabButtonHero").RemoveClass('HaveShadow')
 	$("#DonationTabButtonWard").RemoveClass('HaveShadow')
@@ -258,7 +257,6 @@ Donation.OnHeroTabActive = function (){
 	$("#BottomButtonEmblem").visible = true;
 	$("#BottomButtonProjectile").visible = true;
 	Donation.ResetPanel()
-	$("#DonationTabButtonDonation").RemoveClass('HaveShadow')
 	$("#DonationTabButtonCourier").RemoveClass('HaveShadow')
 	$("#DonationTabButtonHero").AddClass('HaveShadow')
 	$("#DonationTabButtonWard").RemoveClass('HaveShadow')
@@ -275,7 +273,6 @@ Donation.OnWardTabActive = function (){
 	$("#BottomButtonEmblem").visible = false;
 	$("#BottomButtonProjectile").visible = false;
 	Donation.ResetPanel()
-	$("#DonationTabButtonDonation").RemoveClass('HaveShadow')
 	$("#DonationTabButtonCourier").RemoveClass('HaveShadow')
 	$("#DonationTabButtonHero").RemoveClass('HaveShadow')
 	$("#DonationTabButtonWard").AddClass('HaveShadow') 

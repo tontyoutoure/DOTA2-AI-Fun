@@ -968,6 +968,18 @@ modifier_attack_speed_change = class(tClassFTF)
 function modifier_attack_speed_change:DeclareFunctions() return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT} end
 function modifier_attack_speed_change:GetModifierAttackSpeedBonus_Constant() return self:GetStackCount() end
 
+local tAttackModifiers =
+{
+	'particles/econ/attack/attack_modifier_ti9.vpcf',
+	"particles/econ/events/diretide_2020/attack_modifier/attack_modifier_fall20.vpcf",
+	"particles/econ/events/diretide_2020/attack_modifier/attack_modifier_v1_fall20.vpcf",
+	"particles/econ/events/diretide_2020/attack_modifier/attack_modifier_v2_fall20.vpcf",
+	"particles/econ/events/diretide_2020/attack_modifier/attack_modifier_v3_fall20.vpcf",
+	"particles/econ/events/spring_2021/attack_modifier_spring_2021.vpcf",
+	"particles/econ/events/ti10/attack_modifier_ti10.vpcf"
+
+}
+
 modifier_ti9_attack_modifier = class(tClassFTF)
 
 function modifier_ti9_attack_modifier:DeclareFunctions()
@@ -982,21 +994,28 @@ function modifier_ti9_attack_modifier:OnAttack(keys)
 		else
 			vStart = keys.attacker:GetAttachmentOrigin(keys.attacker:ScriptLookupAttachment('attach_attack2')) 
 		end
-		ProjectileManager:CreateTrackingProjectile({
-			Target = keys.target,
---			Source = keys.attacker,
-			vSourceLoc = vStart,
-			Ability = nil,	
-			EffectName = 'particles/econ/attack/attack_modifier_ti9.vpcf',
-			iMoveSpeed = keys.attacker:GetProjectileSpeed(),
-			vSourceLoc= keys.attacker:GetAbsOrigin(),                -- Optional (HOW)
-			bDrawsOnMinimap = false,                          -- Optional
-			bDodgeable = true,                                -- Optional
-			bIsAttack = false,                                -- Optional
-			bVisibleToEnemies = true,                         -- Optional
-			bReplaceExisting = false,                         -- Optional
-			bProvidesVision = false,                           -- Optional
-		})
+
+		if self:GetStackCount() > #tAttackModifiers then
+			self:SetStackCount(0)
+		end
+
+		if self:GetStackCount() > 0 then
+			ProjectileManager:CreateTrackingProjectile({
+				Target = keys.target,
+	--			Source = keys.attacker,
+				vSourceLoc = vStart,
+				Ability = nil,	
+				EffectName = tAttackModifiers[self:GetStackCount()],
+				iMoveSpeed = keys.attacker:GetProjectileSpeed(),
+				vSourceLoc= keys.attacker:GetAbsOrigin(),                -- Optional (HOW)
+				bDrawsOnMinimap = false,                          -- Optional
+				bDodgeable = true,                                -- Optional
+				bIsAttack = false,                                -- Optional
+				bVisibleToEnemies = true,                         -- Optional
+				bReplaceExisting = false,                         -- Optional
+				bProvidesVision = false,                           -- Optional
+			})
+		end
 	end
 end
 

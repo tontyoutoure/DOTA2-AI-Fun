@@ -298,79 +298,79 @@ local function OnEtherealEffectRemove(eventSourceIndex, keys)
 	end
 end
 
+local tEmblems = {
+	"particles/econ/events/ti7/ti7_hero_effect.vpcf",
+	"particles/econ/events/ti8/ti8_hero_effect.vpcf",
+	"particles/econ/events/ti9/ti9_emblem_effect.vpcf",
+	"particles/econ/events/ti10/emblem/ti10_emblem_effect.vpcf",
+	"particles/econ/events/diretide_2020/emblem/fall20_emblem_effect.vpcf",
+	"particles/econ/events/diretide_2020/emblem/fall20_emblem_v1_effect.vpcf",
+	"particles/econ/events/diretide_2020/emblem/fall20_emblem_v2_effect.vpcf",
+	"particles/econ/events/diretide_2020/emblem/fall20_emblem_v3_effect.vpcf",
+	"particles/econ/events/summer_2021/summer_2021_emblem_effect.vpcf"
+}
+
 local function OnEmblemToggled(eventSourceIndex, keys)
 	local hHero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
 	local tAllHeros = Entities:FindAllByName(hHero:GetName())
-	
-	if not hHero.sEmblem then
-		hHero.sEmblem = "particles/econ/events/ti7/ti7_hero_effect.vpcf"
-		for k, v in ipairs(tAllHeros) do
-			if v:GetPlayerOwner() == hHero:GetPlayerOwner() then
-				v.iEmblemParticle = ParticleManager:CreateParticle("particles/econ/events/ti7/ti7_hero_effect.vpcf", PATTACH_ABSORIGIN_FOLLOW, v)
-				print(v.iEmblemParticle, v:IsIllusion(), 7)
-			end
-		end
-		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(keys.PlayerID), "hero_emblem_toggle", {hHeroEmblem=1})
 
-	elseif hHero.sEmblem == "particles/econ/events/ti7/ti7_hero_effect.vpcf" then
-		hHero.sEmblem = "particles/econ/events/ti8/ti8_hero_effect.vpcf"
-		for k, v in ipairs(tAllHeros) do
-			if v:GetPlayerOwner() == hHero:GetPlayerOwner() then
-				if v.iEmblemParticle then
-					ParticleManager:DestroyParticle(v.iEmblemParticle, true)
-				end
-				v.iEmblemParticle = ParticleManager:CreateParticle("particles/econ/events/ti8/ti8_hero_effect.vpcf", PATTACH_ABSORIGIN_FOLLOW, v)
-				print(v.iEmblemParticle, v:IsIllusion(), 8)
-			end
+	local iHeroNum =  #tAllHeros
+	for i = 1, iHeroNum do -- remove other players heroes
+		if tAllHeros[iHeroNum+1-i]:GetPlayerOwnerID() ~= keys.PlayerID then
+			table.remove(tAllHeros,iHeroNum+1-i)
 		end
-		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(keys.PlayerID), "hero_emblem_toggle", {hHeroEmblem=2})
-	elseif hHero.sEmblem == "particles/econ/events/ti8/ti8_hero_effect.vpcf" then			
-		hHero.sEmblem = "particles/econ/events/ti9/ti9_emblem_effect.vpcf"
-		for k, v in ipairs(tAllHeros) do
-			if v:GetPlayerOwner() == hHero:GetPlayerOwner() then
-				if v.iEmblemParticle then
-					ParticleManager:DestroyParticle(v.iEmblemParticle, true)
-				end
-				v.iEmblemParticle = ParticleManager:CreateParticle("particles/econ/events/ti9/ti9_emblem_effect.vpcf", PATTACH_ABSORIGIN_FOLLOW, v)
-				print(v.iEmblemParticle, v:IsIllusion(), 9)
-			end
-		end
-		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(keys.PlayerID), "hero_emblem_toggle", {hHeroEmblem=3})
-	elseif hHero.sEmblem == "particles/econ/events/ti9/ti9_emblem_effect.vpcf" then			
-		hHero.sEmblem = nil
-		for k, v in ipairs(tAllHeros) do
-			if v:GetPlayerOwner() == hHero:GetPlayerOwner() then
-				if v.iEmblemParticle then
-					ParticleManager:DestroyParticle(v.iEmblemParticle, true)
-				end
-				print(v.iEmblemParticle, v:IsIllusion(), 0)
-			end
-		end
-		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(keys.PlayerID), "hero_emblem_toggle", {hHeroEmblem=0})
 	end
+
+	if hHero.iEmblem and hHero.iEmblem > 0 then -- remove particle
+		for k, v in ipairs(tAllHeros) do
+			ParticleManager:DestroyParticle(v.iEmblemParticle, true)
+			v.iEmblemParticle = nil
+		end
+	end 
+
+	if hHero.iEmblem then -- increment particle type
+		hHero.iEmblem = hHero.iEmblem+1
+		if hHero.iEmblem > #tEmblems then
+			hHero.iEmblem = 0
+		end
+	else
+		hHero.iEmblem = 1
+	end
+
+	if hHero.iEmblem > 0 then
+		for k, v in ipairs(tAllHeros) do
+			v.iEmblemParticle = ParticleManager:CreateParticle(tEmblems[hHero.iEmblem], PATTACH_ABSORIGIN_FOLLOW, v)
+		end
+	end
+
+	CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(keys.PlayerID), "hero_emblem_toggle", {hHeroEmblem=hHero.iEmblem})
+
+
 end
+
 
 local function OnProjectileToggled(eventSourceIndex, keys)
 	local hHero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
 	local tAllHeros = Entities:FindAllByName(hHero:GetName())
-	if not hHero:HasModifier('modifier_ti9_attack_modifier') then
-		hHero:AddNewModifier(hHero, nil, 'modifier_ti9_attack_modifier', nil)
-		for k, v in ipairs(tAllHeros) do
-			if v:GetPlayerOwner() == hHero:GetPlayerOwner() then
-				v:AddNewModifier(hHero, nil, 'modifier_ti9_attack_modifier', nil)
-			end
+
+	local iHeroNum =  #tAllHeros
+	for i = 1, iHeroNum do -- remove other players heroes
+		if tAllHeros[iHeroNum+1-i]:GetPlayerOwnerID() ~= keys.PlayerID then
+			table.remove(tAllHeros,iHeroNum+1-i)
 		end
-		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(keys.PlayerID), "ti9_attack_modifier_toggle", {bEnabled=1})
-	else
-		for k, v in ipairs(tAllHeros) do
-			if v:GetPlayerOwner() == hHero:GetPlayerOwner() then
-				v:RemoveModifierByName('modifier_ti9_attack_modifier')
-			end
-		end
-		hHero:RemoveModifierByName('modifier_ti9_attack_modifier')
-		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(keys.PlayerID), "ti9_attack_modifier_toggle", {bEnabled=0})
 	end
 
+	if not hHero:HasModifier('modifier_ti9_attack_modifier') then
+		for k, v in ipairs(tAllHeros) do
+			v:AddNewModifier(hHero, nil, 'modifier_ti9_attack_modifier', nil)
+		end
+	end
+	for k, v in ipairs(tAllHeros) do
+		v:FindModifierByName('modifier_ti9_attack_modifier'):IncrementStackCount()
+	end
+
+	--CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(keys.PlayerID), "ti9_attack_modifier_toggle", {bEnabled=1})
+	
 end
 				
 CustomGameEventManager:RegisterListener( "ChangePrismaticColor", OnPrismaticColorChange )
