@@ -115,7 +115,7 @@ function InitAbilitySelection() {
 		$.CreatePanelWithProperties('Label', $('#SingleDropDownElementAbility'+i.toString()+'LabelPanel'), '',{class:"LargeLabel", text:"DOTA_Skills"})
 		$.CreatePanelWithProperties('Panel', $('#SingleDropDownContainerAbility'+i.toString()+''), "SingleDropDownElementAbility"+i.toString()+"DropDownPanel",{class:"SingleDropDownElement", id:"SingleDropDownElementAbility"+i.toString()+"DropDownPanel"})
 		$.CreatePanelWithProperties('DropDown', $('#SingleDropDownElementAbility'+i.toString()+'DropDownPanel'), "SingleDropDownElementAbility"+i.toString()+"DropDown",{id:"SingleDropDownElementAbility"+i.toString()+"DropDown", oninputsubmit:"AbilitySet("+i.toString()+")"})
-		$.CreatePanelWithProperties('Panel', $('#Ability'+i.toString()+'Panel'), "AbilityShowCase"+i.toString(),{class:"AbilityShowCase", id:"AbilityShowCase"+i.toString()})
+//		$('#Ability'+i.toString()+'Panel').BCreateChildren('<Panel class="AbilityShowCase" id="AbilityShowCase'+i.toString()+'"/>')
 	}
 	
 	
