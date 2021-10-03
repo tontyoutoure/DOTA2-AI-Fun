@@ -35,7 +35,8 @@
 
 #DonationButton
 {
-	background-image:url("file://{images}/custom_game/chips.png"); 
+	background-image:url("s2r://panorama/images/status_icons/modifier_ambienteffects.psd"); 
+	opacity:1;
 }
 
 #ShowGameOptionButton
@@ -134,7 +135,7 @@
 	height:60px;
 	background-color:#FFC1DC;
 	vertical-align:middle;
-	opacity-mask: url("file://{images}/econ/sockets/gem_color_mask.png") ;
+	opacity-mask: url("s2r://panorama/images/econ/sockets/gem_color_mask.png") ;
 }
 .PrismaticMaskImage
 {
@@ -228,7 +229,7 @@
 	width: 29%;	
 	height:90%;
 	background-color:brown;
-	background-image:url("file://{resources}/images/backgrounds/background_play_button_large_2x_png.vtex");
+	background-image:url("s2r://panorama/images/backgrounds/background_play_button_large_2x_png.vtex");
 }
 
 .BottomButton:active
@@ -259,7 +260,7 @@
 	margin-right:2%;
 	height:90%;
 	background-color:brown;
-	background-image:url("file://{resources}/images/backgrounds/background_play_button_large_2x_png.vtex");
+	background-image:url("s2r://panorama/images/backgrounds/background_play_button_large_2x_png.vtex");
 }
 
 #BottomButtonEmblem{
@@ -340,7 +341,7 @@
 	height:80px;
 	horizontal-align:middle;
 	margin-top:20px;
-	background-image:url("file://{images}/custom_game/paypal.png");
+	background-image:url("s2r://panorama/images/custom_game/paypal.png");
 	box-shadow: #555555 0px 0px 20px 0px;
 }
 

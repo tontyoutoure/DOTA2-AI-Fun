@@ -221,8 +221,7 @@ Donation.Initialize = function() {
 }
 
 Donation.OnDonationTabActive = function (){
-	$("#DonationTabDonation").visible = true;
-	$("#DonationTabEffect").visible = false;
+	$("#DonationTabEffect").visible = true;
 	this.iCurrentTab = 0;
 	$("#DonationTabButtonDonation").AddClass('HaveShadow')
 	$("#DonationTabButtonCourier").RemoveClass('HaveShadow')
@@ -231,7 +230,6 @@ Donation.OnDonationTabActive = function (){
 }
 
 Donation.OnCourierTabActive = function (){
-	$("#DonationTabDonation").visible = false;
 	$("#DonationTabEffect").visible = true;
 	this.iCurrentTab = 1;
 	for (var i = 0; i < 5; i++) {
@@ -250,7 +248,6 @@ Donation.OnCourierTabActive = function (){
 }
 
 Donation.OnHeroTabActive = function (){
-	$("#DonationTabDonation").visible = false;
 	$("#DonationTabEffect").visible = true;
 	this.iCurrentTab = 2;
 	for (var i = 0; i < 5; i++) {
@@ -268,7 +265,6 @@ Donation.OnHeroTabActive = function (){
 }
 
 Donation.OnWardTabActive = function (){
-	$("#DonationTabDonation").visible = false;
 	$("#DonationTabEffect").visible = true;
 	this.iCurrentTab = 3;
 	for (var i = 0; i < 5; i++) {

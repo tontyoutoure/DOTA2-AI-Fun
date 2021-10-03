@@ -407,7 +407,7 @@
 
 .NeutralItemHole
 {
-	opacity-mask: url( "file://{images}/upper_row_mask.tga" );
+	/* opacity-mask: url( "file://{images}/upper_row_mask.tga" ); */
 }
 
 #PlayerItemsContainerBackPack
