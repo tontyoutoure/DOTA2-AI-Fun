@@ -212,7 +212,34 @@ tBotItemData.tLowCostItems = {
 	item_wraith_band = true;
 	item_null_talisman = true;
 	item_bracer = true;
---	item_ring_of_basilius = true;
+	item_ring_of_basilius = true;
 --	item_stout_shield = true;
---	item_quelling_blade = true;
+	item_quelling_blade = true;
+}
+
+tBotItemData.tItemComponents = {
+	item_dragon_lance = true,
+	item_ring_of_basilius = true,
+	item_sange = true,
+	item_yasha = true,
+	item_buckler = true,
+	item_mekansm = true,
+	item_maelstrom = true,
+	item_oblivion_staff= true,
+	item_force_staff = true,
+	item_headdress =true,
+	item_hood_of_defiance = true,
+	item_vanguard = true,
+	item_basher = true,
+	item_dagon = true,
+	item_dagon_2 = true,
+	item_dagon_3 = true,
+	item_dagon_4 = true,
+	item_kaya = true,
+	item_soul_booster = true,
+	item_kaya = true,
+	item_pers = true,
+	item_aether_lens,
+	item_lesser_crit = true
+
 }

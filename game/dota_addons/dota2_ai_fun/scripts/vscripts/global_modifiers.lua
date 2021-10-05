@@ -778,6 +778,29 @@ local function SellLowCostItems(hHero)
 	end
 end
 
+local npc_heroes_data = LoadKeyValues("scripts/npc/npc_heroes.txt")
+
+local function sort_item_price(item1, item2)
+	return GetItemCost(item1) < GetItemCost(item2)
+end
+for k, v in pairs(npc_heroes_data) do
+	if v and type(v) == "table" and v.Bot and v.Bot.Loadout then
+		local t = v.Bot.Loadout
+        print(k)
+		table.sort(t, sort_item_price)
+		local num_t = #t
+        for k1,v1 in pairs(t) do 
+            if not string.find(v1,"ITEM_DERIVED") or tBotItemData.tItemComponents[k1] then
+                t[k1] = nil
+            end
+        end
+        -- _DeepPrintTable(t)
+		npc_heroes_data[k] = t
+	else
+		npc_heroes_data[k] = nil
+	end
+end
+-- _DeepPrintTable(npc_heroes_data)
 
 
 function modifier_item_assemble_fix:OnIntervalThink()
@@ -821,6 +844,18 @@ function modifier_item_assemble_fix:OnIntervalThink()
 	end
 	if not hParent.bHasEndItem then
 		local tHeroLuxuryItemList = tBotItemData.tLuxuryItemList[hParent:GetName()]
+
+		if IsDedicatedServer() then
+			local item_table = npc_heroes_data[hParent:GetName()]
+			for k, v in pairs(item_table) do
+				if not FindItemByNameIncludeStash(hParent, k) and hParent:GetGold()>GetItemCost(k) then
+					hParent:SpendGold(GetItemCost(k), DOTA_ModifyGold_PurchaseItem)
+					hParent:AddItemByName(k)
+				end
+			end
+		end
+
+
 		local iOmit = 0
 		local bHasE2toBuild = false
 		for i, v in ipairs(tBotItemData.tBotBuildFunItems[hParent:GetName()].tWantedFunItems) do
