@@ -1,10 +1,10 @@
 "use strict"; 
 var aGameOptionList = [
 	[
-		{"id":"radiant_gold_multiplier", "linked_equal_player_id":"dire_gold_multiplier", "type":"dropdown", "options":[1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6, 7, 8, 9, 10], "default_value":1},
-		{"id":"dire_gold_multiplier", "linked_equal_player_id":"radiant_gold_multiplier", "type":"dropdown", "options":[1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6, 7, 8, 9, 10], "default_value":1},
-		{"id":"radiant_xp_multiplier", "linked_equal_player_id":"dire_xp_multiplier", "type":"dropdown", "options":[1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6, 7, 8, 9, 10], "default_value":1},
-		{"id":"dire_xp_multiplier", "linked_equal_player_id":"radiant_xp_multiplier", "type":"dropdown", "options":[1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6, 7, 8, 9, 10], "default_value":1},
+		{"id":"radiant_gold_multiplier", "linked_equal_player_id":"dire_gold_multiplier", "type":"dropdown", "options":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 35, 40], "default_value":1},
+		{"id":"dire_gold_multiplier", "linked_equal_player_id":"radiant_gold_multiplier", "type":"dropdown", "options":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 35, 40], "default_value":1},
+		{"id":"radiant_xp_multiplier", "linked_equal_player_id":"dire_xp_multiplier", "type":"dropdown", "options":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 35, 40], "default_value":1},
+		{"id":"dire_xp_multiplier", "linked_equal_player_id":"radiant_xp_multiplier", "type":"dropdown", "options":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 35, 40], "default_value":1},
 		{"id":"radiant_player_number", "linked_equal_player_id":"dire_player_number", "type":"dropdown", "options":[12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0], "default_value":12, "toolsmode_default_value":1},
 		{"id":"dire_player_number", "linked_equal_player_id":"radiant_player_number", "type":"dropdown", "options":[12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0], "default_value":12, "toolsmode_default_value":1},
 		{"id":"respawn_time_percentage", "type":"dropdown", "options":[100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0], "percentage":true, "default_value":100},
@@ -12,16 +12,16 @@ var aGameOptionList = [
 		{"id":"tower_power", "type":"dropdown", "options":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "default_value":1},
 		{"id":"tower_endure", "type":"dropdown", "options":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "default_value": 1},
 		{"id":"max_level", "type":"dropdown", "options":[30, 50, 100, 200, 400, 800, 1600], "default_value" : 30},
-		{"id":"radiant_fun_item_total_price_thresold", "linked_equal_player_id":"dire_fun_item_total_price_thresold", "type":"dropdown", "options":[0, 10000, 15000, 30000, 45000, 60000, 75000, 90000, 150000, 200000, 1000000], "default_value" : 1000000},
-		{"id":"dire_fun_item_total_price_thresold", "linked_equal_player_id":"radiant_fun_item_total_price_thresold", "type":"dropdown", "options":[0, 10000, 15000, 30000, 45000, 60000, 75000, 90000, 150000, 200000, 1000000], "default_value" : 1000000},
+		{"id":"radiant_fun_item_total_price_thresold", "linked_equal_player_id":"dire_fun_item_total_price_thresold", "type":"dropdown", "options":[0, 10000, 12000, 15000, 17000, 30000, 45000, 60000, 75000, 90000, 150000, 200000, 1000000], "default_value" : 1000000},
+		{"id":"dire_fun_item_total_price_thresold", "linked_equal_player_id":"radiant_fun_item_total_price_thresold", "type":"dropdown", "options":[0, 10000, 12000, 15000, 17000, 30000, 45000, 60000, 75000, 90000, 150000, 200000, 1000000], "default_value" : 1000000},
 	],
 	[
 		{"id":"imbalanced_economizer", "type":"toggle", "default_value":false},
 		{"id":"bot_has_fun_item", "type":"toggle", "default_value":true},
-		{"id":"universal_shop", "type":"toggle", "default_value":false},
+		{"id":"universal_shop", "type":"toggle", "default_value":true},
 		{"id":"fast_courier", "type":"toggle", "default_value":true},
-		{"id":"bot_protection", "type":"toggle", "default_value":true},
-		{"id":"anti_diving", "type":"toggle", "default_value":true},
+		{"id":"bot_protection", "type":"toggle", "default_value":false},
+		{"id":"anti_diving", "type":"toggle", "default_value":false},
 		{"id":"enable_lottery", "type":"toggle", "default_value":true},
 	]
 //	{"id":"dynamic_exp_gold", "type":"toggle", "default_value":false},
