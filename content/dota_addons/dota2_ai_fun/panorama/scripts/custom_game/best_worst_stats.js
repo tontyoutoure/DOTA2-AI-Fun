@@ -136,11 +136,10 @@ function AddTalentForDropDown(i, bBest) {
 	}
 	else{
 		for (var sTalent in aPossibleTalents[i-1]) {
+	//		$.Msg("adding "+sTalent)
 			var dropdownlabel = $.CreatePanel('Label', dropdown, sTalent)
-			if ($.Localize('DOTA_Tooltip_ability_'+sTalent).length > 0)
-				dropdownlabel.text=$.Localize('DOTA_Tooltip_ability_'+sTalent);
-			else
-				dropdownlabel.text=sTalent;
+		//	$.Msg('$DOTA_Tooltip_ability_'+sTalent)
+			dropdownlabel.text=sTalent;
 			dropdown.AddOption(dropdownlabel)
 			dropdown.SetSelected(sTalent)
 		}
@@ -180,14 +179,19 @@ function InitTalentSelection(bBest) {
 		$('#PrimaryAttributeSelectBtnInt').visible = true
 	}
 	else {
+		$.Msg(aTalents)
 		$('#TalentChoosePanel').visible = true
 		$('#AbilityChooseBottomStatus').text=$.Localize('#best_worst_stats_status_choose_talent')
 		bInitializing = true
 		for(var i = 1; i < 5; i++) {
 			$.CreatePanelWithProperties('Panel', $('#Talent'+i.toString()+'Panel'), "TitlePanelTalent"+i.toString(),{class:"TitlePanel", id:"TitlePanelTalent"+i.toString()})
+			
 			$.CreatePanelWithProperties('Label', $('#TitlePanelTalent'+i.toString()+''), '',{text:"#best_worst_stats_talent_tier_"+i.toString()})
+		
 			$.CreatePanelWithProperties('Panel', $('#Talent'+i.toString()+'Panel'), "DropDownContainerLarge"+i.toString(),{class:"DropDownContainerLarge", id:"DropDownContainerLarge"+i.toString()})
+		
 			$.CreatePanelWithProperties('DropDown', $('#DropDownContainerLarge'+i.toString()), "TalentDropDown"+i.toString(),{id:"TalentDropDown"+i.toString()})
+		
 			AddTalentForDropDown(i, false)
 			AddTalentForDropDown(i, true)
 		}

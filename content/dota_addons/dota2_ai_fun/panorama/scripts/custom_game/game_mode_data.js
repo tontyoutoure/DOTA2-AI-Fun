@@ -1,12 +1,16 @@
 "use strict"; 
 var aGameOptionList = [
 	[
-		{"id":"radiant_gold_multiplier", "linked_equal_player_id":"dire_gold_multiplier", "type":"dropdown", "options":[1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6, 7, 8, 9, 10], "default_value":1},
-		{"id":"dire_gold_multiplier", "linked_equal_player_id":"radiant_gold_multiplier", "type":"dropdown", "options":[1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6, 7, 8, 9, 10], "default_value":1},
-		{"id":"radiant_xp_multiplier", "linked_equal_player_id":"dire_xp_multiplier", "type":"dropdown", "options":[1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6, 7, 8, 9, 10], "default_value":1},
-		{"id":"dire_xp_multiplier", "linked_equal_player_id":"radiant_xp_multiplier", "type":"dropdown", "options":[1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6, 7, 8, 9, 10], "default_value":1},
-		{"id":"radiant_player_number", "linked_equal_player_id":"dire_player_number", "type":"dropdown", "options":[12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0], "default_value":12, "toolsmode_default_value":1},
-		{"id":"dire_player_number", "linked_equal_player_id":"radiant_player_number", "type":"dropdown", "options":[12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0], "default_value":12, "toolsmode_default_value":1},
+		{"id":"radiant_gold_multiplier", "type":"dropdown", "options":[1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6, 7, 8, 9, 10, 17, 32, 56, 100, 170, 320, 560, 1000], "default_value":1},
+		{"id":"dire_gold_multiplier", "type":"dropdown", "options":[1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6, 7, 8, 9, 10, 17, 32, 56, 100, 170, 320, 560, 1000], "default_value":1},
+		{"id":"radiant_xp_multiplier",  "type":"dropdown", "options":[1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6, 7, 8, 9, 10, 17, 32, 56, 100, 170, 320, 560, 1000], "default_value":1},
+		{"id":"dire_xp_multiplier",  "type":"dropdown", "options":[1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6, 7, 8, 9, 10, 17, 32, 56, 100, 170, 320, 560, 1000], "default_value":1},
+		{"id":"radiant_gold_start","type":"dropdown", "options":[600, 1000, 1700, 3200, 6000, 10000, 17000, 32000,60000,100000], "default_value":600},
+		{"id":"dire_gold_start",  "type":"dropdown", "options":[600, 1000, 1700, 3200, 6000, 10000, 17000, 32000, 60000,100000], "default_value":600},
+		{"id":"radiant_lvl_start","type":"dropdown", "options":[1, 2, 3, 4, 5, 6, 10, 12, 15, 18, 20, 25, 30, 56, 100, 170, 320, 560, 1000], "default_value":1},
+		{"id":"dire_lvl_start",  "type":"dropdown", "options":[1, 2, 3, 4, 5, 6, 10, 12, 15, 18, 20, 25, 30, 56, 100, 170, 320, 560, 1000], "default_value":1},
+		{"id":"radiant_player_number",  "type":"dropdown", "options":[12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0], "default_value":12, "toolsmode_default_value":1},
+		{"id":"dire_player_number", "type":"dropdown", "options":[12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0], "default_value":12, "toolsmode_default_value":1},
 		{"id":"respawn_time_percentage", "type":"dropdown", "options":[100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0], "percentage":true, "default_value":100},
 		{"id":"buyback_cooldown", "type":"dropdown", "options":[480, 420, 360, 300, 240, 180, 120, 60, 50, 40, 30, 20, 10, 0], "default_value":480},
 		{"id":"tower_power", "type":"dropdown", "options":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "default_value":1},

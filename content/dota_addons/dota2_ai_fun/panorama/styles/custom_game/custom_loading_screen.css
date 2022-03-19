@@ -87,20 +87,22 @@
 	width:100%;
 	visibility:collapse;
 }
+
+
+
 #GameOptionHider
 {
 	width:100%;
 	height:100%;
 }
-.GameOptionsSubPanel
+.GameOptionsSubPanel_DropDown
 {
     flow-children: right;
-	margin-top: 20px;
+	margin-top: 10px;
 	width: 100%;
 	tooltip-position: left;
 }
-
-.GameOptionsSubPanel Label
+.GameOptionsSubPanel_DropDown Label
 {
 	text-align: left;
 	horizontal-align: middle;
@@ -109,15 +111,31 @@
 	
 }
 
-.GameOptionsSubPanel .GameOptionsDropdown
+.GameOptionsSubPanel_DropDown .GameOptionsDropdown
 {
 	margin-left: 10px;
 	width: 200px;
 	horizontal-align:right;
 	flow-children:down;
 }
+.GameOptionsSubPanel_Toggle
+{
+    flow-children: right;
+	margin-top: 20px;
+	width: 100%;
+	tooltip-position: left;
+}
 
-.GameOptionsToggle
+.GameOptionsSubPanel_Toggle Label
+{
+	text-align: left;
+	horizontal-align: middle;
+	vertical-align:center;
+	color: #ffffff;
+	
+}
+
+.GameOptionsSubPanel_Toggle .GameOptionsToggle
 {
 	margin-left: 10px;
 	horizontal-align:right;
@@ -137,6 +155,10 @@
 	transition-property: background-color;
 	transition-duration: 0.2s;
 }
+
+
+
+
 #HostSettingGameOptions
 {
 	margin-top: 30px;
@@ -239,17 +261,21 @@
 	transform: translate3d(1px, 1px, 0px);
 	sound: "ui_team_select_cancel_and_lock";
 }
-#LoadOptionsBtn
+#GenerateOptionJsonButton
 {
 	margin-top:10px;
 	width:49%;
 	margin-right:1%;
 }
-#SaveOptionsBtn
+
+#GameOptionJsonInput
 {
+	overflow:clip clip;
 	margin-top:10px;
-	width:49%;
-	margin-left:1%;
+	vertical-align: middle;
+	width:49%;	
+	font-size: 25px;
+	font-family: Courier;
 }
 
 #PreviousPageBtn
@@ -473,12 +499,12 @@
 
 #UploadDownloadNotificationPanel
 {
-	width:400px;
+	width:800px;
 	height:40px;
 	background-color:black;
 	vertical-align:bottom;
 	margin-bottom:50px;
-	margin-left:560px;
+	margin-left:680px;
 	visibility:collapse;
 }
 

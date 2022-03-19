@@ -4,6 +4,7 @@ var aSelfVote = [1,1,0]
 var iPlayerCount
 var bLockHided
 function InitializeVote () {
+	$.Msg("InitializeVote")
 	for (var i=0;i < aVoteOptions.length;i++) {
 		$.CreatePanelWithProperties('Panel', $('#VoteListContainer'), "SingleVote"+i.toString(),{id:"SingleVote"+i.toString(), class:"SingleVoteContainer"})
 		
@@ -146,7 +147,10 @@ function VoteEnd(keys) {
 		
 	}	
 	$.GetContextPanel().GetParent().GetParent().FindChildTraverse("LoadingScreenChat").style.horizontalAlign='right'
-	Game.SetRemainingSetupTime( 120)
+	if (Game.IsInToolsMode())
+		Game.SetRemainingSetupTime( 9999);
+	else
+		Game.SetRemainingSetupTime( 120);
 }
 
 //InitializeVote ()

@@ -113,48 +113,22 @@ function GameMode:OnGameStateChanged( keys )
 		for k, v in pairs(tTowers) do
 			v:AddNewModifier(v, nil, "modifier_tower_power", {}):SetStackCount(iTowerPower)
 			v:AddNewModifier(v, nil, "modifier_tower_endure", {}):SetStackCount(iTowerEndure)
-			v:AddNewModifier(v, nil, "modifier_backdoor_healing", {})
-			if v:HasAbility("backdoor_protection") then table.insert(self.tBackdoorBuildings, v) end
-			if v:HasAbility("backdoor_protection_in_base") then table.insert(self.tBackdoorInBaseBuildings, v) end
+			--v:AddNewModifier(v, nil, "modifier_backdoor_healing", {})
 		end
 		for k, v in pairs(tBarracks) do
 			v:AddNewModifier(v, nil, "modifier_tower_endure", {}):SetStackCount(iTowerEndure)
-			v:AddNewModifier(v, nil, "modifier_backdoor_healing", {})
-			if v:HasAbility("backdoor_protection") then table.insert(self.tBackdoorBuildings, v) end
-			if v:HasAbility("backdoor_protection_in_base") then table.insert(self.tBackdoorInBaseBuildings, v) end
+			--v:AddNewModifier(v, nil, "modifier_backdoor_healing", {})
 		end
-		--[[
-		for k, v in pairs(tHealers) do
-			v:AddNewModifier(v, nil, "modifier_tower_endure", {}):SetStackCount(iTowerEndure)
-			v:AddNewModifier(v, nil, "modifier_backdoor_healing", {})
-			if v:HasAbility("backdoor_protection") then table.insert(self.tBackdoorBuildings, v) end
-			if v:HasAbility("backdoor_protection_in_base") then table.insert(self.tBackdoorInBaseBuildings, v) end
-		end
-		]]
 		for k, v in pairs(tForts) do
 			v:AddNewModifier(v, nil, "modifier_tower_endure", {}):SetStackCount(iTowerEndure)
-			v:AddNewModifier(v, nil, "modifier_backdoor_healing", {})
-			if v:HasAbility("backdoor_protection") then table.insert(self.tBackdoorBuildings, v) end
-			if v:HasAbility("backdoor_protection_in_base") then table.insert(self.tBackdoorInBaseBuildings, v) end
-		end
+			--v:AddNewModifier(v, nil, "modifier_backdoor_healing", {})
+			end
 		for k, v in pairs(tFillers) do
 			v:AddNewModifier(v, nil, "modifier_tower_endure", {}):SetStackCount(iTowerEndure)
-			v:AddNewModifier(v, nil, "modifier_backdoor_healing", {})
-			if v:HasAbility("backdoor_protection") then table.insert(self.tBackdoorBuildings, v) end
-			if v:HasAbility("backdoor_protection_in_base") then table.insert(self.tBackdoorInBaseBuildings, v) end
-		end
+			--v:AddNewModifier(v, nil, "modifier_backdoor_healing", {})
+			end
 	elseif state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 		self.fGameStartTime = GameRules:GetGameTime()
-		for k, v in ipairs(self.tBackdoorBuildings) do
-			if not v:HasAbility("backdoor_protection") then
-				v:AddAbility("backdoor_protection"):SetLevel(1)
-			end
-		end
-		for k, v in ipairs(self.tBackdoorInBaseBuildings) do
-			if not v:HasAbility("backdoor_protection_in_base") then
-				v:AddAbility("backdoor_protection_in_base"):SetLevel(1)
-			end
-		end
 --      for i=0, DOTA_MAX_TEAM_PLAYERS do`
 --          print(i)
 --          if PlayerResource:IsFakeClient(i) then
@@ -218,14 +192,24 @@ function GameMode:_OnNPCSpawned(keys)
 		end
 	end
 	
-	if IsInToolsMode() and self.tHumanPlayerList[(hHero:GetPlayerOwnerID())] then PlayerResource:SetGold(hHero:GetOwner():GetPlayerID(), 99999, true) end
+	--if IsInToolsMode() and self.tHumanPlayerList[(hHero:GetPlayerOwnerID())] then PlayerResource:SetGold(hHero:GetOwner():GetPlayerID(), 99999, true) end
 	
 	if self.iImbalancedEconomizer == 1 then hHero:AddNewModifier(hHero, nil, "modifier_imbalanced_economizer", {}) end
 	hHero:AddNewModifier(hHero, nil, "modifier_ban_fun_items", {})
 	if self.iAntiDiving == 1 then hHero:AddNewModifier(hHero, nil, "modifier_anti_diving", {}) end
 	hHero:AddNewModifier(hHero, nil, "modifier_lottery_manager", {})
-	
-	
+
+	if PlayerResource:GetTeam(hHero:GetPlayerOwnerID()) == DOTA_TEAM_GOODGUYS then
+		hHero:SetGold(self.iRadiantGoldStart, false)
+		for i=1,self.iRadiantLvlStart-1 do
+			hHero:HeroLevelUp(false)
+		end
+	else
+		for i=1,self.iDireLvlStart-1 do
+			hHero:HeroLevelUp(false)
+		end
+	end
+
 	Timers:CreateTimer(0.1, function ()
 		if hHero:IsRealHero() and not hHero:IsTempestDouble() and not hHero:IsClone() then
 			hHero:AddNewModifier(hHero, nil, "modifier_global_hero_respawn_time", {}) 
@@ -247,7 +231,7 @@ function GameMode:_OnNPCSpawned(keys)
 end
 
 function GameMode:OnPlayerLevelUp(keys)
-	local iEntIndex=PlayerResource:GetPlayer(keys.player_id):GetAssignedHero():entindex()
+	local iEntIndex=keys.hero_entindex
 	Timers:CreateTimer(0.5, function () 
 		EntIndexToHScript(iEntIndex):SetCustomDeathXP(40 + EntIndexToHScript(iEntIndex):GetCurrentXP()*0.13)
 	end)
@@ -308,7 +292,12 @@ function GameMode:OnConfirmGameOptions(eventSourceIndex, args)
 	self.iEnableLottery = GameMode.tGameOption.enable_lottery
 	self.iRadiantFunItemTotalPriceThreshold = tonumber(GameMode.tGameOption.radiant_fun_item_total_price_thresold)
 	self.iDireFunItemTotalPriceThreshold = tonumber(GameMode.tGameOption.dire_fun_item_total_price_thresold)
-	
+	self.iRadiantGoldStart = tonumber(GameMode.tGameOption.radiant_gold_start)
+	self.iDireGoldStart = tonumber(GameMode.tGameOption.dire_gold_start)
+	self.iRadiantLvlStart = tonumber(GameMode.tGameOption.radiant_lvl_start)
+	self.iDireLvlStart = tonumber(GameMode.tGameOption.dire_lvl_start)
+
+
 	--_DeepPrintTable(GameMode.tGameOption)
 	self:PreGameOptions()
 	

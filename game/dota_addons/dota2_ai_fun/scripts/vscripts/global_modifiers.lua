@@ -595,11 +595,6 @@ function modifier_backdoor_healing:OnTakeDamage(keys)
 	if keys.unit ~= self:GetParent() then return end
 	if keys.attacker:GetTeam() == keys.unit:GetTeam() then 
 		self.fFormerHealth = keys.unit:GetHealth()
-	elseif keys.unit:HasAbility("backdoor_protection") and keys.unit:HasModifier("modifier_backdoor_protection_active") then
-		
-		local iParticle = ParticleManager:CreateParticle("particles/items_fx/backdoor_protection.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.unit)
-		ParticleManager:SetParticleControl(iParticle, 1, Vector(200,0,0))
-		ParticleManager:SetParticleControlForward(iParticle, 2, keys.unit:GetOrigin()-keys.attacker:GetOrigin())
 	end	
 end
 
@@ -786,7 +781,7 @@ end
 for k, v in pairs(npc_heroes_data) do
 	if v and type(v) == "table" and v.Bot and v.Bot.Loadout then
 		local t = v.Bot.Loadout
-        print(k)
+        --print(k)
 		table.sort(t, sort_item_price)
 		local num_t = #t
         for k1,v1 in pairs(t) do 
