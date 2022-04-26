@@ -13,7 +13,6 @@ function IsBothTeamHasHuman() {
 	}
 	return bReturn
 }
-
 function CheckForHostPrivileges() {
 	var player_info = Game.GetLocalPlayerInfo();
 	if ( !player_info ) {
@@ -24,7 +23,7 @@ function CheckForHostPrivileges() {
 }
 
 function AddDropDown(tDropDown, hParent) {
-	$.CreatePanelWithProperties('Panel', hParent, tDropDown.id+"_Container",{id:tDropDown.id+"_Container", class:"GameOptionsSubPanel"})
+	$.CreatePanelWithProperties('Panel', hParent, tDropDown.id+"_Container",{id:tDropDown.id+"_Container", class:"GameOptionsSubPanel_DropDown"})
 	$.CreatePanelWithProperties('Label', $("#"+tDropDown.id+'_Container'), '',{text:"#"+tDropDown.id})
 	
 	$.CreatePanelWithProperties('DropDown', $("#"+tDropDown.id+'_Container'), tDropDown.id,{id:tDropDown.id, class:"GameOptionsDropdown"})
@@ -47,7 +46,7 @@ function AddDropDown(tDropDown, hParent) {
 }
 
 function AddToggle(tToggle, hParent) {
-	$.CreatePanelWithProperties('Panel', hParent, tToggle.id+"_Container",{id:tToggle.id+"_Container", class:"GameOptionsSubPanel"})
+	$.CreatePanelWithProperties('Panel', hParent, tToggle.id+"_Container",{id:tToggle.id+"_Container", class:"GameOptionsSubPanel_Toggle"})
 	$.CreatePanelWithProperties('Label', $("#"+tToggle.id+'_Container'), '',{text:"#"+tToggle.id})
 	
 	$.CreatePanelWithProperties('ToggleButton', $("#"+tToggle.id+'_Container'), tToggle.id,{id:tToggle.id, class:"GameOptionsToggle"})
@@ -65,6 +64,7 @@ function AddToggle(tToggle, hParent) {
 
 
 function InitializeUI(keys) {
+	$.Msg("Initializing Game Options UI")
 	var sOption
 	if (keys.PlayerID != Game.GetLocalPlayerID()) {return}
 	// Hides battlecuck crap
@@ -87,7 +87,7 @@ function InitializeUI(keys) {
 		aGameOptionPages.push($("#GameOptionSubpanelContainerInner"+i.toString()))
 	}
 	$("#GameOptionSubpanelContainerInner0").visible = true;
-	$("#PreviousPageBtn").visible = false;
+	$("#PreviousPageBtn").visible = true;
 	$("#NextPageBtn").visible = true;
 	if ( CheckForHostPrivileges() ) {GameEvents.SendCustomGameEventToServer("loading_game_options",GameOptions);	}
 	$.GetContextPanel().GetParent().GetParent().FindChildTraverse("ChatLinesArea").style.opacity = 0.5
@@ -123,7 +123,7 @@ function GameOptionsNextPage() {
 	iCurrentGameOptionPage = iCurrentGameOptionPage+1
 	aGameOptionPages[iCurrentGameOptionPage].visible=true
 	if (iCurrentGameOptionPage > 0) {
-		$('#PreviousPageBtn').visible = true
+		$('#PreviousPageBtn').style.width = "49%"
 	}
 	if (iCurrentGameOptionPage == aGameOptionPages.length-1) {
 		$('#NextPageBtn').visible = false
@@ -131,11 +131,12 @@ function GameOptionsNextPage() {
 }
 
 function GameOptionsPreviousPage() {
+	$.Msg($('#PreviousPageBtn'))
 	aGameOptionPages[iCurrentGameOptionPage].visible=false
 	iCurrentGameOptionPage = iCurrentGameOptionPage-1
 	aGameOptionPages[iCurrentGameOptionPage].visible=true
 	if (iCurrentGameOptionPage == 0) {
-		$('#PreviousPageBtn').visible = false
+		$('#PreviousPageBtn').style.width = "0%"
 	}
 	if (iCurrentGameOptionPage < aGameOptionPages.length-1) {
 		$('#NextPageBtn').visible = true
@@ -200,13 +201,6 @@ function PanoramaPrint(keys) {
 	$.Msg("Print request from sever: ", keys)
 }
 
-function SaveGameOptions() {
-	GameEvents.SendCustomGameEventToServer("save_game_options",{steamid:Game.GetLocalPlayerInfo()['player_steamid']});
-}
-
-function LoadGameOptions() {
-	GameEvents.SendCustomGameEventToServer("load_game_options",{steamid:Game.GetLocalPlayerInfo()['player_steamid']});
-}
 
 var LatestScheduler
 var iFadingTime = 3
@@ -214,40 +208,36 @@ function HideUploadDownloadNotification() {
 	$('#UploadDownloadNotificationPanel'+a.toString).visible = false
 }
 
-function GameOptionDownloaded(keys) {
-	for (var k in keys) {
-		if (k in tGameOptionsControlDropDowns) {
-			tGameOptionsControlDropDowns[k].SetSelected(keys[k])
-		}
-		if (k in tGameOptionsControlToggles) {
-			if (keys[k] > 0) {
-				tGameOptionsControlToggles[k].SetSelected(true)
-			}
-			else{
-				tGameOptionsControlToggles[k].SetSelected(false)
-			}
-			GameOptions[k] = tGameOptionsControlToggles[k].checked
-			GameEvents.SendCustomGameEventToServer("loading_game_options",GameOptions);	
-			GameEvents.SendCustomGameEventToAllClients("loading_set_options_for_client",GameOptions);	
-		}
-	}
-	$('#UploadDownloadNotificationPanel').visible = true
-	$('#UploadDownloadNotificationLabel').text = $.Localize("game_option_downloaded")
-}
-
-function GameOptionDownloadFail(keys) {
-	$('#UploadDownloadNotificationPanel').visible = true
-	$('#UploadDownloadNotificationLabel').text = $.Localize("game_option_download_fail")
-}  
-
-function GameOptionUploadFail(keys) {
-	$('#UploadDownloadNotificationPanel').visible = true
-	$('#UploadDownloadNotificationLabel').text = $.Localize("game_option_upload_fail")
-}
  
-function GameOptionUploadSuccess(keys) {
-	$('#UploadDownloadNotificationPanel').visible = true
-	$('#UploadDownloadNotificationLabel').text = $.Localize("game_option_uploaded")
+
+function GenerateOptionJson()
+{
+	$("#GameOptionJsonInput").text = JSON.stringify(GameOptions)
+	// $.Msg($("#GameOptionJsonInput").text )
+	$('#UploadDownloadNotificationLabel').text = $.Localize("#json_generated")
+	$("#UploadDownloadNotificationPanel").visible = true
+}
+
+function GameOptionJsonOnfocus()
+{
+	$("#GameOptionJsonInput").SelectAll()
+	$('#UploadDownloadNotificationLabel').text = $.Localize("#json_selected")
+	$("#UploadDownloadNotificationPanel").visible = true
+}
+
+function GameOptionJsonOnblur()
+{
+	if ($("#GameOptionJsonInput").text.length > 0) 
+	{
+		$('#UploadDownloadNotificationLabel').text = $.Localize("#json_not_empty")
+		$("#UploadDownloadNotificationPanel").visible = true
+		GameOptions = JSON.parse($("#GameOptionJsonInput").text)
+		GameEvents.SendCustomGameEventToServer("loading_game_options",GameOptions);	
+	}
+	else
+	{
+		$("#UploadDownloadNotificationPanel").visible = false
+	}
 }
 
 
@@ -256,9 +246,5 @@ GameEvents.Subscribe( "loading_set_options_for_client", UpdateGameOptions);
 GameEvents.Subscribe("panorama_print", PanoramaPrint)
 GameEvents.Subscribe("start_loading_game_option_vote", StartGameOptionVote)
 GameEvents.Subscribe("set_loading_game_option_vote", SetLoadingGameOptionVote)
-GameEvents.Subscribe( "game_option_downloaded", GameOptionDownloaded);
-GameEvents.Subscribe( "game_option_download_fail", GameOptionDownloadFail);
-GameEvents.Subscribe( "game_option_upload_fail", GameOptionUploadFail);
-GameEvents.Subscribe( "game_option_uploaded", GameOptionUploadSuccess);
 //GameEvents.Subscribe("update_game_option_set_time", UpdateGameOptionSetTime)
 //InitializeUI({PlayerID:0})

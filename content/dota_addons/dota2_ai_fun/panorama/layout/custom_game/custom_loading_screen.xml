@@ -1,7 +1,7 @@
 <root> 
 	
 	<styles>
-		<include src="file://{resources}/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/dotastyles.css" />
 		<include src="file://{resources}/styles/custom_game/custom_loading_screen.css" />
 		<include src="file://{resources}/styles/custom_game/vote.css" />
 	</styles>
@@ -21,12 +21,10 @@
 							<Label text="#lock_game_options" />
 						</Button>
 						<Panel id="SaveAndLoadPanel" >
-							<Button id="LoadOptionsBtn" class="GameOptionButton" onactivate="LoadGameOptions();">
-								<Label text="#load_game_options" />
-							</Button>
-							<Button id="SaveOptionsBtn" class="GameOptionButton" onactivate="SaveGameOptions();">
-								<Label text="#save_game_options" />
-							</Button>
+							<Button id="GenerateOptionJsonButton" class="GameOptionButton" onactivate="GenerateOptionJson();">
+								<Label text="#generate_option_json" />
+							</Button> 
+							<TextEntry id="GameOptionJsonInput" maxchars="1000" onblur="GameOptionJsonOnblur();" onfocus="GameOptionJsonOnfocus();" text=''/> 
 						</Panel>
 						<Panel id="PageSelection" >
 							<Button id="PreviousPageBtn" class="GameOptionButton" onactivate="GameOptionsPreviousPage();">
