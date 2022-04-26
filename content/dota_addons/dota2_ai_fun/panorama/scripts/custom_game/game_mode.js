@@ -87,7 +87,7 @@ function InitializeUI(keys) {
 		aGameOptionPages.push($("#GameOptionSubpanelContainerInner"+i.toString()))
 	}
 	$("#GameOptionSubpanelContainerInner0").visible = true;
-	$("#PreviousPageBtn").visible = false;
+	$("#PreviousPageBtn").visible = true;
 	$("#NextPageBtn").visible = true;
 	if ( CheckForHostPrivileges() ) {GameEvents.SendCustomGameEventToServer("loading_game_options",GameOptions);	}
 	$.GetContextPanel().GetParent().GetParent().FindChildTraverse("ChatLinesArea").style.opacity = 0.5
@@ -123,7 +123,7 @@ function GameOptionsNextPage() {
 	iCurrentGameOptionPage = iCurrentGameOptionPage+1
 	aGameOptionPages[iCurrentGameOptionPage].visible=true
 	if (iCurrentGameOptionPage > 0) {
-		$('#PreviousPageBtn').visible = true
+		$('#PreviousPageBtn').style.width = "49%"
 	}
 	if (iCurrentGameOptionPage == aGameOptionPages.length-1) {
 		$('#NextPageBtn').visible = false
@@ -131,11 +131,12 @@ function GameOptionsNextPage() {
 }
 
 function GameOptionsPreviousPage() {
+	$.Msg($('#PreviousPageBtn'))
 	aGameOptionPages[iCurrentGameOptionPage].visible=false
 	iCurrentGameOptionPage = iCurrentGameOptionPage-1
 	aGameOptionPages[iCurrentGameOptionPage].visible=true
 	if (iCurrentGameOptionPage == 0) {
-		$('#PreviousPageBtn').visible = false
+		$('#PreviousPageBtn').style.width = "0%"
 	}
 	if (iCurrentGameOptionPage < aGameOptionPages.length-1) {
 		$('#NextPageBtn').visible = true
@@ -208,11 +209,6 @@ function HideUploadDownloadNotification() {
 }
 
  
-function GameOptionUploadSuccess(keys) {
-	$('#UploadDownloadNotificationPanel').visible = true
-	$('#UploadDownloadNotificationLabel').text = $.Localize("game_option_uploaded")
-}
-
 
 function GenerateOptionJson()
 {
@@ -250,9 +246,5 @@ GameEvents.Subscribe( "loading_set_options_for_client", UpdateGameOptions);
 GameEvents.Subscribe("panorama_print", PanoramaPrint)
 GameEvents.Subscribe("start_loading_game_option_vote", StartGameOptionVote)
 GameEvents.Subscribe("set_loading_game_option_vote", SetLoadingGameOptionVote)
-GameEvents.Subscribe( "game_option_downloaded", GameOptionDownloaded);
-GameEvents.Subscribe( "game_option_download_fail", GameOptionDownloadFail);
-GameEvents.Subscribe( "game_option_upload_fail", GameOptionUploadFail);
-GameEvents.Subscribe( "game_option_uploaded", GameOptionUploadSuccess);
 //GameEvents.Subscribe("update_game_option_set_time", UpdateGameOptionSetTime)
 //InitializeUI({PlayerID:0})

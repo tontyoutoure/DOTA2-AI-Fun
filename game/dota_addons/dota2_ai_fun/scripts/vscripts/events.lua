@@ -199,14 +199,16 @@ function GameMode:_OnNPCSpawned(keys)
 	if self.iAntiDiving == 1 then hHero:AddNewModifier(hHero, nil, "modifier_anti_diving", {}) end
 	hHero:AddNewModifier(hHero, nil, "modifier_lottery_manager", {})
 
-	if PlayerResource:GetTeam(hHero:GetPlayerOwnerID()) == DOTA_TEAM_GOODGUYS then
-		hHero:SetGold(self.iRadiantGoldStart, false)
-		for i=1,self.iRadiantLvlStart-1 do
-			hHero:HeroLevelUp(false)
-		end
-	else
-		for i=1,self.iDireLvlStart-1 do
-			hHero:HeroLevelUp(false)
+	if hHero:IsRealHero() and not hHero:IsTempestDouble() and not hHero:IsClone() then
+		if PlayerResource:GetTeam(hHero:GetPlayerOwnerID()) == DOTA_TEAM_GOODGUYS then
+			hHero:SetGold(self.iRadiantGoldStart, false)
+			for i=1,self.iRadiantLvlStart-1 do
+				hHero:HeroLevelUp(false)
+			end
+		else
+			for i=1,self.iDireLvlStart-1 do
+				hHero:HeroLevelUp(false)
+			end
 		end
 	end
 
