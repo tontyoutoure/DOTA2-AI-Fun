@@ -307,7 +307,8 @@ local tEmblems = {
 	"particles/econ/events/diretide_2020/emblem/fall20_emblem_v1_effect.vpcf",
 	"particles/econ/events/diretide_2020/emblem/fall20_emblem_v2_effect.vpcf",
 	"particles/econ/events/diretide_2020/emblem/fall20_emblem_v3_effect.vpcf",
-	"particles/econ/events/summer_2021/summer_2021_emblem_effect.vpcf"
+	"particles/econ/events/summer_2021/summer_2021_emblem_effect.vpcf",
+	"particles/econ/events/fall_2021/fall_2021_emblem_game_effect.vpcf"
 }
 
 local function OnEmblemToggled(eventSourceIndex, keys)
