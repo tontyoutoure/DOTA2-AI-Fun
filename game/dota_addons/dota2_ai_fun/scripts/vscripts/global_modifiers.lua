@@ -1189,6 +1189,105 @@ function modifier_bot_protection:GetModifierTotalDamageOutgoing_Percentage()
 	return iPercentage
 end
 
+local function HandleDeath(self, keys)
+	local hParent = self:GetParent()
+	if keys.attacker ~= hParent and keys.target ~= hParent then return end
+	local DK = hParent:GetDeaths() - hParent:GetKills()
+	if DK-10 < self:GetStackCount() then return end
+	if DK > 10 then 
+		self:SetStackCount(DK-10)
+	end
+	if DK > 30 then 
+		self:SetStackCount(20)
+	end
+end
+
+local function Hidden(self)
+	if self:GetStackCount() <= 0 then return true else return false end
+end
 
 
+local tClassHelper = {
+	IsPurgable = function(self) return false end,
+	RemoveOnDeath = function(self) return false end,
+	IsHidden = function Hidden(self) if self:GetStackCount() <= 0 then return true else return false end end
+	OnHeroKilled = HandleDeath
+}
 
+modifier_bot_helper_caster = class(tClassHelper)
+
+function modifier_bot_helper_caster:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE, -- GetModifierPercentageCooldown
+		MODIFIER_PROPERTY_CAST_RANGE_BONUS, -- GetModifierCastRangeBonus
+		MODIFIER_PROPERTY_CASTTIME_PERCENTAGE, -- GetModifierPercentageCasttime
+		MODIFIER_PROPERTY_STATUS_RESISTANCE_CASTER, -- GetModifierStatusResistanceCaster
+		MODIFIER_PROPERTY_TOOLTIP, -- OnTooltip, radius filter
+		MODIFIER_EVENT_ON_HERO_KILLED  -- OnHeroKilled
+	}
+end
+
+modifier_bot_helper_caster.GetModifierPercentageCooldown = function (self,_) return self:GetStackCount()*4 end
+modifier_bot_helper_caster.GetModifierCastRangeBonus = function (self,_) return self:GetStackCount()*40 end
+modifier_bot_helper_caster.GetModifierPercentageCasttime = function (self,_) return self:GetStackCount()*5 end
+modifier_bot_helper_caster.GetModifierStatusResistanceCaster = function (self,_) return self:GetStackCount()* (-10) end
+modifier_bot_helper_caster.OnTooltip = function (self,_) return self:GetStackCount()* 5 end
+
+
+modifier_bot_helper_tanker = class(tClassHelper)
+
+function modifier_bot_helper_tanker:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS , -- GetModifierPhysicalArmorBonus
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS  -- GetModifierMagicalResistanceBonus
+		MODIFIER_PROPERTY_STATUS_RESISTANCE -- GetModifierStatusResistance
+		MODIFIER_PROPERTY_TOOLTIP, -- OnTooltip, reflect probability
+		MODIFIER_PROPERTY_REFLECT_SPELL, -- spell reflect
+		MODIFIER_EVENT_ON_HERO_KILLED  -- OnHeroKilled
+	}
+end
+
+modifier_bot_helper_caster.GetModifierPhysicalArmorBonus = function (self,_) return self:GetStackCount()*3 end
+modifier_bot_helper_caster.GetModifierMagicalResistanceBonus = function (self,_) return self:GetStackCount()*4 end
+modifier_bot_helper_caster.GetModifierStatusResistance = function (self,_) return self:GetStackCount()*4 end
+modifier_bot_helper_caster.OnTooltip = function (self,_) return self:GetStackCount()* 3 end
+
+function modifier_bot_helper_caster:GetReflectSpell(keys)
+    if self.stored ~= nil then
+        self.stored:RemoveSelf() --we make sure to remove previous spell.
+    end
+
+	if self:GetStackCount() * 3 < RandomInt(1,100) then return end
+
+    local hCaster = self:GetParent()
+    local hAbility = hCaster:AddAbility(keys.ability:GetAbilityName())
+    hAbility:SetStolen(true) --just to be safe with some interactions.
+    hAbility:SetHidden(true) --hide the ability.
+    hAbility:SetLevel(keys.ability:GetLevel()) --same level of ability as the origin.
+    hCaster:SetCursorCastTarget(keys.ability:GetCaster()) --lets send this spell back.
+    hAbility:OnSpellStart() --cast the spell.
+    self.stored = hAbility --store the spell reference for future use.
+	hCaster:EmitSound("Item.LotusOrb.Activate")
+	ParticleManager:SetParticleControlEnt(ParticleManager:CreateParticle("particles/items3_fx/lotus_orb_reflect.vpcf", PATTACH_ABSORIGIN_FOLLOW, hCaster), 0, hCaster, PATTACH_POINT_FOLLOW, "attach_hitloc", hCaster:GetAbsOrigin(), true)
+end
+
+
+modifier_bot_helper_attacker = class(tClassHelper)
+
+function modifier_bot_helper_attacker:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_TOOLTIP, -- OnTooltip, redirect point spell
+		MODIFIER_EVENT_ON_HERO_KILLED  -- OnHeroKilled
+
+		MODIFIER_PROPERTY_BASE_ATTACK_TIME_PERCENTAGE -- GetModifierBaseAttackTimePercentage
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT -- GetModifierAttackSpeedBonus_Constant
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE -- GetModifierPreAttack_BonusDamage
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS -- GetModifierAttackRangeBonus
+	}
+end
+
+modifier_bot_helper_attacker.GetModifierPreAttack_BonusDamage = function (self,_) return self:GetStackCount()*8 end
+modifier_bot_helper_attacker.GetModifierAttackSpeedBonus_Constant = function (self,_) return self:GetStackCount()*10 end
+modifier_bot_helper_attacker.OnTooltip = function (self,_) return self:GetStackCount()*3 end
+modifier_bot_helper_attacker.GetModifierAttackRangeBonus = function (self,_) if self:GetParent():IsRangedAttacker() then return self:GetStackCount()*25 else return self:GetStackCount()*15 end end
+modifier_bot_helper_attacker.GetModifierBaseAttackTimePercentage = function (self,_) return self:GetStackCount()*10 end
