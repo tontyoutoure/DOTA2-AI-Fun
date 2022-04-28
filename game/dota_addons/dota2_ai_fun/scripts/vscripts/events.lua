@@ -101,6 +101,7 @@ function GameMode:OnGameStateChanged( keys )
     elseif state == DOTA_GAMERULES_STATE_PRE_GAME then
 		Tutorial:StartTutorialMode()
 		local tTowers = Entities:FindAllByClassname("npc_dota_tower")
+		_DeepPrintTable(tTowers)
 		local tBarracks = Entities:FindAllByClassname("npc_dota_barracks")
 --		local tHealers = Entities:FindAllByClassname("npc_dota_healer")
 		local tForts = Entities:FindAllByClassname("npc_dota_fort")
@@ -298,6 +299,7 @@ function GameMode:OnConfirmGameOptions(eventSourceIndex, args)
 	self.iDireGoldStart = tonumber(GameMode.tGameOption.dire_gold_start)
 	self.iRadiantLvlStart = tonumber(GameMode.tGameOption.radiant_lvl_start)
 	self.iDireLvlStart = tonumber(GameMode.tGameOption.dire_lvl_start)
+	self.iExtraTower = tonumber(GameMode.tGameOption.extra_tower)
 
 
 	--_DeepPrintTable(GameMode.tGameOption)

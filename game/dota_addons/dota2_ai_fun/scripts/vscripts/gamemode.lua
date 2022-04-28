@@ -24,7 +24,6 @@ require('libraries/animations')
 require('modifier_attribute_indicators')
 require('donation')
 require('lottery')
-require('server')
  
 function GameMode:InitGameMode()
 	

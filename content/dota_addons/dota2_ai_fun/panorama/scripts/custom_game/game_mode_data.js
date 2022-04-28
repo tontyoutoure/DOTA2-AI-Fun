@@ -11,14 +11,19 @@ var aGameOptionList = [
 		{"id":"dire_lvl_start",  "type":"dropdown", "options":[1, 2, 3, 4, 5, 6, 10, 12, 15, 18, 20, 25, 30, 56, 100, 170, 320, 560, 1000], "default_value":1},
 		{"id":"radiant_player_number",  "type":"dropdown", "options":[12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0], "default_value":12, "toolsmode_default_value":1},
 		{"id":"dire_player_number", "type":"dropdown", "options":[12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0], "default_value":12, "toolsmode_default_value":1},
+		{"id":"radiant_fun_item_total_price_thresold", "linked_equal_player_id":"dire_fun_item_total_price_thresold", "type":"dropdown", "options":[0, 10000, 15000, 30000, 45000, 60000, 75000, 90000, 150000, 200000, 1000000], "default_value" : 1000000},
+		{"id":"dire_fun_item_total_price_thresold", "linked_equal_player_id":"radiant_fun_item_total_price_thresold", "type":"dropdown", "options":[0, 10000, 15000, 30000, 45000, 60000, 75000, 90000, 150000, 200000, 1000000], "default_value" : 1000000},
+		
+	
+	],
+	[
 		{"id":"respawn_time_percentage", "type":"dropdown", "options":[100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0], "percentage":true, "default_value":100},
 		{"id":"buyback_cooldown", "type":"dropdown", "options":[480, 420, 360, 300, 240, 180, 120, 60, 50, 40, 30, 20, 10, 0], "default_value":480},
 		{"id":"tower_power", "type":"dropdown", "options":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "default_value":1},
 		{"id":"tower_endure", "type":"dropdown", "options":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "default_value": 1},
+		{"id":"extra_tower", type:"dropdown", "options":[0,1,2,3,4,5,6,7,8,9,10],"default_value":1},
 		{"id":"max_level", "type":"dropdown", "options":[30, 50, 100, 200, 400, 800, 1600], "default_value" : 30},
-		{"id":"radiant_fun_item_total_price_thresold", "linked_equal_player_id":"dire_fun_item_total_price_thresold", "type":"dropdown", "options":[0, 10000, 15000, 30000, 45000, 60000, 75000, 90000, 150000, 200000, 1000000], "default_value" : 1000000},
-		{"id":"dire_fun_item_total_price_thresold", "linked_equal_player_id":"radiant_fun_item_total_price_thresold", "type":"dropdown", "options":[0, 10000, 15000, 30000, 45000, 60000, 75000, 90000, 150000, 200000, 1000000], "default_value" : 1000000},
-	],
+	]
 	[
 		{"id":"imbalanced_economizer", "type":"toggle", "default_value":false},
 		{"id":"bot_has_fun_item", "type":"toggle", "default_value":true},
