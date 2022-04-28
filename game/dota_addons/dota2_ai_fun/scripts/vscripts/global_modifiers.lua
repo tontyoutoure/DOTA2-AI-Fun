@@ -22,7 +22,7 @@ function modifier_tower_invulnerable_watcher:DeclareFunctions()
 end
 
 function modifier_tower_invulnerable_watcher:AddNewWatchee(hT)
-	print("new watchee added", hT:GetUnitName())
+	-- print("new watchee added", hT:GetUnitName())
 	table.insert(self.tWatchList, hT)
 	if hT and hT:IsAlive() then
 		hT:AddNewModifier(hT, nil, "modifier_invulnerable", {})
@@ -34,6 +34,7 @@ function modifier_tower_invulnerable_watcher:OnDeath(keys)
 	if keys.unit:GetClassname() ~= "npc_dota_tower" then
 		return
 	end
+	local hParent = self:GetParent()
 
 	if keys.unit == self:GetParent() then
 		for _, hT in pairs(self.tWatchList) do
@@ -41,13 +42,31 @@ function modifier_tower_invulnerable_watcher:OnDeath(keys)
 				hT:RemoveModifierByName("modifier_invulnerable")
 			end
 		end
+		
+		if self:GetParent():GetName() == "npc_dota_tower" then
+			-- self:GetParent():AddEffects(EF_NODRAW)
+			local sParName
+			if hParent:GetTeamNumber() == DOTA_TEAM_BADGUYS then
+				sParName = "particles/dire_fx/dire_tower002_destruction.vpcf"
+			else
+				sParName = "particles/radiant_fx/radiant_tower002_destruction.vpcf"
+			end
+			local par = ParticleManager:CreateParticle(sParName, PATTACH_ABSORIGIN, self:GetParent()) 
+			ParticleManager:SetParticleControl(par, 4, self:GetParent().vColor)
+			hParent:SetModelScale(0.001)
+		end
+
 		return 
-	else if self:GetParent():IsAlive() then -- some other tower destroyed, check invulnerability later
+	end
+	
+	if self:GetParent():IsAlive() then -- some other tower destroyed, check invulnerability later
 		self:StartIntervalThink(0.1)
 	end
+	
 end
 
 function modifier_tower_invulnerable_watcher:OnIntervalThink()
+	-- print("check invulnerability")
 	for _, hT in pairs(self.tWatchList) do
 		if hT and (not hT:IsNull()) and hT:IsAlive() then
 			hT:AddNewModifier(hT, nil, "modifier_invulnerable", {})
@@ -176,8 +195,8 @@ function modifier_tower_endure:GetTexture() return "tower_endure" end
 function modifier_tower_endure:OnCreated()
 	if IsClient() then return end
 	local hParent = self:GetParent()
-	local iHealth = hParent:GetMaxHealth()	
-	Timers:CreateTimer(0.04, function ()
+	local iHealth = hParent.iHP or hParent:GetMaxHealth()	
+	Timers:CreateTimer(2, function ()
 		hParent:SetMaxHealth(self:GetStackCount()*iHealth)
 		hParent:SetBaseMaxHealth(self:GetStackCount()*iHealth)
 		hParent:SetHealth(self:GetStackCount()*iHealth)

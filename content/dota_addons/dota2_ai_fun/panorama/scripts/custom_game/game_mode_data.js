@@ -21,7 +21,7 @@ var aGameOptionList = [
 		{"id":"buyback_cooldown", "type":"dropdown", "options":[480, 420, 360, 300, 240, 180, 120, 60, 50, 40, 30, 20, 10, 0], "default_value":480},
 		{"id":"tower_power", "type":"dropdown", "options":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "default_value":1},
 		{"id":"tower_endure", "type":"dropdown", "options":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "default_value": 1},
-		{"id":"extra_tower", type:"dropdown", "options":[0,1,2,3,4,5,6,7,8,9,10],"default_value":1},
+		{"id":"extra_tower", type:"dropdown", "options":[0,1,2,3,4,5,6,7,8,9,10],"default_value":0},
 		{"id":"max_level", "type":"dropdown", "options":[30, 50, 100, 200, 400, 800, 1600], "default_value" : 30},
 	],
 	[

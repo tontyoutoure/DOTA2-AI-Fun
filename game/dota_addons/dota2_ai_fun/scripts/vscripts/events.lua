@@ -32,7 +32,7 @@ function GameMode:OnDisableWearablesChange(eventSourceIndex, args)
 	CustomNetTables:SetTableValue('fun_hero_stats', 'wearables_change_'..tostring(args.PlayerID), {})
 end
 
-local function CreateTowerBetween (hT1, hT2, count) -- 
+local function CreateTowerBetween (hT1, hT2, count, bHighland) -- 
 	if count == 0 then return end
 	local vOri1 = hT1:GetAbsOrigin()
 	local vOri2 = hT2:GetAbsOrigin()
@@ -44,39 +44,64 @@ local function CreateTowerBetween (hT1, hT2, count) --
 	local iDamageMin2 = hT2:GetBaseDamageMin()
 	local iDamageMax1 = hT1:GetBaseDamageMax()
 	local iDamageMax2 = hT2:GetBaseDamageMax()
+	local iPreviousEntIndex = -1
 	for i = 1, count do
-		local vPos = GetGroundPosition(vOri2 + (vOri1 - vOri2) * (i / (count+1)))
+		local vPos = GetGroundPosition(vOri2 + (vOri1 - vOri2) * (i / (count+1)),nil)
 		local hTower = CreateUnitByName(hT1:GetUnitName(), vPos, false, nil, nil, hT1:GetTeamNumber())
 		local fArmor = fArmor2 + (fArmor1 - fArmor2) * (i / (count+1))
-		local iHP = math.floor(iHP2 + (iHP1 - iHP2) * (i / (count+1)))
+		hTower.iHP = math.floor(iHP2 + (iHP1 - iHP2) * (i / (count+1)))
 		local iDamageMin = math.floor(iDamageMin2 + (iDamageMin1 - iDamageMin2) * (i / (count+1)))
 		local iDamageMax = math.floor(iDamageMax2 + (iDamageMax1 - iDamageMax2) * (i / (count+1)))
 		hTower:SetPhysicalArmorBaseValue(fArmor)
 		hTower:SetBaseDamageMin(iDamageMin)
 		hTower:SetBaseDamageMax(iDamageMax)
-		hTower:SetMaxHealth(iHP)
+		hTower:SetModel(hT1:GetModelName())
+		hTower:SetForwardVector(hT2:GetForwardVector())
+		hTower.vColor = hT1:GetRenderColor()
+		
+		hTower:SetRenderColor(hTower.vColor.x, hTower.vColor.y, hTower.vColor.z)
 
 		if i == 1 then
 			hTower:AddNewModifier(hTower, nil, "modifier_tower_invulnerable_watcher", {}):AddNewWatchee(hT2)
 		end
+		if i == count then
+			hT1:AddNewModifier(hT1, nil, "modifier_tower_invulnerable_watcher", {}):AddNewWatchee(hTower)
+		end
+		if i ~= 1 then
+			hTower:AddNewModifier(hTower, nil, "modifier_tower_invulnerable_watcher", {}):AddNewWatchee(EntIndexToHScript(iPreviousEntIndex))
+		end
+		iPreviousEntIndex = hTower:entindex()
+		if bHighland then
+			table.insert(GameMode.tExtraTower_HighLand, hTower)
+		else
+			table.insert(GameMode.tExtraTower, hTower)
+		end
 	end
+end
+
+local function TN(team, tire, lane)
+	return "npc_dota_"..team.."_tower"..tostring(tire).."_"..lane
 end
 
 function GameMode:CreateExtraTowers()
 	if GameMode.iExtraTower == 0 then return end
+
+	GameMode.tExtraTower = {}
+	GameMode.tExtraTower_HighLand = {}
 	local tTowersList = Entities:FindAllByClassname('npc_dota_tower')
 	local tTowers = {}
-
+	
 	for _, v in pairs(tTowersList) do
+		-- print(v:GetUnitName())
 		tTowers[v:GetUnitName()] = v
 	end
 
 	local tLane = {"top", "mid", "bot"}
-	local tTeam = {"good", "bad"}
+	local tTeam = {"goodguys", "badguys"}
 	for _, lane in ipairs(tLane) do
 		for _, team in ipairs(tTeam) do
-			CreateTowerBetween( tTowers["npc_dota_"..team.."_tower1_"..lane], tTowers["npc_dota_"..team.."_tower2_"..lane], GameMode.iExtraTower)
-			CreateTowerBetween( tTowers["npc_dota_"..team.."_tower2_"..lane], tTowers["npc_dota_"..team.."_tower3_"..lane], GameMode.iExtraTower)
+			CreateTowerBetween( tTowers[TN(team, 1, lane)],tTowers[TN(team, 2, lane)], GameMode.iExtraTower, false)
+			CreateTowerBetween( tTowers[TN(team, 2, lane)],tTowers[TN(team, 3, lane)], GameMode.iExtraTower,false)
 		end
 	end
 end
@@ -150,6 +175,8 @@ function GameMode:OnGameStateChanged( keys )
         end
     elseif state == DOTA_GAMERULES_STATE_PRE_GAME then
 		Tutorial:StartTutorialMode()
+		self:CreateExtraTowers()
+
 		local tTowers = Entities:FindAllByClassname("npc_dota_tower")
 		
 		local tBarracks = Entities:FindAllByClassname("npc_dota_barracks")
@@ -162,7 +189,7 @@ function GameMode:OnGameStateChanged( keys )
 		local iTowerPower = self.iTowerPower or 1
 		local iTowerEndure = self.iTowerEndure or 1
 		for k, v in pairs(tTowers) do
-			print(v:GetName())
+			-- print(v:GetName())
 			v:AddNewModifier(v, nil, "modifier_tower_power", {}):SetStackCount(iTowerPower)
 			v:AddNewModifier(v, nil, "modifier_tower_endure", {}):SetStackCount(iTowerEndure)
 			--v:AddNewModifier(v, nil, "modifier_backdoor_healing", {})
@@ -181,6 +208,16 @@ function GameMode:OnGameStateChanged( keys )
 			end
 	elseif state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 		self.fGameStartTime = GameRules:GetGameTime()
+		if self.iExtraTower > 0 then
+			for i, v in pairs(self.tExtraTower) do
+				v:AddNewModifier(v, nil, "modifier_invulnerable", {})
+			end
+			for i, v in pairs(self.tExtraTower_HighLand) do
+				v:AddNewModifier(v, nil, "modifier_invulnerable", {})
+			end
+		end
+
+		
 --      for i=0, DOTA_MAX_TEAM_PLAYERS do`
 --          print(i)
 --          if PlayerResource:IsFakeClient(i) then
