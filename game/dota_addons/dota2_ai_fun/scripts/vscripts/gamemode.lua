@@ -68,6 +68,7 @@ function GameMode:LinkLuaModifiers()
 	LinkLuaModifier("modifier_anti_diving", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE);
 	LinkLuaModifier("modifier_bot_protection", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE);
 	LinkLuaModifier("modifier_lottery_manager", "lottery.lua", LUA_MODIFIER_MOTION_NONE);
+	LinkLuaModifier("modifier_tower_invulnerable_watcher", "global_modifiers.lua", LUA_MODIFIER_MOTION_NONE);
 	
 	
 	

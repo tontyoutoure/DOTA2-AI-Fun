@@ -1,7 +1,5 @@
 require('bot_item_data')
 
-
-
 local tClassFTF = {
 	IsPurgable = function(self) return false end,
 	IsHidden = function(self) return true end,
@@ -12,6 +10,55 @@ local tClassFFF = {
 	IsHidden = function(self) return false end,
 	RemoveOnDeath = function(self) return false end,
 }
+
+modifier_tower_invulnerable_watcher = class(tClassFFF)
+
+function modifier_tower_invulnerable_watcher:OnCreated()
+	self.tWatchList = {}
+end
+
+function modifier_tower_invulnerable_watcher:DeclareFunctions()
+	return {MODIFIER_EVENT_ON_DEATH}
+end
+
+function modifier_tower_invulnerable_watcher:AddNewWatchee(hT)
+	print("new watchee added", hT:GetUnitName())
+	table.insert(self.tWatchList, hT)
+	if hT and hT:IsAlive() then
+		hT:AddNewModifier(hT, nil, "modifier_invulnerable", {})
+	end
+end
+
+
+function modifier_tower_invulnerable_watcher:OnDeath(keys)
+	if keys.unit:GetClassname() ~= "npc_dota_tower" then
+		return
+	end
+
+	if keys.unit == self:GetParent() then
+		for _, hT in pairs(self.tWatchList) do
+			if hT and (not hT:IsNull()) and hT:IsAlive() then
+				hT:RemoveModifierByName("modifier_invulnerable")
+			end
+		end
+		return 
+	else if self:GetParent():IsAlive() then -- some other tower destroyed, check invulnerability later
+		self:StartIntervalThink(0.1)
+	end
+end
+
+function modifier_tower_invulnerable_watcher:OnIntervalThink()
+	for _, hT in pairs(self.tWatchList) do
+		if hT and (not hT:IsNull()) and hT:IsAlive() then
+			hT:AddNewModifier(hT, nil, "modifier_invulnerable", {})
+		end
+	end
+	self:StartIntervalThink(-1)
+end
+
+function modifier_tower_invulnerable_watcher:OnDestroy()
+	self.tWatchList = nil
+end
 
 modifier_global_hero_respawn_time = class(tClassFTF)
 function modifier_global_hero_respawn_time:OnCreated()

@@ -32,6 +32,56 @@ function GameMode:OnDisableWearablesChange(eventSourceIndex, args)
 	CustomNetTables:SetTableValue('fun_hero_stats', 'wearables_change_'..tostring(args.PlayerID), {})
 end
 
+local function CreateTowerBetween (hT1, hT2, count) -- 
+	if count == 0 then return end
+	local vOri1 = hT1:GetAbsOrigin()
+	local vOri2 = hT2:GetAbsOrigin()
+	local fArmor1 = hT1:GetPhysicalArmorBaseValue()
+	local fArmor2 = hT2:GetPhysicalArmorBaseValue()
+	local iHP1 = hT1:GetMaxHealth()
+	local iHP2 = hT2:GetMaxHealth()
+	local iDamageMin1 = hT1:GetBaseDamageMin()
+	local iDamageMin2 = hT2:GetBaseDamageMin()
+	local iDamageMax1 = hT1:GetBaseDamageMax()
+	local iDamageMax2 = hT2:GetBaseDamageMax()
+	for i = 1, count do
+		local vPos = GetGroundPosition(vOri2 + (vOri1 - vOri2) * (i / (count+1)))
+		local hTower = CreateUnitByName(hT1:GetUnitName(), vPos, false, nil, nil, hT1:GetTeamNumber())
+		local fArmor = fArmor2 + (fArmor1 - fArmor2) * (i / (count+1))
+		local iHP = math.floor(iHP2 + (iHP1 - iHP2) * (i / (count+1)))
+		local iDamageMin = math.floor(iDamageMin2 + (iDamageMin1 - iDamageMin2) * (i / (count+1)))
+		local iDamageMax = math.floor(iDamageMax2 + (iDamageMax1 - iDamageMax2) * (i / (count+1)))
+		hTower:SetPhysicalArmorBaseValue(fArmor)
+		hTower:SetBaseDamageMin(iDamageMin)
+		hTower:SetBaseDamageMax(iDamageMax)
+		hTower:SetMaxHealth(iHP)
+
+		if i == 1 then
+			hTower:AddNewModifier(hTower, nil, "modifier_tower_invulnerable_watcher", {}):AddNewWatchee(hT2)
+		end
+	end
+end
+
+function GameMode:CreateExtraTowers()
+	if GameMode.iExtraTower == 0 then return end
+	local tTowersList = Entities:FindAllByClassname('npc_dota_tower')
+	local tTowers = {}
+
+	for _, v in pairs(tTowersList) do
+		tTowers[v:GetUnitName()] = v
+	end
+
+	local tLane = {"top", "mid", "bot"}
+	local tTeam = {"good", "bad"}
+	for _, lane in ipairs(tLane) do
+		for _, team in ipairs(tTeam) do
+			CreateTowerBetween( tTowers["npc_dota_"..team.."_tower1_"..lane], tTowers["npc_dota_"..team.."_tower2_"..lane], GameMode.iExtraTower)
+			CreateTowerBetween( tTowers["npc_dota_"..team.."_tower2_"..lane], tTowers["npc_dota_"..team.."_tower3_"..lane], GameMode.iExtraTower)
+		end
+	end
+end
+
+
 function GameMode:OnGameStateChanged( keys )
     local state = GameRules:State_Get()
 	if state == DOTA_GAMERULES_STATE_HERO_SELECTION then
