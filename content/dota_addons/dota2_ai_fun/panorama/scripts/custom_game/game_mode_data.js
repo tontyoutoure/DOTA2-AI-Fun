@@ -23,7 +23,7 @@ var aGameOptionList = [
 		{"id":"tower_endure", "type":"dropdown", "options":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "default_value": 1},
 		{"id":"extra_tower", type:"dropdown", "options":[0,1,2,3,4,5,6,7,8,9,10],"default_value":1},
 		{"id":"max_level", "type":"dropdown", "options":[30, 50, 100, 200, 400, 800, 1600], "default_value" : 30},
-	]
+	],
 	[
 		{"id":"imbalanced_economizer", "type":"toggle", "default_value":false},
 		{"id":"bot_has_fun_item", "type":"toggle", "default_value":true},

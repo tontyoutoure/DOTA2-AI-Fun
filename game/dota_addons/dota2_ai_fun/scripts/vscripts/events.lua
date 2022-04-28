@@ -101,7 +101,7 @@ function GameMode:OnGameStateChanged( keys )
     elseif state == DOTA_GAMERULES_STATE_PRE_GAME then
 		Tutorial:StartTutorialMode()
 		local tTowers = Entities:FindAllByClassname("npc_dota_tower")
-		_DeepPrintTable(tTowers)
+		
 		local tBarracks = Entities:FindAllByClassname("npc_dota_barracks")
 --		local tHealers = Entities:FindAllByClassname("npc_dota_healer")
 		local tForts = Entities:FindAllByClassname("npc_dota_fort")
@@ -112,6 +112,7 @@ function GameMode:OnGameStateChanged( keys )
 		local iTowerPower = self.iTowerPower or 1
 		local iTowerEndure = self.iTowerEndure or 1
 		for k, v in pairs(tTowers) do
+			print(v:GetName())
 			v:AddNewModifier(v, nil, "modifier_tower_power", {}):SetStackCount(iTowerPower)
 			v:AddNewModifier(v, nil, "modifier_tower_endure", {}):SetStackCount(iTowerEndure)
 			--v:AddNewModifier(v, nil, "modifier_backdoor_healing", {})
