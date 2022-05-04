@@ -32,6 +32,7 @@ var aGameOptionList = [
 		{"id":"bot_protection", "type":"toggle", "default_value":true},
 		{"id":"anti_diving", "type":"toggle", "default_value":true},
 		{"id":"enable_lottery", "type":"toggle", "default_value":true},
+		{"id":"extra_tower_phased", "type":"toggle", "default_value":true},
 	]
 //	{"id":"dynamic_exp_gold", "type":"toggle", "default_value":false},
 ]

@@ -1202,15 +1202,11 @@ local function HandleDeath(self, keys)
 	end
 end
 
-local function Hidden(self)
-	if self:GetStackCount() <= 0 then return true else return false end
-end
-
 
 local tClassHelper = {
 	IsPurgable = function(self) return false end,
 	RemoveOnDeath = function(self) return false end,
-	IsHidden = function Hidden(self) if self:GetStackCount() <= 0 then return true else return false end end
+	IsHidden = function (self) if self:GetStackCount() <= 0 then return true else return false end end,
 	OnHeroKilled = HandleDeath
 }
 
@@ -1239,8 +1235,8 @@ modifier_bot_helper_tanker = class(tClassHelper)
 function modifier_bot_helper_tanker:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS , -- GetModifierPhysicalArmorBonus
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS  -- GetModifierMagicalResistanceBonus
-		MODIFIER_PROPERTY_STATUS_RESISTANCE -- GetModifierStatusResistance
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,  -- GetModifierMagicalResistanceBonus
+		MODIFIER_PROPERTY_STATUS_RESISTANCE, -- GetModifierStatusResistance
 		MODIFIER_PROPERTY_TOOLTIP, -- OnTooltip, reflect probability
 		MODIFIER_PROPERTY_REFLECT_SPELL, -- spell reflect
 		MODIFIER_EVENT_ON_HERO_KILLED  -- OnHeroKilled
@@ -1277,11 +1273,11 @@ modifier_bot_helper_attacker = class(tClassHelper)
 function modifier_bot_helper_attacker:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_TOOLTIP, -- OnTooltip, redirect point spell
-		MODIFIER_EVENT_ON_HERO_KILLED  -- OnHeroKilled
+		MODIFIER_EVENT_ON_HERO_KILLED,  -- OnHeroKilled
 
-		MODIFIER_PROPERTY_BASE_ATTACK_TIME_PERCENTAGE -- GetModifierBaseAttackTimePercentage
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT -- GetModifierAttackSpeedBonus_Constant
-		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE -- GetModifierPreAttack_BonusDamage
+		MODIFIER_PROPERTY_BASE_ATTACK_TIME_PERCENTAGE, -- GetModifierBaseAttackTimePercentage
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, -- GetModifierAttackSpeedBonus_Constant
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE, -- GetModifierPreAttack_BonusDamage
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS -- GetModifierAttackRangeBonus
 	}
 end
@@ -1291,3 +1287,29 @@ modifier_bot_helper_attacker.GetModifierAttackSpeedBonus_Constant = function (se
 modifier_bot_helper_attacker.OnTooltip = function (self,_) return self:GetStackCount()*3 end
 modifier_bot_helper_attacker.GetModifierAttackRangeBonus = function (self,_) if self:GetParent():IsRangedAttacker() then return self:GetStackCount()*25 else return self:GetStackCount()*15 end end
 modifier_bot_helper_attacker.GetModifierBaseAttackTimePercentage = function (self,_) return self:GetStackCount()*10 end
+
+modifier_lane_creep_phase = class(tClassFTF)
+function modifier_lane_creep_phase:OnCreated()
+	self:StartIntervalThink(1)
+end
+function modifier_lane_creep_phase:OnIntervalThink()
+	if IsClient() then return end 
+
+	if self:GetStackCount() > 0 then self:DecrementStackCount() return end
+	
+	if not self.vPreviousPos then self.vPreviousPos = self:GetParent():GetAbsOrigin() return end
+
+	if #(self.vPreviousPos - self:GetParent():GetAbsOrigin()) < 1 and not self:GetParent():IsAttacking() then
+		self:SetStackCount(1)
+	end
+
+	self.vPreviousPos = self:GetParent():GetAbsOrigin()
+end
+function modifier_lane_creep_phase:CheckState()
+	if self:GetStackCount() > 0 then
+		return {
+			[MODIFIER_STATE_NO_UNIT_COLLISION] = true}
+	else
+		return {}
+	end
+end
