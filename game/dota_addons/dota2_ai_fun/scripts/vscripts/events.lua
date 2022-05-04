@@ -58,6 +58,8 @@ local function CreateTowerBetween (hT1, hT2, count, bHighland) --
 		hTower:SetModel(hT1:GetModelName())
 		hTower:SetForwardVector(hT2:GetForwardVector())
 		hTower.vColor = hT1:GetRenderColor()
+
+		if GameMode.iExtraTowerPhased > 0 then hTower:AddNewModifier(hTower, nil, "modifier_phased",nil) end
 		
 		hTower:SetRenderColor(hTower.vColor.x, hTower.vColor.y, hTower.vColor.z)
 
@@ -243,82 +245,95 @@ function GameMode:OnGameStateChanged( keys )
     end
 end
 bAllFunHeroes = false
-function GameMode:_OnNPCSpawned(keys)
-	if EntIndexToHScript(keys.entindex):IsCourier() then
-		local hCourier = EntIndexToHScript(keys.entindex)
-		if self.iFastCourier > 0 then
-			hCourier:AddNewModifier(hCourier, nil, 'modifier_fast_courier', nil)
-		end
-		hCourier:GetOwner().hCourier = hCourier
-	end
-	if GameRules:State_Get() < DOTA_GAMERULES_STATE_PRE_GAME then return end
+
+function GameMode:InitRealHero(keys)
+	-- not illusion or clone or tempest double
 	local hHero = EntIndexToHScript(keys.entindex)	
-	if hHero.bInitialized or not hHero:IsHero() then return end	 
-	
--- Init heroes
---	if (not self.tFunHeroSelection[hHero:GetPlayerOwnerID()] or self.tFunHeroSelection[hHero:GetPlayerOwnerID()]==hHero:GetName()) then self:InitializeFunHero(hHero) end
-	if (((hHero:GetPlayerOwner() and hHero:GetPlayerOwner().bIsPlayingFunHero) or hHero.bIsPlayingFunHero ) and self.tFunHeroSelection[hHero:GetPlayerOwnerID()]==hHero:GetName()) or (IsInToolsMode() and bAllFunHeroes) then self:InitializeFunHero(hHero) end
---	self:InitializeFunHero(hHero)
---[[
-	if hHero:GetName() == "npc_dota_hero_sniper" then
-		require('heroes/sniper/sniper_init')
-		SniperInit(hHero, self)
-	end
-]]	
--- bot initiation	
-	if not self.tHumanPlayerList[hHero:GetPlayerOwnerID()] then
---	if not self.tHumanPlayerList[hHero:GetPlayerOwnerID()] and not IsInToolsMode() then
-		if hHero:IsRealHero() and not hHero:IsTempestDouble() and not hHero:IsClone() then
-			hHero:AddNewModifier(hHero, nil, "modifier_bot_use_items", {})
-			hHero:AddNewModifier(hHero, nil, 'modifier_item_assemble_fix', {})
+	if PlayerResource:GetTeam(hHero:GetPlayerOwnerID()) == DOTA_TEAM_GOODGUYS then
+		hHero:SetGold(self.iRadiantGoldStart, false)
+		for i=1,self.iRadiantLvlStart-1 do
+			hHero:HeroLevelUp(false)
 		end
-		if self.iBotProtection > 0 then
-			hHero:AddNewModifier(hHero, nil, 'modifier_bot_protection', {})
-		end
-		hHero:AddNewModifier(hHero, nil, "modifier_bot_attack_tower_pick_rune", {}).tHumanPlayerList = self.tHumanPlayerList
-		if hHero:GetName() == "npc_dota_hero_axe" and not hHero:IsIllusion() then
-			hHero:AddNewModifier(hHero, nil, "modifier_axe_thinker", {})
+	else
+		for i=1,self.iDireLvlStart-1 do
+			hHero:HeroLevelUp(false)
 		end
 	end
-	
-	--if IsInToolsMode() and self.tHumanPlayerList[(hHero:GetPlayerOwnerID())] then PlayerResource:SetGold(hHero:GetOwner():GetPlayerID(), 99999, true) end
-	
+
+	Timers:CreateTimer(0.1, function ()
+			hHero:AddNewModifier(hHero, nil, "modifier_global_hero_respawn_time", {}) 
+	end)
+end
+
+
+function GameMode:InitHero(keys)
+	local hHero = EntIndexToHScript(keys.entindex)	
 	if self.iImbalancedEconomizer == 1 then hHero:AddNewModifier(hHero, nil, "modifier_imbalanced_economizer", {}) end
 	hHero:AddNewModifier(hHero, nil, "modifier_ban_fun_items", {})
 	if self.iAntiDiving == 1 then hHero:AddNewModifier(hHero, nil, "modifier_anti_diving", {}) end
 	hHero:AddNewModifier(hHero, nil, "modifier_lottery_manager", {})
 
+end
+
+function GameMode:InitBot(keys)		
+	local hHero = EntIndexToHScript(keys.entindex)		
 	if hHero:IsRealHero() and not hHero:IsTempestDouble() and not hHero:IsClone() then
-		if PlayerResource:GetTeam(hHero:GetPlayerOwnerID()) == DOTA_TEAM_GOODGUYS then
-			hHero:SetGold(self.iRadiantGoldStart, false)
-			for i=1,self.iRadiantLvlStart-1 do
-				hHero:HeroLevelUp(false)
-			end
-		else
-			for i=1,self.iDireLvlStart-1 do
-				hHero:HeroLevelUp(false)
-			end
+		hHero:AddNewModifier(hHero, nil, "modifier_bot_use_items", {})
+		hHero:AddNewModifier(hHero, nil, 'modifier_item_assemble_fix', {})
+	end
+	if self.iBotProtection > 0 then
+		hHero:AddNewModifier(hHero, nil, 'modifier_bot_protection', {})
+	end
+	hHero:AddNewModifier(hHero, nil, "modifier_bot_attack_tower_pick_rune", {}).tHumanPlayerList = self.tHumanPlayerList
+	if hHero:GetName() == "npc_dota_hero_axe" and not hHero:IsIllusion() then
+		hHero:AddNewModifier(hHero, nil, "modifier_axe_thinker", {})
+	end
+
+end
+
+
+function GameMode:_OnNPCSpawned(keys)
+	local hNPC = EntIndexToHScript(keys.entindex)
+	if hNPC.bInitialized then return end
+
+	if hNPC:IsCourier() then
+		if self.iFastCourier > 0 then
+			hNPC:AddNewModifier(hNPC, nil, 'modifier_fast_courier', nil)
+		end
+		hNPC:GetOwner().hCourier = hNPC
+	end
+
+	if GameRules:State_Get() < DOTA_GAMERULES_STATE_PRE_GAME then return end
+
+	if hNPC:GetClassname() == "npc_dota_creep_lane" then 
+		if self.iExtraTower > 0 then
+			hNPC:AddNewModifier(hNPC, nil, "modifier_lane_creep_phase", {})
 		end
 	end
 
-	Timers:CreateTimer(0.1, function ()
-		if hHero:IsRealHero() and not hHero:IsTempestDouble() and not hHero:IsClone() then
-			hHero:AddNewModifier(hHero, nil, "modifier_global_hero_respawn_time", {}) 
-			
 
+	if hNPC:IsHero() then 
+	-- Init fun heroes
+	--	if (not self.tFunHeroSelection[hNPC:GetPlayerOwnerID()] or self.tFunHeroSelection[hNPC:GetPlayerOwnerID()]==hNPC:GetName()) then self:InitializeFunHero(hNPC) end
+		if (((hNPC:GetPlayerOwner() and hNPC:GetPlayerOwner().bIsPlayingFunHero) or hNPC.bIsPlayingFunHero ) and self.tFunHeroSelection[hNPC:GetPlayerOwnerID()]==hNPC:GetName()) or (IsInToolsMode() and bAllFunHeroes) then self:InitializeFunHero(hNPC) end
+	--	self:InitializeFunHero(hNPC)
 
---			hHero:AddNewModifier(hHero, nil, "modifier_plant_tree", {}) 
+	-- bot initiation	
+		if not self.tHumanPlayerList[hNPC:GetPlayerOwnerID()] then
+	--	if not self.tHumanPlayerList[hNPC:GetPlayerOwnerID()] and not IsInToolsMode() then
+			self:InitBot(keys)
 		end
-	end)
-	
-	--[[
-	if hHero:IsIllusion() then
-		hHero:AddNewModifier(hHero, nil, "modifier_plant_tree", {}):SetStackCount(hHero:GetPlayerOwner():GetAssignedHero():FindModifierByName('modifier_plant_tree'):GetStackCount())
-	
+		
+		--inint for heroes
+		self:InitHero(keys)
+
+		-- init for real heroes
+		if hNPC:IsRealHero() and not hNPC:IsTempestDouble() and not hNPC:IsClone() then
+			self:InitRealHero(keys)
+		end
 	end
-	]]
 	
-	hHero.bInitialized = true;
+	hNPC.bInitialized = true;
 end
 
 function GameMode:OnPlayerLevelUp(keys)
@@ -388,9 +403,9 @@ function GameMode:OnConfirmGameOptions(eventSourceIndex, args)
 	self.iRadiantLvlStart = tonumber(GameMode.tGameOption.radiant_lvl_start)
 	self.iDireLvlStart = tonumber(GameMode.tGameOption.dire_lvl_start)
 	self.iExtraTower = tonumber(GameMode.tGameOption.extra_tower)
+	self.iExtraTowerPhased = tonumber(GameMode.tGameOption.extra_tower_phased)
 
-
-	--_DeepPrintTable(GameMode.tGameOption)
+	-- _DeepPrintTable(GameMode.tGameOption)
 	self:PreGameOptions()
 	
 	
