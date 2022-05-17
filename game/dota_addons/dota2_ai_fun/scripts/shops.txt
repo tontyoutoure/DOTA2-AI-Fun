@@ -18,6 +18,8 @@
 		"item"		"item_lottery"		
 		"item"		"item_lottery_10"
 		"item"		"item_sell_neutral_items"
+		"item"		"item_passive_skill_book_normal"
+		"item"		"item_passive_skill_book_ultimate"
 	}
 
 	"attributes"

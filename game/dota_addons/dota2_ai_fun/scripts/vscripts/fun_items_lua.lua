@@ -18,6 +18,7 @@ LinkLuaModifier("modifier_item_fun_papyrus_scarab_aura_2", "fun_item_modifiers_l
 LinkLuaModifier("modifier_item_fun_papyrus_scarab_aura_3", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_item_fun_bs", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_item_tree_planting_suite", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_passive_manager", "fun_item_modifiers_lua.lua", LUA_MODIFIER_MOTION_NONE)
 
 local tClassFunItems = {}
 item_fun_sprint_shoes = class(tClassFunItems)
@@ -455,5 +456,38 @@ end
 
 
 
+item_passive_skill_book_normal = class({})
+function item_passive_skill_book_normal:OnSpellStart()
+	if GameMode.iPassiveSkillBook == 0 then
+		self:GetCaster():ModifyGold(self:GetCost()*self:GetStackCount(),false,0)
+		self:RemoveSelf()
+		return 
+	end
+	local hCaster = self:GetCaster()
+	local sNewAbility = GameMode.tPassiveSkillNormal[RandomInt(1, #(GameMode.tPassiveSkillNormal))]
+	while hCaster:HasAbility(sNewAbility) do
+		sNewAbility = GameMode.tPassiveSkillNormal[RandomInt(1, #(GameMode.tPassiveSkillNormal))]
+	end
+	-- print(sNewAbility)
+	
+	hCaster:AddNewModifier(hCaster, self, "modifier_passive_manager", {}):AddNormalAbility(sNewAbility)
+	self:SpendCharge()
+end
 
+
+item_passive_skill_book_ultimate = class({})
+function item_passive_skill_book_ultimate:OnSpellStart()
+	if GameMode.iPassiveSkillBook == 0 then
+		self:GetCaster():ModifyGold(self:GetCost()*self:GetStackCount(),false,0)
+		self:RemoveSelf()
+		return 
+	end
+	local hCaster = self:GetCaster()
+	local sNewAbility = GameMode.tPassiveSkillUltimate[RandomInt(1, #(GameMode.tPassiveSkillUltimate))]
+	while hCaster:HasAbility(sNewAbility) do
+		sNewAbility = GameMode.tPassiveSkillUltimate[RandomInt(1, #(GameMode.tPassiveSkillUltimate))]
+	end
+	hCaster:AddNewModifier(hCaster, self, "modifier_passive_manager", {}):AddUltimateAbility(sNewAbility)
+	self:SpendCharge()
+end
 

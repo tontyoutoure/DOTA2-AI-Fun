@@ -1179,3 +1179,60 @@ function modifier_item_tree_planting_suite:OnIntervalThink()
 	end
 end
 
+modifier_passive_manager = class(tClassHiddenNotPurgableNotRemoveOnDeath)
+function modifier_passive_manager:Copy(hParentModifier)
+	if hParentModifier.sUltimateAbility then
+		self:AddUltimateAbility(hParentModifier.sUltimateAbility)
+	end
+
+	if hParentModifier.sNormalAbility then
+		self:AddNormalAbility(hParentModifier.sNormalAbility)
+	end
+end
+
+
+function modifier_passive_manager:AddNormalAbility(sAbility)
+	local hParent = self:GetParent()
+	if self.sNormalAbility then
+		hParent:RemoveAbility(self.sNormalAbility)
+	end
+
+	hParent:AddAbility(sAbility)
+	self.sNormalAbility = sAbility
+	self:CheckLevel()
+	if hParent:FindAbilityByName(self.sNormalAbility):GetAbilityIndex() >  hParent:FindAbilityByName(self.sUltimateAbility):GetAbilityIndex() then
+		hParent:SwapAbilities(self.sNormalAbility,self.sUltimateAbility,true,true)
+	end
+end
+
+function modifier_passive_manager:AddUltimateAbility(sAbility)
+	local hParent = self:GetParent()
+	if self.sUltimateAbility then
+		hParent:RemoveAbility(self.sUltimateAbility)
+	end
+
+	hParent:AddAbility(sAbility)
+	self.sUltimateAbility = sAbility
+	self:CheckLevel()
+end
+
+function modifier_passive_manager:CheckLevel()
+	local hParent = self:GetParent()
+	if self.sUltimateAbility then
+		local hAbility = hParent:FindAbilityByName(self.sUltimateAbility)
+		if hParent:GetLevel() >= 18 then 
+			hAbility:SetLevel(3)  
+		else
+			hAbility:SetLevel(math.floor(hParent:GetLevel()/6))
+		end
+	end
+
+	if self.sNormalAbility then
+		local hAbility = hParent:FindAbilityByName(self.sNormalAbility)
+		if hParent:GetLevel() >= 7 then 
+			hAbility:SetLevel(4)  
+		else
+			hAbility:SetLevel(math.floor((hParent:GetLevel()-1)/2)+1)
+		end
+	end
+end
