@@ -16,10 +16,10 @@ Ingame.Initialize = function() {
 	}
 	if (!(Ingame.tLoadingGameOption.passive_skill_book)) {
 		var aMainShopItems = $.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse('GridBasicItemsCategory').FindChildrenWithClassTraverse('MainShopItem');
-		for (i in aMainShopItems) {
-			if (aMainShopItems[i].FindChild('ItemImage').itemname.search('passive_skill_book') >= 0)
-				aMainShopItems[i].visible=false
-		}
+		// for (i in aMainShopItems) {
+		// 	if (aMainShopItems[i].FindChild('ItemImage').itemname.search('passive_skill_book') >= 0)
+		// 		aMainShopItems[i].visible=false
+		// }
 	}
 	if (this.tVoteOptionsResult.iBanFunItems == 1) {
 		var aMainShopItems = $.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse('GridUpgradesCategory').FindChildrenWithClassTraverse('MainShopItem');

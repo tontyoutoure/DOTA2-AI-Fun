@@ -318,6 +318,13 @@ function GameMode:_OnNPCSpawned(keys)
 		if (((hNPC:GetPlayerOwner() and hNPC:GetPlayerOwner().bIsPlayingFunHero) or hNPC.bIsPlayingFunHero ) and self.tFunHeroSelection[hNPC:GetPlayerOwnerID()]==hNPC:GetName()) or (IsInToolsMode() and bAllFunHeroes) then self:InitializeFunHero(hNPC) end
 	--	self:InitializeFunHero(hNPC)
 
+	--only for illusions
+		if not hNPC:IsRealHero() then
+			local hPassiveModifier = hNPC:GetPlayerOwner():GetAssignedHero():FindModifierByName("modifier_passive_manager")
+			if hPassiveModifier then
+				hNPC:AddNewModifier(hNPC, nil, "modifier_passive_manager", {}):Copy(hPassiveModifier)
+			end
+		end
 	-- bot initiation	
 		if not self.tHumanPlayerList[hNPC:GetPlayerOwnerID()] then
 	--	if not self.tHumanPlayerList[hNPC:GetPlayerOwnerID()] and not IsInToolsMode() then
@@ -338,9 +345,16 @@ end
 
 function GameMode:OnPlayerLevelUp(keys)
 	local iEntIndex=keys.hero_entindex
+	
+	local hHero = EntIndexToHScript(iEntIndex)
+	if hHero:HasModifier("modifier_passive_manager") then
+		hHero:FindModifierByName("modifier_passive_manager"):CheckLevel()
+	end
+
 	Timers:CreateTimer(0.5, function () 
 		EntIndexToHScript(iEntIndex):SetCustomDeathXP(40 + EntIndexToHScript(iEntIndex):GetCurrentXP()*0.13)
 	end)
+	
 end
 
 -- Start Voting For Game Option
@@ -404,9 +418,10 @@ function GameMode:OnConfirmGameOptions(eventSourceIndex, args)
 	self.iDireLvlStart = tonumber(GameMode.tGameOption.dire_lvl_start)
 	self.iExtraTower = tonumber(GameMode.tGameOption.extra_tower)
 	self.iExtraTowerPhased = tonumber(GameMode.tGameOption.extra_tower_phased)
-
+	self.iPassiveSkillBook = tonumber(GameMode.tGameOption.passive_skill_book)
 	-- _DeepPrintTable(GameMode.tGameOption)
 	self:PreGameOptions()
+	self:PassiveSkillBookInit()
 	
 	
 	
@@ -541,5 +556,46 @@ local function OnGameOptionSetTimerChange()
 		return 1
 	else
 		GameMode:OnGetLoadingGameOptions(-1, {bFromServer = true, btoVote = true})
+	end
+end
+
+local tBannedPassives = {
+	["meepo_divided_we_stand"] = true,
+	["dawnbreaker_luminosity"] = true
+}
+
+function GameMode:PassiveSkillBookInit()
+	if self.iPassiveSkillBook == 0 then return end
+	self.tPassiveSkillNormal = {}
+	self.tPassiveSkillUltimate = {}
+	local HeroInfos = LoadKeyValues('scripts/npc/npc_heroes.txt')
+	HeroInfos.npc_dota_hero_base = nil
+	HeroInfos.Version = nil
+	local AbilityInfo = LoadKeyValues('scripts/npc/npc_abilities.txt')
+	for hero_name,hero_info in pairs(HeroInfos) do 
+		if string.find(hero_name,"hero") then
+			for i = 1,24 do 
+				local sAbilityName = hero_info["Ability"..i]
+				if sAbilityName and sAbilityName ~="" and not tBannedPassives[sAbilityName] then
+					
+					local sABilityBehavior = AbilityInfo[sAbilityName]["AbilityBehavior"]
+					if sABilityBehavior or nil == string.find(sABilityBehavior, "DOTA_ABILITY_BEHAVIOR_PASSIVE") then 
+						goto continue 
+					end
+					if sABilityBehavior and string.find(sABilityBehavior, "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE") then goto continue end
+					if sABilityBehavior and string.find(sABilityBehavior, "DOTA_ABILITY_BEHAVIOR_HIDDEN") then goto continue end
+					
+					
+					local sAbilityType = AbilityInfo[sAbilityName]["AbilityType"]
+					if sAbilityType == "DOTA_ABILITY_TYPE_ATTRIBUTES" then goto continue end
+					if sAbilityType == "DOTA_ABILITY_TYPE_ULTIMATE" then
+						table.insert(self.tPassiveSkillUltimate, sAbilityName)
+					else
+						table.insert(self.tPassiveSkillNormal, sAbilityName)
+					end
+					::continue::
+				end
+			end
+		end
 	end
 end
