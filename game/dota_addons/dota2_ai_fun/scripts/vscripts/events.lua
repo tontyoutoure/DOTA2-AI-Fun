@@ -579,7 +579,7 @@ function GameMode:PassiveSkillBookInit()
 				if sAbilityName and sAbilityName ~="" and not tBannedPassives[sAbilityName] then
 					
 					local sABilityBehavior = AbilityInfo[sAbilityName]["AbilityBehavior"]
-					if sABilityBehavior or nil == string.find(sABilityBehavior, "DOTA_ABILITY_BEHAVIOR_PASSIVE") then 
+					if (not sABilityBehavior) or nil == string.find(sABilityBehavior, "DOTA_ABILITY_BEHAVIOR_PASSIVE") then 
 						goto continue 
 					end
 					if sABilityBehavior and string.find(sABilityBehavior, "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE") then goto continue end

@@ -62,6 +62,11 @@ function _ScoreboardUpdater_UpdatePlayerPanel( scoreboardConfig, playersContaine
 		_ScoreboardUpdater_SetTextSafe( playerPanel, "Assists", playerInfo.player_assists );
 
 		var playerPortrait = playerPanel.FindChildInLayoutFile( "HeroIcon" );
+		var tipButton = playerPanel.FindChildInLayoutFile( "TipButton" );
+		if (tipButton)
+		{
+			tipButton.visible=false
+		}
 		if ( playerPortrait )
 		{
 			if ( playerInfo.player_selected_hero !== "" )

@@ -487,6 +487,7 @@ function item_passive_skill_book_ultimate:OnSpellStart()
 	while hCaster:HasAbility(sNewAbility) do
 		sNewAbility = GameMode.tPassiveSkillUltimate[RandomInt(1, #(GameMode.tPassiveSkillUltimate))]
 	end
+	-- sNewAbility = "meepo_divided_we_stand"
 	hCaster:AddNewModifier(hCaster, self, "modifier_passive_manager", {}):AddUltimateAbility(sNewAbility)
 	self:SpendCharge()
 end
