@@ -1209,6 +1209,10 @@ function modifier_passive_manager:AddUltimateAbility(sAbility)
 	local hParent = self:GetParent()
 	if self.sUltimateAbility then
 		hParent:RemoveAbility(self.sUltimateAbility)
+		if self.sUltimateAbility == "meepo_divided_we_stand" then
+			--remove clones
+			
+		end
 	end
 
 	hParent:AddAbility(sAbility)
