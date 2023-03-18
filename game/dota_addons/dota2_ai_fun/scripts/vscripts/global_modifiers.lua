@@ -195,8 +195,8 @@ function modifier_tower_endure:GetTexture() return "tower_endure" end
 function modifier_tower_endure:OnCreated()
 	if IsClient() then return end
 	local hParent = self:GetParent()
-	local iHealth = hParent.iHP or hParent:GetMaxHealth()	
-	Timers:CreateTimer(2, function ()
+	local iHealth = hParent.iHP or hParent:GetMaxHealth()
+	Timers:CreateTimer(10, function ()
 		hParent:SetMaxHealth(self:GetStackCount()*iHealth)
 		hParent:SetBaseMaxHealth(self:GetStackCount()*iHealth)
 		hParent:SetHealth(self:GetStackCount()*iHealth)
@@ -1010,7 +1010,7 @@ function modifier_plant_tree:OnModifierAdded(keys)
 		end
 	end
 end
-modifier_fast_courier = class({})
+modifier_fast_courier = class(tClassFFF)
 function modifier_fast_courier:DeclareFunctions()
 	return {
 			MODIFIER_PROPERTY_MOVESPEED_MAX,
@@ -1030,7 +1030,6 @@ end
 function modifier_fast_courier:GetModifierMoveSpeed_Absolute()
 	return 2000
 end
-
 
 function modifier_fast_courier:GetTexture() return 'void_demon_mass_haste' end
 
