@@ -5,7 +5,7 @@
 	</scripts>
 	<styles>
 		<include src="s2r://panorama/styles/custom_game/invoker_retro.css" /> 
-		<include src="file://{resources}/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
 	</styles>
 	<Panel class="InvokerRetroBase" hittest="false">
 	<!--

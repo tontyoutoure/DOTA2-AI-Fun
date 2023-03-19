@@ -10,7 +10,7 @@
 		<include src="file://{resources}/styles/custom_game/donation.css" />
 		<include src="file://{resources}/styles/custom_game/scepter_info.css" />
 		<include src="file://{resources}/styles/custom_game/game_option_ingame.css" /> 
-		<include src="file://{resources}/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
 	</styles>
 	<Panel class="IngameBase" hittest="false">
 		<Panel id="DonationContentContainer" hittest="false">
