@@ -23,7 +23,8 @@ function telekenetic_blob_mark_target:OnSpellStart()
 			end
 			for k, v in pairs(tTargets) do
 				v:AddNewModifier(hCaster, self, 'modifier_telekenetic_blob_mark_target', nil)
-				EmitSoundOnLocationForAllies(v:GetOrigin(), 'Hero_BountyHunter.Target', hCaster:GetPlayerOwner())
+				-- EmitSoundOnLocationForAllies(v:GetOrigin(), 'Hero_BountyHunter.Target', hCaster:GetPlayerOwner())
+				EmitSoundOnLocationForPlayer('Hero_BountyHunter.Target', v:GetOrigin(), hCaster:GetPlayerOwnerID())
 				local iParticle = ParticleManager:CreateParticleForTeam("particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_cast.vpcf", PATTACH_ABSORIGIN_FOLLOW, hCaster, hCaster:GetTeam())
 				ParticleManager:SetParticleControlEnt(iParticle, 0, hCaster, PATTACH_POINT_FOLLOW, "attach_attack1", Vector(0,0,0), true)
 				ParticleManager:SetParticleControlEnt(iParticle, 1, v, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
@@ -37,7 +38,9 @@ function telekenetic_blob_mark_target:OnSpellStart()
 			self.tMarkedTargets[iMarkedCount+1-i]:RemoveModifierByName('modifier_telekenetic_blob_mark_target')
 		end
 		hTarget:AddNewModifier(hCaster, self, 'modifier_telekenetic_blob_mark_target', nil)
-		EmitSoundOnLocationForAllies(hTarget:GetOrigin(), 'Hero_BountyHunter.Target', hCaster:GetPlayerOwner())
+		-- EmitSoundOnLocationForAllies(hTarget:GetOrigin(), 'Hero_BountyHunter.Target', hCaster:GetPlayerOwner())
+		
+		EmitSoundOnLocationForPlayer('Hero_BountyHunter.Target', hTarget:GetOrigin(), hCaster:GetPlayerOwnerID())
 		local iParticle = ParticleManager:CreateParticleForTeam("particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_cast.vpcf", PATTACH_ABSORIGIN_FOLLOW, hCaster, hCaster:GetTeam())
 		ParticleManager:SetParticleControlEnt(iParticle, 0, hCaster, PATTACH_POINT_FOLLOW, "attach_attack1", Vector(0,0,0), true)
 		ParticleManager:SetParticleControlEnt(iParticle, 1, hTarget, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)

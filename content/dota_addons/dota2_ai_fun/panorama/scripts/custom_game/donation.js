@@ -138,6 +138,7 @@ $("#DonationButton").visible=true
 $("#DonationTabEffect").visible=false
 
 Donation.OnDonationActive = function () {
+	$.Msg("Donation.OnDonationActive")
 	if (!this.bInitialized) {
 		this.Initialize()
 		this.bInitialized = true
@@ -154,6 +155,7 @@ Donation.OnDonationActive = function () {
 			$("#BottomButtonEmblem").visible = false;
 		}
 	}
+	Donation.OnCourierTabActive()
 	
 }
  

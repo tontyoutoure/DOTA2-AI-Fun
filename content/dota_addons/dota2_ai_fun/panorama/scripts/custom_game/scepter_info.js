@@ -46,7 +46,7 @@ ScepterInfo.Initialize = function() {
 				if (tFunHeroScepterInfo[i.toString()].tScepterSpecials) {
 					var j = 1
 					while (tFunHeroScepterInfo[i.toString()].tScepterSpecials[j.toString()]) {
-						var sSpecialName = $.Localize("DOTA_Tooltip_ability_"+tFunHeroScepterInfo[i.toString()].sAbilityName+"_"+tFunHeroScepterInfo[i.toString()].tScepterSpecials[j.toString()].sSpecialName) 
+						var sSpecialName = $.Localize("#DOTA_Tooltip_ability_"+tFunHeroScepterInfo[i.toString()].sAbilityName+"_"+tFunHeroScepterInfo[i.toString()].tScepterSpecials[j.toString()].sSpecialName)
 						var sSpecialValue = tFunHeroScepterInfo[i.toString()].tScepterSpecials[j.toString()].sSpecialValue
 						$.CreatePanelWithProperties('Panel', $("#HeroScepterAbilityContainer"+sHeroNameCapital+i.toString()), "HeroScepterAbilityLine"+sHeroNameCapital+i.toString()+"special"+j.toString(),{class:"HeroScepterAbilityLine", id:"HeroScepterAbilityLine"+sHeroNameCapital+i.toString()+"special"+j.toString()})
 						if (sSpecialName.substr(0,1) == "%") {

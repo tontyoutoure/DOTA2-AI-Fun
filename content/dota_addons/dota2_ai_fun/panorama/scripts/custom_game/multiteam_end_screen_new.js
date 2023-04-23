@@ -1,6 +1,9 @@
 "use strict";
 (function()
 {
+	$.Msg("endgame_start")
+	GameEvents.SendCustomGameEventToServer("post_game_info_request", {"tt":"ss"})
+	
 	if ( ScoreboardUpdater_InitializeScoreboard === null ) { $.Msg( "WARNING: This file requires shared_scoreboard_updater.js to be included." ); }
 
 	var scoreboardConfig =

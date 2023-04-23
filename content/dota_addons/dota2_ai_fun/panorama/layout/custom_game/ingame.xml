@@ -35,10 +35,13 @@
 			<Panel id="VoteOptionContainer" class="GameOptionSectionContainer" hittest="false" />
 		</Panel>
 		<Panel id="DonationActiveButtonContainer">
+			<Button class="DonationActiveButton"  id="LeftButton" onactivate="Ingame.OnLeftButtonActivate()" onmouseover="DOTAShowTextTooltip(#left_button_tooltip)" onmouseout="DOTAHideTextTooltip()" />
 			<Button class="DonationActiveButton"  id="DonationButton" oncancel="Ingame.ChangeTabState(null, false);" onactivate="Donation.OnDonationActive()" onmouseover="DOTAShowTextTooltip(#donation_button_tooltip)" onmouseout="DOTAHideTextTooltip()"/>
 			<Button class="DonationActiveButton"  id="ShowGameOptionButton" onactivate="Ingame.OnShowGameOptionActivate()" onmouseover="DOTAShowTextTooltip(#show_game_option_button_tooltip)" onmouseout="DOTAHideTextTooltip()" />
 			
 			<Button class="DonationActiveButton"  id="ScepterInfoButton" onactivate="ScepterInfo.OnScepterInfoActive()" onmouseover="DOTAShowTextTooltip(#scepter_info_button_tooltip)" onmouseout="DOTAHideTextTooltip()"/>
+			<Button class="DonationActiveButton"  id="RightButton" onactivate="Ingame.OnRightButtonActivate()" onmouseover="DOTAShowTextTooltip(#right_button_tooltip)" onmouseout="DOTAHideTextTooltip()" />
+			
 		</Panel>
 	</Panel>
 </root>

@@ -50,3 +50,13 @@
 	color: white;
 	margin:2px;
 }
+
+#LeftButton
+{
+	background-image:url("s2r://panorama/images/control_icons/arrow_solid_left_png.vtex");
+	visibility: collapse;
+}
+#RightButton
+{
+	background-image:url("s2r://panorama/images/control_icons/arrow_solid_right_png.vtex");
+}
