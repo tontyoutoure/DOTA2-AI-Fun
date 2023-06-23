@@ -18,7 +18,7 @@ end
 
 RamzaKnightRendMP = function (keys)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
-	keys.target:ReduceMana(keys.ability:GetSpecialValueFor("mana_reduction"))
+	keys.target:Script_ReduceMana(keys.ability:GetSpecialValueFor("mana_reduction"), keys.ability)
 	keys.target:EmitSound("Hero_NyxAssassin.ManaBurn.Target")
 	ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.target)
 end

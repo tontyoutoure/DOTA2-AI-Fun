@@ -67,7 +67,7 @@ RamzaDarkKnightShadowblade = function(keys)
 	ParticleManager:SetParticleControlEnt(iParticle, 0, keys.caster, PATTACH_POINT_FOLLOW, "attach_attack1", keys.caster:GetAbsOrigin(), true) 
 	ParticleManager:SetParticleControlEnt(iParticle, 1, keys.target, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.target:GetAbsOrigin(), true) 
 	keys.target:Kill(keys.ability, keys.caster)
-	keys.caster:ReduceMana(-fMana)
+	keys.caster:GiveMana(fMana)
 	keys.caster:Heal(fHealth, keys.caster)
 	keys.caster:EmitSound('DOTA_Item.InvisibilitySword.Activate')
 	
@@ -168,8 +168,8 @@ RamzaDarkKnightInfernalStrike = function(keys)
 	else
 		fActualMana = fMana1
 	end
-	keys.target:ReduceMana(fActualMana)
-	keys.caster:ReduceMana(-fActualMana)
+	keys.target:Script_ReduceMana(fActualMana, keys.ability)
+	keys.caster:GiveMana(-fActualMana)
 	local iParticle = ParticleManager:CreateParticle("particles/msg_fx/msg_mana_add.vpcf", PATTACH_POINT_FOLLOW, keys.caster)
 	ParticleManager:SetParticleControl(iParticle, 1, Vector(10, fActualMana, 0))
 	ParticleManager:SetParticleControl(iParticle, 2, Vector(1, math.floor(math.log10(fActualMana))+2, 0))

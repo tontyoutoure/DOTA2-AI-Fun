@@ -289,7 +289,7 @@ function BlackDragonRoarManaBurn(keys)
 				ability = keys.ability
 			}
 			ApplyDamage(damageTable)
-			v:ReduceMana(iManaBurn)
+			v:Script_ReduceMana(iManaBurn, keys.ability)
 			ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf", PATTACH_ABSORIGIN_FOLLOW, v)
 		else
 			local damageTable = {
@@ -300,7 +300,7 @@ function BlackDragonRoarManaBurn(keys)
 				ability = keys.ability
 			}
 			ApplyDamage(damageTable)
-			v:ReduceMana(v:GetMana())
+			v:Script_ReduceMana(v:GetMana(),keys.ability)
 			ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf", PATTACH_ABSORIGIN_FOLLOW, v)
 		end
 	end	

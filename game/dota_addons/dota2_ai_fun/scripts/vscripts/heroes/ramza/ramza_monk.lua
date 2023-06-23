@@ -44,7 +44,7 @@ function RamzaMonkChakra(keys)
 	if fHeal > keys.caster:GetMaxHealth() - keys.caster:GetHealth() then fHeal = keys.caster:GetMaxHealth() - keys.caster:GetHealth() end
 	if fMana > keys.caster:GetMaxMana() - keys.caster:GetMana() then fMana = keys.caster:GetMaxMana() - keys.caster:GetMana() end
 	keys.caster:Heal(fHeal, keys.caster)
-	keys.caster:ReduceMana(-fMana)	
+	keys.caster:GiveMana(fMana)	
 	local iParticle = ParticleManager:CreateParticle("particles/msg_fx/msg_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.caster)
 	ParticleManager:SetParticleControl(iParticle, 1, Vector(10, fHeal, 0))
 	ParticleManager:SetParticleControl(iParticle, 2, Vector(1, math.floor(math.log10(fHeal))+2,0))

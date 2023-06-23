@@ -68,7 +68,7 @@ function spongebob_karate_chop:OnSpellStart()
 	local hTarget = self:GetCursorTarget()
 	if hTarget:TriggerSpellAbsorb(self) then return end
 	ApplyDamage({victim = hTarget, ability = self, attacker = hCaster, damage_type = self:GetAbilityDamageType(), damage = self:GetSpecialValueFor("damage")})
-	hTarget:ReduceMana(self:GetSpecialValueFor("mana_loss"))
+	hTarget:Script_ReduceMana(self:GetSpecialValueFor("mana_loss"),self)
 	hTarget:AddNewModifier(hCaster, self, "modifier_stunned", {Duration = self:GetSpecialValueFor("stun_duration")*CalculateStatusResist(hTarget)})	
 	hTarget:EmitSound("Hero_Sven.StormBoltImpact")	
 	local iParticle = ParticleManager:CreateParticle("particles/econ/items/troll_warlord/troll_warlord_ti7_axe/troll_ti7_axe_bash_explosion_swish.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget)

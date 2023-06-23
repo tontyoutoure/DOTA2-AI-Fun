@@ -30,7 +30,7 @@ function RamzaSamuraiOsafune(keys)
 			if fMana > v:GetMana() then fMana = v:GetMana() end
 			v:EmitSound("Hero_NyxAssassin.ManaBurn.Target")
 			ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf", PATTACH_ABSORIGIN_FOLLOW, v)
-			v:ReduceMana(fMana)
+			v:Script_ReduceMana(fMana, keys.ability)
 			local iParticle1 = ParticleManager:CreateParticle("particles/msg_fx/msg_mana_add.vpcf", PATTACH_POINT_FOLLOW, v)
 			ParticleManager:SetParticleControl(iParticle1, 1, Vector(1, math.floor(fMana), 0))
 			ParticleManager:SetParticleControl(iParticle1, 2, Vector(1, 2+math.floor(math.log10(fMana)), 500))

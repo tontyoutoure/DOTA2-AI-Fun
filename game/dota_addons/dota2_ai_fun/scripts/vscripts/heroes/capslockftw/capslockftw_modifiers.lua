@@ -10,14 +10,14 @@ function modifier_capslockftw_hax:GetModifierInvisibilityLevel() return 1 end
 
 function modifier_capslockftw_hax:OnCreated() 
 	if IsClient() then return end
-	self:StartIntervalThink(0.04) 
+	self:StartIntervalThink(0.1) 
 end
 
 function modifier_capslockftw_hax:OnIntervalThink()
 	if IsClient() then return end
 	local hParent = self:GetParent()
-	hParent:ReduceMana(self:GetAbility():GetSpecialValueFor("mana_drain")/25)
-	if hParent:GetMana() < self:GetAbility():GetSpecialValueFor("mana_drain")/25 then
+	hParent:SpendMana(self:GetAbility():GetSpecialValueFor("mana_drain")/10,self:GetAbility())
+	if hParent:GetMana() < self:GetAbility():GetSpecialValueFor("mana_drain")/10 then
 		self:GetAbility():ToggleAbility()
 	end
 	if CheckTalent(hParent, 'special_bonus_unique_capslockftw_1') > 0 then

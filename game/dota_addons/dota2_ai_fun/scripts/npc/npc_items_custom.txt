@@ -174,7 +174,7 @@
 					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%evasion"
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed"
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%bat"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT_ADJUST"	"%bat"
 				}
 			}
 		}
@@ -208,7 +208,7 @@
 			"06"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"bat"	"1.2"
+				"bat"	"-0.6"
 			}
 		}
 	}
@@ -1782,7 +1782,7 @@
 					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%evasion"
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed"
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%bat"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT_ADJUST"	"%bat"
 				}
 			}
 			"modifier_item_fun_genji_gloves_2_cannot_miss_and_minibash"
@@ -1838,7 +1838,7 @@
 			"06"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"bat"	"0.9"
+				"bat"	"-0.8"
 			}
 			"07"
 			{
@@ -1917,7 +1917,7 @@
 			"06"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"bat"	"0.6"
+				"bat"	"-1"
 			}
 			"07"
 			{

@@ -40,7 +40,7 @@ function modifier_old_storm_spirit_electric_rave:OnIntervalThink()
 	if CheckTalent(hParent, 'special_bonus_unique_old_storm_spirit_4') > 0 then
 		fMana = fMana*CheckTalent(hParent, 'special_bonus_unique_old_storm_spirit_4')
 	end
-	self:GetParent():ReduceMana(fMana)
+	self:GetParent():SpendMana(fMana, self:GetAbility())
 	if hParent:GetMana() == 0 then
 		self:GetAbility():SetActivated(true)
 		self:GetAbility():ToggleAbility()

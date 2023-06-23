@@ -49,8 +49,8 @@ function mana_fiend_equilibrium:OnSpellStart()
 	damage_type = self:GetAbilityDamageType(),
 	ability = self,
 	damage = fMana_burned * (self:GetSpecialValueFor("damage_multiplier")+CheckTalent(hCaster, 'special_bonus_unique_mana_fiend_2'))})
-	hCaster:ReduceMana(fMana_burned)
-	hTarget:ReduceMana(fMana_burned)
+	hCaster:Script_ReduceMana(fMana_burned, self)
+	hTarget:Script_ReduceMana(fMana_burned, self)
 	hTarget:EmitSound('Hero_Antimage.ManaVoid')
 	ParticleManager:CreateParticle('particles/units/heroes/hero_antimage/antimage_manavoid.vpcf',PATTACH_ABSORIGIN_FOLLOW, hTarget)
 
@@ -95,7 +95,7 @@ function mana_field_mana_rift:OnSpellStart()
 	end		
 	hTarget:EmitSound('Hero_NyxAssassin.ManaBurn.Target')
 	ParticleManager:CreateParticle('particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf',PATTACH_ABSORIGIN_FOLLOW, hTarget)
-	hTarget:ReduceMana(mana_burned)
+	hTarget:Script_ReduceMana(mana_burned, self)
 end
 
 mana_fiend_abandon=class({})

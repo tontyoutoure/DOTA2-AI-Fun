@@ -534,7 +534,7 @@ function modifier_item_fun_terra_blade:DeclareFunctions()
 --		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
+		-- MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
 --		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 		MODIFIER_PROPERTY_HEALTH_BONUS,
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
@@ -544,7 +544,7 @@ function modifier_item_fun_terra_blade:DeclareFunctions()
 		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ORDER,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
---		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT_ADJUST,
+		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT_ADJUST,
 	}
 end
 modifier_item_fun_terra_blade.OnTakeDamage = OnTakeDamageTBR
@@ -651,12 +651,12 @@ function modifier_item_fun_terra_blade:GetModifierEvasion_Constant() return self
 function modifier_item_fun_terra_blade:GetModifierPreAttack_BonusDamage() return self:GetAbility():GetSpecialValueFor("bonus_damage") end
 function modifier_item_fun_terra_blade:GetModifierConstantManaRegen() return self:GetAbility():GetSpecialValueFor("manaregen") end
 function modifier_item_fun_terra_blade:GetModifierAttackSpeedBonus_Constant() return self:GetAbility():GetSpecialValueFor("bonus_attack_speed") end
-function modifier_item_fun_terra_blade:GetModifierBaseAttackTimeConstant() return self:GetAbility():GetSpecialValueFor("bat") end
+function modifier_item_fun_terra_blade:GetModifierBaseAttackTimeConstant_Adjust() return self:GetAbility():GetSpecialValueFor("bat") end
 function modifier_item_fun_terra_blade:GetModifierBonusStats_Strength() return self:GetAbility():GetSpecialValueFor("bonus_strength") end
 function modifier_item_fun_terra_blade:GetModifierHealthBonus() return self:GetAbility():GetSpecialValueFor("bonus_health") end
 function modifier_item_fun_terra_blade:GetModifierMoveSpeedBonus_Percentage() return self:GetAbility():GetSpecialValueFor("movespeed_bonus")/math.floor(self:GetStackCount()/2) end
 function modifier_item_fun_terra_blade:GetModifierBaseDamageOutgoing_Percentage() return self:GetAbility():GetSpecialValueFor("bonus_damage_percentage")/math.floor(self:GetStackCount()/2) end
-function modifier_item_fun_terra_blade:GetModifierBaseAttackTimeConstant_Adjust() return 1 end
+-- function modifier_item_fun_terra_blade:GetModifierBaseAttackTimeConstant_Adjust() return 1 end
 
 
 modifier_item_fun_terra_blade.GetModifierHealthRegenPercentage = GetHealthRegenTBR

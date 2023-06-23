@@ -22,6 +22,6 @@ function mana_fiend_equilibrium_lua(keys)
 	damageTable.damage = mana_burned * damage_modifier
 
 	ApplyDamage(damageTable)
-	caster:ReduceMana(mana_burned)
-	target:ReduceMana(mana_burned)
+	caster:Script_ReduceMana(mana_burned, ability)
+	target:Script_ReduceMana(mana_burned, ability)
 end

@@ -58,10 +58,10 @@ function modifier_old_gorgon_mana_shield:OnTakeDamage(keys)
 		fFactor = self:GetAbility():GetSpecialValueFor('damage_per_mana')
 	end
 	if keys.unit:GetMana() > keys.original_damage then
-		keys.unit:ReduceMana(keys.original_damage/fFactor)
+		keys.unit:SpendMana(keys.original_damage/fFactor,keys.ability)
 		keys.unit:SetHealth(keys.unit:GetHealth()+keys.damage)
 	else
-		keys.unit:ReduceMana(keys.original_damage/fFactor)
+		keys.unit:SpendMana(keys.original_damage/fFactor,keys.ability)
 		keys.unit:SetHealth(keys.unit:GetHealth()+keys.damage*keys.unit:GetMana()/keys.original_damage)
 	end
 	keys.unit:EmitSound('Hero_Medusa.ManaShield.Proc')

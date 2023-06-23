@@ -78,7 +78,7 @@ function modifier_mana_fiend_osmose:OnAttackLanded(keys)
 			manaDrained = keys.target:GetMana()
 		end	
 		keys.attacker:GiveMana(manaDrained)
-		keys.target:ReduceMana(manaDrained)
+		keys.target:Script_ReduceMana(manaDrained, keys.ability)
 		ParticleManager:CreateParticle('particles/units/heroes/hero_antimage/antimage_blade_hit.vpcf', PATTACH_ABSORIGIN_FOLLOW, keys.target)
 		keys.target:EmitSound("Hero_Antimage.ManaBreak")
 	end

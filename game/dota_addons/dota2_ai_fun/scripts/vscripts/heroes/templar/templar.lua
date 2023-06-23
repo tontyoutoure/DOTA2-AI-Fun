@@ -78,7 +78,7 @@ function TemplarDrainSpellStart(keys)
 		if keys.caster:HasAbility("special_bonus_templar_2") then
 			iManaDrain = iManaDrain+keys.caster:FindAbilityByName("special_bonus_templar_2"):GetSpecialValueFor("value")
 		end
-		keys.target:ReduceMana(iManaDrain)
+		keys.target:Script_ReduceMana(iManaDrain,keys.ability)
 		keys.caster:GiveMana(iManaDrain)
 		keys.caster:Heal(iLifeDrain, keys.caster)
 		ApplyDamage({attacker = keys.caster, victim = keys.target, damage = iLifeDrain, damage_type = keys.ability:GetAbilityDamageType(), ability = keys.ability})

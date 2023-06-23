@@ -63,10 +63,10 @@ function modifier_ramza_time_mage_mana_shield:RemoveOnDeath() return false end
 function modifier_ramza_time_mage_mana_shield:OnTakeDamage(keys)
 	if keys.unit ~= self:GetParent() then return end
 	if keys.unit:GetMana() > keys.original_damage then
-		keys.unit:ReduceMana(keys.original_damage)
+		keys.unit:SpendMana(keys.original_damage,self:GetAbility())
 		keys.unit:SetHealth(keys.unit:GetHealth()+keys.damage)
 	else
-		keys.unit:ReduceMana(keys.original_damage)
+		keys.unit:SpendMana(keys.original_damage,self:GetAbility())
 		keys.unit:SetHealth(keys.unit:GetHealth()+keys.damage*keys.unit:GetMana()/keys.original_damage)
 	end
 	keys.unit:EmitSound('Hero_Medusa.ManaShield.Proc')

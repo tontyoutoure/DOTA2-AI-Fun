@@ -28,6 +28,6 @@ function invoker_retro_mana_burn_on_spell_start(keys)
 	
 	local mana_burn_effect = ParticleManager:CreateParticle("particles/units/heroes/hero_invoker/invoker_retro_mana_burn.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.target)
 	
-	keys.target:ReduceMana(mana_to_burn)
+	keys.target:Script_ReduceMana(mana_to_burn, keys.ability)
 	ApplyDamageTestDummy({victim = keys.target, attacker = keys.caster, damage = mana_to_burn, damage_type = DAMAGE_TYPE_MAGICAL,})
 end

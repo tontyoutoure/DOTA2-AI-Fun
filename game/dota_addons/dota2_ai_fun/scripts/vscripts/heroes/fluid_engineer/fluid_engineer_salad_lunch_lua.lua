@@ -7,7 +7,7 @@ function fluid_engineer_salad_lunch_lua:OnSpellStart()
 	local hCaster = self:GetCaster()
 	hTree:CutDown(hCaster:GetOwner():GetTeamNumber())
 	hCaster:Heal(self:GetSpecialValueFor("restore"), hCaster)
-	hCaster:ReduceMana(-self:GetSpecialValueFor("restore"))
+	hCaster:GiveMana(self:GetSpecialValueFor("restore"))
 	local hModifier = hCaster:AddNewModifier(hCaster, self, "modifier_fluid_engineer_salad_lunch_lua", {Duration = self:GetSpecialValueFor("duration")})
 	if hModifier:GetStackCount() < self:GetSpecialValueFor("int_stack_cap") then
 		hModifier:SetStackCount(hModifier:GetStackCount()+1)

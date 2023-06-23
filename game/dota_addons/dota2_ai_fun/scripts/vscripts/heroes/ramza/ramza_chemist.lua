@@ -48,7 +48,7 @@ local function RamzaEtherSpellStart(self)
 	hTarget:EmitSound("Hero_KeeperOfTheLight.ChakraMagic.Target")
 	
 	local iManaRestore = self:GetSpecialValueFor("mana_restore")
-	hTarget:ReduceMana(-iManaRestore);
+	hTarget:GiveMana(iManaRestore);
 	
 	if iManaRestore > 200 then
 		local iParticle1 = ParticleManager:CreateParticle("particles/units/heroes/hero_keeper_of_the_light/keeper_chakra_magic.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, hTarget)
@@ -116,7 +116,7 @@ function ramza_chemist_items_elixir:OnSpellStart()
 	local fManaRestore = hTarget:GetMaxMana()-hTarget:GetMana()
 	local fHealthRestore = hTarget:GetMaxHealth()-hTarget:GetHealth()
 	hTarget:Heal(fHealthRestore, hCaster)
-	hTarget:ReduceMana(-fManaRestore)
+	hTarget:GiveMana(fManaRestore)
 	
 	local iParticle1 = ParticleManager:CreateParticle("particles/msg_fx/msg_mana_add.vpcf", PATTACH_POINT_FOLLOW, hTarget)
 	ParticleManager:SetParticleControl(iParticle1, 1, Vector(0, math.floor(fManaRestore), 0))

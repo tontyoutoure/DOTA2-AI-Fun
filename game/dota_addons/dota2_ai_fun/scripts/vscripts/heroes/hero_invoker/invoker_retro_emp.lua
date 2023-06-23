@@ -66,7 +66,7 @@ function invoker_retro_emp_on_spell_start(keys)
 						DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MANA_ONLY, FIND_ANY_ORDER, false)
 
 						for i, individual_unit in ipairs(nearby_enemy_units) do
-							individual_unit:ReduceMana(emp_dummy_unit.mana_burned)
+							individual_unit:Script_ReduceMana(emp_dummy_unit.mana_burned, keys.ability)
 						end
 						
 						--Remove the dummy unit once the sound has stopped.

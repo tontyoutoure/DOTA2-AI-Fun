@@ -17,7 +17,7 @@ function RamzaMysticEmpowerment(keys)
 	if keys.target:TriggerSpellAbsorb( keys.ability ) then return end
 	local fMana = keys.ability:GetSpecialValueFor("mana")
 	if keys.target:GetMana()<fMana then fMana = keys.target:GetMana() end
-	keys.target:ReduceMana(fMana)
+	keys.target:Script_ReduceMana(fMana, keys.ability)
 	keys.caster:GiveMana(fMana)
 	ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.target)
 	keys.caster:EmitSound("Hero_KeeperOfTheLight.ChakraMagic.Target")
