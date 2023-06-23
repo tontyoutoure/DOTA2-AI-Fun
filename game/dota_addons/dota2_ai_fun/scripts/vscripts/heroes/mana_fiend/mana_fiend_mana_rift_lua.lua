@@ -12,5 +12,5 @@ function mana_fiend_mana_rift_lua(keys)
 		mana_burned = 300
 	end		
 
-	target:ReduceMana(mana_burned)
+	target:Script_ReduceMana(mana_burned, ability)
 end
