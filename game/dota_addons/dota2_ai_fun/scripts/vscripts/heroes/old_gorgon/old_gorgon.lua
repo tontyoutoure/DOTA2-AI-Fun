@@ -1,6 +1,6 @@
 LinkLuaModifier("modifier_old_gorgon_purge_slow", "heroes/old_gorgon/old_gorgon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_old_gorgon_mana_shield", "heroes/old_gorgon/old_gorgon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
-
+LinkLuaModifier("modifier_old_gorgon_split_shot", "heroes/old_gorgon/old_gorgon_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 old_gorgon_purge = class({})
 
 local function PurgeUnit(hTarget, hCaster, hAbility)
@@ -121,6 +121,5 @@ function ChainLightningBounce(hCaster, hSource, iRadius, fDamage, iBounce, tTarg
 	Timers:CreateTimer(fDelay, function () ChainLightningBounce(hCaster, hTarget, iRadius, fDamage*fFactor, iBounce, tTargets, hAbility, fDelay, fFactor) end)
 end
 
-function GoldDragonBreathLightning(keys)
-
-end
+old_gorgon_split_shot = class({})
+function old_gorgon_split_shot:GetIntrinsicModifierName() return "modifier_old_gorgon_split_shot" end

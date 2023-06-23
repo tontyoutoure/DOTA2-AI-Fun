@@ -19,7 +19,7 @@ local tNewAbilities = {
 	"special_bonus_mp_800",
 	"special_bonus_unique_old_gorgon_3",
 	"special_bonus_unique_old_gorgon_2",
-	"special_bonus_unique_medusa_4"
+	"special_bonus_unique_old_gorgon_splitshot_uam"
 }
 
 local tHeroBaseStats = {

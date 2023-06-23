@@ -81,7 +81,8 @@
 	
 	"old_gorgon_split_shot"
 	{
-		"BaseClass"	"medusa_split_shot"
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"scripts/vscripts/heroes/old_gorgon/old_gorgon.lua"	
 		"AbilityTextureName"	"medusa_split_shot"		
 		"MaxLevel"	"4"
 		"RequiredLevel"	"5"
@@ -90,26 +91,19 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
 				"damage_modifier"		"0 0 0 0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
+				
 				"damage_modifier_tooltip"		"100 100 100 100"
-			}
-			"03"
-			{	
-				"var_type"					"FIELD_INTEGER"
+				
 				"arrow_count"				"3 4 5 6"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
+				
 				"split_shot_bonus_range"		"100"
-			}
+				"split_shot_uam"
+				{
+					"value"	"0"
+					"special_bonus_unique_old_gorgon_splitshot_uam"	"+1"
+				}
+				
 		}
 	}
 	"old_gorgon_mana_shield"
@@ -195,6 +189,22 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"value"	"50"
+			}
+		}
+	}
+	"special_bonus_unique_old_gorgon_splitshot_uam"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"special_bonus_undefined"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"value"	"1"
 			}
 		}
 	}
