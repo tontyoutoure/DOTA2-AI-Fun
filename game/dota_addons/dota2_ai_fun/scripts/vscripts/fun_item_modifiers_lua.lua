@@ -197,7 +197,7 @@ function modifier_item_fun_escutcheon_lua:ReincarnateTime()
 	local fReincarnateTime = hAbility:GetSpecialValueFor("reincarnate_time")
 	self.bAfterRespawn = true
 	if hAbility:IsCooldownReady() then
-		hAbility:UseResources(false, false, true)
+		hAbility:UseResources(false, true, false, true)
 		hParent.fReincarnateTime = fReincarnateTime
 		return fReincarnateTime
 	else

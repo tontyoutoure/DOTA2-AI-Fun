@@ -48,7 +48,7 @@ function modifier_ramza_monk_critical_recover_hp:OnTakeDamage(keys)
 		
 		if hParent:HasAbility("ramza_monk_critical_recover_hp") then 
 			if hParent:FindAbilityByName("ramza_monk_critical_recover_hp"):IsCooldownReady() then
-				hParent:FindAbilityByName("ramza_monk_critical_recover_hp"):UseResources(true, true, true)
+				hParent:FindAbilityByName("ramza_monk_critical_recover_hp"):UseResources(true, true, true, true)
 				hParent:SetHealth(hParent:GetMaxHealth())
 				Timers(0.04, function () 
 					hParent:SetHealth(hParent:GetMaxHealth()) 

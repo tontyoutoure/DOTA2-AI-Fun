@@ -327,7 +327,7 @@ end
 function el_dorado_piracy_method:OnChannelFinish(bInterrupted)
 	if bInterrupted then
 	else
-		self:UseResources(true, true, true)
+		self:UseResources(true, true, true, true)
 		local tTargetItems = {}
 		local j = 1
 		for i = 0, 8 do

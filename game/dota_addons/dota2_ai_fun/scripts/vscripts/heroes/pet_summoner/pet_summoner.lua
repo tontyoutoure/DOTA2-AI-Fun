@@ -90,7 +90,7 @@ end
 
 function PetSummonerPetRemoveInvisible (keys)
 	if keys.target:HasModifier('modifier_invisible') then keys.target:RemoveModifierByName("modifier_invisible") end
-	keys.ability:UseResources(true, true, true)
+	keys.ability:UseResources(true, true, true, true)
 	keys.target.iLastAttackTime = Time()
 end
 

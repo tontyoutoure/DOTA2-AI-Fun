@@ -131,7 +131,6 @@ function GameOptionsNextPage() {
 }
 
 function GameOptionsPreviousPage() {
-	$.Msg($('#PreviousPageBtn'))
 	aGameOptionPages[iCurrentGameOptionPage].visible=false
 	iCurrentGameOptionPage = iCurrentGameOptionPage-1
 	aGameOptionPages[iCurrentGameOptionPage].visible=true

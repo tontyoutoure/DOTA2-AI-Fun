@@ -155,7 +155,7 @@ function modifier_cleric_magic_mirror:GetAbsorbSpell(keys)
 		hParent:EmitSound("Hero_Antimage.SpellShield.Reflect")
 	end
 		
-	hAbility:UseResources(false, false, true)
+	hAbility:UseResources(false, true, false, true)
 	self.bIsTriggering = false
 	return 1
 end

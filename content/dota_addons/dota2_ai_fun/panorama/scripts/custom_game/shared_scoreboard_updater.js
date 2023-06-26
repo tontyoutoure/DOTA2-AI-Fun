@@ -326,7 +326,7 @@ function UpdatePlayerPostGameInfoFromServer(teamsContainer) {
 		}
 	}
 	else {
-		$.Schedule(0.05, function () {tPlayerPostGameInfoFromServer(teamsContainer)});
+		$.Schedule(0.05, function () {UpdatePlayerPostGameInfoFromServer(teamsContainer)});
 	}  
 }
 

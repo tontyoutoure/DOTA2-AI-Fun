@@ -77,7 +77,7 @@ function modifier_spongebob_spongify:OnAttackLanded(keys)
 				ParticleManager:SetParticleControl(iParticle2, 3, Vector(60, 255, 60))
 			end
 			hParent:Heal(hAbility:GetSpecialValueFor("heal"), hParent)
-			hAbility:UseResources(true, true, true)
+			hAbility:UseResources(true, true, true, true)
 		end
 		local tIllusions = CreateIllusions(hParent, hParent, { duration = hAbility:GetSpecialValueFor("duration"), outgoing_damage = hAbility:GetSpecialValueFor("illusion_outgoing_damage"), incoming_damage = hAbility:GetSpecialValueFor("illusion_incoming_damage") }, 1, 1, true, true);
 

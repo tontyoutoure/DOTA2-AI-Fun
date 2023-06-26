@@ -155,7 +155,7 @@ function modifier_old_butcher_necrogenesis:OnCreated()
 	self:SetStackCount(1)
 	if IsClient() then return end
 	hParent:AddNewModifier(hParent, hAbility, 'modifier_old_butcher_necrogenesis_talent_manager', nil)
-	self:GetAbility():UseResources(true, true, true)
+	self:GetAbility():UseResources(true, true, true, true)
 	for i = 1,4 do
 		hParent:AddNewModifier(hParent, hAbility, tNecrogenesisModifiers[i], {})
 	end
@@ -179,7 +179,7 @@ function modifier_old_butcher_necrogenesis:OnIntervalThink()
 		return
 	end
 	hParent:FindModifierByName(tNecrogenesisModifiers[self:GetStackCount()]):IncrementStackCount()
-	hAbility:UseResources(true, true, true)
+	hAbility:UseResources(true, true, true, true)
 	self:StartIntervalThink(hAbility:GetCooldownTimeRemaining())
 end
 
@@ -355,7 +355,7 @@ function modifier_old_butcher_carrion_beetle_burrow_attack:OnIntervalThink()
 			vVelocity = (self.hTarget:GetOrigin() - hParent:GetOrigin()):Normalized() * hAbility:GetSpecialValueFor('speed'),
 			bProvidesVision = false
 		})
-		hAbility:UseResources(true, true, true)
+		hAbility:UseResources(true, true, true, true)
 	end
 end	
 

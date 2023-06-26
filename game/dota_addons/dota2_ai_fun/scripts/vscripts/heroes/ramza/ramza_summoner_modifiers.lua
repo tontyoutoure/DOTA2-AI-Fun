@@ -220,7 +220,7 @@ function modifier_ramza_summoner_critical_recover_mp:OnTakeDamage(keys)
 		
 		if hParent:HasAbility("ramza_summoner_critical_recover_mp") then 
 			if hParent:FindAbilityByName("ramza_summoner_critical_recover_mp"):IsCooldownReady() then
-				hParent:FindAbilityByName("ramza_summoner_critical_recover_mp"):UseResources(true, true, true)
+				hParent:FindAbilityByName("ramza_summoner_critical_recover_mp"):UseResources(true, true, true, true)
 				hParent:SetMana(hParent:GetMaxMana())
 			end
 		else

@@ -22,7 +22,7 @@ function modifier_ramza_dragoon_dragonheart:ReincarnateTime()
 	if hParent:HasAbility("ramza_dragoon_dragonheart") then 
 		bIsCooldownReady = hParent:FindAbilityByName("ramza_dragoon_dragonheart"):IsCooldownReady()
 		if bIsCooldownReady then
-			hParent:FindAbilityByName("ramza_dragoon_dragonheart"):UseResources(true, true, true)
+			hParent:FindAbilityByName("ramza_dragoon_dragonheart"):UseResources(true, true, true, true)
 			hParent.fReincarnateTime = self.fReincarnateTime
 			return self.fReincarnateTime
 		else
