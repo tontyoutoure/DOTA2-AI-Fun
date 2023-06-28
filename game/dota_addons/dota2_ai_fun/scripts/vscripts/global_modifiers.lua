@@ -684,6 +684,7 @@ tFunExpensiveMode = {
 modifier_ban_fun_items = class(tClassFTF)
 
 function modifier_ban_fun_items:OnCreated()
+	if self:GetParent():IsIllusion() then self:Destroy() end
 	self:StartIntervalThink(1)
 end
 
