@@ -23,10 +23,10 @@ function CheckForHostPrivileges() {
 }
 
 function AddDropDown(tDropDown, hParent) {
-	$.CreatePanelWithProperties('Panel', hParent, tDropDown.id+"_Container",{id:tDropDown.id+"_Container", class:"GameOptionsSubPanel_DropDown"})
-	$.CreatePanelWithProperties('Label', $("#"+tDropDown.id+'_Container'), '',{text:"#"+tDropDown.id})
+	$.CreatePanel('Panel', hParent, tDropDown.id+"_Container",{id:tDropDown.id+"_Container", class:"GameOptionsSubPanel_DropDown"})
+	$.CreatePanel('Label', $("#"+tDropDown.id+'_Container'), '',{text:"#"+tDropDown.id})
 	
-	$.CreatePanelWithProperties('DropDown', $("#"+tDropDown.id+'_Container'), tDropDown.id,{id:tDropDown.id, class:"GameOptionsDropdown"})
+	$.CreatePanel('DropDown', $("#"+tDropDown.id+'_Container'), tDropDown.id,{id:tDropDown.id, class:"GameOptionsDropdown"})
 	for (var j in tDropDown.options) {
 		var dropdownlabel = $.CreatePanel('Label', $("#"+tDropDown.id), tDropDown.options[j].toString())
 		if (tDropDown.percentage)
@@ -46,10 +46,10 @@ function AddDropDown(tDropDown, hParent) {
 }
 
 function AddToggle(tToggle, hParent) {
-	$.CreatePanelWithProperties('Panel', hParent, tToggle.id+"_Container",{id:tToggle.id+"_Container", class:"GameOptionsSubPanel_Toggle"})
-	$.CreatePanelWithProperties('Label', $("#"+tToggle.id+'_Container'), '',{text:"#"+tToggle.id})
+	$.CreatePanel('Panel', hParent, tToggle.id+"_Container",{id:tToggle.id+"_Container", class:"GameOptionsSubPanel_Toggle"})
+	$.CreatePanel('Label', $("#"+tToggle.id+'_Container'), '',{text:"#"+tToggle.id})
 	
-	$.CreatePanelWithProperties('ToggleButton', $("#"+tToggle.id+'_Container'), tToggle.id,{id:tToggle.id, class:"GameOptionsToggle"})
+	$.CreatePanel('ToggleButton', $("#"+tToggle.id+'_Container'), tToggle.id,{id:tToggle.id, class:"GameOptionsToggle"})
 	$("#"+tToggle.id).checked = tToggle.default_value
 	GameOptions[tToggle.id] = tToggle.default_value
 
@@ -75,7 +75,7 @@ function InitializeUI(keys) {
 		hit_test_blocker.hittestchildren = false;
 	}
 	for (var i in aGameOptionList) {
-		$.CreatePanelWithProperties('Panel', $("#GameOptionSubpanelContainerMiddle"), "GameOptionSubpanelContainerInner"+i.toString(),{class:"GameOptionSubpanelContainerInner", id:"GameOptionSubpanelContainerInner"+i.toString()})
+		$.CreatePanel('Panel', $("#GameOptionSubpanelContainerMiddle"), "GameOptionSubpanelContainerInner"+i.toString(),{class:"GameOptionSubpanelContainerInner", id:"GameOptionSubpanelContainerInner"+i.toString()})
 		for (var j in aGameOptionList[i]) {
 			if (aGameOptionList[i][j].type == "toggle") {
 				AddToggle(aGameOptionList[i][j], $("#GameOptionSubpanelContainerInner"+i.toString()))

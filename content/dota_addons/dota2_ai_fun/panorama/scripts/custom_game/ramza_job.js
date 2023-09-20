@@ -150,10 +150,10 @@ RamzaJob.RenewJobLables = function () {
 		sJobNameLabel = "JobNameLabel"+i.toString();
 		sJobLevelLabel="JobLevelLabel"+i.toString();
 		if (!$('#'+sJobLabelContainer)) {			
-			$.CreatePanelWithProperties('Panel', $('#'+sJobContainer), sJobLabelContainer,{id:sJobLabelContainer, class:'JobLabelContainer', hittest:'false' });
+			$.CreatePanel('Panel', $('#'+sJobContainer), sJobLabelContainer,{id:sJobLabelContainer, class:'JobLabelContainer', hittest:'false' });
 			$('#'+sJobContainer).MoveChildBefore($('#'+sJobLabelContainer), $('#'+sSelectJobButton));
-			$.CreatePanelWithProperties('Label', $('#'+sJobLabelContainer), sJobNameLabel,{id:sJobNameLabel, class:'JobNameLabelUnavailable'});
-			$.CreatePanelWithProperties('Label', $('#'+sJobLabelContainer), sJobLevelLabel,{id:sJobLevelLabel, text:'lv0', class:'JobLevelLabelUnavailable'});
+			$.CreatePanel('Label', $('#'+sJobLabelContainer), sJobNameLabel,{id:sJobNameLabel, class:'JobNameLabelUnavailable'});
+			$.CreatePanel('Label', $('#'+sJobLabelContainer), sJobLevelLabel,{id:sJobLevelLabel, text:'lv0', class:'JobLevelLabelUnavailable'});
 			$('#'+sJobNameLabel).text=$.Localize('#'+this.tJobNames[i.toString()]);
 			$('#'+sJobLevelLabel).text=$.Localize('#ramza_job_lv'+this.tJobLevel[i.toString()].toString());
 		}
@@ -221,42 +221,42 @@ RamzaJob.InitializeDescription = function() {
 			sClass='JobDescriptionFlyoutRight';
 		else
 			sClass='JobDescriptionFlyoutLeft';
-		$.CreatePanelWithProperties('Panel', $("#JobDescriptionContainer"), "JobDescriptionFlyout"+i.toString(),{id:"JobDescriptionFlyout"+i.toString()})
+		$.CreatePanel('Panel', $("#JobDescriptionContainer"), "JobDescriptionFlyout"+i.toString(),{id:"JobDescriptionFlyout"+i.toString()})
 		$("#JobDescriptionFlyout"+i.toString()).SetHasClass(sClass, true);
 		
-		$.CreatePanelWithProperties('Label', $("#JobDescriptionFlyout"+i.toString()), "JobDescriptionTitle"+i.toString(),{id:"JobDescriptionTitle"+i.toString(), class:'JobDescriptionTitle', text:"#"+this.tJobNames[i.toString()]});
-		$.CreatePanelWithProperties('Label', $("#JobDescriptionFlyout"+i.toString()), "JobDescriptionLevel"+i.toString(),{id:"JobDescriptionLevel"+i.toString()});
-		$.CreatePanelWithProperties('Label', $("#JobDescriptionFlyout"+i.toString()), "JobDescription"+i.toString(),{id:"JobDescription"+i.toString(), class:'JobDescription', text:"#"+this.tJobNames[i.toString()]+"_description"})
+		$.CreatePanel('Label', $("#JobDescriptionFlyout"+i.toString()), "JobDescriptionTitle"+i.toString(),{id:"JobDescriptionTitle"+i.toString(), class:'JobDescriptionTitle', text:"#"+this.tJobNames[i.toString()]});
+		$.CreatePanel('Label', $("#JobDescriptionFlyout"+i.toString()), "JobDescriptionLevel"+i.toString(),{id:"JobDescriptionLevel"+i.toString()});
+		$.CreatePanel('Label', $("#JobDescriptionFlyout"+i.toString()), "JobDescription"+i.toString(),{id:"JobDescription"+i.toString(), class:'JobDescription', text:"#"+this.tJobNames[i.toString()]+"_description"})
 		if ($.Language() == 'english') 
 			$("#JobDescription"+i.toString()).SetHasClass("JobDescriptionEnglish", true);
-		$.CreatePanelWithProperties('Panel', $("#JobDescriptionFlyout"+i.toString()), "JobStatRow"+i.toString(),{id:"JobStatRow"+i.toString(), class:'JobStatRow' })
-			$.CreatePanelWithProperties('Panel', $("#JobStatRow"+i.toString()), "JobStatKeyColumn"+i.toString(),{id:"JobStatKeyColumn"+i.toString(), class:'JobStatColumn' })
-				$.CreatePanelWithProperties('Panel', $("#JobStatKeyColumn"+i.toString()), "JobStatStrKeyColumnRow"+i.toString(),{id:"JobStatStrKeyColumnRow"+i.toString(), class:'JobStatColumnRow' })
-				$.CreatePanelWithProperties('Label', $("#JobStatStrKeyColumnRow"+i.toString()), "JobStatStrKey"+i.toString(),{id:"JobStatStrKey"+i.toString(), class:'JobStatKey', text:'#ramza_job_description_stat_str' })
-				$.CreatePanelWithProperties('Panel', $("#JobStatKeyColumn"+i.toString()), "JobStatAgiKeyColumnRow"+i.toString(),{id:"JobStatAgiKeyColumnRow"+i.toString(), class:'JobStatColumnRow' })
-				$.CreatePanelWithProperties('Label', $("#JobStatAgiKeyColumnRow"+i.toString()), "JobStatAgiKey"+i.toString(),{id:"JobStatAgiKey"+i.toString(), class:'JobStatKey', text:'#ramza_job_description_stat_agi' })
-				$.CreatePanelWithProperties('Panel', $("#JobStatKeyColumn"+i.toString()), "JobStatIntKeyColumnRow"+i.toString(),{id:"JobStatIntKeyColumnRow"+i.toString(), class:'JobStatColumnRow' })
-				$.CreatePanelWithProperties('Label', $("#JobStatIntKeyColumnRow"+i.toString()), "JobStatIntKey"+i.toString(),{id:"JobStatIntKey"+i.toString(), class:'JobStatKey', text:'#ramza_job_description_stat_int' })
-				$.CreatePanelWithProperties('Panel', $("#JobStatKeyColumn"+i.toString()), "JobStatARKeyColumnRow"+i.toString(),{id:"JobStatARKeyColumnRow"+i.toString(), class:'JobStatColumnRow' })
-				$.CreatePanelWithProperties('Label', $("#JobStatARKeyColumnRow"+i.toString()), "JobStatARKey"+i.toString(),{id:"JobStatARKey"+i.toString(), class:'JobStatKey', text:'#ramza_job_description_stat_attack_range' })
-				$.CreatePanelWithProperties('Panel', $("#JobStatKeyColumn"+i.toString()), "JobStatMSKeyColumnRow"+i.toString(),{id:"JobStatMSKeyColumnRow"+i.toString(), class:'JobStatColumnRow' })
-				$.CreatePanelWithProperties('Label', $("#JobStatMSKeyColumnRow"+i.toString()), "JobStatMSKey"+i.toString(),{id:"JobStatMSKey"+i.toString(), class:'JobStatKey', text:'#ramza_job_description_stat_move_speed' })
+		$.CreatePanel('Panel', $("#JobDescriptionFlyout"+i.toString()), "JobStatRow"+i.toString(),{id:"JobStatRow"+i.toString(), class:'JobStatRow' })
+			$.CreatePanel('Panel', $("#JobStatRow"+i.toString()), "JobStatKeyColumn"+i.toString(),{id:"JobStatKeyColumn"+i.toString(), class:'JobStatColumn' })
+				$.CreatePanel('Panel', $("#JobStatKeyColumn"+i.toString()), "JobStatStrKeyColumnRow"+i.toString(),{id:"JobStatStrKeyColumnRow"+i.toString(), class:'JobStatColumnRow' })
+				$.CreatePanel('Label', $("#JobStatStrKeyColumnRow"+i.toString()), "JobStatStrKey"+i.toString(),{id:"JobStatStrKey"+i.toString(), class:'JobStatKey', text:'#ramza_job_description_stat_str' })
+				$.CreatePanel('Panel', $("#JobStatKeyColumn"+i.toString()), "JobStatAgiKeyColumnRow"+i.toString(),{id:"JobStatAgiKeyColumnRow"+i.toString(), class:'JobStatColumnRow' })
+				$.CreatePanel('Label', $("#JobStatAgiKeyColumnRow"+i.toString()), "JobStatAgiKey"+i.toString(),{id:"JobStatAgiKey"+i.toString(), class:'JobStatKey', text:'#ramza_job_description_stat_agi' })
+				$.CreatePanel('Panel', $("#JobStatKeyColumn"+i.toString()), "JobStatIntKeyColumnRow"+i.toString(),{id:"JobStatIntKeyColumnRow"+i.toString(), class:'JobStatColumnRow' })
+				$.CreatePanel('Label', $("#JobStatIntKeyColumnRow"+i.toString()), "JobStatIntKey"+i.toString(),{id:"JobStatIntKey"+i.toString(), class:'JobStatKey', text:'#ramza_job_description_stat_int' })
+				$.CreatePanel('Panel', $("#JobStatKeyColumn"+i.toString()), "JobStatARKeyColumnRow"+i.toString(),{id:"JobStatARKeyColumnRow"+i.toString(), class:'JobStatColumnRow' })
+				$.CreatePanel('Label', $("#JobStatARKeyColumnRow"+i.toString()), "JobStatARKey"+i.toString(),{id:"JobStatARKey"+i.toString(), class:'JobStatKey', text:'#ramza_job_description_stat_attack_range' })
+				$.CreatePanel('Panel', $("#JobStatKeyColumn"+i.toString()), "JobStatMSKeyColumnRow"+i.toString(),{id:"JobStatMSKeyColumnRow"+i.toString(), class:'JobStatColumnRow' })
+				$.CreatePanel('Label', $("#JobStatMSKeyColumnRow"+i.toString()), "JobStatMSKey"+i.toString(),{id:"JobStatMSKey"+i.toString(), class:'JobStatKey', text:'#ramza_job_description_stat_move_speed' })
 			
-			$.CreatePanelWithProperties('Panel', $("#JobStatRow"+i.toString()), "JobStatValueColumn"+i.toString(),{id:"JobStatValueColumn"+i.toString(), class:'JobStatColumn' })
-				$.CreatePanelWithProperties('Panel', $("#JobStatValueColumn"+i.toString()), "JobStatStrValueColumnRow"+i.toString(),{id:"JobStatStrValueColumnRow"+i.toString(), class:'JobStatColumnRow' })
-				$.CreatePanelWithProperties('Label', $("#JobStatStrValueColumnRow"+i.toString()), "JobStatStrValue"+i.toString(),{id:"JobStatStrValue"+i.toString(), class:'JobStatValue', text: this.tJobStats[i.toString()]["base_str"].toString()+"+"+this.tJobStats[i.toString()]["gain_str"].toFixed(1)})
-				$.CreatePanelWithProperties('Panel', $("#JobStatValueColumn"+i.toString()), "JobStatAgiValueColumnRow"+i.toString(),{id:"JobStatAgiValueColumnRow"+i.toString(), class:'JobStatColumnRow' })
-				$.CreatePanelWithProperties('Label', $("#JobStatAgiValueColumnRow"+i.toString()), "JobStatAgiValue"+i.toString(),{id:"JobStatAgiValue"+i.toString(), class:'JobStatValue', text: this.tJobStats[i.toString()]["base_agi"].toString()+"+"+this.tJobStats[i.toString()]["gain_agi"].toFixed(1)})
-				$.CreatePanelWithProperties('Panel', $("#JobStatValueColumn"+i.toString()), "JobStatIntValueColumnRow"+i.toString(),{id:"JobStatIntValueColumnRow"+i.toString(), class:'JobStatColumnRow' })
-				$.CreatePanelWithProperties('Label', $("#JobStatIntValueColumnRow"+i.toString()), "JobStatIntValue"+i.toString(),{id:"JobStatIntValue"+i.toString(), class:'JobStatValue', text: this.tJobStats[i.toString()]["base_int"].toString()+"+"+this.tJobStats[i.toString()]["gain_int"].toFixed(1)})
-				$.CreatePanelWithProperties('Panel', $("#JobStatValueColumn"+i.toString()), "JobStatARValueColumnRow"+i.toString(),{id:"JobStatARValueColumnRow"+i.toString(), class:'JobStatColumnRow' })
-				$.CreatePanelWithProperties('Label', $("#JobStatARValueColumnRow"+i.toString()), "JobStatARValue"+i.toString(),{id:"JobStatARValue"+i.toString(), class:'JobStatValue' })
+			$.CreatePanel('Panel', $("#JobStatRow"+i.toString()), "JobStatValueColumn"+i.toString(),{id:"JobStatValueColumn"+i.toString(), class:'JobStatColumn' })
+				$.CreatePanel('Panel', $("#JobStatValueColumn"+i.toString()), "JobStatStrValueColumnRow"+i.toString(),{id:"JobStatStrValueColumnRow"+i.toString(), class:'JobStatColumnRow' })
+				$.CreatePanel('Label', $("#JobStatStrValueColumnRow"+i.toString()), "JobStatStrValue"+i.toString(),{id:"JobStatStrValue"+i.toString(), class:'JobStatValue', text: this.tJobStats[i.toString()]["base_str"].toString()+"+"+this.tJobStats[i.toString()]["gain_str"].toFixed(1)})
+				$.CreatePanel('Panel', $("#JobStatValueColumn"+i.toString()), "JobStatAgiValueColumnRow"+i.toString(),{id:"JobStatAgiValueColumnRow"+i.toString(), class:'JobStatColumnRow' })
+				$.CreatePanel('Label', $("#JobStatAgiValueColumnRow"+i.toString()), "JobStatAgiValue"+i.toString(),{id:"JobStatAgiValue"+i.toString(), class:'JobStatValue', text: this.tJobStats[i.toString()]["base_agi"].toString()+"+"+this.tJobStats[i.toString()]["gain_agi"].toFixed(1)})
+				$.CreatePanel('Panel', $("#JobStatValueColumn"+i.toString()), "JobStatIntValueColumnRow"+i.toString(),{id:"JobStatIntValueColumnRow"+i.toString(), class:'JobStatColumnRow' })
+				$.CreatePanel('Label', $("#JobStatIntValueColumnRow"+i.toString()), "JobStatIntValue"+i.toString(),{id:"JobStatIntValue"+i.toString(), class:'JobStatValue', text: this.tJobStats[i.toString()]["base_int"].toString()+"+"+this.tJobStats[i.toString()]["gain_int"].toFixed(1)})
+				$.CreatePanel('Panel', $("#JobStatValueColumn"+i.toString()), "JobStatARValueColumnRow"+i.toString(),{id:"JobStatARValueColumnRow"+i.toString(), class:'JobStatColumnRow' })
+				$.CreatePanel('Label', $("#JobStatARValueColumnRow"+i.toString()), "JobStatARValue"+i.toString(),{id:"JobStatARValue"+i.toString(), class:'JobStatValue' })
 				if (this.tJobStats[i.toString()]["attack_range"] > 150)
 					$("#JobStatARValue"+i.toString()).text = this.tJobStats[i.toString()]["attack_range"].toString();
 				else
 					$("#JobStatARValue"+i.toString()).text = $.Localize('#ramza_job_description_meele')
-				$.CreatePanelWithProperties('Panel', $("#JobStatValueColumn"+i.toString()), "JobStatMSValueColumnRow"+i.toString(),{id:"JobStatMSValueColumnRow"+i.toString(), class:'JobStatColumnRow' })
-				$.CreatePanelWithProperties('Label', $("#JobStatMSValueColumnRow"+i.toString()), "JobStatMSValue"+i.toString(),{id:"JobStatMSValue"+i.toString(), class:'JobStatValue', text: this.tJobStats[i.toString()]["move_speed"].toString()})
+				$.CreatePanel('Panel', $("#JobStatValueColumn"+i.toString()), "JobStatMSValueColumnRow"+i.toString(),{id:"JobStatMSValueColumnRow"+i.toString(), class:'JobStatColumnRow' })
+				$.CreatePanel('Label', $("#JobStatMSValueColumnRow"+i.toString()), "JobStatMSValue"+i.toString(),{id:"JobStatMSValue"+i.toString(), class:'JobStatValue', text: this.tJobStats[i.toString()]["move_speed"].toString()})
 				switch (this.tJobStats[i.toString()]["primary_attribute"]) {
 					case Attributes.DOTA_ATTRIBUTE_STRENGTH:
 						$("#JobStatStrKey"+i.toString()).SetHasClass('RedFont', true);
@@ -270,19 +270,19 @@ RamzaJob.InitializeDescription = function() {
 						$("#JobStatIntKey"+i.toString()).SetHasClass('BluerFont', true);
 						$("#JobStatIntValue"+i.toString()).SetHasClass('BluerFont', true);
 				}
-		$.CreatePanelWithProperties('Label', $("#JobDescriptionFlyout"+i.toString()), "JobAbilityTitle"+i.toString(),{id:"JobAbilityTitle"+i.toString(), class:'JobAbilityTitle BlueFont'})
+		$.CreatePanel('Label', $("#JobDescriptionFlyout"+i.toString()), "JobAbilityTitle"+i.toString(),{id:"JobAbilityTitle"+i.toString(), class:'JobAbilityTitle BlueFont'})
 		$("#JobAbilityTitle"+i.toString()).text=$.Localize('#ramza_job_primary_ability')+$.Localize('#DOTA_Tooltip_ability_'+this.tJobNames[i.toString()]+'_JC');
 		if( i == 18|| i == 20) {
-			$.CreatePanelWithProperties('Label', $("#JobDescriptionFlyout"+i.toString()), "JobAbilityWarning"+i.toString(),{id:"JobAbilityWarning"+i.toString(), class:'JobAbilityWarning', text:'#ramza_job_ability_warning'});
+			$.CreatePanel('Label', $("#JobDescriptionFlyout"+i.toString()), "JobAbilityWarning"+i.toString(),{id:"JobAbilityWarning"+i.toString(), class:'JobAbilityWarning', text:'#ramza_job_ability_warning'});
 		}
-		$.CreatePanelWithProperties('Panel', $("#JobDescriptionFlyout"+i.toString()), "JobAbilityRow"+i.toString(),{id:"JobAbilityRow"+i.toString(), class:'JobStatRow' })
-			$.CreatePanelWithProperties('Panel', $("#JobAbilityRow"+i.toString()), "JobAbilityKeyColumn"+i.toString(),{id:"JobAbilityKeyColumn"+i.toString(), class:'JobStatColumn' })
-			$.CreatePanelWithProperties('Panel', $("#JobAbilityRow"+i.toString()), "JobAbilityValueColumn"+i.toString(),{id:"JobAbilityValueColumn"+i.toString(), class:'JobStatColumn' })
+		$.CreatePanel('Panel', $("#JobDescriptionFlyout"+i.toString()), "JobAbilityRow"+i.toString(),{id:"JobAbilityRow"+i.toString(), class:'JobStatRow' })
+			$.CreatePanel('Panel', $("#JobAbilityRow"+i.toString()), "JobAbilityKeyColumn"+i.toString(),{id:"JobAbilityKeyColumn"+i.toString(), class:'JobStatColumn' })
+			$.CreatePanel('Panel', $("#JobAbilityRow"+i.toString()), "JobAbilityValueColumn"+i.toString(),{id:"JobAbilityValueColumn"+i.toString(), class:'JobStatColumn' })
 			for (j = 1; j < 10; j++) {
-				$.CreatePanelWithProperties('Panel', $("#JobAbilityKeyColumn"+i.toString()), "JobAbilityKeyColumnRow"+i.toString()+"_"+j.toString(),{id:"JobAbilityKeyColumnRow"+i.toString()+"_"+j.toString(), class:'JobStatColumnRow' })
-				$.CreatePanelWithProperties('Label', $("#JobAbilityKeyColumnRow"+i.toString()+"_"+j.toString()), "JobAbilityKey"+i.toString()+"_"+j.toString(),{id:"JobAbilityKey"+i.toString()+"_"+j.toString(), class:'JobStatKey GrayFont', text:"#ramza_job_lv"+j.toString() })
-				$.CreatePanelWithProperties('Panel', $("#JobAbilityValueColumn"+i.toString()), "JobAbilityValueColumnRow"+i.toString()+"_"+j.toString(),{id:"JobAbilityValueColumnRow"+i.toString()+"_"+j.toString(), class:'JobStatColumnRow' })
-				$.CreatePanelWithProperties('Label', $("#JobAbilityValueColumnRow"+i.toString()+"_"+j.toString()), "JobAbilityValue"+i.toString()+"_"+j.toString(),{id:"JobAbilityValue"+i.toString()+"_"+j.toString(), class:'JobStatValue GrayFont'})
+				$.CreatePanel('Panel', $("#JobAbilityKeyColumn"+i.toString()), "JobAbilityKeyColumnRow"+i.toString()+"_"+j.toString(),{id:"JobAbilityKeyColumnRow"+i.toString()+"_"+j.toString(), class:'JobStatColumnRow' })
+				$.CreatePanel('Label', $("#JobAbilityKeyColumnRow"+i.toString()+"_"+j.toString()), "JobAbilityKey"+i.toString()+"_"+j.toString(),{id:"JobAbilityKey"+i.toString()+"_"+j.toString(), class:'JobStatKey GrayFont', text:"#ramza_job_lv"+j.toString() })
+				$.CreatePanel('Panel', $("#JobAbilityValueColumn"+i.toString()), "JobAbilityValueColumnRow"+i.toString()+"_"+j.toString(),{id:"JobAbilityValueColumnRow"+i.toString()+"_"+j.toString(), class:'JobStatColumnRow' })
+				$.CreatePanel('Label', $("#JobAbilityValueColumnRow"+i.toString()+"_"+j.toString()), "JobAbilityValue"+i.toString()+"_"+j.toString(),{id:"JobAbilityValue"+i.toString()+"_"+j.toString(), class:'JobStatValue GrayFont'})
 				tJobLevelAbilities=this.tJobAbilities[i.toString()][j.toString()];
 				sJobLevelAbilities = "";
 				sDelimiter = "";
@@ -292,22 +292,22 @@ RamzaJob.InitializeDescription = function() {
 				}
 				$("#JobAbilityValue"+i.toString()+"_"+j.toString()).text = sJobLevelAbilities;
 			}		
-		$.CreatePanelWithProperties('Label', $("#JobDescriptionFlyout"+i.toString()), "JobRequirementTitle"+i.toString(),{id:"JobRequirementTitle"+i.toString(), class:'JobRequirementTitle'})
+		$.CreatePanel('Label', $("#JobDescriptionFlyout"+i.toString()), "JobRequirementTitle"+i.toString(),{id:"JobRequirementTitle"+i.toString(), class:'JobRequirementTitle'})
 		$("#JobRequirementTitle"+i.toString()).text=$.Localize('#ramza_job_requirement');
-		$.CreatePanelWithProperties('Panel', $("#JobDescriptionFlyout"+i.toString()), "JobRequirementRow"+i.toString(),{id:"JobRequirementRow"+i.toString(), class:'JobStatRow' })
+		$.CreatePanel('Panel', $("#JobDescriptionFlyout"+i.toString()), "JobRequirementRow"+i.toString(),{id:"JobRequirementRow"+i.toString(), class:'JobStatRow' })
 		if(i == 1 || i == 2) {			
-			$.CreatePanelWithProperties('Label', $("#JobDescriptionFlyout"+i.toString()), "JobRequirementNone"+i.toString(),{id:"JobRequirementNone"+i.toString(), class:'JobRequirementTitle'})
+			$.CreatePanel('Label', $("#JobDescriptionFlyout"+i.toString()), "JobRequirementNone"+i.toString(),{id:"JobRequirementNone"+i.toString(), class:'JobRequirementTitle'})
 			$("#JobRequirementNone"+i.toString()).text=$.Localize('#ramza_job_requirement_none');
 		}
 		else {			
-			$.CreatePanelWithProperties('Panel', $("#JobRequirementRow"+i.toString()), "JobRequirementKeyColumn"+i.toString(),{id:"JobRequirementKeyColumn"+i.toString(), class:'JobStatColumn' })
-			$.CreatePanelWithProperties('Panel', $("#JobRequirementRow"+i.toString()), "JobRequirementValueColumn"+i.toString(),{id:"JobRequirementValueColumn"+i.toString(), class:'JobStatColumn' })
+			$.CreatePanel('Panel', $("#JobRequirementRow"+i.toString()), "JobRequirementKeyColumn"+i.toString(),{id:"JobRequirementKeyColumn"+i.toString(), class:'JobStatColumn' })
+			$.CreatePanel('Panel', $("#JobRequirementRow"+i.toString()), "JobRequirementValueColumn"+i.toString(),{id:"JobRequirementValueColumn"+i.toString(), class:'JobStatColumn' })
 				tSingleJobRequirement=this.tInitJobRequirement[i.toString()]
 				for (k in tSingleJobRequirement) {					
-					$.CreatePanelWithProperties('Panel', $("#JobRequirementKeyColumn"+i.toString()), "JobRequirementKeyColumnRow"+i.toString()+"_"+k.toString(),{id:"JobRequirementKeyColumnRow"+i.toString()+"_"+k.toString(), class:'JobStatColumnRow' })
-					$.CreatePanelWithProperties('Label', $("#JobRequirementKeyColumnRow"+i.toString()+"_"+k.toString()), "JobRequirementKey"+i.toString()+"_"+k,{id:"JobRequirementKey"+i.toString()+"_"+k, class:'JobStatKey RedFont', text:"#"+this.tJobNames[k] });
-					$.CreatePanelWithProperties('Panel', $("#JobRequirementValueColumn"+i.toString()), "JobRequirementValueColumnRow"+i.toString()+"_"+k.toString(),{id:"JobRequirementValueColumnRow"+i.toString()+"_"+k.toString(), class:'JobStatColumnRow' })
-					$.CreatePanelWithProperties('Label', $("#JobRequirementValueColumnRow"+i.toString()+"_"+k.toString()), "JobRequirementValue"+i.toString()+"_"+k,{id:"JobRequirementValue"+i.toString()+"_"+k, class:'JobStatValue RedFont', text:"#ramza_job_lv"+tSingleJobRequirement[k] });
+					$.CreatePanel('Panel', $("#JobRequirementKeyColumn"+i.toString()), "JobRequirementKeyColumnRow"+i.toString()+"_"+k.toString(),{id:"JobRequirementKeyColumnRow"+i.toString()+"_"+k.toString(), class:'JobStatColumnRow' })
+					$.CreatePanel('Label', $("#JobRequirementKeyColumnRow"+i.toString()+"_"+k.toString()), "JobRequirementKey"+i.toString()+"_"+k,{id:"JobRequirementKey"+i.toString()+"_"+k, class:'JobStatKey RedFont', text:"#"+this.tJobNames[k] });
+					$.CreatePanel('Panel', $("#JobRequirementValueColumn"+i.toString()), "JobRequirementValueColumnRow"+i.toString()+"_"+k.toString(),{id:"JobRequirementValueColumnRow"+i.toString()+"_"+k.toString(), class:'JobStatColumnRow' })
+					$.CreatePanel('Label', $("#JobRequirementValueColumnRow"+i.toString()+"_"+k.toString()), "JobRequirementValue"+i.toString()+"_"+k,{id:"JobRequirementValue"+i.toString()+"_"+k, class:'JobStatValue RedFont', text:"#ramza_job_lv"+tSingleJobRequirement[k] });
 				}
 					
 		}

@@ -6,33 +6,33 @@ var bLockHided
 function InitializeVote () {
 	$.Msg("InitializeVote")
 	for (var i=0;i < aVoteOptions.length;i++) {
-		$.CreatePanelWithProperties('Panel', $('#VoteListContainer'), "SingleVote"+i.toString(),{id:"SingleVote"+i.toString(), class:"SingleVoteContainer"})
+		$.CreatePanel('Panel', $('#VoteListContainer'), "SingleVote"+i.toString(),{id:"SingleVote"+i.toString(), class:"SingleVoteContainer"})
 		
 		if (aVoteOptions[i].tooltip) {			
-			$.CreatePanelWithProperties('Panel', $('#SingleVote'+i.toString()), "SingleVoteTitleContainer"+i.toString(),{class:"SingleVoteTitleContainer", id:"SingleVoteTitleContainer"+i.toString(), onmouseover:"DOTAShowTextTooltip("+aVoteOptions[i].tooltip+");", onmouseout:"DOTAHideTextTooltip();"});
+			$.CreatePanel('Panel', $('#SingleVote'+i.toString()), "SingleVoteTitleContainer"+i.toString(),{class:"SingleVoteTitleContainer", id:"SingleVoteTitleContainer"+i.toString(), onmouseover:"DOTAShowTextTooltip("+aVoteOptions[i].tooltip+");", onmouseout:"DOTAHideTextTooltip();"});
 		}
 		else {
-			$.CreatePanelWithProperties('Panel', $('#SingleVote'+i.toString()), "SingleVoteTitleContainer"+i.toString(),{class:"SingleVoteTitleContainer", id:"SingleVoteTitleContainer"+i.toString()})
+			$.CreatePanel('Panel', $('#SingleVote'+i.toString()), "SingleVoteTitleContainer"+i.toString(),{class:"SingleVoteTitleContainer", id:"SingleVoteTitleContainer"+i.toString()})
 		}
-		$.CreatePanelWithProperties('Label', $('#SingleVoteTitleContainer'+i.toString()), '',{text:aVoteOptions[i].name})
+		$.CreatePanel('Label', $('#SingleVoteTitleContainer'+i.toString()), '',{text:aVoteOptions[i].name})
 		for (var j = 0; j < aVoteOptions[i].options.length; j++) {			
 			if (aVoteOptions[i].tooltip) {
-				$.CreatePanelWithProperties('Button', $('#SingleVote'+i.toString()), "VoteOptionContainer"+i.toString()+"_"+j.toString(),{class:"VoteOptionContainer", id:"VoteOptionContainer"+i.toString()+"_"+j.toString(), onmouseover:"DOTAShowTextTooltip("+aVoteOptions[i].tooltip+");", onmouseout:"DOTAHideTextTooltip();"});
+				$.CreatePanel('Button', $('#SingleVote'+i.toString()), "VoteOptionContainer"+i.toString()+"_"+j.toString(),{class:"VoteOptionContainer", id:"VoteOptionContainer"+i.toString()+"_"+j.toString(), onmouseover:"DOTAShowTextTooltip("+aVoteOptions[i].tooltip+");", onmouseout:"DOTAHideTextTooltip();"});
 			}
 			else {
-				$.CreatePanelWithProperties('Button', $('#SingleVote'+i.toString()), "VoteOptionContainer"+i.toString()+"_"+j.toString(),{class:"VoteOptionContainer", id:"VoteOptionContainer"+i.toString()+"_"+j.toString()});
+				$.CreatePanel('Button', $('#SingleVote'+i.toString()), "VoteOptionContainer"+i.toString()+"_"+j.toString(),{class:"VoteOptionContainer", id:"VoteOptionContainer"+i.toString()+"_"+j.toString()});
 			}
 			$('#VoteOptionContainer'+i.toString()+'_'+j.toString()).vote_index = i
 			$('#VoteOptionContainer'+i.toString()+'_'+j.toString()).choice_index = j
 			$.RegisterEventHandler('Activated', $('#VoteOptionContainer'+i.toString()+'_'+j.toString()), OnVoteActivated)
-			$.CreatePanelWithProperties('Panel', $('#VoteOptionContainer'+i.toString()+'_'+j.toString()), "VoteOptionChoiceContainer"+i.toString()+"_"+j.toString(),{class:"VoteOptionChoiceContainer", id:"VoteOptionChoiceContainer"+i.toString()+"_"+j.toString()})
-			$.CreatePanelWithProperties('Label', $('#VoteOptionChoiceContainer'+i.toString()+'_'+j.toString()), "VoteOptionChoice"+i.toString()+"_"+j.toString(),{id:"VoteOptionChoice"+i.toString()+"_"+j.toString(), text:""})
-			$.CreatePanelWithProperties('Panel', $('#VoteOptionContainer'+i.toString()+'_'+j.toString()), "VoteOptionTitleContainer"+i.toString()+"_"+j.toString(),{class:"VoteOptionTitleContainer", id:"VoteOptionTitleContainer"+i.toString()+"_"+j.toString()})
-			$.CreatePanelWithProperties('Label', $('#VoteOptionTitleContainer'+i.toString()+'_'+j.toString()), '',{text:aVoteOptions[i].options[j]})
+			$.CreatePanel('Panel', $('#VoteOptionContainer'+i.toString()+'_'+j.toString()), "VoteOptionChoiceContainer"+i.toString()+"_"+j.toString(),{class:"VoteOptionChoiceContainer", id:"VoteOptionChoiceContainer"+i.toString()+"_"+j.toString()})
+			$.CreatePanel('Label', $('#VoteOptionChoiceContainer'+i.toString()+'_'+j.toString()), "VoteOptionChoice"+i.toString()+"_"+j.toString(),{id:"VoteOptionChoice"+i.toString()+"_"+j.toString(), text:""})
+			$.CreatePanel('Panel', $('#VoteOptionContainer'+i.toString()+'_'+j.toString()), "VoteOptionTitleContainer"+i.toString()+"_"+j.toString(),{class:"VoteOptionTitleContainer", id:"VoteOptionTitleContainer"+i.toString()+"_"+j.toString()})
+			$.CreatePanel('Label', $('#VoteOptionTitleContainer'+i.toString()+'_'+j.toString()), '',{text:aVoteOptions[i].options[j]})
 			
 			
-			$.CreatePanelWithProperties('Panel', $('#VoteOptionContainer'+i.toString()+'_'+j.toString()), "VoteOptionCounterContainer"+i.toString()+"_"+j.toString(),{class:"VoteOptionCounterContainer", id:"VoteOptionCounterContainer"+i.toString()+"_"+j.toString()})
-			$.CreatePanelWithProperties('Label', $('#VoteOptionCounterContainer'+i.toString()+'_'+j.toString()), "VoteCounter"+i.toString()+"_"+j.toString(),{id:"VoteCounter"+i.toString()+"_"+j.toString(), text:"0"})
+			$.CreatePanel('Panel', $('#VoteOptionContainer'+i.toString()+'_'+j.toString()), "VoteOptionCounterContainer"+i.toString()+"_"+j.toString(),{class:"VoteOptionCounterContainer", id:"VoteOptionCounterContainer"+i.toString()+"_"+j.toString()})
+			$.CreatePanel('Label', $('#VoteOptionCounterContainer'+i.toString()+'_'+j.toString()), "VoteCounter"+i.toString()+"_"+j.toString(),{id:"VoteCounter"+i.toString()+"_"+j.toString(), text:"0"})
 		}		
 	}
 	for (var i=0;i < aVoteOptions.length;i++) {

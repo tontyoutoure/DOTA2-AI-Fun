@@ -76,7 +76,7 @@ function AbilitySet(iDropDown) {
 	var sAbility
 	if (selectedLabel) {sAbility = selectedLabel.id}
 	else {sAbility = ''}
-	$.CreatePanelWithProperties('DOTAAbilityImage', $('#AbilityShowCase'+iDropDown.toString()), '',{abilityname:sAbility})
+	$.CreatePanel('DOTAAbilityImage', $('#AbilityShowCase'+iDropDown.toString()), '',{abilityname:sAbility})
 	$('#AbilityShowCase'+iDropDown.toString()).SetPanelEvent('onmouseover', function () {
 		$.DispatchEvent('DOTAShowAbilityTooltip', $('#AbilityShowCase'+iDropDown.toString()), sAbility)
 	})
@@ -98,23 +98,23 @@ function InitAbilitySelection() {
 	$('#AbilityChooseConfirmBtnLabel').text=$.Localize('#best_worst_stats_confirm_ability')
 	$('#AbilityChooseConfirmAllBtn').visible = false
 	for(var i = 1; i < 5; i++) {
-		$.CreatePanelWithProperties('Panel', $('#Ability'+i.toString()+'Panel'), "TitlePanelAbility"+i.toString(),{class:"TitlePanel", id:"TitlePanelAbility"+i.toString()})
-		$.CreatePanelWithProperties('Label', $('#TitlePanelAbility'+i.toString()+''), '',{text:"#best_worst_stats_ability_"+i.toString()})
+		$.CreatePanel('Panel', $('#Ability'+i.toString()+'Panel'), "TitlePanelAbility"+i.toString(),{class:"TitlePanel", id:"TitlePanelAbility"+i.toString()})
+		$.CreatePanel('Label', $('#TitlePanelAbility'+i.toString()+''), '',{text:"#best_worst_stats_ability_"+i.toString()})
 		
-		$.CreatePanelWithProperties('Panel', $('#Ability'+i.toString()+'Panel'), "DropDownContainerAbility"+i.toString(),{class:"DropDownContainer", id:"DropDownContainerAbility"+i.toString()})
+		$.CreatePanel('Panel', $('#Ability'+i.toString()+'Panel'), "DropDownContainerAbility"+i.toString(),{class:"DropDownContainer", id:"DropDownContainerAbility"+i.toString()})
 		
-		$.CreatePanelWithProperties('Panel', $('#DropDownContainerAbility'+i.toString()+''), "SingleDropDownContainerHero"+i.toString(),{class:"SingleDropDownContainer", id:"SingleDropDownContainerHero"+i.toString()})
-		$.CreatePanelWithProperties('Panel', $('#SingleDropDownContainerHero'+i.toString()+''), "SingleDropDownElementHero"+i.toString()+"LabelPanel",{class:"SingleDropDownElement", id:"SingleDropDownElementHero"+i.toString()+"LabelPanel"})
-		$.CreatePanelWithProperties('Label', $('#SingleDropDownElementHero'+i.toString()+'LabelPanel'), '',{class:"LargeLabel", text:"dota_hero"})
-		$.CreatePanelWithProperties('Panel', $('#SingleDropDownContainerHero'+i.toString()+''), "SingleDropDownElementHero"+i.toString()+"DropDownPanel" ,{class:"SingleDropDownElement", id:"SingleDropDownElementHero"+i.toString()+"DropDownPanel" })
-		$.CreatePanelWithProperties('DropDown', $('#SingleDropDownElementHero'+i.toString()+'DropDownPanel'), "SingleDropDownElementHero"+i.toString()+"DropDown",{id:"SingleDropDownElementHero"+i.toString()+"DropDown", oninputsubmit:"ChooseAbilityForHero("+i.toString()+");"});
+		$.CreatePanel('Panel', $('#DropDownContainerAbility'+i.toString()+''), "SingleDropDownContainerHero"+i.toString(),{class:"SingleDropDownContainer", id:"SingleDropDownContainerHero"+i.toString()})
+		$.CreatePanel('Panel', $('#SingleDropDownContainerHero'+i.toString()+''), "SingleDropDownElementHero"+i.toString()+"LabelPanel",{class:"SingleDropDownElement", id:"SingleDropDownElementHero"+i.toString()+"LabelPanel"})
+		$.CreatePanel('Label', $('#SingleDropDownElementHero'+i.toString()+'LabelPanel'), '',{class:"LargeLabel", text:"dota_hero"})
+		$.CreatePanel('Panel', $('#SingleDropDownContainerHero'+i.toString()+''), "SingleDropDownElementHero"+i.toString()+"DropDownPanel" ,{class:"SingleDropDownElement", id:"SingleDropDownElementHero"+i.toString()+"DropDownPanel" })
+		$.CreatePanel('DropDown', $('#SingleDropDownElementHero'+i.toString()+'DropDownPanel'), "SingleDropDownElementHero"+i.toString()+"DropDown",{id:"SingleDropDownElementHero"+i.toString()+"DropDown", oninputsubmit:"ChooseAbilityForHero("+i.toString()+");"});
 		AddHeroesForDropDown('#SingleDropDownElementHero'+i.toString()+'DropDown')
 		
-		$.CreatePanelWithProperties('Panel', $('#DropDownContainerAbility'+i.toString()+''), "SingleDropDownContainerAbility"+i.toString(),{class:"SingleDropDownContainer", id:"SingleDropDownContainerAbility"+i.toString()})
-		$.CreatePanelWithProperties('Panel', $('#SingleDropDownContainerAbility'+i.toString()+''), "SingleDropDownElementAbility"+i.toString()+"LabelPanel",{class:"SingleDropDownElement", id:"SingleDropDownElementAbility"+i.toString()+"LabelPanel"})
-		$.CreatePanelWithProperties('Label', $('#SingleDropDownElementAbility'+i.toString()+'LabelPanel'), '',{class:"LargeLabel", text:"DOTA_Skills"})
-		$.CreatePanelWithProperties('Panel', $('#SingleDropDownContainerAbility'+i.toString()+''), "SingleDropDownElementAbility"+i.toString()+"DropDownPanel",{class:"SingleDropDownElement", id:"SingleDropDownElementAbility"+i.toString()+"DropDownPanel"})
-		$.CreatePanelWithProperties('DropDown', $('#SingleDropDownElementAbility'+i.toString()+'DropDownPanel'), "SingleDropDownElementAbility"+i.toString()+"DropDown",{id:"SingleDropDownElementAbility"+i.toString()+"DropDown", oninputsubmit:"AbilitySet("+i.toString()+")"})
+		$.CreatePanel('Panel', $('#DropDownContainerAbility'+i.toString()+''), "SingleDropDownContainerAbility"+i.toString(),{class:"SingleDropDownContainer", id:"SingleDropDownContainerAbility"+i.toString()})
+		$.CreatePanel('Panel', $('#SingleDropDownContainerAbility'+i.toString()+''), "SingleDropDownElementAbility"+i.toString()+"LabelPanel",{class:"SingleDropDownElement", id:"SingleDropDownElementAbility"+i.toString()+"LabelPanel"})
+		$.CreatePanel('Label', $('#SingleDropDownElementAbility'+i.toString()+'LabelPanel'), '',{class:"LargeLabel", text:"DOTA_Skills"})
+		$.CreatePanel('Panel', $('#SingleDropDownContainerAbility'+i.toString()+''), "SingleDropDownElementAbility"+i.toString()+"DropDownPanel",{class:"SingleDropDownElement", id:"SingleDropDownElementAbility"+i.toString()+"DropDownPanel"})
+		$.CreatePanel('DropDown', $('#SingleDropDownElementAbility'+i.toString()+'DropDownPanel'), "SingleDropDownElementAbility"+i.toString()+"DropDown",{id:"SingleDropDownElementAbility"+i.toString()+"DropDown", oninputsubmit:"AbilitySet("+i.toString()+")"})
 //		$('#Ability'+i.toString()+'Panel').BCreateChildren('<Panel class="AbilityShowCase" id="AbilityShowCase'+i.toString()+'"/>')
 	}
 	
@@ -184,13 +184,13 @@ function InitTalentSelection(bBest) {
 		$('#AbilityChooseBottomStatus').text=$.Localize('#best_worst_stats_status_choose_talent')
 		bInitializing = true
 		for(var i = 1; i < 5; i++) {
-			$.CreatePanelWithProperties('Panel', $('#Talent'+i.toString()+'Panel'), "TitlePanelTalent"+i.toString(),{class:"TitlePanel", id:"TitlePanelTalent"+i.toString()})
+			$.CreatePanel('Panel', $('#Talent'+i.toString()+'Panel'), "TitlePanelTalent"+i.toString(),{class:"TitlePanel", id:"TitlePanelTalent"+i.toString()})
 			
-			$.CreatePanelWithProperties('Label', $('#TitlePanelTalent'+i.toString()+''), '',{text:"#best_worst_stats_talent_tier_"+i.toString()})
+			$.CreatePanel('Label', $('#TitlePanelTalent'+i.toString()+''), '',{text:"#best_worst_stats_talent_tier_"+i.toString()})
 		
-			$.CreatePanelWithProperties('Panel', $('#Talent'+i.toString()+'Panel'), "DropDownContainerLarge"+i.toString(),{class:"DropDownContainerLarge", id:"DropDownContainerLarge"+i.toString()})
+			$.CreatePanel('Panel', $('#Talent'+i.toString()+'Panel'), "DropDownContainerLarge"+i.toString(),{class:"DropDownContainerLarge", id:"DropDownContainerLarge"+i.toString()})
 		
-			$.CreatePanelWithProperties('DropDown', $('#DropDownContainerLarge'+i.toString()), "TalentDropDown"+i.toString(),{id:"TalentDropDown"+i.toString()})
+			$.CreatePanel('DropDown', $('#DropDownContainerLarge'+i.toString()), "TalentDropDown"+i.toString(),{id:"TalentDropDown"+i.toString()})
 		
 			AddTalentForDropDown(i, false)
 			AddTalentForDropDown(i, true)

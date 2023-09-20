@@ -100,23 +100,23 @@ function InitializeInvokerWearables() {
 			break
 	}
 	for (var i = aInvokerWearableParts.length-1; i >= 0; i--) {
-		$.CreatePanelWithProperties('Panel', $("#WearableBase"), aInvokerWearablePartsCapitalized[i]+"Container",{class:"WearablePartContainer", id:aInvokerWearablePartsCapitalized[i]+"Container"})
-		$.CreatePanelWithProperties('Panel', $("#"+aInvokerWearablePartsCapitalized[i]+"Container"), aInvokerWearablePartsCapitalized[i]+"Name",{class:"WearablePartName", id:aInvokerWearablePartsCapitalized[i]+"Name"})
-		$.CreatePanelWithProperties('Label', $("#"+aInvokerWearablePartsCapitalized[i]+"Name"), '',{text:"#DOTA_WearableType_"+aInvokerWearablePartsCapitalized[i]})
-		$.CreatePanelWithProperties('Panel', $("#"+aInvokerWearablePartsCapitalized[i]+"Container"), aInvokerWearablePartsCapitalized[i]+"DropDownContainer",{class:"WearableDropDownContainer", id:aInvokerWearablePartsCapitalized[i]+"DropDownContainer"})
-		$.CreatePanelWithProperties('Panel', $("#"+aInvokerWearablePartsCapitalized[i]+"DropDownContainer"), aInvokerWearablePartsCapitalized[i]+"DropDownContainerWearable",{class:"WearableDropDownContainerWearable", id:aInvokerWearablePartsCapitalized[i]+"DropDownContainerWearable"})
-		$.CreatePanelWithProperties('Panel', $("#"+aInvokerWearablePartsCapitalized[i]+"DropDownContainerWearable"), aInvokerWearablePartsCapitalized[i]+"DropDownContainerWearableLabelContainer",{class:"LabelContainer", id:aInvokerWearablePartsCapitalized[i]+"DropDownContainerWearableLabelContainer"})
-		$.CreatePanelWithProperties('Label', $("#"+aInvokerWearablePartsCapitalized[i]+"DropDownContainerWearableLabelContainer"), '',{text:"#DOTA_WearableType_Wearable"})
-		$.CreatePanelWithProperties('DropDown', $("#"+aInvokerWearablePartsCapitalized[i]+"DropDownContainerWearable"), aInvokerWearablePartsCapitalized[i]+"DropDownWearable",{id:aInvokerWearablePartsCapitalized[i]+"DropDownWearable", oninputsubmit:"InvokerWearableCheckStyle('"+i.toString()+"');"});
-		$.CreatePanelWithProperties('Panel', $("#"+aInvokerWearablePartsCapitalized[i]+"DropDownContainer"), aInvokerWearablePartsCapitalized[i]+"DropDownContainerStyle",{class:"WearableDropDownContainerStyle", id:aInvokerWearablePartsCapitalized[i]+"DropDownContainerStyle"})
-		$.CreatePanelWithProperties('Panel', $("#"+aInvokerWearablePartsCapitalized[i]+"DropDownContainerStyle"), aInvokerWearablePartsCapitalized[i]+"DropDownContainerStyleLabelContainer",{class:"LabelContainer", id:aInvokerWearablePartsCapitalized[i]+"DropDownContainerStyleLabelContainer"})
-		$.CreatePanelWithProperties('Label', $("#"+aInvokerWearablePartsCapitalized[i]+"DropDownContainerStyleLabelContainer"), '',{text:"#DOTA_SelectStyle"})
-		$.CreatePanelWithProperties('DropDown', $("#"+aInvokerWearablePartsCapitalized[i]+"DropDownContainerStyle"), aInvokerWearablePartsCapitalized[i]+"DropDownStyle",{id:aInvokerWearablePartsCapitalized[i]+"DropDownStyle", oninputsubmit:""})
-		$.CreatePanelWithProperties('Panel', $("#"+aInvokerWearablePartsCapitalized[i]+"Container"), aInvokerWearablePartsCapitalized[i]+"ConfirmButtonContainer",{class:"WearableConfirmButtonContainer", id:aInvokerWearablePartsCapitalized[i]+"ConfirmButtonContainer"})
-		$.CreatePanelWithProperties('Button', $("#"+aInvokerWearablePartsCapitalized[i]+"ConfirmButtonContainer"), aInvokerWearablePartsCapitalized[i]+"ConfirmButton",{id:aInvokerWearablePartsCapitalized[i]+"ConfirmButton", onactivate:"InvokerWearableConfirmActivated('"+i.toString()+"')"});
-		$.CreatePanelWithProperties('Label', $("#"+aInvokerWearablePartsCapitalized[i]+"ConfirmButton"), '',{text:"DOTA_Confirm"})
-		$.CreatePanelWithProperties('Panel', $("#"+aInvokerWearablePartsCapitalized[i]+"Container"), aInvokerWearablePartsCapitalized[i]+"ImageContainer",{class:"WearableImageContainer", id:aInvokerWearablePartsCapitalized[i]+"ImageContainer"})
-		$.CreatePanelWithProperties('Image', $("#"+aInvokerWearablePartsCapitalized[i]+"ImageContainer"), aInvokerWearablePartsCapitalized[i]+"Image",{id:aInvokerWearablePartsCapitalized[i]+"Image"})
+		$.CreatePanel('Panel', $("#WearableBase"), aInvokerWearablePartsCapitalized[i]+"Container",{class:"WearablePartContainer", id:aInvokerWearablePartsCapitalized[i]+"Container"})
+		$.CreatePanel('Panel', $("#"+aInvokerWearablePartsCapitalized[i]+"Container"), aInvokerWearablePartsCapitalized[i]+"Name",{class:"WearablePartName", id:aInvokerWearablePartsCapitalized[i]+"Name"})
+		$.CreatePanel('Label', $("#"+aInvokerWearablePartsCapitalized[i]+"Name"), '',{text:"#DOTA_WearableType_"+aInvokerWearablePartsCapitalized[i]})
+		$.CreatePanel('Panel', $("#"+aInvokerWearablePartsCapitalized[i]+"Container"), aInvokerWearablePartsCapitalized[i]+"DropDownContainer",{class:"WearableDropDownContainer", id:aInvokerWearablePartsCapitalized[i]+"DropDownContainer"})
+		$.CreatePanel('Panel', $("#"+aInvokerWearablePartsCapitalized[i]+"DropDownContainer"), aInvokerWearablePartsCapitalized[i]+"DropDownContainerWearable",{class:"WearableDropDownContainerWearable", id:aInvokerWearablePartsCapitalized[i]+"DropDownContainerWearable"})
+		$.CreatePanel('Panel', $("#"+aInvokerWearablePartsCapitalized[i]+"DropDownContainerWearable"), aInvokerWearablePartsCapitalized[i]+"DropDownContainerWearableLabelContainer",{class:"LabelContainer", id:aInvokerWearablePartsCapitalized[i]+"DropDownContainerWearableLabelContainer"})
+		$.CreatePanel('Label', $("#"+aInvokerWearablePartsCapitalized[i]+"DropDownContainerWearableLabelContainer"), '',{text:"#DOTA_WearableType_Wearable"})
+		$.CreatePanel('DropDown', $("#"+aInvokerWearablePartsCapitalized[i]+"DropDownContainerWearable"), aInvokerWearablePartsCapitalized[i]+"DropDownWearable",{id:aInvokerWearablePartsCapitalized[i]+"DropDownWearable", oninputsubmit:"InvokerWearableCheckStyle('"+i.toString()+"');"});
+		$.CreatePanel('Panel', $("#"+aInvokerWearablePartsCapitalized[i]+"DropDownContainer"), aInvokerWearablePartsCapitalized[i]+"DropDownContainerStyle",{class:"WearableDropDownContainerStyle", id:aInvokerWearablePartsCapitalized[i]+"DropDownContainerStyle"})
+		$.CreatePanel('Panel', $("#"+aInvokerWearablePartsCapitalized[i]+"DropDownContainerStyle"), aInvokerWearablePartsCapitalized[i]+"DropDownContainerStyleLabelContainer",{class:"LabelContainer", id:aInvokerWearablePartsCapitalized[i]+"DropDownContainerStyleLabelContainer"})
+		$.CreatePanel('Label', $("#"+aInvokerWearablePartsCapitalized[i]+"DropDownContainerStyleLabelContainer"), '',{text:"#DOTA_SelectStyle"})
+		$.CreatePanel('DropDown', $("#"+aInvokerWearablePartsCapitalized[i]+"DropDownContainerStyle"), aInvokerWearablePartsCapitalized[i]+"DropDownStyle",{id:aInvokerWearablePartsCapitalized[i]+"DropDownStyle", oninputsubmit:""})
+		$.CreatePanel('Panel', $("#"+aInvokerWearablePartsCapitalized[i]+"Container"), aInvokerWearablePartsCapitalized[i]+"ConfirmButtonContainer",{class:"WearableConfirmButtonContainer", id:aInvokerWearablePartsCapitalized[i]+"ConfirmButtonContainer"})
+		$.CreatePanel('Button', $("#"+aInvokerWearablePartsCapitalized[i]+"ConfirmButtonContainer"), aInvokerWearablePartsCapitalized[i]+"ConfirmButton",{id:aInvokerWearablePartsCapitalized[i]+"ConfirmButton", onactivate:"InvokerWearableConfirmActivated('"+i.toString()+"')"});
+		$.CreatePanel('Label', $("#"+aInvokerWearablePartsCapitalized[i]+"ConfirmButton"), '',{text:"DOTA_Confirm"})
+		$.CreatePanel('Panel', $("#"+aInvokerWearablePartsCapitalized[i]+"Container"), aInvokerWearablePartsCapitalized[i]+"ImageContainer",{class:"WearableImageContainer", id:aInvokerWearablePartsCapitalized[i]+"ImageContainer"})
+		$.CreatePanel('Image', $("#"+aInvokerWearablePartsCapitalized[i]+"ImageContainer"), aInvokerWearablePartsCapitalized[i]+"Image",{id:aInvokerWearablePartsCapitalized[i]+"Image"})
 		$("#"+aInvokerWearablePartsCapitalized[i]+"Image").SetImage("s2r://panorama/images/econ/testitem_slot_empty.png") 
 //		$("#"+aInvokerWearablePartsCapitalized[i]+"Container").BCreateChildren('<Panel class="WearableResetButtonContainer" id="'+aInvokerWearablePartsCapitalized[i]+'ResetButtonContainer"/>')
 //		$("#"+aInvokerWearablePartsCapitalized[i]+"ResetButtonContainer").BCreateChildren('<Button id="'+aInvokerWearablePartsCapitalized[i]+'ResetButton" onactivate="InvokerWearableResetActivated(&quot;'+i.toString()+'&quot;)"/>')
@@ -136,36 +136,36 @@ if (!bInvokerRetroInitiated) {
 
 function InvokerRetroInitialize() {
 	for (var i = 0; i < 3; i++) {
-		$.CreatePanelWithProperties('Panel', $('#SpellCardListBase'), "SpellCardList"+i.toString(),{id:"SpellCardList"+i.toString(), class:"SpellCardList"})
+		$.CreatePanel('Panel', $('#SpellCardListBase'), "SpellCardList"+i.toString(),{id:"SpellCardList"+i.toString(), class:"SpellCardList"})
 		for (var j = 0; j < 3; j++) {
 			for (var k = 0; k < 3; k++) {
-				$.CreatePanelWithProperties('Panel', $('#SpellCardList'+i.toString()), "SpellCardSingle"+i.toString()+j.toString()+k.toString(),{id:"SpellCardSingle"+i.toString()+j.toString()+k.toString(), class:"SpellCardSingle"})
-				$.CreatePanelWithProperties('Panel', $('#SpellCardSingle'+i.toString()+j.toString()+k.toString()), "SpellCardAbilityImagePanel"+i.toString()+j.toString()+k.toString(),{class:"SpellCardAbilityImagePanel", id:"SpellCardAbilityImagePanel"+i.toString()+j.toString()+k.toString(), onmouseout:"DOTAHideAbilityTooltip()", onmouseover:"DOTAShowAbilityTooltip("+aInvokerRetroInvokeList[i][j][k]+")"})
-				$.CreatePanelWithProperties('DOTAAbilityImage', $('#SpellCardAbilityImagePanel'+i.toString()+j.toString()+k.toString()), '',{hittest:"false", class:"SpellCardAbilityImage", abilityname:aInvokerRetroInvokeList[i][j][k]})
-				$.CreatePanelWithProperties('Panel', $('#SpellCardSingle'+i.toString()+j.toString()+k.toString()), "SpellCardCombinationPanel"+i.toString()+j.toString()+k.toString(),{class:"SpellCardCombinationPanel", id:"SpellCardCombinationPanel"+i.toString()+j.toString()+k.toString()})
+				$.CreatePanel('Panel', $('#SpellCardList'+i.toString()), "SpellCardSingle"+i.toString()+j.toString()+k.toString(),{id:"SpellCardSingle"+i.toString()+j.toString()+k.toString(), class:"SpellCardSingle"})
+				$.CreatePanel('Panel', $('#SpellCardSingle'+i.toString()+j.toString()+k.toString()), "SpellCardAbilityImagePanel"+i.toString()+j.toString()+k.toString(),{class:"SpellCardAbilityImagePanel", id:"SpellCardAbilityImagePanel"+i.toString()+j.toString()+k.toString(), onmouseout:"DOTAHideAbilityTooltip()", onmouseover:"DOTAShowAbilityTooltip("+aInvokerRetroInvokeList[i][j][k]+")"})
+				$.CreatePanel('DOTAAbilityImage', $('#SpellCardAbilityImagePanel'+i.toString()+j.toString()+k.toString()), '',{hittest:"false", class:"SpellCardAbilityImage", abilityname:aInvokerRetroInvokeList[i][j][k]})
+				$.CreatePanel('Panel', $('#SpellCardSingle'+i.toString()+j.toString()+k.toString()), "SpellCardCombinationPanel"+i.toString()+j.toString()+k.toString(),{class:"SpellCardCombinationPanel", id:"SpellCardCombinationPanel"+i.toString()+j.toString()+k.toString()})
 				$('#SpellCardSingle'+i.toString()+j.toString()+k.toString()).SetHasClass(aInvokerElementName[i]+'SpellCardSingle', true)
 				
 				
-				$.CreatePanelWithProperties('Panel', $('#SpellCardCombinationPanel'+i.toString()+j.toString()+k.toString()), "SpellCardCombinationSinglePanel"+i.toString()+j.toString()+k.toString()+"i" ,{class:"SpellCardCombinationSinglePanel", id:"SpellCardCombinationSinglePanel"+i.toString()+j.toString()+k.toString()+"i" })
+				$.CreatePanel('Panel', $('#SpellCardCombinationPanel'+i.toString()+j.toString()+k.toString()), "SpellCardCombinationSinglePanel"+i.toString()+j.toString()+k.toString()+"i" ,{class:"SpellCardCombinationSinglePanel", id:"SpellCardCombinationSinglePanel"+i.toString()+j.toString()+k.toString()+"i" })
 				$('#SpellCardCombinationSinglePanel'+i.toString()+j.toString()+k.toString()+'i').SetHasClass(aInvokerElementName[i]+'Color', true)
-				$.CreatePanelWithProperties('Label', $('#SpellCardCombinationSinglePanel'+i.toString()+j.toString()+k.toString()+'i'), "SpellCardCombinationSinglePanelLabel"+i.toString()+j.toString()+k.toString()+"i" ,{id:"SpellCardCombinationSinglePanelLabel"+i.toString()+j.toString()+k.toString()+"i" })
+				$.CreatePanel('Label', $('#SpellCardCombinationSinglePanel'+i.toString()+j.toString()+k.toString()+'i'), "SpellCardCombinationSinglePanelLabel"+i.toString()+j.toString()+k.toString()+"i" ,{id:"SpellCardCombinationSinglePanelLabel"+i.toString()+j.toString()+k.toString()+"i" })
 				$('#SpellCardCombinationSinglePanelLabel'+i.toString()+j.toString()+k.toString()+'i').text=Abilities.GetKeybind(i)
 				
 				
-				$.CreatePanelWithProperties('Panel', $('#SpellCardCombinationPanel'+i.toString()+j.toString()+k.toString()), "SpellCardCombinationSinglePanel"+i.toString()+j.toString()+k.toString()+"j" ,{class:"SpellCardCombinationSinglePanel", id:"SpellCardCombinationSinglePanel"+i.toString()+j.toString()+k.toString()+"j" })
+				$.CreatePanel('Panel', $('#SpellCardCombinationPanel'+i.toString()+j.toString()+k.toString()), "SpellCardCombinationSinglePanel"+i.toString()+j.toString()+k.toString()+"j" ,{class:"SpellCardCombinationSinglePanel", id:"SpellCardCombinationSinglePanel"+i.toString()+j.toString()+k.toString()+"j" })
 				$('#SpellCardCombinationSinglePanel'+i.toString()+j.toString()+k.toString()+'j').SetHasClass(aInvokerElementName[j]+'Color', true)
-				$.CreatePanelWithProperties('Label', $('#SpellCardCombinationSinglePanel'+i.toString()+j.toString()+k.toString()+'j'), "SpellCardCombinationSinglePanelLabel"+i.toString()+j.toString()+k.toString()+"j" ,{id:"SpellCardCombinationSinglePanelLabel"+i.toString()+j.toString()+k.toString()+"j" })
+				$.CreatePanel('Label', $('#SpellCardCombinationSinglePanel'+i.toString()+j.toString()+k.toString()+'j'), "SpellCardCombinationSinglePanelLabel"+i.toString()+j.toString()+k.toString()+"j" ,{id:"SpellCardCombinationSinglePanelLabel"+i.toString()+j.toString()+k.toString()+"j" })
 				$('#SpellCardCombinationSinglePanelLabel'+i.toString()+j.toString()+k.toString()+'j').text=Abilities.GetKeybind(j)
 
 				
-				$.CreatePanelWithProperties('Panel', $('#SpellCardCombinationPanel'+i.toString()+j.toString()+k.toString()), "SpellCardCombinationSinglePanel"+i.toString()+j.toString()+k.toString()+"k" ,{class:"SpellCardCombinationSinglePanel", id:"SpellCardCombinationSinglePanel"+i.toString()+j.toString()+k.toString()+"k" })
+				$.CreatePanel('Panel', $('#SpellCardCombinationPanel'+i.toString()+j.toString()+k.toString()), "SpellCardCombinationSinglePanel"+i.toString()+j.toString()+k.toString()+"k" ,{class:"SpellCardCombinationSinglePanel", id:"SpellCardCombinationSinglePanel"+i.toString()+j.toString()+k.toString()+"k" })
 				$('#SpellCardCombinationSinglePanel'+i.toString()+j.toString()+k.toString()+'k').SetHasClass(aInvokerElementName[k]+'Color', true)
-				$.CreatePanelWithProperties('Label', $('#SpellCardCombinationSinglePanel'+i.toString()+j.toString()+k.toString()+'k'), "SpellCardCombinationSinglePanelLabel"+i.toString()+j.toString()+k.toString()+"k" ,{id:"SpellCardCombinationSinglePanelLabel"+i.toString()+j.toString()+k.toString()+"k" })
+				$.CreatePanel('Label', $('#SpellCardCombinationSinglePanel'+i.toString()+j.toString()+k.toString()+'k'), "SpellCardCombinationSinglePanelLabel"+i.toString()+j.toString()+k.toString()+"k" ,{id:"SpellCardCombinationSinglePanelLabel"+i.toString()+j.toString()+k.toString()+"k" })
 				$('#SpellCardCombinationSinglePanelLabel'+i.toString()+j.toString()+k.toString()+'k').text=Abilities.GetKeybind(k)
 				
 				
-				$.CreatePanelWithProperties('Panel', $('#SpellCardSingle'+i.toString()+j.toString()+k.toString()), "SpellCardNamePanel"+i.toString()+j.toString()+k.toString(),{class:"SpellCardNamePanel", id:"SpellCardNamePanel"+i.toString()+j.toString()+k.toString()})
-				$.CreatePanelWithProperties('Label', $('#SpellCardNamePanel'+i.toString()+j.toString()+k.toString()), "SpellCardName"+i.toString()+j.toString()+k.toString(),{id:"SpellCardName"+i.toString()+j.toString()+k.toString()})
+				$.CreatePanel('Panel', $('#SpellCardSingle'+i.toString()+j.toString()+k.toString()), "SpellCardNamePanel"+i.toString()+j.toString()+k.toString(),{class:"SpellCardNamePanel", id:"SpellCardNamePanel"+i.toString()+j.toString()+k.toString()})
+				$.CreatePanel('Label', $('#SpellCardNamePanel'+i.toString()+j.toString()+k.toString()), "SpellCardName"+i.toString()+j.toString()+k.toString(),{id:"SpellCardName"+i.toString()+j.toString()+k.toString()})
 				$('#SpellCardName'+i.toString()+j.toString()+k.toString()).text=$.Localize('#DOTA_Tooltip_ability_'+aInvokerRetroInvokeList[i][j][k]);
 				$('#SpellCardName'+i.toString()+j.toString()+k.toString()).SetHasClass(aInvokerElementName[i]+'ColorLabel', true)
 			}
