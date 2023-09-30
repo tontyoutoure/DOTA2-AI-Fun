@@ -164,6 +164,7 @@
 		"AbilityCooldown"	"15"
 		"AbilityManaCost"	"140 150 160 170"
 		"AbilityCastRange"	"700"
+		"HasShardUpgrade"	"1"
 		"AbilityCastRangeBuffer"	"200"
 		"OnSpellStart"
 		{
@@ -184,6 +185,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"duration"	"30"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_shard"	"2"
 			}
 		}
 	}

@@ -127,7 +127,7 @@ function HeroDescriptionInit(sFunHeroName, sHeroName, sHeroNameCapital) {
 			var sAbilityName = $.Localize("#DOTA_Tooltip_Ability_"+tFunHeroShardInfo[i.toString()].sAbilityName).toUpperCase()
 			$.CreatePanel('Label', $("#HeroShardAbilityTitleContainer"+sHeroNameCapital+i.toString()), "HeroShardAbilityTitleUpgrade"+sHeroNameCapital+i.toString(),{class:"HeroScepterAbilityTitleUpgrade", id:"HeroShardAbilityTitleUpgrade"+sHeroNameCapital+i.toString(), text:"#shard_info_title"})
 			$.CreatePanel('Label', $("#HeroShardAbilityTitleContainer"+sHeroNameCapital+i.toString()), "HeroShardAbilityTitleName"+sHeroNameCapital+i.toString(),{class:"HeroScepterAbilityTitleName", id:"HeroShardAbilityTitleName"+sHeroNameCapital+i.toString(), text:sAbilityName})
-			$.CreatePanel('Label', $("#HeroShardAbilityContainer"+sHeroNameCapital+i.toString()), "HeroShardAbilityDescription"+sHeroNameCapital+i.toString(),{class:"HeroScepterAbilityDescription", id:"HeroShardAbilityDescription"+sHeroNameCapital+i.toString(), text:"#DOTA_Tooltip_Ability_"+tFunHeroScepterInfo[i.toString()].sAbilityName+"_shard_description"})
+			$.CreatePanel('Label', $("#HeroShardAbilityContainer"+sHeroNameCapital+i.toString()), "HeroShardAbilityDescription"+sHeroNameCapital+i.toString(),{class:"HeroScepterAbilityDescription", id:"HeroShardAbilityDescription"+sHeroNameCapital+i.toString(), text:"#DOTA_Tooltip_Ability_"+tFunHeroShardInfo[i.toString()].sAbilityName+"_shard_description"})
 			i=i+1
 		}
 

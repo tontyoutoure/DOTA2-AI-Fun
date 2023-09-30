@@ -124,7 +124,8 @@ function TemplarFaithApply(keys)
 	ProcsArroundingMagicStick(keys.caster)
 	if keys.target:TriggerSpellAbsorb(keys.ability) then return end
 	ParticleManager:CreateParticle("particles/units/heroes/hero_chen/chen_penitence.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.target)
-	keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_templar_faith", {Duration = keys.ability:GetSpecialValueFor("duration")})
+	hModifier = keys.target:AddNewModifier(keys.caster, keys.ability, "modifier_templar_faith", {Duration = keys.ability:GetSpecialValueFor("duration")})
+	hModifier.bHasShard = CheckShard(keys.caster)
 	keys.caster:EmitSound("Hero_Chen.Penitence")
 	keys.target:EmitSound("Hero_Chen.PenitenceImpact")
 end

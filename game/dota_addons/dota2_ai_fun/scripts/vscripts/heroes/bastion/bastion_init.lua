@@ -29,7 +29,7 @@ local tHeroBaseStats = {
 	AttributeIntelligenceGain = 2.3,
 	AttackAnimationPoint = 0.7,
 	ArmorPhysical = 1,
-	PrimaryAttribute = DOTA_ATTRIBUTE_STRENGTH,
+	PrimaryAttribute = DOTA_ATTRIBUTE_ALL,
 	ProjectileModel = "particles/units/heroes/hero_morphling/morphling_base_attack.vpcf"
 }
 
