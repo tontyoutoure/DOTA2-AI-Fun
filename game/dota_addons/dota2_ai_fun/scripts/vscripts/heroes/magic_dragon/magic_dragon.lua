@@ -181,7 +181,7 @@ function BlueDragonRoarFreeze(keys)
 	MagicDragonTransform[RandomInt(1,6)](keys.caster)
 	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
 		for j,i in ipairs(tItemInventorySlotTable) do
-			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() end
+			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() keys.caster:GetItemInSlot(i):RefreshCharges() end
 		end		
 		keys.caster:EmitSound("DOTA_Item.Refresher.Activate")
 		ParticleManager:SetParticleControlEnt(ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.caster), 0, keys.caster, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.caster:GetAbsOrigin(), true)
@@ -218,7 +218,7 @@ function GhostDragonRoarLifeDrain(keys)
 	MagicDragonTransform[RandomInt(1,6)](keys.caster)
 	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
 		for j,i in ipairs(tItemInventorySlotTable) do
-			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() end
+			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() keys.caster:GetItemInSlot(i):RefreshCharges() end
 		end		
 		keys.caster:EmitSound("DOTA_Item.Refresher.Activate")
 		ParticleManager:SetParticleControlEnt(ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.caster), 0, keys.caster, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.caster:GetAbsOrigin(), true)
@@ -248,7 +248,7 @@ function RedDragonRoarDamage(keys)
 	MagicDragonTransform[RandomInt(1,6)](keys.caster)
 	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
 		for j,i in ipairs(tItemInventorySlotTable) do
-			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() end
+			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() keys.caster:GetItemInSlot(i):RefreshCharges() end
 		end		
 		keys.caster:EmitSound("DOTA_Item.Refresher.Activate")
 		ParticleManager:SetParticleControlEnt(ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.caster), 0, keys.caster, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.caster:GetAbsOrigin(), true)
@@ -268,7 +268,7 @@ function GreenDragonRoarAccelerate(keys)
 	MagicDragonTransform[RandomInt(1,6)](keys.caster)
 	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
 		for j,i in ipairs(tItemInventorySlotTable) do
-			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() end
+			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() keys.caster:GetItemInSlot(i):RefreshCharges() end
 		end		
 		keys.caster:EmitSound("DOTA_Item.Refresher.Activate")
 		ParticleManager:SetParticleControlEnt(ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.caster), 0, keys.caster, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.caster:GetAbsOrigin(), true)
@@ -310,7 +310,7 @@ function BlackDragonRoarManaBurn(keys)
 	MagicDragonTransform[RandomInt(1,6)](keys.caster)
 	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
 		for j,i in ipairs(tItemInventorySlotTable) do
-			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() end
+			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() keys.caster:GetItemInSlot(i):RefreshCharges() end
 		end		
 		keys.caster:EmitSound("DOTA_Item.Refresher.Activate")
 		ParticleManager:SetParticleControlEnt(ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.caster), 0, keys.caster, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.caster:GetAbsOrigin(), true)
@@ -343,7 +343,7 @@ function GoldDragonRoarLightningChain(keys)
 	MagicDragonTransform[RandomInt(1,6)](keys.caster)
 	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
 		for j,i in ipairs(tItemInventorySlotTable) do
-			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() end
+			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() keys.caster:GetItemInSlot(i):RefreshCharges() end
 		end		
 		keys.caster:EmitSound("DOTA_Item.Refresher.Activate")
 		ParticleManager:SetParticleControlEnt(ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.caster), 0, keys.caster, PATTACH_POINT_FOLLOW, "attach_hitloc", keys.caster:GetAbsOrigin(), true)

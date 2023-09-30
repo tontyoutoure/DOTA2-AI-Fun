@@ -7,6 +7,7 @@ function formless_copy_skill(keys)
 
   if(targetAbilityIndex <0) then
 	ability:EndCooldown()
+	ability:RefreshCharges()
 	return
   end
 
@@ -18,6 +19,7 @@ function formless_copy_skill(keys)
     caster:FindAbilityByName(targetAbilityName):SetLevel(originalLevel)
   else
 	ability:EndCooldown()
+	ability:RefreshCharges()
   end
 end
 

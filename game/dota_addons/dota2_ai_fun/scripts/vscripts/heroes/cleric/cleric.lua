@@ -134,11 +134,17 @@ function ClericPrayer(keys)
 			v:EmitSound("DOTA_Item.Refresher.Activate")
 			ParticleManager:SetParticleControlEnt(ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, v), 0, v, PATTACH_POINT_FOLLOW, "attach_hitloc", v:GetAbsOrigin(), true)
 			for i = 0, 23 do
-				if v:GetAbilityByIndex(i) then v:GetAbilityByIndex(i):EndCooldown() end
+				if v:GetAbilityByIndex(i) then 
+					v:GetAbilityByIndex(i):EndCooldown() 
+					v:GetAbilityByIndex(i):RefreshCharges()
+				end
 			end
 			
 			for j,i in ipairs(tItemInventorySlotTable) do
-				if v:GetItemInSlot(i) then v:GetItemInSlot(i):EndCooldown() end
+				if v:GetItemInSlot(i) then 
+					v:GetItemInSlot(i):EndCooldown() 
+					v:GetItemInSlot(i):RefreshCharges()
+				end
 			end
 		elseif hSpecial and hModifier:GetStackCount() < hSpecial:GetSpecialValueFor("value") then
 			local iOriginalStackCount = hModifier:GetStackCount()
@@ -148,11 +154,17 @@ function ClericPrayer(keys)
 			v:EmitSound("DOTA_Item.Refresher.Activate")
 			ParticleManager:SetParticleControlEnt(ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, v), 0, v, PATTACH_POINT_FOLLOW, "attach_hitloc", v:GetAbsOrigin(), true)
 			for i = 0, 23 do
-				if v:GetAbilityByIndex(i) then v:GetAbilityByIndex(i):EndCooldown() end
+				if v:GetAbilityByIndex(i) then 
+					v:GetAbilityByIndex(i):EndCooldown() 
+					v:GetAbilityByIndex(i):RefreshCharges()
+				end
 			end
 			
 			for j,i in ipairs(tItemInventorySlotTable) do
-				if v:GetItemInSlot(i) then v:GetItemInSlot(i):EndCooldown() end
+				if v:GetItemInSlot(i) then 
+					v:GetItemInSlot(i):EndCooldown() 
+					v:GetItemInSlot(i):RefreshCharges()
+				end
 			end			
 		end
 	end

@@ -124,54 +124,61 @@ function modifier_old_storm_spirit_barrier:OnCreated()
 	if IsServer() then
 		self.iParticle = ParticleManager:CreateParticle('particles/old_storm_spirit/ember_ti9_flameguard_shield.vpcf', PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControlEnt(self.iParticle, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_origin", Vector(0,0,0), true)
-		self.fDamageAbsorption = self:GetAbility():GetSpecialValueFor('damage_absorption')+CheckTalent(self:GetCaster(), "special_bonus_unique_old_storm_spirit_3")
-		self:SetStackCount(-self.fDamageAbsorption*10-1)
+		self.shield = self:GetAbility():GetSpecialValueFor('damage_absorption')+CheckTalent(self:GetCaster(), "special_bonus_unique_old_storm_spirit_3")
+		self:SetHasCustomTransmitterData(true)
 	end
 	self:StartIntervalThink(FrameTime())
-	self.iFrameNum = 0
 end
+
 function modifier_old_storm_spirit_barrier:OnDestroy()
 	if IsClient() then return end
 	ParticleManager:DestroyParticle(self.iParticle, true)
 end
+
 function modifier_old_storm_spirit_barrier:OnRefresh()
 	if IsServer() then
-		self.fDamageAbsorption = self:GetAbility():GetSpecialValueFor('damage_absorption')+CheckTalent(self:GetCaster(), "special_bonus_unique_old_storm_spirit_3")
-		self:SetStackCount(-self.fDamageAbsorption*10-1)
+		self.shield = self:GetAbility():GetSpecialValueFor('damage_absorption')+CheckTalent(self:GetCaster(), "special_bonus_unique_old_storm_spirit_3")
 	end
 	self:StartIntervalThink(FrameTime())
-	self.iFrameNum = 0
-end
-
-function modifier_old_storm_spirit_barrier:OnIntervalThink()
-	if IsClient() and self:GetStackCount()%10 ~= 0 then 
-		self.fDamageAbsorption_Client = -(self:GetStackCount()+1)/10
-	end
-	self.iFrameNum = self.iFrameNum+1
-	if self.iFrameNum == 10 then
-		if IsServer() then
-			self:SetStackCount(0)
-		end
-		self:StartIntervalThink(-1)
-	end
 end
 
 function modifier_old_storm_spirit_barrier:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_TAKEDAMAGE,MODIFIER_PROPERTY_TOOLTIP}
+	return {MODIFIER_PROPERTY_INCOMING_SPELL_DAMAGE_CONSTANT,MODIFIER_PROPERTY_TOOLTIP}
 end
 
 function modifier_old_storm_spirit_barrier:OnTooltip() 
-	return self.fDamageAbsorption_Client
+	return self.shield
 end
 
-function modifier_old_storm_spirit_barrier:OnTakeDamage(keys) 
-	if keys.unit ~= self:GetParent() or keys.damage_type ~= DAMAGE_TYPE_MAGICAL then return end
-	if self.fDamageAbsorption > keys.original_damage then
-		self.fDamageAbsorption = self.fDamageAbsorption - keys.original_damage
-		keys.unit:SetHealth(keys.unit:GetHealth()+keys.damage)
-	else
-		keys.unit:SetHealth(keys.unit:GetHealth()+keys.damage*self.fDamageAbsorption/keys.original_damage)
-		self:Destroy()
+function modifier_old_storm_spirit_barrier:AddCustomTransmitterData()
+    return {
+        shield = self.shield,
+    }
+end
+
+function modifier_old_storm_spirit_barrier:HandleCustomTransmitterData( data )
+	-- print(self.shield)
+    self.shield = data.shield
+end
+
+function modifier_old_storm_spirit_barrier:OnIntervalThink()
+	if IsClient() then return end
+    self:SendBuffRefreshToClients()
+end
+
+function modifier_old_storm_spirit_barrier:GetModifierIncomingSpellDamageConstant(keys) 
+	if not IsServer() then 
+		return self.shield 
+	end
+	if keys.damage_type == DAMAGE_TYPE_MAGICAL then
+		if keys.damage < self.shield then
+			self.shield = self.shield - keys.damage
+			return -keys.damage
+		else
+			shield_left = self.shield
+			self:Destroy()
+			return -shield_left
+		end
 	end
 end 
 
@@ -179,10 +186,21 @@ modifier_old_storm_spirit_barrier_passive = class({})
 function modifier_old_storm_spirit_barrier_passive:IsPurgable() return false end
 function modifier_old_storm_spirit_barrier_passive:RemoveOnDeath() return false end
 function modifier_old_storm_spirit_barrier_passive:IsHidden() return not self:GetParent():HasScepter() end
-function modifier_old_storm_spirit_barrier_passive:DeclareFunctions() return {MODIFIER_EVENT_ON_TAKEDAMAGE, MODIFIER_PROPERTY_TOOLTIP} end
+function modifier_old_storm_spirit_barrier_passive:DeclareFunctions() return {MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT, MODIFIER_PROPERTY_TOOLTIP} end
 function modifier_old_storm_spirit_barrier_passive:OnCreated()
 	self:StartIntervalThink(0.1)
-	self.fDamageAbsorption = 0
+	self.shield = 0
+	self:SetHasCustomTransmitterData(true)
+end
+function modifier_old_storm_spirit_barrier_passive:AddCustomTransmitterData()
+    return {
+        shield = self.shield,
+    }
+end
+
+function modifier_old_storm_spirit_barrier_passive:HandleCustomTransmitterData( data )
+	-- print(self.shield)
+    self.shield = data.shield
 end
 function modifier_old_storm_spirit_barrier_passive:OnIntervalThink()
 	if IsClient() then return end
@@ -191,38 +209,41 @@ function modifier_old_storm_spirit_barrier_passive:OnIntervalThink()
 	local fMaxAbsorption = hAbility:GetSpecialValueFor('damage_absorption')+CheckTalent(self:GetCaster(), "special_bonus_unique_old_storm_spirit_3")
 	
 	if hParent:HasScepter() then
-		self.fDamageAbsorption = self.fDamageAbsorption + hAbility:GetSpecialValueFor('restore_scepter')*0.1
-		if self.fDamageAbsorption > fMaxAbsorption then
-			self.fDamageAbsorption = fMaxAbsorption
+		self.shield = self.shield + hAbility:GetSpecialValueFor('restore_scepter')*0.1
+		if self.shield > fMaxAbsorption then
+			self.shield = fMaxAbsorption
 		end
-		self:SetStackCount(math.floor(self.fDamageAbsorption))
+		self:SendBuffRefreshToClients()
 		if not self.iParticle then
-			self.iParticle = ParticleManager:CreateParticle('particles/old_storm_spirit/ember_ti9_flameguard_shield.vpcf', PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
+			self.iParticle = ParticleManager:CreateParticle('particles/old_storm_spirit/barrier_passive.vpcf', PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
 			ParticleManager:SetParticleControlEnt(self.iParticle, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_origin", Vector(0,0,0), true)
 		end
 	else
-		self:SetStackCount(0)
-		self.fDamageAbsorption = 0
+		self.shield = 0
 		if self.iParticle then
 			ParticleManager:DestroyParticle(self.iParticle, true)
 		end
+		self:SendBuffRefreshToClients()
+		self.iParticle = nil
 	end
 end
 
 function modifier_old_storm_spirit_barrier_passive:OnTooltip()
-	return self:GetStackCount()
+	return self.shield 
 end
 
-function modifier_old_storm_spirit_barrier_passive:OnTakeDamage(keys)
-
-	if keys.unit ~= self:GetParent() then return end
-	if self.fDamageAbsorption > keys.original_damage then
-		self.fDamageAbsorption = self.fDamageAbsorption - keys.original_damage
-		keys.unit:SetHealth(keys.unit:GetHealth()+keys.damage)
-		self:SetStackCount(self.fDamageAbsorption)
+function modifier_old_storm_spirit_barrier_passive:GetModifierIncomingDamageConstant(keys)
+	if not IsServer() then 
+		return self.shield 
+	end
+	
+	if keys.damage < self.shield then
+		self.shield = self.shield - keys.damage
+		return -keys.damage
 	else
-		keys.unit:SetHealth(keys.unit:GetHealth()+keys.damage*self.fDamageAbsorption/keys.original_damage)
-		self:SetStackCount(0)
+		shield_left = self.shield
+		self.shield = 0
+		return -shield_left
 	end
 
 end

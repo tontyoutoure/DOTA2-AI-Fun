@@ -133,6 +133,7 @@ function ResetCooldown(keys)
 			if (not CheckStringInTable(indexedAbilityName, bannedItems) or bIsAA) and not indexedAbility:IsCooldownReady() then 
 				
 				indexedAbility:EndCooldown()
+				indexedAbility:RefreshCharges()
 			end
 		end
 	end	
@@ -145,6 +146,7 @@ function ResetCooldown(keys)
 			if (not CheckStringInTable(indexedAbilityName, bannedItems) or bIsAA) and not item:IsCooldownReady() then 
 				
 				item:EndCooldown()
+				item:RefreshCharges()
 			end
 		end
 	end
@@ -243,6 +245,7 @@ function EAARestoreManaRefresh(keys)
 			end
 			if not indexedAbility:IsCooldownReady() then 
 				indexedAbility:EndCooldown()
+				indexedAbility:RefreshCharges()
 			end
 		end
 	end
@@ -252,6 +255,7 @@ function EAARestoreManaRefresh(keys)
 		local item = caster:GetItemInSlot(i)
 		if item and (bIsAA or not CheckStringInTable(item, bannedItems)) and not item:IsCooldownReady() then 
 			item:EndCooldown()
+			item:RefreshCharges()
 		end
 	end
 end

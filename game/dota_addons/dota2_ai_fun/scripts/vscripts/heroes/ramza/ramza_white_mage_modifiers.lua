@@ -92,33 +92,46 @@ function modifier_ramza_white_mage_white_magicks_shell:GetEffectName() return "p
 function modifier_ramza_white_mage_white_magicks_shell:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
 function modifier_ramza_white_mage_white_magicks_shell:OnCreated()
 	if IsClient() then return end
-	self:StartIntervalThink(0.015)
-	self.fDamageAlreadyAbsorbed = 0
+	self:StartIntervalThink(0.03)
+	self:SetHasCustomTransmitterData(true)
+	self.shield = self:GetAbility():GetSpecialValueFor("damga_absorb")
+	print("shell created")
+end
+function modifier_ramza_white_mage_white_magicks_shell:AddCustomTransmitterData()
+    return {
+        shield = self.shield,
+    }
+end
+
+function modifier_ramza_white_mage_white_magicks_shell:HandleCustomTransmitterData( data )
+	-- print(self.shield)
+    self.shield = data.shield
 end
 
 function modifier_ramza_white_mage_white_magicks_shell:OnIntervalThink()
-	self.OrigianHealth = self:GetParent():GetHealth()
+    self:SendBuffRefreshToClients()
 end
 
 function modifier_ramza_white_mage_white_magicks_shell:DeclareFunctions()
 	return {
-		MODIFIER_EVENT_ON_TAKEDAMAGE
+		-- MODIFIER_EVENT_ON_TAKEDAMAGE
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT
 	}
 end
-
-
-
-function modifier_ramza_white_mage_white_magicks_shell:OnTakeDamage(keys)
-	if keys.unit ~= self:GetParent() or keys.damage_type ~= DAMAGE_TYPE_MAGICAL then return end
-	hParent = self:GetParent()
-	self.fDamageAlreadyAbsorbed = self.fDamageAlreadyAbsorbed+keys.damage
-	if self.fDamageAlreadyAbsorbed > self.fDamageAbsorb then
-		hParent:SetHealth(self.OrigianHealth-self.fDamageAlreadyAbsorbed+self.fDamageAbsorb)
-		self:Destroy()
+function modifier_ramza_white_mage_white_magicks_shell:GetModifierIncomingDamageConstant(keys)
+	if not IsServer() then 
+		return self.shield 
+	end
+	
+	if keys.damage < self.shield then
+		self.shield = self.shield - keys.damage
+		return -keys.damage
 	else
-		hParent:SetHealth(self.OrigianHealth)
+		self:Destroy()
+		return -self.shield
 	end
 end
+
 
 modifier_ramza_white_mage_white_magicks_protect = class({})
 function modifier_ramza_white_mage_white_magicks_protect:IsPurgable() return true end
