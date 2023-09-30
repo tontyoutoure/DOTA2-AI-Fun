@@ -2,12 +2,19 @@
 	background-image:url("s2r://panorama/images/spellicons/aghsicon_psd.vtex");
 }
 
+#AghsStatusBlocker
+{
+	/* background-color: red; */
+	visibility: collapse;
+	/* color: #00000000; */
+}
 
 #ScepterInfoContainer
 {
 	vertical-align: bottom;
-	margin-bottom: 300px;
-	horizontal-align: left;
+	margin-bottom: 150px;
+	/* horizontal-align: center;  */
+	margin-left:800px;
 	background-color: #000000E0;
 	visibility: collapse;
 }

@@ -13,6 +13,7 @@
 		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
 	</styles>
 	<Panel class="IngameBase" hittest="false">
+		<Panel id="AghsStatusBlocker" hittest="true" onmouseover="ScepterInfo.OnScepterInfoActive()" onmouseout="AghsStatusBlockerMouseOut()" />
 		<Panel id="DonationContentContainer" hittest="false">
 			<Panel id="TabButtonContainer">
 				<Button id="DonationTabButtonCourier" class="DonationTabButton" onactivate="Donation.OnCourierTabActive()">
@@ -39,7 +40,7 @@
 			<Button class="DonationActiveButton"  id="DonationButton" oncancel="Ingame.ChangeTabState(null, false);" onactivate="Donation.OnDonationActive()" onmouseover="DOTAShowTextTooltip(#donation_button_tooltip)" onmouseout="DOTAHideTextTooltip()"/>
 			<Button class="DonationActiveButton"  id="ShowGameOptionButton" onactivate="Ingame.OnShowGameOptionActivate()" onmouseover="DOTAShowTextTooltip(#show_game_option_button_tooltip)" onmouseout="DOTAHideTextTooltip()" />
 			
-			<Button class="DonationActiveButton"  id="ScepterInfoButton" onactivate="ScepterInfo.OnScepterInfoActive()" onmouseover="DOTAShowTextTooltip(#scepter_info_button_tooltip)" onmouseout="DOTAHideTextTooltip()"/>
+			<!-- <Button class="DonationActiveButton"  id="ScepterInfoButton" onactivate="ScepterInfo.OnScepterInfoActive()" onmouseover="DOTAShowTextTooltip(#scepter_info_button_tooltip)" onmouseout="DOTAHideTextTooltip()"/> -->
 			<Button class="DonationActiveButton"  id="RightButton" onactivate="Ingame.OnRightButtonActivate()" onmouseover="DOTAShowTextTooltip(#right_button_tooltip)" onmouseout="DOTAHideTextTooltip()" />
 			
 		</Panel>

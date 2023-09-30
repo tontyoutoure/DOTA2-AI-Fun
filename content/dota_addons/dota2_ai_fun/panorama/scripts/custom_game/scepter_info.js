@@ -112,15 +112,46 @@ ScepterInfo.Initialize = function() {
 	this.bInitialized = true
 }
 
+function GetActualOffset(panel) {	
+	var hud = panel
+	var x = 0, y = 0
+	while (hud.id != 'DotaHud')
+	{
+		x += hud.actualxoffset
+		y += hud.actualyoffset
+		hud = hud.GetParent()
+	}
+	return {'x':x, 'y':y}
+}
+
+
+function AghsStatusBlockerMouseOver(){
+	$("#ScepterInfoContainer").visible = true
+}
+function AghsStatusBlockerMouseOut(){
+	$("#ScepterInfoContainer").visible = false
+}
+
 function ScepterInfoButtonApply(keys) {
 	if ((Entities.GetAbilityByName(Players.GetLocalPlayerPortraitUnit(), "invoker_retro_invoke") > 0 || 
 	Entities.GetAbilityByName(Players.GetLocalPlayerPortraitUnit(), "hero_attribute_gain_manager") > 0 || 
 	Entities.GetAbilityByName(Players.GetLocalPlayerPortraitUnit(), "ramza_go_back_lua") > 0 ) && tFunHeroInfo[Entities.GetUnitName(Players.GetLocalPlayerPortraitUnit()).substr(14)] && tFunHeroInfo[Entities.GetUnitName(Players.GetLocalPlayerPortraitUnit()).substr(14)].bHasScepterUpgrade) {
-		$("#ScepterInfoButton").visible = true
+		// $("#ScepterInfoButton").visible = true
 		$("#ScepterInfoContainer").visible = false
+		$("#AghsStatusBlocker").visible = true
+		var aghs_show = $.GetContextPanel().GetParent().GetParent().GetParent().GetParent().FindChildTraverse('AghsStatusContainer')
+		var offset = GetActualOffset(aghs_show)
+		// $.Msg("line", offset)
+		// $.Msg(Players.GetLocalPlayerPortraitUnit())
+		$("#AghsStatusBlocker").style.marginLeft = offset.x.toString()+'px'
+		$("#AghsStatusBlocker").style.marginTop = offset.y.toString()+'px'
+		$("#AghsStatusBlocker").style.width = aghs_show.actuallayoutwidth.toString()+'px'
+		$("#AghsStatusBlocker").style.height = aghs_show.actuallayoutheight.toString()+'px'
+		// $("#AghsStatusBlocker").style.visibility = 'visible'
 	}
 	else {
-		$("#ScepterInfoButton").visible = false
+		$("#AghsStatusBlocker").visible = false
+		// $("#ScepterInfoButton").visible = false
 		$("#ScepterInfoContainer").visible = false
 	}
 }

@@ -4,7 +4,10 @@
 "DOTAAbilities"
 {
 	"Version"		"1"
-
+	"item_aghanims_shard"
+	{
+		"ItemInitialStockTime"			"390.0"
+	}
 	"item_yasha_and_kaya"
 	{
 		"BaseClass"	"item_lua"
