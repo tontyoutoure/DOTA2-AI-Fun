@@ -197,6 +197,7 @@ function modifier_tower_endure:OnCreated()
 	local hParent = self:GetParent()
 	local iHealth = hParent.iHP or hParent:GetMaxHealth()
 	Timers:CreateTimer(10, function ()
+		if hParent == nil or hParent:IsNull() then return end
 		hParent:SetMaxHealth(self:GetStackCount()*iHealth)
 		hParent:SetBaseMaxHealth(self:GetStackCount()*iHealth)
 		hParent:SetHealth(self:GetStackCount()*iHealth)

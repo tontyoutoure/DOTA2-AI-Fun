@@ -62,6 +62,8 @@ function HeroDescriptionInit(sFunHeroName, sHeroName, sHeroNameCapital) {
 	var tFunHeroAbilities = CustomNetTables.GetTableValue("fun_hero_stats", sFunHeroName+"_abilities");
 	var tFunHeroStats = CustomNetTables.GetTableValue("fun_hero_stats", sFunHeroName);
 	var tFunHeroScepterInfo = CustomNetTables.GetTableValue("fun_hero_stats", sFunHeroName+"_scepter_infos");
+	var tFunHeroShardInfo = CustomNetTables.GetTableValue("fun_hero_stats", sFunHeroName+"_shard_infos");
+	// $.Msg("tFunHeroShardInfo", tFunHeroShardInfo)
 	$.CreatePanel('Panel', $("#HeroDescriptionPopPanelContainer"), "HeroDescriptionPopPanel"+sHeroNameCapital,{id:"HeroDescriptionPopPanel"+sHeroNameCapital, class:'HeroDescriptionPopPanel', hittest:'true'})
 	var sPanelName = '#HeroDescriptionPopPanel'+sHeroNameCapital
 	$.CreatePanel('Panel', $(sPanelName), "HeroNameLine"+sHeroNameCapital,{id:"HeroNameLine"+sHeroNameCapital, class:"HeroNameLine"})
@@ -104,7 +106,7 @@ function HeroDescriptionInit(sFunHeroName, sHeroName, sHeroNameCapital) {
 	}
 //	$("#HeroAbilityContainer"+sHeroNameCapital).BCreateChildren('<Panel id="Talent'+sHeroNameCapital+'" class="TalentBranch"/>')
 	
-	if (tFunHeroScepterInfo){ 
+	if (tFunHeroScepterInfo || tFunHeroShardInfo){ 
 		$.CreatePanel('Panel', $(sPanelName), "HeroScepterInfoContainer"+sHeroNameCapital,{class:"HeroScepterInfoContainer", id:"HeroScepterInfoContainer"+sHeroNameCapital})
 		var i = 1
 		while (tFunHeroScepterInfo[i.toString()]) {
@@ -117,6 +119,18 @@ function HeroDescriptionInit(sFunHeroName, sHeroName, sHeroNameCapital) {
 			$.CreatePanel('Label', $("#HeroScepterAbilityContainer"+sHeroNameCapital+i.toString()), "HeroScepterAbilityDescription"+sHeroNameCapital+i.toString(),{class:"HeroScepterAbilityDescription", id:"HeroScepterAbilityDescription"+sHeroNameCapital+i.toString(), text:"#DOTA_Tooltip_Ability_"+tFunHeroScepterInfo[i.toString()].sAbilityName+"_aghanim_description"})
 			i=i+1
 		}
+		var i = 1
+		while (tFunHeroShardInfo[i.toString()]) {
+			$.CreatePanel('Panel', $("#HeroScepterInfoContainer"+sHeroNameCapital), "HeroShardAbilityContainer"+sHeroNameCapital+i.toString(),{class:"HeroScepterAbilityContainer", id:"HeroShardAbilityContainer"+sHeroNameCapital+i.toString()})
+			$.CreatePanel('Panel', $("#HeroShardAbilityContainer"+sHeroNameCapital+i.toString()), "HeroShardAbilityTitleContainer"+sHeroNameCapital+i.toString(),{class:"HeroScepterAbilityTitleContainer", id:"HeroShardAbilityTitleContainer"+sHeroNameCapital+i.toString()})
+			
+			var sAbilityName = $.Localize("#DOTA_Tooltip_Ability_"+tFunHeroShardInfo[i.toString()].sAbilityName).toUpperCase()
+			$.CreatePanel('Label', $("#HeroShardAbilityTitleContainer"+sHeroNameCapital+i.toString()), "HeroShardAbilityTitleUpgrade"+sHeroNameCapital+i.toString(),{class:"HeroScepterAbilityTitleUpgrade", id:"HeroShardAbilityTitleUpgrade"+sHeroNameCapital+i.toString(), text:"#shard_info_title"})
+			$.CreatePanel('Label', $("#HeroShardAbilityTitleContainer"+sHeroNameCapital+i.toString()), "HeroShardAbilityTitleName"+sHeroNameCapital+i.toString(),{class:"HeroScepterAbilityTitleName", id:"HeroShardAbilityTitleName"+sHeroNameCapital+i.toString(), text:sAbilityName})
+			$.CreatePanel('Label', $("#HeroShardAbilityContainer"+sHeroNameCapital+i.toString()), "HeroShardAbilityDescription"+sHeroNameCapital+i.toString(),{class:"HeroScepterAbilityDescription", id:"HeroShardAbilityDescription"+sHeroNameCapital+i.toString(), text:"#DOTA_Tooltip_Ability_"+tFunHeroScepterInfo[i.toString()].sAbilityName+"_shard_description"})
+			i=i+1
+		}
+
 	}
 	
 	if (aTalents.length) {

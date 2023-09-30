@@ -12,6 +12,7 @@ if not IsClient() then
 	tAbilityKeyValues = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
 	function GameMode:FunHeroScepterUpgradeInfo(sHeroName, tAbilities)
 		local tScepterInfos = {}
+		local tShardInfos = {}
 		for i, v in ipairs(tAbilities) do
 			if string.sub(v,1,13) ~= "special_bonus" and v ~= "generic_hidden" and tAbilityKeyValues[v].HasScepterUpgrade == 1 then 
 				local tScepterInfoSingle = {}
@@ -31,11 +32,31 @@ if not IsClient() then
 					end
 				end
 			end
+			if string.sub(v,1,13) ~= "special_bonus" and v ~= "generic_hidden" and tAbilityKeyValues[v].HasShardUpgrade == 1 then 
+				local tShardInfoSingle = {}
+				table.insert(tShardInfos, tShardInfoSingle)
+				tShardInfoSingle.sAbilityName = v
+				if tAbilityKeyValues[v].AbilitySpecial then
+					for k1, v1 in pairs(tAbilityKeyValues[v].AbilitySpecial) do
+						for k2, v2 in pairs(v1) do
+							if string.match(k2, "shard") then
+								tShardInfoSingle.tShardSpecials = tShardInfoSingle.tShardSpecials or {}
+								local tShardSpecialSingle = {}
+								table.insert(tShardInfoSingle.tShardSpecials, tShardSpecialSingle)
+								tShardSpecialSingle.sSpecialName = k2 
+								tShardSpecialSingle.sSpecialValue = string.gsub(v2, " ", "/")						
+							end
+						end
+					end
+				end
+			end
 		end
 		if #tScepterInfos > 0 then
 --			print(sHeroName)
 --			PrintTable(tScepterInfos)
 			CustomNetTables:SetTableValue("fun_hero_stats", sHeroName.."_scepter_infos", tScepterInfos)
+			CustomNetTables:SetTableValue("fun_hero_stats", sHeroName.."_shard_infos", tShardInfos)
+
 		end
 	end
 

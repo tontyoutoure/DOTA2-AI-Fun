@@ -139,8 +139,7 @@ function modifier_invoker_retro_talent_tracker:OnAbilityExecuted(keys)
 		end
 	end
 	
-	
-	if bit.band(keys.ability:GetBehavior(),DOTA_ABILITY_BEHAVIOR_UNIT_TARGET) > 0 and RandomFloat(0,100) < keys.unit:FindAbilityByName('special_bonus_unique_invoker_retro_5'):GetSpecialValueFor('value') then
+	if bit.band(keys.ability:GetBehaviorInt(),DOTA_ABILITY_BEHAVIOR_UNIT_TARGET) > 0 and RandomFloat(0,100) < keys.unit:FindAbilityByName('special_bonus_unique_invoker_retro_5'):GetSpecialValueFor('value') then
 		local fRange = keys.ability:GetCastRange(Vector(0,0,0),nil)+keys.unit:GetCastRangeBonus()
 		local tTargets = FindUnitsInRadius(keys.unit:GetTeam(), keys.unit:GetOrigin(), nil, fRange, keys.ability:GetAbilityTargetTeam(), keys.ability:GetAbilityTargetType(), keys.ability:GetAbilityTargetFlags()+DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
 		local hTarget

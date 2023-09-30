@@ -239,6 +239,7 @@
 		"AbilityManaCost"	"0"
 		"AbilityCastRange"	"0"
 		"HasScepterUpgrade"	"1"
+		"HasShardUpgrade"	"1"
 	}
 
 	"ramza_select_secondary_skill_lua"

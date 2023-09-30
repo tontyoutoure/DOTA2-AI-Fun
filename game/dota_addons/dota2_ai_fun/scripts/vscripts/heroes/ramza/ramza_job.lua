@@ -470,7 +470,11 @@ end
 
 function CRamzaJob:ChangeStat(iJobToGo)
 	self.hParent:SetBaseMoveSpeed(self.tJobStats[iJobToGo].move_speed)
-	self.hParent:SetPrimaryAttribute(self.tJobStats[iJobToGo].primary_attribute)
+	if CheckShard(self.hParent) and (iJobToGo == RAMZA_JOB_SQUIRE or iJobToGo == RAMZA_JOB_ONION_KNIGHT or iJobToGo == RAMZA_JOB_MIME or iJobToGo == RAMZA_JOB_DARK_KNIGHT)  then
+		self.hParent:SetPrimaryAttribute(DOTA_ATTRIBUTE_ALL)
+	else
+		self.hParent:SetPrimaryAttribute(self.tJobStats[iJobToGo].primary_attribute)
+	end
 	self.hParent:SetAttackCapability(self.tJobStats[iJobToGo].attack_cap)
 	self.hParent:FindModifierByName("modifier_attack_point_change"):SetStackCount(self.tJobStats[iJobToGo].attack_point*1000)
 	self.hParent:FindModifierByName("modifier_ramza_job_manager").iBonusAttackRange = self.tJobStats[iJobToGo].attack_range-150;

@@ -54,7 +54,7 @@ end
 function modifier_rider_backstab:OnOrder(keys)
 	if keys.unit ~= self:GetParent() then return end
 	if tSafeOrder[keys.order_type] then return end
-	if (keys.order_type ~= DOTA_UNIT_ORDER_ATTACK_TARGET and (not keys.ability or bit.band(keys.ability:GetBehavior(), DOTA_ABILITY_BEHAVIOR_IMMEDIATE)==0))
+	if (keys.order_type ~= DOTA_UNIT_ORDER_ATTACK_TARGET and (not keys.ability or bit.band(keys.ability:GetBehaviorInt(), DOTA_ABILITY_BEHAVIOR_IMMEDIATE)==0))
 	or (keys.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET and keys.target ~= self.hAttackingTarget) then
 		EndAnimation(keys.unit)
 	end
@@ -203,7 +203,7 @@ end
 function modifier_rider_run_down:OnOrder(keys)
 	if keys.unit ~= self:GetParent() then return end
 	if tSafeOrder[keys.order_type] then return end
-	if (keys.order_type ~= DOTA_UNIT_ORDER_ATTACK_TARGET and not keys.ability ) or (keys.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET and keys.target ~= EntIndexToHScript(self.iTargetEntIndex)) or (keys.ability and bit.band(keys.ability:GetBehavior(), DOTA_ABILITY_BEHAVIOR_IMMEDIATE)==0) then
+	if (keys.order_type ~= DOTA_UNIT_ORDER_ATTACK_TARGET and not keys.ability ) or (keys.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET and keys.target ~= EntIndexToHScript(self.iTargetEntIndex)) or (keys.ability and bit.band(keys.ability:GetBehaviorInt(), DOTA_ABILITY_BEHAVIOR_IMMEDIATE)==0) then
 		self:Destroy()
 	end
 end

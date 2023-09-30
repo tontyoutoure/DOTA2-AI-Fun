@@ -11,7 +11,12 @@ function IsDebugSpewOn()
 	end
 	return false
 end
-
+function CheckShard(hHero)
+	if hHero:HasModifier("modifier_item_aghanims_shard") then
+		return true
+	end
+	return false
+end
 
 function DebugPrint(...)
 	local spew = Convars:GetInt('dota2aifun_spew') or -1
