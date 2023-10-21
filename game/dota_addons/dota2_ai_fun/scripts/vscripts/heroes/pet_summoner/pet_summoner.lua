@@ -1,6 +1,8 @@
 LinkLuaModifier("modifier_pet_summoner_critters", "heroes/pet_summoner/pet_summoner_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_pet_summoner_mittens_meow_aura", "heroes/pet_summoner/pet_summoner_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_pet_summoner_mittens_meow", "heroes/pet_summoner/pet_summoner_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_pet_summoner_fix_boo_boo_shield", "heroes/pet_summoner/pet_summoner_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+
 
 function PetSummonerCritters (keys)
 	ProcsArroundingMagicStick(keys.caster)
@@ -32,25 +34,30 @@ function PetSummonerFixBooBoo(keys)
 	ProcsArroundingMagicStick(keys.caster)
 	local iOwnerID = keys.caster:GetPlayerOwnerID()
 	local iHeal = keys.ability:GetSpecialValueFor("heal")
+	local bHasShard = CheckShard(keys.caster)
+	if bHasShard then iHeal = iHeal + keys.ability:GetSpecialValueFor("extra_heal_shard") end
 	local tTargets = FindUnitsInRadius(keys.caster:GetTeamNumber(), keys.caster:GetAbsOrigin(), none, 99999, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE , FIND_UNITS_EVERYWHERE, false)
 	for k, v in pairs(tTargets) do
 		if v:GetPlayerOwnerID() == iOwnerID then
 		
 			local fHealAmount
+			local fShield = 0
 			if v:GetMaxHealth()-v:GetHealth() > iHeal then
 				fHealAmount = iHeal
 			else
 				fHealAmount = v:GetMaxHealth()-v:GetHealth()
+				fShield = iHeal-fHealAmount
+				if bHasShard then v:AddNewModifier(keys.caster, keys.ability, "modifier_pet_summoner_fix_boo_boo_shield", {Duration = keys.ability:GetSpecialValueFor("shield_duration_shard"), fShield = fShield}) end
 			end
 			v:Heal(fHealAmount, keys.caster)
-			v:EmitSound("n_creep_ForestTrollHighPriest.Heal")
-			ParticleManager:CreateParticle("particles/neutral_fx/troll_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, v)
-			if fHealAmount > 0 then
-				iParticle = ParticleManager:CreateParticleForPlayer("particles/msg_fx/msg_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, v, v:GetPlayerOwner())
-				ParticleManager:SetParticleControl(iParticle, 1, Vector(10, fHealAmount, 0))
-				ParticleManager:SetParticleControl(iParticle, 2, Vector(1, math.floor(math.log10(fHealAmount))+2,0))
-				ParticleManager:SetParticleControl(iParticle, 3, Vector(60, 255, 60))
-			end
+			v:EmitSound("Hero_Windrunner.BlowYouAKiss")
+			ParticleManager:CreateParticle("particles/units/heroes/hero_windrunner/wr_taunt_kiss_heart.vpcf", PATTACH_ABSORIGIN_FOLLOW, v)
+			-- if fHealAmount > 0 then
+			-- 	iParticle = ParticleManager:CreateParticleForPlayer("particles/msg_fx/msg_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, v, v:GetPlayerOwner())
+			-- 	ParticleManager:SetParticleControl(iParticle, 1, Vector(10, fHealAmount, 0))
+			-- 	ParticleManager:SetParticleControl(iParticle, 2, Vector(1, math.floor(math.log10(fHealAmount))+2,0))
+			-- 	ParticleManager:SetParticleControl(iParticle, 3, Vector(60, 255, 60))
+			-- end
 		end
 	end
 end

@@ -95,7 +95,6 @@ function modifier_ramza_white_mage_white_magicks_shell:OnCreated()
 	self:StartIntervalThink(0.03)
 	self:SetHasCustomTransmitterData(true)
 	self.shield = self:GetAbility():GetSpecialValueFor("damga_absorb")
-	print("shell created")
 end
 function modifier_ramza_white_mage_white_magicks_shell:AddCustomTransmitterData()
     return {

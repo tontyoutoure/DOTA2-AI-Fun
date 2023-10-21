@@ -73,7 +73,18 @@
 				"var_type"	"FIELD_INTEGER"
 				"heal"	"100 200 300 400"
 			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"extra_heal_shard"	"200"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shield_duration_shard"	"15"
+			}
 		}
+		"HasShardUpgrade" "1"
 	}
 
 	"pet_summoner_mittens_meow"
