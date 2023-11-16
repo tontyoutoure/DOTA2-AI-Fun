@@ -560,8 +560,7 @@ local function OnGameOptionSetTimerChange()
 end
 
 local tBannedPassives = {
-	["meepo_divided_we_stand"] = true,
-	["dawnbreaker_luminosity"] = true
+	["meepo_divided_we_stand"] = true
 }
 
 function GameMode:PassiveSkillBookInit()
@@ -571,12 +570,12 @@ function GameMode:PassiveSkillBookInit()
 	local HeroInfos = LoadKeyValues('scripts/npc/npc_heroes.txt')
 	HeroInfos.npc_dota_hero_base = nil
 	HeroInfos.Version = nil
-	local AbilityInfo = LoadKeyValues('scripts/npc/npc_abilities.txt')
 	for hero_name,hero_info in pairs(HeroInfos) do 
 		if string.find(hero_name,"hero") then
+			local AbilityInfo = LoadKeyValues('scripts/npc/heroes/'..hero_name..'.txt')
 			for i = 1,24 do 
 				local sAbilityName = hero_info["Ability"..i]
-				if sAbilityName and sAbilityName ~="" and not tBannedPassives[sAbilityName] then
+				if sAbilityName and AbilityInfo[sAbilityName] and not tBannedPassives[sAbilityName] then
 					
 					local sABilityBehavior = AbilityInfo[sAbilityName]["AbilityBehavior"]
 					if (not sABilityBehavior) or nil == string.find(sABilityBehavior, "DOTA_ABILITY_BEHAVIOR_PASSIVE") then 

@@ -94,7 +94,7 @@ if not IsClient() then
 	require('heroes/old_silencer/old_silencer_init')
 	require('heroes/old_stealth_assassin/old_stealth_assassin_init')
 	require('heroes/old_holy_knight/old_holy_knight_init')
-	require('heroes/best_worst_stats/best_worst_stats_init')
+	-- require('heroes/best_worst_stats/best_worst_stats_init')
 	require('heroes/old_butcher/old_butcher_init')
 	require('heroes/kahmeka/kahmeka_init')
 	require('heroes/old_storm_spirit/old_storm_spirit_init')
