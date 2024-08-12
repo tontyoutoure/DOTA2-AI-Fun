@@ -132,7 +132,7 @@ if IsServer() then
 	GameMode.iLotteryCost = tItems.item_lottery.ItemCost
 	GameMode.iLottery10Cost = tItems.item_lottery_10.ItemCost
 	for i = 1,5 do
-		tReturnAmount[i] = tItems.item_lottery.AbilitySpecial[string.format('%02d',i+5)]['return_lv'..tostring(i)]
+		tReturnAmount[i] = tItems.item_lottery.AbilityValues['return_lv'..tostring(i)]
 	end
 	tItems = nil
 	--[[
