@@ -1,0 +1,27 @@
+"DOTAHeroes"
+{
+
+	"npc_dota_hero_razor"
+	{
+		"override_hero"	"npc_dota_hero_razor"
+		"BotImplemented"	"0"
+	}
+
+	"npc_dota_hero_tidehunter"
+	{
+		"override_hero"	"npc_dota_hero_tidehunter"
+		"BotImplemented"	"0"
+	}
+
+	"npc_dota_hero_pudge"
+	{
+		"override_hero"	"npc_dota_hero_pudge"
+		"BotImplemented"	"0"
+	}
+
+	"npc_dota_hero_omniknight"
+	{
+		"override_hero"	"npc_dota_hero_omniknight"
+		"BotImplemented"	"0"
+	}
+}
