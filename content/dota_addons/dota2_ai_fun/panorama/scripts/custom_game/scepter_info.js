@@ -141,12 +141,20 @@ function ScepterInfoButtonApply(keys) {
 		$("#AghsStatusBlocker").visible = true
 		var aghs_show = $.GetContextPanel().GetParent().GetParent().GetParent().GetParent().FindChildTraverse('AghsStatusContainer')
 		var offset = GetActualOffset(aghs_show)
-		// $.Msg("line", offset)
-		// $.Msg(Players.GetLocalPlayerPortraitUnit())
-		$("#AghsStatusBlocker").style.marginLeft = offset.x.toString()+'px'
-		$("#AghsStatusBlocker").style.marginTop = offset.y.toString()+'px'
-		$("#AghsStatusBlocker").style.width = aghs_show.actuallayoutwidth.toString()+'px'
-		$("#AghsStatusBlocker").style.height = aghs_show.actuallayoutheight.toString()+'px'
+		var screen_width = Game.GetScreenWidth()
+		var screen_height = Game.GetScreenHeight()
+		// $.Msg("line", (offset.x/Game.GetScreenWidth()).toString())
+		//avoiding error when init
+		if (offset.x > screen_width) {
+			offset.x = screen_width
+		}
+		if (offset.y > screen_height) {
+			offset.y = screen_height
+		}
+		$("#AghsStatusBlocker").style.marginLeft = (offset.x/screen_width*100).toString()+'%'
+		$("#AghsStatusBlocker").style.marginTop = (offset.y/screen_height*100).toString()+'%'
+		$("#AghsStatusBlocker").style.width = (aghs_show.actuallayoutwidth/screen_width*100).toString()+'%'
+		$("#AghsStatusBlocker").style.height = (aghs_show.actuallayoutheight/screen_height*100).toString()+'%'
 		// $("#AghsStatusBlocker").style.visibility = 'visible'
 	}
 	else {

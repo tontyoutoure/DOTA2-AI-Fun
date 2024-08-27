@@ -109,7 +109,6 @@ Ingame.OnLeftButtonActivate = function()
 	$("#LeftButton").visible = false;
 	$("#RightButton").visible = true;
 	$("#DonationActiveButtonContainer").style.horizontalAlign = "left";
-	$("#ScepterInfoContainer").style.horizontalAlign = "left";
 	$("#GameOptionIngameContainer").style.horizontalAlign = "left";
 	$("#DonationContentContainer").style.horizontalAlign = "left";
 }
@@ -119,7 +118,6 @@ Ingame.OnRightButtonActivate = function()
 	$("#LeftButton").visible = true;
 	$("#RightButton").visible = false;
 	$("#DonationActiveButtonContainer").style.horizontalAlign = "right";
-	$("#ScepterInfoContainer").style.horizontalAlign = "right";
 	$("#GameOptionIngameContainer").style.horizontalAlign = "right";
 	$("#DonationContentContainer").style.horizontalAlign = "right";
 
