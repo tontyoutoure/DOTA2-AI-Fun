@@ -1,106 +1,39 @@
 "DOTAAbilities"
 {
-// Invoker's Chaos Meteor
-	// Author: Rook
-	// Revised: tontyoutoure
-	// Date: February 27, 2015
-	// Invoke: Exort Quas Quas
-	// Summons a powerful meteor to crush all enemies within its path. Deals 200 damage per second to units in its path. Based on Exort.
-	// Note: Different sources indicate different damage values.  Some say it deals 25 damage per level of Exort per second to units in its path,
-	//     while others say the meteor itself deals 50/100/150/200/250/300/350/400 DPS and its path burns for 5 seconds, dealing a flat 80 damage per second.
 	"invoker_retro_chaos_meteor"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"			"heroes/hero_invoker/invoker_retro_chaos_meteor.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityTextureName" 			"invoker_retro_chaos_meteor"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityCastAnimation" 			"ACT_DOTA_CAST_CHAOS_METEOR"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
-		"AbilityProcsMagicStick" 		"1"
-		
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20"
-		"AbilityManaCost"				"200"
-		"AbilityCastRange"				"700"
-		
+		"BaseClass"	 "ability_lua"
+		"ScriptFile"	 "heroes/hero_invoker/invoker_retro_chaos_meteor.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"	 "invoker_retro_chaos_meteor"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"	 "DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_CHAOS_METEOR"
+		"SpellDispellableType"	 "SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"	 "1"
+		"MaxLevel"	 "1"
+		"AbilityProcsMagicStick"	 "1"
+		"AbilityCooldown"	 "20"
+		"AbilityManaCost"	 "200"
+		"AbilityCastRange"	 "700"
 		"precache"
 		{
-			"particle"				"particles/units/heroes/hero_invoker/invoker_chaos_meteor.vpcf"
-			"particle"				"particles/units/heroes/hero_invoker/invoker_chaos_meteor_fly.vpcf"
-			"particle"				"particles/units/heroes/hero_invoker/invoker_chaos_meteor_burn_debuff.vpcf"
+			"particle"	 "particles/units/heroes/hero_invoker/invoker_chaos_meteor_burn_debuff.vpcf"
 		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"land_delay"						"1.3"  //The meteor lands on the ground this many seconds after it was cast.
-			}
-			"02"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"travel_distance"					"1500"  //Given a 300 travel speed and a 1500 travel distance, the meteor rolls for 5 seconds.
-			}
-			"03"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"travel_speed"						"300"  //Given a 300 travel speed and a 1500 travel distance, the meteor rolls for 5 seconds.
-			}
-			"04"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"vision_distance"					"500"  //This is flying vision given by the meteor ball.
-			}
-			"05"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"end_vision_duration"				"3.0"  //The meteor's flying vision lingers for this long after it disappears.
-			}
-			"06"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"main_damage_radius"				"275"  //This is the radius of the meteor ball.
-			}
-			"07"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"main_damage_interval"				"0.5"  //The main meteor ball deals its damage and applies its DoT burn every main_damage_interval.  Modify main_damage_per_second_tooltip is this is.
-			}
-			"08"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"main_damage_per_interval_level_exort"			"12.5"  
-			}
-			"09"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"main_damage_per_second_tooltip_level_exort"	"25"
-			}
-			"10"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"burn_duration"						"5"  //Units hit by the meteor receive a modifier lasting this many seconds that regularly damages them.
-			}
-			"11"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"burn_damage_per_interval"			"25"  //Units who are hit by the meteor also have a modifier applied to them that deals this much damage per interval.  I don't think there's a mechanic where the meteor leaves a trail behind it that damages units standing in it.
-			}
-			"12"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"burn_interval"						"1.0"  //Alter the tooltip if this is changed.
-			}
+			"land_delay"	 "1.3"
+			"travel_distance"	 "1500"
+			"travel_speed"	 "300"
+			"vision_distance"	 "500"
+			"end_vision_duration"	 "3.0"
+			"main_damage_radius"	 "275"
+			"main_damage_interval"	 "0.5"
+			"main_damage_per_interval_level_exort"	 "12.5"
+			"main_damage_per_second_tooltip_level_exort"	 "25"
+			"burn_duration"	 "5"
+			"burn_damage_per_interval"	 "25"
+			"burn_interval"	 "1.0"
 		}
 	}
 }

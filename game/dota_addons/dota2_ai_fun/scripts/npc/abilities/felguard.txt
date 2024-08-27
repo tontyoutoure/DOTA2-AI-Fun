@@ -79,7 +79,7 @@
 			"max_level"
 			{
 				"value"	 "10"
-				"special_bonus_felguard_1"	 "+10"
+				"special_bonus_unique_felguard_1"	 "+10"
 			}
 			"damage_per_level"	 "5 10 15 20"
 		}
@@ -124,7 +124,7 @@
 			}
 		}
 	}
-	"special_bonus_felguard_1"
+	"special_bonus_unique_felguard_1"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -134,7 +134,7 @@
 			"value"	 "10"
 		}
 	}
-	"special_bonus_felguard_2"
+	"special_bonus_unique_felguard_2"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"

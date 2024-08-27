@@ -8,11 +8,11 @@ local tNewAbilities = {
 	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
 	"special_bonus_armor_10",
-	"special_bonus_void_demon_1",
+	"special_bonus_unique_void_demon_1",
 	"special_bonus_cast_range_400",
 	"special_bonus_hp_600",
 	"special_bonus_lifesteal_30",
-	"special_bonus_void_demon_2"
+	"special_bonus_unique_void_demon_2"
 }
 
 local tHeroBaseStats = {

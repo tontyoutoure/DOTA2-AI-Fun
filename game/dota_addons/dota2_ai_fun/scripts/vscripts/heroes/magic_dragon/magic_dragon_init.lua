@@ -12,7 +12,7 @@ local tNewAbilities = {
 	"special_bonus_spell_amplify_20",
 	"special_bonus_hp_600",
 	"special_bonus_attack_range_400",
-	"special_bonus_magic_dragon_1"
+	"special_bonus_unique_magic_dragon_1"
 }
 
 local tHeroBaseStats = {

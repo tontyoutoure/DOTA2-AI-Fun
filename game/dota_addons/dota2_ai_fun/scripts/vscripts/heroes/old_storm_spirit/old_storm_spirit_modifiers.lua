@@ -4,23 +4,8 @@ modifier_old_storm_spirit_electric_rave = class({
 	RemoveOnDeath = function(self) return true end,
 })
 
-local function FindTalent(hObject, sTalentName, i)
-	local sSpecialHandleName = 'hSpecial'
-	if i then
-		sSpecialHandleName = sSpecialHandleName..tostring(i)
-	end
-	if not hObject[sSpecialHandleName] then
-		hObject[sSpecialHandleName] = Entities:First()
-		
-		while hObject[sSpecialHandleName] and (hObject[sSpecialHandleName]:GetName() ~= sTalentName or hObject[sSpecialHandleName]:GetCaster() ~= hObject:GetCaster()) do
-			hObject[sSpecialHandleName] = Entities:Next(hObject[sSpecialHandleName])
-		end		
-	end
-end
-
 function modifier_old_storm_spirit_electric_rave:OnCreated()
 	self:StartIntervalThink(1)
-	FindTalent(self, 'special_bonus_unique_old_storm_spirit_4')
 	if IsServer() then
 		self.iParticle = ParticleManager:CreateParticle("particles/econ/courier/courier_platinum_roshan/platinum_roshan_ambient.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControl(self.iParticle, 2, Vector(0,151,206))
@@ -37,9 +22,6 @@ function modifier_old_storm_spirit_electric_rave:OnIntervalThink()
 	if IsClient() then return end
 	local hParent = self:GetParent()
 	local fMana = self:GetAbility():GetSpecialValueFor('manacost_per_second')
-	if CheckTalent(hParent, 'special_bonus_unique_old_storm_spirit_4') > 0 then
-		fMana = fMana*CheckTalent(hParent, 'special_bonus_unique_old_storm_spirit_4')
-	end
 	self:GetParent():SpendMana(fMana, self:GetAbility())
 	if hParent:GetMana() == 0 then
 		self:GetAbility():SetActivated(true)
@@ -52,11 +34,7 @@ function modifier_old_storm_spirit_electric_rave:DeclareFunctions()
 end
 
 function modifier_old_storm_spirit_electric_rave:GetModifierAttackSpeedBonus_Constant()
-	if self.hSpecial and self.hSpecial:GetSpecialValueFor("value") > 0 then
-		return self:GetAbility():GetSpecialValueFor('bonus_attack_speed')*self.hSpecial:GetSpecialValueFor("value")
-	else
-		return self:GetAbility():GetSpecialValueFor('bonus_attack_speed')
-	end
+	return self:GetAbility():GetSpecialValueFor('bonus_attack_speed')
 end
 
 modifier_old_storm_spirit_overload = class({
@@ -78,7 +56,7 @@ function modifier_old_storm_spirit_overload:OnAttackLanded(keys)
 	if self:GetParent() ~= keys.attacker or keys.target:IsBuilding() or keys.attacker:GetTeamNumber() == keys.target:GetTeamNumber() then return end
 	local hAbility = self:GetAbility()
 	local iRadius = hAbility:GetSpecialValueFor('radius')
-	local fDamage = hAbility:GetSpecialValueFor('bonus_damage')+CheckTalent(keys.attacker, 'special_bonus_unique_old_storm_spirit_2')
+	local fDamage = hAbility:GetSpecialValueFor('bonus_damage')
 	local fSlowDuration = hAbility:GetSpecialValueFor('slow_duration')
 	
 	if self:GetStackCount() == 0 then
@@ -124,7 +102,7 @@ function modifier_old_storm_spirit_barrier:OnCreated()
 	if IsServer() then
 		self.iParticle = ParticleManager:CreateParticle('particles/old_storm_spirit/ember_ti9_flameguard_shield.vpcf', PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControlEnt(self.iParticle, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_origin", Vector(0,0,0), true)
-		self.shield = self:GetAbility():GetSpecialValueFor('damage_absorption')+CheckTalent(self:GetCaster(), "special_bonus_unique_old_storm_spirit_3")
+		self.shield = self:GetAbility():GetSpecialValueFor('damage_absorption')
 		self:SetHasCustomTransmitterData(true)
 	end
 	self:StartIntervalThink(FrameTime())
@@ -137,7 +115,7 @@ end
 
 function modifier_old_storm_spirit_barrier:OnRefresh()
 	if IsServer() then
-		self.shield = self:GetAbility():GetSpecialValueFor('damage_absorption')+CheckTalent(self:GetCaster(), "special_bonus_unique_old_storm_spirit_3")
+		self.shield = self:GetAbility():GetSpecialValueFor('damage_absorption')
 	end
 	self:StartIntervalThink(FrameTime())
 end
@@ -206,7 +184,7 @@ function modifier_old_storm_spirit_barrier_passive:OnIntervalThink()
 	if IsClient() then return end
 	local hParent = self:GetParent()
 	local hAbility = self:GetAbility()
-	local fMaxAbsorption = hAbility:GetSpecialValueFor('damage_absorption')+CheckTalent(self:GetCaster(), "special_bonus_unique_old_storm_spirit_3")
+	local fMaxAbsorption = hAbility:GetSpecialValueFor('damage_absorption')
 	
 	if hParent:HasScepter() then
 		self.shield = self.shield + hAbility:GetSpecialValueFor('restore_scepter')*0.1

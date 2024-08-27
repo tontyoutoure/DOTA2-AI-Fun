@@ -6,7 +6,7 @@ intimidator_be_my_friend_lua = class({})
 function intimidator_be_my_friend_lua:GetBehavior()
 	self.hSpecial = Entities:First()
 	
-	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_intimidator_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_unique_intimidator_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 		self.hSpecial = Entities:Next(self.hSpecial)
 	end		
 	if self.hSpecial and self.hSpecial:GetSpecialValueFor("value") > 0 then
@@ -17,7 +17,7 @@ function intimidator_be_my_friend_lua:GetBehavior()
 end	
 function intimidator_be_my_friend_lua:OnSpellStart()
 	self.appliedModifier = nil
-	self.hSpecial = self.hSpecial or self:GetCaster():FindAbilityByName("special_bonus_intimidator_2")
+	self.hSpecial = self.hSpecial or self:GetCaster():FindAbilityByName("special_bonus_unique_intimidator_2")
 	
 	if (not self.hSpecial or self.hSpecial:GetLevel() == 0) and self:GetCursorTarget():TriggerSpellAbsorb( self ) then 
 		self:GetCaster():Interrupt()

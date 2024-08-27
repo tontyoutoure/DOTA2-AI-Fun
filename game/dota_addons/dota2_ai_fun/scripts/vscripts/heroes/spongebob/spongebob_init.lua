@@ -8,11 +8,11 @@ local tNewAbilities = {
 	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
 	"special_bonus_magic_resistance_20",
-	"special_bonus_spongebob_1",
-	"special_bonus_spongebob_2",
+	"special_bonus_unique_spongebob_1",
+	"special_bonus_unique_spongebob_2",
 	"special_bonus_hp_600",
-	"special_bonus_spongebob_3",
-	"special_bonus_spongebob_4"
+	"special_bonus_unique_spongebob_3",
+	"special_bonus_unique_spongebob_4"
 }
 
 local tHeroBaseStats = {

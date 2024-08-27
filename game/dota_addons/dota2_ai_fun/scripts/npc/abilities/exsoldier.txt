@@ -4,7 +4,7 @@
 	"exsoldier_braver"
 	{
 		"BaseClass"	 "ability_datadriven"
-		"AbilityTextureName"	 "earthshaker_aftershock_egset"
+		"AbilityTextureName"	 "earthshaker_aftershock"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -159,15 +159,7 @@
 			{
 				"value"	 "5 10 15"
 				"special_bonus_unique_exsoldier_3"	 "+12"
-			}
-			"attack_count_scepter"
-			{
-				"value"	 "10 15 20"
-			}
-			"LinkedSpecialBonus"
-			{
-				"value"	 "special_bonus_unique_exsoldier_3"
-				"RequiresScepter"	 "1"
+				"special_bonus_scepter" "+5"
 			}
 			"cooldown_scepter"
 			{

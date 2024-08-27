@@ -23,7 +23,7 @@
 			"int_per_stack"
 			{
 				"value"	 "4"
-				"special_bonus_fluid_engineer_1"	 "+4"
+				"special_bonus_unique_fluid_engineer_1"	 "+100%"
 			}
 		}
 	}
@@ -142,7 +142,7 @@
 			"aura_radius"	 "1200"
 		}
 	}
-	"special_bonus_fluid_engineer_1"
+	"special_bonus_unique_fluid_engineer_1"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -152,7 +152,7 @@
 			"value"	 "4"
 		}
 	}
-	"special_bonus_fluid_engineer_2"
+	"special_bonus_unique_fluid_engineer_2"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -162,7 +162,7 @@
 			"value"	 "20"
 		}
 	}
-	"special_bonus_fluid_engineer_3"
+	"special_bonus_unique_fluid_engineer_3"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"

@@ -3,7 +3,7 @@ CRamzaJob = {}
 require("heroes/ramza/ramza_job_data")
 
 function CRamzaJob:CheckOnionTalent()
-	if self.hParent:FindAbilityByName('special_bonus_ramza_4'):GetLevel() > 0 then return true else return false end
+	if self.hParent:FindAbilityByName('special_bonus_unique_ramza_4'):GetLevel() > 0 then return true else return false end
 end
 
 function CRamzaJob:GainJobPoint(iJobPoint)
@@ -274,7 +274,7 @@ function CRamzaJob:ChangeJob(iJobToGo, iChangeJobState)
 		
 		--remove secondary skill if it's job command of current job or current job can have no secondary skill
 		if self.iCurrentJob == self.iSecondarySkill or self.iCurrentJob == RAMZA_JOB_MIME or (self.iCurrentJob == RAMZA_JOB_ONION_KNIGHT and not self.bOnionTalent) then 
-			if self.hParent:FindAbilityByName("special_bonus_ramza_3"):GetLevel() == 1 and self.iSecondarySkill > 0 then
+			if self.hParent:FindAbilityByName("special_bonus_unique_ramza_3"):GetLevel() == 1 and self.iSecondarySkill > 0 then
 				self.hParent:RemoveModifierByName("modifier_" .. self.tOtherAbilities[self.iSecondarySkill][3][1])
 				self.hParent:RemoveModifierByName("modifier_" .. self.tOtherAbilities[self.iSecondarySkill][5][1])
 				self.hParent:RemoveModifierByName("modifier_" .. self.tOtherAbilities[self.iSecondarySkill][7][1])
@@ -384,14 +384,14 @@ function CRamzaJob:ChangeJob(iJobToGo, iChangeJobState)
 		CustomGameEventManager:Send_ServerToPlayer( self.hParent:GetOwner(), "ramza_close_selection", {iHeroEntityIndex=self.hParent:entindex()})
 	else	
 		
-		if self.hParent:FindAbilityByName("special_bonus_ramza_3"):GetLevel() == 1 and self.iSecondarySkill > 0 then
+		if self.hParent:FindAbilityByName("special_bonus_unique_ramza_3"):GetLevel() == 1 and self.iSecondarySkill > 0 then
 			self.hParent:RemoveModifierByName("modifier_" .. self.tOtherAbilities[self.iSecondarySkill][3][1])
 			self.hParent:RemoveModifierByName("modifier_" .. self.tOtherAbilities[self.iSecondarySkill][5][1])
 			self.hParent:RemoveModifierByName("modifier_" .. self.tOtherAbilities[self.iSecondarySkill][7][1])
 		end
 		self.iSecondarySkill = iJobToGo
 		
-		if self.hParent:FindAbilityByName("special_bonus_ramza_3"):GetLevel() == 1 then
+		if self.hParent:FindAbilityByName("special_bonus_unique_ramza_3"):GetLevel() == 1 then
 			if self.tJobLevels[self.iSecondarySkill] >= 3 then
 				self.hParent:AddAbility(self.tOtherAbilities[self.iSecondarySkill][3][1]):SetLevel(1)
 				self.hParent:RemoveAbility(self.tOtherAbilities[self.iSecondarySkill][3][1])

@@ -9,10 +9,10 @@ local tNewAbilities = {
 	"special_bonus_exp_boost_30",
 	"special_bonus_armor_10",
 	"special_bonus_movement_speed_25",
-	"special_bonus_intimidator_1",
+	"special_bonus_unique_intimidator_1",
 	"special_bonus_hp_600",
 	"special_bonus_lifesteal_30",
-	"special_bonus_intimidator_2"
+	"special_bonus_unique_intimidator_2"
 }
 
 local tHeroBaseStats = {

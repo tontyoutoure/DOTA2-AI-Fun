@@ -44,7 +44,7 @@ function persuasive_swindle_lua:CastFilterResultTarget(hTarget)
 	
 	self.hSpecial = Entities:First()
 	
-	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_persuasive_3" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_unique_persuasive_3" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 		self.hSpecial = Entities:Next(self.hSpecial)
 	end		
 	

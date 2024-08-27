@@ -159,7 +159,6 @@ function flame_lord_flameshot:OnProjectileHit_ExtraData(hTarget, vLocation, tExt
 	if hTarget:IsMagicImmune() then return end
 	local iStunDuration = self:GetSpecialValueFor("stun_duration")
 	local hCaster = self:GetCaster()
-	if hCaster:HasAbility("special_bonus_unique_flame_lord_1") then  iStunDuration = iStunDuration+hCaster:FindAbilityByName("special_bonus_unique_flame_lord_1"):GetSpecialValueFor("value") end
 	hTarget:AddNewModifier(hCaster, self, "modifier_stunned", {Duration = iStunDuration*CalculateStatusResist(hTarget)})
 	ApplyDamage({
 		victim = hTarget,

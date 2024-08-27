@@ -23,8 +23,8 @@ function modifier_astral_trekker_war_stomp_talented_changer:OnCreated() self:Sta
 function modifier_astral_trekker_war_stomp_changer:OnIntervalThink()
 	if IsClient() then return end
 	local hParent = self:GetParent()
---	print(hParent:HasAbility("special_bonus_astral_trekker_2"), hParent:FindAbilityByName("special_bonus_astral_trekker_2"):GetLevel())
-	if hParent:HasAbility("special_bonus_astral_trekker_2") and hParent:FindAbilityByName("special_bonus_astral_trekker_2"):GetLevel() > 0 then
+--	print(hParent:HasAbility("special_bonus_unique_astral_trekker_2"), hParent:FindAbilityByName("special_bonus_unique_astral_trekker_2"):GetLevel())
+	if hParent:HasAbility("special_bonus_unique_astral_trekker_2") and hParent:FindAbilityByName("special_bonus_unique_astral_trekker_2"):GetLevel() > 0 then
 		local iLevel = hParent:FindAbilityByName("astral_trekker_war_stomp"):GetLevel()
 		hParent:RemoveAbility("astral_trekker_war_stomp")
 		hParent:AddAbility("astral_trekker_war_stomp_talented"):SetLevel(iLevel)
@@ -35,7 +35,7 @@ end
 function modifier_astral_trekker_war_stomp_talented_changer:OnIntervalThink()
 	if IsClient() then return end
 	local hParent = self:GetParent()
-	if (not hParent:HasAbility("special_bonus_astral_trekker_2")) or hParent:FindAbilityByName("special_bonus_astral_trekker_2"):GetLevel() == 0 then
+	if (not hParent:HasAbility("special_bonus_unique_astral_trekker_2")) or hParent:FindAbilityByName("special_bonus_unique_astral_trekker_2"):GetLevel() == 0 then
 		local iLevel = hParent:FindAbilityByName("astral_trekker_war_stomp_talented"):GetLevel()
 		hParent:RemoveAbility("astral_trekker_war_stomp_talented")
 		hParent:AddAbility("astral_trekker_war_stomp"):SetLevel(iLevel)

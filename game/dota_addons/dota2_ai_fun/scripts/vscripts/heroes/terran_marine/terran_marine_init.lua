@@ -9,11 +9,11 @@ local tNewAbilities = {
 	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
 	"special_bonus_movement_speed_25",
-	"special_bonus_terran_marine_1",
+	"special_bonus_unique_terran_marine_1",
 	"special_bonus_all_stats_12",
 	"special_bonus_hp_600",
 	"special_bonus_lifesteal_30",
-	"special_bonus_terran_marine_2"
+	"special_bonus_unique_terran_marine_2"
 }
 
 local tHeroBaseStats = {

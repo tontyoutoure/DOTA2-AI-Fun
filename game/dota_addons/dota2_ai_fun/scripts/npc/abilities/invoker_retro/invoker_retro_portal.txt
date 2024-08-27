@@ -1,71 +1,34 @@
 "DOTAAbilities"
 {
-// Invoker's Portal
-	// Author: Rook
-	// Revised: tontyoutoure
-	// Date: February 18, 2015
-	// Invoke: Quas Quas Wex
-	// Casts a powerful displacement magic at another unit. Deals damage to it. That unit is instantly moved to your position.  Cast range is based on Quas, damage based on Wex.
-	// Because Quas affects the AbilityCastRange, we use a separate ability for each possible Quas level.
-	
-	
-	
-	//Dummy for popup
 	"invoker_retro_portal"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"			"heroes/hero_invoker/invoker_retro_portal.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
-		"AbilityTextureName" 			"invoker_retro_portal"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityCastAnimation" 			"ACT_DOTA_CAST_SUN_STRIKE"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
-		"AbilityProcsMagicStick" 		"1"
-		
-		// Stats	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30"
-		"AbilityManaCost"				"350"
-		"AbilityCastRange"				"350"
-		"AbilityCastPoint"				"0"  //Change the variable cast_point if this is.
-		
+		"BaseClass"	 "ability_lua"
+		"ScriptFile"	 "heroes/hero_invoker/invoker_retro_portal.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityTextureName"	 "invoker_retro_portal"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"	 "DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_SUN_STRIKE"
+		"FightRecapLevel"	 "1"
+		"MaxLevel"	 "1"
+		"AbilityProcsMagicStick"	 "1"
+		"AbilityCooldown"	 "30"
+		"AbilityManaCost"	 "350"
+		"AbilityCastRange"	 "350"
+		"AbilityCastPoint"	 "0"
 		"precache"
 		{
-			"particle"				"particles/units/heroes/hero_invoker/invoker_retro_portal.vpcf"
-			"particle"				"particles/units/heroes/hero_invoker/invoker_retro_portal_drain.vpcf"
-			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts"
+			"particle"	 "particles/units/heroes/hero_invoker/invoker_retro_portal_drain.vpcf"
+			"soundfile"	 "soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts"
 		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_level_wex"				"40"  //Increases with Wex.
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range_base"			"300"  //Increases with Quas.  This value is hardcoded into each ability's AbilityCastRange and tooltip.
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range_level_quas"			"50"  //Increases with Quas.  This value is hardcoded into each ability's AbilityCastRange and tooltip.
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"			"0.5" 
-			}
+			"damage_level_wex"	 "40"
+			"cast_range_base"	 "300"
+			"cast_range_level_quas"	 "50"
+			"delay"	 "0.5"
 		}
 	}
 }

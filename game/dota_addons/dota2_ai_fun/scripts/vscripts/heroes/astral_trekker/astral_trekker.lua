@@ -9,7 +9,7 @@ astral_trekker_entrapment = class({})
 function astral_trekker_entrapment:GetBehavior()
 	if not self.hSpecial then
 		self.hSpecial = Entities:First()
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_astral_trekker_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_unique_astral_trekker_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end
 	end
@@ -23,7 +23,7 @@ function astral_trekker_entrapment:OnSpellStart()
 	self:ProcsMagicStick()
 	if not self.hSpecial then
 		self.hSpecial = Entities:First()
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_astral_trekker_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_unique_astral_trekker_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end
 	end
@@ -92,12 +92,12 @@ end
 
 astral_trekker_war_stomp = class({})
 astral_trekker_war_stomp_talented = class({})
-function astral_trekker_war_stomp:GetCastRange() return self:GetSpecialValueFor("radius") end
-function astral_trekker_war_stomp_talented:GetCastRange() return self:GetSpecialValueFor("radius") end
+-- function astral_trekker_war_stomp:GetCastRange() return self:GetSpecialValueFor("radius") end
+-- function astral_trekker_war_stomp_talented:GetCastRange() return self:GetSpecialValueFor("radius") end
 local AstralTrekkerWarStomp = function (self)
 	local iRadius = self:GetSpecialValueFor("radius")
 	local hCaster = self:GetCaster()
-	if hCaster:FindAbilityByName("special_bonus_astral_trekker_2") and hCaster:FindAbilityByName("special_bonus_astral_trekker_2"):GetSpecialValueFor("value") > 0 then
+	if hCaster:FindAbilityByName("special_bonus_unique_astral_trekker_2") and hCaster:FindAbilityByName("special_bonus_unique_astral_trekker_2"):GetSpecialValueFor("value") > 0 then
 		local tTargets = FindUnitsInRadius(hCaster:GetTeamNumber(), hCaster:GetOrigin(), nil, iRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 		for i, v in ipairs(tTargets) do
 			v:AddNewModifier(hCaster, self, "modifier_stunned", {Duration = self:GetSpecialValueFor("stun_duration")*CalculateStatusResist(v)})
@@ -106,7 +106,7 @@ local AstralTrekkerWarStomp = function (self)
 				victim = v,
 				ability = self,
 				damage_type = DAMAGE_TYPE_MAGICAL,
-				damage = self:GetSpecialValueFor("damage")
+				damage = self:GetSpecialValueFor("stomp_damage")
 			})
 		end
 		hCaster:EmitSound("Hero_Centaur.HoofStomp")
@@ -120,7 +120,7 @@ local AstralTrekkerWarStomp = function (self)
 				victim = v,
 				ability = self,
 				damage_type = DAMAGE_TYPE_MAGICAL,
-				damage = self:GetSpecialValueFor("damage")
+				damage = self:GetSpecialValueFor("stomp_damage")
 			})
 		end
 		hCaster:EmitSound("Hero_Centaur.HoofStomp")

@@ -1,144 +1,59 @@
 "DOTAAbilities"
 {
-// Invoker's Inferno
-	// Author: Rook
-	// Revised: tontyoutoure
-	// Date: March 7, 2015
-	// Invoke: Exort Exort Wex
-	// Creates random firey hells around Invoker. The damage varies by Exort levels and the number of Infernoes varies by Wex level.
-	// This spell is split up into 8 versions for tooltip purposes.
-	
-	
-	
-	//Dummy for popup
 	"invoker_retro_inferno"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityTextureName" 			"invoker_retro_inferno"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityCastAnimation" 			"ACT_DOTA_CAST_SUN_STRIKE"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
-		"AbilityProcsMagicStick" 		"1"
-		
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20"
-		"AbilityManaCost"				"250"
-		
+		"BaseClass"	 "ability_datadriven"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"	 "invoker_retro_inferno"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"	 "DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_SUN_STRIKE"
+		"FightRecapLevel"	 "1"
+		"MaxLevel"	 "1"
+		"AbilityProcsMagicStick"	 "1"
+		"AbilityCooldown"	 "20"
+		"AbilityManaCost"	 "250"
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_inferno.vpcf"
-			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_inferno_pre_explosion.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_huskar.vsndevts"
+			"particle"	 "particles/units/heroes/hero_invoker/invoker_retro_inferno_pre_explosion.vpcf"
+			"soundfile"	 "soundevents/game_sounds_heroes/game_sounds_huskar.vsndevts"
 		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"num_infernos_level_wex"						"1"  //Increases with Wex.  These values are hardcoded into the tooltip so the spell level can scale off of Exort.
-			}
-			"02"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"inferno_damage_per_second_level_exort"			"7.5"  //Increases with Exort.
-			}
-			"03"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"inferno_damage_per_second_base"			"22.5"  //Increases with Exort.
-			}
-			"04"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"inferno_delay_between_spawns"		"1"  //The time between when the pre-explosion circles appear.  The first inferno's pre-explosion circle appears as soon as the ability is cast.
-			}
-			"05"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"inferno_explosion_delay"			"2"  //The time between when the pre-explosion circle appears and when the inferno explodes.
-			}
-			"06"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"inferno_explosion_duration"		"2.67"  //Each inferno remains in effect and deals AoE damage for this long.
-			}
-			"07"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"inferno_spawn_radius"				"200"  //When infernos spawn, they will be centered at a random point within this many units from Invoker.
-			}
-			"08"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"inferno_radius"					"300"  //Infernos deal damage in this radius.
-			}
-			"09"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"inferno_damage_interval"			".5"
-			}
-		}
-		
 		"OnSpellStart"
 		{
 			"RunScript"
 			{
-				"ScriptFile"				"heroes/hero_invoker/invoker_retro_inferno.lua"
-				"Function"					"invoker_retro_inferno_on_spell_start"
-				"InfernoSpawnRadius"		"%inferno_spawn_radius"
-				"InfernoExplosionDelay"		"%inferno_explosion_delay"
-				"InfernoExplosionDuration"	"%inferno_explosion_duration"
-				"InfernoRadius"				"%inferno_radius"
-				"InfernoDelayBetweenSpawns"	"%inferno_delay_between_spawns"
+				"ScriptFile"	 "heroes/hero_invoker/invoker_retro_inferno.lua"
+				"Function"	 "invoker_retro_inferno_on_spell_start"
+				"InfernoSpawnRadius"	 "%inferno_spawn_radius"
+				"InfernoExplosionDelay"	 "%inferno_explosion_delay"
+				"InfernoExplosionDuration"	 "%inferno_explosion_duration"
+				"InfernoRadius"	 "%inferno_radius"
+				"InfernoDelayBetweenSpawns"	 "%inferno_delay_between_spawns"
 			}
 		}
-		
 		"Modifiers"
 		{
 			"modifier_invoker_retro_inferno_damage_over_time"
 			{
-				"Passive"  			"0"
-				"IsHidden" 			"1"
-				"IsBuff"			"0"
-				"IsDebuff"			"0"
-				"IsPurgable"		"0"
-				
-				"Aura" 				"modifier_invoker_retro_inferno_damage_over_time_aura"
-				"Aura_Radius" 		"%inferno_radius"
-				"Aura_Teams" 		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types" 		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				"Aura_ApplyToCaster" "0"
-				
-				"ThinkInterval" 	"%inferno_damage_interval"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"					"heroes/hero_invoker/invoker_retro_inferno.lua"
-						"Function"						"modifier_invoker_retro_inferno_damage_over_time_on_interval_think"
-						"InfernoRadius"					"%inferno_radius"
-						"InfernoDamageInterval"			"%inferno_damage_interval"
-					}
-				}
+				"Passive"	 "0"
+				"IsHidden"	 "0"
+				"IsBuff"	 "0"
+				"IsDebuff"	 "1"
+				"IsPurgable"	 "0"
+				"TextureName"	 "invoker_retro_inferno"
 			}
-			"modifier_invoker_retro_inferno_damage_over_time_aura"   //This is simply used to display an icon in the affected hero's modifier bar, informing them that they are taking periodic damage.
-			{
-				"Passive"			"0"
-				"IsHidden"			"0"
-				"IsBuff"			"0"
-				"IsDebuff"			"1"
-				"IsPurgable"		"0"
-				"TextureName"		"invoker_retro_inferno"
-			}
+		}
+		"AbilityValues"
+		{
+			"num_infernos_level_wex"	 "1"
+			"inferno_damage_per_second_level_exort"	 "7.5"
+			"inferno_damage_per_second_base"	 "22.5"
+			"inferno_delay_between_spawns"	 "1"
+			"inferno_explosion_delay"	 "2"
+			"inferno_explosion_duration"	 "2.67"
+			"inferno_spawn_radius"	 "200"
+			"inferno_radius"	 "300"
+			"inferno_damage_interval"	 ".5"
 		}
 	}
 }

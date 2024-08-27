@@ -57,7 +57,7 @@
 			"ministun_duration"
 			{
 				"value"	 "0.3"
-				"special_bonus_terran_marine_1"	 "+0.2"
+				"special_bonus_unique_terran_marine_1"	 "+0.2"
 			}
 			"duration"	 "2 4 6 8"
 		}
@@ -131,7 +131,7 @@
 			"shots"
 			{
 				"value"	 "320 240 160 80"
-				"special_bonus_terran_marine_2"	 "+-60"
+				"special_bonus_unique_terran_marine_2"	 "-60"
 			}
 		}
 	}
@@ -160,7 +160,7 @@
 			}
 		}
 	}
-	"special_bonus_terran_marine_1"
+	"special_bonus_unique_terran_marine_1"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -170,7 +170,7 @@
 			"value"	 "0.2"
 		}
 	}
-	"special_bonus_terran_marine_2"
+	"special_bonus_unique_terran_marine_2"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"

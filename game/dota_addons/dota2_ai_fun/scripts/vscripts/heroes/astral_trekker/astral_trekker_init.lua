@@ -9,10 +9,10 @@ local tNewAbilities = {
 	"special_bonus_exp_boost_30",
 	"special_bonus_armor_10",
 	"special_bonus_attack_speed_40",
-	"special_bonus_astral_trekker_1",
+	"special_bonus_unique_astral_trekker_1",
 	"special_bonus_hp_600",
 	"special_bonus_lifesteal_30",
-	"special_bonus_astral_trekker_2",
+	"special_bonus_unique_astral_trekker_2",
 }
 
 	

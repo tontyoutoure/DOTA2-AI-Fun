@@ -56,7 +56,7 @@ end
 
 function old_storm_spirit_lightning_grapple:OnSpellStart()
 	local hCaster = self:GetCaster()
-	local fRadius = self:GetSpecialValueFor('radius')+CheckTalent(hCaster, "special_bonus_unique_old_storm_spirit_1")
+	local fRadius = self:GetSpecialValueFor('radius')
 	local tTargets = FindUnitsInRadius(hCaster:GetTeamNumber(), hCaster:GetOrigin(), nil, fRadius, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	local vToGo = Vector2D(self:GetCursorPosition()-hCaster:GetOrigin())
 	local fMaxRange = self:GetSpecialValueFor('range')+self:GetCaster():GetCastRangeBonus()

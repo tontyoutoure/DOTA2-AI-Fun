@@ -1,114 +1,56 @@
 "DOTAAbilities"
 {
-// Invoker's Tornado Blast
-	// Author: Rook
-	// Revised: tontyoutoure
-	// Date: February 19, 2015
-	// Invoke: Quas Wex Wex
-	// Summons a tornado to wreak havoc and damage enemy units over a long distance. Deals 225 damage over 750 range.
-	// Balance ideas: Travel distance should scale with Wex instead of Quas.  The tornado could also pick up enemies
-	//     like it does in Dota's modern Invoker incarnation.
-	// Because Quas affects the AbilityCastRange, we use a separate ability for each possible Quas level.
-	
-	
-	
-	//Dummy for Popup
 	"invoker_retro_tornado_blast"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"		"heroes/hero_invoker/invoker_retro_tornado_blast.lua"
-		"ScriptFile"					"heroes/hero_invoker/invoker_retro_tornado_blast.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityTextureName" 			"invoker_retro_tornado_blast"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityCastAnimation" 			"ACT_DOTA_CAST_TORNADO"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
-		"AbilityProcsMagicStick" 		"1"
-		
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"25"
-		"AbilityManaCost"				"250"
-		"AbilityCastRange"				"99999"
-		
+		"BaseClass"	 "ability_lua"
+		"ScriptFile"	 "heroes/hero_invoker/invoker_retro_tornado_blast.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"	 "invoker_retro_tornado_blast"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"	 "DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_TORNADO"
+		"FightRecapLevel"	 "1"
+		"MaxLevel"	 "1"
+		"AbilityProcsMagicStick"	 "1"
+		"AbilityCooldown"	 "25"
+		"AbilityManaCost"	 "250"
+		"AbilityCastRange"	 "99999"
 		"precache"
 		{
-			"particle"			"particles/units/heroes/hero_invoker/invoker_tornado.vpcf"
+			"particle"	 "particles/units/heroes/hero_invoker/invoker_tornado.vpcf"
 		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"										"FIELD_FLOAT"
-				"damage_base"										"75"  //Increases with Quas.
-			}
-			"02"
-			{
-				"var_type"										"FIELD_FLOAT"
-				"damage_level_quas"										"50"  //Increases with Quas.
-			}
-			"03"
-			{
-				"var_type"										"FIELD_INTEGER"
-				"travel_distance_level_quas"								"250"  //Increases with Quas.  This value is hardcoded into each ability's AbilityCastRange.
-			}
-			"04"
-			{
-				"var_type"										"FIELD_INTEGER"
-				"projectile_speed"								"1000"
-			}
-			"05"
-			{
-				"var_type"										"FIELD_INTEGER"
-				"projectile_radius"								"200"
-			}
-			"06"
-			{
-				"var_type"										"FIELD_INTEGER"
-				"projectile_flying_vision"						"600"
-			}
-			"07"
-			{
-				"var_type"										"FIELD_FLOAT"
-				"projectile_flying_vision_max_range_duration"	"1.75"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"pip_current"			"1"
-			}
-		}
-		
 		"OnSpellStart"
 		{
 			"RunScript"
 			{
-				"ScriptFile"								"heroes/hero_invoker/invoker_retro_tornado_blast.lua"
-				"Function"									"invoker_retro_tornado_blast_on_spell_start"
-				"Target"									"POINT"
-				"ProjectileSpeed"							"%projectile_speed"
-				"ProjectileRadius"							"%projectile_radius"
-				"ProjectileFlyingVision"					"%projectile_flying_vision"
-				"ProjectileFlyingVisionMaxRangeDuration"	"%projectile_flying_vision_max_range_duration"
+				"ScriptFile"	 "heroes/hero_invoker/invoker_retro_tornado_blast.lua"
+				"Function"	 "invoker_retro_tornado_blast_on_spell_start"
+				"Target"	 "POINT"
+				"ProjectileSpeed"	 "%projectile_speed"
+				"ProjectileRadius"	 "%projectile_radius"
+				"ProjectileFlyingVision"	 "%projectile_flying_vision"
+				"ProjectileFlyingVisionMaxRangeDuration"	 "%projectile_flying_vision_max_range_duration"
 			}
 		}
-		
 		"OnProjectileHitUnit"
 		{
-			"DeleteOnHit" "0"
-			
+			"DeleteOnHit"	 "0"
 			"RunScript"
 			{
-				"ScriptFile"		"heroes/hero_invoker/invoker_retro_tornado_blast.lua"
-				"Function"			"invoker_retro_tornado_blast_on_projectile_hit_unit"
+				"ScriptFile"	 "heroes/hero_invoker/invoker_retro_tornado_blast.lua"
+				"Function"	 "invoker_retro_tornado_blast_on_projectile_hit_unit"
 			}
+		}
+		"AbilityValues"
+		{
+			"damage_base"	 "75"
+			"damage_level_quas"	 "50"
+			"travel_distance_level_quas"	 "250"
+			"projectile_speed"	 "1000"
+			"projectile_radius"	 "200"
+			"projectile_flying_vision"	 "600"
+			"projectile_flying_vision_max_range_duration"	 "1.75"
+			"pip_current"	 "1"
 		}
 	}
 }

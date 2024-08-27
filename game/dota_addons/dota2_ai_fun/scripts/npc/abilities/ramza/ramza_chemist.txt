@@ -1,55 +1,52 @@
 "DOTAAbilities"
-{	
+{
 	"ramza_job_chemist_JC"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"buyback"
-		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
-	}// gold speical value is just for tooltip
-	
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "buyback"
+		"ScriptFile"	 "heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
+	}
 	"ramza_job_chemist_change_job"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"buyback"
-		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "buyback"
+		"ScriptFile"	 "heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
 	}
-	
 	"ramza_job_chemist_change_secondary_skill"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"buyback"
-		"ScriptFile"	"heroes/ramza/ramza_utility_abilities.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "buyback"
+		"ScriptFile"	 "heroes/ramza/ramza_utility_abilities.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
 	}
-	
 	"ramza_chemist_treasure_hunter"
 	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"alchemist_goblins_greed"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0.3"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCooldown"	"90"
-		"AbilityManaCost"	"0"
-		"AbilityCastRange"	"0"
+		"BaseClass"	 "ability_datadriven"
+		"AbilityTextureName"	 "alchemist_goblins_greed"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0.3"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	 "90"
+		"AbilityManaCost"	 "0"
+		"AbilityCastRange"	 "0"
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_ui.vsndevts"
+			"soundfile"	 "soundevents/game_sounds_ui.vsndevts"
 		}
 		"OnSpellStart"
 		{
@@ -59,243 +56,206 @@
 				{
 					"GrantXPGold"
 					{
-						"Target"	"CASTER"
-						"GoldAmount"	"250"
+						"Target"	 "CASTER"
+						"GoldAmount"	 "250"
 					}
 					"FireSound"
 					{
-						"Target"	"CASTER"
-						"EffectName"	"General.CoinsBig"
+						"Target"	 "CASTER"
+						"EffectName"	 "General.CoinsBig"
 					}
 					"RunScript"
 					{
-						"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_chemist.lua"
-						"Function"	"RamzaChemistTreasureHunterParticles"
+						"ScriptFile"	 "scripts/vscripts/heroes/ramza/ramza_chemist.lua"
+						"Function"	 "RamzaChemistTreasureHunterParticles"
 					}
 				}
-				"Chance"	"%chance"
+				"Chance"	 "%chance"
 			}
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"gold"	"250"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"chance"	"50"
-			}
+			"gold"	 "250"
+			"chance"	 "50"
 		}
 	}
-
 	"ramza_chemist_items_phoenix_down"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"phoenix_icarus_dive"
-		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_chemist.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0.3"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
-		"AbilityGoldCost"	"300"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "phoenix_icarus_dive"
+		"ScriptFile"	 "scripts/vscripts/heroes/ramza/ramza_chemist.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0.3"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
+		"AbilityGoldCost"	 "300"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"reincarnate_time"	"6"
-			}
+			"reincarnate_time"	 "6"
 		}
 	}
-
 	"ramza_chemist_throw_items"
 	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"alchemist_unstable_concoction_throw"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"MaxLevel"	"1"
+		"BaseClass"	 "ability_datadriven"
+		"AbilityTextureName"	 "alchemist_unstable_concoction_throw"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	 "1"
 		"Modifiers"
 		{
 			"modifier_ramza_chemist_throw_items"
 			{
-				"IsHidden"	"1"
-				"Passive"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
+				"IsHidden"	 "1"
+				"Passive"	 "1"
+				"Attributes"	 "MODIFIER_ATTRIBUTE_PERMANENT"
 			}
 		}
 	}
-
 	"ramza_chemist_items_ether"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"keeper_of_the_light_mana_leak"
-		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_chemist.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0.3"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "keeper_of_the_light_mana_leak"
+		"ScriptFile"	 "scripts/vscripts/heroes/ramza/ramza_chemist.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0.3"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
+		"AbilityGoldCost"	 "100"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"mana_restore"	"100"
-			}
+			"mana_restore"	 "100"
 		}
-		"AbilityGoldCost"	"100"
 	}
-
 	"ramza_chemist_items_hiether"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"elder_titan_echo_stomp_spirit"
-		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_chemist.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0.3"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "elder_titan_echo_stomp_spirit"
+		"ScriptFile"	 "scripts/vscripts/heroes/ramza/ramza_chemist.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0.3"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
+		"AbilityGoldCost"	 "200"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"mana_restore"	"250"
-			}
+			"mana_restore"	 "250"
 		}
-		"AbilityGoldCost"	"200"
 	}
-
 	"ramza_chemist_items_potion"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"ramza_chemist_items_potion"
-		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_chemist.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0.3"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "ramza_chemist_items_potion"
+		"ScriptFile"	 "scripts/vscripts/heroes/ramza/ramza_chemist.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0.3"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
+		"AbilityGoldCost"	 "50"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"health_restore"	"200"
-			}
+			"health_restore"	 "200"
 		}
-		"AbilityGoldCost"	"50"
 	}
-
 	"ramza_chemist_items_hipotion"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"kobold_taskmaster_speed_aura"
-		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_chemist.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0.3"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "kobold_taskmaster_speed_aura"
+		"ScriptFile"	 "scripts/vscripts/heroes/ramza/ramza_chemist.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0.3"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
+		"AbilityGoldCost"	 "100"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"health_restore"	"500"
-			}
+			"health_restore"	 "500"
 		}
-		"AbilityGoldCost"	"100"
 	}
-
 	"ramza_chemist_items_remedy"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"alchemist_unstable_concoction"
-		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_chemist.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0.3"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
-		"AbilityGoldCost"	"75"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "alchemist_unstable_concoction"
+		"ScriptFile"	 "scripts/vscripts/heroes/ramza/ramza_chemist.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0.3"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
+		"AbilityGoldCost"	 "75"
 	}
-
 	"ramza_chemist_items_elixir"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"keeper_of_the_light_illuminate"
-		"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_chemist.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0.3"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
-		"AbilityGoldCost"	"400"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "keeper_of_the_light_illuminate"
+		"ScriptFile"	 "scripts/vscripts/heroes/ramza/ramza_chemist.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0.3"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
+		"AbilityGoldCost"	 "400"
 	}
-
 	"ramza_chemist_autopotion"
 	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"tinker_rearm"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
-		"AbilityCastRange"	"0"
+		"BaseClass"	 "ability_datadriven"
+		"AbilityTextureName"	 "tinker_rearm"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
+		"AbilityCastRange"	 "0"
 		"OnToggleOn"
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_chemist.lua"
-				"Function"	"RamzaChemistAutoPotionToggle"
+				"ScriptFile"	 "scripts/vscripts/heroes/ramza/ramza_chemist.lua"
+				"Function"	 "RamzaChemistAutoPotionToggle"
 			}
 		}
 		"OnToggleOff"
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_chemist.lua"
-				"Function"	"RamzaChemistAutoPotionToggle"
+				"ScriptFile"	 "scripts/vscripts/heroes/ramza/ramza_chemist.lua"
+				"Function"	 "RamzaChemistAutoPotionToggle"
 			}
 		}
 		"Modifiers"
 		{
 			"modifier_ramza_chemist_autopotion"
 			{
-				"IsBuff"	"1"
+				"IsBuff"	 "1"
 				"OnTakeDamage"
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"scripts/vscripts/heroes/ramza/ramza_chemist.lua"
-						"Function"	"RamzaChemistAutoPotionTakePotion"
+						"ScriptFile"	 "scripts/vscripts/heroes/ramza/ramza_chemist.lua"
+						"Function"	 "RamzaChemistAutoPotionTakePotion"
 					}
 				}
 			}

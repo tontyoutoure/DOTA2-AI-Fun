@@ -130,12 +130,6 @@ function modifier_exsoldier_omnislash:OnCreated()
 	local hParent = self:GetParent()	
 	
 	self.iMaxAttackCount = self:GetAbility():GetSpecialValueFor("attack_count")
-	if hParent:HasScepter() then
-		self.iMaxAttackCount = self:GetAbility():GetSpecialValueFor("attack_count_scepter")
-	end
-	if hParent:HasAbility("special_bonus_unique_exsoldier_3") then
-		self.iMaxAttackCount = self.iMaxAttackCount+hParent:FindAbilityByName("special_bonus_unique_exsoldier_3"):GetSpecialValueFor("value")
-	end
 	
 	self.vStartPoint = hParent:GetOrigin()
 	if not OmnislashDoAttack(hParent, self) then self:Destroy() return end

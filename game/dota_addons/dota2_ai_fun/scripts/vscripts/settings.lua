@@ -8,6 +8,9 @@ GAME_OPTION_SET_TIME = 120
 GAME_OPTION_VOTE_TIME = 30
 LOCK_TEAM_SETUP = false                 -- Should we lock the teams initially?  Note that the host can still unlock the teams 
 HERO_SELECTION_TIME = 300.0              -- How long should we let people select their hero?
+if IsInToolsMode() then
+	HERO_SELECTION_TIME = 9999
+end
 PRE_GAME_TIME = 75.0                     -- How long after people select their heroes should the horn blow and the game start?
 STRATEGY_TIME = 0
 if IsInToolsMode() then

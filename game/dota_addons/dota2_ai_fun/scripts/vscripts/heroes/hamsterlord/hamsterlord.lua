@@ -52,7 +52,7 @@ function hamsterlord_pizza_house_delivery:OnSpellStart()
 		FindClearSpaceForUnit(hUnit, hUnit:GetOrigin(), true)
 		hUnit:SetForwardVector(vForward)
 		hUnit:AddNewModifier(hCaster, self, "modifier_kill", {Duration = self:GetSpecialValueFor("duration")})
-		if hCaster:HasAbility("special_bonus_hamsterlord_2") and hCaster:FindAbilityByName("special_bonus_hamsterlord_2"):GetLevel() > 0 then
+		if hCaster:HasAbility("special_bonus_unique_hamsterlord_2") and hCaster:FindAbilityByName("special_bonus_unique_hamsterlord_2"):GetLevel() > 0 then
 			hUnit:AddAbility("hamsterlord_pizza_house_deliver_boy_gather_tips_upgraded"):SetLevel(1)
 		else
 			hUnit:AddAbility("hamsterlord_pizza_house_deliver_boy_gather_tips"):SetLevel(1)
@@ -75,9 +75,6 @@ function hamsterlord_call_of_hamster:OnSpellStart()
 		iSummonCount = self:GetSpecialValueFor("summon_count_scepter")
 	end
 	
-	if hCaster:HasAbility("special_bonus_hamsterlord_4") then
-		iSummonCount = iSummonCount+hCaster:FindAbilityByName("special_bonus_hamsterlord_4"):GetSpecialValueFor("value")
-	end
 	for i = 1, iSummonCount do
 		local vSummonSpot = vSummonerPostion+vForward:Normalized()*150
 		hUnit = CreateUnitByName("hamsterlord_hamster", vSummonSpot, true, hCaster, hCaster, hCaster:GetTeamNumber())

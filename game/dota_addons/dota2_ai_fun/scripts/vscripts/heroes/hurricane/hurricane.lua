@@ -58,18 +58,7 @@ end
 
 
 function hurricane_eyes_of_the_storm:GetCastRange()
-	if not self.hSpecial then
-		self.hSpecial = Entities:First()
-		
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_hurricane_5" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
-			self.hSpecial = Entities:Next(self.hSpecial)
-		end		
-	end
-	if self.hSpecial then
-		return self:GetSpecialValueFor("radius")+self.hSpecial:GetSpecialValueFor("value")
-	else
-		return self:GetSpecialValueFor("radius")
-	end
+	return self:GetSpecialValueFor("radius")
 end
 
 function hurricane_eyes_of_the_storm:OnSpellStart()
@@ -77,9 +66,6 @@ function hurricane_eyes_of_the_storm:OnSpellStart()
 	local iDamageType = self:GetAbilityDamageType()
 	local fDamage = self:GetSpecialValueFor("damage_per_distance")
 	local fRadius = self:GetSpecialValueFor("radius")
-	if hCaster:HasAbility("special_bonus_hurricane_5") then
-		fRadius = fRadius+hCaster:FindAbilityByName("special_bonus_hurricane_5"):GetSpecialValueFor("value")
-	end
 	local tTargets = FindUnitsInRadius(hCaster:GetTeam(), hCaster:GetOrigin(), nil, fRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 	hCaster:EmitSound("Hero_Razor.Storm.Cast")
 	for i, v in ipairs(tTargets) do
@@ -103,18 +89,7 @@ end
 
 
 function hurricane_eyes_of_the_storm_upgrade:GetCastRange()
-	if not self.hSpecial then
-		self.hSpecial = Entities:First()
-		
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_hurricane_5" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
-			self.hSpecial = Entities:Next(self.hSpecial)
-		end		
-	end
-	if self.hSpecial then
-		return self:GetSpecialValueFor("radius")+self.hSpecial:GetSpecialValueFor("value")
-	else
-		return self:GetSpecialValueFor("radius")
-	end
+	return self:GetSpecialValueFor("radius")
 end
 
 function hurricane_eyes_of_the_storm_upgrade:OnSpellStart()
@@ -122,9 +97,6 @@ function hurricane_eyes_of_the_storm_upgrade:OnSpellStart()
 	local iDamageType = self:GetAbilityDamageType()
 	local fDamage = self:GetSpecialValueFor("damage_per_distance")
 	local fRadius = self:GetSpecialValueFor("radius")
-	if hCaster:HasAbility("special_bonus_hurricane_5") then
-		fRadius = fRadius+hCaster:FindAbilityByName("special_bonus_hurricane_5"):GetSpecialValueFor("value")
-	end
 	local tTargets = FindUnitsInRadius(hCaster:GetTeam(), hCaster:GetOrigin(), nil, fRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 	hCaster:EmitSound("Hero_Razor.Storm.Cast")
 	for i, v in ipairs(tTargets) do

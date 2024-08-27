@@ -46,12 +46,12 @@
 			"attack"
 			{
 				"value"	 "-3 -6 -9 -12"
-				"special_bonus_void_demon_2"	 "+100%"
+				"special_bonus_unique_void_demon_2"	 "+100%"
 			}
 			"movement"
 			{
 				"value"	 "-6  -12 -18 -24"
-				"special_bonus_void_demon_2"	 "+100%"
+				"special_bonus_unique_void_demon_2"	 "+100%"
 			}
 		}
 	}
@@ -130,7 +130,7 @@
 			"radius"	 "100 175 250 325"
 		}
 	}
-	"special_bonus_void_demon_1"
+	"special_bonus_unique_void_demon_1"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -140,7 +140,7 @@
 			"value"	 "15"
 		}
 	}
-	"special_bonus_void_demon_2"
+	"special_bonus_unique_void_demon_2"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"

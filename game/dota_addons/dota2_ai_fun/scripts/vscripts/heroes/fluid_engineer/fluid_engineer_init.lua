@@ -10,9 +10,9 @@ local tNewAbilities = {
 	"special_bonus_spell_lifesteal_10",
 	"special_bonus_spell_amplify_15",
 	"special_bonus_hp_800",
-	"special_bonus_fluid_engineer_1",
-	"special_bonus_fluid_engineer_2",
-	"special_bonus_fluid_engineer_3"
+	"special_bonus_unique_fluid_engineer_1",
+	"special_bonus_unique_fluid_engineer_2",
+	"special_bonus_unique_fluid_engineer_3"
 }
 
 local tHeroBaseStats = {

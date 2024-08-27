@@ -7,7 +7,7 @@ templar_chicken = class({})
 function templar_chicken:GetBehavior()
 	if not self.hSpecial then
 		self.hSpecial = Entities:First()		
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_templar_3" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_unique_templar_3" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end
 	end
@@ -22,7 +22,7 @@ end
 function templar_chicken:GetAOERadius()
 	if not self.hSpecial then
 		self.hSpecial = Entities:First()		
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_templar_3" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_unique_templar_3" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end
 	end
@@ -37,8 +37,8 @@ end
 
 function templar_chicken:OnSpellStart()
 	local hCaster = self:GetCaster()
-	if hCaster:HasAbility("special_bonus_templar_3") and hCaster:FindAbilityByName("special_bonus_templar_3"):GetSpecialValueFor("value") > 0 then
-		local iRadius = hCaster:FindAbilityByName("special_bonus_templar_3"):GetSpecialValueFor("value")
+	if hCaster:HasAbility("special_bonus_unique_templar_3") and hCaster:FindAbilityByName("special_bonus_unique_templar_3"):GetSpecialValueFor("value") > 0 then
+		local iRadius = hCaster:FindAbilityByName("special_bonus_unique_templar_3"):GetSpecialValueFor("value")
 		for k, v in ipairs(FindUnitsInRadius(hCaster:GetTeamNumber(), self:GetCursorPosition(), nil, iRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)) do
 			if v:IsIllusion() then 
 				v:Kill(self, hCaster)
@@ -72,12 +72,6 @@ function TemplarDrainSpellStart(keys)
 		if keys.target:TriggerSpellAbsorb(keys.ability) then return end
 		local iLifeDrain = keys.ability:GetSpecialValueFor("life_drain")
 		local iManaDrain = keys.ability:GetSpecialValueFor("mana_drain")
-		if keys.caster:HasAbility("special_bonus_templar_1") then
-			iLifeDrain = iLifeDrain+keys.caster:FindAbilityByName("special_bonus_templar_1"):GetSpecialValueFor("value")
-		end		
-		if keys.caster:HasAbility("special_bonus_templar_2") then
-			iManaDrain = iManaDrain+keys.caster:FindAbilityByName("special_bonus_templar_2"):GetSpecialValueFor("value")
-		end
 		keys.target:Script_ReduceMana(iManaDrain,keys.ability)
 		keys.caster:GiveMana(iManaDrain)
 		keys.caster:Heal(iLifeDrain, keys.caster)
@@ -96,7 +90,7 @@ function templar_vengeance:GetCooldown(iLevel)
 	if not self.hSpecial then
 		self.hSpecial = Entities:First()
 		
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_templar_4" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_unique_templar_4" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end		
 	end

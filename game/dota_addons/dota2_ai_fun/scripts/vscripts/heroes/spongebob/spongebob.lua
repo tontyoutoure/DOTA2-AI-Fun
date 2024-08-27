@@ -5,7 +5,7 @@ spongebob_krabby_food = class({})
 function spongebob_krabby_food:GetBehavior()
 	self.hSpecial = Entities:First()
 	
-	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_spongebob_3" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_unique_spongebob_3" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 		self.hSpecial = Entities:Next(self.hSpecial)
 	end		
 	if self.hSpecial and self.hSpecial:GetSpecialValueFor("value") > 0 then
@@ -35,7 +35,7 @@ function spongebob_krabby_food:GetManaCost(iLevel)
 end
 function spongebob_krabby_food:OnSpellStart()
 	local hCaster = self:GetCaster()
-	if hCaster:HasAbility("special_bonus_spongebob_3") and hCaster:FindAbilityByName("special_bonus_spongebob_3"):GetSpecialValueFor("value") > 0 then
+	if hCaster:HasAbility("special_bonus_unique_spongebob_3") and hCaster:FindAbilityByName("special_bonus_unique_spongebob_3"):GetSpecialValueFor("value") > 0 then
 		for k, v in pairs(FindUnitsInRadius(hCaster:GetTeamNumber(), hCaster:GetOrigin(), nil, 600, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false))
 		do
 			v:EmitSound("DOTA_Item.HealingSalve.Activate")
@@ -54,7 +54,7 @@ end
 function spongebob_karate_chop:GetCooldown(iLevel)
 	self.hSpecial = Entities:First()
 	
-	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_spongebob_4" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_unique_spongebob_4" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 		self.hSpecial = Entities:Next(self.hSpecial)
 	end		
 	if self.hSpecial then
@@ -96,9 +96,6 @@ function SpongeBobJellyfishNet(keys)
 			iChance = keys.ability:GetSpecialValueFor("chance")
 			iDuration = keys.ability:GetSpecialValueFor("duration")
 		end
-	end
-	if keys.caster:HasAbility("special_bonus_spongebob_1") then
-		iDuration = iDuration+keys.caster:FindAbilityByName("special_bonus_spongebob_1"):GetSpecialValueFor("value")
 	end
 	if RandomInt(1, 100) <= iChance then
 		keys.target:EmitSound("Hero_NagaSiren.Ensnare.Target")

@@ -7,12 +7,12 @@ local tNewAbilities = {
 	"templar_vengeance",
 	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
-	"special_bonus_templar_1",
-	"special_bonus_templar_2",
-	"special_bonus_templar_3",
+	"special_bonus_unique_templar_1",
+	"special_bonus_unique_templar_2",
+	"special_bonus_unique_templar_3",
 	"special_bonus_attack_speed_250",
 	"special_bonus_cleave_100",
-	"special_bonus_templar_4"
+	"special_bonus_unique_templar_4"
 }
 
 local tHeroBaseStats = {

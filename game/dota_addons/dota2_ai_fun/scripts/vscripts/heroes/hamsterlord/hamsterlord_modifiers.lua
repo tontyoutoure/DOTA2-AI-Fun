@@ -37,11 +37,9 @@ function modifier_hamsterlord_injure_knees:OnAttackLanded(keys)
 	else
 		keys.target:EmitSound("Hero_Tusk.WalrusKick.Target")
 		keys.target:AddNewModifier(hParent, hAbility, "modifier_hamsterlord_injure_knees_stun", {Duration = hAbility:GetSpecialValueFor("stun_duration")*CalculateStatusResist(hParent)})
-		if hParent:HasAbility("special_bonus_hamsterlord_1") then
-			ApplyDamage({victim = keys.target, damage = hParent:FindAbilityByName("special_bonus_hamsterlord_1"):GetSpecialValueFor("value")+hAbility:GetSpecialValueFor("damage"), damage_type = hAbility:GetAbilityDamageType(), attacker=hParent, ability = hAbility})
-		else			
-			ApplyDamage({victim = keys.target, damage = hAbility:GetSpecialValueFor("damage"), damage_type = hAbility:GetAbilityDamageType(), attacker=hParent, ability = hAbility})
-		end
+		
+		ApplyDamage({victim = keys.target, damage = hAbility:GetSpecialValueFor("damage"), damage_type = hAbility:GetAbilityDamageType(), attacker=hParent, ability = hAbility})
+
 		if keys.target:FindModifierByName("modifier_hamsterlord_injure_knees_slow") then
 			keys.target:FindModifierByName("modifier_hamsterlord_injure_knees_slow"):Destroy()
 		end
@@ -125,7 +123,7 @@ function modifier_hamsterlord_take_nap:IsPurgable() return false end
 
 function modifier_hamsterlord_take_nap:CheckState()
 	self.hSpecial = Entities:First()	
-	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_hamsterlord_3" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_unique_hamsterlord_3" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 		self.hSpecial = Entities:Next(self.hSpecial)
 	end		
 	if self.hSpecial and self.hSpecial:GetSpecialValueFor("value") > 0 then
@@ -221,15 +219,12 @@ function modifier_hamsterlord_take_nap:OnDestroy()
 	local hParent = self:GetParent()
 	local hAbility = self:GetAbility()
 	local fDuration = hAbility:GetSpecialValueFor("buff_duration")
-	if hParent:HasAbility("special_bonus_hamsterlord_0") then
-		fDuration = fDuration+hParent:FindAbilityByName("special_bonus_hamsterlord_0"):GetSpecialValueFor("value")
-	end
 	EndAnimation(hParent)
 	if self:GetStackCount() > 0 then
 		hParent:EmitSound("Hero_Invoker.Alacrity")
 		hParent:AddNewModifier(hParent, hAbility, "modifier_hamsterlord_take_nap_buff", {duration = fDuration}):SetStackCount(self:GetStackCount())
 		
-		if hParent:HasAbility("special_bonus_hamsterlord_5") and hParent:FindAbilityByName("special_bonus_hamsterlord_5"):GetLevel() > 0 then		
+		if hParent:HasAbility("special_bonus_unique_hamsterlord_5") and hParent:FindAbilityByName("special_bonus_unique_hamsterlord_5"):GetLevel() > 0 then		
 			local hBoy = Entities:First()	
 			while hBoy do
 				if hBoy.GetUnitName and (hBoy:GetUnitName() == "hamsterlord_pizza_house_deliver_boy" or hBoy:GetUnitName() == "hamsterlord_hamster" ) and hParent:GetPlayerOwnerID() == hBoy:GetOwner():GetPlayerID() then	
@@ -363,9 +358,9 @@ function modifier_hamsterlord_hamster_flaming_hamster_grenade:OnDestroy()
 	hParent:Kill(hAbility, hParent)
 end
 
-modifier_special_bonus_hamsterlord_5 = class({})
-function modifier_special_bonus_hamsterlord_5:IsHidden() return true end
-function modifier_special_bonus_hamsterlord_5:IsPurgable() return false end
-function modifier_special_bonus_hamsterlord_5:CheckState() return {[MODIFIER_STATE_MAGIC_IMMUNE]=true} end
-function modifier_special_bonus_hamsterlord_5:GetEffectName() return "particles/items_fx/black_king_bar_avatar.vpcf" end
-function modifier_special_bonus_hamsterlord_5:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
+modifier_special_bonus_unique_hamsterlord_5 = class({})
+function modifier_special_bonus_unique_hamsterlord_5:IsHidden() return true end
+function modifier_special_bonus_unique_hamsterlord_5:IsPurgable() return false end
+function modifier_special_bonus_unique_hamsterlord_5:CheckState() return {[MODIFIER_STATE_MAGIC_IMMUNE]=true} end
+function modifier_special_bonus_unique_hamsterlord_5:GetEffectName() return "particles/items_fx/black_king_bar_avatar.vpcf" end
+function modifier_special_bonus_unique_hamsterlord_5:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end

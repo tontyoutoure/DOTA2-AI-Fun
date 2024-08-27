@@ -15,7 +15,7 @@ function modifier_el_dorado_refine_weapons:OnIntervalThink()
 	if hParent:PassivesDisabled() then return end
 	local hAbility = self:GetAbility()
 	local iSlot = 5
-	if CheckTalent(hParent, 'special_bonus_el_dorado_3') > 0 then
+	if CheckTalent(hParent, 'special_bonus_unique_el_dorado_3') > 0 then
 		iSlot = 9
 	end
 	for i = 0, iSlot do
@@ -116,7 +116,7 @@ function modifier_el_dorado_artificial_frog_disable_healing:RemoveOnDeath() retu
 function modifier_el_dorado_artificial_frog_disable_healing:GetDisableHealing() 
 	self.hSpecial = Entities:First()
 	
-	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_el_dorado_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_unique_el_dorado_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 		self.hSpecial = Entities:Next(self.hSpecial)
 	end	
 	
@@ -130,7 +130,7 @@ end
 function modifier_el_dorado_artificial_frog_disable_healing:GetModifierConstantHealthRegen()
 	self.hSpecial = Entities:First()
 	
-	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_el_dorado_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+	while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_unique_el_dorado_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 		self.hSpecial = Entities:Next(self.hSpecial)
 	end	
 	

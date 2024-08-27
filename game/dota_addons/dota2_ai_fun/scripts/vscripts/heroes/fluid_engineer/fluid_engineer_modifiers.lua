@@ -9,18 +9,9 @@ function modifier_fluid_engineer_salad_lunch_lua:DeclareFunctions()
 end
 
 function modifier_fluid_engineer_salad_lunch_lua:GetModifierBonusStats_Intellect()
-	
-	if not self.hSpecial then 
-		self.hSpecial = Entities:First()	
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_fluid_engineer_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
-			self.hSpecial = Entities:Next(self.hSpecial)
-		end	
-	end
-	if self.hSpecial then
-		return self:GetStackCount()*(self:GetAbility():GetSpecialValueFor("int_per_stack")+self.hSpecial:GetSpecialValueFor("value"))
-	else
+
 		return self:GetStackCount()*self:GetAbility():GetSpecialValueFor("int_per_stack")
-	end
+
 end
 
 modifier_fluid_engineer_bowel_hydraulics = class({})
@@ -178,7 +169,7 @@ function modifier_fluid_engineer_malicious_tampering:OnIntervalThink()
 		damage_type = DAMAGE_TYPE_PURE,
 		ability = self:GetAbility(),
 		damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS + 	DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + 
-		DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL+(1-CheckTalent(hCaster, 'special_bonus_fluid_engineer_3'))*DOTA_DAMAGE_FLAG_NON_LETHAL;
+		DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL+(1-CheckTalent(hCaster, 'special_bonus_unique_fluid_engineer_3'))*DOTA_DAMAGE_FLAG_NON_LETHAL;
 	})
 end
 

@@ -56,25 +56,11 @@ function modifier_siglos_reflect:OnDestroy()
 end
 function modifier_siglos_reflect:DeclareFunctions() return {MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL, MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL, MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE, MODIFIER_PROPERTY_TOOLTIP} end
 function modifier_siglos_reflect:OnTooltip()
-	if not self.bFoundSpecial then
-		self.hSpecial = Entities:First()	
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_unique_siglos_4" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
-			self.hSpecial = Entities:Next(self.hSpecial)
-		end	
-		self.bFoundSpecial = true		
-	end
-	if self.hSpecial then 
-		return self:GetAbility():GetSpecialValueFor("percentage_damage")+self.hSpecial:GetSpecialValueFor("value")
-	else
-		return self:GetAbility():GetSpecialValueFor("percentage_damage")
-	end
+	return self:GetAbility():GetSpecialValueFor("percentage_damage")
 end
 function modifier_siglos_reflect:GetAbsoluteNoDamagePhysical(keys) 
 	if not keys.attacker or not keys.target or bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) > 0 then return 1 end
 	local iDamagePercentage = self:GetAbility():GetSpecialValueFor("percentage_damage")
-	if keys.target:HasAbility("special_bonus_unique_siglos_4") then 
-		iDamagePercentage = iDamagePercentage+keys.target:FindAbilityByName("special_bonus_unique_siglos_4"):GetSpecialValueFor("value")
-	end
 	ApplyDamage({attacker = keys.target, damage = keys.original_damage*iDamagePercentage/100, damage_type = keys.damage_type, damage_flags = DOTA_DAMAGE_FLAG_REFLECTION+DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION, victim = keys.attacker, ability = self:GetAbility()})
 	
 	local iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_spectre/spectre_dispersion.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, keys.target)
@@ -102,18 +88,9 @@ modifier_siglos_disruption_aura_target = class({})
 function modifier_siglos_disruption_aura_target:IsHidden() return false end
 function modifier_siglos_disruption_aura_target:DeclareFunctions() return {MODIFIER_PROPERTY_TOOLTIP} end
 function modifier_siglos_disruption_aura_target:OnTooltip() 
-	if not self.bFoundSpecial then
-		self.hSpecial = Entities:First()	
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_unique_siglos_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
-			self.hSpecial = Entities:Next(self.hSpecial)
-		end	
-		self.bFoundSpecial = true		
-	end
-	if self.hSpecial then 
-		return self:GetAbility():GetSpecialValueFor("disruption_range")+self.hSpecial:GetSpecialValueFor("value")
-	else
-		return self:GetAbility():GetSpecialValueFor("disruption_range")
-	end
+
+	return self:GetAbility():GetSpecialValueFor("disruption_range")
+
 end
 
 modifier_siglos_mind_control = class({})

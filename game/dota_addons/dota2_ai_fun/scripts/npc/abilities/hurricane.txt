@@ -28,13 +28,13 @@
 			"bolt_count"
 			{
 				"value"	 "3 6 9 12"
-				"special_bonus_hurricane_2"	 "+5"
+				"special_bonus_unique_hurricane_2"	 "+5"
 			}
 			"damage"	 "100"
 			"stun_duration"
 			{
 				"value"	 "0.5"
-				"special_bonus_hurricane_1"	 "+0.5"
+				"special_bonus_unique_hurricane_1"	 "+0.5"
 			}
 			"strike_interval"	 "0.5"
 			"radius"	 "600"
@@ -75,7 +75,7 @@
 			"throw_distance"
 			{
 				"value"	 "200 400 600 800"
-				"special_bonus_hurricane_4"	 "+500"
+				"special_bonus_unique_hurricane_4"	 "+500"
 			}
 			"throw_damage"	 "50 100 150 200"
 			"stun_duration"	 "2"
@@ -109,7 +109,7 @@
 			"pull_speed"
 			{
 				"value"	 "100"
-				"special_bonus_hurricane_3"	 "+300"
+				"special_bonus_unique_hurricane_3"	 "+300"
 			}
 			"duration"	 "5"
 		}
@@ -135,7 +135,7 @@
 			"radius"
 			{
 				"value"	 "1000"
-				"special_bonus_hurricane_5"	 "+500"
+				"special_bonus_unique_hurricane_5"	 "+500"
 			}
 			"cooldown_scepter"
 			{
@@ -165,7 +165,7 @@
 			"radius"
 			{
 				"value"	 "1000"
-				"special_bonus_hurricane_5"	 "+500"
+				"special_bonus_unique_hurricane_5"	 "+500"
 			}
 			"cooldown_scepter"
 			{
@@ -174,7 +174,7 @@
 			}
 		}
 	}
-	"special_bonus_hurricane_1"
+	"special_bonus_unique_hurricane_1"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -184,7 +184,7 @@
 			"value"	 "0.5"
 		}
 	}
-	"special_bonus_hurricane_2"
+	"special_bonus_unique_hurricane_2"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -194,7 +194,7 @@
 			"value"	 "5"
 		}
 	}
-	"special_bonus_hurricane_3"
+	"special_bonus_unique_hurricane_3"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -204,7 +204,7 @@
 			"value"	 "300"
 		}
 	}
-	"special_bonus_hurricane_4"
+	"special_bonus_unique_hurricane_4"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -214,7 +214,7 @@
 			"value"	 "500"
 		}
 	}
-	"special_bonus_hurricane_5"
+	"special_bonus_unique_hurricane_5"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"

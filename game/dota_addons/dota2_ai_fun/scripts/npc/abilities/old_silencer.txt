@@ -49,7 +49,7 @@
 			"heal_loss_percentage"
 			{
 				"value"	 "25"
-				"special_bonus_unique_old_silencer_0"	 "+-25"
+				"special_bonus_unique_old_silencer_0"	 "-25"
 			}
 			"jump_interval"	 "0.2"
 		}

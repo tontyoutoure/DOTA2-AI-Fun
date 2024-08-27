@@ -79,7 +79,7 @@
 		"HasScepterUpgrade"	 "1"
 		"AbilityCooldown"	 "80 70 60"
 		"AbilityManaCost"	 "100"
-		"AbilityCastRange"	 "%range"
+		"AbilityCastRange"	 "1000 1500 2000"
 		"AbilityCastRangeBuffer"	 "200"
 		"AbilityChannelTime"	 "%duration"
 		"CastFilterRejectCaster"	 "1"

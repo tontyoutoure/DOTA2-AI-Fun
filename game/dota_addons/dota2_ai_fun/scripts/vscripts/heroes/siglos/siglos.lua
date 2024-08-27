@@ -67,9 +67,6 @@ function siglos_mind_control:OnSpellStart()
 		hCaster:Interrupt() return end
 	if not hCaster:HasAbility(self:GetName()) then return end
 	local iChannelTime = self:GetSpecialValueFor("duration")
-	if self:GetCaster():HasAbility("special_bonus_unique_siglos_3") then
-		iChannelTime = iChannelTime+self:GetCaster():FindAbilityByName("special_bonus_unique_siglos_3"):GetSpecialValueFor("value")
-	end
 	if hCaster:GetTeam() == self.hTarget:GetTeam() then
 		hCaster:Interrupt()
 		self:RefundManaCost()
@@ -184,17 +181,7 @@ end
 function siglos_mind_control:GetChannelAnimation() return ACT_DOTA_GENERIC_CHANNEL_1 end
 function siglos_mind_control:GetChannelTime()
 	local hCaster = self:GetCaster()
-	if not self.bFoundSpecial then
-		self.hSpecial = Entities:First()	
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_unique_siglos_3" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
-			self.hSpecial = Entities:Next(self.hSpecial)
-		end	
-		self.bFoundSpecial = true		
-	end
 	local iChannelTime = self:GetSpecialValueFor("duration")
-	if self.hSpecial then
-		iChannelTime = iChannelTime+self.hSpecial:GetSpecialValueFor("value")
-	end
 	if IsClient() then return iChannelTime end
 	if not hCaster:HasAbility(self:GetName()) then return iChannelTime end
 	return iChannelTime*CalculateStatusResist(self:GetCursorTarget())

@@ -2,11 +2,7 @@ modifier_avatar_of_vengeance_phase=class({})
 function modifier_avatar_of_vengeance_phase:OnCreated()
 	if IsClient() then return end
 	local hCaster = self:GetCaster()
-	if hCaster:HasAbility("special_bonus_unique_avatar_of_vengeance_3") then
-		self:SetStackCount(-self:GetAbility():GetSpecialValueFor("move_speed_bonus_percentage")-hCaster:FindAbilityByName("special_bonus_unique_avatar_of_vengeance_3"):GetSpecialValueFor("value"))
-	else
-		self:SetStackCount(-self:GetAbility():GetSpecialValueFor("move_speed_bonus_percentage"))
-	end
+	self:SetStackCount(-self:GetAbility():GetSpecialValueFor("move_speed_bonus_percentage"))
 end
 function modifier_avatar_of_vengeance_phase:CheckState()
 	return {[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true}
@@ -36,7 +32,6 @@ function modifier_avatar_of_vengeance_dispersion:GetAbsoluteNoDamagePhysical(key
 	if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL or keys.target:PassivesDisabled() or keys.target:IsIllusion() then return 0 end
 	local hAbility = self:GetAbility()
 	local iProcChance = hAbility:GetSpecialValueFor("proc_chance")
-	if keys.target:HasAbility("special_bonus_unique_avatar_of_vengeance_5") then iProcChance = iProcChance+keys.target:FindAbilityByName("special_bonus_unique_avatar_of_vengeance_5"):GetSpecialValueFor("value") end
 	if RandomFloat(0,100)<iProcChance then
 		if bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == 0 then
 			for i, v in ipairs(FindUnitsInRadius(keys.target:GetTeamNumber(), keys.target:GetOrigin(), nil, hAbility:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)) do
@@ -55,7 +50,6 @@ function modifier_avatar_of_vengeance_dispersion:GetAbsoluteNoDamageMagical(keys
 	if keys.damage_type ~= DAMAGE_TYPE_MAGICAL or keys.target:PassivesDisabled() or keys.target:IsIllusion() then return 0 end
 	local hAbility = self:GetAbility()
 	local iProcChance = hAbility:GetSpecialValueFor("proc_chance")
-	if keys.target:HasAbility("special_bonus_unique_avatar_of_vengeance_5") then iProcChance = iProcChance+keys.target:FindAbilityByName("special_bonus_unique_avatar_of_vengeance_5"):GetSpecialValueFor("value") end
 	if RandomFloat(0,100)<iProcChance then
 		if bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == 0 then
 			for i, v in ipairs(FindUnitsInRadius(keys.target:GetTeamNumber(), keys.target:GetOrigin(), nil, hAbility:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)) do
@@ -74,7 +68,6 @@ function modifier_avatar_of_vengeance_dispersion:GetAbsoluteNoDamagePure(keys)
 	if keys.damage_type ~= DAMAGE_TYPE_PURE or keys.target:PassivesDisabled() or keys.target:IsIllusion() then return 0 end
 	local hAbility = self:GetAbility()
 	local iProcChance = hAbility:GetSpecialValueFor("proc_chance")
-	if keys.target:HasAbility("special_bonus_unique_avatar_of_vengeance_5") then iProcChance = iProcChance+keys.target:FindAbilityByName("special_bonus_unique_avatar_of_vengeance_5"):GetSpecialValueFor("value") end
 	if RandomFloat(0,100)<iProcChance then
 		if bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == 0 then
 			for i, v in ipairs(FindUnitsInRadius(keys.target:GetTeamNumber(), keys.target:GetOrigin(), nil, hAbility:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)) do
@@ -230,10 +223,6 @@ function modifier_avatar_of_vengeance_haunt:OnCreated()
 	self.fStunLong = hAbility:GetSpecialValueFor("haunt_duration_cannot_see")
 	self.fIntervalMin = hAbility:GetSpecialValueFor("haunt_interval_min")
 	self.fIntervalMax = hAbility:GetSpecialValueFor("haunt_interval_max")
-	if hCaster:HasAbility("special_bonus_unique_avatar_of_vengeance_1") then
-		self.fStunShort=self.fStunShort+hCaster:FindAbilityByName("special_bonus_unique_avatar_of_vengeance_1"):GetSpecialValueFor("value")
-		self.fStunLong=self.fStunLong+hCaster:FindAbilityByName("special_bonus_unique_avatar_of_vengeance_1"):GetSpecialValueFor("value")
-	end
 	self.fOutgoing = hAbility:GetSpecialValueFor("illusion_damage_outgoing")
 	self.fIncoming = hAbility:GetSpecialValueFor("illusion_damage_incoming")	
 	self:SetStackCount(hAbility:GetSpecialValueFor("haunt_count"))

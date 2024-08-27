@@ -59,7 +59,7 @@
 			"chance"
 			{
 				"value"	 "25"
-				"special_bonus_intimidator_1"	 "+10"
+				"special_bonus_unique_intimidator_1"	 "+10"
 			}
 			"chance_dislocate"	 "21 14 7 0"
 			"buff_duration"	 "4"
@@ -92,7 +92,7 @@
 			"dps"	 "20"
 		}
 	}
-	"special_bonus_intimidator_1"
+	"special_bonus_unique_intimidator_1"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -102,7 +102,7 @@
 			"value"	 "10"
 		}
 	}
-	"special_bonus_intimidator_2"
+	"special_bonus_unique_intimidator_2"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"

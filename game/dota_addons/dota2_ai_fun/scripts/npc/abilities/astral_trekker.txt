@@ -186,7 +186,7 @@
 			}
 		}
 	}
-	"special_bonus_astral_trekker_1"
+	"special_bonus_unique_astral_trekker_1"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -196,7 +196,7 @@
 			"value"	 "400"
 		}
 	}
-	"special_bonus_astral_trekker_2"
+	"special_bonus_unique_astral_trekker_2"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"

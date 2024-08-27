@@ -1,20 +1,3 @@
-
-local function FindTalent(hObject, sTalentName, i)
-	local sSpecialHandleName = 'hSpecial'
-	if i then
-		sSpecialHandleName = sSpecialHandleName..tostring(i)
-	end
-	if not hObject[sSpecialHandleName] then
-		hObject[sSpecialHandleName] = Entities:First()
-		
-		while hObject[sSpecialHandleName] and (hObject[sSpecialHandleName]:GetName() ~= sTalentName or hObject[sSpecialHandleName]:GetCaster() ~= hObject:GetCaster()) do
-			hObject[sSpecialHandleName] = Entities:Next(hObject[sSpecialHandleName])
-		end		
-	end
-end
-
-
-
 modifier_kahmeka_fly = class({})
 function modifier_kahmeka_fly:IsPurgable() return false end
 function modifier_kahmeka_fly:RemoveOnDeath() return false end
@@ -140,10 +123,8 @@ function modifier_kahmeka_ignite:OnCreated()
 	local hParent = self:GetParent()
 	local hCaster = self:GetCaster()
 	local hAbility = self:GetAbility()
-	FindTalent(self, 'special_bonus_unique_kahmeka_5', 1)
-	FindTalent(self, 'special_bonus_unique_kahmeka_1', 2)
-	self.iDamageTooltip = hAbility:GetSpecialValueFor('damage')+self.hSpecial1:GetSpecialValueFor('value')
-	self.iMoveSpeedSlow = -hAbility:GetSpecialValueFor('slow')-self.hSpecial2:GetSpecialValueFor('value')
+	self.iDamageTooltip = hAbility:GetSpecialValueFor('damage')
+	self.iMoveSpeedSlow = -hAbility:GetSpecialValueFor('slow')
 	if IsClient() then return end
 	self:StartIntervalThink(0.2*(1-hParent:GetStatusResistance()))
 

@@ -71,12 +71,12 @@
 			"duration"
 			{
 				"value"	 "4"
-				"special_bonus_spongebob_1"	 "+1"
+				"special_bonus_unique_spongebob_1"	 "+1"
 			}
 			"hero_duration"
 			{
 				"value"	 "2"
-				"special_bonus_spongebob_1"	 "+1"
+				"special_bonus_unique_spongebob_1"	 "+1"
 			}
 			"chance"	 "8 16 24 32"
 			"chance_hero"	 "4 8 12 16"
@@ -119,7 +119,7 @@
 			}
 		}
 	}
-	"special_bonus_spongebob_1"
+	"special_bonus_unique_spongebob_1"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -129,7 +129,7 @@
 			"value"	 "1"
 		}
 	}
-	"special_bonus_spongebob_2"
+	"special_bonus_unique_spongebob_2"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -139,7 +139,7 @@
 			"value"	 "1"
 		}
 	}
-	"special_bonus_spongebob_3"
+	"special_bonus_unique_spongebob_3"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -149,7 +149,7 @@
 			"value"	 "1"
 		}
 	}
-	"special_bonus_spongebob_4"
+	"special_bonus_unique_spongebob_4"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"

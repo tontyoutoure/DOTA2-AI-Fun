@@ -10,18 +10,8 @@ function ClericMeteorShower(keys)
 	local fMeteorRadius = keys.ability:GetSpecialValueFor("meteor_radius")
 	AddFOWViewer(keys.caster:GetTeamNumber(), vTarget, 500, 3, true)
 	local fCastRadius = keys.ability:GetSpecialValueFor("cast_radius")
-	local iDamage
-	if keys.caster:FindAbilityByName("special_bonus_cleric_4") then
-		iDamage = keys.ability:GetSpecialValueFor("damage")+keys.caster:FindAbilityByName("special_bonus_cleric_4"):GetSpecialValueFor("value")
-	else
-		iDamage = keys.ability:GetSpecialValueFor("damage")
-	end
-	local fStunDuration 
-	if keys.caster:FindAbilityByName("special_bonus_cleric_1") then
-		fStunDuration = keys.ability:GetSpecialValueFor("stun_duration")+keys.caster:FindAbilityByName("special_bonus_cleric_1"):GetSpecialValueFor("value")
-	else
-		fStunDuration = keys.ability:GetSpecialValueFor("stun_duration")
-	end
+	local iDamage = keys.ability:GetSpecialValueFor("damage")
+	local fStunDuration = keys.ability:GetSpecialValueFor("stun_duration")
 	for i = 1, iMeteorCount do
 		Timers:CreateTimer(0.2*(i-1), function () 
 			local vRelative = Vector(RandomFloat(-fCastRadius, fCastRadius), RandomFloat(-fCastRadius, fCastRadius), 0)
@@ -64,7 +54,7 @@ cleric_berserk = class({})
 function cleric_berserk:GetBehavior()
 	if not self.bSpecial2 then
 		self.hSpecial2 = Entities:First()		
-		while self.hSpecial2 and (self.hSpecial2:GetName() ~= "special_bonus_cleric_5" or self.hSpecial2:GetCaster() ~= self:GetCaster()) do
+		while self.hSpecial2 and (self.hSpecial2:GetName() ~= "special_bonus_unique_cleric_5" or self.hSpecial2:GetCaster() ~= self:GetCaster()) do
 			self.hSpecial2 = Entities:Next(self.hSpecial2)
 		end	
 		self.bSpecial2 = true	
@@ -105,7 +95,7 @@ end
 function cleric_berserk:GetCooldown(iLevel)
 	if not self.bSpecial then
 		self.hSpecial = Entities:First()		
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_cleric_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_unique_cleric_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end
 		self.bSpecial = true
@@ -120,7 +110,7 @@ end
 function ClericPrayer(keys)
 	ProcsArroundingMagicStick(keys.caster)
 	local hSpecial = Entities:First()	
-	while hSpecial and hSpecial:GetName() ~= "special_bonus_cleric_3" do
+	while hSpecial and hSpecial:GetName() ~= "special_bonus_unique_cleric_3" do
 		hSpecial = Entities:Next(hSpecial)
 	end
 	keys.caster:EmitSound("Hero_Omniknight.GuardianAngel.Cast")

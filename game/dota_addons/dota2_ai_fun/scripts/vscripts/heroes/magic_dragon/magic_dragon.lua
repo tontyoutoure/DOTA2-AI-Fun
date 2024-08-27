@@ -179,7 +179,7 @@ function BlueDragonRoarFreeze(keys)
 	
 	
 	MagicDragonTransform[RandomInt(1,6)](keys.caster)
-	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
+	if keys.caster:FindAbilityByName("special_bonus_unique_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
 		for j,i in ipairs(tItemInventorySlotTable) do
 			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() keys.caster:GetItemInSlot(i):RefreshCharges() end
 		end		
@@ -216,7 +216,7 @@ function GhostDragonRoarLifeDrain(keys)
 	
 	
 	MagicDragonTransform[RandomInt(1,6)](keys.caster)
-	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
+	if keys.caster:FindAbilityByName("special_bonus_unique_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
 		for j,i in ipairs(tItemInventorySlotTable) do
 			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() keys.caster:GetItemInSlot(i):RefreshCharges() end
 		end		
@@ -246,7 +246,7 @@ function RedDragonRoarDamage(keys)
 	
 	
 	MagicDragonTransform[RandomInt(1,6)](keys.caster)
-	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
+	if keys.caster:FindAbilityByName("special_bonus_unique_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
 		for j,i in ipairs(tItemInventorySlotTable) do
 			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() keys.caster:GetItemInSlot(i):RefreshCharges() end
 		end		
@@ -266,7 +266,7 @@ function GreenDragonRoarAccelerate(keys)
 	
 	
 	MagicDragonTransform[RandomInt(1,6)](keys.caster)
-	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
+	if keys.caster:FindAbilityByName("special_bonus_unique_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
 		for j,i in ipairs(tItemInventorySlotTable) do
 			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() keys.caster:GetItemInSlot(i):RefreshCharges() end
 		end		
@@ -308,7 +308,7 @@ function BlackDragonRoarManaBurn(keys)
 	
 	
 	MagicDragonTransform[RandomInt(1,6)](keys.caster)
-	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
+	if keys.caster:FindAbilityByName("special_bonus_unique_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
 		for j,i in ipairs(tItemInventorySlotTable) do
 			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() keys.caster:GetItemInSlot(i):RefreshCharges() end
 		end		
@@ -341,7 +341,7 @@ function GoldDragonRoarLightningChain(keys)
 	
 	
 	MagicDragonTransform[RandomInt(1,6)](keys.caster)
-	if keys.caster:FindAbilityByName("special_bonus_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
+	if keys.caster:FindAbilityByName("special_bonus_unique_magic_dragon_1"):GetSpecialValueFor("value") > 0 then
 		for j,i in ipairs(tItemInventorySlotTable) do
 			if keys.caster:GetItemInSlot(i) then keys.caster:GetItemInSlot(i):EndCooldown() keys.caster:GetItemInSlot(i):RefreshCharges() end
 		end		

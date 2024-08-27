@@ -604,7 +604,7 @@
 			"delay"	 "0.25"
 		}
 	}
-	"special_bonus_magic_dragon_1"
+	"special_bonus_unique_magic_dragon_1"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"

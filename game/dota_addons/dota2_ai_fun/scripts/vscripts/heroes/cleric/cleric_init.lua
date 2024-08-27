@@ -9,12 +9,12 @@ local tNewAbilities = {
 	"cleric_prayer",
 	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
-	"special_bonus_cleric_4",
-	"special_bonus_cleric_1",
-	"special_bonus_cleric_2",
-	"special_bonus_cleric_5",
-	"special_bonus_cleric_6",
-	"special_bonus_cleric_3"
+	"special_bonus_unique_cleric_4",
+	"special_bonus_unique_cleric_1",
+	"special_bonus_unique_cleric_2",
+	"special_bonus_unique_cleric_5",
+	"special_bonus_unique_cleric_6",
+	"special_bonus_unique_cleric_3"
 }
 
 local tHeroBaseStats = {

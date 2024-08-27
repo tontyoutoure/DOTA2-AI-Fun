@@ -38,14 +38,8 @@ function modifier_hurricane_tempest:OnCreated()
 	local hAbility = self:GetAbility()
 	self.fStunDuration = hAbility:GetSpecialValueFor("stun_duration")
 	self.fDamage = hAbility:GetSpecialValueFor("damage")
-	if self:GetCaster():HasAbility("special_bonus_hurricane_1") then
-		self.fStunDuration = self.fStunDuration+self:GetCaster():FindAbilityByName("special_bonus_hurricane_1"):GetSpecialValueFor("value")
-	end
 	self.hLastTarget = TempestStrike(hAbility, nil, self:GetCaster(), self.fStunDuration, self.fDamage)
 	self.iStrikeLeft = hAbility:GetSpecialValueFor("bolt_count")-1	
-	if self:GetCaster():HasAbility("special_bonus_hurricane_2") then
-		self.iStrikeLeft = self.iStrikeLeft + self:GetCaster():FindAbilityByName("special_bonus_hurricane_2"):GetSpecialValueFor("value")
-	end
 	self:StartIntervalThink(hAbility:GetSpecialValueFor("strike_interval"))
 end
 
@@ -68,9 +62,6 @@ function modifier_hurricane_cyclone:GetOverrideAnimation() return ACT_DOTA_FLAIL
 function modifier_hurricane_cyclone:OnCreated()
 	if IsClient() then return end
 	local fThrowDistance = self:GetAbility():GetSpecialValueFor("throw_distance")
-	if self:GetCaster():HasAbility("special_bonus_hurricane_4") then
-		fThrowDistance = fThrowDistance + self:GetCaster():FindAbilityByName("special_bonus_hurricane_4"):GetSpecialValueFor("value")
-	end
 	self.vSpeedHorizontal = fThrowDistance*Vector2D(RandomVector(1)):Normalized()
 	local hParent = self:GetParent()
 	local hAbility = self:GetAbility()
@@ -140,9 +131,6 @@ function modifier_hurricane_whirlewind:OnCreated()
 	self.iRadius2 = hAbility:GetSpecialValueFor("radius_2")
 	self.iRadius3 = hAbility:GetSpecialValueFor("radius_3")
 	self.fSpeedHorizontal = hAbility:GetSpecialValueFor("pull_speed")
-	if self:GetCaster():HasAbility("special_bonus_hurricane_3") then
-		self.fSpeedHorizontal = self.fSpeedHorizontal+self:GetCaster():FindAbilityByName("special_bonus_hurricane_3"):GetSpecialValueFor("value")
-	end
 	
 	self.iParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf", PATTACH_ABSORIGIN_FOLLOW, hParent)
 	hParent:EmitSound("n_creep_Wildkin.Tornado")

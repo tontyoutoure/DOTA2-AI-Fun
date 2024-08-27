@@ -31,9 +31,6 @@ function rider_drag:OnSpellStart()
 	local hCaster = self:GetCaster()
 	hCaster:EmitSound("Hero_ShadowShaman.Shackles.Cast")
 	local iDuration = self:GetSpecialValueFor("duration")
-	if hCaster:HasAbility("special_bonus_unique_rider_1") then
-		iDuration = iDuration+hCaster:FindAbilityByName("special_bonus_unique_rider_1"):GetSpecialValueFor("value")
-	end
 	hTarget:AddNewModifier(hCaster, self, "modifier_rider_drag", {Duration = iDuration*CalculateStatusResist(hTarget)})
 end
 

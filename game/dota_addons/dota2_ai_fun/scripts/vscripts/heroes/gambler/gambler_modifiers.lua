@@ -15,9 +15,6 @@ function modifier_gambler_ante_up:OnHeroKilled(keys)
 	local hCaster = self:GetCaster()
 	local hParent = self:GetParent()
 	local iGold = self:GetAbility():GetSpecialValueFor("cash_in_kill")
-	if hCaster:HasAbility("special_bonus_unique_gambler_1") then
-		iGold = iGold+hCaster:FindAbilityByName("special_bonus_unique_gambler_1"):GetSpecialValueFor("value")
-	end
 	if keys.attacker == hParent then
 		hCaster:ModifyGold(iGold, false, DOTA_ModifyGold_Unspecified)
 		keys.target:EmitSound("General.CoinsBig")
@@ -75,9 +72,6 @@ function modifier_gambler_lucky_stars:GetModifierProcAttack_BonusDamage_Physical
 	if keys.target:GetTeam() == self:GetParent():GetTeam() then return 0 end
 	if keys.attacker:IsIllusion() or keys.attacker:PassivesDisabled() then return end
 	local iChance = self:GetAbility():GetSpecialValueFor("chance")
-	if keys.attacker:HasAbility("special_bonus_unique_gambler_2") then
-		iChance = iChance+keys.attacker:FindAbilityByName("special_bonus_unique_gambler_2"):GetSpecialValueFor("value")
-	end
 	local iDamage = self:GetAbility():GetSpecialValueFor("proc")
 	if RandomFloat(0, 100) < iChance then
 		if keys.target:IsHero() or keys.target:IsAncient() or keys.target:IsBuilding() then

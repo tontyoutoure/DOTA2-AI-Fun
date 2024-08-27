@@ -34,12 +34,12 @@
 			"damage"
 			{
 				"value"	 "50"
-				"special_bonus_cleric_4"	 "+100"
+				"special_bonus_unique_cleric_4"	 "+100"
 			}
 			"stun_duration"
 			{
 				"value"	 "1"
-				"special_bonus_cleric_1"	 "+1"
+				"special_bonus_unique_cleric_1"	 "+1"
 			}
 			"meteor_count"	 "2 4 6 8"
 			"cast_radius"	 "300"
@@ -188,7 +188,7 @@
 			"radius"	 "0 1500 99999"
 		}
 	}
-	"special_bonus_cleric_1"
+	"special_bonus_unique_cleric_1"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -198,7 +198,7 @@
 			"value"	 "1"
 		}
 	}
-	"special_bonus_cleric_2"
+	"special_bonus_unique_cleric_2"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -208,7 +208,7 @@
 			"value"	 "10"
 		}
 	}
-	"special_bonus_cleric_3"
+	"special_bonus_unique_cleric_3"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -218,7 +218,7 @@
 			"value"	 "2"
 		}
 	}
-	"special_bonus_cleric_4"
+	"special_bonus_unique_cleric_4"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -228,7 +228,7 @@
 			"value"	 "100"
 		}
 	}
-	"special_bonus_cleric_5"
+	"special_bonus_unique_cleric_5"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -238,7 +238,7 @@
 			"value"	 "300"
 		}
 	}
-	"special_bonus_cleric_6"
+	"special_bonus_unique_cleric_6"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"

@@ -14,9 +14,6 @@ function conjurer_water_elemental:OnSpellStart()
 	local hCaster = self:GetCaster()
 	local vSummonerPostion = hCaster:GetOrigin()
 	local vForward = hCaster:GetForwardVector()
-	if self:GetCaster():HasAbility("special_bonus_unique_conjurer_4") then
-		iCount = iCount+hCaster:FindAbilityByName("special_bonus_unique_conjurer_4"):GetSpecialValueFor("value")
-	end
 	hCaster:EmitSound("Hero_Morphling.Replicate")
 	for i = 1, iCount do
 		local vSummonSpot = vSummonerPostion+vForward:Normalized()*150
@@ -53,9 +50,6 @@ function conjurer_phoenix:OnSpellStart()
 	local hCaster = self:GetCaster()
 	local vSummonerPostion = hCaster:GetOrigin()
 	local vForward = hCaster:GetForwardVector()
-	if self:GetCaster():HasAbility("special_bonus_unique_conjurer_4") then
-		iCount = iCount+hCaster:FindAbilityByName("special_bonus_unique_conjurer_4"):GetSpecialValueFor("value")
-	end
 	local iHealth
 	local iDamage
 	local iArmor
@@ -171,9 +165,6 @@ function conjurer_summon_golem:OnSpellStart()
 	local hCaster = self:GetCaster()
 	local vSummonerPostion = hCaster:GetOrigin()
 	local vForward = hCaster:GetForwardVector()
-	if self:GetCaster():HasAbility("special_bonus_unique_conjurer_4") then
-		iCount = iCount+hCaster:FindAbilityByName("special_bonus_unique_conjurer_4"):GetSpecialValueFor("value")
-	end
 	hCaster:EmitSound("n_mud_golem.Boulder.Cast")
 	hCaster:EmitSound("n_mud_golem.Boulder.Target")
 	for i = 1, iCount do
@@ -203,10 +194,6 @@ function conjurer_conjure_image:OnSpellStart()
 	local iOutgoingDamage = self:GetLevelSpecialValueFor( "illusion_outgoing_damage", self:GetLevel() - 1 )
 	local iIncomingDamage = self:GetLevelSpecialValueFor( "illusion_incoming_damage", self:GetLevel() - 1 )
 	local iDuration = self:GetSpecialValueFor("illusion_duration")
-	if hCaster:HasAbility("special_bonus_unique_conjurer_2") then iOutgoingDamage = iOutgoingDamage+hCaster:FindAbilityByName("special_bonus_unique_conjurer_2"):GetSpecialValueFor("value") end
-	if self:GetCaster():HasAbility("special_bonus_unique_conjurer_4") then
-		iCount = iCount+hCaster:FindAbilityByName("special_bonus_unique_conjurer_4"):GetSpecialValueFor("value")
-	end 
 	if hTarget:IsHero() then
 		local tIllusions = CreateIllusions(hCaster, hTarget, {outgoing_damage = iOutgoingDamage-100, incoming_damage=iIncomingDamage-100, duration = iDuration, bounty_base = 0, bounty_growth=2}, iCount, 1, true, true);
 	else

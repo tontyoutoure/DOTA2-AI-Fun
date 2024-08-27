@@ -243,7 +243,7 @@ function el_dorado_artificial_frog:CastFilterResult()
 		return UF_FAIL_CUSTOM
 	end
 	
-	if hCaster:FindAbilityByName("special_bonus_el_dorado_1"):GetLevel() == 0 then
+	if hCaster:FindAbilityByName("special_bonus_unique_el_dorado_1"):GetLevel() == 0 then
 		local bCanNotSummon = true
 		if not hCaster.tSummons then return UF_SUCCESS end
 		for i = 1, self:GetSpecialValueFor("max_frogs") do

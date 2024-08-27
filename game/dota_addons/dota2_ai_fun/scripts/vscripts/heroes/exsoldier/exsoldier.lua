@@ -8,9 +8,6 @@ ExsoldierMeteorRain = function(keys)
 	local iDamage = keys.ability:GetSpecialValueFor("damage")
 	local fMeteorRadius = keys.ability:GetSpecialValueFor("radius")
 	local fStunDuration = keys.ability:GetSpecialValueFor("stun_duration")
-	if keys.caster:HasAbility("special_bonus_unique_exsoldier_1") then
-		fStunDuration = fStunDuration+keys.caster:FindAbilityByName("special_bonus_unique_exsoldier_1"):GetSpecialValueFor("value")
-	end
 	ParticleManager:SetParticleControl(iParticle, 0, vTargetPoint+Vector(0,0,2000))
 	ParticleManager:SetParticleControl(iParticle, 1, vTargetPoint+Vector(0,0,-2250))
 	ParticleManager:SetParticleControl(iParticle, 2, Vector(0.7,0,0))

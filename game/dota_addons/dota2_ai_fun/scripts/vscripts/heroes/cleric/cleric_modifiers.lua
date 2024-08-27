@@ -165,7 +165,7 @@ function modifier_cleric_prayer:IsDebuff() return true end
 function modifier_cleric_prayer:IsPurgable()	
 	if not self.hSpecial then
 		self.hSpecial = Entities:First()		
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_cleric_6" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_unique_cleric_6" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end		
 	end

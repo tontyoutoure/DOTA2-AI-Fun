@@ -1,82 +1,41 @@
 "DOTAAbilities"
 {
-// Invoker's EMP
-	// Author: Rook
-	// Revised: tontyoutoure
-	// Date: February 24, 2015
-	// Invoke: Wex Quas Wex
-	// Releases an EMP bomb that detonates depleting the mana of all enemies nearby. Up to 640 mana per unit based on Wex and Quas levels.
 	"invoker_retro_emp"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityTextureName" 			"invoker_retro_emp"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityCastAnimation" 			"ACT_DOTA_CAST_EMP"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
-		"AbilityProcsMagicStick" 		"1"
-		
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30"
-		"AbilityManaCost"				"200"
-		
+		"BaseClass"	 "ability_datadriven"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"	 "invoker_retro_emp"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_EMP"
+		"FightRecapLevel"	 "1"
+		"MaxLevel"	 "1"
+		"AbilityProcsMagicStick"	 "1"
+		"AbilityCooldown"	 "30"
+		"AbilityManaCost"	 "200"
 		"precache"
 		{
-			"particle"			"particles/units/heroes/hero_invoker/invoker_emp.vpcf"
-			"particle"			"particles/units/heroes/hero_invoker/invoker_emp_explode.vpcf"
+			"particle"	 "particles/units/heroes/hero_invoker/invoker_emp_explode.vpcf"
 		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"distance_to_move"				"600"  //Note that the particle spawns 100 units in front of Invoker.
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"projectile_speed_per_second"	"200"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"delay_before_exploding"		"2.0"  //This delay begins once the EMP has reached its final position.
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"600"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"mana_burned_level_quas_wex"					"50"  //Increases with Quas and Wex.
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"pip_current"			"1"
-			}
-		}
-		
 		"OnSpellStart"
 		{
 			"RunScript"
 			{
-				"ScriptFile"					"heroes/hero_invoker/invoker_retro_emp.lua"
-				"Function"						"invoker_retro_emp_on_spell_start"
-				"DistanceToMove"				"%distance_to_move"
-				"ProjectileSpeedPerSecond"		"%projectile_speed_per_second"
-				"DelayBeforeExploding"			"%delay_before_exploding"
-				"Radius"						"%radius"
+				"ScriptFile"	 "heroes/hero_invoker/invoker_retro_emp.lua"
+				"Function"	 "invoker_retro_emp_on_spell_start"
+				"DistanceToMove"	 "%distance_to_move"
+				"ProjectileSpeedPerSecond"	 "%projectile_speed_per_second"
+				"DelayBeforeExploding"	 "%delay_before_exploding"
+				"Radius"	 "%radius"
 			}
+		}
+		"AbilityValues"
+		{
+			"distance_to_move"	 "600"
+			"projectile_speed_per_second"	 "200"
+			"delay_before_exploding"	 "2.0"
+			"radius"	 "600"
+			"mana_burned_level_quas_wex"	 "50"
+			"pip_current"	 "1"
 		}
 	}
 }

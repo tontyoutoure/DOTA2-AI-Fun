@@ -72,7 +72,7 @@ class ability_special_to_value_converter():
 
     def special2value(self, special_dict, value_dict):
         if self.ability_name.find("special_bonus") >= 0 and not self.ability_name.find("special_bonus_unique") >= 0:
-            print(f"\t\t\t\t\t\t\t{self.ability_name}\t\t\t{self.ability_name.replace('special_bonus_', 'special_bonus_unique_')}")
+            print(f"\t\t\t\t\t\t\t{self.ability_name[:-2]}\t\t\t{self.ability_name[:-2].replace('special_bonus_', 'special_bonus_unique_')}")
         if len(special_dict) == 2:
             for key, value in special_dict.items():
                 if key == "var_type":

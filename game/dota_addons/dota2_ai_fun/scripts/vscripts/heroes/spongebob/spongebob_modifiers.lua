@@ -62,7 +62,7 @@ function modifier_spongebob_spongify:OnAttackLanded(keys)
 	if keys.target == hParent and not keys.target:IsIllusion() then
 		bGenerateIllusion = (RandomInt(1, 100) <= self:GetAbility():GetSpecialValueFor("chance"))
 	end
-	if keys.attacker == hParent and not keys.attacker:IsIllusion() and keys.attacker:HasAbility("special_bonus_spongebob_3") and keys.attacker:FindAbilityByName("special_bonus_spongebob_2"):GetLevel() > 0 then
+	if keys.attacker == hParent and not keys.attacker:IsIllusion() and keys.attacker:HasAbility("special_bonus_unique_spongebob_3") and keys.attacker:FindAbilityByName("special_bonus_unique_spongebob_2"):GetLevel() > 0 then
 		bGenerateIllusion = (RandomInt(1, 100) <= self:GetAbility():GetSpecialValueFor("chance"))
 	end
 	if bGenerateIllusion then

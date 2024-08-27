@@ -1,77 +1,39 @@
 "DOTAAbilities"
 {
-// Invoker's Shock
-	// Author: Rook
-	// Revised: tontyoutoure
-	// Date: March 9, 2015
-	// Invoke: Wex Wex Wex
-	// Releases a ring of shocking energy that summons a bolt of energy on each target in its path, removing all buffs. 300 range and 160 damage. Radius and Damage based on Wex
 	"invoker_retro_shock"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"								"heroes/hero_invoker/invoker_retro_shock.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityTextureName" 			"invoker_retro_shock"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityCastAnimation" 			"ACT_DOTA_CAST_EMP"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
-		"AbilityProcsMagicStick" 		"1"
-		
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20"
-		"AbilityManaCost"				"200"
-		
+		"BaseClass"	 "ability_lua"
+		"ScriptFile"	 "heroes/hero_invoker/invoker_retro_shock.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"	 "invoker_retro_shock"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"	 "DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_EMP"
+		"FightRecapLevel"	 "1"
+		"MaxLevel"	 "1"
+		"AbilityProcsMagicStick"	 "1"
+		"AbilityCooldown"	 "20"
+		"AbilityManaCost"	 "200"
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_shock_ground.vpcf"
-			"particle"					"particles/units/heroes/hero_invoker/invoker_retro_shock_lightning_bolt.vpcf"
-			"soundfile"					"soundevents/custom_sounds.vsndevts"
+			"particle"	 "particles/units/heroes/hero_invoker/invoker_retro_shock_lightning_bolt.vpcf"
+			"soundfile"	 "soundevents/custom_sounds.vsndevts"
 		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"damage_level_wex"								"40"  //Increases with Wex.
-			}
-			"02"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"radius_level_wex"								"50"  //Increases with Wex.
-			}
-			"02"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"radius_base"								"100"  //Increases with Wex.
-			}
-			"03"
-			{
-				"var_type"								"FIELD_FLOAT"
-				"delay_before_damage"					".5"
-			}
-			"04"
-			{
-				"var_type"								"FIELD_FLOAT"
-				"pip_current"							"1"
-			}
-		}
-		
 		"OnSpellStart"
 		{
 			"RunScript"
 			{
-				"ScriptFile"								"heroes/hero_invoker/invoker_retro_shock.lua"
-				"Function"									"invoker_retro_shock_on_spell_start"
-				"DelayBeforeDamage"							"%delay_before_damage"
+				"ScriptFile"	 "heroes/hero_invoker/invoker_retro_shock.lua"
+				"Function"	 "invoker_retro_shock_on_spell_start"
+				"DelayBeforeDamage"	 "%delay_before_damage"
 			}
+		}
+		"AbilityValues"
+		{
+			"damage_level_wex"	 "40"
+			"radius_base"	 "100"
+			"delay_before_damage"	 ".5"
+			"pip_current"	 "1"
 		}
 	}
 }

@@ -11,7 +11,7 @@ void_demon_time_void = class({})
 function void_demon_time_void:GetCooldown(iLevel)
 	if not self.hSpecial then
 		self.hSpecial = Entities:First()
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_void_demon_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_unique_void_demon_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end	
 	end	

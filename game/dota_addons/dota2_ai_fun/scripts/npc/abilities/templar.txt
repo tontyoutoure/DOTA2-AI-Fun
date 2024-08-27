@@ -38,12 +38,12 @@
 			"life_drain"
 			{
 				"value"	 "50 100 150 200"
-				"special_bonus_templar_1"	 "+100"
+				"special_bonus_unique_templar_1"	 "+100"
 			}
 			"mana_drain"
 			{
 				"value"	 "50 100 150 200"
-				"special_bonus_templar_2"	 "+200"
+				"special_bonus_unique_templar_2"	 "+200"
 			}
 			"cooldown_scepter"
 			{
@@ -89,12 +89,12 @@
 			"life_drain"
 			{
 				"value"	 "50 100 150 200"
-				"special_bonus_templar_1"	 "+100"
+				"special_bonus_unique_templar_1"	 "+100"
 			}
 			"mana_drain"
 			{
 				"value"	 "50 100 150 200"
-				"special_bonus_templar_2"	 "+200"
+				"special_bonus_unique_templar_2"	 "+200"
 			}
 			"cooldown_scepter"
 			{
@@ -179,7 +179,7 @@
 			"damage_multiplier"	 "0.3 0.6 1"
 		}
 	}
-	"special_bonus_templar_1"
+	"special_bonus_unique_templar_1"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -189,7 +189,7 @@
 			"value"	 "100"
 		}
 	}
-	"special_bonus_templar_2"
+	"special_bonus_unique_templar_2"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -199,7 +199,7 @@
 			"value"	 "200"
 		}
 	}
-	"special_bonus_templar_3"
+	"special_bonus_unique_templar_3"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -209,7 +209,7 @@
 			"value"	 "325"
 		}
 	}
-	"special_bonus_templar_4"
+	"special_bonus_unique_templar_4"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"

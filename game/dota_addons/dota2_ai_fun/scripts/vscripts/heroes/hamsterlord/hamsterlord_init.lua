@@ -1,4 +1,4 @@
-LinkLuaModifier("modifier_special_bonus_hamsterlord_5", "heroes/hamsterlord/hamsterlord_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_special_bonus_unique_hamsterlord_5", "heroes/hamsterlord/hamsterlord_modifiers.lua", LUA_MODIFIER_MOTION_NONE)
 
 local tNewAbilities = {
 	"hamsterlord_pizza_house_delivery",
@@ -9,12 +9,12 @@ local tNewAbilities = {
 	"hamsterlord_call_of_hamster",
 	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
-	"special_bonus_hamsterlord_3",
-	"special_bonus_hamsterlord_1",
-	"special_bonus_hamsterlord_2",
-	"special_bonus_hamsterlord_0",
-	"special_bonus_hamsterlord_4",
-	"special_bonus_hamsterlord_5"
+	"special_bonus_unique_hamsterlord_3",
+	"special_bonus_unique_hamsterlord_1",
+	"special_bonus_unique_hamsterlord_2",
+	"special_bonus_unique_hamsterlord_0",
+	"special_bonus_unique_hamsterlord_4",
+	"special_bonus_unique_hamsterlord_5"
 }
 
 local tHeroBaseStats = {
@@ -37,7 +37,7 @@ CustomNetTables:SetTableValue("fun_hero_stats", "hamsterlord_abilities", tNewAbi
 CustomNetTables:SetTableValue("fun_hero_stats", "hamsterlord", tHeroBaseStats)
 GameMode:FunHeroScepterUpgradeInfo("hamsterlord", tNewAbilities)
 local function HamsterlordTalentManager(keys)
-	if keys.abilityname == "special_bonus_hamsterlord_2" then	
+	if keys.abilityname == "special_bonus_unique_hamsterlord_2" then	
 		local hPlayer = PlayerResource:GetPlayer(keys.PlayerID)
 		local hBoy = Entities:First()	
 		while hBoy do

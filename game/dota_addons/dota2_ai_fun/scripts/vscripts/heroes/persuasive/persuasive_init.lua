@@ -9,10 +9,10 @@ local tNewAbilities = {
 	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
 	"special_bonus_attack_speed_30",
-	"special_bonus_persuasive_1",
-	"special_bonus_persuasive_2",
+	"special_bonus_unique_persuasive_1",
+	"special_bonus_unique_persuasive_2",
 	"special_bonus_hp_600",
-	"special_bonus_persuasive_3",
+	"special_bonus_unique_persuasive_3",
 	"special_bonus_cast_range_400"
 }
 local tShowedAbilities = {
@@ -25,10 +25,10 @@ local tShowedAbilities = {
 	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
 	"special_bonus_attack_speed_30",
-	"special_bonus_persuasive_1",
-	"special_bonus_persuasive_2",
+	"special_bonus_unique_persuasive_1",
+	"special_bonus_unique_persuasive_2",
 	"special_bonus_hp_600",
-	"special_bonus_persuasive_3",
+	"special_bonus_unique_persuasive_3",
 	"special_bonus_cast_range_400"
 }
 

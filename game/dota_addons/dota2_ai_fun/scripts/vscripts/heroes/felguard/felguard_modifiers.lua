@@ -103,7 +103,7 @@ function modifier_felguard_felguard_wrath:OnDestroy()
 		ParticleManager:SetParticleControl(iParticle, 1, Vector(fRadius, fRadius, fRadius))	
 	end)
 	local tTargets
-	if hParent:FindAbilityByName("special_bonus_felguard_2") and hParent:FindAbilityByName("special_bonus_felguard_2"):GetLevel() > 0 then 
+	if hParent:FindAbilityByName("special_bonus_unique_felguard_2") and hParent:FindAbilityByName("special_bonus_unique_felguard_2"):GetLevel() > 0 then 
 		tTargets = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetOrigin(), nil, fRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 	else
 		tTargets = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetOrigin(), nil, fRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
@@ -149,13 +149,8 @@ function modifier_felguard_strength_and_honor:OnHeroKilled()
 	local hParent = self:GetParent()
 	local hAbility = self:GetAbility()
 	local iLevel = (hParent:GetKills()-self.iKill)*hAbility:GetSpecialValueFor("kill_level")+(hParent:GetAssists()-self.iAssist)*hAbility:GetSpecialValueFor("assist_level")+(hParent:GetDeaths()-self.iDeath)*hAbility:GetSpecialValueFor("death_level")
-	local iMaxLevel 
+	local iMaxLevel = hAbility:GetSpecialValueFor("max_level") 
 	if not hParent:PassivesDisabled() then 
-		if hParent:FindAbilityByName("special_bonus_felguard_1") and hParent:FindAbilityByName("special_bonus_felguard_1"):GetLevel() > 0 then 
-			iMaxLevel = hAbility:GetSpecialValueFor("max_level") *2
-		else
-			iMaxLevel = hAbility:GetSpecialValueFor("max_level") 
-		end
 		self:SetStackCount(self:GetStackCount()+iLevel)
 		if self:GetStackCount() > iMaxLevel then self:SetStackCount(iMaxLevel) end
 		if self:GetStackCount() < 0 then self:SetStackCount(0) end

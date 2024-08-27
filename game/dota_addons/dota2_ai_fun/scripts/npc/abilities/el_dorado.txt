@@ -266,7 +266,7 @@
 			"blink_range_clamp"	 "900"
 		}
 	}
-	"special_bonus_el_dorado_1"
+	"special_bonus_unique_el_dorado_1"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -276,7 +276,7 @@
 			"value"	 "1"
 		}
 	}
-	"special_bonus_el_dorado_2"
+	"special_bonus_unique_el_dorado_2"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -286,7 +286,7 @@
 			"value"	 "1"
 		}
 	}
-	"special_bonus_el_dorado_3"
+	"special_bonus_unique_el_dorado_3"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"

@@ -7,12 +7,12 @@ local tNewAbilities = {
 	"hurricane_eyes_of_the_storm",
 	"special_bonus_gold_income_120",
 	"special_bonus_exp_boost_30",
-	"special_bonus_hurricane_1",
-	"special_bonus_hurricane_2",
-	"special_bonus_hurricane_3",
-	"special_bonus_hurricane_4",
+	"special_bonus_unique_hurricane_1",
+	"special_bonus_unique_hurricane_2",
+	"special_bonus_unique_hurricane_3",
+	"special_bonus_unique_hurricane_4",
 	"special_bonus_spell_immunity",
-	"special_bonus_hurricane_5"
+	"special_bonus_unique_hurricane_5"
 }
 
 local tHeroBaseStats = {

@@ -20,7 +20,7 @@
 			"gold_per_hit"
 			{
 				"value"	 "2"
-				"special_bonus_hamsterlord_2"	 "+10"
+				"special_bonus_unique_hamsterlord_2"	 "+10"
 			}
 			"duration"	 "30"
 		}
@@ -45,7 +45,7 @@
 			"buff_duration"
 			{
 				"value"	 "10"
-				"special_bonus_hamsterlord_0"	 "+10"
+				"special_bonus_unique_hamsterlord_0"	 "+10"
 			}
 		}
 	}
@@ -71,7 +71,7 @@
 			"damage"
 			{
 				"value"	 "25 50 75 100"
-				"special_bonus_hamsterlord_1"	 "+120"
+				"special_bonus_unique_hamsterlord_1"	 "+120"
 			}
 			"stun_duration"	 "0.3 0.6 0.9 1.2"
 			"max_stack"	 "4"
@@ -99,7 +99,7 @@
 			"summon_count"
 			{
 				"value"	 "1"
-				"special_bonus_hamsterlord_4"	 "+1"
+				"special_bonus_unique_hamsterlord_4"	 "+1"
 			}
 			"summon_count_scepter"
 			{
@@ -108,7 +108,7 @@
 			}
 			"LinkedSpecialBonus"
 			{
-				"value"	 "special_bonus_hamsterlord_4"
+				"value"	 "special_bonus_unique_hamsterlord_4"
 			}
 			"gold_bounty"	 "100 150 200"
 		}
@@ -251,7 +251,7 @@
 			"tip_per_hit"	 "12"
 		}
 	}
-	"special_bonus_hamsterlord_0"
+	"special_bonus_unique_hamsterlord_0"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -261,7 +261,7 @@
 			"value"	 "10"
 		}
 	}
-	"special_bonus_hamsterlord_1"
+	"special_bonus_unique_hamsterlord_1"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -271,7 +271,7 @@
 			"value"	 "120"
 		}
 	}
-	"special_bonus_hamsterlord_2"
+	"special_bonus_unique_hamsterlord_2"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -281,7 +281,7 @@
 			"value"	 "10"
 		}
 	}
-	"special_bonus_hamsterlord_3"
+	"special_bonus_unique_hamsterlord_3"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -291,7 +291,7 @@
 			"value"	 "1"
 		}
 	}
-	"special_bonus_hamsterlord_4"
+	"special_bonus_unique_hamsterlord_4"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -301,7 +301,7 @@
 			"value"	 "1"
 		}
 	}
-	"special_bonus_hamsterlord_5"
+	"special_bonus_unique_hamsterlord_5"
 	{
 		"BaseClass"	 "special_bonus_unique_centaur_2"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"

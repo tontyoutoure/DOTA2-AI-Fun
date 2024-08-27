@@ -483,31 +483,11 @@ function modifier_ramza_bravery:OnRefresh()
 end
 
 function modifier_ramza_bravery:GetModifierPreAttack_BonusDamage()
-	if not self.hSpecial then
-		self.hSpecial = Entities:First()		
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_ramza_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
-			self.hSpecial = Entities:Next(self.hSpecial)
-		end
-	end
-	if not self.hSpecial:IsNull() then
-		return (self.iBonusDamage or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
-	else
 		return (self.iBonusDamage or 0)
-	end
 end
 
 function modifier_ramza_bravery:GetModifierBonusStats_Strength()
-	if not self.hSpecial then
-		self.hSpecial = Entities:First()		
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_ramza_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
-			self.hSpecial = Entities:Next(self.hSpecial)
-		end
-	end
-	if not self.hSpecial:IsNull() then
-		return (self.iBonusStr or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
-	else
 		return (self.iBonusStr or 0)
-	end
 end
 
 modifier_ramza_speed = class({})
@@ -529,45 +509,15 @@ function modifier_ramza_speed:OnRefresh()
 end
 
 function modifier_ramza_speed:GetModifierBonusStats_Agility()
-	if not self.hSpecial then
-		self.hSpecial = Entities:First()		
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_ramza_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
-			self.hSpecial = Entities:Next(self.hSpecial)
-		end
-	end
-	if not self.hSpecial:IsNull() then
-		return (self.iAgi or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
-	else
 		return (self.iAgi or 0)
-	end
 end
 
 function modifier_ramza_speed:GetModifierMoveSpeedBonus_Percentage()
-	if not self.hSpecial then
-		self.hSpecial = Entities:First()		
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_ramza_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
-			self.hSpecial = Entities:Next(self.hSpecial)
-		end
-	end
-	if not self.hSpecial:IsNull() then
-		return (self.iMove or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
-	else
 		return (self.iMove or 0)
-	end
 end
 
 function modifier_ramza_speed:GetModifierAttackSpeedBonus_Constant()
-	if not self.hSpecial then
-		self.hSpecial = Entities:First()		
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_ramza_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
-			self.hSpecial = Entities:Next(self.hSpecial)
-		end
-	end
-	if not self.hSpecial:IsNull() then
-		return (self.iAttack or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
-	else
 		return (self.iAttack or 0)
-	end
 end
 
 modifier_ramza_faith = class({})
@@ -589,42 +539,12 @@ function modifier_ramza_faith:OnRefresh()
 end
 
 function modifier_ramza_faith:GetModifierHPRegenAmplify_PercentageSource()
-	if not self.hSpecial then
-		self.hSpecial = Entities:First()		
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_ramza_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
-			self.hSpecial = Entities:Next(self.hSpecial)
-		end
-	end
-	if not self.hSpecial:IsNull() then
-		return (self.iHealAmp or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
-	else
 		return (self.iHealAmp or 0)
-	end
 end
 function modifier_ramza_faith:GetModifierSpellAmplify_Percentage()
-	if not self.hSpecial then
-		self.hSpecial = Entities:First()		
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_ramza_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
-			self.hSpecial = Entities:Next(self.hSpecial)
-		end
-	end
-	if not self.hSpecial:IsNull() then
-		return (self.iSpellAmp or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
-	else
 		return (self.iSpellAmp or 0)
-	end
 end
 
 function modifier_ramza_faith:GetModifierBonusStats_Intellect()
-	if not self.hSpecial then
-		self.hSpecial = Entities:First()		
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_ramza_1" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
-			self.hSpecial = Entities:Next(self.hSpecial)
-		end
-	end
-	if not self.hSpecial:IsNull() then
-		return (self.iInt or 0)*(1+self.hSpecial:GetSpecialValueFor("value"))
-	else
 		return (self.iInt or 0)
-	end
 end

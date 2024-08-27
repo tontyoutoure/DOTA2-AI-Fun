@@ -19,9 +19,9 @@ local tNewAbilities = {
 	"special_bonus_exp_boost_30",
 	"special_bonus_intelligence_20",
 	"special_bonus_movement_speed_35",
-	"special_bonus_el_dorado_1",
-	"special_bonus_el_dorado_3",
-	"special_bonus_el_dorado_2",
+	"special_bonus_unique_el_dorado_1",
+	"special_bonus_unique_el_dorado_3",
+	"special_bonus_unique_el_dorado_2",
 	"special_bonus_cast_range_400"
 }
 

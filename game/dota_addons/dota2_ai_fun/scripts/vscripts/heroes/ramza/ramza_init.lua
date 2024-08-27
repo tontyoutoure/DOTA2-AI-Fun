@@ -54,10 +54,10 @@ function GameMode:RamzaDamageFilter(filterTable)
 end
 
 function RamzaTalentManager(keys)
-	if keys.abilityname == "special_bonus_ramza_2" then
+	if keys.abilityname == "special_bonus_unique_ramza_2" then
 		PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero().hRamzaJob:RamzaLevelMax()
 	end
-	if keys.abilityname == "special_bonus_ramza_3" and PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero().hRamzaJob.iSecondarySkill > 0 then
+	if keys.abilityname == "special_bonus_unique_ramza_3" and PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero().hRamzaJob.iSecondarySkill > 0 then
 		local self = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero().hRamzaJob
 		if self.tJobLevels[self.iSecondarySkill] >= 3 then
 			self.hParent:AddAbility(self.tOtherAbilities[self.iSecondarySkill][3][1]):SetLevel(1)
@@ -72,7 +72,7 @@ function RamzaTalentManager(keys)
 			self.hParent:RemoveAbility(self.tOtherAbilities[self.iSecondarySkill][7][1])
 		end
 	end
-	if keys.abilityname == "special_bonus_ramza_4" then
+	if keys.abilityname == "special_bonus_unique_ramza_4" then
 		PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero().hRamzaJob.bOnionTalent = true
 		if PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero().hRamzaJob.iCurrentJob == RAMZA_JOB_ONION_KNIGHT then
 			PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero():FindAbilityByName('ramza_select_secondary_skill_lua'):SetActivated(true)
@@ -92,10 +92,10 @@ local tNewAbilities = {
 	"special_bonus_exp_boost_30",
 	"special_bonus_armor_15",
 	"special_bonus_spell_lifesteal_15",
-	"special_bonus_ramza_1",
-	"special_bonus_ramza_3",
+	"special_bonus_unique_ramza_1",
+	"special_bonus_unique_ramza_3",
 	"special_bonus_cooldown_reduction_65",
-	"special_bonus_ramza_4",
+	"special_bonus_unique_ramza_4",
 }
 
 local tShowedAbilities = {
@@ -109,10 +109,10 @@ local tShowedAbilities = {
 	"special_bonus_exp_boost_30",
 	"special_bonus_armor_15",
 	"special_bonus_spell_lifesteal_15",
-	"special_bonus_ramza_1",
-	"special_bonus_ramza_3",
-	"special_bonus_ramza_2",
-	"special_bonus_ramza_4",
+	"special_bonus_unique_ramza_1",
+	"special_bonus_unique_ramza_3",
+	"special_bonus_unique_ramza_2",
+	"special_bonus_unique_ramza_4",
 }
 
 local tHeroBaseStats = {

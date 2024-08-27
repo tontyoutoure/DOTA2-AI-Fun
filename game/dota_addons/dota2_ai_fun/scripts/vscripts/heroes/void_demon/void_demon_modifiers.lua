@@ -152,19 +152,8 @@ modifier_void_demon_degen_aura_slow = class({})
 function modifier_void_demon_degen_aura_slow:DeclareFunctions() return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT} end
 
 function modifier_void_demon_degen_aura_slow:GetModifierMoveSpeedBonus_Percentage()
-	if self:GetCaster():PassivesDisabled() then return 0 end
-	if not self.hSpecial then
-		self.hSpecial = Entities:First()
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_void_demon_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
-			self.hSpecial = Entities:Next(self.hSpecial)
-		end	
-	end
 
-	if self.hSpecial and self.hSpecial:GetLevel() > 0 then
-		self.fSlow = self.hSpecial:GetSpecialValueFor("value")*self:GetAbility():GetSpecialValueFor("movement")
-	else
-		self.fSlow = self:GetAbility():GetSpecialValueFor("movement")
-	end
+	self.fSlow = self:GetAbility():GetSpecialValueFor("movement")
 	
 	return self.fSlow
 end
@@ -173,7 +162,7 @@ function modifier_void_demon_degen_aura_slow:GetModifierAttackSpeedBonus_Constan
 	if self:GetCaster():PassivesDisabled() then return 0 end
 	if not self.hSpecial then
 		self.hSpecial = Entities:First()
-		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_void_demon_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
+		while self.hSpecial and (self.hSpecial:GetName() ~= "special_bonus_unique_void_demon_2" or self.hSpecial:GetCaster() ~= self:GetCaster()) do
 			self.hSpecial = Entities:Next(self.hSpecial)
 		end	
 	end

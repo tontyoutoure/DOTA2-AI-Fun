@@ -1,146 +1,86 @@
 "DOTAAbilities"
 {
-// Invoker's Scout
-	// Author: wFX with help of Noya and Rook
-	// Revised: tontyoutoure
-	// Date: February 17, 2015
-	// Invoke: Wex Exort Quas
-	// Summons an Owl Scout, which can be used to scout. Can see invisible units. Is vulnerable. Lasts 40 seconds. Duration, Vision and Speed depend on Wex level.
-	// Balance Ideas: MS should be based on Wex, Duration on Quas, and Vision on Exort, max 350ms, max Vision 1800 units, max Duration 40s
-	
-	
 	"invoker_retro_scout_unit_ability"
 	{
-		"BaseClass"             		"ability_datadriven"
-		"AbilityTextureName"			"invoker_retro_scout"
-		"MaxLevel" 						"1"
-	
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	
+		"BaseClass"	 "ability_datadriven"
+		"AbilityTextureName"	 "invoker_retro_scout"
+		"MaxLevel"	 "1"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"Modifiers"
 		{
 			"modifier_invoker_retro_scout_unit_ability"
 			{
-				"Passive"			"1"
-				"IsHidden"			"0"
-				
+				"Passive"	 "1"
+				"IsHidden"	 "0"
 				"States"
 				{
-					"MODIFIER_STATE_INVULNERABLE"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"	 "MODIFIER_STATE_VALUE_ENABLED"
 				}
-	
-				"EffectName"        "particles/items2_fx/ward_true_sight.vpcf"
-				"EffectAttachType"  "follow_origin"
-				
-				"ThinkInterval"  "0.03"
+				"EffectName"	 "particles/items2_fx/ward_true_sight.vpcf"
+				"EffectAttachType"	 "follow_origin"
+				"ThinkInterval"	 "0.03"
 				"OnIntervalThink"
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_invoker/invoker_retro_scout.lua"
-						"Function"		"modifier_invoker_retro_scout_unit_ability_on_interval_think"
+						"ScriptFile"	 "heroes/hero_invoker/invoker_retro_scout.lua"
+						"Function"	 "modifier_invoker_retro_scout_unit_ability_on_interval_think"
 					}
 				}
 			}
 			"modifier_invoker_retro_scout_unit_movespeed_bonus"
 			{
-				"Passive"			"0"
-				"IsHidden"			"1"
-				"Attributes" 		"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	 "0"
+				"IsHidden"	 "1"
+				"Attributes"	 "MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"  "%movespeed_bonus_constant"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	 "%movespeed_bonus_constant"
 				}
 			}
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"movespeed_bonus_constant"				"40"  //Increases with Wex.
-			}
+			"movespeed_bonus_constant"	 "40"
 		}
 	}
-	
-	
 	"invoker_retro_scout"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityTextureName" 			"invoker_retro_scout"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityCastAnimation" 			"ACT_DOTA_CAST_FORGE_SPIRIT"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
-		"AbilityProcsMagicStick" 		"1"
-		
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20"
-		"AbilityManaCost"				"150"
-	
+		"BaseClass"	 "ability_datadriven"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"	 "invoker_retro_scout"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"	 "DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_FORGE_SPIRIT"
+		"FightRecapLevel"	 "1"
+		"MaxLevel"	 "1"
+		"AbilityProcsMagicStick"	 "1"
+		"AbilityCooldown"	 "20"
+		"AbilityManaCost"	 "150"
 		"precache"
 		{
-			"particle"  "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf"
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
-			"model"		"models/items/courier/snowl/snowl_flying.vmdl"
+			"particle"	 "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf"
+			"soundfile"	 "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+			"model"	 "models/items/courier/snowl/snowl_flying.vmdl"
 		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"owl_duration_base"				"20"  //Increases with Wex.
-			}
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"owl_duration_level_wex"				"5"  //Increases with Wex.
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"owl_vision_base"				"100"  //Increases with Wex.
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"owl_vision_level_wex"				"100"  //Increases with Wex.
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"owl_movespeed_base"				"160"  //Increases with Wex.
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"owl_movespeed_level_wex"				"40"  //Increases with Wex.
-			}
-		}
-		
 		"OnSpellStart"
 		{
 			"FireSound"
 			{
-				"EffectName"	"Hero_Mirana.Leap.Owlcat"
-				"Target"		"CASTER"
+				"EffectName"	 "Hero_Mirana.Leap.Owlcat"
+				"Target"	 "CASTER"
 			}
-	
 			"RunScript"
 			{
-				"ScriptFile"	"heroes/hero_invoker/invoker_retro_scout.lua"
-				"Function"		"invoker_retro_scout_on_spell_start"
+				"ScriptFile"	 "heroes/hero_invoker/invoker_retro_scout.lua"
+				"Function"	 "invoker_retro_scout_on_spell_start"
 			}
 		}
+		"AbilityValues"
+		{
+			"owl_duration_level_wex"	 "5"
+			"owl_vision_level_wex"	 "100"
+			"owl_movespeed_level_wex"	 "40"
+		}
 	}
-	
-	
 }

@@ -274,7 +274,7 @@
 		"AbilityManaCost"	 "0"
 		"AbilityCastRange"	 "99999"
 	}
-	"special_bonus_persuasive_1"
+	"special_bonus_unique_persuasive_1"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -284,7 +284,7 @@
 			"value"	 "30"
 		}
 	}
-	"special_bonus_persuasive_2"
+	"special_bonus_unique_persuasive_2"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -294,7 +294,7 @@
 			"value"	 "5"
 		}
 	}
-	"special_bonus_persuasive_3"
+	"special_bonus_unique_persuasive_3"
 	{
 		"BaseClass"	 "special_bonus_undefined"
 		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
