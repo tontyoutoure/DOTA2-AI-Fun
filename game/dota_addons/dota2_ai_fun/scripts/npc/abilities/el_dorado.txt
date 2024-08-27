@@ -1,393 +1,299 @@
-// Dota2 Editor
-// Get latest version: https://github.com/zombieJ/nw-dota2editor
-
 "DOTAAbilities"
 {
-	"Version"		"1"
-
+	"Version"	 "1"
 	"el_dorado_item_forge"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"courier_return_stash_items"
-		"ScriptFile"	"scripts/vscripts/heroes/el_dorado/el_dorado.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"	"4"
-		"AbilityCastPoint"	"5"
-		"AbilityCastAnimation"	"ACT_DOTA_TELEPORT"
-		"AnimationPlaybackRate"	"0.5"
-		"AbilityCooldown"	"120 110 100 90"
-		"AbilityManaCost"	"100 150 200 250"
-		"AbilityCastRange"	"400"
-		"AbilityCastRangeBuffer"	"0"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "courier_return_stash_items"
+		"ScriptFile"	 "scripts/vscripts/heroes/el_dorado/el_dorado.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	 "4"
+		"AbilityCastPoint"	 "5"
+		"AbilityCastAnimation"	 "ACT_DOTA_TELEPORT"
+		"AnimationPlaybackRate"	 "0.5"
+		"AbilityCooldown"	 "120 110 100 90"
+		"AbilityManaCost"	 "100 150 200 250"
+		"AbilityCastRange"	 "400"
+		"AbilityCastRangeBuffer"	 "0"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"max_cost"	"400 800 1200 2400"
-			}
+			"max_cost"	 "400 800 1200 2400"
 		}
 	}
-
 	"el_dorado_artificial_frog"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"lion_voodoo"
-		"ScriptFile"	"scripts/vscripts/heroes/el_dorado/el_dorado.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"	"4"
-		"AbilityCastPoint"	"3"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCooldown"	"60"
-		"AbilityManaCost"	"200"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "lion_voodoo"
+		"ScriptFile"	 "scripts/vscripts/heroes/el_dorado/el_dorado.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	 "4"
+		"AbilityCastPoint"	 "3"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	 "60"
+		"AbilityManaCost"	 "200"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"max_frogs"	"1 2 3 4"
-			}
+			"max_frogs"	 "1 2 3 4"
 		}
 	}
-
 	"el_dorado_refine_weapons"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"tinker_rearm"
-		"ScriptFile"	"scripts/vscripts/heroes/el_dorado/el_dorado.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "tinker_rearm"
+		"ScriptFile"	 "scripts/vscripts/heroes/el_dorado/el_dorado.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_BASIC"
+		"SpellDispellableType"	 "SPELL_DISPELLABLE_NO"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"health_per_item"	"25 50 75 100"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"damage_per_item"	"3 6 9 12"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"armor_per_item"	"1 2 3 4"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"damage_per_item_frog"	"4 8 12 16"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"armor_per_item_frog"	"2 4 6 8"
-			}
+			"health_per_item"	 "25 50 75 100"
+			"damage_per_item"	 "3 6 9 12"
+			"armor_per_item"	 "1 2 3 4"
+			"damage_per_item_frog"	 "4 8 12 16"
+			"armor_per_item_frog"	 "2 4 6 8"
 		}
 	}
-
 	"el_dorado_piracy_method"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"arc_warden_flux"
-		"ScriptFile"	"scripts/vscripts/heroes/el_dorado/el_dorado.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"120"
-		"AbilityManaCost"	"100"
-		"AbilityCastRange"	"600 900 1200"		
-        "HasScepterUpgrade"             "1"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "arc_warden_flux"
+		"ScriptFile"	 "scripts/vscripts/heroes/el_dorado/el_dorado.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetFlags"	 "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastPoint"	 "0"
+		"AbilityCooldown"	 "120"
+		"AbilityManaCost"	 "100"
+		"AbilityCastRange"	 "600 900 1200"
+		"HasScepterUpgrade"	 "1"
+		"AbilityValues"
 		{
-			"01"
+			"bonus_chance"	 "3 6 9"
+			"bonus_chance_scepter"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"bonus_chance"	"3 6 9"
+				"value"	 "5 10 15"
+				"RequiresScepter"	 "1"
 			}
-			"02"
+			"channel_time"	 "4 5 6"
+			"channel_time_scepter"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"bonus_chance_scepter"	"5 10 15"
-				"RequiresScepter"			"1"
+				"value"	 "2 2.5 3"
+				"RequiresScepter"	 "1"
 			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"channel_time"	"4 5 6"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"channel_time_scepter"	"2 2.5 3"
-				"RequiresScepter"			"1"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"cast_range"	"600 900 1200"
-			}
+			"cast_range"	 "600 900 1200"
 		}
 	}
-
 	"el_dorado_change_item_slot_0_lua"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"persuasive_change_item_slot_0"
-		"ScriptFile"	"heroes/el_dorado/el_dorado.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "persuasive_change_item_slot_0"
+		"ScriptFile"	 "heroes/el_dorado/el_dorado.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
 	}
-
 	"el_dorado_change_item_slot_1_lua"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"persuasive_change_item_slot_1"
-		"ScriptFile"	"heroes/el_dorado/el_dorado.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "persuasive_change_item_slot_1"
+		"ScriptFile"	 "heroes/el_dorado/el_dorado.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
 	}
-
 	"el_dorado_change_item_slot_2_lua"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"persuasive_change_item_slot_2"
-		"ScriptFile"	"heroes/el_dorado/el_dorado.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "persuasive_change_item_slot_2"
+		"ScriptFile"	 "heroes/el_dorado/el_dorado.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
 	}
-
 	"el_dorado_change_item_slot_3_lua"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"persuasive_change_item_slot_3"
-		"ScriptFile"	"heroes/el_dorado/el_dorado.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "persuasive_change_item_slot_3"
+		"ScriptFile"	 "heroes/el_dorado/el_dorado.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
 	}
-
 	"el_dorado_change_item_slot_4_lua"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"persuasive_change_item_slot_4"
-		"ScriptFile"	"heroes/el_dorado/el_dorado.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "persuasive_change_item_slot_4"
+		"ScriptFile"	 "heroes/el_dorado/el_dorado.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
 	}
-
 	"el_dorado_change_item_slot_5_lua"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"persuasive_change_item_slot_5"
-		"ScriptFile"	"heroes/el_dorado/el_dorado.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "persuasive_change_item_slot_5"
+		"ScriptFile"	 "heroes/el_dorado/el_dorado.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
 	}
-
 	"el_dorado_change_item_slot_6_lua"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"persuasive_change_item_slot_6"
-		"ScriptFile"	"heroes/el_dorado/el_dorado.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "persuasive_change_item_slot_6"
+		"ScriptFile"	 "heroes/el_dorado/el_dorado.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
 	}
-
 	"el_dorado_change_item_slot_7_lua"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"persuasive_change_item_slot_7"
-		"ScriptFile"	"heroes/el_dorado/el_dorado.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "persuasive_change_item_slot_7"
+		"ScriptFile"	 "heroes/el_dorado/el_dorado.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
 	}
-
 	"el_dorado_change_item_slot_8_lua"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"persuasive_change_item_slot_8"
-		"ScriptFile"	"heroes/el_dorado/el_dorado.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "persuasive_change_item_slot_8"
+		"ScriptFile"	 "heroes/el_dorado/el_dorado.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
 	}
-	
 	"el_dorado_change_item_slot_9_lua"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"persuasive_change_item_slot_9"
-		"ScriptFile"	"heroes/el_dorado/el_dorado.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "persuasive_change_item_slot_9"
+		"ScriptFile"	 "heroes/el_dorado/el_dorado.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE|DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING|DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE|DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	 "1"
+		"AbilityCastPoint"	 "0"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCooldown"	 "0"
+		"AbilityManaCost"	 "0"
 	}
-
 	"el_dorado_artificial_frog_demolish"
 	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"lone_druid_spirit_bear_demolish"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_BUILDING"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"MaxLevel"	"1"
+		"BaseClass"	 "ability_datadriven"
+		"AbilityTextureName"	 "lone_druid_spirit_bear_demolish"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	 "1"
 		"Modifiers"
 		{
 			"modifier_el_dorado_artificial_frog_demolish"
 			{
-				"Passive"	"1"
-				"IsHidden"	"1"
+				"Passive"	 "1"
+				"IsHidden"	 "1"
 			}
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"bonus_building_damage"	"100"
-			}
+			"bonus_building_damage"	 "100"
 		}
 	}
-
 	"el_dorado_artificial_frog_blink"
 	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"lone_druid_spirit_bear_return"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
-		"MaxLevel"	"3"
-		"AbilityCastPoint"	"0.2"
-		"AbilityCooldown"	"10"
-		"AbilityManaCost"	"50 40 30"
-		"AbilityCastRange"	"1000 1100 1200"
+		"BaseClass"	 "ability_datadriven"
+		"AbilityTextureName"	 "lone_druid_spirit_bear_return"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"MaxLevel"	 "3"
+		"AbilityCastPoint"	 "0.2"
+		"AbilityCooldown"	 "10"
+		"AbilityManaCost"	 "50 40 30"
+		"AbilityCastRange"	 "1000 1100 1200"
 		"OnSpellStart"
 		{
 			"RunScript"
 			{
-				"Target"	"POINT"
-				"ScriptFile"	"scripts/vscripts/heroes/el_dorado/el_dorado.lua"
-				"Function"	"ElDoradoArtificialFrogBlink"
+				"Target"	 "POINT"
+				"ScriptFile"	 "scripts/vscripts/heroes/el_dorado/el_dorado.lua"
+				"Function"	 "ElDoradoArtificialFrogBlink"
 			}
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"blink_range"	"1000 1100 1200"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"blink_range_clamp"	"900"
-			}
+			"blink_range"	 "1000 1100 1200"
+			"blink_range_clamp"	 "900"
 		}
 	}
-
 	"special_bonus_el_dorado_1"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_unique_centaur_2"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_unique_centaur_2"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"value"	"1"
-			}
+			"value"	 "1"
 		}
 	}
-
 	"special_bonus_el_dorado_2"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_unique_centaur_2"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_unique_centaur_2"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"value"	"1"
-			}
+			"value"	 "1"
 		}
 	}
-
 	"special_bonus_el_dorado_3"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_unique_centaur_2"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_unique_centaur_2"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"value"	"1"
-			}
+			"value"	 "1"
 		}
 	}
 }

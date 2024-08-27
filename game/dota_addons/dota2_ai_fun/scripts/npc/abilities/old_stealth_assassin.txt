@@ -1,249 +1,156 @@
-// Dota2 Editor
-// Get latest version: https://github.com/zombieJ/nw-dota2editor
-
 "DOTAAbilities"
 {
-	"Version"		"1"
-
+	"Version"	 "1"
 	"old_stealth_assassin_permanent_invisibility"
 	{
-		"BaseClass"	"ability_lua"
-		"ScriptFile"	"scripts/vscripts/heroes/old_stealth_assassin/old_stealth_assassin.lua"
-		"AbilityTextureName"	"riki_permanent_invisibility"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"MaxLevel"	"3"
-		"RequiredLevel"	"5"
-		"LevelsBetweenUpgrades"	"5"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"ScriptFile"	 "scripts/vscripts/heroes/old_stealth_assassin/old_stealth_assassin.lua"
+		"AbilityTextureName"	 "riki_permanent_invisibility"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	 "3"
+		"RequiredLevel"	 "5"
+		"LevelsBetweenUpgrades"	 "5"
+		"SpellDispellableType"	 "SPELL_DISPELLABLE_NO"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"fade_time"	"3 2.3 1.6"
-			}
+			"fade_time"	 "3 2.3 1.6"
 		}
 	}
-
 	"old_stealth_assassin_blink"
 	{
-		"BaseClass"	"ability_lua"
-		"ScriptFile"	"scripts/vscripts/heroes/old_stealth_assassin/old_stealth_assassin.lua"
-		"AbilityTextureName"	"riki_blink_strike"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-		"AbilityCastPoint"	"0.5"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCooldown"	"12 9 7 5"
-		"AbilityManaCost"	"60"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"ScriptFile"	 "scripts/vscripts/heroes/old_stealth_assassin/old_stealth_assassin.lua"
+		"AbilityTextureName"	 "riki_blink_strike"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityCastPoint"	 "0.5"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	 "12 9 7 5"
+		"AbilityManaCost"	 "60"
+		"AbilityValues"
 		{
-			"01"
+			"distance_max"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"distance_max"	"1000 1075 1150 1150"
-				"LinkedSpecialBonus"  "special_bonus_unique_old_stealth_assassin_2"				
+				"value"	 "1000 1075 1150 1150"
+				"special_bonus_unique_old_stealth_assassin_2"	 "+400"
 			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"distance_min"	"200"
-			}
+			"distance_min"	 "200"
 		}
 	}
-
 	"old_stealth_assassin_critical_strike"
 	{
-		"BaseClass"	"ability_lua"
-		"ScriptFile"	"scripts/vscripts/heroes/old_stealth_assassin/old_stealth_assassin.lua"
-		"AbilityTextureName"	"ramza_go_back"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"ScriptFile"	 "scripts/vscripts/heroes/old_stealth_assassin/old_stealth_assassin.lua"
+		"AbilityTextureName"	 "ramza_go_back"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
 		{
-			"01"
+			"crit_multiplier"	 "150 200 250 300"
+			"crit_chance"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"crit_multiplier"	"150 200 250 300"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"crit_chance"	"15"
-				"LinkedSpecialBonus"  "special_bonus_unique_old_stealth_assassin_3"			
+				"value"	 "15"
+				"special_bonus_unique_old_stealth_assassin_3"	 "+10"
 			}
 		}
 	}
-
 	"old_stealth_assassin_death_ward"
 	{
-		"BaseClass"	"ability_lua"
-		"ScriptFile"	"scripts/vscripts/heroes/old_stealth_assassin/old_stealth_assassin.lua"
-		"AbilityTextureName"	"riki_tricks_of_the_trade"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"	"4"
-		"RequiredLevel"	"6"
-		"LevelsBetweenUpgrades"	"6"
-		"AbilityCastPoint"	"0.5"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCooldown"	"210 190 150 125"
-		"AbilityManaCost"	"200 300 400 500"
-		"AbilityCastRange"	"500"
-		"HasScepterUpgrade"  "1"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"ScriptFile"	 "scripts/vscripts/heroes/old_stealth_assassin/old_stealth_assassin.lua"
+		"AbilityTextureName"	 "riki_tricks_of_the_trade"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	 "DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"	 "4"
+		"RequiredLevel"	 "6"
+		"LevelsBetweenUpgrades"	 "6"
+		"AbilityCastPoint"	 "0.5"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	 "210 190 150 125"
+		"AbilityManaCost"	 "200 300 400 500"
+		"AbilityCastRange"	 "500"
+		"HasScepterUpgrade"	 "1"
+		"AbilityValues"
 		{
-			"01"
+			"attack"	 "63 83 123 178"
+			"target_count"	 "1 1 2 2"
+			"attack_interval"	 "0.22"
+			"ward_health"	 "400"
+			"ward_armor"	 "7 9 10 12"
+			"duration"	 "15"
+			"ward_attack_range"	 "700"
+			"ward_attack_range_scepter"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"attack"	"63 83 123 178"
+				"value"	 "900"
+				"RequiresScepter"	 "1"
 			}
-			"02"
+			"ward_splash_radius_scepter"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"target_count"	"1 1 2 2"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"attack_interval"	"0.22"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"ward_health"	"400"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"ward_armor"	"7 9 10 12"
-			}
-			"06"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"duration"	"15"
-			}
-			"07"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"ward_attack_range"	"700"
-			}
-			"08"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"ward_attack_range_scepter"	"900"
-				"RequiresScepter"			"1"
-			}
-			"09"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"ward_splash_radius_scepter"	"250"
-				"RequiresScepter"			"1"
+				"value"	 "250"
+				"RequiresScepter"	 "1"
 			}
 		}
 	}
-
 	"special_bonus_unique_old_stealth_assassin_1"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"value"	"-1.5"
-			}
+			"value"	 "-1.5"
 		}
 	}
-
 	"special_bonus_unique_old_stealth_assassin_2"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"value"	"400"
-			}
+			"value"	 "400"
 		}
 	}
-
 	"special_bonus_unique_old_stealth_assassin_3"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"value"	"10"
-			}
+			"value"	 "10"
 		}
 	}
-
 	"special_bonus_unique_old_stealth_assassin_4"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"value"	"1"
-			}
+			"value"	 "1"
 		}
 	}
-
 	"special_bonus_unique_old_stealth_assassin_5"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"value"	"1"
-			}
+			"value"	 "1"
 		}
 	}
-
 	"special_bonus_unique_old_stealth_assassin_6"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"value"	"1"
-			}
+			"value"	 "1"
 		}
 	}
 }

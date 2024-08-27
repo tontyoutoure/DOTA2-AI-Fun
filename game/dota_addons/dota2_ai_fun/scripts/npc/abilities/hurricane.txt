@@ -1,343 +1,227 @@
-// Dota2 Editor
-// Get latest version: https://github.com/zombieJ/nw-dota2editor
-
 "DOTAAbilities"
 {
-	"Version"		"1"
-
+	"Version"	 "1"
 	"hurricane_tempest"
 	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"disruptor_thunder_strike"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"AbilityCastPoint"	"0.4"
-		"AbilityCooldown"	"13"
-		"AbilityManaCost"	"65 90 115 140"
-		"AbilityCastRange"	"600"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"BaseClass"	 "ability_datadriven"
+		"AbilityTextureName"	 "disruptor_thunder_strike"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitDamageType"	 "DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	 "0.4"
+		"AbilityCooldown"	 "13"
+		"AbilityManaCost"	 "65 90 115 140"
+		"AbilityCastRange"	 "600"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"	 "SPELL_DISPELLABLE_YES_STRONG"
 		"OnSpellStart"
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/hurricane/hurricane.lua"
-				"Function"	"HurricaneTempestApply"
+				"ScriptFile"	 "scripts/vscripts/heroes/hurricane/hurricane.lua"
+				"Function"	 "HurricaneTempestApply"
 			}
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"bolt_count"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"bolt_count"	"3 6 9 12"
-				"LinkedSpecialBonus"			"special_bonus_hurricane_2"
+				"value"	 "3 6 9 12"
+				"special_bonus_hurricane_2"	 "+5"
 			}
-			"02"
+			"damage"	 "100"
+			"stun_duration"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"damage"	"100"
+				"value"	 "0.5"
+				"special_bonus_hurricane_1"	 "+0.5"
 			}
-			"03"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"stun_duration"	"0.5"
-				"LinkedSpecialBonus"			"special_bonus_hurricane_1"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"strike_interval"	"0.5"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"radius"	"600"
-			}
+			"strike_interval"	 "0.5"
+			"radius"	 "600"
 		}
 	}
-
 	"hurricane_cyclone"
 	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"invoker_tornado"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
-		"AbilityCastPoint"	"0.4"
-		"AbilityCooldown"	"20"
-		"AbilityManaCost"	"75 85 95 105"
-		"AbilityCastRange"	"%radius"
+		"BaseClass"	 "ability_datadriven"
+		"AbilityTextureName"	 "invoker_tornado"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitDamageType"	 "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"	 "SPELL_DISPELLABLE_YES_STRONG"
+		"AbilityCastPoint"	 "0.4"
+		"AbilityCooldown"	 "20"
+		"AbilityManaCost"	 "75 85 95 105"
+		"AbilityCastRange"	 "%radius"
 		"OnSpellStart"
 		{
 			"RunScript"
 			{
 				"Target"
 				{
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-					"Flags"	"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
-					"Teams"	"DOTA_UNIT_TARGET_TEAM_BOTH"
-					"Center"	"CASTER"
-					"Radius"	"%radius"
+					"Types"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Flags"	 "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+					"Teams"	 "DOTA_UNIT_TARGET_TEAM_BOTH"
+					"Center"	 "CASTER"
+					"Radius"	 "%radius"
 				}
-				"ScriptFile"	"scripts/vscripts/heroes/hurricane/hurricane.lua"
-				"Function"	"HurricaneCyclone"
+				"ScriptFile"	 "scripts/vscripts/heroes/hurricane/hurricane.lua"
+				"Function"	 "HurricaneCyclone"
 			}
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"throw_distance"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"throw_distance"	"200 400 600 800"
-				"LinkedSpecialBonus"			"special_bonus_hurricane_4"
+				"value"	 "200 400 600 800"
+				"special_bonus_hurricane_4"	 "+500"
 			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"throw_damage"	"50 100 150 200"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"stun_duration"	"2"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"radius"	"400"
-			}
+			"throw_damage"	 "50 100 150 200"
+			"stun_duration"	 "2"
+			"radius"	 "400"
 		}
 	}
-
 	"hurricane_whirlewind"
 	{
-		"BaseClass"	"ability_lua"
-		"ScriptFile"	"scripts/vscripts/heroes/hurricane/hurricane.lua"
-		"AbilityTextureName"	"enraged_wildkin_tornado"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"AbilityCooldown"	"50"
-		"AbilityManaCost"	"100 120 140 160"
-		"AbilityCastPoint"	"0.4"
-		"AbilityCastRange"	"750"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"ScriptFile"	 "scripts/vscripts/heroes/hurricane/hurricane.lua"
+		"AbilityTextureName"	 "enraged_wildkin_tornado"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitDamageType"	 "DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"	 "50"
+		"AbilityManaCost"	 "100 120 140 160"
+		"AbilityCastPoint"	 "0.4"
+		"AbilityCastRange"	 "750"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"	 "SPELL_DISPELLABLE_NO"
+		"AbilityValues"
 		{
-			"01"
+			"damage_per_second_1"	 "30 60 90 120"
+			"damage_per_second_2"	 "20 40 60 80"
+			"damage_per_second_3"	 "10 20 30 40"
+			"radius_1"	 "125"
+			"radius_2"	 "250"
+			"radius_3"	 "500"
+			"radius_4"	 "750"
+			"pull_speed"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"damage_per_second_1"	"30 60 90 120"
+				"value"	 "100"
+				"special_bonus_hurricane_3"	 "+300"
 			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"damage_per_second_2"	"20 40 60 80"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"damage_per_second_3"	"10 20 30 40"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"radius_1"	"125"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"radius_2"	"250"
-			}
-			"06"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"radius_3"	"500"
-			}
-			"07"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"radius_4"	"750"
-			}
-			"08"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"pull_speed"	"100"
-				"LinkedSpecialBonus"			"special_bonus_hurricane_3"
-			}
-			"09"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"duration"	"5"
-			}
+			"duration"	 "5"
 		}
 	}
-
 	"hurricane_eyes_of_the_storm"
 	{
-		"BaseClass"	"ability_lua"
-		"HasScepterUpgrade"			"1"
-		"AbilityTextureName"	"razor_eye_of_the_storm"
-		"ScriptFile"	"scripts/vscripts/heroes/hurricane/hurricane.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityCastPoint"	"0.4"
-		"AbilityCooldown"	"100"
-		"AbilityManaCost"	"150 225 300"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"HasScepterUpgrade"	 "1"
+		"AbilityTextureName"	 "razor_eye_of_the_storm"
+		"ScriptFile"	 "scripts/vscripts/heroes/hurricane/hurricane.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	 "DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ULTIMATE"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"	 "0.4"
+		"AbilityCooldown"	 "100"
+		"AbilityManaCost"	 "150 225 300"
+		"AbilityValues"
 		{
-			"01"
+			"damage_per_distance"	 "0.5 1 1.5"
+			"radius"
 			{
-				"var_type"	"FIELD_FLOAT"
-				"damage_per_distance"	"0.5 1 1.5"
+				"value"	 "1000"
+				"special_bonus_hurricane_5"	 "+500"
 			}
-			"02"
+			"cooldown_scepter"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"radius"	"1000"
-				"LinkedSpecialBonus"			"special_bonus_hurricane_5"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"cooldown_scepter"	"40"
-				"RequiresScepter"			"1"
+				"value"	 "40"
+				"RequiresScepter"	 "1"
 			}
 		}
 	}
-
 	"hurricane_eyes_of_the_storm_upgrade"
 	{
-		"BaseClass"	"ability_lua"
-		"HasScepterUpgrade"			"1"
-		"AbilityTextureName"	"razor_eye_of_the_storm"
-		"ScriptFile"	"scripts/vscripts/heroes/hurricane/hurricane.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"	"3"
-		"AbilityCooldown"	"40"
-		"AbilityManaCost"	"150 225 300"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"HasScepterUpgrade"	 "1"
+		"AbilityTextureName"	 "razor_eye_of_the_storm"
+		"ScriptFile"	 "scripts/vscripts/heroes/hurricane/hurricane.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	 "DAMAGE_TYPE_PURE"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"	 "3"
+		"AbilityCooldown"	 "40"
+		"AbilityManaCost"	 "150 225 300"
+		"AbilityValues"
 		{
-			"01"
+			"damage_per_distance"	 "0.5 1 1.5"
+			"radius"
 			{
-				"var_type"	"FIELD_FLOAT"
-				"damage_per_distance"	"0.5 1 1.5"
+				"value"	 "1000"
+				"special_bonus_hurricane_5"	 "+500"
 			}
-			"02"
+			"cooldown_scepter"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"radius"	"1000"
-				"LinkedSpecialBonus"			"special_bonus_hurricane_5"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"cooldown_scepter"	"40"
-				"RequiresScepter"			"1"
+				"value"	 "40"
+				"RequiresScepter"	 "1"
 			}
 		}
 	}
 	"special_bonus_hurricane_1"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"				"0.5"
-			}
+			"value"	 "0.5"
 		}
 	}
-	
-	
 	"special_bonus_hurricane_2"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"5"
-			}
+			"value"	 "5"
 		}
 	}
-	
-	
 	"special_bonus_hurricane_3"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"300"
-			}
+			"value"	 "300"
 		}
 	}
-	
 	"special_bonus_hurricane_4"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"500"
-			}
+			"value"	 "500"
 		}
 	}
-	
 	"special_bonus_hurricane_5"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"				"500"
-			}
+			"value"	 "500"
 		}
 	}
 }

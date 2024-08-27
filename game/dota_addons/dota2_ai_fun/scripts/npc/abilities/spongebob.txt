@@ -1,269 +1,162 @@
-// Dota2 Editor
-// Get latest version: https://github.com/zombieJ/nw-dota2editor
-
 "DOTAAbilities"
 {
-	"Version"		"1"
-
+	"Version"	 "1"
 	"spongebob_karate_chop"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"lone_druid_rabid"
-		"ScriptFile"	"scripts/vscripts/heroes/spongebob/spongebob.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"AbilityCastPoint"	"0.5"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCooldown"	"30 25 20 15"
-		"AbilityManaCost"	"50"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "lone_druid_rabid"
+		"ScriptFile"	 "scripts/vscripts/heroes/spongebob/spongebob.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	 "DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	 "0.5"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	 "30 25 20 15"
+		"AbilityManaCost"	 "50"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"	 "SPELL_DISPELLABLE_YES_STRONG"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"range"	"150 200 250 300"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"damage"	"100 150 200 250"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"mana_loss"	"25 50 75 100"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"stun_duration"	"2"
-			}
+			"range"	 "150 200 250 300"
+			"damage"	 "100 150 200 250"
+			"mana_loss"	 "25 50 75 100"
+			"stun_duration"	 "2"
 		}
-		"SpellDispellableType"	"SPELL_DISPELLABLE_YES_STRONG"
 	}
-
 	"spongebob_spongify"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"visage_gravekeepers_cloak"
-		"ScriptFile"	"scripts/vscripts/heroes/spongebob/spongebob.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityManaCost"	"5"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "visage_gravekeepers_cloak"
+		"ScriptFile"	 "scripts/vscripts/heroes/spongebob/spongebob.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityManaCost"	 "5"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"chance"	"6 12 18 24"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"heal"	"30 60 90 120"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"illusion_incoming_damage"	"100"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"illusion_outgoing_damage"	"-80"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"duration"	"12"
-			}
-			"06"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"illusion_incoming_damage_tooltip"	"200"
-			}
-			"07"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"illusion_outgoing_damage_tooltip"	"20"
-			}
+			"chance"	 "6 12 18 24"
+			"heal"	 "30 60 90 120"
+			"illusion_incoming_damage"	 "100"
+			"illusion_outgoing_damage"	 "-80"
+			"duration"	 "12"
+			"illusion_incoming_damage_tooltip"	 "200"
+			"illusion_outgoing_damage_tooltip"	 "20"
 		}
 	}
-
 	"spongebob_jellyfish_net"
 	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"naga_siren_ensnare"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"BaseClass"	 "ability_datadriven"
+		"AbilityTextureName"	 "naga_siren_ensnare"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_YES"
 		"Modifiers"
 		{
 			"modifier_spongebob_jellyfish_net"
 			{
-				"Passive"	"1"
-				"AllowIllusionDuplicate"	"1"
+				"Passive"	 "1"
+				"AllowIllusionDuplicate"	 "1"
 				"OnAttackLanded"
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"scripts/vscripts/heroes/spongebob/spongebob.lua"
-						"Function"	"SpongeBobJellyfishNet"
+						"ScriptFile"	 "scripts/vscripts/heroes/spongebob/spongebob.lua"
+						"Function"	 "SpongeBobJellyfishNet"
 					}
 				}
-				"IsHidden"	"1"
+				"IsHidden"	 "1"
 			}
 		}
-		"AbilitySpecial"
+		"SpellDispellableType"	 "SPELL_DISPELLABLE_YES"
+		"AbilityValues"
 		{
-			"01"
+			"duration"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"duration"	"4"
-				"LinkedSpecialBonus"	"special_bonus_spongebob_1"
+				"value"	 "4"
+				"special_bonus_spongebob_1"	 "+1"
 			}
-			"02"
+			"hero_duration"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"hero_duration"	"2"
-				"LinkedSpecialBonus"	"special_bonus_spongebob_1"
+				"value"	 "2"
+				"special_bonus_spongebob_1"	 "+1"
 			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"chance"	"8 16 24 32"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"chance_hero"	"4 8 12 16"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"chance_illusion"	"4 8 12 16"
-			}
-			"06"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"chance_illusion_hero"	"2 4 6 8"
-			}
+			"chance"	 "8 16 24 32"
+			"chance_hero"	 "4 8 12 16"
+			"chance_illusion"	 "4 8 12 16"
+			"chance_illusion_hero"	 "2 4 6 8"
 		}
-		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 	}
-
 	"spongebob_krabby_food"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"roshan__halloween_shell"
-		"ScriptFile"	"scripts/vscripts/heroes/spongebob/spongebob.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
-		"CastFilterRejectCaster"	"0"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCastPoint"	"1.5"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCooldown"	"130"
-		"AbilityManaCost"	"125 250 375"
-		"AbilityCastRange"	"600"
-		"AbilityCastRangeBuffer"	"600"
-		"HasScepterUpgrade"			"1"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "roshan__halloween_shell"
+		"ScriptFile"	 "scripts/vscripts/heroes/spongebob/spongebob.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ALLIES_YES"
+		"CastFilterRejectCaster"	 "0"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	 "1.5"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	 "130"
+		"AbilityManaCost"	 "125 250 375"
+		"AbilityCastRange"	 "600"
+		"AbilityCastRangeBuffer"	 "600"
+		"HasScepterUpgrade"	 "1"
+		"SpellDispellableType"	 "SPELL_DISPELLABLE_NO"
+		"AbilityValues"
 		{
-			"01"
+			"duration"	 "20"
+			"heal"	 "100 200 300"
+			"heal_scepter"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"duration"	"20"
+				"value"	 "125 250 375"
+				"RequiresScepter"	 "1"
 			}
-			"02"
+			"manacost_scepter"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"heal"	"100 200 300"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"heal_scepter"	"125 250 375"
-				"RequiresScepter"			"1"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"manacost_scepter"	"100 200 300"
-				"RequiresScepter"			"1"
+				"value"	 "100 200 300"
+				"RequiresScepter"	 "1"
 			}
 		}
-		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
 	}
-
 	"special_bonus_spongebob_1"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"value"	"1"
-			}
+			"value"	 "1"
 		}
 	}
-
 	"special_bonus_spongebob_2"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"value"	"1"
-			}
+			"value"	 "1"
 		}
 	}
-
 	"special_bonus_spongebob_3"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"value"	"1"
-			}
+			"value"	 "1"
 		}
 	}
-
 	"special_bonus_spongebob_4"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"value"	"10"
-			}
+			"value"	 "10"
 		}
 	}
 }

@@ -1,198 +1,115 @@
 "DOTAAbilities"
 {
-	// //////////////////////////////////////////////////////////////////////////////
-	//
-	// 						   Petey Penguin The Itimidator
-	//
-	// //////////////////////////////////////////////////////////////////////////////
 	"intimidator_glare_lua"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"intimidator_glare"
-		"ScriptFile"	"heroes/intimidator/intimidator_glare_lua.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		// GUESS VALUE
-		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"20"
-		"AbilityManaCost"	"80 100 120 140"
-		"HasScepterUpgrade" "1"
-		"AbilityCastRange"	"600"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "intimidator_glare"
+		"ScriptFile"	 "heroes/intimidator/intimidator_glare_lua.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellDispellableType"	 "SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"	 "0"
+		"AbilityCooldown"	 "20"
+		"AbilityManaCost"	 "80 100 120 140"
+		"HasScepterUpgrade"	 "1"
+		"AbilityCastRange"	 "600"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"primary_attribute_percentage"	"12 24 36 48"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"attribute_percentage"	"6 12 18 24"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"movement_percentage"	"5 10 15 20"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"attack"	"5 10 15 20"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"duration"	"7"
-			}
+			"primary_attribute_percentage"	 "12 24 36 48"
+			"attribute_percentage"	 "6 12 18 24"
+			"movement_percentage"	 "5 10 15 20"
+			"attack"	 "5 10 15 20"
+			"duration"	 "7"
 		}
 	}
-
 	"intimidator_grill_lua"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"intimidator_grill"
-		"ScriptFile"	"heroes/intimidator/intimidator_grill_lua.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		// GUESS VALUE
-		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"35"
-		"AbilityManaCost"	"75 100 125 150"
-		"AbilityCastRange"	"600"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "intimidator_grill"
+		"ScriptFile"	 "heroes/intimidator/intimidator_grill_lua.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellDispellableType"	 "SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"	 "DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	 "0"
+		"AbilityCooldown"	 "35"
+		"AbilityManaCost"	 "75 100 125 150"
+		"AbilityCastRange"	 "600"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"damage_per_unit"	"5 10 15 20"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"duration"	"10"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"radius"	"600"
-			}
+			"damage_per_unit"	 "5 10 15 20"
+			"duration"	 "10"
+			"radius"	 "600"
 		}
 	}
-
 	"intimidator_physical_activity_lua"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"intimidator_physical_activity"
-		"ScriptFile"	"heroes/intimidator/intimidator_physical_activity_lua.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "intimidator_physical_activity"
+		"ScriptFile"	 "heroes/intimidator/intimidator_physical_activity_lua.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellDispellableType"	 "SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityValues"
 		{
-			"01"
+			"chance"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"chance"	"25"
-				"LinkedSpecialBonus"  "special_bonus_intimidator_1"
+				"value"	 "25"
+				"special_bonus_intimidator_1"	 "+10"
 			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"chance_dislocate"	"21 14 7 0"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"buff_duration"	"4"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"dislocate_duration"	"4"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"movement_percentage"	"100"
-			}
-			"06"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"attack"	"100"
-			}
+			"chance_dislocate"	 "21 14 7 0"
+			"buff_duration"	 "4"
+			"dislocate_duration"	 "4"
+			"movement_percentage"	 "100"
+			"attack"	 "100"
 		}
 	}
-
 	"intimidator_be_my_friend_lua"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"intimidator_be_my_friend"
-		"ScriptFile"	"heroes/intimidator/intimidator_be_my_friend_lua.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET|DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"100"
-		"AbilityManaCost"	"150 225 300"
-		"AbilityCastRange"	"99999"
-		"AbilityChannelTime"	"25"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "intimidator_be_my_friend"
+		"ScriptFile"	 "heroes/intimidator/intimidator_be_my_friend_lua.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET|DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellDispellableType"	 "SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitTargetFlags"	 "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	 "DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	 "0"
+		"AbilityCooldown"	 "100"
+		"AbilityManaCost"	 "150 225 300"
+		"AbilityCastRange"	 "99999"
+		"AbilityChannelTime"	 "25"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"damage_percentage"	"50 100 150"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"dps"	"20"
-			}
+			"damage_percentage"	 "50 100 150"
+			"dps"	 "20"
 		}
 	}
 	"special_bonus_intimidator_1"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_unique_centaur_2"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_unique_centaur_2"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"10"
-			}
+			"value"	 "10"
 		}
 	}
 	"special_bonus_intimidator_2"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_unique_centaur_2"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_unique_centaur_2"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"10"
-			}
+			"value"	 "10"
 		}
 	}
 }

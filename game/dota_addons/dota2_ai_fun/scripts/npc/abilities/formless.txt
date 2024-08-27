@@ -1,233 +1,210 @@
-// Dota2 Editor
-// Get latest version: https://github.com/zombieJ/nw-dota2editor
-
 "DOTAAbilities"
 {
-	"Version"		"1"
-
+	"Version"	 "1"
 	"formless_unus"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"formless_unus"
-		"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"CastFilterRejectCaster"	"1"
-		"AbilityCooldown"	"5"
-		"AbilityCastRange"	"0"
-		"HasScepterUpgrade"  "1"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "formless_unus"
+		"ScriptFile"	 "scripts/vscripts/heroes/formless/formless.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags"	 "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_YES"
+		"CastFilterRejectCaster"	 "1"
+		"AbilityCooldown"	 "5"
+		"AbilityCastRange"	 "0"
+		"HasScepterUpgrade"	 "1"
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
+			"soundfile"	 "soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"cooldown_scepter"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"cooldown_scepter"	"0"
-				"RequiresScepter"			"1"
+				"value"	 "0"
+				"RequiresScepter"	 "1"
 			}
 		}
 	}
-
 	"formless_duos"
 	{
-		"BaseClass"	"ability_lua"
-		"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
-		"AbilityTextureName"	"formless_duos"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"CastFilterRejectCaster"	"1"
-		"AbilityCooldown"	"5"
-		"AbilityCastRange"	"0"
-		"HasScepterUpgrade"  "1"
+		"BaseClass"	 "ability_lua"
+		"ScriptFile"	 "scripts/vscripts/heroes/formless/formless.lua"
+		"AbilityTextureName"	 "formless_duos"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags"	 "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_YES"
+		"CastFilterRejectCaster"	 "1"
+		"AbilityCooldown"	 "5"
+		"AbilityCastRange"	 "0"
+		"HasScepterUpgrade"	 "1"
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
+			"soundfile"	 "soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"cooldown_scepter"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"cooldown_scepter"	"0"
-				"RequiresScepter"			"1"
+				"value"	 "0"
+				"RequiresScepter"	 "1"
 			}
 		}
 	}
-
 	"formless_tertius"
 	{
-		"BaseClass"	"ability_lua"
-		"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
-		"AbilityTextureName"	"formless_tertius"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"CastFilterRejectCaster"	"1"
-		"AbilityCooldown"	"5"
-		"AbilityCastRange"	"0"
-		"HasScepterUpgrade"  "1"
+		"BaseClass"	 "ability_lua"
+		"ScriptFile"	 "scripts/vscripts/heroes/formless/formless.lua"
+		"AbilityTextureName"	 "formless_tertius"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags"	 "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_YES"
+		"CastFilterRejectCaster"	 "1"
+		"AbilityCooldown"	 "5"
+		"AbilityCastRange"	 "0"
+		"HasScepterUpgrade"	 "1"
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
+			"soundfile"	 "soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"cooldown_scepter"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"cooldown_scepter"	"0"
-				"RequiresScepter"			"1"
+				"value"	 "0"
+				"RequiresScepter"	 "1"
 			}
 		}
 	}
-
 	"formless_denique"
 	{
-		"BaseClass"	"ability_lua"
-		"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
-		"AbilityTextureName"	"formless_denique"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"CastFilterRejectCaster"	"1"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCooldown"	"5"
-		"AbilityCastRange"	"0"
-		"HasScepterUpgrade"  "1"
+		"BaseClass"	 "ability_lua"
+		"ScriptFile"	 "scripts/vscripts/heroes/formless/formless.lua"
+		"AbilityTextureName"	 "formless_denique"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags"	 "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_YES"
+		"CastFilterRejectCaster"	 "1"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCooldown"	 "5"
+		"AbilityCastRange"	 "0"
+		"HasScepterUpgrade"	 "1"
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
+			"soundfile"	 "soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"cooldown_scepter"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"cooldown_scepter"	"0"
-				"RequiresScepter"			"1"
+				"value"	 "0"
+				"RequiresScepter"	 "1"
 			}
 		}
 	}
-
 	"formless_forget_all"
 	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"formless_forget_all"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT"
-
-		"MaxLevel"  "1"
+		"BaseClass"	 "ability_datadriven"
+		"AbilityTextureName"	 "formless_forget_all"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT"
+		"MaxLevel"	 "1"
 		"OnSpellStart"
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
-				"Function"	"formless_forget_all"
+				"ScriptFile"	 "scripts/vscripts/heroes/formless/formless.lua"
+				"Function"	 "formless_forget_all"
 			}
 		}
 	}
-
 	"formless_forget_choose"
 	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"formless_forget_choose"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT"
-
-		"MaxLevel"  "1"
+		"BaseClass"	 "ability_datadriven"
+		"AbilityTextureName"	 "formless_forget_choose"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT"
+		"MaxLevel"	 "1"
 		"OnToggleOn"
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
-				"Function"	"formless_forget_choose"
+				"ScriptFile"	 "scripts/vscripts/heroes/formless/formless.lua"
+				"Function"	 "formless_forget_choose"
 			}
 		}
 		"OnToggleOff"
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
-				"Function"	"formless_forget_choose"
+				"ScriptFile"	 "scripts/vscripts/heroes/formless/formless.lua"
+				"Function"	 "formless_forget_choose"
 			}
 		}
 	}
-
 	"formless_unus_forget"
 	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"formless_unus_forget"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-
-		"MaxLevel"  "1"
+		"BaseClass"	 "ability_datadriven"
+		"AbilityTextureName"	 "formless_unus_forget"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"MaxLevel"	 "1"
 		"OnSpellStart"
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
-				"Function"	"formless_forget"
+				"ScriptFile"	 "scripts/vscripts/heroes/formless/formless.lua"
+				"Function"	 "formless_forget"
 			}
 		}
 	}
-
 	"formless_duos_forget"
 	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"formless_duos_forget"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-
-		"MaxLevel"  "1"
+		"BaseClass"	 "ability_datadriven"
+		"AbilityTextureName"	 "formless_duos_forget"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"MaxLevel"	 "1"
 		"OnSpellStart"
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
-				"Function"	"formless_forget"
+				"ScriptFile"	 "scripts/vscripts/heroes/formless/formless.lua"
+				"Function"	 "formless_forget"
 			}
 		}
 	}
-
 	"formless_tertius_forget"
 	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"formless_tertius_forget"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-
-		"MaxLevel"  "1"
+		"BaseClass"	 "ability_datadriven"
+		"AbilityTextureName"	 "formless_tertius_forget"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"MaxLevel"	 "1"
 		"OnSpellStart"
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
-				"Function"	"formless_forget"
+				"ScriptFile"	 "scripts/vscripts/heroes/formless/formless.lua"
+				"Function"	 "formless_forget"
 			}
 		}
 	}
-
 	"formless_denique_forget"
 	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"formless_denique_forget"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-
-		"MaxLevel"  "1"
+		"BaseClass"	 "ability_datadriven"
+		"AbilityTextureName"	 "formless_denique_forget"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"MaxLevel"	 "1"
 		"OnSpellStart"
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/formless/formless.lua"
-				"Function"	"formless_forget"
+				"ScriptFile"	 "scripts/vscripts/heroes/formless/formless.lua"
+				"Function"	 "formless_forget"
 			}
 		}
 	}

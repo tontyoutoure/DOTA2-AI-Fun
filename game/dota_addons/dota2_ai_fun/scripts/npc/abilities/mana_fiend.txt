@@ -1,232 +1,189 @@
 "DOTAAbilities"
-{	
+{
 	"mana_fiend_equilibrium"
 	{
-		"BaseClass"	"ability_lua"
-		"ScriptFile"	"heroes/mana_fiend/mana_fiend.lua"
-		"AbilityTextureName"	"keeper_of_the_light_spirit_form_illuminate"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"	"1"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityCastPoint"	"0.3"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCooldown"	"30 25 20 15"
-		"AbilityManaCost"	"0"
-		"AbilityCastRange"	"700"
-
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"ScriptFile"	 "heroes/mana_fiend/mana_fiend.lua"
+		"AbilityTextureName"	 "keeper_of_the_light_spirit_form_illuminate"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	 "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	 "1"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	 "0.3"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	 "30 25 20 15"
+		"AbilityManaCost"	 "0"
+		"AbilityCastRange"	 "700"
+		"AbilityValues"
 		{
-			"01"
+			"damage_multiplier"
 			{
-				"var_type"	"FIELD_FLOAT"
-				"damage_multiplier"	"0.5 1 1.5 2"
-				"LinkedSpecialBonus"	"special_bonus_unique_mana_fiend_2"
+				"value"	 "0.5 1 1.5 2"
+				"special_bonus_unique_mana_fiend_2"	 "+1"
 			}
 		}
 	}
-
 	"mana_field_mana_rift"
 	{
-		"BaseClass"	"ability_lua"
-		"ScriptFile"	"heroes/mana_fiend/mana_fiend.lua"
-		"AbilityTextureName"	"abyssal_underlord_cancel_dark_rift"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityCastPoint"	"0.3"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCooldown"	"20"
-		"AbilityManaCost"	"150 165 180 190"
-		"AbilityCastRange"	"750"
+		"BaseClass"	 "ability_lua"
+		"ScriptFile"	 "heroes/mana_fiend/mana_fiend.lua"
+		"AbilityTextureName"	 "abyssal_underlord_cancel_dark_rift"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	 "0.3"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	 "20"
+		"AbilityManaCost"	 "150 165 180 190"
+		"AbilityCastRange"	 "750"
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
+			"soundfile"	 "soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
 		}
 		"OnSpellStart"
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"heroes/mana_fiend/mana_fiend_mana_rift_lua.lua"
-				"Function"	"mana_fiend_mana_rift_lua"
+				"ScriptFile"	 "heroes/mana_fiend/mana_fiend_mana_rift_lua.lua"
+				"Function"	 "mana_fiend_mana_rift_lua"
 			}
 			"FireSound"
 			{
-				"EffectName"	"Hero_NyxAssassin.ManaBurn.Target"
+				"EffectName"	 "Hero_NyxAssassin.ManaBurn.Target"
 			}
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"mana_burn_multiplier"
 			{
-				"var_type"	"FIELD_FLOAT"
-				"mana_burn_multiplier"	"0.5 1 1.5 2"
-				"LinkedSpecialBonus"	"special_bonus_unique_mana_fiend_3"
+				"value"	 "0.5 1 1.5 2"
+				"special_bonus_unique_mana_fiend_3"	 "+2"
 			}
 		}
 	}
-
 	"mana_fiend_abandon"
 	{
-		"BaseClass"	"ability_lua"
-		"ScriptFile"	"heroes/mana_fiend/mana_fiend.lua"
-		"AbilityTextureName"	"granite_golem_bash"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCastPoint"	"0.3"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCooldown"	"45"
-		"AbilityManaCost"	"100 200 300"
-		"AbilityCastRange"	"0"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"BaseClass"	 "ability_lua"
+		"ScriptFile"	 "heroes/mana_fiend/mana_fiend.lua"
+		"AbilityTextureName"	 "granite_golem_bash"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	 "0.3"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"	 "45"
+		"AbilityManaCost"	 "100 200 300"
+		"AbilityCastRange"	 "0"
+		"SpellDispellableType"	 "SPELL_DISPELLABLE_NO"
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_items.vsndevts"
+			"soundfile"	 "soundevents/game_sounds_items.vsndevts"
 		}
 		"OnSpellStart"
 		{
 			"ApplyModifier"
 			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_mana_fiend_abandon"
+				"Target"	 "CASTER"
+				"ModifierName"	 "modifier_mana_fiend_abandon"
 			}
 			"FireSound"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"DOTA_Item.MaskOfMadness.Activate"
+				"Target"	 "CASTER"
+				"EffectName"	 "DOTA_Item.MaskOfMadness.Activate"
 			}
 			"RunScript"
 			{
-				"ScriptFile"	"heroes/mana_fiend/mana_fiend.lua"
-				"Function"	"mana_fiend_abandon_activate"
+				"ScriptFile"	 "heroes/mana_fiend/mana_fiend.lua"
+				"Function"	 "mana_fiend_abandon_activate"
 			}
-			"AttachEffect"	{}
 		}
 		"Modifiers"
 		{
 			"modifier_mana_fiend_abandon"
 			{
-				"IsBuff"	"1"
+				"IsBuff"	 "1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"100"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	 "100"
 				}
-				"StatusEffectName"	"particles/status_fx/status_effect_chemical_rage.vpcf"
-				"Duration"	"%duration"
-				"IsPurgable"	"0"
+				"StatusEffectName"	 "particles/status_fx/status_effect_chemical_rage.vpcf"
+				"Duration"	 "%duration"
+				"IsPurgable"	 "0"
 			}
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"mana_restored"	 "200 300 400"
+			"duration"	 "10 20 30"
+			"attack_speed_bonus"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"mana_restored"	"200 300 400"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"duration"	"10 20 30"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"attack_speed_bonus"	"100"
-				"LinkedSpecialBonus"	"special_bonus_unique_mana_fiend_1"
+				"value"	 "100"
+				"special_bonus_unique_mana_fiend_1"	 "+50"
 			}
 		}
 	}
-
 	"mana_fiend_osmose"
 	{
-		"BaseClass"	"ability_lua"
-		"HasScepterUpgrade" "1"
-		"ScriptFile"	"heroes/mana_fiend/mana_fiend.lua"
-		"AbilityTextureName"	"lion_mana_drain"
-		"ScriptFile"	"heroes/mana_fiend/mana_fiend.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"HasScepterUpgrade"	 "1"
+		"ScriptFile"	 "heroes/mana_fiend/mana_fiend.lua"
+		"AbilityTextureName"	 "lion_mana_drain"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_BASIC"
+		"AbilityValues"
 		{
-			"01"
+			"mana_drained"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"mana_drained"	"10 20 30 40"
-				"LinkedSpecialBonus"	"special_bonus_unique_mana_fiend_4"
+				"value"	 "10 20 30 40"
+				"special_bonus_unique_mana_fiend_4"	 "+100"
 			}
 		}
 	}
 	"special_bonus_unique_mana_fiend_1"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"value"	"50"
-			}
+			"value"	 "50"
 		}
 	}
 	"special_bonus_unique_mana_fiend_2"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"value"	"1"
-			}
+			"value"	 "1"
 		}
 	}
 	"special_bonus_unique_mana_fiend_3"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"value"	"2"
-			}
+			"value"	 "2"
 		}
 	}
 	"special_bonus_unique_mana_fiend_4"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"value"	"100"
-			}
+			"value"	 "100"
 		}
 	}
 }

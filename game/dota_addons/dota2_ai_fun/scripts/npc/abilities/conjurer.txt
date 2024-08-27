@@ -1,469 +1,299 @@
-// Dota2 Editor
-// Get latest version: https://github.com/zombieJ/nw-dota2editor
-
 "DOTAAbilities"
 {
-	"Version"		"1"
-
+	"Version"	 "1"
 	"conjurer_conjure_image"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"conjurer_conjure_image"
-		"ScriptFile"	"scripts/vscripts/heroes/conjurer/conjurer.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityCastPoint"	"0.3"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
-		"AbilityCooldown"	"10"
-		"AbilityManaCost"	"100 110 120 130"
-		"AbilityCastRange"	"550"
-		"AbilityCastRangeBuffer"	"200"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "conjurer_conjure_image"
+		"ScriptFile"	 "scripts/vscripts/heroes/conjurer/conjurer.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityCastPoint"	 "0.3"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCooldown"	 "10"
+		"AbilityManaCost"	 "100 110 120 130"
+		"AbilityCastRange"	 "550"
+		"AbilityCastRangeBuffer"	 "200"
+		"AbilityValues"
 		{
-			"01"
+			"illusion_outgoing_damage"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"illusion_outgoing_damage"	"40 50 60 70"
-				"LinkedSpecialBonus"	"special_bonus_unique_conjurer_2"
+				"value"	 "40 50 60 70"
+				"special_bonus_unique_conjurer_2"	 "+80"
 			}
-			"02"
+			"illusion_incoming_damage"	 "200"
+			"illusion_duration"	 "30"
+			"illusion_count"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"illusion_incoming_damage"	"200"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"illusion_duration"	"30"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"illusion_count"	"1"
-				"LinkedSpecialBonus"	"special_bonus_unique_conjurer_4"
+				"value"	 "1"
+				"special_bonus_unique_conjurer_4"	 "+2"
 			}
 		}
 	}
-
 	"conjurer_summon_golem"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"granite_golem_hp_aura"
-		"ScriptFile"	"scripts/vscripts/heroes/conjurer/conjurer.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityCastPoint"	"0.3"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCooldown"	"15"
-		"AbilityManaCost"	"105 120 135 150"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "granite_golem_hp_aura"
+		"ScriptFile"	 "scripts/vscripts/heroes/conjurer/conjurer.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastPoint"	 "0.3"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	 "15"
+		"AbilityManaCost"	 "105 120 135 150"
+		"AbilityValues"
 		{
-			"01"
+			"duration"	 "60"
+			"hit_points"	 "450 675 900 1125"
+			"golem_damage"	 "23 33 43 53"
+			"armor"	 "0 3 6 9"
+			"summon_count"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"duration"	"60"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"hit_points"	"450 675 900 1125"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"golem_damage"	"23 33 43 53"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"armor"	"0 3 6 9"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"summon_count"	"1"
-				"LinkedSpecialBonus"	"special_bonus_unique_conjurer_4"
+				"value"	 "1"
+				"special_bonus_unique_conjurer_4"	 "+2"
 			}
 		}
 	}
-
 	"conjurer_water_elemental"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"conjure_summon_water_elemental"
-		"ScriptFile"	"scripts/vscripts/heroes/conjurer/conjurer.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityCastPoint"	"0.3"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCooldown"	"20"
-		"AbilityManaCost"	"110 120 130 140"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "conjure_summon_water_elemental"
+		"ScriptFile"	 "scripts/vscripts/heroes/conjurer/conjurer.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastPoint"	 "0.3"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	 "20"
+		"AbilityManaCost"	 "110 120 130 140"
+		"AbilityValues"
 		{
-			"01"
+			"duration"	 "60"
+			"hit_point"	 "400 600 800 1000"
+			"water_element_damage"	 "32 42 52 62"
+			"armor"	 "0 1 2 3"
+			"summon_count"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"duration"	"60"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"hit_point"	"400 600 800 1000"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"water_element_damage"	"32 42 52 62"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"armor"	"0 1 2 3"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"summon_count"	"1"
-				"LinkedSpecialBonus"	"special_bonus_unique_conjurer_4"
+				"value"	 "1"
+				"special_bonus_unique_conjurer_4"	 "+2"
 			}
 		}
 	}
-
 	"conjurer_phoenix"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"conjure_phoenix"
-		"ScriptFile"	"scripts/vscripts/heroes/conjurer/conjurer.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCastPoint"	"0.3"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCooldown"	"120"
-		"AbilityManaCost"	"200 300 400"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "conjure_phoenix"
+		"ScriptFile"	 "scripts/vscripts/heroes/conjurer/conjurer.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	 "0.3"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"	 "120"
+		"AbilityManaCost"	 "200 300 400"
+		"HasScepterUpgrade"	 "1"
+		"AbilityValues"
 		{
-			"01"
+			"duration"	 "60"
+			"hit_point"	 "800 1000 1200"
+			"phoenix_damage"	 "38 58 78"
+			"armor"	 "1 2 3"
+			"hit_point_scepter"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"duration"	"60"
+				"value"	 "1000 1200 1400"
+				"RequiresScepter"	 "1"
 			}
-			"02"
+			"phoenix_damage_scepter"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"hit_point"	"800 1000 1200"
+				"value"	 "58 78 98"
+				"RequiresScepter"	 "1"
 			}
-			"03"
+			"armor_scepter"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"phoenix_damage"	"38 58 78"
+				"value"	 "2 3 4"
+				"RequiresScepter"	 "1"
 			}
-			"04"
+			"cooldown_scepter"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"armor"	"1 2 3"
+				"value"	 "80"
+				"RequiresScepter"	 "1"
 			}
-			"05"
+			"summon_count"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"hit_point_scepter"	"1000 1200 1400"
-				"RequiresScepter"			"1"
-			}
-			"06"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"phoenix_damage_scepter"	"58 78 98"
-				"RequiresScepter"			"1"
-			}
-			"07"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"armor_scepter"	"2 3 4"
-				"RequiresScepter"			"1"
-			}
-			"08"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"cooldown_scepter"	"80"
-				"RequiresScepter"			"1"
-			}
-			"09"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"summon_count"	"3"
-				"LinkedSpecialBonus"	"special_bonus_unique_conjurer_4"
+				"value"	 "3"
+				"special_bonus_unique_conjurer_4"	 "+2"
 			}
 		}
-		"HasScepterUpgrade"	"1"
 	}
-
 	"special_bonus_unique_conjurer_1"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"value"	"200"
-			}
+			"value"	 "200"
 		}
 	}
-
 	"special_bonus_unique_conjurer_2"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"value"	"80"
-			}
+			"value"	 "80"
 		}
 	}
-
 	"special_bonus_unique_conjurer_3"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"value"	"1"
-			}
+			"value"	 "1"
 		}
 	}
-
 	"special_bonus_unique_conjurer_4"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"value"	"2"
-			}
+			"value"	 "2"
 		}
 	}
-
 	"special_bonus_unique_conjurer_5"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"special_bonus_undefined"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilitySpecial"
+		"BaseClass"	 "special_bonus_undefined"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	 "DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"value"	"1"
-			}
+			"value"	 "1"
 		}
 	}
-
 	"conjurer_phoenix_immolation"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"brewmaster_fire_permanent_immolation"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityCastRange"	"%radius"
+		"BaseClass"	 "ability_datadriven"
+		"AbilityTextureName"	 "brewmaster_fire_permanent_immolation"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	 "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"	 "%radius"
 		"OnUpgrade"
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/conjurer/conjurer.lua"
-				"Function"	"ConjurerPhoenixImmolationApply"
+				"ScriptFile"	 "scripts/vscripts/heroes/conjurer/conjurer.lua"
+				"Function"	 "ConjurerPhoenixImmolationApply"
 			}
 		}
-		// Special
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"damage"	"20"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"radius"	"400"
-			}
+			"damage"	 "20"
+			"radius"	 "400"
 		}
 	}
-
 	"conjurer_phoenix_splash_attack"
 	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"black_dragon_splash_attack"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"	 "ability_datadriven"
+		"AbilityTextureName"	 "black_dragon_splash_attack"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"OnUpgrade"
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/conjurer/conjurer.lua"
-				"Function"	"ConjurerPhoenixSplashApply"
+				"ScriptFile"	 "scripts/vscripts/heroes/conjurer/conjurer.lua"
+				"Function"	 "ConjurerPhoenixSplashApply"
 			}
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"splash_radius_100"	"150"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"splash_radius_50"	"225"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"splash_radius_25"	"300"
-			}
+			"splash_radius_100"	 "150"
+			"splash_radius_50"	 "225"
+			"splash_radius_25"	 "300"
 		}
 	}
-
 	"conjurer_phoenix_reincarnation"
 	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"phoenix_supernova"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"	 "ability_datadriven"
+		"AbilityTextureName"	 "phoenix_supernova"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"OnUpgrade"
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/conjurer/conjurer.lua"
-				"Function"	"ConjurerPhoenixReincarnationApply"
+				"ScriptFile"	 "scripts/vscripts/heroes/conjurer/conjurer.lua"
+				"Function"	 "ConjurerPhoenixReincarnationApply"
 			}
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"attack_number"	"3"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"reincarnation_time"	"6"
-			}
+			"attack_number"	 "3"
+			"reincarnation_time"	 "6"
 		}
 	}
-
 	"conjurer_golem_hardened_skin"
 	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"conjurer_golem_hardened_skin"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"	 "ability_datadriven"
+		"AbilityTextureName"	 "conjurer_golem_hardened_skin"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"OnUpgrade"
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/conjurer/conjurer.lua"
-				"Function"	"ConjurerGolemHardenedSkinApply"
+				"ScriptFile"	 "scripts/vscripts/heroes/conjurer/conjurer.lua"
+				"Function"	 "ConjurerGolemHardenedSkinApply"
 			}
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"damage_block"	"12"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"damage_threshold"	"3"
-			}
+			"damage_block"	 "12"
+			"damage_threshold"	 "3"
 		}
 	}
-
 	"conjurer_golem_hurl_boulder"
 	{
-		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"mud_golem_hurl_boulder"
-		"ScriptFile"	"scripts/vscripts/heroes/conjurer/conjurer.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityCastPoint"	"0.47"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
-		"AnimationPlaybackRate" "0.66"
-		"AbilityCooldown"	"6"
-		"AbilityManaCost"	"100"
-		"AbilityCastRange"	"800"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
-		"AbilitySpecial"
+		"BaseClass"	 "ability_lua"
+		"AbilityTextureName"	 "mud_golem_hurl_boulder"
+		"ScriptFile"	 "scripts/vscripts/heroes/conjurer/conjurer.lua"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCastPoint"	 "0.47"
+		"AbilityCastAnimation"	 "ACT_DOTA_CAST_ABILITY_2"
+		"AnimationPlaybackRate"	 "0.66"
+		"AbilityCooldown"	 "6"
+		"AbilityManaCost"	 "100"
+		"AbilityCastRange"	 "800"
+		"AbilityUnitDamageType"	 "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	 "SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"	 "SPELL_DISPELLABLE_YES_STRONG"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"damage"	"100"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"stun_duration"	"2"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"fly_speed"	"800"
-			}
+			"damage"	 "100"
+			"stun_duration"	 "2"
+			"fly_speed"	 "800"
 		}
 	}
-
 	"conjurer_golem_split"
 	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"mud_golem_rock_destroy"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"	 "ability_datadriven"
+		"AbilityTextureName"	 "mud_golem_rock_destroy"
+		"AbilityBehavior"	 "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"OnUpgrade"
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/conjurer/conjurer.lua"
-				"Function"	"ConjurerGolemSplitApply"
+				"ScriptFile"	 "scripts/vscripts/heroes/conjurer/conjurer.lua"
+				"Function"	 "ConjurerGolemSplitApply"
 			}
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"split_count"	"2"
-			}
+			"split_count"	 "2"
 		}
 	}
 }
-
