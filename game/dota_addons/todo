@@ -1,0 +1,6 @@
+"CalculateSpellDamageTooltip" "1"
+"affected_by_aoe_increase"	"1"
+"DamageTypeTooltip"					"DAMAGE_TYPE_NONE"
+special_bonus_facet?
+"RequiresScepter"
+fix bat of item

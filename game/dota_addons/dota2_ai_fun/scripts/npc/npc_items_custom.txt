@@ -158,7 +158,7 @@
 			"bonus_attack_speed"	 "30"
 			"evasion"	 "50"
 			"bonus_damage"	 "50"
-			"bat"	 "-0.6"
+			"bat"	 "1"
 		}
 	}
 	"item_fun_ragnarok"
@@ -409,6 +409,7 @@
 					"MODIFIER_PROPERTY_MANA_BONUS"	 "%bonus_mana"
 					"MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE"	 "%spell_amp"
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	 "%bonus_damage"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	 "%movespeed_bonus"
 				}
 			}
 			"modifier_item_fun_angelic_alliance_halo"
@@ -1254,7 +1255,7 @@
 					"MODIFIER_PROPERTY_EVASION_CONSTANT"	 "%evasion"
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	 "%bonus_damage"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	 "%bonus_attack_speed"
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT_ADJUST"	 "%bat"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	 "%bat"
 				}
 			}
 			"modifier_item_fun_genji_gloves_2_cannot_miss_and_minibash"
@@ -1286,7 +1287,7 @@
 			"bonus_attack_speed"	 "50"
 			"evasion"	 "50"
 			"bonus_damage"	 "110"
-			"bat"	 "-0.8"
+			"bat"	 "0.75"
 			"extra_damage"	 "100"
 			"movespeed_bonus"	 "50"
 		}
@@ -1330,7 +1331,7 @@
 			"bonus_attack_speed"	 "70"
 			"evasion"	 "70"
 			"bonus_damage"	 "160"
-			"bat"	 "-1"
+			"bat"	 "0.5"
 			"extra_damage"	 "150"
 			"movespeed_bonus"	 "70"
 			"bonus_strength"	 "150"

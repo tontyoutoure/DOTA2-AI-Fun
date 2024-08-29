@@ -6,6 +6,62 @@ require('gamemode')
 
 -- If something was being created via script such as a new npc, it would need to be precached here
 function Precache( context )
+	local tEmblems = {
+		"particles/econ/events/ti7/ti7_hero_effect.vpcf",
+		"particles/econ/events/ti8/ti8_hero_effect.vpcf",
+		"particles/econ/events/ti9/ti9_emblem_effect.vpcf",
+		"particles/econ/events/ti10/emblem/ti10_emblem_effect.vpcf",
+		"particles/econ/events/diretide_2020/emblem/fall20_emblem_effect.vpcf",
+		"particles/econ/events/diretide_2020/emblem/fall20_emblem_v1_effect.vpcf",
+		"particles/econ/events/diretide_2020/emblem/fall20_emblem_v2_effect.vpcf",
+		"particles/econ/events/diretide_2020/emblem/fall20_emblem_v3_effect.vpcf",
+		"particles/econ/events/summer_2021/summer_2021_emblem_effect.vpcf",
+		"particles/econ/events/fall_2021/fall_2021_emblem_game_effect.vpcf"
+	}
+	for _,sEmblem in pairs(tEmblems) do
+		PrecacheResource("particle", sEmblem, context)
+	end
+	local tEtherealParticles = {		
+		[15] = {"ethereal_flame", "EF", "particles/econ/courier/courier_trail_01/courier_trail_01.vpcf", {"UnusualRed", "UnusualOrange", "UnusualBlue", "UnusualGold", "UnusualPurple", "UnusualLightGreen"}},
+		[16] = {"resonant_energy", "RE", "particles/econ/courier/courier_trail_02/courier_trail_02.vpcf", {"UnusualRed", "UnusualOrange", "UnusualBlue", "UnusualGold", "UnusualPurple", "UnusualLightGreen", "UnusualMiasma"}},
+		[17] = {"luminous_gaze", "LG", "particles/econ/courier/courier_eye_glow_01/courier_eye_glow_01.vpcf", {"UnusualRed", "UnusualOrange", "UnusualBlue", "UnusualGold", "UnusualPurple", "UnusualLightGreen"}},
+		[18] = {"searing_essence", "SE","particles/econ/courier/courier_eye_glow_02/courier_eye_glow_02.vpcf", {"UnusualRed", "UnusualOrange", "UnusualBlue", "UnusualGold", "UnusualPurple", "UnusualLightGreen"}},
+		[19] = {"burning_animus", "BA","particles/econ/courier/courier_eye_glow_03/courier_eye_glow_03.vpcf", {"UnusualRed", "UnusualOrange", "UnusualBlue", "UnusualGold", "UnusualPurple", "UnusualLightGreen"}},
+		[20] = {"piercing_beams", "PB", "particles/econ/courier/courier_eye_glow_04/courier_eye_glow_04.vpcf", {"UnusualRed", "UnusualOrange", "UnusualBlue", "UnusualGold", "UnusualPurple", "UnusualLightGreen"}},
+		[21] = {"felicitys_blessing", "FB", "particles/econ/courier/courier_trail_03/courier_trail_03.vpcf", {"UnusualRed", "UnusualOrange", "UnusualBlue", "UnusualGold", "UnusualPurple", "UnusualLightGreen"}},
+		[22] = {"affliction_of_vermin", "AoV", "particles/econ/courier/courier_trail_04/courier_trail_04.vpcf", false},
+		[31] = {"triumph_of_champions", "ToC", "particles/econ/courier/courier_eye_glow_defense_01/courier_eye_glow_defense_01.vpcf", "UnusualDefensiveRed"},
+		[32] = {"sunfire", "SF", "particles/econ/courier/courier_trail_05/courier_trail_05.vpcf", "UnusualSummerWarmth"},
+		[37] = {"champions_aura_2012", "CA2012", "particles/econ/courier/courier_trail_int_2012/courier_trail_international_2012.vpcf", "UnusualInternational2012"},
+		[46] = {"diretide_corruption", "DC", "particles/econ/courier/courier_trail_hw_2012/courier_trail_hw_2012.vpcf", "UnusualBrightGreen"},
+		[47] = {"touch_of_midas", "ToM", "particles/econ/courier/courier_golden_roshan/golden_roshan_ambient.vpcf", "UnusualMidasGold"},
+		[57] = {"frostivus_frost", "FF", "particles/econ/courier/courier_trail_winter_2012/courier_trail_winter_2012.vpcf", "UnusualPlacidBlue"},
+		[61] = {"trail_of_the_lotus_blossom", "TotLB", "particles/econ/courier/courier_trail_blossoms/courier_trail_blossoms.vpcf", "UnusualBlossomRed"},
+		[68] = {"crystal_rift", "CR", "particles/econ/courier/courier_crystal_rift/courier_ambient_crystal_rift.vpcf", "UnusualCrystallineBlue"},
+		[73] = {"cursed_essence", "CE", "particles/econ/courier/courier_trail_cursed/courier_cursed_ambient.vpcf", "UnusualCursedBlack"},
+		[74] = {"divine_essence", "DE", "particles/econ/courier/courier_trail_divine/courier_divine_ambient.vpcf", "UnusualCreatorsLight"},
+		[76] = {"trail_of_the_amanita", "TotA", "particles/econ/courier/courier_trail_fungal/courier_trail_fungal.vpcf", "UnusualPlagueGrey"},
+		[96] = {"trail_of_burning_doom", "ToBD", "particles/econ/courier/courier_trail_lava/courier_trail_lava.vpcf", "UnusualRed"},
+		[109] = {"champions_aura_2013", "CA2013", "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf", "UnusualInternational2013"},
+		[129] = {"rubiline_sheen", "RS", "particles/econ/courier/courier_trail_ruby/courier_trail_ruby.vpcf", "UnusualRubiline"},
+		[138] = {"emerald_ectoplasm", "EE", "particles/econ/courier/courier_polycount_01/courier_trail_polycount_01.vpcf", "UnusualDeepGreen"},
+		[155] = {"diretide_blight", "DB", "particles/econ/courier/courier_trail_hw_2013/courier_trail_hw_2013.vpcf", "UnusualShips"},
+		[156] = {"spirit_of_ember", "SoEm", "particles/econ/courier/courier_trail_ember/courier_trail_ember.vpcf", "UnusualEmberFlame"},
+		[157] = {"spirit_of_earth", "SoEa", "particles/econ/courier/courier_trail_earth/courier_trail_earth.vpcf", "UnusualEarthGreen"},
+		[158] = {"orbital_decay", "OD", "particles/econ/courier/courier_trail_orbit/courier_trail_orbit.vpcf", "UnusualUnhallowedGround"},
+		[159] = {"bleak_hallucination", "BH", "particles/econ/courier/courier_trail_spirit/courier_trail_spirit.vpcf", false},
+		[163] = {"ionic_vapor", "IV", "particles/econ/courier/courier_platinum_roshan/platinum_roshan_ambient.vpcf", "UnusualPristinePlatinum"},
+		[185] = {"new_bloom_celebration", "NBC", "particles/econ/courier/courier_trail_fireworks/courier_trail_fireworks.vpcf", "UnusualVermilionRenewal"},
+		[196] = {"butterfly_romp", "BR", "particles/econ/courier/courier_shagbark/courier_shagbark_ambient.vpcf", "UnusualPlushShagbark"},
+		[205] = {"touch_of_frost", "ToFr", "particles/econ/courier/courier_roshan_frost/courier_roshan_frost_ambient.vpcf", "UnusualIceRoshan"},
+		[206] = {"touch_of_flame", "Tofl", "particles/econ/courier/courier_roshan_lava/courier_roshan_lava.vpcf", "UnusualLavaRoshan"},
+		[268] = {"champions_aura_2014", "CA2014", "particles/econ/courier/courier_trail_international_2014/courier_international_2014.vpcf", "UnusualInternational2014"}
+	}
+	for k, v in pairs(tEtherealParticles) do
+		PrecacheResource("particle", v[3], context)
+	end
+	PrecacheResource("particle", "particles/siglos/siglos_reflect.vpcf", context)
+
 	PrecacheModel("models/heroes/invoker/invoker_head.vmdl", context)
 	PrecacheModel("models/courier/frog/frog.vmdl", context)
 	PrecacheModel("models/items/invoker/magus_apex/magus_apex.vmdl", context)

@@ -55,7 +55,7 @@ function modifier_item_fun_sprint_shoes_lua:DeclareFunctions()
 	local funcs = 
 	{
 		MODIFIER_PROPERTY_IGNORE_MOVESPEED_LIMIT,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT_UNIQUE,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
 		MODIFIER_EVENT_ON_STATE_CHANGED
 	}
@@ -85,7 +85,7 @@ function modifier_item_fun_sprint_shoes_lua:GetModifierIgnoreMovespeedLimit()
 	return 1
 end
 
-function modifier_item_fun_sprint_shoes_lua:GetModifierMoveSpeedBonus_Constant()
+function modifier_item_fun_sprint_shoes_lua:GetModifierMoveSpeedBonus_Constant_Unique()
 	if self:GetAbility() then  
 		return self:GetAbility():GetSpecialValueFor("movespeed_bonus")
 	else
@@ -544,7 +544,7 @@ function modifier_item_fun_terra_blade:DeclareFunctions()
 		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ORDER,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
-		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT_ADJUST,
+		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
 	}
 end
 modifier_item_fun_terra_blade.OnTakeDamage = OnTakeDamageTBR
@@ -651,7 +651,7 @@ function modifier_item_fun_terra_blade:GetModifierEvasion_Constant() return self
 function modifier_item_fun_terra_blade:GetModifierPreAttack_BonusDamage() return self:GetAbility():GetSpecialValueFor("bonus_damage") end
 function modifier_item_fun_terra_blade:GetModifierConstantManaRegen() return self:GetAbility():GetSpecialValueFor("manaregen") end
 function modifier_item_fun_terra_blade:GetModifierAttackSpeedBonus_Constant() return self:GetAbility():GetSpecialValueFor("bonus_attack_speed") end
-function modifier_item_fun_terra_blade:GetModifierBaseAttackTimeConstant_Adjust() return self:GetAbility():GetSpecialValueFor("bat") end
+function modifier_item_fun_terra_blade:GetModifierBaseAttackTimeConstant() return self:GetAbility():GetSpecialValueFor("bat") end
 function modifier_item_fun_terra_blade:GetModifierBonusStats_Strength() return self:GetAbility():GetSpecialValueFor("bonus_strength") end
 function modifier_item_fun_terra_blade:GetModifierHealthBonus() return self:GetAbility():GetSpecialValueFor("bonus_health") end
 function modifier_item_fun_terra_blade:GetModifierMoveSpeedBonus_Percentage() return self:GetAbility():GetSpecialValueFor("movespeed_bonus")/math.floor(self:GetStackCount()/2) end
